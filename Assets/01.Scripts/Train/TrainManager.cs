@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TrainManager : MonoBehaviour
+{
+    public static TrainManager instance;
+
+    [SerializeField]
+    private GameObject trainPrefab;
+    [SerializeField]
+    private float distance; //���� ����� ���� ���ؾ���
+
+    public List<GameObject> trainContainer = new List<GameObject>();
+
+    public int curTrainCount;
+    public int maxTrainCount;
+
+    public List<MineScriptable> mine = new List<MineScriptable>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+
+    public void CreateTrainPrefab()
+    {
+        if (transform.childCount != 0)
+        {
+            for (int i = transform.childCount - 1; i > 0; i--)
+            {
+                DestroyImmediate(transform.GetChild(i).gameObject);
+            }   
+        }
+
+
+        for (int i = 0; i < curTrainCount; i++)
+        {
+            var newCube = Instantiate(trainPrefab);
+            newCube.transform.SetParent(gameObject.transform);
+            newCube.transform.localPosition = new Vector3(0f, 0f, -(i * distance));
+            newCube.transform.localRotation = Quaternion.identity;
+
+            trainContainer.Add(newCube);
+
+            trainContainer[i].GetComponentInChildren<MiningUI>().myCount = 0;
+            trainContainer[i].GetComponentInChildren<MiningUI>().myCount += i;
+        }
+    }
+
+    public void RemoveList()
+    {
+        if (curTrainCount > 0)
+        {
+            trainContainer.RemoveRange(0, curTrainCount + 1);
+        }
+    }
+}
