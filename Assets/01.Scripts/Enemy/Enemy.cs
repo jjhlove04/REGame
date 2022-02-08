@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float distanceX = 3;
 
+    float distance;
+
     [SerializeField]
     bool isEnemyMove = true;
     Rigidbody rigid;
@@ -23,11 +25,14 @@ public class Enemy : MonoBehaviour
 
     public Animator anim;
     public float animTime;
-    private float atime = 1f;
+    private float atime = 5f;
+
+    private bool isAttack =false;
 
     private void OnEnable()
     {
         EnemyGetRandom();
+        distance = Random.Range(10, 20);
     }
 
     private void Start()
@@ -41,27 +46,46 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        if(Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > 10f && isEnemyMove && Mathf.Abs(transform.position.x)-Mathf.Abs(TrainManager.instance.trainContainer[enemyType].transform.position.x) > distanceX)
+        Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
+        Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ TrainManager.instance.trainContainer.Count *25));
+        if ((Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > distanceX) && isEnemyMove )
         {
             EnemyTargettingMove();
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
         else
         {
-            Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
+            rot = Quaternion.LookRotation(dir);
 
-            Quaternion rot = Quaternion.LookRotation(dir);
+            Quaternion quaternion = Quaternion.identity;
+            quaternion.eulerAngles = new Vector3(0, 0, 0);
+            waist.transform.rotation = quaternion;
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
+            if (anim.GetBool("IsAttack"))
+            {
+                StartCoroutine(Attacking());
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
+            }
 
-            waist.transform.rotation = new Quaternion(0, -transform.rotation.y, 0, 0);
+            if (isAttack)
+            {
 
-            anim.SetBool("IsAttack", true);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
+            }
+
+            else
+            {
+                rot = Quaternion.LookRotation(Vector3.zero);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime *5);
+            }
+
+            anim.SetBool("IsAttack", false);
 
             animTime += Time.deltaTime;
 
             if (animTime >= atime)
             {
-                anim.SetBool("IsAttack", false);
+                anim.SetBool("IsAttack", true);
                 animTime = 0f;
             }
 
@@ -101,5 +125,12 @@ public class Enemy : MonoBehaviour
     private void OnMouseExit()
     {
         PlayerInput.Instance.isEnemy = false;
+    }
+
+    private IEnumerator Attacking()
+    {
+        isAttack = true;
+        yield return new WaitForSeconds(2f);
+        isAttack = false;
     }
 }
