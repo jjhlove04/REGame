@@ -8,6 +8,8 @@ public class CreateTurret : MonoBehaviour
     bool isTurret = false;
 
     private ObjectPool objPool;
+
+    private int onTurrectCount;
     void Start()
     {
         objPool = FindObjectOfType<ObjectPool>();
@@ -22,10 +24,17 @@ public class CreateTurret : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                if(onTurrectCount > 0)
+                {
+                    Debug.Log("이미 설치된 포탑입니다");
+                    return;
+                }
                 if (PlayerInput.Instance.curTurret != null)
                 {
                     TurretCreate(PlayerInput.Instance.curTurret);
                     turretUI.onTurret = true;
+                    onTurrectCount++;
+                    Debug.Log("포탑 설치 중");
                 }
             }
         }

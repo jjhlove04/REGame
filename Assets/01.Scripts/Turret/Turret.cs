@@ -46,9 +46,6 @@ public class Turret : MonoBehaviour
 
     void LookForTargets(float maxDistance)
     {
-
-
-
         RaycastHit[] hit = Physics.SphereCastAll(transform.position, maxDistance, transform.forward);
         foreach (RaycastHit hitEnemy in hit)
         {
@@ -68,4 +65,6 @@ public class Turret : MonoBehaviour
             }
         }
     }
+
+
 }

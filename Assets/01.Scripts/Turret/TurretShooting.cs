@@ -29,17 +29,22 @@ public class TurretShooting : Turret
     [SerializeField]
     private int damage = 10;
 
-    private Transform targetEnemy;
+    private Transform targetEnemychil;
+
+    public float curHp;
+    public float maxHp;
+    private bool onPlayer = false;
 
     private void Start()
     {
         curshootTimer = shootTimerMax;
+        curHp = maxHp;
     }
 
     void Update()
     {
         HandleShooting(shootTimerMax, damage);
-        HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemy);
+        HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemychil);
         Shot();
     }
 
@@ -59,7 +64,7 @@ public class TurretShooting : Turret
             curshootTimer -= Time.deltaTime;
         }
 
-        if (targetEnemy != null && curshootTimer <= 0)
+        if (targetEnemychil != null && curshootTimer <= 0)
         {
             RaycastHit hit;
             Vector3 hitPosition = Vector3.zero;
@@ -81,6 +86,19 @@ public class TurretShooting : Turret
         }
     }
 
+    void RepairTurret()
+    {
+        if(onPlayer && Input.GetKeyDown(KeyCode.E))//&& curMoney >= FixAmount)
+        {
+            SetHp();
+        }
+    }
+
+    void SetHp()
+    {
+        curHp = maxHp;
+    }
+
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
         muzzleflash.Play();
@@ -90,5 +108,13 @@ public class TurretShooting : Turret
         yield return new WaitForSeconds(bulletLineEffectTime);
         bulletLineRenderer.gameObject.SetActive(false);
         muzzleflash.Stop();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            onPlayer = true;
+        }
     }
 }
