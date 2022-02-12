@@ -12,7 +12,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     float distanceX = 3;
+    private float disX;
 
+    [SerializeField]
     float distance;
 
     [SerializeField]
@@ -32,7 +34,8 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         EnemyGetRandom();
-        distance = Random.Range(10, 20);
+        distance = Random.Range(15, 20);
+        disX = Random.Range(distanceX - 1, distanceX);
     }
 
     private void Start()
@@ -48,7 +51,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
         Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ TrainManager.instance.trainContainer.Count *25));
-        if ((Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > distanceX) && isEnemyMove )
+        if ((Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > disX) && isEnemyMove )
         {
             EnemyTargettingMove();
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
@@ -103,7 +106,7 @@ public class Enemy : MonoBehaviour
 
     void EnemyTargettingMove()
     {
-        transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position,
+        transform.position =  Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position,
         enemySpeed * Time.deltaTime);
     }
 
