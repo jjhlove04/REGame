@@ -28,6 +28,8 @@ public class Turret : MonoBehaviour
             LookForTargets(maxDistance);
         }
         transform.LookAt(this.targetEnemy);
+        Quaternion quaternion = transform.rotation;
+        transform.rotation = Quaternion.Euler(new Vector3(Mathf.Clamp(quaternion.x,0,9), quaternion.eulerAngles.y, quaternion.eulerAngles.z));
         targetEnemy = this.targetEnemy;
     }
 

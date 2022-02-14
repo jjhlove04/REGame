@@ -62,7 +62,7 @@ public class TrainManager : MonoBehaviour
     public void MakeCollider()
     {
         collider.center = new Vector3(0, 5, (curTrainCount * distance)* -0.5f+27);
-        collider.size = new Vector3(7, 10, curTrainCount * distance+27);
+        collider.size = new Vector3(6, 10, curTrainCount * distance+27);
     }
 
 }
