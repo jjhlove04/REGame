@@ -6,8 +6,7 @@ public class TrainScript : MonoBehaviour
 {
     public static TrainScript instance { get; private set; }
 
-    [SerializeField]
-    private float curTrainHp = 100f; //0ÀÌÇÏ·Î ¶³¾î¶ß¸®Áö ¸»°Í!
+    public float curTrainHp = 100f; //0ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
     public float maxTrainHp = 100f;
 
     private float initRoomHp;
