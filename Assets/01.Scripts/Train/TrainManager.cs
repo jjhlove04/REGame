@@ -18,6 +18,8 @@ public class TrainManager : MonoBehaviour
 
     public List<MineScriptable> mine = new List<MineScriptable>();
 
+    public BoxCollider collider;
+
     private void Awake()
     {
         instance = this;
@@ -34,7 +36,6 @@ public class TrainManager : MonoBehaviour
             }   
         }
 
-
         for (int i = 0; i < curTrainCount; i++)
         {
             var newCube = Instantiate(trainPrefab);
@@ -47,6 +48,7 @@ public class TrainManager : MonoBehaviour
             trainContainer[i].GetComponentInChildren<MiningUI>().myCount = 0;
             trainContainer[i].GetComponentInChildren<MiningUI>().myCount += i;
         }
+        MakeCollider();
     }
 
     public void RemoveList()
@@ -56,4 +58,11 @@ public class TrainManager : MonoBehaviour
             trainContainer.RemoveRange(0, curTrainCount + 1);
         }
     }
+
+    public void MakeCollider()
+    {
+        collider.center = new Vector3(0, 5, (curTrainCount * distance)* -0.5f+27);
+        collider.size = new Vector3(7, 10, curTrainCount * distance+27);
+    }
+
 }

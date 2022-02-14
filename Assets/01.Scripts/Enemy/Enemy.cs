@@ -12,9 +12,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     float distanceX = 3;
-    private float disX;
 
-    [SerializeField]
     float distance;
 
     [SerializeField]
@@ -29,13 +27,12 @@ public class Enemy : MonoBehaviour
     public float animTime;
     private float atime = 5f;
 
-    private bool isAttack =false;
+    private bool isAttack = false;
 
     private void OnEnable()
     {
         EnemyGetRandom();
-        distance = Random.Range(15, 20);
-        disX = Random.Range(distanceX - 1, distanceX);
+        distance = Random.Range(10, 20);
     }
 
     private void Start()
@@ -50,12 +47,19 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
-        Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ TrainManager.instance.trainContainer.Count *25));
-        if ((Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > disX) && isEnemyMove )
+
+        if (TrainManager.instance.trainContainer[enemyType] == null)
+        {
+            dir = TrainManager.instance.trainContainer[enemyType-1].transform.position - transform.position;
+        }
+        Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
+
+        if ((Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > distanceX) && isEnemyMove)
         {
             EnemyTargettingMove();
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
+
         else
         {
             rot = Quaternion.LookRotation(dir);
@@ -79,7 +83,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 rot = Quaternion.LookRotation(Vector3.zero);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime *5);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
             }
 
             anim.SetBool("IsAttack", false);
@@ -106,8 +110,17 @@ public class Enemy : MonoBehaviour
 
     void EnemyTargettingMove()
     {
-        transform.position =  Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position,
-        enemySpeed * Time.deltaTime);
+        if (TrainManager.instance.trainContainer[enemyType].transform.position != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position,
+            enemySpeed * Time.deltaTime);
+        }
+
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType-1].transform.position,
+            enemySpeed * Time.deltaTime);
+        }
     }
 
     void EnemyDie()
@@ -121,7 +134,6 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("target");
         PlayerInput.Instance.isEnemy = true;
     }
 
