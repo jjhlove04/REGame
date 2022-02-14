@@ -6,10 +6,8 @@ public class TrainScript : MonoBehaviour
 {
     public static TrainScript instance { get; private set; }
 
-    
     [SerializeField]
-    [Range(0,100)]
-    private float curTrainHp = 100f;
+    private float curTrainHp = 100f; //0이하로 떨어뜨리지 말것!
     public float maxTrainHp = 100f;
 
     private float initRoomHp;
