@@ -10,6 +10,8 @@ public class Fire : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         other.GetComponent<HealthSystem>()?.Damage(damage);
-        print(other.tag);
+
+        Debug.Log(other.name );
+        Debug.Log(other.GetComponent<HealthSystem>());
     }
 }

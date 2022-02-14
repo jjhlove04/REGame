@@ -19078,7 +19078,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 1
   TriggerModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 2
     inside: 2
     outside: 0
@@ -20109,7 +20109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fd896683f135244b9b8a5fd6c3c0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 10
 --- !u!1 &4909586840262295456
 GameObject:
   m_ObjectHideFlags: 0
@@ -20351,7 +20351,6 @@ MonoBehaviour:
   enemyType: 0
   enemySpeed: 10
   distanceX: 15
-  distance: 0
   isEnemyMove: 1
   waist: {fileID: 4909221583010691012}
   anim: {fileID: 0}
@@ -20384,7 +20383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044c5f08adb341b40ae44472145416ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmountMax: 50
+  healthAmountMax: 10000
 --- !u!1 &4911060519047012814
 GameObject:
   m_ObjectHideFlags: 0
