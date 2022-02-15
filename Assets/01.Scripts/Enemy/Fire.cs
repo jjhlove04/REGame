@@ -9,9 +9,14 @@ public class Fire : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        other.GetComponent<HealthSystem>()?.Damage(damage);
+        if(other.tag == "Train")
+        {
+            TrainScript.instance.Damage(damage * Time.deltaTime);
+        }
 
-        Debug.Log(other.name );
-        Debug.Log(other.GetComponent<HealthSystem>());
+        else if(other.tag == "Turret")
+        {
+            other.GetComponent<HealthSystem>()?.Damage(damage * Time.deltaTime);
+        }
     }
 }

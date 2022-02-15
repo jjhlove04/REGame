@@ -6,8 +6,8 @@ public class TrainScript : MonoBehaviour
 {
     public static TrainScript instance { get; private set; }
 
-    public float curTrainHp = 100f; //0���Ϸ� ����߸��� ����!
-    public float maxTrainHp = 100f;
+    public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
+    public float maxTrainHp = 50000;
 
     private float initRoomHp;
     private float roomHp;
@@ -57,5 +57,11 @@ public class TrainScript : MonoBehaviour
     public void FixHP()
     {
         curTrainHp = maxTrainHp;
+    }
+
+    public void Damage(float damage)
+    {
+        curTrainHp -= damage;
+        UIManager.UI.TakeDamageHpBar();
     }
 }

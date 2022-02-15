@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour
     private int dex = 1;
     public List<Button> panelOpenList = new List<Button>();
 
+    private void Awake()
+    {
+        _ui = this;
+    }
     private void Start() {
         //hp바 세팅
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
@@ -34,7 +38,7 @@ public class UIManager : MonoBehaviour
             openPanel = true;
         }
         UpGradePanelOpen();
-        
+        TakeDamageHpBar();
     }
 
 

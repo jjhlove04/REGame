@@ -5035,7 +5035,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc19c200568b2b46a856f18250c339e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
   curMaterial: {fileID: 2100000, guid: 55c4fbda24eb7a149a5fee2f659b7db7, type: 2}
+  basicMaterial: {fileID: 2100000, guid: 55c4fbda24eb7a149a5fee2f659b7db7, type: 2}
 --- !u!1 &4909080043467470792
 GameObject:
   m_ObjectHideFlags: 0
@@ -15292,7 +15294,7 @@ GameObject:
   - component: {fileID: 4914785171180626484}
   - component: {fileID: 5108851553973842982}
   - component: {fileID: 5107538063818292772}
-  - component: {fileID: 3528237027215535538}
+  - component: {fileID: 4884995339394624994}
   m_Layer: 10
   m_Name: Fire
   m_TagString: Untagged
@@ -20098,7 +20100,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &3528237027215535538
+--- !u!114 &4884995339394624994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

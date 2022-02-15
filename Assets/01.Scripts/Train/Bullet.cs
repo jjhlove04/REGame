@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
 
     }
 
+
     private Transform targetEnemy;
     private Vector3 lastMoveDir;
     private float timeToDie = 2f;
@@ -34,7 +35,6 @@ public class Bullet : MonoBehaviour
         {
             moveDir = (targetEnemy.transform.position - transform.position).normalized;
             lastMoveDir = moveDir;
-
         }
 
         else
@@ -73,8 +73,10 @@ public class Bullet : MonoBehaviour
         if (other.tag == "Enemy")
         {
             other.GetComponent<HealthSystem>().Damage(damage);
-
+            DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
             this.gameObject.SetActive(false);
         }
     }
+
+
 }

@@ -8,7 +8,6 @@ public class HealthSystem : MonoBehaviour
     public Action OnDamaged;
     public Action OnDied;
 
-
     [SerializeField]
     private float healthAmountMax;
 
@@ -25,7 +24,7 @@ public class HealthSystem : MonoBehaviour
     {
         curHealthAmount -= damageAmount;
         curHealthAmount = Mathf.Clamp(curHealthAmount, 0, healthAmountMax);
-
+        transform.GetChild(0).GetComponentInChildren<EnemyColorChange>()?.Hit();
         OnDamaged?.Invoke();
 
         if (IsDead())
