@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     public int scrapAmount = 0;
     private int needAmount = 5;
 
+    public float moveValue;
+    public float minusMoveValue;
+
     private void Awake()
     {
         _ui = this;
@@ -28,6 +31,7 @@ public class UIManager : MonoBehaviour
     private void Start() {
         //hp바 세팅
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
+        CheckScrapAmount();
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.T))
@@ -52,13 +56,13 @@ public class UIManager : MonoBehaviour
     {
         if (openPanel)
         {
-            PanelMove(installPanel, 130);
-            PanelMove(upGradePanel, 130);
+            PanelMove(installPanel, moveValue);
+            PanelMove(upGradePanel, moveValue);
         }
         if (openPanel == false)
         {
-            PanelMove(installPanel, -130);
-            PanelMove(upGradePanel, -130);
+            PanelMove(installPanel, minusMoveValue);
+            PanelMove(upGradePanel, minusMoveValue);
         }
     }
 
