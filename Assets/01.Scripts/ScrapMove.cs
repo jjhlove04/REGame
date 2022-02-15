@@ -21,6 +21,8 @@ public class ScrapMove : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             this.gameObject.SetActive(false);
+            UIManager.UI.scrapAmount += 1;
+            UIManager.UI.CheckScrapAmount();
         }
     }
 }

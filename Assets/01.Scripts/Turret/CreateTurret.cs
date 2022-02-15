@@ -27,14 +27,20 @@ public class CreateTurret : MonoBehaviour
                 if(onTurrectCount > 0)
                 {
                     Debug.Log("이미 설치된 포탑입니다");
-                    return;
+                    UIManager.UI.installPanel.SetActive(false);
                 }
-                if (PlayerInput.Instance.curTurret != null)
+
+                if(onTurrectCount <= 0)
                 {
-                    TurretCreate(PlayerInput.Instance.curTurret);
-                    turretUI.onTurret = true;
-                    onTurrectCount++;
-                    Debug.Log("포탑 설치 중");
+                    UIManager.UI.installPanel.SetActive(true);
+
+                    createTur();
+
+                }
+
+                if (PlayerInput.Instance.curTurret == null)
+                {
+                    Debug.Log("test");
                 }
             }
         }
@@ -45,6 +51,17 @@ public class CreateTurret : MonoBehaviour
         GameObject bullet = objPool.GetObject(firePrefab);
         bullet.transform.position = this.transform.position;
         bullet.transform.rotation = this.transform.rotation;
+    }
+
+    public void createTur()
+    {
+        if (UIManager.UI.scrapAmount >= UIManager.UI.GetNeedAmount())
+        {
+            TurretCreate(PlayerInput.Instance.curTurret);
+            turretUI.onTurret = true;
+            onTurrectCount++;
+            Debug.Log("포탑 설치 중");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
