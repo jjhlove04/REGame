@@ -18,43 +18,55 @@ public class PlayerAnimation : MonoBehaviour
         loweranimator.SetBool("Attack",value);
     }   
     
-    public void SetMove(bool value)
-    {
-        upperanimator.SetBool("Move", value);
-        loweranimator.SetBool("Move", value);
-    }    
-    
     public void SetRun(bool value)          
     {
         upperanimator.SetBool("Run", value);
         loweranimator.SetBool("Run", value);
     }   
     
-    public void SetDiretion(float value)
+    public void IsForward()
     {
-        if(value > 0)
-        {
-            upperanimator.SetFloat("Dir", 1);
-            loweranimator.SetFloat("Dir", 1);
-        }        
-        
-        else if(value < 0)
-        {
-            upperanimator.SetFloat("Dir", -1);
-            loweranimator.SetFloat("Dir", -1);
-        }
+        upperanimator.SetFloat("Dir", 1);
+        loweranimator.SetFloat("Dir", 1);
+    }
 
+    public void IsBack()
+    {
+        upperanimator.SetFloat("Dir", -1);
+        loweranimator.SetFloat("Dir", -1);
     }
 
     public void SetSide(bool value)
     {
-        upperanimator.SetBool("Side", value);
+        upperanimator.SetBool("Move", value);
         loweranimator.SetBool("Side", value);
+        loweranimator.SetBool("Move", !value);
     }
 
-    public void IsRight(float value)
+    public void SetMove(bool value)
     {
-        upperanimator.SetBool("Left", value < 0);
-        loweranimator.SetBool("Left", value < 0);
+        upperanimator.SetBool("Side", !value);
+        loweranimator.SetBool("Side", !value);
+        upperanimator.SetBool("Move", value);
+        loweranimator.SetBool("Move", value);
+    }
+
+    public void Idle()
+    {
+        loweranimator.SetBool("Side", false);
+        upperanimator.SetBool("Move", false);
+        loweranimator.SetBool("Move", false);
+    }
+
+    public void IsRight()
+    {
+        upperanimator.SetBool("Left", false);
+        loweranimator.SetBool("Left", false);
+    }
+
+    public void Isleft()
+    {
+        upperanimator.SetBool("Left", true);
+        loweranimator.SetBool("Left", true);
     }
 }

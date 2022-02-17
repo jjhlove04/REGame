@@ -345,7 +345,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SideWalk
-  m_Speed: 0.75
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4433755384651578529}
@@ -361,7 +361,7 @@ AnimatorState:
   m_MirrorParameterActive: 1
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5f94a8f2088a7c64ba2078ee7293635c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3a2756086996cc8438f24246a72d3b3f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: Left
@@ -585,7 +585,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SideRun
-  m_Speed: 1.5
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1879789887098963163}
@@ -601,7 +601,7 @@ AnimatorState:
   m_MirrorParameterActive: 1
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5f94a8f2088a7c64ba2078ee7293635c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3a2756086996cc8438f24246a72d3b3f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: Left
@@ -695,7 +695,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 317375037826339082}
-    m_Position: {x: 270, y: 920, z: 0}
+    m_Position: {x: 280, y: 930, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2212539347868295661}
     m_Position: {x: -80, y: 350, z: 0}

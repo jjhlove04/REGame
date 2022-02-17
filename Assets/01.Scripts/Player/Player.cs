@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private BoxCollider areaSize;
     private PlayerAnimation playerAnimation;
 
+    [SerializeField]
+    private GameObject upperBody, lowerBody;
 
     [SerializeField]
     private float rimitMinX, rimitMaxX;
@@ -27,6 +29,8 @@ public class Player : MonoBehaviour
     const float minOrthographicSize = 10f;
     const float maxOrthographicSize = 30f;
 
+    private float followMaxTime = 3;
+    private float followTime;
 
     [Header("플레이어 달리는 속도 (걷는 속도 * runspeed)")]
     [SerializeField]
@@ -51,10 +55,13 @@ public class Player : MonoBehaviour
         createTrain = FindObjectOfType<TrainManager>();
         playerAnimation = GetComponent<PlayerAnimation>();
         speed = Initspeed;
+        followTime = followMaxTime;
     }
 
     private void Update()
     {
+        upperBody.transform.localPosition = Vector3.zero;
+        lowerBody.transform.localPosition = Vector3.zero;
         Move();
         Rotate();
         RimitPosition();
@@ -79,49 +86,156 @@ public class Player : MonoBehaviour
     ///</summary>
     void Move()
     {
-
         if (Input.GetAxis("Horizontal") != 0 && !playerAnimation.upperanimator.GetBool("Attack"))
         {
+            followTime = followMaxTime;
             horizontalDir = Input.GetAxis("Horizontal");
 
             MoveHorizontal(horizontalDir);
-            playerAnimation.SetSide(true);
-            playerAnimation.IsRight(horizontalDir);
+            if (horizontalDir > 0)
+            {
+                if (lowerBody.transform.eulerAngles.y >= -45 && lowerBody.transform.eulerAngles.y < 45)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.IsRight();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 45 && lowerBody.transform.eulerAngles.y < 135)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsForward();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 135 && lowerBody.transform.eulerAngles.y < 225)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.Isleft();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 225 && lowerBody.transform.eulerAngles.y < 315)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsBack();
+                }
+            }
+
+            else if (horizontalDir < 0)
+            {
+                if (lowerBody.transform.eulerAngles.y >= -45 && lowerBody.transform.eulerAngles.y < 45)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.Isleft();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 45 && lowerBody.transform.eulerAngles.y < 135)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsBack();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 135 && lowerBody.transform.eulerAngles.y < 225)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.IsRight();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 225 && lowerBody.transform.eulerAngles.y < 315)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsForward();
+                }
+            }
         }
 
         if (Input.GetAxis("Vertical") != 0 && !playerAnimation.upperanimator.GetBool("Attack"))
         {
+            followTime = followMaxTime;
             verticalDir = Input.GetAxis("Vertical");
 
+
             MoveVertical(verticalDir);
-            playerAnimation.SetDiretion(verticalDir);
+            if (verticalDir > 0)
+            {
+                if (lowerBody.transform.eulerAngles.y >= -45 && lowerBody.transform.eulerAngles.y < 45)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsForward();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 45 && lowerBody.transform.eulerAngles.y < 135)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.Isleft();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 135 && lowerBody.transform.eulerAngles.y < 225)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsBack();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 225 && lowerBody.transform.eulerAngles.y < 315)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.IsRight();
+                }
+            }
+
+            else if (verticalDir < 0)
+            {
+                if (lowerBody.transform.eulerAngles.y >= -45 && lowerBody.transform.eulerAngles.y < 45)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsBack();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 45 && lowerBody.transform.eulerAngles.y < 135)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.IsRight();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 135 && lowerBody.transform.eulerAngles.y < 225)
+                {
+                    playerAnimation.SetMove(true);
+                    playerAnimation.IsForward();
+                }
+
+                else if (lowerBody.transform.eulerAngles.y >= 225 && lowerBody.transform.eulerAngles.y < 315)
+                {
+                    playerAnimation.SetSide(true);
+                    playerAnimation.Isleft();
+                }
+            }
+        }
+
+        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        {
+            playerAnimation.Idle();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            followTime = followMaxTime;
             speed = Initspeed * runspeed;
             playerAnimation.SetRun(true);
         }
 
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            followTime = followMaxTime;
             speed = Initspeed;
             playerAnimation.SetRun(false);
         }
 
-
-
         if (Input.GetMouseButtonDown(0))
         {
+            followTime = followMaxTime;
             playerAnimation.SetAttack(true);
             StartCoroutine(IsAttacking());
         }
-
-
-        playerAnimation.SetSide(!(Input.GetAxis("Horizontal") == 0));
-        playerAnimation.SetMove(!(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0));
     }
-    /// <summary>
+    ///<summary>
     /// 플레이어 회전 함수
     ///</summary>
     private void Rotate()
@@ -132,9 +246,45 @@ public class Player : MonoBehaviour
             target.y = 0;
             Vector3 v = target - transform.position;
             float degree = Mathf.Atan2(v.x, v.z) * Mathf.Rad2Deg;
-            float rot = Mathf.LerpAngle(transform.eulerAngles.y, degree, Time.deltaTime * rotateSpeed);
-            transform.eulerAngles = new Vector3(0, rot, 0);
+            float rot = Mathf.LerpAngle(upperBody.transform.eulerAngles.y, degree, Time.deltaTime * rotateSpeed);
+            upperBody.transform.eulerAngles = new Vector3(0, rot, 0);
+            if(rot > upperBody.transform.eulerAngles.y + 10)
+            {
+                followTime = followMaxTime;
+            }
+
+            FollowLowerRotate();
         }
+    }
+
+    private void FollowLowerRotate()
+    {
+        if(upperBody.transform.eulerAngles.y> lowerBody.transform.eulerAngles.y+55)
+        {
+            followTime = followMaxTime;
+            lowerBody.transform.rotation = Quaternion.Lerp(lowerBody.transform.rotation, upperBody.transform.rotation, Time.deltaTime * rotateSpeed);
+        }
+
+        else if(upperBody.transform.eulerAngles.y < lowerBody.transform.eulerAngles.y - 55)
+        {
+            followTime = followMaxTime;
+            lowerBody.transform.rotation = Quaternion.Lerp(lowerBody.transform.rotation, upperBody.transform.rotation, Time.deltaTime * rotateSpeed);
+        }
+
+        else
+        {
+            followTime-=Time.deltaTime;
+            if(followTime < 0)
+            {
+                FollowRotate();
+            }
+        }
+
+    }
+
+    private void FollowRotate()
+    {
+        lowerBody.transform.rotation = Quaternion.Lerp(lowerBody.transform.rotation, upperBody.transform.rotation, Time.deltaTime * rotateSpeed);
     }
 
     /// <summary>

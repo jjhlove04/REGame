@@ -76,7 +76,15 @@ public class Enemy : MonoBehaviour
 
             if (isAttack)
             {
+                if (transform.position.x > 0)
+                {
+                    rot = Quaternion.Euler(0, -90, 0);
+                }
 
+                else if (transform.position.x < 0)
+                {
+                    rot = Quaternion.Euler(0, 90, 0);
+                }
                 transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
             }
 
