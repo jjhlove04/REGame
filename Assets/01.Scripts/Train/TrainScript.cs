@@ -12,6 +12,8 @@ public class TrainScript : MonoBehaviour
     private float initRoomHp;
     private float roomHp;
 
+    private float smokeHp;
+
     private void Awake()
     {
         instance = this;
@@ -25,12 +27,13 @@ public class TrainScript : MonoBehaviour
     private void OnEnable()
     {
         roomHp = maxTrainHp / TrainManager.instance.curTrainCount;
+        smokeHp = roomHp / 10;
         initRoomHp = roomHp;
     }
 
     private void Update()
     {
-        DestroyTrain();
+        SmokeTrain();
     }
 
     public void DestroyTrain()
@@ -48,9 +51,16 @@ public class TrainScript : MonoBehaviour
             {
                 roomHp += 1;
             }
-
-
             TrainManager.instance.CreateTrainPrefab();
+        }
+    }
+
+    public void SmokeTrain()
+    {
+        if(maxTrainHp - roomHp + smokeHp >= curTrainHp)
+        {
+            DestroyTrain();
+            TrainManager.instance.OnSmoke();
         }
     }
 

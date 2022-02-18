@@ -59,6 +59,14 @@ public class TrainManager : MonoBehaviour
         }
     }
 
+    public void OnSmoke()
+    {
+        if (curTrainCount > 0)
+        {
+            trainContainer[curTrainCount - 1].transform.Find("Particle").gameObject.SetActive(true);
+        }
+    }
+
     public void MakeCollider()
     {
         collider.center = new Vector3(0, 5, (curTrainCount * distance)* -0.5f+27);

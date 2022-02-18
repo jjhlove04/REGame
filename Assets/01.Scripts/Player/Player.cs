@@ -232,6 +232,7 @@ public class Player : MonoBehaviour
         {
             followTime = followMaxTime;
             playerAnimation.SetAttack(true);
+            lowerBody.transform.rotation = upperBody.transform.rotation;
             StartCoroutine(IsAttacking());
         }
     }
