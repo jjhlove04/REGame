@@ -86,4 +86,9 @@ public class UIManager : MonoBehaviour
     {
         return needAmount;
     }
+
+    public void SelectTurret(GameObject turret)
+    {
+        PlayerInput.Instance.curTurret = turret;
+    }
 }
