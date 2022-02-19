@@ -22,7 +22,7 @@ public class CreateTurret : MonoBehaviour
     {
         if(isTurret)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.T))
             {
                 if(onTurrectCount > 0)
                 {
@@ -34,13 +34,19 @@ public class CreateTurret : MonoBehaviour
                 {
                     UIManager.UI.installPanel.SetActive(true);
 
-                    createTur();
-
                 }
 
                 if (PlayerInput.Instance.curTurret == null)
                 {
                     Debug.Log("test");
+                }
+            }
+
+            if(Input.GetMouseButtonDown(1))
+            {
+                if(onTurrectCount <= 0)
+                {
+                    createTur();
                 }
             }
         }
