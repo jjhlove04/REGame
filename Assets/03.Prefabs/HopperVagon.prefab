@@ -1184,6 +1184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4400667814723886499}
   - component: {fileID: 2612964979552209261}
+  - component: {fileID: 286973355858128222}
   m_Layer: 6
   m_Name: HopperVagon
   m_TagString: Train
@@ -1225,6 +1226,21 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &286973355858128222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916302789980768025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c87fb262bf2d644896aeff855c26ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newRenderer:
+  - {fileID: 5035621343932076666}
+  hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
 --- !u!1 &3966071948949070424
 GameObject:
   m_ObjectHideFlags: 0

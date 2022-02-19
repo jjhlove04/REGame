@@ -6,6 +6,9 @@ public class TrainScript : MonoBehaviour
 {
     public static TrainScript instance { get; private set; }
 
+
+
+
     public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
     public float maxTrainHp = 50000;
 
@@ -73,5 +76,15 @@ public class TrainScript : MonoBehaviour
     {
         curTrainHp -= damage;
         UIManager.UI.TakeDamageHpBar();
+        Hit();
+    }
+
+    private void Hit()
+    {
+        foreach (GameObject item in TrainManager.instance.trainContainer)
+        {
+            item.GetComponent<TrainHit>()?.Hit();
+        }
+        transform.GetChild(0).GetComponent<TrainHit>()?.Hit();
     }
 }
