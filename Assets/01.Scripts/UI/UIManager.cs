@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     private Text scrapTxt;
     public GameObject installPanel;
     public int scrapAmount = 0;
-    private int needAmount = 5;
+    public int needAmount = 5;
 
     public float moveValue;
     public float minusMoveValue;
@@ -81,14 +81,18 @@ public class UIManager : MonoBehaviour
         scrapTxt.text = scrapAmount.ToString();
     }
 
+    public void SelectTurret(GameObject turret)
+    {
+        PlayerInput.Instance.curTurret = turret;
+    }
+
+    public void GetTurretAmount(int needAmount)
+    {
+        this.needAmount = needAmount;
+    }
 
     public int GetNeedAmount()
     {
         return needAmount;
-    }
-
-    public void SelectTurret(GameObject turret)
-    {
-        PlayerInput.Instance.curTurret = turret;
     }
 }
