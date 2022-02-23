@@ -28,6 +28,7 @@ class CustomInspecter : Editor
     SerializedProperty settingProp;
     SerializedProperty menuObjProp;
     SerializedProperty gameOverProp;
+    SerializedProperty sceneNameProp;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ class CustomInspecter : Editor
         settingProp = serializedObject.FindProperty("settingObj");
         menuObjProp = serializedObject.FindProperty("menuObj");
         gameOverProp = serializedObject.FindProperty("gameOver");
+        sceneNameProp = serializedObject.FindProperty("sceneName");
     }
 
     public override void OnInspectorGUI()
@@ -46,6 +48,11 @@ class CustomInspecter : Editor
         }
         EditorGUILayout.PropertyField(kindProp);;
         if (selected.kind == GameMenu.Kind.RESTART)
+        {
+            EditorGUILayout.PropertyField(sceneNameProp);
+        }
+
+        else if(selected.kind == GameMenu.Kind.GAMESTOP)
         {
             EditorGUILayout.PropertyField(menuObjProp);
         }

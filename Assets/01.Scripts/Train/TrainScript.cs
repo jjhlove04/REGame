@@ -81,10 +81,10 @@ public class TrainScript : MonoBehaviour
 
     private void Hit()
     {
-        foreach (GameObject item in TrainManager.instance.trainContainer)
+        /*foreach (GameObject item in TrainManager.instance.trainContainer)
         {
             item.GetComponent<TrainHit>()?.Hit();
         }
-        transform.GetChild(0).GetComponent<TrainHit>()?.Hit();
+        transform.GetChild(0).GetComponent<TrainHit>()?.Hit();*/
     }
 }

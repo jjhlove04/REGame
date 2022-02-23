@@ -23,18 +23,22 @@ public class BackGround : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        if (GameManager.Instance.state != GameManager.State.Stop)
         {
-            MoveBackground(transform.GetChild(i));
-        }
-
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (-(size * 1f) >= transform.GetChild(i).position.z)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                SwapeBackground(transform.GetChild(i));
+                MoveBackground(transform.GetChild(i));
+            }
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (-(size * 1f) >= transform.GetChild(i).position.z)
+                {
+                    SwapeBackground(transform.GetChild(i));
+                }
             }
         }
+
 
 
         if(GameManager.Instance.state == GameManager.State.End)

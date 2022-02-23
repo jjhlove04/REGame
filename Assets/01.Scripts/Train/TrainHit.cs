@@ -6,7 +6,7 @@ public class TrainHit : MonoBehaviour
 {
     [SerializeField]
     private List<Renderer> newRenderer;
-
+    
     private List<Material[]> material = new List<Material[]>();       
     [SerializeField]
     private Material hitMaterial;
@@ -45,4 +45,5 @@ public class TrainHit : MonoBehaviour
         }
 
     }
+
 }

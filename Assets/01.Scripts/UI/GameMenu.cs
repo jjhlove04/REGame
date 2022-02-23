@@ -58,6 +58,7 @@ public class GameMenu : MonoBehaviour
     public void GameStopButton()
     {
         Time.timeScale = 0;
+        GameManager.Instance.state = GameManager.State.Stop;
         menuObj.SetActive(true);
         gameObject.SetActive(false);
     }
@@ -66,8 +67,10 @@ public class GameMenu : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
-        menuObj.SetActive(false);
+        GameManager.Instance.state = GameManager.State.Play;
+
         stopButton.SetActive(true);
+        menuObj.SetActive(false);
     }
 
     //게임 다시시작
@@ -87,12 +90,14 @@ public class GameMenu : MonoBehaviour
     public void Exit()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Title");
     }
 
     //세팅 나가기 및 볼륨 저장
     public void SettingExit()
     {
+        Time.timeScale = 1;
+        GameManager.Instance.state = GameManager.State.Play;
         settingObj.SetActive(false);
     }
 }

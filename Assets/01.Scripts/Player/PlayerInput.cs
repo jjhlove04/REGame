@@ -15,6 +15,9 @@ public class PlayerInput : MonoBehaviour
     public GameObject firePrefab;
     public Transform firePos;
 
+    [SerializeField]
+    private GameObject stopButton;
+
     public float cooldown;
     private float curCooldown;
 
@@ -74,6 +77,7 @@ public class PlayerInput : MonoBehaviour
         curCooldown += Time.deltaTime;
 
         Fire();
+        Esc();
     }
 
     public void Fire() //
@@ -87,6 +91,14 @@ public class PlayerInput : MonoBehaviour
             fireBullet.Invoke();
 
             curCooldown = 0;
+        }
+    }
+
+    public void Esc()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            stopButton.GetComponent<GameMenu>().GameStopButton();
         }
     }
 
