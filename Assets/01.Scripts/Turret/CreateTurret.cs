@@ -64,10 +64,17 @@ public class CreateTurret : MonoBehaviour
         if (UIManager.UI.scrapAmount >= UIManager.UI.GetNeedAmount())
         {
             TurretCreate(PlayerInput.Instance.curTurret);
+            UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
             turretUI.onTurret = true;
             onTurrectCount++;
             Debug.Log("포탑 설치 중");
         }
+    }
+
+    public void DestroyTur(GameObject gameObject)
+    {
+        onTurrectCount--;
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

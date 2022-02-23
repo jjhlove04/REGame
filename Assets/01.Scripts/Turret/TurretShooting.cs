@@ -35,6 +35,8 @@ public class TurretShooting : Turret
     public float maxHp;
     private bool onPlayer = false;
 
+
+
     private void Start()
     {
         curshootTimer = shootTimerMax;
@@ -88,15 +90,11 @@ public class TurretShooting : Turret
 
     void RepairTurret()
     {
-        if(onPlayer && Input.GetKeyDown(KeyCode.E))//&& curMoney >= FixAmount)
+        if(onPlayer && UIManager.UI.scrapAmount >= (UIManager.UI.needAmount / 3))
         {
-            SetHp();
+            UIManager.UI.scrapAmount -= (UIManager.UI.needAmount / 3);
+            curHp = maxHp;
         }
-    }
-
-    void SetHp()
-    {
-        curHp = maxHp;
     }
 
     private IEnumerator ShotEffect(Vector3 hitPosition)
@@ -115,6 +113,19 @@ public class TurretShooting : Turret
         if (other.gameObject.tag == "Player")
         {
             onPlayer = true;
+            //포탑 destroy부분
+            UIManager.UI.destroyBtn.onClick.AddListener(() =>
+            {
+                this.gameObject.SetActive(false);
+            });
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            onPlayer = false;
         }
     }
 }

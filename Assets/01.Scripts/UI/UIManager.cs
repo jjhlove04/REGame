@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public float moveValue;
     public float minusMoveValue;
 
+    public Button destroyBtn;
+
     private void Awake()
     {
         _ui = this;
