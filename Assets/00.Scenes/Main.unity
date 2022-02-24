@@ -16500,7 +16500,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1101420632}
-  - component: {fileID: 1101420633}
   - component: {fileID: 1101420634}
   - component: {fileID: 1101420635}
   m_Layer: 6
@@ -16525,28 +16524,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1101420633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101420631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f96c261e2458d4bac385fcdc127c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trainPrefab: {fileID: 3916302789980768025, guid: ce4d88125c30eca4cbef229eb948486b, type: 3}
-  distance: 27
-  trainContainer: []
-  curTrainCount: 0
-  maxTrainCount: 3
-  mine:
-  - {fileID: 11400000, guid: b1e834cec22fb6e4ca9a4b3acd797c28, type: 2}
-  - {fileID: 11400000, guid: e73a58c9500944946a84f0f0932c6c75, type: 2}
-  - {fileID: 11400000, guid: 2ccfc24a9f0ac344fbc3083e9a045f12, type: 2}
-  collider: {fileID: 1101420635}
 --- !u!114 &1101420634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16559,8 +16536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7e9d761a3cc3e49bc2d7f429620128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curTrainHp: 50000
-  maxTrainHp: 50000
+  curTrainHp: 1000
+  maxTrainHp: 1000
 --- !u!65 &1101420635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27359,6 +27336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1722079218}
+  - component: {fileID: 1722079220}
   - component: {fileID: 1722079217}
   - component: {fileID: 1722079219}
   m_Layer: 0
@@ -27420,6 +27398,28 @@ MonoBehaviour:
   moveValue: -5
   minusMoveValue: -15
   destroyBtn: {fileID: 0}
+--- !u!114 &1722079220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722079216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f96c261e2458d4bac385fcdc127c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainPrefab: {fileID: 3916302789980768025, guid: ce4d88125c30eca4cbef229eb948486b, type: 3}
+  distance: 27
+  trainContainer: []
+  curTrainCount: 0
+  maxTrainCount: 3
+  mine:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  collider: {fileID: 1101420635}
 --- !u!1 &1733395322
 GameObject:
   m_ObjectHideFlags: 0

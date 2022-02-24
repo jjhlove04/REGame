@@ -10,6 +10,6 @@ public class NextScene : MonoBehaviour
     [SerializeField] private Button SettingButton;
 
     private void Start() {
-        StartButton.onClick.AddListener(()=> SceneManager.LoadScene("Main"));     
+        StartButton.onClick.AddListener(()=> LoadingSceneUI.LoadScene("Station"));     
     }
 }
