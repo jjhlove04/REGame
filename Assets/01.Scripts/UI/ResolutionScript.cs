@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ResolutionScript : MonoBehaviour
 {
-    public static ResolutionScript Instance;
-    private static ResolutionScript _instance { get { return Instance; } }
+    private static ResolutionScript _instance;
+    public static ResolutionScript Instance { get { return _instance; } }
 
     [Header("ÇØ»óµµ")]
     public Dropdown resDropdown;
@@ -18,7 +18,7 @@ public class ResolutionScript : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        _instance = this;
 
         DontDestroyOnLoad(Instance);
     }

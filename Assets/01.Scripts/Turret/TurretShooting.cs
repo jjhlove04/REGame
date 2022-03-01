@@ -88,20 +88,13 @@ public class TurretShooting : Turret
         }
     }
 
-    void RepairTurret()
-    {
-        if(onPlayer && UIManager.UI.scrapAmount >= (UIManager.UI.needAmount / 3))
-        {
-            UIManager.UI.scrapAmount -= (UIManager.UI.needAmount / 3);
-            curHp = maxHp;
-        }
-    }
+
 
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
         muzzleflash.Play();
         bulletLineRenderer.SetPosition(1,
-            bulletLineRenderer.transform.InverseTransformPoint(hitPosition));
+        bulletLineRenderer.transform.InverseTransformPoint(hitPosition));
         bulletLineRenderer.gameObject.SetActive(true);
         yield return new WaitForSeconds(bulletLineEffectTime);
         bulletLineRenderer.gameObject.SetActive(false);
@@ -113,11 +106,6 @@ public class TurretShooting : Turret
         if (other.gameObject.tag == "Player")
         {
             onPlayer = true;
-            //포탑 destroy부분
-            UIManager.UI.destroyBtn.onClick.AddListener(() =>
-            {
-                this.gameObject.SetActive(false);
-            });
         }
     }
 

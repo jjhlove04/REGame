@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public bool openPanel = false;
     private int dex = 1;
     public List<Button> panelOpenList = new List<Button>();
+
     [SerializeField]
     private Text scrapTxt;
     public GameObject installPanel;
@@ -25,17 +26,21 @@ public class UIManager : MonoBehaviour
     public float minusMoveValue;
 
     public Button destroyBtn;
+    public Button repairBtn;
+
 
     private void Awake()
     {
         _ui = this;
     }
-    private void Start() {
+    private void Start()
+    {
         //hp바 세팅
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
         CheckScrapAmount();
     }
-    private void Update() {
+    private void Update()
+    {
         if(Input.GetKeyDown(KeyCode.T))
         {
             dex = dex * -1;

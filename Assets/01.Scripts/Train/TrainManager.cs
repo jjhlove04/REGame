@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TrainManager : MonoBehaviour
 {
-    public static TrainManager instance;
+    private static TrainManager Instance;
+    public static TrainManager instance { get { return Instance; } }
 
     [SerializeField]
     private GameObject trainPrefab;
@@ -22,7 +23,7 @@ public class TrainManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
 

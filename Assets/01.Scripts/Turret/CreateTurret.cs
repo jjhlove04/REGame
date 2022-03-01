@@ -5,32 +5,24 @@ using UnityEngine;
 public class CreateTurret : MonoBehaviour
 {
     [SerializeField]
-    bool isTurret = false;
-
-    private ObjectPool objPool;
-
-    private int onTurrectCount;
-    void Start()
-    {
-        objPool = FindObjectOfType<ObjectPool>();
-    }
+    bool onPlayer = false;
 
     public InGameTurretUI turretUI;
 
     // Update is called once per frame
     void Update()
     {
-        if(isTurret)
+        if(onPlayer)
         {
             if (Input.GetKeyDown(KeyCode.T))
             {
-                if(onTurrectCount > 0)
+                if(CreateTurManager.Instance.onTurret == true)
                 {
                     Debug.Log("이미 설치된 포탑입니다");
                     UIManager.UI.installPanel.SetActive(false);
                 }
 
-                if(onTurrectCount <= 0)
+                if(CreateTurManager.Instance.onTurret == false)
                 {
                     UIManager.UI.installPanel.SetActive(true);
 
@@ -41,54 +33,44 @@ public class CreateTurret : MonoBehaviour
                     Debug.Log("test");
                 }
             }
-
-            if(Input.GetMouseButtonDown(1))
-            {
-                if(onTurrectCount <= 0)
-                {
-                    createTur();
-                }
-            }
         }
-    }
-
-    public void TurretCreate(GameObject firePrefab)
-    {
-        GameObject bullet = objPool.GetObject(firePrefab);
-        bullet.transform.position = this.transform.position;
-        bullet.transform.rotation = this.transform.rotation;
-    }
-
-    public void createTur()
-    {
-        if (UIManager.UI.scrapAmount >= UIManager.UI.GetNeedAmount())
-        {
-            TurretCreate(PlayerInput.Instance.curTurret);
-            UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
-            turretUI.onTurret = true;
-            onTurrectCount++;
-            Debug.Log("포탑 설치 중");
-        }
-    }
-
-    public void DestroyTur(GameObject gameObject)
-    {
-        onTurrectCount--;
-        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            isTurret = true;
+            onPlayer = true;
+            CreateTurManager.Instance.instPos = this.gameObject;
+
+            UIManager.UI.destroyBtn.onClick.AddListener(() =>
+            {
+                CreateTurManager.Instance.DestroyTur(this.gameObject);
+                Debug.Log("제발 그만해");
+            });
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Turret")
+        {
+            CreateTurManager.Instance.onTurret = true;
+            turretUI.onTurret = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            isTurret = false;
+            onPlayer = false;
+            CreateTurManager.Instance.onTurret = false;
+        }
+        if (other.gameObject.tag == "Turret")
+        {
+            CreateTurManager.Instance.onTurret = false;
+            turretUI.onTurret = false;
         }
     }
 }
