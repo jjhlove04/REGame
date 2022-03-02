@@ -77,6 +77,4 @@ public class Bullet : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
-
-
 }

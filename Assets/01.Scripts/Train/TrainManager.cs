@@ -54,10 +54,18 @@ public class TrainManager : MonoBehaviour
 
     public void RemoveList()
     {
-        if (curTrainCount > 0)
+        if (curTrainCount >= 0)
         {
-            trainContainer.RemoveRange(0, curTrainCount + 1);
+            RemovePrefab();
+            trainContainer.RemoveAt(trainContainer.Count-1);
+            //trainContainer.RemoveRange(0, curTrainCount + 1);
         }
+    }
+
+    private void RemovePrefab()
+    {
+        DestroyImmediate(trainContainer[trainContainer.Count - 1]);
+        MakeCollider();
     }
 
     public void OnSmoke()
@@ -68,9 +76,14 @@ public class TrainManager : MonoBehaviour
         }
     }
 
+    public void Explotion()
+    {
+        trainContainer[curTrainCount - 1].transform.Find("ExplotionParticle").gameObject.SetActive(true);
+    }
+
     public void MakeCollider()
     {
-        collider.center = new Vector3(0, 5, (curTrainCount * distance)* -0.5f+27);
+        collider.center = new Vector3(0, 5, (curTrainCount * distance)* -0.5f + 27);
         collider.size = new Vector3(6, 10, curTrainCount * distance+27);
     }
 
