@@ -37,25 +37,25 @@ public class CreateTurManager : MonoBehaviour
         {
             TurretCreate(PlayerInput.Instance.curTurret);
             UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
+            UIManager.UI.CheckScrapAmount();
             UIManager.UI.installPanel.SetActive(false);
             onTurret = true;
-            Debug.Log("포탑 설치");
         }
     }
 
     public void DestroyTur(GameObject gameObject)   
     {
         gameObject.SetActive(false);
-
+        UIManager.UI.CheckScrapAmount();
         UIManager.UI.installPanel.SetActive(true);
     }
 
-    public void RepairTurret(bool onPlayer, float curHp, float maxHp)
+    public void RepairTurret(bool onPlayer)
     {
         if (onPlayer && UIManager.UI.scrapAmount >= (UIManager.UI.needAmount / 3))
         {
             UIManager.UI.scrapAmount -= (UIManager.UI.needAmount / 3);
-            curHp = maxHp;
+            UIManager.UI.CheckScrapAmount();
         }
     }
 }

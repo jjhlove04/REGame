@@ -71,8 +71,6 @@ MonoBehaviour:
   maxDistance: 30
   lookForTargetTimerMax: 0.2
   damage: 10
-  curHp: 0
-  maxHp: 0
   onPlayer: 0
 --- !u!114 &3488822301064213665
 MonoBehaviour:
@@ -98,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 7, z: 3}
-  m_Center: {x: 0, y: -1.5, z: 1.25}
+  m_Size: {x: 3, y: 7, z: 3}
+  m_Center: {x: 0, y: -1.5, z: -1}
 --- !u!54 &-1606803306337703831
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -31,9 +31,6 @@ public class TurretShooting : Turret
 
     private Transform targetEnemychil;
 
-    public float curHp;
-    public float maxHp;
-
     [SerializeField]
     private bool onPlayer = false;
 
@@ -42,7 +39,6 @@ public class TurretShooting : Turret
     private void Start()
     {
         curshootTimer = shootTimerMax;
-        curHp = maxHp;
     }
 
     void Update()
@@ -102,28 +98,22 @@ public class TurretShooting : Turret
         muzzleflash.Stop();
     }
 
-    void checkPlayer()
-    {
-
-        Debug.Log("inBtn");
-
-        UIManager.UI.destroyBtn.onClick.AddListener(() =>
-        {
-            CreateTurManager.Instance.DestroyTur(this.gameObject);
-        });
-
-        UIManager.UI.repairBtn.onClick.AddListener(() =>
-        {
-            CreateTurManager.Instance.RepairTurret(onPlayer, curHp, maxHp);
-        });
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
             onPlayer = true;
-            checkPlayer();
+            UIManager.UI.destroyBtn.onClick.AddListener(() =>
+            {
+                CreateTurManager.Instance.DestroyTur(this.gameObject);
+                Debug.Log(this.gameObject);
+            });
+
+            UIManager.UI.repairBtn.onClick.AddListener(() =>
+            {
+                other.gameObject.GetComponent<HealthSystem>().InitHealth();
+                CreateTurManager.Instance.RepairTurret(onPlayer);
+            });
         }
     }
 
@@ -132,6 +122,11 @@ public class TurretShooting : Turret
         if (other.gameObject.tag == "Player")
         {
             onPlayer = false;
+        }
+        
+        if(other.gameObject.CompareTag("Train"))
+        {
+            CreateTurManager.Instance.DestroyTur(this.gameObject);
         }
     }
 }
