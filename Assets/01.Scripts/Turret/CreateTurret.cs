@@ -28,7 +28,7 @@ public class CreateTurret : MonoBehaviour
 
                 if (PlayerInput.Instance.curTurret == null)
                 {
-                    Debug.Log("test");
+                    
                 }
             }
         }
@@ -40,16 +40,22 @@ public class CreateTurret : MonoBehaviour
         {
             onPlayer = true;
             CreateTurManager.Instance.instPos = this.gameObject;
+            if(turretUI.onTurret)
+            {
+                UIManager.UI.installPanel.SetActive(false);
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Turret")
+        if(other.gameObject.CompareTag("Turret"))
         {
-            CreateTurManager.Instance.onTurret = true;
             turretUI.onTurret = true;
-
+        }
+        else
+        {
+            turretUI.onTurret = false;
         }
     }
 
@@ -60,13 +66,6 @@ public class CreateTurret : MonoBehaviour
             onPlayer = false;
             CreateTurManager.Instance.onTurret = false;
             UIManager.UI.installPanel.SetActive(true);
-            UIManager.UI.openPanel = false;
-        }
-
-        if (other.gameObject.tag == "Turret")
-        {
-            CreateTurManager.Instance.onTurret = false;
-            turretUI.onTurret = false;
         }
     }
 }

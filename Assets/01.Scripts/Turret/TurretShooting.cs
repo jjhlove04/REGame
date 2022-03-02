@@ -33,6 +33,8 @@ public class TurretShooting : Turret
 
     public float curHp;
     public float maxHp;
+
+    [SerializeField]
     private bool onPlayer = false;
 
 
@@ -48,6 +50,7 @@ public class TurretShooting : Turret
         HandleShooting(shootTimerMax, damage);
         HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemychil);
         Shot();
+
     }
 
     protected override void HandleTargeting(float lookForTargetTimerMax, float maxDistance, out Transform targetEnemy)
@@ -99,21 +102,28 @@ public class TurretShooting : Turret
         muzzleflash.Stop();
     }
 
+    void checkPlayer()
+    {
+
+        Debug.Log("inBtn");
+
+        UIManager.UI.destroyBtn.onClick.AddListener(() =>
+        {
+            CreateTurManager.Instance.DestroyTur(this.gameObject);
+        });
+
+        UIManager.UI.repairBtn.onClick.AddListener(() =>
+        {
+            CreateTurManager.Instance.RepairTurret(onPlayer, curHp, maxHp);
+        });
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if(other.gameObject.CompareTag("Player"))
         {
             onPlayer = true;
-            UIManager.UI.destroyBtn.onClick.AddListener(() =>
-            {
-                CreateTurManager.Instance.DestroyTur(this.gameObject);
-                Debug.Log("제발 그만해");
-            });
-
-            UIManager.UI.repairBtn.onClick.AddListener(() =>
-            {
-                CreateTurManager.Instance.RepairTurret(onPlayer, curHp, maxHp);
-            });
+            checkPlayer();
         }
     }
 
