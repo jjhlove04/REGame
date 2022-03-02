@@ -22,9 +22,6 @@ public class TrainScript : MonoBehaviour
         instance = this;
 
         curTrainHp = maxTrainHp;
-
-        TrainManager.instance.curTrainCount = TrainManager.instance.maxTrainCount;
-        TrainManager.instance.CreateTrainPrefab();
     }
 
     private void OnEnable()
@@ -32,6 +29,12 @@ public class TrainScript : MonoBehaviour
         roomHp = maxTrainHp / TrainManager.instance.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
+    }
+
+    private void Start()
+    {
+        TrainManager.instance.curTrainCount = TrainManager.instance.maxTrainCount;
+        TrainManager.instance.CreateTrainPrefab();
     }
 
     private void Update()

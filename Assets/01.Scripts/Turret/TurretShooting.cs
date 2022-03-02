@@ -88,8 +88,6 @@ public class TurretShooting : Turret
         }
     }
 
-
-
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
         muzzleflash.Play();
@@ -106,6 +104,16 @@ public class TurretShooting : Turret
         if (other.gameObject.tag == "Player")
         {
             onPlayer = true;
+            UIManager.UI.destroyBtn.onClick.AddListener(() =>
+            {
+                CreateTurManager.Instance.DestroyTur(this.gameObject);
+                Debug.Log("제발 그만해");
+            });
+
+            UIManager.UI.repairBtn.onClick.AddListener(() =>
+            {
+                CreateTurManager.Instance.RepairTurret(onPlayer, curHp, maxHp);
+            });
         }
     }
 

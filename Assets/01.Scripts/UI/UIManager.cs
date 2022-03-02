@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public float minusMoveValue;
 
     public Button destroyBtn;
+    public Button upgradeBtn;
     public Button repairBtn;
 
 

@@ -21,11 +21,9 @@ public class CreateTurret : MonoBehaviour
                     Debug.Log("이미 설치된 포탑입니다");
                     UIManager.UI.installPanel.SetActive(false);
                 }
-
-                if(CreateTurManager.Instance.onTurret == false)
+                else if(CreateTurManager.Instance.onTurret == false)
                 {
                     UIManager.UI.installPanel.SetActive(true);
-
                 }
 
                 if (PlayerInput.Instance.curTurret == null)
@@ -42,12 +40,6 @@ public class CreateTurret : MonoBehaviour
         {
             onPlayer = true;
             CreateTurManager.Instance.instPos = this.gameObject;
-
-            UIManager.UI.destroyBtn.onClick.AddListener(() =>
-            {
-                CreateTurManager.Instance.DestroyTur(this.gameObject);
-                Debug.Log("제발 그만해");
-            });
         }
     }
 
@@ -57,6 +49,7 @@ public class CreateTurret : MonoBehaviour
         {
             CreateTurManager.Instance.onTurret = true;
             turretUI.onTurret = true;
+
         }
     }
 
@@ -66,7 +59,10 @@ public class CreateTurret : MonoBehaviour
         {
             onPlayer = false;
             CreateTurManager.Instance.onTurret = false;
+            UIManager.UI.installPanel.SetActive(true);
+            UIManager.UI.openPanel = false;
         }
+
         if (other.gameObject.tag == "Turret")
         {
             CreateTurManager.Instance.onTurret = false;

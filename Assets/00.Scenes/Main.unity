@@ -226,6 +226,10 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 111000010002108644, guid: ce606157a5ff70d45978ee3ccaf7d8c6, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce606157a5ff70d45978ee3ccaf7d8c6, type: 3}
 --- !u!4 &2741229 stripped
@@ -2779,7 +2783,7 @@ GameObject:
   - component: {fileID: 159538030}
   - component: {fileID: 159538029}
   m_Layer: 5
-  m_Name: OK
+  m_Name: Repair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16422,6 +16426,7 @@ GameObject:
   - component: {fileID: 1101420632}
   - component: {fileID: 1101420634}
   - component: {fileID: 1101420635}
+  - component: {fileID: 1101420633}
   m_Layer: 6
   m_Name: Train
   m_TagString: Train
@@ -16444,6 +16449,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1101420633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101420631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f96c261e2458d4bac385fcdc127c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainPrefab: {fileID: 3916302789980768025, guid: ce4d88125c30eca4cbef229eb948486b, type: 3}
+  distance: 27
+  trainContainer: []
+  curTrainCount: 0
+  maxTrainCount: 3
+  mine:
+  - {fileID: 11400000, guid: b1e834cec22fb6e4ca9a4b3acd797c28, type: 2}
+  - {fileID: 11400000, guid: e73a58c9500944946a84f0f0932c6c75, type: 2}
+  - {fileID: 11400000, guid: 2ccfc24a9f0ac344fbc3083e9a045f12, type: 2}
+  collider: {fileID: 1101420635}
 --- !u!114 &1101420634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19504,7 +19531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2031399308746608101, guid: 96668773cd87ab8498914e25fec187d3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2069391175930793318, guid: 96668773cd87ab8498914e25fec187d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -27369,7 +27396,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1722079218}
   - component: {fileID: 1722079221}
-  - component: {fileID: 1722079220}
   - component: {fileID: 1722079217}
   - component: {fileID: 1722079219}
   m_Layer: 0
@@ -27431,29 +27457,8 @@ MonoBehaviour:
   moveValue: -5
   minusMoveValue: -15
   destroyBtn: {fileID: 0}
+  upgradeBtn: {fileID: 0}
   repairBtn: {fileID: 0}
---- !u!114 &1722079220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722079216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f96c261e2458d4bac385fcdc127c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trainPrefab: {fileID: 3916302789980768025, guid: ce4d88125c30eca4cbef229eb948486b, type: 3}
-  distance: 27
-  trainContainer: []
-  curTrainCount: 0
-  maxTrainCount: 3
-  mine:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  collider: {fileID: 1101420635}
 --- !u!114 &1722079221
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class CreateTurManager : MonoBehaviour
 
     public static CreateTurManager Instance { get { return instance; } }
 
-
     private ObjectPool objPool;
 
     public GameObject instPos;
@@ -40,14 +39,14 @@ public class CreateTurManager : MonoBehaviour
             {
                 TurretCreate(PlayerInput.Instance.curTurret);
                 UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
-
+                UIManager.UI.openPanel = false;
                 onTurret = true;
                 Debug.Log("포탑 설치 중");
             }
         }
     }
 
-    public void DestroyTur(GameObject gameObject)
+    public void DestroyTur(GameObject gameObject)   
     {
         onTurret = false;
         gameObject.SetActive(false);
