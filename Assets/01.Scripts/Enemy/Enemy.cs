@@ -15,8 +15,6 @@ public class Enemy : MonoBehaviour
 
     float distance;
 
-    [SerializeField]
-    bool isEnemyMove = true;
     Rigidbody rigid;
 
     HealthSystem healthSystem;
@@ -28,6 +26,9 @@ public class Enemy : MonoBehaviour
     private float atime = 5f;
 
     private bool isAttack = false;
+
+    private Vector3 dir;
+    private Quaternion rot;
 
     private void OnEnable()
     {
@@ -46,15 +47,13 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
+        NewTarget();
 
-        if (TrainManager.instance.trainContainer[enemyType] == null)
-        {
-            dir = TrainManager.instance.trainContainer[enemyType-1].transform.position - transform.position;
-        }
-        Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
+        dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
 
-        if ((Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > distanceX) && isEnemyMove)
+        rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
+
+        if (Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > distanceX)
         {
             EnemyTargettingMove();
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
@@ -62,6 +61,7 @@ public class Enemy : MonoBehaviour
 
         else
         {
+
             rot = Quaternion.LookRotation(dir);
 
             Quaternion quaternion = Quaternion.identity;
@@ -104,10 +104,18 @@ public class Enemy : MonoBehaviour
                 animTime = 0f;
             }
 
-            isEnemyMove = false;
             rigid.velocity = Vector3.zero;
         }
     }
+
+    void NewTarget()
+    {
+        if (enemyType >= TrainManager.instance.trainContainer.Count)
+        {
+            enemyType--;
+        }
+    }
+
 
     void EnemyGetRandom()
     {
@@ -133,7 +141,6 @@ public class Enemy : MonoBehaviour
 
     void EnemyDie()
     {
-        isEnemyMove = true;
         GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
         scrap.transform.position = this.transform.position;
         this.gameObject.SetActive(false);

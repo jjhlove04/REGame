@@ -41,26 +41,12 @@ public class TrainScript : MonoBehaviour
 
     public void DestroyTrain()
     {
-        if (maxTrainHp - roomHp >= curTrainHp)
-        {
-            roomHp += initRoomHp;
-            if (TrainManager.instance.curTrainCount > 0)
-            {
-                TrainManager.instance.curTrainCount--;
-                TrainManager.instance.RemoveList();
-            }
-
-            if (TrainManager.instance.curTrainCount % 2 == 1 && TrainManager.instance.curTrainCount == 1)
-            {
-                roomHp += 1;
-            }
-            TrainManager.instance.CreateTrainPrefab();
-        }
+        StartCoroutine(Destroy());
     }
 
     public void SmokeTrain()
     {
-        if(maxTrainHp - roomHp + smokeHp >= curTrainHp)
+        if (maxTrainHp - roomHp + smokeHp >= curTrainHp)
         {
             DestroyTrain();
             TrainManager.instance.OnSmoke();
@@ -76,15 +62,26 @@ public class TrainScript : MonoBehaviour
     {
         curTrainHp -= damage;
         UIManager.UI.TakeDamageHpBar();
-        Hit();
     }
 
-    private void Hit()
+    IEnumerator Destroy()
     {
-        /*foreach (GameObject item in TrainManager.instance.trainContainer)
+        if (maxTrainHp - roomHp >= curTrainHp)
         {
-            item.GetComponent<TrainHit>()?.Hit();
+            roomHp += initRoomHp;
+            if (TrainManager.instance.curTrainCount > 0)
+            {
+                TrainManager.instance.Explotion();
+                yield return new WaitForSeconds(0.3f);
+                TrainManager.instance.curTrainCount--;
+                TrainManager.instance.RemoveList();
+            }
+
+            if (TrainManager.instance.curTrainCount % 2 == 1 && TrainManager.instance.curTrainCount == 1)
+            {
+                roomHp += 1;
+            }
+            //TrainManager.instance.CreateTrainPrefab();
         }
-        transform.GetChild(0).GetComponent<TrainHit>()?.Hit();*/
     }
 }

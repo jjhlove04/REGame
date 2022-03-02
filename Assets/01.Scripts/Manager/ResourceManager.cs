@@ -9,6 +9,37 @@ public class ResourceManager : MonoBehaviour
     private static ResourceManager instance;
     public static ResourceManager Instance { get { return instance; } }
     // Start is called before the first frame update
+
+    public class StatData
+    {
+        public TrainStat trainStat;
+        public PlayerStat playerStat;
+        public TurretStat turretStat;
+
+        public StatData()
+        {
+
+        }
+
+        public class TrainStat
+        {
+            public float hp;
+        }
+
+        public class PlayerStat
+        {
+            public float damage; 
+            public float attackSpeed;
+        }
+
+        public class TurretStat
+        {
+            public float hp;
+            public float damage;
+            public float attackSpeed;
+        }
+    }
+
     public class ResourceData
     {
         public string itemName;
