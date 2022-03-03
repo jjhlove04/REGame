@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
         speed = Initspeed;
         followTime = followMaxTime;
+
+        PlayerInput.Instance.attack += new PlayerInput.Attack(Attack);
     }
 
     private void Update()
@@ -227,16 +229,16 @@ public class Player : MonoBehaviour
             speed = Initspeed;
             playerAnimation.SetRun(false);
         }
+    }
 
-        if (Input.GetMouseButtonDown(0) && PlayerInput.Instance.canAttack)
-        {
-            followTime = followMaxTime;
-            playerAnimation.SetAttack(true);
-            lowerBody.transform.rotation = upperBody.transform.rotation;
+    private void Attack()
+    {
+        followTime = followMaxTime;
+        playerAnimation.SetAttack(true);
+        lowerBody.transform.rotation = upperBody.transform.rotation;
 
-            StopCoroutine(IsAttacking());
-            StartCoroutine(IsAttacking());
-        }
+        StopCoroutine(IsAttacking());
+        StartCoroutine(IsAttacking());
     }
     ///<summary>
     /// 플레이어 회전 함수

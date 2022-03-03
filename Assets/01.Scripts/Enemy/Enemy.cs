@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject waist;
 
-    private Animator anim;
+    public Animator anim;
     public float animTime;
     private float atime = 5f;
 
@@ -36,7 +36,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        anim = GetComponentInChildren<Animator>();
         healthSystem = GetComponent<HealthSystem>();
 
         healthSystem.OnDied += EnemyDie;

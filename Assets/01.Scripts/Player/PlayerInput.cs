@@ -35,9 +35,14 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent fireBullet;
 
     public GameObject curTurret;
+
+    public delegate void Attack();
+
+    public Attack attack;
     private void Awake()
     {
         Instance = this;
+        attack = () => { };
     }
     private void Start()
     {
@@ -94,6 +99,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (fire && isEnemy && canAttack)
         {
+            attack();
+
             GameObject bullet = objPool.GetObject(firePrefab);
             bullet.transform.position = firePos.transform.position;
             bullet.transform.rotation = firePos.transform.rotation;
