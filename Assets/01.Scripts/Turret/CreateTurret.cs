@@ -7,28 +7,81 @@ public class CreateTurret : MonoBehaviour
     [SerializeField]
     bool onPlayer = false;
 
-    public InGameTurretUI turretUI;
+    public MeshRenderer mesh;
+
+    [SerializeField]
+    private bool onTurret;
+    //public InGameTurretUI turretUI;
 
     // Update is called once per frame
     void Update()
     {
         if(onPlayer)
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (PlayerInput.Instance.curTurret == null)
             {
-                if(CreateTurManager.Instance.onTurret == true)
-                {
-                    Debug.Log("이미 설치된 포탑입니다");
-                    UIManager.UI.installPanel.SetActive(false);
-                }
-                else if(CreateTurManager.Instance.onTurret == false)
-                {
-                    UIManager.UI.installPanel.SetActive(true);
-                }
 
-                if (PlayerInput.Instance.curTurret == null)
+            }
+        }
+
+        TargetPos();
+    }
+
+    private void TargetPos()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (!UIManager.UI.openPanel && UIManager.UI.isCreate)
+        {
+            mesh.enabled = true;
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Physics.Raycast(ray, out hit, 100.0f))
                 {
-                    
+                    if (hit.transform != null)
+                    {
+                        print(hit.transform.gameObject.name);
+                        if (hit.transform.gameObject.GetComponent<CreateTurret>())
+                        {
+                            CreateTurManager.Instance.instPos = hit.transform.gameObject;
+                            CreateTurManager.Instance.createTur();
+                            if (onTurret)
+                            {
+                                hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
+                            }
+                            else
+                            {
+                                hit.transform.gameObject.GetComponent<BoxCollider>().enabled = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            mesh.enabled = false;
+            CreateTurManager.Instance.instPos = null;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                if (hit.transform != null)
+                {
+                    if (hit.transform.gameObject.GetComponent<TurretShooting>())
+                    {
+                        UIManager.UI.installPanel.SetActive(false);
+                        UIManager.UI.openPanel = true;
+
+                        UIManager.UI.destroyBtn.onClick.AddListener(() =>
+                        {
+                            CreateTurManager.Instance.DestroyTur(hit.transform.gameObject);
+                            onTurret = false;
+                        });
+                    }
                 }
             }
         }
@@ -39,24 +92,24 @@ public class CreateTurret : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             onPlayer = true;
-            CreateTurManager.Instance.instPos = this.gameObject;
-            if(turretUI.onTurret)
-            {
-                UIManager.UI.installPanel.SetActive(false);
-            }
+            
+            //if(turretUI.onTurret)
+            //{
+            //    UIManager.UI.installPanel.SetActive(false);
+            //}
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Turret"))
-        {
-            turretUI.onTurret = true;
-        }
-        else
-        {
-            turretUI.onTurret = false;
-        }
+        //if(other.gameObject.CompareTag("Turret"))
+        //{
+        //    turretUI.onTurret = true;
+        //}
+        //else
+        //{
+        //    turretUI.onTurret = false;
+        //}
     }
 
     private void OnTriggerExit(Collider other)

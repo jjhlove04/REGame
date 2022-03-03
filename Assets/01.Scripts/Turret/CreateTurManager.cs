@@ -37,9 +37,9 @@ public class CreateTurManager : MonoBehaviour
         {
             TurretCreate(PlayerInput.Instance.curTurret);
             UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
+            UIManager.UI.isCreate = false;
             UIManager.UI.CheckScrapAmount();
-            UIManager.UI.installPanel.SetActive(false);
-            onTurret = true;
+            PlayerInput.Instance.curTurret = null;
         }
     }
 
@@ -48,6 +48,7 @@ public class CreateTurManager : MonoBehaviour
         gameObject.SetActive(false);
         UIManager.UI.CheckScrapAmount();
         UIManager.UI.installPanel.SetActive(true);
+        UIManager.UI.openPanel = false;
     }
 
     public void RepairTurret(bool onPlayer)

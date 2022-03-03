@@ -103,11 +103,7 @@ public class TurretShooting : Turret
         if(other.gameObject.CompareTag("Player"))
         {
             onPlayer = true;
-            UIManager.UI.destroyBtn.onClick.AddListener(() =>
-            {
-                CreateTurManager.Instance.DestroyTur(this.gameObject);
-                Debug.Log(this.gameObject);
-            });
+
 
             UIManager.UI.repairBtn.onClick.AddListener(() =>
             {
@@ -119,11 +115,6 @@ public class TurretShooting : Turret
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            onPlayer = false;
-        }
-        
         if(other.gameObject.CompareTag("Train"))
         {
             CreateTurManager.Instance.DestroyTur(this.gameObject);
