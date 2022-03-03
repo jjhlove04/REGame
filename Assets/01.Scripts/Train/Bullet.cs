@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     // 이동
+    public float moveSpeed=50;
     // 적에게 부딪히면 데미지를 주고 나는 사라진다
 
     public static Bullet Create(Vector3 pos, Transform enemy, int damage)
@@ -43,7 +44,6 @@ public class Bullet : MonoBehaviour
         }
 
         // 이동
-        float moveSpeed = 20f;
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
 

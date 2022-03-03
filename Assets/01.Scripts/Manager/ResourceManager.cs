@@ -18,18 +18,31 @@ public class ResourceManager : MonoBehaviour
 
         public StatData()
         {
-
+            /*trainStat = new TrainStat();
+            playerStat = new PlayerStat();
+            turretStat = new TurretStat();*/
         }
 
         public class TrainStat
         {
             public float hp;
+
+            public TrainStat(float hp)
+            {
+                this.hp = hp;
+            }
         }
 
         public class PlayerStat
         {
             public float damage; 
             public float attackSpeed;
+
+            public PlayerStat(float damage, float attackSpeed)
+            {
+                this.damage = damage;
+                this.attackSpeed = attackSpeed;
+            }
         }
 
         public class TurretStat
@@ -37,6 +50,13 @@ public class ResourceManager : MonoBehaviour
             public float hp;
             public float damage;
             public float attackSpeed;
+
+            public TurretStat(float hp, float damage, float attackSpeed)
+            {
+                this.hp = hp;
+                this.damage = damage;
+                this.attackSpeed = attackSpeed;
+            }
         }
     }
 
@@ -66,13 +86,15 @@ public class ResourceManager : MonoBehaviour
 
     public List<ResourceData> resources = new List<ResourceData>();
     public StationData stationData;
+    public StatData statData;
 
     private int first = 0;
 
     public enum DataType
     {
         ResourceData,
-        StationData
+        StationData,
+        StatData
     }
 
     private void Awake()
@@ -101,6 +123,9 @@ public class ResourceManager : MonoBehaviour
     private void Init()
     {
         resources.Add(new ResourceData("Screb", 0));
+        resources.Add(new ResourceData("Copper", 0));
+        resources.Add(new ResourceData("Silver", 0));
+        resources.Add(new ResourceData("Gold", 0));
         stationData = new StationData(1, 0);
         SaveAll();
     }
@@ -109,12 +134,14 @@ public class ResourceManager : MonoBehaviour
     {
         Load(DataType.ResourceData);
         Load(DataType.StationData);
+        Load(DataType.StatData);
     }
 
     private void SaveAll()
     {
         SaveJSONFile(DataType.ResourceData);
         SaveJSONFile(DataType.StationData);
+        SaveJSONFile(DataType.StatData);
     }
 
     public void SaveJSONFile(DataType dataType)
@@ -128,6 +155,10 @@ public class ResourceManager : MonoBehaviour
             case DataType.StationData:
                 JsonData stationData = JsonMapper.ToJson(resources);
                 File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", stationData.ToString());
+                break;
+            case DataType.StatData:
+                JsonData statData = JsonMapper.ToJson(resources);
+                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", statData.ToString());
                 break;
         }
     }
@@ -144,6 +175,9 @@ public class ResourceManager : MonoBehaviour
                 break;
             case DataType.StationData:
                 stationData = new StationData(int.Parse(data["currentStationNum"].ToString()), int.Parse(data["stationClearNum"].ToString()));
+                break;
+            case DataType.StatData:
+                statData = new StatData();
                 break;
         }
 

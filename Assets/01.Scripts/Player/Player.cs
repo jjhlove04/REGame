@@ -228,11 +228,13 @@ public class Player : MonoBehaviour
             playerAnimation.SetRun(false);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && PlayerInput.Instance.canAttack)
         {
             followTime = followMaxTime;
             playerAnimation.SetAttack(true);
             lowerBody.transform.rotation = upperBody.transform.rotation;
+
+            StopCoroutine(IsAttacking());
             StartCoroutine(IsAttacking());
         }
     }

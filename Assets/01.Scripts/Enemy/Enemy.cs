@@ -21,14 +21,11 @@ public class Enemy : MonoBehaviour
 
     public GameObject waist;
 
-    public Animator anim;
+    private Animator anim;
     public float animTime;
     private float atime = 5f;
 
     private bool isAttack = false;
-
-    private Vector3 dir;
-    private Quaternion rot;
 
     private void OnEnable()
     {
@@ -49,9 +46,9 @@ public class Enemy : MonoBehaviour
     {
         NewTarget();
 
-        dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
+        Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
 
-        rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
 
         if (Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance || Mathf.Abs(transform.position.x - TrainManager.instance.trainContainer[enemyType].transform.position.x) > distanceX)
         {

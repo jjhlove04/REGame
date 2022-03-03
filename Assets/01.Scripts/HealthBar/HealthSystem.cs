@@ -63,7 +63,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    private void InitHealth()
+    public void InitHealth()
     {
         curHealthAmount = healthAmountMax;
     }

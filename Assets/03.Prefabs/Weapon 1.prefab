@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2688534670917648649}
   - component: {fileID: 2679538893220641423}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Weapon 1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3785a6fa6f781c4bb50f31eedbcfb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
 --- !u!114 &2688534670917648649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fbb5a621a075c4893d56e997307293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 10
+  damage: 5
   lifeTime: 1
 --- !u!95 &2679538893220641423
 Animator:

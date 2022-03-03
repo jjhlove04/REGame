@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     public GameObject firePrefab;
     public Transform firePos;
 
+    public bool canAttack = false;
+
     [SerializeField]
     private GameObject stopButton;
 
@@ -74,7 +76,15 @@ public class PlayerInput : MonoBehaviour
             //             0.5f);
         }
 
-        curCooldown += Time.deltaTime;
+        if (!canAttack)
+        {
+            curCooldown += Time.deltaTime;
+            if(curCooldown >= cooldown)
+            {
+                canAttack = true;
+                curCooldown = 0;
+            }
+        }
 
         Fire();
         Esc();
@@ -82,7 +92,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Fire() //
     {
-        if (fire && isEnemy && curCooldown >= cooldown)
+        if (fire && isEnemy && canAttack)
         {
             GameObject bullet = objPool.GetObject(firePrefab);
             bullet.transform.position = firePos.transform.position;
@@ -90,7 +100,7 @@ public class PlayerInput : MonoBehaviour
 
             fireBullet.Invoke();
 
-            curCooldown = 0;
+            canAttack = false;
         }
     }
 
