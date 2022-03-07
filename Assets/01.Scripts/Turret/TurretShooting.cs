@@ -34,6 +34,8 @@ public class TurretShooting : Turret
     [SerializeField]
     private bool onPlayer = false;
 
+    public int upgradeCost;
+
 
 
     private void Start()
@@ -96,21 +98,6 @@ public class TurretShooting : Turret
         yield return new WaitForSeconds(bulletLineEffectTime);
         bulletLineRenderer.gameObject.SetActive(false);
         muzzleflash.Stop();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            onPlayer = true;
-
-
-            UIManager.UI.repairBtn.onClick.AddListener(() =>
-            {
-                other.gameObject.GetComponent<HealthSystem>().InitHealth();
-                CreateTurManager.Instance.RepairTurret(onPlayer);
-            });
-        }
     }
 
     private void OnTriggerExit(Collider other)

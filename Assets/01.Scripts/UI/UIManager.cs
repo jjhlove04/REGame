@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour
     public Button upgradeBtn;
     public Button repairBtn;
 
+    public Text upgradeCostTxt;
+
 
     private void Awake()
     {
@@ -102,6 +104,7 @@ public class UIManager : MonoBehaviour
     public void GetTurretAmount(int needAmount)
     {
         this.needAmount = needAmount;
+
     }
 
     public int GetNeedAmount()

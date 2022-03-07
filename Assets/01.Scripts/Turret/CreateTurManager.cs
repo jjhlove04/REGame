@@ -12,8 +12,7 @@ public class CreateTurManager : MonoBehaviour
 
     public GameObject instPos;
 
-    public bool onTurret;
-
+    public bool onTurret = false;
     private void Awake()
     {
         instance = this;
@@ -36,9 +35,11 @@ public class CreateTurManager : MonoBehaviour
         if (UIManager.UI.scrapAmount >= UIManager.UI.GetNeedAmount())
         {
             TurretCreate(PlayerInput.Instance.curTurret);
+
             UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
             UIManager.UI.isCreate = false;
             UIManager.UI.CheckScrapAmount();
+
             PlayerInput.Instance.curTurret = null;
         }
     }
@@ -51,12 +52,14 @@ public class CreateTurManager : MonoBehaviour
         UIManager.UI.openPanel = false;
     }
 
-    public void RepairTurret(bool onPlayer)
+    public void RepairTurret()
     {
-        if (onPlayer && UIManager.UI.scrapAmount >= (UIManager.UI.needAmount / 3))
+        if (UIManager.UI.scrapAmount >= (UIManager.UI.needAmount / 3))
         {
             UIManager.UI.scrapAmount -= (UIManager.UI.needAmount / 3);
             UIManager.UI.CheckScrapAmount();
         }
     }
+
+
 }
