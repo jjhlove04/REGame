@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     public GameObject firePrefab;
     public Transform firePos;
 
+    public bool canAttack = false;
+
     [SerializeField]
     private GameObject stopButton;
 
@@ -33,9 +35,14 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent fireBullet;
 
     public GameObject curTurret;
+
+    public delegate void Attack();
+
+    public Attack attack;
     private void Awake()
     {
         Instance = this;
+        attack = () => { };
     }
     private void Start()
     {
@@ -74,7 +81,15 @@ public class PlayerInput : MonoBehaviour
             //             0.5f);
         }
 
-        curCooldown += Time.deltaTime;
+        if (!canAttack)
+        {
+            curCooldown += Time.deltaTime;
+            if(curCooldown >= cooldown)
+            {
+                canAttack = true;
+                curCooldown = 0;
+            }
+        }
 
         Fire();
         Esc();
@@ -82,15 +97,17 @@ public class PlayerInput : MonoBehaviour
 
     public void Fire() //
     {
-        if (fire && isEnemy && curCooldown >= cooldown)
+        if (fire && isEnemy && canAttack)
         {
+            canAttack = false;
+
             GameObject bullet = objPool.GetObject(firePrefab);
             bullet.transform.position = firePos.transform.position;
             bullet.transform.rotation = firePos.transform.rotation;
 
             fireBullet.Invoke();
 
-            curCooldown = 0;
+            attack();
         }
     }
 

@@ -31,16 +31,16 @@ public class TurretShooting : Turret
 
     private Transform targetEnemychil;
 
-    public float curHp;
-    public float maxHp;
+    [SerializeField]
     private bool onPlayer = false;
+
+    public int upgradeCost;
 
 
 
     private void Start()
     {
         curshootTimer = shootTimerMax;
-        curHp = maxHp;
     }
 
     void Update()
@@ -48,6 +48,7 @@ public class TurretShooting : Turret
         HandleShooting(shootTimerMax, damage);
         HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemychil);
         Shot();
+
     }
 
     protected override void HandleTargeting(float lookForTargetTimerMax, float maxDistance, out Transform targetEnemy)
@@ -88,8 +89,6 @@ public class TurretShooting : Turret
         }
     }
 
-
-
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
         muzzleflash.Play();
@@ -101,19 +100,11 @@ public class TurretShooting : Turret
         muzzleflash.Stop();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            onPlayer = true;
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if(other.gameObject.CompareTag("Train"))
         {
-            onPlayer = false;
+            CreateTurManager.Instance.DestroyTur(this.gameObject);
         }
     }
 }

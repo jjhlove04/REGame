@@ -14,7 +14,6 @@ public class ObjectReturn : MonoBehaviour
     private void OnDisable()
     {
         objPool.ReturnGameObject(this.gameObject);
-        SpawnMananger.Instance.enemyCount--;
     }
 
 }

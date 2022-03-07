@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider hpBar;
     [Space]
     public bool openPanel = false;
-    private int dex = 1;
+    public bool isCreate = false;   
     public List<Button> panelOpenList = new List<Button>();
 
     [SerializeField]
@@ -22,11 +22,16 @@ public class UIManager : MonoBehaviour
     public int scrapAmount = 0;
     public int needAmount = 5;
 
-    public float moveValue;
-    public float minusMoveValue;
+    //public float moveValue;
+    //public float minusMoveValue;
+    public GameObject panelPos;
+    public GameObject panelHidePos;
 
     public Button destroyBtn;
+    public Button upgradeBtn;
     public Button repairBtn;
+
+    public Text upgradeCostTxt;
 
 
     private void Awake()
@@ -41,35 +46,36 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            dex = dex * -1;
+            if(openPanel)
+            {
+                openPanel = false;
+            }
+            else if(!openPanel)
+            {
+                openPanel = true;
+                installPanel.SetActive(true);
+            }
         }
-        if(dex > 0)
-        {
-            openPanel = false; //닫기
-        }
-        if(dex < 0)
-        {
-            openPanel = true;
-        }
-        UpGradePanelOpen();
+
+        PanelOpen();
         TakeDamageHpBar();
     }
 
 
     //패널 오픈 함수
-    public void UpGradePanelOpen()
+    public void PanelOpen()
     {
         if (openPanel)
         {
-            PanelMove(installPanel, moveValue);
-            PanelMove(upGradePanel, moveValue);
+            PanelMove(installPanel, panelPos.transform.position.x);
+            PanelMove(upGradePanel, panelPos.transform.position.x);
         }
         if (openPanel == false)
         {
-            PanelMove(installPanel, minusMoveValue);
-            PanelMove(upGradePanel, minusMoveValue);
+            PanelMove(installPanel, panelHidePos.transform.position.x);
+            PanelMove(upGradePanel, panelHidePos.transform.position.x);
         }
     }
 
@@ -91,11 +97,14 @@ public class UIManager : MonoBehaviour
     public void SelectTurret(GameObject turret)
     {
         PlayerInput.Instance.curTurret = turret;
+        isCreate = true;
+        openPanel = false;
     }
 
     public void GetTurretAmount(int needAmount)
     {
         this.needAmount = needAmount;
+
     }
 
     public int GetNeedAmount()

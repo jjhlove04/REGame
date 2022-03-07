@@ -8,13 +8,11 @@ public class CreateTurManager : MonoBehaviour
 
     public static CreateTurManager Instance { get { return instance; } }
 
-
     private ObjectPool objPool;
 
     public GameObject instPos;
 
-    public bool onTurret;
-
+    public bool onTurret = false;
     private void Awake()
     {
         instance = this;
@@ -34,31 +32,34 @@ public class CreateTurManager : MonoBehaviour
 
     public void createTur()
     {
-        if (!onTurret)
+        if (UIManager.UI.scrapAmount >= UIManager.UI.GetNeedAmount())
         {
-            if (UIManager.UI.scrapAmount >= UIManager.UI.GetNeedAmount())
-            {
-                TurretCreate(PlayerInput.Instance.curTurret);
-                UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
+            TurretCreate(PlayerInput.Instance.curTurret);
 
-                onTurret = true;
-                Debug.Log("포탑 설치 중");
-            }
+            UIManager.UI.scrapAmount -= UIManager.UI.GetNeedAmount();
+            UIManager.UI.isCreate = false;
+            UIManager.UI.CheckScrapAmount();
+
+            PlayerInput.Instance.curTurret = null;
         }
     }
 
-    public void DestroyTur(GameObject gameObject)
+    public void DestroyTur(GameObject gameObject)   
     {
-        onTurret = false;
         gameObject.SetActive(false);
+        UIManager.UI.CheckScrapAmount();
+        UIManager.UI.installPanel.SetActive(true);
+        UIManager.UI.openPanel = false;
     }
 
-    public void RepairTurret(bool onPlayer, float curHp, float maxHp)
+    public void RepairTurret()
     {
-        if (onPlayer && UIManager.UI.scrapAmount >= (UIManager.UI.needAmount / 3))
+        if (UIManager.UI.scrapAmount >= (UIManager.UI.needAmount / 3))
         {
             UIManager.UI.scrapAmount -= (UIManager.UI.needAmount / 3);
-            curHp = maxHp;
+            UIManager.UI.CheckScrapAmount();
         }
     }
+
+
 }

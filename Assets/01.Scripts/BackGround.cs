@@ -9,11 +9,6 @@ public class BackGround : MonoBehaviour
 
     public float speed = 1;
 
-    [SerializeField]
-    private GameObject station;    
-    [SerializeField]
-    private GameObject station2;
-
 
     private void Start()
     {
@@ -37,14 +32,6 @@ public class BackGround : MonoBehaviour
                     SwapeBackground(transform.GetChild(i));
                 }
             }
-        }
-
-
-
-        if(GameManager.Instance.state == GameManager.State.End)
-        {
-            station.SetActive(true);
-            station2.SetActive(true);
         }
     }
 

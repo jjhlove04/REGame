@@ -7,6 +7,7 @@ public class MonkeySpanner : MonoBehaviour
 {
     private Rigidbody rigid;
     public float speed = 1f;
+    public float damage=5;
 
     private Vector3 lastMoveDir;
     Vector3 forceDirection;
@@ -70,7 +71,7 @@ public class MonkeySpanner : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-
+            other.GetComponent<HealthSystem>().Damage(damage);
             this.gameObject.SetActive(false);
         }
     }
