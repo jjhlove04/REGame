@@ -41,7 +41,6 @@ public class CreateTurret : MonoBehaviour
                 {
                     if (hit.transform != null)
                     {
-                        print(hit.transform.gameObject.name);
                         if (hit.transform.gameObject.GetComponent<CreateTurret>())
                         {
                             CreateTurManager.Instance.instPos = hit.transform.gameObject;

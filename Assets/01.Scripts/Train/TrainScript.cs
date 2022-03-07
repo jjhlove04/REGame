@@ -81,7 +81,6 @@ public class TrainScript : MonoBehaviour
             {
                 roomHp += 1;
             }
-            //TrainManager.instance.CreateTrainPrefab();
         }
     }
 }

@@ -11,10 +11,6 @@ public class BulletReturn : MonoBehaviour
         objPool = FindObjectOfType<ObjectPool>();
     }
 
-    void Update()
-    {
-
-    }
 
     private void OnDisable()
     {

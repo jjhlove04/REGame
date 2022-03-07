@@ -99,7 +99,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (fire && isEnemy && canAttack)
         {
-            attack();
+            canAttack = false;
 
             GameObject bullet = objPool.GetObject(firePrefab);
             bullet.transform.position = firePos.transform.position;
@@ -107,7 +107,7 @@ public class PlayerInput : MonoBehaviour
 
             fireBullet.Invoke();
 
-            canAttack = false;
+            attack();
         }
     }
 

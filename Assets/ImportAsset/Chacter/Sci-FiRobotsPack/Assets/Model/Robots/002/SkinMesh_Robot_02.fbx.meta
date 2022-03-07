@@ -1,75 +1,197 @@
 fileFormatVersion: 2
 guid: aeea6a45bf85faa408aaaf799d71cc46
-timeCreated: 1509772883
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Arm_L
-    100002: Arm_R
-    100004: Body
-    100006: Bone_Robot_02_Root
-    100008: Cap
-    100010: Chest
-    100012: Eye
-    100014: Finger_L_01
-    100016: Finger_L_02
-    100018: Finger_R_01
-    100020: Finger_R_02
-    100022: Foot_L_01
-    100024: Foot_L_02
-    100026: Foot_R_01
-    100028: Foot_R_02
-    100030: Hand_L
-    100032: Hand_R
-    100034: Head
-    100036: Knee_L
-    100038: Knee_R
-    100040: Leg_L
-    100042: Leg_R
-    100044: Shoulder_L
-    100046: Shoulder_L_Root
-    100048: Shoulder_R
-    100050: Shoulder_R_Root
-    100052: //RootNode
-    100054: SkinMesh_Robot_02
-    100056: Waist
-    400000: Arm_L
-    400002: Arm_R
-    400004: Body
-    400006: Bone_Robot_02_Root
-    400008: Cap
-    400010: Chest
-    400012: Eye
-    400014: Finger_L_01
-    400016: Finger_L_02
-    400018: Finger_R_01
-    400020: Finger_R_02
-    400022: Foot_L_01
-    400024: Foot_L_02
-    400026: Foot_R_01
-    400028: Foot_R_02
-    400030: Hand_L
-    400032: Hand_R
-    400034: Head
-    400036: Knee_L
-    400038: Knee_R
-    400040: Leg_L
-    400042: Leg_R
-    400044: Shoulder_L
-    400046: Shoulder_L_Root
-    400048: Shoulder_R
-    400050: Shoulder_R_Root
-    400052: //RootNode
-    400054: SkinMesh_Robot_02
-    400056: Waist
-    4300000: SkinMesh_Robot_02
-    9500000: //RootNode
-    13700000: SkinMesh_Robot_02
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Arm_L
+  - first:
+      1: 100002
+    second: Arm_R
+  - first:
+      1: 100004
+    second: Body
+  - first:
+      1: 100006
+    second: Bone_Robot_02_Root
+  - first:
+      1: 100008
+    second: Cap
+  - first:
+      1: 100010
+    second: Chest
+  - first:
+      1: 100012
+    second: Eye
+  - first:
+      1: 100014
+    second: Finger_L_01
+  - first:
+      1: 100016
+    second: Finger_L_02
+  - first:
+      1: 100018
+    second: Finger_R_01
+  - first:
+      1: 100020
+    second: Finger_R_02
+  - first:
+      1: 100022
+    second: Foot_L_01
+  - first:
+      1: 100024
+    second: Foot_L_02
+  - first:
+      1: 100026
+    second: Foot_R_01
+  - first:
+      1: 100028
+    second: Foot_R_02
+  - first:
+      1: 100030
+    second: Hand_L
+  - first:
+      1: 100032
+    second: Hand_R
+  - first:
+      1: 100034
+    second: Head
+  - first:
+      1: 100036
+    second: Knee_L
+  - first:
+      1: 100038
+    second: Knee_R
+  - first:
+      1: 100040
+    second: Leg_L
+  - first:
+      1: 100042
+    second: Leg_R
+  - first:
+      1: 100044
+    second: Shoulder_L
+  - first:
+      1: 100046
+    second: Shoulder_L_Root
+  - first:
+      1: 100048
+    second: Shoulder_R
+  - first:
+      1: 100050
+    second: Shoulder_R_Root
+  - first:
+      1: 100052
+    second: //RootNode
+  - first:
+      1: 100054
+    second: SkinMesh_Robot_02
+  - first:
+      1: 100056
+    second: Waist
+  - first:
+      4: 400000
+    second: Arm_L
+  - first:
+      4: 400002
+    second: Arm_R
+  - first:
+      4: 400004
+    second: Body
+  - first:
+      4: 400006
+    second: Bone_Robot_02_Root
+  - first:
+      4: 400008
+    second: Cap
+  - first:
+      4: 400010
+    second: Chest
+  - first:
+      4: 400012
+    second: Eye
+  - first:
+      4: 400014
+    second: Finger_L_01
+  - first:
+      4: 400016
+    second: Finger_L_02
+  - first:
+      4: 400018
+    second: Finger_R_01
+  - first:
+      4: 400020
+    second: Finger_R_02
+  - first:
+      4: 400022
+    second: Foot_L_01
+  - first:
+      4: 400024
+    second: Foot_L_02
+  - first:
+      4: 400026
+    second: Foot_R_01
+  - first:
+      4: 400028
+    second: Foot_R_02
+  - first:
+      4: 400030
+    second: Hand_L
+  - first:
+      4: 400032
+    second: Hand_R
+  - first:
+      4: 400034
+    second: Head
+  - first:
+      4: 400036
+    second: Knee_L
+  - first:
+      4: 400038
+    second: Knee_R
+  - first:
+      4: 400040
+    second: Leg_L
+  - first:
+      4: 400042
+    second: Leg_R
+  - first:
+      4: 400044
+    second: Shoulder_L
+  - first:
+      4: 400046
+    second: Shoulder_L_Root
+  - first:
+      4: 400048
+    second: Shoulder_R
+  - first:
+      4: 400050
+    second: Shoulder_R_Root
+  - first:
+      4: 400052
+    second: //RootNode
+  - first:
+      4: 400054
+    second: SkinMesh_Robot_02
+  - first:
+      4: 400056
+    second: Waist
+  - first:
+      43: 4300000
+    second: SkinMesh_Robot_02
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: SkinMesh_Robot_02
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -82,12 +204,15 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -95,28 +220,192 @@ ModelImporter:
     globalScale: 1.2
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
-    weldVertices: 1
+    weldVertices: 0
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: SkinMesh_Robot_02(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SkinMesh_Robot_02
+      parentName: SkinMesh_Robot_02(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bone_Robot_02_Root
+      parentName: SkinMesh_Robot_02(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body
+      parentName: Bone_Robot_02_Root
+      position: {x: -0, y: 4.2000003, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chest
+      parentName: Body
+      position: {x: -0, y: 1.5399783, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Shoulder_R_Root
+      parentName: Chest
+      position: {x: 2.8853815, y: 0, z: -0.0000008583069}
+      rotation: {x: -0, y: -0, z: 0.7040147, w: 0.7101854}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Shoulder_R
+      parentName: Shoulder_R_Root
+      position: {x: -0, y: 1.4600219, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm_R
+      parentName: Shoulder_R_Root
+      position: {x: -0, y: -1.5311195, z: 0}
+      rotation: {x: 0.03402987, y: 0.00029697455, z: 0.0049856603, w: 0.99940836}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hand_R
+      parentName: Arm_R
+      position: {x: -0.036791325, y: -2.8351548, z: 0.42000002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Finger_R_01
+      parentName: Hand_R
+      position: {x: 0.09066582, y: -0.86963856, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Finger_R_02
+      parentName: Finger_R_01
+      position: {x: -0.85528225, y: -0.05918627, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Shoulder_L_Root
+      parentName: Chest
+      position: {x: -2.8848002, y: 0, z: -0.0000008583069}
+      rotation: {x: -0, y: -0, z: -0.7040147, w: 0.7101854}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Shoulder_L
+      parentName: Shoulder_L_Root
+      position: {x: -0, y: 1.4600219, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm_L
+      parentName: Shoulder_L_Root
+      position: {x: -0, y: -1.5311195, z: 0}
+      rotation: {x: 0.033581477, y: -0.000293063, z: 0.0009633899, w: 0.99943554}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hand_L
+      parentName: Arm_L
+      position: {x: -0.036791325, y: -2.8351548, z: 0.42000002}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Finger_L_01
+      parentName: Hand_L
+      position: {x: 0.09066582, y: -0.86963856, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Finger_L_02
+      parentName: Finger_L_01
+      position: {x: 0.85560006, y: -0.05918627, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Chest
+      position: {x: -0, y: 0.97906554, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cap
+      parentName: Head
+      position: {x: -0, y: 0.7530161, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eye
+      parentName: Head
+      position: {x: -0, y: 0.43036252, z: 1.0420289}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Waist
+      parentName: Body
+      position: {x: -0, y: -1.1631274, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Leg_L
+      parentName: Waist
+      position: {x: -1.1083276, y: -0.7434188, z: -0.00000057877816}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Knee_L
+      parentName: Leg_L
+      position: {x: -0, y: -0.92103326, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_L_01
+      parentName: Knee_L
+      position: {x: -0, y: -1.0967381, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_L_02
+      parentName: Foot_L_01
+      position: {x: -0, y: -0.15811272, z: 0.49325332}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Leg_R
+      parentName: Waist
+      position: {x: 1.1088, y: -0.7434188, z: -0.00000057877816}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Knee_R
+      parentName: Leg_R
+      position: {x: -0, y: -0.92103326, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_R_01
+      parentName: Knee_R
+      position: {x: -0, y: -1.0967381, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_R_02
+      parentName: Foot_R_01
+      position: {x: -0, y: -0.15811272, z: 0.49325332}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -124,14 +413,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1.2
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

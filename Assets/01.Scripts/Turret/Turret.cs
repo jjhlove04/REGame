@@ -51,12 +51,14 @@ public class Turret : MonoBehaviour
         RaycastHit[] hit = Physics.SphereCastAll(transform.position, maxDistance, transform.forward);
         foreach (RaycastHit hitEnemy in hit)
         {
-            if (hitEnemy.transform.tag == "Enemy")
+            if (hitEnemy.transform.CompareTag("Enemy"))
             {
-                if (targetEnemy == null)
+
+                if (targetEnemy == null || targetEnemy.gameObject.activeSelf == false)
                 {
                     targetEnemy = hitEnemy.collider.transform;
                 }
+
                 else
                 {
                     if (Vector3.Distance(transform.position, hitEnemy.collider.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))

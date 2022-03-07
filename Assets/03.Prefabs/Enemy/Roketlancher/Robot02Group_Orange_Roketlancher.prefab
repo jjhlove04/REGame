@@ -423,6 +423,7 @@ Transform:
   - {fileID: 4316100098453328}
   - {fileID: 4676215755366132}
   - {fileID: 4260309078855414}
+  - {fileID: 7810400568605959108}
   m_Father: {fileID: 4940480712146974}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -788,6 +789,7 @@ GameObject:
   - component: {fileID: 6261411550904334542}
   - component: {fileID: -4919342851118615479}
   - component: {fileID: 6823841717224754621}
+  - component: {fileID: 4397485647293170189}
   m_Layer: 7
   m_Name: Robot02Group_Orange_Roketlancher
   m_TagString: Enemy
@@ -824,7 +826,7 @@ CapsuleCollider:
   m_Radius: 2
   m_Height: 7
   m_Direction: 1
-  m_Center: {x: 0, y: 5.5, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &7483094520262241718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -855,10 +857,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   enemySpeed: 10
-  distanceX: 15
+  distanceX: 25
+  minDistance: 25
+  maxDistance: 30
   waist: {fileID: 1970593138423600}
-  anim: {fileID: 95899488750207084}
-  animTime: 0
 --- !u!114 &-4919342851118615479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +886,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmountMax: 30
+--- !u!114 &4397485647293170189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532036094782582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7431fc70afadf174189f0c5c919a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95899488750207084}
+  animTime: 4
+  damage: 10
+  pos: {fileID: 7810400568605959108}
 --- !u!1 &1541351830046624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1437,7 @@ GameObject:
   - component: {fileID: 4181827232833220}
   m_Layer: 7
   m_Name: Robot_02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1432,7 +1450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944160945670422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.981, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4282829563356924}
@@ -1566,6 +1584,36 @@ Transform:
   m_Father: {fileID: 4544068343409800}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8884410483728789774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7810400568605959108}
+  m_Layer: 7
+  m_Name: Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7810400568605959108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884410483728789774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.58, z: 5.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4674560757714172}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3492408985284007925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1599,7 +1647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1361354863353538084, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.13
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1361354863353538084, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1648,6 +1696,10 @@ PrefabInstance:
     - target: {fileID: 4247826730901616355, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247826730901616355, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8568402560383066214, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
       propertyPath: healthSystem
