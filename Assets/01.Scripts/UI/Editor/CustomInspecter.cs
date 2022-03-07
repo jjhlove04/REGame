@@ -11,14 +11,14 @@ class CustomInspecter : Editor
 
     private void OnEnable()
     {
-        // targetÀº Editor¿¡ ÀÖ´Â º¯¼ö·Î ¼±ÅÃÇÑ ¿ÀºêÁ§Æ®¸¦ ¹Þ¾Æ¿È.
+        // targetï¿½ï¿½ Editorï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½.
         if (AssetDatabase.Contains(target))
         {
             selected = null;
         }
         else
         {
-            // targetÀº ObjectÇüÀÌ¹Ç·Î Enemy·Î Çüº¯È¯
+            // targetï¿½ï¿½ Objectï¿½ï¿½ï¿½Ì¹Ç·ï¿½ Enemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¯
             selected = (GameMenu)target;
         }
     }
