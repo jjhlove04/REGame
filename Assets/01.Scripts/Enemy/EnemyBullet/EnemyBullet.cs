@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     [SerializeField]
     private int damage;

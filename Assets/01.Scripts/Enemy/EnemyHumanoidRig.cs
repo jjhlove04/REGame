@@ -6,15 +6,6 @@ public class EnemyHumanoidRig : MonoBehaviour, IEnemyAttack
 {
     public Animator anim;
 
-    public float animTime;
-    private float atime = 5f;
-
-    private bool isAttack = false;
-
-    [SerializeField]
-    private int damage;
-
-
     private Enemy enemy;
 
     private Vector3 target;
@@ -24,35 +15,21 @@ public class EnemyHumanoidRig : MonoBehaviour, IEnemyAttack
         enemy = GetComponent<Enemy>();
     }
 
+    private void Update()
+    {
+        if (enemy.run && anim.GetBool("IsAttack"))
+        {
+            anim.SetBool("IsAttack", false);
+        }
+    }
+
     public void Attack(Quaternion rot)
     {
-        if (anim.GetBool("IsAttack"))
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
-        }
+        anim?.SetBool("IsAttack", true);
 
-        if (isAttack)
-        {
-            target = TrainManager.instance.trainContainer[enemy.enemyType].transform.position - transform.position;
-            rot = Quaternion.LookRotation(target);
+        target = TrainManager.instance.trainContainer[enemy.enemyType].transform.position - transform.position;
+        rot = Quaternion.LookRotation(target);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
-        }
-
-        else
-        {
-            rot = Quaternion.LookRotation(Vector3.zero);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
-        }
-
-        anim.SetBool("IsAttack", false);
-
-        animTime += Time.deltaTime;
-
-        if (animTime >= atime)
-        {
-            anim.SetBool("IsAttack", true);
-            animTime = 0f;
-        }
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
     }
 }

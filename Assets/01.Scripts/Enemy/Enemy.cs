@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
 
     private IEnemyAttack enemyAttack;
 
+    public bool run;
+
 
 
     private void OnEnable()
@@ -53,7 +55,9 @@ public class Enemy : MonoBehaviour
 
         Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
 
-        if (Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance)
+        run = Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance;
+
+        if (run)
         {
             EnemyTargettingMove();
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
