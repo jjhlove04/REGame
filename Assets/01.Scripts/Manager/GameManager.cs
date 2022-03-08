@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,13 +42,38 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(state == State.Play)
+        CurState();
+        if (state == State.Play)
         {
             remainingTime -= Time.deltaTime;
             if(remainingTime <= 0)
             {
                 state = State.End;
             }
+
+            if(TrainScript.instance.curTrainHp <= 0)
+            {
+                state = State.End;
+            }
+        }
+    }
+    
+    private void CurState()
+    {
+        switch (state)
+        {
+            case State.Ready:
+                break;
+            case State.Play:
+                break;
+            case State.Stop:
+                break;
+            case State.End:
+                SceneManager.LoadScene("Station");
+                state = State.Ready;
+                break;
+            default:
+                break;
         }
     }
 }
