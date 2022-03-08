@@ -11,25 +11,23 @@ public class Roketlancher : MonoBehaviour
     private GameObject particle;
     // 적에게 부딪히면 데미지를 주고 나는 사라진다
 
-    public static Roketlancher Create(Vector3 pos, Transform enemy, int damage)
+    public void Create(Vector3 pos,Transform enemy, int damage)
     {
-        Transform bulletPrefab = Resources.Load<Transform>("Missile");
-        Transform bulletTrm = Instantiate(bulletPrefab, pos, Quaternion.identity);
-
-        Roketlancher bulletProjectile = bulletTrm.GetComponent<Roketlancher>();
-
-        bulletProjectile.SetTarget(enemy);
-        bulletProjectile.Damage(damage);
-
-        return bulletProjectile;
-
+        SpawnPos(pos);
+        SetTarget(enemy);
+        Damage(damage);
     }
 
 
     private Transform targetEnemy;
     private Vector3 lastMoveDir;
     private int damage;
+    private ObjectPool objPool;
 
+    private void Start()
+    {
+        objPool = FindObjectOfType<ObjectPool>();
+    }
 
     private void Update()
     {
@@ -63,21 +61,32 @@ public class Roketlancher : MonoBehaviour
         this.damage = damage;
     }
 
+    private void SpawnPos(Vector3 pos)
+    {
+        gameObject.transform.position = pos;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Train")
         {
             TrainScript.instance.Damage(damage);
             other.GetComponent<TrainHit>()?.Hit();
-            Instantiate(particle, transform.position, Quaternion.identity);
+            SpawnParticle();
+            gameObject.SetActive(false);
         }
 
         else if (other.tag == "Turret")
         {
-            other.GetComponent<HealthSystem>()?.Damage(damage * Time.deltaTime);
-            Instantiate(particle, transform.position, Quaternion.identity);
+            other.GetComponent<HealthSystem>()?.Damage(damage);
+            SpawnParticle();
+            gameObject.SetActive(false);
         }
+    }
 
-        gameObject.SetActive(false);
+    private void SpawnParticle()
+    {
+        GameObject particleObj = objPool.GetObject(particle);
+        particleObj.transform.position = transform.position;
     }
 }

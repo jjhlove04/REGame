@@ -17,9 +17,6 @@ public class Enemy : MonoBehaviour
 
     private float distance;
 
-
-    Rigidbody rigid;
-
     HealthSystem healthSystem;
 
     public GameObject waist;
@@ -40,7 +37,6 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        rigid = GetComponent<Rigidbody>();
         healthSystem = GetComponent<HealthSystem>();
         enemyAttack = GetComponent<IEnemyAttack>();
 
@@ -72,8 +68,6 @@ public class Enemy : MonoBehaviour
             waist.transform.rotation = quaternion;
 
             enemyAttack.Attack(rot);
-
-            rigid.velocity = Vector3.zero;
         }
     }
 
