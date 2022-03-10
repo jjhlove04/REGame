@@ -1482,6 +1482,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2624750517168734812, guid: de97a6508188c2a4faf0fcc0b9b8a70f, type: 3}
+      propertyPath: m_FadeMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4080318516788066333, guid: de97a6508188c2a4faf0fcc0b9b8a70f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16865,6 +16869,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e73a58c9500944946a84f0f0932c6c75, type: 2}
   - {fileID: 11400000, guid: 2ccfc24a9f0ac344fbc3083e9a045f12, type: 2}
   collider: {fileID: 1101420635}
+  keppOffSpeed: 1
 --- !u!114 &1101420634
 MonoBehaviour:
   m_ObjectHideFlags: 0

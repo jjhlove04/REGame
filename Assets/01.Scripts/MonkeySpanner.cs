@@ -71,7 +71,7 @@ public class MonkeySpanner : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<HealthSystem>().Damage(damage);
+            other.GetComponent<HealthSystem>()?.Damage(damage);
             this.gameObject.SetActive(false);
         }
     }

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 7603603011174188537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 7603603011287479198}
   m_RootOrder: 1
@@ -111,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 2782568452169643152, guid: 17327411eecd71e4dbf9267980c3dc2e, type: 3}
   firePos: {fileID: 7603603011174188534}
+  canAttack: 0
+  stopButton: {fileID: 0}
   cooldown: 0
   fireButtonName: Fire1
   whatIsGround:
@@ -174,15 +176,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 966500067491442689, guid: 8ea4fec6e0266634784b171b36a372d0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 966500067491442689, guid: 8ea4fec6e0266634784b171b36a372d0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 966500067491442689, guid: 8ea4fec6e0266634784b171b36a372d0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 966500067491442689, guid: 8ea4fec6e0266634784b171b36a372d0, type: 3}
       propertyPath: m_LocalPosition.x

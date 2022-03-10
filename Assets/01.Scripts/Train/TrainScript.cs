@@ -17,6 +17,8 @@ public class TrainScript : MonoBehaviour
 
     private float smokeHp;
 
+    private bool destroy = false;
+
     private void Awake()
     {
         instance = this;
@@ -37,6 +39,10 @@ public class TrainScript : MonoBehaviour
     private void Update()
     {
         SmokeTrain();
+        if (destroy)
+        {
+            TrainManager.instance.KeepOffTrain();
+        }
     }
 
     public void DestroyTrain()
@@ -71,10 +77,13 @@ public class TrainScript : MonoBehaviour
             roomHp += initRoomHp;
             if (TrainManager.instance.curTrainCount > 0)
             {
+                TrainManager.instance.curTrainCount--;
+                destroy = true;
+                yield return new WaitForSeconds(0.5f);
                 TrainManager.instance.Explotion();
                 yield return new WaitForSeconds(0.75f);
-                TrainManager.instance.curTrainCount--;
                 TrainManager.instance.RemoveList();
+                destroy = false;
             }
 
             if (TrainManager.instance.curTrainCount % 2 == 1 && TrainManager.instance.curTrainCount == 1)

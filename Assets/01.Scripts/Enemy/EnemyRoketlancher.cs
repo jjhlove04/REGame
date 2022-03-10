@@ -39,13 +39,13 @@ public class EnemyRoketlancher : MonoBehaviour, IEnemyAttack
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
 
-        if (isAttack)
+       /* if (isAttack)
         {
             target = new Vector3(trainPos.x, trainPos.y, trainPos.z+10) - transform.position ;
             rot = Quaternion.LookRotation(target);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
-        }
+        }*/
 
         else
         {

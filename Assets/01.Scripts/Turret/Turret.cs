@@ -11,12 +11,8 @@ public class Turret : MonoBehaviour
 
     private float lookForTargetTimer;
 
-    private Vector3 BulletSpawnPos;
-
-    private void Awake()
-    {
-        BulletSpawnPos = transform.position;
-    }
+    [SerializeField]
+    private Transform BulletSpawnPos;
 
 
     protected virtual void HandleTargeting(float lookForTargetTimerMax, float maxDistance, out Transform targetEnemy)
@@ -39,9 +35,9 @@ public class Turret : MonoBehaviour
         if (shootTimer <= 0f)
         {
             shootTimer += shootTimerMax;
-            if (targetEnemy != null)
+            if (targetEnemy != null && targetEnemy.gameObject.activeSelf != false)
             {
-                Bullet.Create(BulletSpawnPos, targetEnemy, damage);
+                Bullet.Create(BulletSpawnPos.position, targetEnemy, damage);
             }
         }
     }

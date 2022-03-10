@@ -10,9 +10,9 @@ public class TurretShooting : Turret
     [SerializeField]
     private Transform firePosition;
     [SerializeField]
-    private float bulletLineEffectTime = 0.03f;   
+    private float bulletLineEffectTime = 1f;   
     [SerializeField]
-    private ParticleSystem muzzleflash;
+    private GameObject effect = null;
 
 
     [SerializeField]
@@ -30,9 +30,6 @@ public class TurretShooting : Turret
     private int damage = 10;
 
     private Transform targetEnemychil;
-
-    [SerializeField]
-    private bool onPlayer = false;
 
     public int upgradeCost;
 
@@ -75,7 +72,6 @@ public class TurretShooting : Turret
                     firePosition.position,
                     firePosition.forward, out hit, maxDistance))
             {
-                IDamageable target = hit.transform.GetComponent<IDamageable>();
                 hitPosition = hit.point;
             }
             else
@@ -84,6 +80,7 @@ public class TurretShooting : Turret
                                 + firePosition.forward * maxDistance;
             }
             curshootTimer = shootTimerMax;
+
             StartCoroutine(ShotEffect(hitPosition));
 
         }
@@ -91,13 +88,14 @@ public class TurretShooting : Turret
 
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
-        muzzleflash.Play();
+        //effect?.SetActive(true);
+        yield return new WaitForSeconds(1);
         bulletLineRenderer.SetPosition(1,
         bulletLineRenderer.transform.InverseTransformPoint(hitPosition));
         bulletLineRenderer.gameObject.SetActive(true);
         yield return new WaitForSeconds(bulletLineEffectTime);
         bulletLineRenderer.gameObject.SetActive(false);
-        muzzleflash.Stop();
+        //effect?.SetActive(false);
     }
 
     private void OnTriggerExit(Collider other)

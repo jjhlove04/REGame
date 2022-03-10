@@ -24,10 +24,10 @@ public class Player : MonoBehaviour
     private CinemachineVirtualCamera cinemachineVirtualCamera;
 
     private float orthographicSize;
-    private float targetOrthographicSize;
+    private float targetorthographicSize;
 
-    const float minOrthographicSize = 10f;
-    const float maxOrthographicSize = 30f;
+    const float minOrthographicSize = 40f;
+    const float maxOrthographicSize = 80;
 
     private float followMaxTime = 3;
     private float followTime;
@@ -67,20 +67,26 @@ public class Player : MonoBehaviour
         Move();
         Rotate();
         RimitPosition();
+
         HandleZoom();
     }
 
+
     void HandleZoom()
     {
+        // 기본 줌인줌아웃
+        // float zoomAmount = 2f;
+        // orthographicSize += Input.mouseScrollDelta.y * zoomAmount;
+        // orthographicSize = Mathf.Clamp(orthographicSize, minOrthographicSize, maxOrthographicSize);
+        // 스무스 줌인줌아웃
         float zoomAmount = 2f;
-        targetOrthographicSize += -Input.mouseScrollDelta.y * zoomAmount;
-        targetOrthographicSize = Mathf.Clamp(targetOrthographicSize, minOrthographicSize, maxOrthographicSize);
+        targetorthographicSize -= Input.mouseScrollDelta.y * zoomAmount;
+        targetorthographicSize = Mathf.Clamp(targetorthographicSize, minOrthographicSize, maxOrthographicSize);
 
-        // 부드러운 느낌을 주기 위한 코드
-        float zoomSpeed = 5f;
-        //orthographicSize = Mathf.Lerp(orthographicSize, targetOrthographicSize, Time.deltaTime * zoomSpeed);
+        float zoomSpeed = 10f;
+        orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.deltaTime * zoomSpeed);
 
-        //cinemachineVirtualCamera.m_Lens.OrthographicSize = orthographicSize;
+        cinemachineVirtualCamera.m_Lens.FieldOfView = orthographicSize;
     }
 
     /// <summary>
