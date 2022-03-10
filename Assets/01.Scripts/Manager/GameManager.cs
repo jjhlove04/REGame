@@ -48,7 +48,16 @@ public class GameManager : MonoBehaviour
             remainingTime -= Time.deltaTime;
             if(remainingTime <= 0)
             {
-                state = State.End;
+                state = State.Stop;
+            }
+
+            if(remainingTime <= 10)
+            {
+                GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+                for (int i = 0; i < enemy.Length; i++)
+                {
+                    enemy[i].transform.position = new Vector3(enemy[i].transform.position.x, enemy[i].transform.position.y, (enemy[i].transform.position.z) - (Time.deltaTime * 6));
+                }
             }
 
             if(TrainScript.instance.curTrainHp <= 0)
@@ -67,9 +76,11 @@ public class GameManager : MonoBehaviour
             case State.Play:
                 break;
             case State.Stop:
+                LoadingSceneUI.LoadScene("Station");
+                state = State.Ready;
                 break;
             case State.End:
-                SceneManager.LoadScene("Station");
+                LoadingSceneUI.LoadScene("Station");
                 state = State.Ready;
                 break;
             default:

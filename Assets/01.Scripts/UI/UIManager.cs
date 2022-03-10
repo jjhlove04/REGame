@@ -33,6 +33,10 @@ public class UIManager : MonoBehaviour
 
     public Text upgradeCostTxt;
 
+    private CanvasGroup fadePanel;
+    private bool fadeIn = false;
+    private bool fadeOut = false;
+
 
     private void Awake()
     {
@@ -46,7 +50,7 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if(openPanel)
             {
@@ -58,7 +62,7 @@ public class UIManager : MonoBehaviour
                 installPanel.SetActive(true);
             }
         }
-
+        FadeInOut();
         PanelOpen();
         TakeDamageHpBar();
     }
@@ -87,6 +91,11 @@ public class UIManager : MonoBehaviour
     {
         //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
         hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
+    }
+
+    private void FadeInOut()
+    {
+       
     }
 
     public void CheckScrapAmount()
