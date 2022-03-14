@@ -18,7 +18,7 @@ public class Roketlancher : MonoBehaviour
 
     // 적에게 부딪히면 데미지를 주고 나는 사라진다
 
-    public void Create(Vector3 pos,Transform enemy, int damage)
+    public void Create(Vector3 pos, Transform enemy, int damage)
     {
         SpawnPos(pos);
         SetTarget(enemy);
@@ -31,7 +31,7 @@ public class Roketlancher : MonoBehaviour
 
     private Vector3 target;
 
-    private bool guided =false;
+    private bool guided = false;
 
     private bool tracking = false;
 
@@ -48,7 +48,7 @@ public class Roketlancher : MonoBehaviour
         //guided = false;
     }
 
-    private void Start() 
+    private void Start()
     {
         rigid = GetComponent<Rigidbody>();
     }
@@ -154,7 +154,7 @@ public class Roketlancher : MonoBehaviour
 
     private void SpawnParticle()
     {
-        
+
         GameObject particleObj = ObjectPool.instacne.GetObject(particle);
         particleObj.transform.position = transform.position;
     }
