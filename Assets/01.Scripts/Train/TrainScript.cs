@@ -7,8 +7,6 @@ public class TrainScript : MonoBehaviour
     public static TrainScript instance { get; private set; }
 
 
-
-
     public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
     public float maxTrainHp = 50000;
 

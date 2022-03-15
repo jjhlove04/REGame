@@ -31,6 +31,9 @@ public class TurretShooting : Turret
 
     private Transform targetEnemychil;
 
+    public int maxBulletAmount;
+    public int bulletAmount;
+
     public int upgradeCost;
 
 
@@ -38,13 +41,17 @@ public class TurretShooting : Turret
     private void Start()
     {
         curshootTimer = shootTimerMax;
+        bulletAmount = maxBulletAmount;
     }
 
     void Update()
     {
-        HandleShooting(shootTimerMax, damage);
-        HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemychil);
-        Shot();
+        if (bulletAmount > 0)
+        {
+            HandleShooting(shootTimerMax, damage);
+            HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemychil);
+            Shot();
+        }
 
     }
 
@@ -80,10 +87,16 @@ public class TurretShooting : Turret
                                 + firePosition.forward * maxDistance;
             }
             curshootTimer = shootTimerMax;
+            bulletAmount -= 1;
 
             StartCoroutine(ShotEffect(hitPosition));
 
         }
+    }
+
+    public void Reload()
+    {
+        bulletAmount = maxBulletAmount;
     }
 
     private IEnumerator ShotEffect(Vector3 hitPosition)

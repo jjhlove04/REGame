@@ -31,11 +31,11 @@ public class UIManager : MonoBehaviour
     public Button upgradeBtn;
     public Button repairBtn;
 
-    public Text upgradeCostTxt;
+    public Button speedBtn;
+    public Text speedTxt;
+    private int speedBtnCount;
 
-    private CanvasGroup fadePanel;
-    private bool fadeIn = false;
-    private bool fadeOut = false;
+    public Text upgradeCostTxt;
 
 
     private void Awake()
@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
     {
         //hp바 세팅
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
+        speedBtn.onClick.AddListener(ChangeSpeed);
         CheckScrapAmount();
     }
     private void Update()
@@ -62,7 +63,6 @@ public class UIManager : MonoBehaviour
                 installPanel.SetActive(true);
             }
         }
-        FadeInOut();
         PanelOpen();
         TakeDamageHpBar();
     }
@@ -73,29 +73,24 @@ public class UIManager : MonoBehaviour
     {
         if (openPanel)
         {
-            PanelMove(installPanel, panelPos.transform.position.x);
-            PanelMove(upGradePanel, panelPos.transform.position.x);
+            PanelMove(installPanel, panelPos.transform.position.z);
+            PanelMove(upGradePanel, panelPos.transform.position.z);
         }
         if (openPanel == false)
         {
-            PanelMove(installPanel, panelHidePos.transform.position.x);
-            PanelMove(upGradePanel, panelHidePos.transform.position.x);
+            PanelMove(installPanel, panelHidePos.transform.position.z);
+            PanelMove(upGradePanel, panelHidePos.transform.position.z);
         }
     }
 
     public void PanelMove(GameObject panel, float endValue)
     {
-        panel.transform.DOMoveX(endValue, 1.2f);
+        panel.transform.DOMoveZ(endValue, 1.2f);
     }
     public void TakeDamageHpBar()
     {
         //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
         hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
-    }
-
-    private void FadeInOut()
-    {
-       
     }
 
     public void CheckScrapAmount()
@@ -113,7 +108,33 @@ public class UIManager : MonoBehaviour
     public void GetTurretAmount(int needAmount)
     {
         this.needAmount = needAmount;
+    }
 
+    public void ChangeSpeed()
+    {
+        speedBtnCount++;
+        switch (speedBtnCount)
+        {
+            case 0:
+                GameManager.Instance.gameSpeed = 1f;
+                speedTxt.text = GameManager.Instance.gameSpeed + "X";
+                break;
+            case 1:
+                GameManager.Instance.gameSpeed = 1.5f;
+                speedTxt.text = GameManager.Instance.gameSpeed + "X";
+                break;
+            case 2:
+                GameManager.Instance.gameSpeed = 2f;
+                speedTxt.text = GameManager.Instance.gameSpeed + "X";
+                break;
+            case 3:
+                GameManager.Instance.gameSpeed = 4f;
+                speedTxt.text = GameManager.Instance.gameSpeed + "X";
+                speedBtnCount = -1;
+                break;
+            default:
+                break;
+        }
     }
 
     public int GetNeedAmount()

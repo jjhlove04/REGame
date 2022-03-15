@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         lowerBody.transform.localPosition = Vector3.zero;
         Move();
         Rotate();
-        RimitPosition();
+        //RimitPosition();
 
         HandleZoom();
     }
