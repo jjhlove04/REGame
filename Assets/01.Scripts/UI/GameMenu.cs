@@ -11,10 +11,12 @@ public class GameMenu : MonoBehaviour
     {
         GAMESTOP,
         RESUME,
+        CHECK,
         RESTART,
         SETTING,
         EXIT,
         GAMEOVER,
+        CHECKEXIT,
         SETTINGEXIT,
         GAMESETTINGEXIT
     }
@@ -24,6 +26,7 @@ public class GameMenu : MonoBehaviour
     public GameObject menuObj=null;
     public GameObject settingObj;
     public GameObject gameOver;
+    public GameObject checkObj;
 
     public string sceneName;
 
@@ -40,11 +43,17 @@ public class GameMenu : MonoBehaviour
             case Kind.RESUME:
                 button.onClick.AddListener(Resume);
                 break;
+            case Kind.CHECK:
+                button.onClick.AddListener(ReallyCheck);
+                break;
             case Kind.RESTART:
                 button.onClick.AddListener(Restart);
                 break;
             case Kind.SETTING:
                 button.onClick.AddListener(Setting);
+                break;
+            case Kind.CHECKEXIT:
+                button.onClick.AddListener(ReallyExit);
                 break;
             case Kind.EXIT:
                 button.onClick.AddListener(Exit);
@@ -71,6 +80,16 @@ public class GameMenu : MonoBehaviour
 
         stopButton.SetActive(true);
         menuObj.SetActive(false);
+    }
+
+    public void ReallyCheck()
+    {
+        checkObj.SetActive(true);
+    }
+
+    public void ReallyExit()
+    {
+        checkObj.SetActive(false);
     }
 
     //게임 다시시작

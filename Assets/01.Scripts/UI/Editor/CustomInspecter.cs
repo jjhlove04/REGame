@@ -27,6 +27,7 @@ class CustomInspecter : Editor
     SerializedProperty stopButtonProp;
     SerializedProperty settingProp;
     SerializedProperty menuObjProp;
+    SerializedProperty checkObjProp;
     SerializedProperty gameOverProp;
     SerializedProperty sceneNameProp;
 
@@ -36,6 +37,7 @@ class CustomInspecter : Editor
         stopButtonProp = serializedObject.FindProperty("stopButton");
         settingProp = serializedObject.FindProperty("settingObj");
         menuObjProp = serializedObject.FindProperty("menuObj");
+        checkObjProp = serializedObject.FindProperty("checkObj");
         gameOverProp = serializedObject.FindProperty("gameOver");
         sceneNameProp = serializedObject.FindProperty("sceneName");
     }
@@ -62,6 +64,11 @@ class CustomInspecter : Editor
             EditorGUILayout.PropertyField(menuObjProp);
             EditorGUILayout.PropertyField(stopButtonProp);
         }
+        
+        else if(selected.kind == GameMenu.Kind.CHECK)
+        {
+            EditorGUILayout.PropertyField(checkObjProp);
+        }
 
         else if (selected.kind == GameMenu.Kind.SETTING)
         {
@@ -71,6 +78,10 @@ class CustomInspecter : Editor
         else if (selected.kind == GameMenu.Kind.GAMEOVER)
         {
             EditorGUILayout.PropertyField(gameOverProp);
+        }
+        else if (selected.kind == GameMenu.Kind.CHECKEXIT)
+        {
+            EditorGUILayout.PropertyField(checkObjProp);
         }
 
         else if (selected.kind == GameMenu.Kind.SETTINGEXIT)
