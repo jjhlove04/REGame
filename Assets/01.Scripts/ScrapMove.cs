@@ -5,15 +5,16 @@ using UnityEngine;
 public class ScrapMove : MonoBehaviour
 {
     public float speed = 3f;
-    private Player player;
+    private GearScript gearEnd;
+    
     void Start()
     {
-        player = FindObjectOfType<Player>();
+        gearEnd = FindObjectOfType<GearScript>();
     }
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, gearEnd.gameObject.transform.position, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

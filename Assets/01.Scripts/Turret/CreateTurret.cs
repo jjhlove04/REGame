@@ -72,7 +72,6 @@ public class CreateTurret : MonoBehaviour
                             UIManager.UI.destroyBtn.onClick.AddListener(() =>
                             {
                                 hit.transform.gameObject.GetComponent<CreateTurret>().onTurret = false;
-                                Debug.Log("onTurret = false");
                             });
                         }
                     }

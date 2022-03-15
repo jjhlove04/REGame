@@ -17,8 +17,6 @@ public class TrainManager : MonoBehaviour
     public int curTrainCount;
     public int maxTrainCount;
 
-    public List<MineScriptable> mine = new List<MineScriptable>();
-
     public BoxCollider collider;
 
     public float keppOffSpeed = 1;
@@ -47,9 +45,6 @@ public class TrainManager : MonoBehaviour
             newCube.transform.localRotation = Quaternion.identity;
 
             trainContainer.Add(newCube);
-
-            trainContainer[i].GetComponentInChildren<MiningUI>().myCount = 0;
-            trainContainer[i].GetComponentInChildren<MiningUI>().myCount += i;
         }
         MakeCollider();
     }

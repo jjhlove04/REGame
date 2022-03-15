@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour
 
     public State state;
 
-    public float remainingTime;
-    public float stageTime;
+    public float gameSpeed = 1f;
 
     private void Awake()
     {
@@ -32,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        remainingTime = stageTime;
+
     }
 
     private void OnDestroy()
@@ -45,26 +44,13 @@ public class GameManager : MonoBehaviour
         CurState();
         if (state == State.Play)
         {
-            remainingTime -= Time.deltaTime;
-            if(remainingTime <= 0)
-            {
-                state = State.Stop;
-            }
-
-            if(remainingTime <= 10)
-            {
-                GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
-                for (int i = 0; i < enemy.Length; i++)
-                {
-                    enemy[i].transform.position = new Vector3(enemy[i].transform.position.x, enemy[i].transform.position.y, (enemy[i].transform.position.z) - (Time.deltaTime * 6));
-                }
-            }
-
-            if(TrainScript.instance.curTrainHp <= 0)
+            Time.timeScale = gameSpeed;
+            if (TrainScript.instance.curTrainHp <= 0)
             {
                 state = State.End;
             }
         }
+
     }
     
     private void CurState()
@@ -76,8 +62,6 @@ public class GameManager : MonoBehaviour
             case State.Play:
                 break;
             case State.Stop:
-                LoadingSceneUI.LoadScene("Station");
-                state = State.Ready;
                 break;
             case State.End:
                 LoadingSceneUI.LoadScene("Station");

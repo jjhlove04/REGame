@@ -61,7 +61,8 @@ public class Enemy : MonoBehaviour
 
         else
         {
-            rot = Quaternion.LookRotation(dir);
+            if (dir.magnitude > 0)
+                rot = Quaternion.LookRotation(dir);
 
             Quaternion quaternion = Quaternion.identity;
             quaternion.eulerAngles = new Vector3(0, 0, 0);
