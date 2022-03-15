@@ -19,6 +19,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float rimitMinZ, rimitMaxZ;
 
+    [Header("카메라 관련 변수")]
+    [SerializeField]
+    private CinemachineVirtualCamera cinemachineVirtualCamera;
+
+    private float orthographicSize;
+    private float targetorthographicSize;
+
+    const float minOrthographicSize = 40f;
+    const float maxOrthographicSize = 80;
+
     private float followMaxTime = 3;
     private float followTime;
 
@@ -57,6 +67,26 @@ public class Player : MonoBehaviour
         Move();
         Rotate();
         RimitPosition();
+
+        HandleZoom();
+    }
+
+
+    void HandleZoom()
+    {
+        // 기본 줌인줌아웃
+        // float zoomAmount = 2f;
+        // orthographicSize += Input.mouseScrollDelta.y * zoomAmount;
+        // orthographicSize = Mathf.Clamp(orthographicSize, minOrthographicSize, maxOrthographicSize);
+        // 스무스 줌인줌아웃
+        float zoomAmount = 2f;
+        targetorthographicSize -= Input.mouseScrollDelta.y * zoomAmount;
+        targetorthographicSize = Mathf.Clamp(targetorthographicSize, minOrthographicSize, maxOrthographicSize);
+
+        float zoomSpeed = 10f;
+        orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.deltaTime * zoomSpeed);
+
+        cinemachineVirtualCamera.m_Lens.FieldOfView = orthographicSize;
     }
 
     /// <summary>

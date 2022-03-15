@@ -62,7 +62,7 @@ public class Roketlancher : MonoBehaviour
         rigid.velocity = transform.forward * rocketFlySpeed;
 
         // 방향을 계속하여 타겟팅을 주시
-        var rocketTargetRot = Quaternion.LookRotation((targetEnemy.position+new Vector3(0,7.5f,0)) - transform.position);
+        var rocketTargetRot = Quaternion.LookRotation(targetEnemy.position - transform.position);
 
         // 움직이며 방향을 전환(회전 스피드까지 적용)
         rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRot, turnSpeed));
@@ -154,6 +154,7 @@ public class Roketlancher : MonoBehaviour
 
     private void SpawnParticle()
     {
+
         GameObject particleObj = ObjectPool.instacne.GetObject(particle);
         particleObj.transform.position = transform.position;
     }
