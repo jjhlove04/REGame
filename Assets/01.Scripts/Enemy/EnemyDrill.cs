@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDrill : MonoBehaviour, IEnemyAttack
+public class EnemyDrill : Enemy, IEnemyAttack
 {
     public Animator anim;
 
@@ -13,13 +13,20 @@ public class EnemyDrill : MonoBehaviour, IEnemyAttack
     [SerializeField]
     private Collider drillCol;
 
-    private void Start()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         enemy = GetComponent<Enemy>();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         AnimationState(!enemy.run && anim.GetBool("IsAttack"));
         drillCol.enabled = anim.GetBool("IsAttack");
     }

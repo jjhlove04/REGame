@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1520774237818186900}
   - component: {fileID: 5578952330102476704}
   - component: {fileID: 8392791960194335440}
-  - component: {fileID: 5438877731375532012}
   - component: {fileID: 5292206793976661009}
   - component: {fileID: 8414503084658132740}
   - component: {fileID: 7259560175488308635}
@@ -68,25 +67,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &5438877731375532012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520774237818186899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e74816742499414185e7c902f03d39c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 0
-  enemySpeed: 10
-  distanceX: 5
-  minDistance: 9
-  maxDistance: 9
-  waist: {fileID: 1521160365377392592}
-  run: 0
 --- !u!114 &5292206793976661009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500284dbf3ad873489c12e77242b5b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
+  enemySpeed: 10
+  distanceX: 5
+  minDistance: 4
+  maxDistance: 9
+  waist: {fileID: 1521160365377392592}
+  run: 0
   anim: {fileID: 1461963746854922854}
   drillAnim: {fileID: 1463234623445430960}
   drillCol: {fileID: 1298730678217742348}

@@ -13,8 +13,8 @@ public class CameraControl : MonoBehaviour
     private float orthographicSize;
     private float targetorthographicSize;
 
-    const float minOrthographicSize = 40f;
-    const float maxOrthographicSize = 80;
+    const float minOrthographicSize = 35;
+    const float maxOrthographicSize = 60;
 
     private Camera mainCam;
 
@@ -44,7 +44,7 @@ public class CameraControl : MonoBehaviour
         float zoomSpeed = 10f;
         orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.deltaTime * zoomSpeed);
 
-        offset.m_TrackedObjectOffset = new Vector3(offset.m_TrackedObjectOffset.x, orthographicSize, offset.m_TrackedObjectOffset.z);
+        offset.m_TrackedObjectOffset.y = orthographicSize;
     }
 
     void MouseMove(float distance)

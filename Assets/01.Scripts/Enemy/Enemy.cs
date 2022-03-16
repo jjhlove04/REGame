@@ -28,14 +28,14 @@ public class Enemy : MonoBehaviour
 
 
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         EnemyGetRandom();
         distance = Random.Range(minDistance, maxDistance);
         distanceX = Random.Range(distanceX - distanceX * 0.2f, distanceX);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         healthSystem = GetComponent<HealthSystem>();
         enemyAttack = GetComponent<IEnemyAttack>();
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         healthSystem.OnDied += EnemyDie;
 
     }
-    private void Update()
+    protected virtual void Update()
     {
         NewTarget();
 
