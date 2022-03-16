@@ -8,10 +8,14 @@ public class testScriptts : MonoBehaviour
     public Button speedBtn;
     public Text speedTxt;
     private int speedBtnCount;
+
+    public Button NextWaveBtn;
+
     // Start is called before the first frame update
     void Start()
     {
         speedBtn.onClick.AddListener(ChangeSpeed);
+        NextWaveBtn.onClick.AddListener(NextWave);
     }
 
     // Update is called once per frame
@@ -44,5 +48,10 @@ public class testScriptts : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void NextWave()
+    {
+        SpawnMananger.Instance.curTime = SpawnMananger.Instance.roundCurTime;
     }
 }

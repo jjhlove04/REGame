@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
         {
             if(openPanel)
             {
-                openPanel = false;
+                openPanel = false; 
             }
             else if(!openPanel)
             {
