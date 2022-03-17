@@ -73,8 +73,8 @@ public class TitleMoveScript : MonoBehaviour
             }
             if(indexNum == 3)
             {
-                blurPanel.SetActive(false);
-               BtnSlide(2);
+                timelines[5].Play();
+               BtnSlide(3);
             }
             BtnSlide(2);
         }); 
@@ -94,6 +94,11 @@ public class TitleMoveScript : MonoBehaviour
             BtnGroupMove(1);
             backBtn.SetActive(false);
         }
+        // if(index == 3 || Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     BtnGroupMove(2);
+        //     backBtn.SetActive(false);
+        // }
     }
 
     /// <summary>
@@ -101,13 +106,22 @@ public class TitleMoveScript : MonoBehaviour
     ///</summary>
     public void BtnGroupMove(int index)
     {
+        float dexSpeed = 0;
         if(index == 0)
         {
-            btnGroup.transform.DOMoveX(-50, 1f);
+            btnGroup.transform.DOMoveX(-50, 0.5f);
         }
+        //출발 업그레이드 백
         if(index == 1)
         {
-            btnGroup.transform.DOMoveX(280 ,0.8f);
+            dexSpeed = 0.5f;
+            btnGroup.transform.DOMoveX(350 ,dexSpeed);
+        } 
+        //나머지 버튼 3개 백
+        if(index == 2)
+        {
+            dexSpeed = 0.3f;
+            btnGroup.transform.DOMoveX(350 ,dexSpeed);
         }
         
     }

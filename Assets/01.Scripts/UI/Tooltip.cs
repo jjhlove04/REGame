@@ -15,6 +15,8 @@ public class Tooltip : MonoBehaviour
 
     private TooltipTimer tooltipTimer;
 
+    public Vector2 anchoredPos;
+
     //private TextMeshProUGUI textMeshPro;
 
     private void Awake() {
@@ -34,31 +36,13 @@ public class Tooltip : MonoBehaviour
     void Update()
     {
         HandleFollowMouse();
-         if(tooltipTimer != null)
-        {
-            tooltipTimer.timer -= Time.deltaTime;
-            if(tooltipTimer.timer <= 0)
-            {
-                Hide();
-            }
-        }
     }
 
     public void Show(string tooltipText)
     {
         gameObject.SetActive(true);
-        SetText(tooltipText);
     }
-    void SetText(string tooltipText)
-    {
-        //textMeshPro.SetText(tooltipText);
-        //textMeshPro.ForceMeshUpdate();
-
-        //Vector2 textSize = textMeshPro.GetRenderedValues(false);
-        Vector2 padding = new Vector2(8, 8);
-
-        //toolTipBackgroundRectTrm.sizeDelta = textSize + padding;
-    }
+   
 
     public class TooltipTimer
     {
@@ -71,8 +55,9 @@ public class Tooltip : MonoBehaviour
 
      void HandleFollowMouse()
     {
-        Vector2 anchoredPos = Input.mousePosition / canvasRectTrm.localScale.x;
-         UIManager.UI.trs_cursor.position = anchoredPos;
+        
+        anchoredPos = Input.mousePosition / canvasRectTrm.localScale.x;
+        
         if (anchoredPos.x + toolTipBackgroundRectTrm.rect.width > canvasRectTrm.rect.width)
         {
             anchoredPos.x = canvasRectTrm.rect.width - toolTipBackgroundRectTrm.rect.width;
