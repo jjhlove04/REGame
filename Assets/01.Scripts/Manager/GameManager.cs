@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public State state;
 
+    [SerializeField]
+    private float gameTime = 0f;
     public float gameSpeed = 1f;
 
     private void Awake()
@@ -31,17 +33,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     private void OnDestroy()
     {
         DontDestroyOnLoad(this);
     }
+    private void FixedUpdate()
+    {
+        
+    }
 
     private void Update()
     {
+        gameTime = Time.unscaledTime;
         CurState();
+        gameTime++;
         if (state == State.Play)
         {
             Time.timeScale = gameSpeed;

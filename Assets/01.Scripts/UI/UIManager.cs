@@ -15,9 +15,6 @@ public class UIManager : MonoBehaviour
    public RectTransform trs_cursor;
     public Text text_mouse;
 
-    public Button speedBtn;
-    public Text speedTxt;
-    private int speedBtnCount;
 
 
 
@@ -36,9 +33,12 @@ public class UIManager : MonoBehaviour
         
     private void Start()
     {
-        //hp바 세팅
+        //hp바 세
         //hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
         speedBtn.onClick.AddListener(ChangeSpeed);
+        hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
+        CheckScrapAmount();
+
     }
     
     private void Update_MousePosition()
@@ -66,7 +66,6 @@ public class UIManager : MonoBehaviour
     //     hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
     // }
 
-
     public void ChangeSpeed()
     {
         speedBtnCount++;
@@ -92,6 +91,8 @@ public class UIManager : MonoBehaviour
             default:
                 break;
         }
+
+
 
     }
    
