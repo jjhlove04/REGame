@@ -61,8 +61,7 @@ public class TrainScript : MonoBehaviour
     public void Damage(float damage)
     {
         curTrainHp -= damage;
-        UIManager.UI.TakeDamageHpBar();
-    }
+   }
 
     IEnumerator Destroy()
     {
