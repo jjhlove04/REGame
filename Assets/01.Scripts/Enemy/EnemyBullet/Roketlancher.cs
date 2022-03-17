@@ -142,6 +142,7 @@ public class Roketlancher : MonoBehaviour
             other.GetComponent<TrainHit>()?.Hit();
             SpawnParticle();
             gameObject.SetActive(false);
+            CameraShake.Instance.Shake(1f, 2f);
         }
 
         else if (other.tag == "Turret")
@@ -150,13 +151,10 @@ public class Roketlancher : MonoBehaviour
             SpawnParticle();
             gameObject.SetActive(false);
         }
-
-        CameraShake.Instance.Shake(0.5f, 0.5f);
     }
 
     private void SpawnParticle()
     {
-
         GameObject particleObj = ObjectPool.instacne.GetObject(particle);
         particleObj.transform.position = transform.position;
     }

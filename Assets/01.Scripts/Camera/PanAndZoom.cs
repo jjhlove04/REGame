@@ -28,6 +28,9 @@ public class PanAndZoom : MonoBehaviour
 
     Camera mainCam;
 
+    [SerializeField]
+    GameObject quarterCamera;
+
     private void Awake()
     {
         inputProvider = GetComponent<CinemachineInputProvider>();
@@ -54,6 +57,12 @@ public class PanAndZoom : MonoBehaviour
         {
             fullZoom = !fullZoom;
             FullZoom();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            quarterCamera.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 

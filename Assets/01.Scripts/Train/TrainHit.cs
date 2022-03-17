@@ -12,6 +12,8 @@ public class TrainHit : MonoBehaviour
     private Material hitMaterial;
     private Material[] hitMaterials;
 
+    private bool isPlayCoroutine =false;
+
     private void Start()
     {
         for (int i = 0; i < newRenderer.Count; i++)
@@ -27,12 +29,16 @@ public class TrainHit : MonoBehaviour
     }
     public void Hit()
     {
-        StopCoroutine(HitMaterial());
-        StartCoroutine(HitMaterial());
+        if (!isPlayCoroutine)
+        {
+            StopCoroutine(HitMaterial());
+            StartCoroutine(HitMaterial());
+        }
     }
 
     IEnumerator HitMaterial()
     {
+        isPlayCoroutine = true;
         for (int i = 0; i < newRenderer.Count; i++)
         {
             newRenderer[i].materials = hitMaterials;
@@ -43,6 +49,7 @@ public class TrainHit : MonoBehaviour
         {
             newRenderer[i].materials = material[i];
         }
+        isPlayCoroutine = false;
 
     }
 
