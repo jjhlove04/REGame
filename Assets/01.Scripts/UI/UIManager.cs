@@ -13,22 +13,12 @@ public class UIManager : MonoBehaviour
 
     public Button[] buyBtns; 
    public RectTransform trs_cursor;
-    public RectTransform trs_icon;
     public Text text_mouse;
-    public float moveValue;
-    public float minusMoveValue;
-    public GameObject panelPos;
-    public GameObject panelHidePos;
-
-    public Button destroyBtn;
-    public Button upgradeBtn;
-    public Button repairBtn;
 
     public Button speedBtn;
     public Text speedTxt;
     private int speedBtnCount;
 
-    public Text upgradeCostTxt;
 
 
     private void Awake()
