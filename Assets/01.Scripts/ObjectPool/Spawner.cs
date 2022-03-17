@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour
     private GameObject prefab;
 
     [SerializeField]
+    private float interval=3;
+
+    [SerializeField]
     private int round;
 
     private void Start()
@@ -22,10 +25,17 @@ public class Spawner : MonoBehaviour
     private void SpwanEnemy(int s)
     {
         if(round <= SpawnMananger.Instance.round)
-        for (int i = 0; i < spawnAmount; i++)
         {
-            GameObject newPrefab = objectPool.GetObject(prefab);
-            newPrefab.transform.position = this.transform.position;
+            for (int i = 0; i < spawnAmount; i++)
+            {
+                float randX = Random.Range(-interval, interval);
+                float randY = Random.Range(-interval, interval);
+
+                Vector3 randPos = new Vector3(randX,0,randY);
+
+                GameObject newPrefab = objectPool.GetObject(prefab);
+                newPrefab.transform.position = transform.position + randPos;
+            }
         }
     }
 }

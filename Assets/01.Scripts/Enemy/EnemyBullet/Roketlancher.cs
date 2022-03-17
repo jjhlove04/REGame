@@ -18,7 +18,7 @@ public class Roketlancher : MonoBehaviour
 
     // 적에게 부딪히면 데미지를 주고 나는 사라진다
 
-    public void Create(Vector3 pos, Transform enemy, int damage)
+    public void Create(Vector3 pos, Transform enemy, float damage)
     {
         SpawnPos(pos);
         SetTarget(enemy);
@@ -27,7 +27,7 @@ public class Roketlancher : MonoBehaviour
 
 
     private Transform targetEnemy;
-    private int damage;
+    private float damage;
 
     private Vector3 target;
 
@@ -62,7 +62,7 @@ public class Roketlancher : MonoBehaviour
         rigid.velocity = transform.forward * rocketFlySpeed;
 
         // 방향을 계속하여 타겟팅을 주시
-        var rocketTargetRot = Quaternion.LookRotation(targetEnemy.position - transform.position);
+        var rocketTargetRot = Quaternion.LookRotation(targetEnemy.position - transform.position + new Vector3(0,10,0));
 
         // 움직이며 방향을 전환(회전 스피드까지 적용)
         rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRot, turnSpeed));
@@ -124,7 +124,7 @@ public class Roketlancher : MonoBehaviour
         this.targetEnemy = enemy;
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         this.damage = damage;
     }

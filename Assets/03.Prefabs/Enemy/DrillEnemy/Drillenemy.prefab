@@ -104,13 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500284dbf3ad873489c12e77242b5b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
   enemySpeed: 10
-  distanceX: 5
-  minDistance: 4
-  maxDistance: 9
+  distanceX: 3
+  minDistance: 5
+  maxDistance: 10
   waist: {fileID: 1521160365377392592}
-  run: 0
+  damage: 15
   anim: {fileID: 1461963746854922854}
   drillAnim: {fileID: 1463234623445430960}
   drillCol: {fileID: 1298730678217742348}
@@ -716,7 +715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f1f32af5972a74a8bee36ef14a969b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
 --- !u!1001 &6596608129865770879
 PrefabInstance:
   m_ObjectHideFlags: 0

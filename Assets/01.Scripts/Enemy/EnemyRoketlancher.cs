@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRoketlancher : MonoBehaviour, IEnemyAttack
+public class EnemyRoketlancher : Enemy, IEnemyAttack
 {
     public Animator anim;
 
@@ -12,27 +12,35 @@ public class EnemyRoketlancher : MonoBehaviour, IEnemyAttack
     private bool isAttack = false;
 
     [SerializeField]
-    private int damage;
-
-    [SerializeField]
     private Transform pos;
-
-
-    private Enemy enemy;
 
     private ObjectPool objPool;
 
     private Vector3 target;
 
-    private void Start()
+    protected override void OnEnable()
     {
-        enemy = GetComponent<Enemy>();
+        base.OnEnable();
+        EnemyGetRandom();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         objPool = FindObjectOfType<ObjectPool>();
     }
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+
     public void Attack(Quaternion rot)
     {
-        Vector3 trainPos = TrainManager.instance.trainContainer[enemy.enemyType].transform.position;
+        EnemyWaistLookForward();
+
+        Vector3 trainPos = TrainManager.instance.trainContainer[enemyType].transform.position;
         if (anim.GetBool("IsAttack"))
         {
             StartCoroutine(Attacking());
@@ -76,6 +84,22 @@ public class EnemyRoketlancher : MonoBehaviour, IEnemyAttack
     private void SpawnBullet()
     {
         GameObject bullet = objPool.GetObject(Resources.Load<GameObject>("Missile"));
-        bullet.GetComponent<Roketlancher>().Create(pos.position, TrainManager.instance.trainContainer[enemy.enemyType].transform, damage);
+        bullet.GetComponent<Roketlancher>().Create(pos.position, TrainManager.instance.trainContainer[enemyType].transform, damage);
+    }
+
+    protected override void EnemyGetRandom()
+    {
+        base.EnemyGetRandom();
+        EnemyWaistInit();
+    }
+
+    protected override void EnemyWaistLookForward()
+    {
+        base.EnemyWaistLookForward();
+    }
+
+    protected override void EnemyWaistInit()
+    {
+        base.EnemyWaistInit();
     }
 }

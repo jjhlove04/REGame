@@ -7,8 +7,6 @@ public class EnemyDrill : Enemy, IEnemyAttack
     public Animator anim;
 
     public Animator drillAnim;
-    
-    private Enemy enemy;
 
     [SerializeField]
     private Collider drillCol;
@@ -16,23 +14,25 @@ public class EnemyDrill : Enemy, IEnemyAttack
     protected override void OnEnable()
     {
         base.OnEnable();
+        EnemyGetRandom();
     }
 
     protected override void Start()
     {
         base.Start();
-        enemy = GetComponent<Enemy>();
     }
 
     protected override void Update()
     {
         base.Update();
-        AnimationState(!enemy.run && anim.GetBool("IsAttack"));
+        AnimationState(!run && anim.GetBool("IsAttack"));
         drillCol.enabled = anim.GetBool("IsAttack");
     }
 
     public void Attack(Quaternion rot)
     {
+        EnemyWaistLookForward();
+
         if (transform.position.x > 0)
         {
             rot = Quaternion.Euler(0, -90, 0);
@@ -52,5 +52,26 @@ public class EnemyDrill : Enemy, IEnemyAttack
     {
         anim.SetBool("IsAttack", value);
         drillAnim.SetBool("IsAttack", value);
+    }
+
+    protected override void EnemyGetRandom()
+    {
+        base.EnemyGetRandom();
+        EnemyWaistInit();
+    }
+
+    protected override void EnemyWaistLookForward()
+    {
+        base.EnemyWaistLookForward();
+    }
+
+    protected override void EnemyWaistInit()
+    {
+        base.EnemyWaistInit();
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

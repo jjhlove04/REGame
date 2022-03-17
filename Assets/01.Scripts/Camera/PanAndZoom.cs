@@ -17,14 +17,12 @@ public class PanAndZoom : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
     private Transform cameraTransform;
 
-    [SerializeField]
-    private Collider collider;
     //Zoom
     private float orthographicSize;
     private float targetorthographicSize;
 
-    const float minOrthographicSize = 55;
-    const float maxOrthographicSize = 80;
+    const float minOrthographicSize = 40;
+    const float maxOrthographicSize = 90;
 
 
 
@@ -93,31 +91,16 @@ public class PanAndZoom : MonoBehaviour
         float zoomSpeed = 10f;
         orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.deltaTime * zoomSpeed);
 
-        virtualCamera.m_Lens.FieldOfView = orthographicSize;
-    }
-
-    void CameraPos(Vector3 pos)
-    {
-        Vector3 cameraPos;
-
-        Vector3 limit = collider.bounds.extents;
-        Vector3 center = collider.bounds.center;
-
-        cameraPos = new Vector3(Mathf.Clamp(pos.x, center.x-limit.x, center.x+limit.x),
-            Mathf.Clamp(pos.y, -limit.y, limit.y),
-            Mathf.Clamp(pos.z, center.z-limit.z, center.z+limit.z));
-
-        cameraTransform.position = ClampCamera(cameraPos);    
+        virtualCamera.transform.position = new Vector3(virtualCamera.transform.position.x, orthographicSize, virtualCamera.transform.position.z);
+        virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y+2f;
+        virtualCamera.m_Lens.FieldOfView = 50;
     }
 
     private Vector3 ClampCamera(Vector3 targetPosition)
     {
-        float frustumHeight = (2.0f * 49 * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad))*0.5f;
+        float frustumHeight = (2.0f * virtualCamera.transform.position.y * Mathf.Tan(mainCam.fieldOfView * 0.5f * Mathf.Deg2Rad))*0.5f;
         float frustumWidth = (2*frustumHeight * mainCam.aspect)*0.5f;
 
-
-
-        print(frustumWidth);
         float minX = mapMinX + frustumWidth;
         float maxX = mapMaxX - frustumWidth;
         float minY = mapMinY + frustumHeight;
