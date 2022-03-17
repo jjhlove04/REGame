@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public Button[] buyBtns; 
    public RectTransform trs_cursor;
     public Text text_mouse;
+    public Slider hpBar;
 
 
 
@@ -35,10 +36,7 @@ public class UIManager : MonoBehaviour
     {
         //hp바 세
         //hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
-        speedBtn.onClick.AddListener(ChangeSpeed);
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
-        CheckScrapAmount();
-
     }
     
     private void Update_MousePosition()
@@ -65,36 +63,6 @@ public class UIManager : MonoBehaviour
     //     //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
     //     hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
     // }
-
-    public void ChangeSpeed()
-    {
-        speedBtnCount++;
-        switch (speedBtnCount)
-        {
-            case 0:
-                GameManager.Instance.gameSpeed = 1f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                break;
-            case 1:
-                GameManager.Instance.gameSpeed = 1.5f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                break;
-            case 2:
-                GameManager.Instance.gameSpeed = 2f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                break;
-            case 3:
-                GameManager.Instance.gameSpeed = 4f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                speedBtnCount = -1;
-                break;
-            default:
-                break;
-        }
-
-
-
-    }
    
 
 }

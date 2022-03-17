@@ -150,6 +150,8 @@ public class Roketlancher : MonoBehaviour
             SpawnParticle();
             gameObject.SetActive(false);
         }
+
+        CameraShake.Instance.Shake(0.5f, 0.5f);
     }
 
     private void SpawnParticle()

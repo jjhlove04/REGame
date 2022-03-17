@@ -22,11 +22,12 @@ public class PanAndZoom : MonoBehaviour
     private float targetorthographicSize;
 
     const float minOrthographicSize = 40;
-    const float maxOrthographicSize = 90;
+    const float maxOrthographicSize = 120;
 
-
+    private bool fullZoom;
 
     Camera mainCam;
+
     private void Awake()
     {
         inputProvider = GetComponent<CinemachineInputProvider>();
@@ -47,7 +48,44 @@ public class PanAndZoom : MonoBehaviour
             PanScreen(x,y);
         }
 
-        HandleZoom();
+        Scroll();
+
+        if (Input.GetKeyDown(KeyCode.CapsLock))
+        {
+            fullZoom = !fullZoom;
+            FullZoom();
+        }
+    }
+
+    private void FullZoom()
+    {
+        if (fullZoom)
+        {
+            FullZoomOut();
+        }
+
+        else
+        {
+            FullZoomIn();
+        }
+    }
+
+    private void FullZoomOut()
+    {
+        targetorthographicSize = maxOrthographicSize;
+
+        virtualCamera.transform.position = new Vector3(virtualCamera.transform.position.x, targetorthographicSize, virtualCamera.transform.position.z);
+        virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y + 2f;
+        virtualCamera.m_Lens.FieldOfView = 50;
+    }    
+    
+    private void FullZoomIn()
+    {
+        targetorthographicSize =minOrthographicSize;
+
+        virtualCamera.transform.position = new Vector3(virtualCamera.transform.position.x, targetorthographicSize, virtualCamera.transform.position.z);
+        virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y + 2f;
+        virtualCamera.m_Lens.FieldOfView = 50;
     }
 
     public Vector2 PanDirection(float x, float y)
@@ -82,17 +120,23 @@ public class PanAndZoom : MonoBehaviour
         cameraTransform.position=ClampCamera(Vector3.Lerp(cameraTransform.position,
             cameraTransform.position + new Vector3(direction.x, 0, direction.y) * panSpeed, Time.deltaTime));
     }
-    void HandleZoom()
+
+    private void Scroll()
     {
         float zoomAmount = 2f;
         targetorthographicSize -= Input.mouseScrollDelta.y * zoomAmount;
         targetorthographicSize = Mathf.Clamp(targetorthographicSize, minOrthographicSize, maxOrthographicSize);
 
+        HandleZoom(targetorthographicSize);
+    }
+
+    void HandleZoom(float targetorthographicSize)
+    {
         float zoomSpeed = 10f;
         orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.deltaTime * zoomSpeed);
 
         virtualCamera.transform.position = new Vector3(virtualCamera.transform.position.x, orthographicSize, virtualCamera.transform.position.z);
-        virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y+2f;
+        virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y+5f;
         virtualCamera.m_Lens.FieldOfView = 50;
     }
 
