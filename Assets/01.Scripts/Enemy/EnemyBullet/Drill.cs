@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Drill : MonoBehaviour
 {
-    [SerializeField]
-    private float damage;
+    EnemyDrill enemyDrill;
+    private void Start()
+    {
+        enemyDrill = transform.root.GetComponent<EnemyDrill>();
+    }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Train")
         {
-            TrainScript.instance.Damage(damage * Time.deltaTime);
+            TrainScript.instance.Damage(enemyDrill.GetDamage() * Time.deltaTime);
             other.GetComponent<TrainHit>()?.Hit();
         }
 
         else if (other.tag == "Turret")
         {
-            other.GetComponent<HealthSystem>()?.Damage(damage * Time.deltaTime);
+            other.GetComponent<HealthSystem>()?.Damage(enemyDrill.GetDamage() * Time.deltaTime);
         }
     }
 }

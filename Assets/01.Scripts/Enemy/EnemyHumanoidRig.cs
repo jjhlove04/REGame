@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHumanoidRig : MonoBehaviour, IEnemyAttack
+public class EnemyHumanoidRig : Enemy, IEnemyAttack
 {
     public Animator anim;
 
-    private Enemy enemy;
-
     private Vector3 target;
 
-    private void Start()
+    protected override void OnEnable()
     {
-        enemy = GetComponent<Enemy>();
+        base.OnEnable();
+        EnemyGetRandom();
     }
 
-    private void Update()
+    protected override void Start()
     {
-        if (enemy.run && anim.GetBool("IsAttack"))
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (run && anim.GetBool("IsAttack"))
         {
             anim.SetBool("IsAttack", false);
         }
@@ -25,11 +30,34 @@ public class EnemyHumanoidRig : MonoBehaviour, IEnemyAttack
 
     public void Attack(Quaternion rot)
     {
+        EnemyWaistLookForward();
+
         anim?.SetBool("IsAttack", true);
 
-        target = TrainManager.instance.trainContainer[enemy.enemyType].transform.position - transform.position;
+        target = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
         rot = Quaternion.LookRotation(target);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
+    }
+
+    protected override void EnemyGetRandom()
+    {
+        base.EnemyGetRandom();
+        EnemyWaistInit();
+    }
+
+    protected override void EnemyWaistLookForward()
+    {
+        base.EnemyWaistLookForward();
+    }
+
+    protected override void EnemyWaistInit()
+    {
+        base.EnemyWaistInit();
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

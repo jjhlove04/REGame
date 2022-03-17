@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
 
     public static Bullet Create(Vector3 pos, Transform enemy, int damage)
     {
-        Transform bulletPrefab = Resources.Load<Transform>("BulletPrefab");
+        Transform bulletPrefab = Resources.Load<Transform>("Ef_IceMagicGlowFree01");
         Transform bulletTrm = Instantiate(bulletPrefab, pos, Quaternion.identity);
 
         Bullet bulletProjectile = bulletTrm.GetComponent<Bullet>();

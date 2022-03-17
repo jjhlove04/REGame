@@ -6,12 +6,19 @@ public class Roketlancher : MonoBehaviour
 {
     // 이동
     public float moveSpeed = 50;
+    private float missileSpeed = 50;
 
     [SerializeField]
     private GameObject particle;
+
+    private Rigidbody rigid;
+
+    public float turnSpeed = 1f;
+    public float rocketFlySpeed = 10f;
+
     // 적에게 부딪히면 데미지를 주고 나는 사라진다
 
-    public void Create(Vector3 pos,Transform enemy, int damage)
+    public void Create(Vector3 pos, Transform enemy, float damage)
     {
         SpawnPos(pos);
         SetTarget(enemy);
@@ -20,43 +27,104 @@ public class Roketlancher : MonoBehaviour
 
 
     private Transform targetEnemy;
-    private Vector3 lastMoveDir;
-    private int damage;
-    private ObjectPool objPool;
+    private float damage;
+
+    private Vector3 target;
+
+    private bool guided = false;
+
+    private bool tracking = false;
+
+    /*private void OnEnable()
+    {
+        StopCoroutine(WaitGuided());
+        StartCoroutine(WaitGuided());
+    }*/
+
+    private void OnDisable()
+    {
+        transform.rotation = Quaternion.identity;
+        //tracking = false;
+        //guided = false;
+    }
 
     private void Start()
     {
-        objPool = FindObjectOfType<ObjectPool>();
+        rigid = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    void FixedUpdate()
     {
-        Vector3 moveDir;
-        if (targetEnemy != null)
+        if (!rigid)
+            return;
+
+        // 전방을 바라보며 속도를 유지함
+        rigid.velocity = transform.forward * rocketFlySpeed;
+
+        // 방향을 계속하여 타겟팅을 주시
+        var rocketTargetRot = Quaternion.LookRotation(targetEnemy.position - transform.position + new Vector3(0,10,0));
+
+        // 움직이며 방향을 전환(회전 스피드까지 적용)
+        rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRot, turnSpeed));
+
+        /*Quaternion rot = new Quaternion();
+
+        //회전값 적용
+        if (guided)
         {
-            moveDir = (targetEnemy.transform.position - transform.position).normalized;
-            lastMoveDir = moveDir;
+            if (targetEnemy != null)
+            {
+                target = (targetEnemy.position - transform.position).normalized;
+                rot = Quaternion.LookRotation(target);
+            }
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 20f);
         }
+
+        if (Mathf.Abs(transform.rotation.eulerAngles.y - rot.eulerAngles.y) <= 1 && !tracking)
+        {
+            missileSpeed = moveSpeed;
+            rigid.velocity = new Vector3(0, 0, rigid.velocity.z);
+            tracking = true;
+        } 
+
 
         else
         {
-            moveDir = lastMoveDir;
+            missileSpeed = 25f;
         }
 
         // 이동
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        rigid.velocity += transform.forward * missileSpeed * Time.deltaTime;
 
+        if (!RocketRgb)
+            return;
 
-        //회전값 적용
-        transform.LookAt(targetEnemy);
+        // 전방을 바라보며 속도를 유지함
+        RocketRgb.velocity = rocketLocalTrans.forward * rocketFlySpeed;
+
+        // 방향을 계속하여 타겟팅을 주시
+        var rocketTargetRot = Quaternion.LookRotation(RocketTarget.position - rocketLocalTrans.position);
+
+        // 움직이며 방향을 전환(회전 스피드까지 적용)
+        RocketRgb.MoveRotation(Quaternion.RotateTowards(rocketLocalTrans.rotation, rocketTargetRot, turnSpeed));*/
     }
+
+    /*IEnumerator WaitGuided()
+    {
+        rigid.velocity = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+
+        yield return new WaitForSeconds(0.5f);
+        guided = true;
+    }*/
 
     void SetTarget(Transform enemy)
     {
         this.targetEnemy = enemy;
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         this.damage = damage;
     }
@@ -86,7 +154,8 @@ public class Roketlancher : MonoBehaviour
 
     private void SpawnParticle()
     {
-        GameObject particleObj = objPool.GetObject(particle);
+
+        GameObject particleObj = ObjectPool.instacne.GetObject(particle);
         particleObj.transform.position = transform.position;
     }
 }

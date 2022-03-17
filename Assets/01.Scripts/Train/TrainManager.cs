@@ -17,9 +17,9 @@ public class TrainManager : MonoBehaviour
     public int curTrainCount;
     public int maxTrainCount;
 
-    public List<MineScriptable> mine = new List<MineScriptable>();
-
     public BoxCollider collider;
+
+    public float keppOffSpeed = 1;
 
     private void Awake()
     {
@@ -45,9 +45,6 @@ public class TrainManager : MonoBehaviour
             newCube.transform.localRotation = Quaternion.identity;
 
             trainContainer.Add(newCube);
-
-            trainContainer[i].GetComponentInChildren<MiningUI>().myCount = 0;
-            trainContainer[i].GetComponentInChildren<MiningUI>().myCount += i;
         }
         MakeCollider();
     }
@@ -72,13 +69,13 @@ public class TrainManager : MonoBehaviour
     {
         if (curTrainCount > 0)
         {
-            trainContainer[curTrainCount - 1].transform.Find("Particle").gameObject.SetActive(true);
+            trainContainer[trainContainer.Count - 1].transform.Find("Particle").gameObject.SetActive(true);
         }
     }
 
     public void Explotion()
     {
-        trainContainer[curTrainCount - 1].transform.Find("ExplotionParticle").gameObject.SetActive(true);
+        trainContainer[trainContainer.Count - 1].transform.Find("ExplotionParticle").gameObject.SetActive(true);
     }
 
     public void MakeCollider()
@@ -87,4 +84,8 @@ public class TrainManager : MonoBehaviour
         collider.size = new Vector3(6, 10, curTrainCount * distance + 27);
     }
 
+    public void KeepOffTrain()
+    {
+        trainContainer[trainContainer.Count-1].transform.position += -new Vector3(0, 0, keppOffSpeed);
+    }
 }

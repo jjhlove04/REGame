@@ -2,30 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDrill : MonoBehaviour, IEnemyAttack
+public class EnemyDrill : Enemy, IEnemyAttack
 {
     public Animator anim;
 
     public Animator drillAnim;
-    
-    private Enemy enemy;
 
     [SerializeField]
     private Collider drillCol;
 
-    private void Start()
+    protected override void OnEnable()
     {
-        enemy = GetComponent<Enemy>();
+        base.OnEnable();
+        EnemyGetRandom();
     }
 
-    private void Update()
+    protected override void Start()
     {
-        AnimationState(!enemy.run && anim.GetBool("IsAttack"));
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        AnimationState(!run && anim.GetBool("IsAttack"));
         drillCol.enabled = anim.GetBool("IsAttack");
     }
 
     public void Attack(Quaternion rot)
     {
+        EnemyWaistLookForward();
+
         if (transform.position.x > 0)
         {
             rot = Quaternion.Euler(0, -90, 0);
@@ -45,5 +52,26 @@ public class EnemyDrill : MonoBehaviour, IEnemyAttack
     {
         anim.SetBool("IsAttack", value);
         drillAnim.SetBool("IsAttack", value);
+    }
+
+    protected override void EnemyGetRandom()
+    {
+        base.EnemyGetRandom();
+        EnemyWaistInit();
+    }
+
+    protected override void EnemyWaistLookForward()
+    {
+        base.EnemyWaistLookForward();
+    }
+
+    protected override void EnemyWaistInit()
+    {
+        base.EnemyWaistInit();
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

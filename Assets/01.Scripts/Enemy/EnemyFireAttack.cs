@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFireAttack : MonoBehaviour, IEnemyAttack
+public class EnemyFireAttack : Enemy, IEnemyAttack
 {
     public Animator anim;
 
@@ -11,8 +11,26 @@ public class EnemyFireAttack : MonoBehaviour, IEnemyAttack
 
     private bool isAttack = false;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        EnemyGetRandom();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
     public void Attack(Quaternion rot)
     {
+        EnemyWaistLookForward();
+
         if (anim.GetBool("IsAttack"))
         {
             StartCoroutine(Attacking());
@@ -55,5 +73,26 @@ public class EnemyFireAttack : MonoBehaviour, IEnemyAttack
         isAttack = true;
         yield return new WaitForSeconds(2f);
         isAttack = false;
+    }
+
+    protected override void EnemyGetRandom()
+    {
+        base.EnemyGetRandom();
+        EnemyWaistInit();
+    }
+
+    protected override void EnemyWaistLookForward()
+    {
+        base.EnemyWaistLookForward();
+    }
+
+    protected override void EnemyWaistInit()
+    {
+        base.EnemyWaistInit();
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

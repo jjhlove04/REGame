@@ -15,7 +15,7 @@ public class SpawnMananger : MonoBehaviour
 
     public Spawn spawn;
 
-    private float curTime;
+    public float curTime;
     public float roundCurTime;
 
     [HideInInspector]
@@ -29,6 +29,10 @@ public class SpawnMananger : MonoBehaviour
         Instance = this;
 
         spawn = new Spawn((round)=> { });
+    }
+    private void Start()
+    {
+        curTime = roundCurTime;
     }
 
     private void Update()

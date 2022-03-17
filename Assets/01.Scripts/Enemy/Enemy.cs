@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int enemyType = 0;
+    protected int enemyType = 0;
     [SerializeField]
     float enemySpeed = 10f;
 
@@ -19,31 +19,35 @@ public class Enemy : MonoBehaviour
 
     HealthSystem healthSystem;
 
-    public GameObject waist;
+    public GameObject waist = null;
 
 
     private IEnemyAttack enemyAttack;
 
-    public bool run;
+    protected bool run;
+
+    [SerializeField]
+    protected float damage;
+
+    private float randomZ;
 
 
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        EnemyGetRandom();
         distance = Random.Range(minDistance, maxDistance);
         distanceX = Random.Range(distanceX - distanceX * 0.2f, distanceX);
+        randomZ = Random.Range(-5, 5);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         healthSystem = GetComponent<HealthSystem>();
         enemyAttack = GetComponent<IEnemyAttack>();
-
         healthSystem.OnDied += EnemyDie;
 
     }
-    private void Update()
+    protected virtual void Update()
     {
         NewTarget();
 
@@ -51,7 +55,7 @@ public class Enemy : MonoBehaviour
 
         Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
 
-        run = Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) > distance;
+        EnemyIsDistanceX();
 
         if (run)
         {
@@ -61,11 +65,8 @@ public class Enemy : MonoBehaviour
 
         else
         {
-            rot = Quaternion.LookRotation(dir);
-
-            Quaternion quaternion = Quaternion.identity;
-            quaternion.eulerAngles = new Vector3(0, 0, 0);
-            waist.transform.rotation = quaternion;
+            if (dir.magnitude > 0)
+                rot = Quaternion.LookRotation(dir);
 
             enemyAttack.Attack(rot);
         }
@@ -79,27 +80,48 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected virtual void EnemyWaistLookForward()
+    {
+        Quaternion quaternion = Quaternion.identity;
+        quaternion.eulerAngles = new Vector3(0, 0, 0);
+        waist.transform.rotation = quaternion;
+    }
 
-    void EnemyGetRandom()
+    protected virtual void EnemyGetRandom()
     {
         enemyType = Random.Range(0, TrainManager.instance.trainContainer.Count);
         transform.rotation = new Quaternion(0, 0, 0, 0);
+    }
+
+    protected virtual void EnemyWaistInit()
+    {
         waist.transform.rotation = new Quaternion(0, 0, 0, 0);
+    }
+
+    void EnemyIsDistanceX()
+    {
+        if (Mathf.Abs(transform.position.x) < distanceX)
+        {
+            if (run)
+            {
+                run = !(Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) < distance);
+                EnemyLimitMoveX();
+            }
+        }
+
+        else run = true;
     }
 
      void EnemyLimitMoveX()
     {
-        if (Mathf.Abs(transform.position.x) < distanceX)
+        if (transform.position.x < 0)
         {
-            if(transform.position.x < 0)
-            {
-                transform.position = new Vector3(-distanceX, transform.position.y,transform.position.z);
-            }
+            transform.position = new Vector3(-distanceX, transform.position.y, transform.position.z);
+        }
 
-            else if(transform.position.x > 0)
-            {
-                transform.position = new Vector3(distanceX, transform.position.y, transform.position.z);
-            }
+        else if (transform.position.x > 0)
+        {
+            transform.position = new Vector3(distanceX, transform.position.y, transform.position.z);
         }
     }
 
@@ -107,7 +129,8 @@ public class Enemy : MonoBehaviour
     {
         if (TrainManager.instance.trainContainer[enemyType].transform.position != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position,
+
+            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position + new Vector3(0,0, randomZ),
             enemySpeed * Time.deltaTime);
         }
 
@@ -116,8 +139,6 @@ public class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType-1].transform.position,
             enemySpeed * Time.deltaTime);
         }
-
-        EnemyLimitMoveX();
     }
 
     void EnemyDie()

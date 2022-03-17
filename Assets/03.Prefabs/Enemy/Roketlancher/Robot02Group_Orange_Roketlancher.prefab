@@ -786,7 +786,6 @@ GameObject:
   - component: {fileID: 4138711559360298}
   - component: {fileID: 7491907264028456969}
   - component: {fileID: 7483094520262241718}
-  - component: {fileID: 6261411550904334542}
   - component: {fileID: -4919342851118615479}
   - component: {fileID: 6823841717224754621}
   - component: {fileID: 4397485647293170189}
@@ -843,25 +842,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &6261411550904334542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532036094782582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e74816742499414185e7c902f03d39c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 0
-  enemySpeed: 10
-  distanceX: 25
-  minDistance: 25
-  maxDistance: 30
-  waist: {fileID: 1970593138423600}
-  run: 0
 --- !u!114 &-4919342851118615479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +879,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7431fc70afadf174189f0c5c919a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
+  enemySpeed: 10
+  distanceX: 25
+  minDistance: 28
+  maxDistance: 35
+  waist: {fileID: 1970593138423600}
+  run: 0
   anim: {fileID: 95899488750207084}
   animTime: 4
   damage: 100
