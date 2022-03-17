@@ -52,7 +52,7 @@ public class TrainScript : MonoBehaviour
     {
         if (maxTrainHp - roomHp + smokeHp >= curTrainHp)
         {
-            DestroyTrain();
+            //DestroyTrain();
             TrainManager.instance.OnSmoke();
         }
     }

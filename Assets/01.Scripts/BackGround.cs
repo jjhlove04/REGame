@@ -37,7 +37,7 @@ public class BackGround : MonoBehaviour
 
     private void MoveBackground(Transform transform)
     {
-        transform.position -= new Vector3(0, 0, speed);
+        transform.position -= new Vector3(0, 0, speed * GameManager.Instance.gameSpeed);
     }
 
     private void SwapeBackground(Transform transform)

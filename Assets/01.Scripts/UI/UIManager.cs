@@ -31,9 +31,6 @@ public class UIManager : MonoBehaviour
     public Button upgradeBtn;
     public Button repairBtn;
 
-    public Button speedBtn;
-    public Text speedTxt;
-    private int speedBtnCount;
 
     public Text upgradeCostTxt;
 
@@ -46,7 +43,6 @@ public class UIManager : MonoBehaviour
     {
         //hp바 세팅
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
-        speedBtn.onClick.AddListener(ChangeSpeed);
         CheckScrapAmount();
     }
     private void Update()
@@ -110,32 +106,7 @@ public class UIManager : MonoBehaviour
         this.needAmount = needAmount;
     }
 
-    public void ChangeSpeed()
-    {
-        speedBtnCount++;
-        switch (speedBtnCount)
-        {
-            case 0:
-                GameManager.Instance.gameSpeed = 1f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                break;
-            case 1:
-                GameManager.Instance.gameSpeed = 1.5f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                break;
-            case 2:
-                GameManager.Instance.gameSpeed = 2f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                break;
-            case 3:
-                GameManager.Instance.gameSpeed = 4f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                speedBtnCount = -1;
-                break;
-            default:
-                break;
-        }
-    }
+
 
     public int GetNeedAmount()
     {

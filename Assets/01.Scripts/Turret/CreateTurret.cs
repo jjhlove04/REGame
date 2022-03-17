@@ -8,6 +8,11 @@ public class CreateTurret : MonoBehaviour
 
     public bool onTurret = false;
 
+    private void Start()
+    {
+        testScriptts.Instance.turretPoses.Add(this.gameObject.transform);
+    }
+
     void Update()
     {
         TargetPos();
