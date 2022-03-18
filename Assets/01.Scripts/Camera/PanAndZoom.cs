@@ -92,7 +92,7 @@ public class PanAndZoom : MonoBehaviour
         orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.deltaTime * zoomSpeed);
 
         virtualCamera.transform.position = new Vector3(virtualCamera.transform.position.x, orthographicSize, virtualCamera.transform.position.z);
-        virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y+2f;
+        virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y+5f;
         virtualCamera.m_Lens.FieldOfView = 50;
     }
 

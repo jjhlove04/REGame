@@ -9,7 +9,7 @@ public class CameraQuarterViewMove : MonoBehaviour
 
     private void Update()
     {
-        float speed = this.speed;
+        float speed = this.speed;   
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
