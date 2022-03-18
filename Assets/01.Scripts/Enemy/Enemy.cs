@@ -147,17 +147,4 @@ public class Enemy : MonoBehaviour
         scrap.transform.position = transform.position;
         gameObject.SetActive(false);
     }
-
-
-    private void OnMouseEnter()
-    {
-        PlayerInput.Instance.isEnemy = true;
-    }
-
-    private void OnMouseExit()
-    {
-        PlayerInput.Instance.isEnemy = false;
-    }
-
-
 }

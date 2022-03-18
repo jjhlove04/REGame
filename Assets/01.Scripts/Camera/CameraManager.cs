@@ -17,10 +17,19 @@ public class CameraManager : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject topCamera;    
-    
+    private GameObject topCamera;
+
     [SerializeField]
     private GameObject quaterCamera;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            topCamera.SetActive(!topCamera.activeSelf);
+            quaterCamera.SetActive(!quaterCamera.activeSelf);
+        }
+    }
 
     public void Shake(float duration, float magnitude)
     {
