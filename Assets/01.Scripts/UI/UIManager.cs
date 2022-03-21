@@ -13,18 +13,21 @@ public class UIManager : MonoBehaviour
 
     public Button[] buyBtns; 
    //public RectTransform trs_cursor;
-    public Text text_mouse;
-
-
-
+    
+    public Button startBtn;
 
     private void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         _ui = this;
        for(int i = 0; i < 7; i++)
        {
           buyBtns[i].gameObject.AddComponent<TooltipScript>();
        }
+       startBtn.onClick.AddListener(() => {
+        LoadingSceneUI.LoadScene("Main");
+       });
     }
     private void Update()
     {
@@ -33,24 +36,24 @@ public class UIManager : MonoBehaviour
         
     private void Start()
     {
+
         //hp바 세
         //hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
         //speedBtn.onClick.AddListener(ChangeSpeed);
         //hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
-        //CheckScrapAmount();
+        
 
     }
     
+    
+    
+    //패널 오픈 함수
+    
+
     private void Update_MousePosition()
     {
         Vector2 mousePos = Input.mousePosition;
-    }
-    //패널 오픈 함수
-  
-
-    public void PanelMove(GameObject panel, float endValue)
-    {
-        panel.transform.DOMoveZ(endValue, 1.2f);
+        //{"Wav {0}"}
     }
     // public void TakeDamageHpBar()
     // {
