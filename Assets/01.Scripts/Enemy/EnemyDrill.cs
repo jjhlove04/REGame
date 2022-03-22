@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyDrill : Enemy, IEnemyAttack
 {
-    public Animator anim;
-
     public Animator drillAnim;
 
     [SerializeField]
@@ -68,10 +66,23 @@ public class EnemyDrill : Enemy, IEnemyAttack
     protected override void EnemyWaistInit()
     {
         base.EnemyWaistInit();
+        PlayDieAnimationFalse();
     }
 
     public float GetDamage()
     {
         return damage;
+    }
+
+    public override void PlayDieAnimationTrue()
+    {
+        base.PlayDieAnimationTrue();
+        drillAnim.SetBool("IsAttack", false);
+    }    
+    
+    protected override void PlayDieAnimationFalse()
+    {
+        base.PlayDieAnimationTrue();
+        drillAnim.SetBool("IsAttack", false);
     }
 }

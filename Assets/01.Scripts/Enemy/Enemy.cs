@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Animator anim;
+
     protected int enemyType = 0;
     [SerializeField]
     float enemySpeed = 10f;
@@ -16,8 +18,6 @@ public class Enemy : MonoBehaviour
     float minDistance, maxDistance;
 
     private float distance;
-
-    HealthSystem healthSystem;
 
     public GameObject waist = null;
 
@@ -31,6 +31,9 @@ public class Enemy : MonoBehaviour
 
     private float randomZ;
 
+    protected bool isDying =false;
+
+    private float dieSpeed=20;
 
 
     protected virtual void OnEnable()
@@ -38,37 +41,44 @@ public class Enemy : MonoBehaviour
         distance = Random.Range(minDistance, maxDistance);
         distanceX = Random.Range(distanceX - distanceX * 0.2f, distanceX);
         randomZ = Random.Range(-5, 5);
+        isDying = false;
     }
 
     protected virtual void Start()
     {
-        healthSystem = GetComponent<HealthSystem>();
         enemyAttack = GetComponent<IEnemyAttack>();
-        healthSystem.OnDied += EnemyDie;
-
     }
     protected virtual void Update()
     {
-        NewTarget();
-
-        Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
-
-        Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
-
-        EnemyIsDistanceX();
-
-        if (run)
+        if (!isDying)
         {
-            EnemyTargettingMove();
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
+            NewTarget();
+
+            Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
+
+            Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
+
+            EnemyIsDistanceX();
+
+            if (run)
+            {
+                EnemyTargettingMove();
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
+            }
+
+            else
+            {
+                if (dir.magnitude > 0)
+                    rot = Quaternion.LookRotation(dir);
+
+                enemyAttack.Attack(rot);
+            }
         }
 
         else
         {
-            if (dir.magnitude > 0)
-                rot = Quaternion.LookRotation(dir);
-
-            enemyAttack.Attack(rot);
+            print(1);
+            Dying();
         }
     }
 
@@ -141,10 +151,31 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void EnemyDie()
+    public void EnemyDied()
     {
         GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
         scrap.transform.position = transform.position;
         gameObject.SetActive(false);
+    }
+
+    public virtual void PlayDieAnimationTrue()
+    {
+        anim.SetBool("IsDie", true);
+        IsDying();
+    }
+
+    protected virtual void PlayDieAnimationFalse()
+    {
+        anim.SetBool("IsDie", false);
+    }
+
+    private void IsDying()
+    {
+        isDying = true;
+    }
+
+    private void Dying()
+    {
+        transform.position += Vector3.back * dieSpeed * Time.deltaTime;
     }
 }
