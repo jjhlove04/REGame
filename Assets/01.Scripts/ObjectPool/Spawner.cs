@@ -26,7 +26,6 @@ public class Spawner : MonoBehaviour
         {
             SpawnMananger.Instance.spawn += new SpawnMananger.Spawn(SpwanEnemy);
         }
-
         else
         {
             SpawnMananger.Instance.spawn += new SpawnMananger.Spawn(BossSpwanEnemy);
