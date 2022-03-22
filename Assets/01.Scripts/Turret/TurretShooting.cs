@@ -36,7 +36,8 @@ public class TurretShooting : Turret
 
     public int upgradeCost;
 
-
+    private int maxBulletAmount;
+    public int curBulletAmount;
 
     private void Start()
     {
@@ -84,6 +85,7 @@ public class TurretShooting : Turret
                                 + firePosition.forward * maxDistance;
             }
             curshootTimer = shootTimerMax;
+            curBulletAmount--;
             StartCoroutine(ShotEffect(hitPosition));
 
         }
@@ -92,11 +94,14 @@ public class TurretShooting : Turret
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
         muzzleflash.Play();
-        bulletLineRenderer.SetPosition(1,
-        bulletLineRenderer.transform.InverseTransformPoint(hitPosition));
+        bulletLineRenderer.SetPosition(1,bulletLineRenderer.transform.InverseTransformPoint(hitPosition));
         bulletLineRenderer.gameObject.SetActive(true);
         yield return new WaitForSeconds(bulletLineEffectTime);
         bulletLineRenderer.gameObject.SetActive(false);
         muzzleflash.Stop();
+    }
+    private void Reload()
+    {
+        curBulletAmount = maxBulletAmount;
     }
 }

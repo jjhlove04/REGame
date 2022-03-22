@@ -15,23 +15,23 @@ public class testScriptts : MonoBehaviour
         }
     }
 
-    public Button speedBtn;
     public Text speedTxt;
     private int speedBtnCount;
 
-    public Button NextWaveBtn;
+    //public Button NextWaveBtn;
     [SerializeField]
     private float gameTime;
 
-    //
-
-    public Button spawnBtn;
     public Button gameEndBtn;
+   // public Button reloadBtn;
 
     public GameObject turret;
     private ObjectPool objectPool;
 
     public List<Transform> turretPoses = new List<Transform>();
+    public List<GameObject> turretType = new List<GameObject>();
+
+    public int turPos = 0;
     private void Awake()
     {
         _instance = this;
@@ -41,12 +41,10 @@ public class testScriptts : MonoBehaviour
     void Start()
     {
         objectPool = FindObjectOfType<ObjectPool>();
-        speedBtn.onClick.AddListener(ChangeSpeed);
-        NextWaveBtn.onClick.AddListener(NextWave);
+        //NextWaveBtn.onClick.AddListener(NextWave);
 
-        spawnBtn.onClick.AddListener(Create);
-        Debug.Log("asd");
         gameEndBtn.onClick.AddListener(GameEnd);
+        //reloadBtn.onClick.AddListener(turretPoses[turPos].GetComponent<tesetTurret>().Reload);
     }
 
     // Update is called once per frame
@@ -54,30 +52,23 @@ public class testScriptts : MonoBehaviour
     {
         gameTime = Time.time;
         string result = string.Format("{0:0.0}", gameTime);
+        ChangeSpeed();
     }
     public void ChangeSpeed()
     {
-        speedBtnCount++;
         switch (speedBtnCount)
         {
             case 0:
                 GameManager.Instance.gameSpeed = 1f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
                 break;
             case 1:
-                GameManager.Instance.gameSpeed = 1.5f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
+                GameManager.Instance.gameSpeed = 2f;
                 break;
             case 2:
-                GameManager.Instance.gameSpeed = 2f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
+                GameManager.Instance.gameSpeed = 3f;
                 break;
             case 3:
-                GameManager.Instance.gameSpeed = 4f;
-                speedTxt.text = GameManager.Instance.gameSpeed + "X";
-                speedBtnCount = -1;
-                break;
-            default:
+                GameManager.Instance.gameSpeed = 0f;
                 break;
         }
     }
@@ -89,17 +80,39 @@ public class testScriptts : MonoBehaviour
 
     public void Create()
     {
-        int count = UnityEngine.Random.Range(0, turretPoses.Count);
-
-        GameObject gameInst = objectPool.GetObject(turret);
-        gameInst.transform.position = turretPoses[count].position;
-        gameInst.transform.SetParent(this.gameObject.transform);
-        Debug.Log("asd");
+        if (turretPoses[turPos].GetComponent<tesetTurret>().onTurret != true)
+        {
+            Debug.Log(turPos);
+            GameObject gameInst = objectPool.GetObject(turret);
+            gameInst.transform.position = turretPoses[turPos].position;
+            gameInst.transform.SetParent(this.gameObject.transform);
+            turretPoses[turPos].GetComponent<tesetTurret>().onTurret = true;
+        } 
+        else
+        {
+            Debug.Log("이미 설치 되어 있습니다");
+        }
 
     }
 
     public void GameEnd()
     {
         TrainManager.instance.curTrainCount -= 100000;
+    }
+
+    public void ChangeTur(int num)
+    {
+        GameObject gameObject = turretType[num];
+        turret = gameObject;
+        Debug.Log(turret);
+    }
+    public void Speeeeeed(int num)
+    {
+        speedBtnCount = num;
+    }
+
+    public void Despawn()
+    {
+
     }
 }
