@@ -7,5 +7,6 @@ public class OnMouseBtn : MonoBehaviour, IPointerEnterHandler
 {
     public void OnPointerEnter(PointerEventData eventData) {
         Debug.Log("Hi");
+    
     }
 }
