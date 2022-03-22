@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         healthSystem.OnDamaged += CallHealthSystemOnDamaged;
-        healthSystem.OnDied += CallHealthSystemOnDamaged;
+        healthSystem.OnDied.AddListener(CallHealthSystemOnDamaged);
 
         CallHealthSystemOnDamaged();
     }
