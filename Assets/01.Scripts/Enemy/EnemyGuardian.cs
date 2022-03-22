@@ -76,14 +76,4 @@ public class EnemyGuardian : Enemy, IEnemyAttack
             other.GetComponent<HealthSystem>()?.Damage(damage * Time.deltaTime);
         }
     }
-
-    public override void PlayDieAnimationTrue()
-    {
-        base.PlayDieAnimationTrue();
-    }
-
-    protected override void PlayDieAnimationFalse()
-    {
-        base.PlayDieAnimationTrue();
-    }
 }

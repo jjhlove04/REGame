@@ -2,29 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.Events;
 
 public class HealthSystem : MonoBehaviour
 {
     public Action OnDamaged;
-    public UnityEvent OnDied;
+    public Action OnDied;
 
     [SerializeField]
     private float healthAmountMax;
 
-    [SerializeField]
     private float curHealthAmount;
 
     private void Awake()
     {
         SetHealthAmountMax(healthAmountMax, true);
         InitHealth();
-        OnDied.AddListener(InitHealth);
-    }
-
-    private void Start()
-    {
-        OnDied?.Invoke();
+        OnDied += InitHealth;
     }
 
     public void Damage(float damageAmount)

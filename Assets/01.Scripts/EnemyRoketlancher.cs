@@ -102,14 +102,4 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
     {
         base.EnemyWaistInit();
     }
-
-    public override void PlayDieAnimationTrue()
-    {
-        base.PlayDieAnimationTrue();
-    }
-
-    protected override void PlayDieAnimationFalse()
-    {
-        base.PlayDieAnimationTrue();
-    }
 }

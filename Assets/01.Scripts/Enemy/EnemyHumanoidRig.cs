@@ -60,14 +60,4 @@ public class EnemyHumanoidRig : Enemy, IEnemyAttack
     {
         return damage;
     }
-
-    public override void PlayDieAnimationTrue()
-    {
-        base.PlayDieAnimationTrue();
-    }
-
-    protected override void PlayDieAnimationFalse()
-    {
-        base.PlayDieAnimationTrue();
-    }
 }
