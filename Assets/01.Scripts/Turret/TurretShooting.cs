@@ -6,13 +6,9 @@ using System;
 public class TurretShooting : Turret
 {
     [SerializeField]
-    private LineRenderer bulletLineRenderer;
-    [SerializeField]
     private Transform firePosition;
     [SerializeField]
     private float bulletLineEffectTime = 0.03f;
-    [SerializeField]
-    private ParticleSystem muzzleflash;
 
 
     [SerializeField]
@@ -86,20 +82,20 @@ public class TurretShooting : Turret
             }
             curshootTimer = shootTimerMax;
             curBulletAmount--;
-            StartCoroutine(ShotEffect(hitPosition));
+            //StartCoroutine(ShotEffect(hitPosition));
 
         }
     }
 
-    private IEnumerator ShotEffect(Vector3 hitPosition)
-    {
-        muzzleflash.Play();
-        bulletLineRenderer.SetPosition(1,bulletLineRenderer.transform.InverseTransformPoint(hitPosition));
-        bulletLineRenderer.gameObject.SetActive(true);
-        yield return new WaitForSeconds(bulletLineEffectTime);
-        bulletLineRenderer.gameObject.SetActive(false);
-        muzzleflash.Stop();
-    }
+    //private IEnumerator ShotEffect(Vector3 hitPosition)
+    //{
+    //    muzzleflash.Play();
+    //    bulletLineRenderer.SetPosition(1,bulletLineRenderer.transform.InverseTransformPoint(hitPosition));
+    //    bulletLineRenderer.gameObject.SetActive(true);
+    //    yield return new WaitForSeconds(bulletLineEffectTime);
+    //    bulletLineRenderer.gameObject.SetActive(false);
+    //    muzzleflash.Stop();
+    //}
     private void Reload()
     {
         curBulletAmount = maxBulletAmount;
