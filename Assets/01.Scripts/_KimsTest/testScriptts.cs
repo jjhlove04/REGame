@@ -15,14 +15,13 @@ public class testScriptts : MonoBehaviour
         }
     }
 
-    public Text speedTxt;
     private int speedBtnCount;
 
     //public Button NextWaveBtn;
     [SerializeField]
     private float gameTime;
 
-    public Button gameEndBtn;
+    //public Button gameEndBtn;
    // public Button reloadBtn;
 
     public GameObject turret;
@@ -43,7 +42,7 @@ public class testScriptts : MonoBehaviour
         objectPool = FindObjectOfType<ObjectPool>();
         //NextWaveBtn.onClick.AddListener(NextWave);
 
-        gameEndBtn.onClick.AddListener(GameEnd);
+        //gameEndBtn.onClick.AddListener(GameEnd);
         //reloadBtn.onClick.AddListener(turretPoses[turPos].GetComponent<tesetTurret>().Reload);
     }
 
