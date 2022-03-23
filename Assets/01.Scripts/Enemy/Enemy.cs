@@ -153,8 +153,8 @@ public class Enemy : MonoBehaviour
 
     public void EnemyDied()
     {
-        GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
-        scrap.transform.position = transform.position;
+        //GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
+        //scrap.transform.position = transform.position;
         gameObject.SetActive(false);
     }
 

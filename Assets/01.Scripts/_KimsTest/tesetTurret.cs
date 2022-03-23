@@ -9,7 +9,7 @@ public class tesetTurret : MonoBehaviour
     public int curBulletAmount;
     void Start()
     {
-        //testScriptts.Instance.turretPoses.Add(this.gameObject.transform);
+        testScriptts.Instance.turretPoses.Add(this.gameObject.transform);
     }
     public void Reload()
     {

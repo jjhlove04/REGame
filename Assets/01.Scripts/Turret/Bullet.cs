@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
         timeToDie -= Time.deltaTime;
         if (timeToDie < 0f)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

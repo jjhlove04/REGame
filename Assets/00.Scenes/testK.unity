@@ -476,7 +476,7 @@ Transform:
   - {fileID: 208650021}
   - {fileID: 1405820584}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &181629648
 GameObject:
@@ -9161,7 +9161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044c5f08adb341b40ae44472145416ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDied:
+    m_PersistentCalls:
+      m_Calls: []
   healthAmountMax: 50
+  curHealthAmount: 0
 --- !u!54 &1569180608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9204,10 +9208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpawnPos: {fileID: 1397113604}
-  bulletLineRenderer: {fileID: 750247373}
   firePosition: {fileID: 750247372}
   bulletLineEffectTime: 0.03
-  muzzleflash: {fileID: 0}
   shootTimerMax: 0.5
   maxDistance: 30
   lookForTargetTimerMax: 0.2
@@ -9744,9 +9746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829efab1e8481be48ae4a4e5ac4207db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedTxt: {fileID: 213668158}
   gameTime: 0
-  gameEndBtn: {fileID: 0}
   turret: {fileID: 0}
   turretPoses: []
   turretType: []
@@ -10454,7 +10454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8185287190290843107, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8185287190290843107, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10495,6 +10495,10 @@ PrefabInstance:
     - target: {fileID: 8185287190290843107, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951044575979539427, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
