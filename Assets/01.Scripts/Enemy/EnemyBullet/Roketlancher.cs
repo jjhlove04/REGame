@@ -142,7 +142,7 @@ public class Roketlancher : MonoBehaviour
             other.GetComponent<TrainHit>()?.Hit();
             SpawnParticle();
             gameObject.SetActive(false);
-            CameraManager.Instance.Shake(1f, 2f);
+            CameraManager.Instance.Shake(0.5f, 2f);
         }
 
         else if (other.tag == "Turret")

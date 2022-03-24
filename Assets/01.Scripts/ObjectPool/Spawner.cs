@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
     {
         objectPool = FindObjectOfType<ObjectPool>();
 
-        if (boss)
+        if (!boss)
         {
             SpawnMananger.Instance.spawn += new SpawnMananger.Spawn(SpwanEnemy);
         }

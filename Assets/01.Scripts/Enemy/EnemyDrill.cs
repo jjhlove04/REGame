@@ -82,7 +82,7 @@ public class EnemyDrill : Enemy, IEnemyAttack
     
     protected override void PlayDieAnimationFalse()
     {
-        base.PlayDieAnimationTrue();
+        base.PlayDieAnimationFalse();
         drillAnim.SetBool("IsAttack", false);
     }
 }

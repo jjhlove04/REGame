@@ -328,8 +328,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  healthAmountMax: 30
-  curHealthAmount: 0
+  healthAmountMax: 100
+  curHealthAmount: 100
 --- !u!114 &7259560175488308635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
   anim: {fileID: 1461963746854922854}
   enemySpeed: 10
   distanceX: 3
-  minDistance: 5
+  minDistance: 7
   maxDistance: 10
   waist: {fileID: 1521160365377392592}
   damage: 15

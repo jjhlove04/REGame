@@ -73,7 +73,7 @@ public class Bullet : MonoBehaviour
         if (other.tag == "Enemy")
         {
             other.GetComponent<HealthSystem>().Damage(damage);
-            DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
+            //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
             this.gameObject.SetActive(false);
         }
     }

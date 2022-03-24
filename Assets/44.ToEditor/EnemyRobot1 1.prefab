@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 5087937883685085222}
   - component: {fileID: 5107497330740852826}
   m_Layer: 7
-  m_Name: FX_Jet
+  m_Name: FX_Jet2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20289,7 +20289,7 @@ GameObject:
   - component: {fileID: -8683214724888012090}
   - component: {fileID: 2259818292848256315}
   - component: {fileID: 7617802898832899664}
-  - component: {fileID: 7427247227218404474}
+  - component: {fileID: 1705088335670228775}
   m_Layer: 7
   m_Name: EnemyRobot1 1
   m_TagString: Enemy
@@ -20370,8 +20370,8 @@ MonoBehaviour:
   OnDied:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7427247227218404474}
-        m_TargetAssemblyTypeName: EnemyFireAttack, Assembly-CSharp
+      - m_Target: {fileID: 1705088335670228775}
+        m_TargetAssemblyTypeName: testFire, Assembly-CSharp
         m_MethodName: PlayDieAnimationTrue
         m_Mode: 1
         m_Arguments:
@@ -20382,9 +20382,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  healthAmountMax: 10
-  curHealthAmount: 0
---- !u!114 &7427247227218404474
+  healthAmountMax: 100
+  curHealthAmount: 100
+--- !u!114 &1705088335670228775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20393,17 +20393,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4909745345928348176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed2d52d1eef610541853fe2915148dab, type: 3}
+  m_Script: {fileID: 11500000, guid: 920aea783c0c95443ab9d0328f4059b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
   anim: {fileID: 8857039300854266321}
   enemySpeed: 10
-  distanceX: 15
+  distanceX: 12
   minDistance: 18
   maxDistance: 23
   waist: {fileID: 4909221583010691012}
   damage: 10
-  anim: {fileID: 8857039300854266321}
   animTime: 4
 --- !u!1 &4911060519047012814
 GameObject:

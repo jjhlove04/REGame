@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyHumanoidRig : Enemy, IEnemyAttack
 {
-    public Animator anim;
-
     private Vector3 target;
 
     protected override void OnEnable()

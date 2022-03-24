@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFireAttack : Enemy, IEnemyAttack
+public class testRoketlancher : TestEnemy, IEnemyAttack
 {
     public float animTime;
     private float atime = 5f;
 
     private bool isAttack = false;
+
+    [SerializeField]
+    private Transform pos;
+
+    private ObjectPool objPool;
+
+    private Vector3 target;
 
     protected override void OnEnable()
     {
@@ -18,12 +25,14 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
     protected override void Start()
     {
         base.Start();
+        objPool = FindObjectOfType<ObjectPool>();
     }
 
     protected override void Update()
     {
         base.Update();
     }
+
 
     public void Attack(Quaternion rot)
     {
@@ -35,19 +44,13 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
 
-        if (isAttack)
-        {
-            if (transform.position.x > 0)
-            {
-                rot = Quaternion.Euler(0, -90, 0);
-            }
+        /* if (isAttack)
+         {
+             target = new Vector3(trainPos.x, trainPos.y, trainPos.z+10) - transform.position ;
+             rot = Quaternion.LookRotation(target);
 
-            else if (transform.position.x < 0)
-            {
-                rot = Quaternion.Euler(0, 90, 0);
-            }
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
-        }
+             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
+         }*/
 
         else
         {
@@ -69,8 +72,16 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
     private IEnumerator Attacking()
     {
         isAttack = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.35f);
+        SpawnBullet();
+        yield return new WaitForSeconds(0.4f);
         isAttack = false;
+    }
+
+    private void SpawnBullet()
+    {
+        GameObject bullet = objPool.GetObject(Resources.Load<GameObject>("Missile"));
+        bullet.GetComponent<Roketlancher>().Create(pos.position, dir2, damage);
     }
 
     protected override void EnemyGetRandom()
@@ -87,20 +98,5 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
     protected override void EnemyWaistInit()
     {
         base.EnemyWaistInit();
-    }
-
-    public float GetDamage()
-    {
-        return damage;
-    }
-
-    public override void PlayDieAnimationTrue()
-    {
-        base.PlayDieAnimationTrue();
-    }
-
-    protected override void PlayDieAnimationFalse()
-    {
-        base.PlayDieAnimationTrue();
     }
 }

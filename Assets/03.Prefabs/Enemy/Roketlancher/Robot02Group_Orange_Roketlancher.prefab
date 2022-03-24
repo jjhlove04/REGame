@@ -881,8 +881,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  healthAmountMax: 30
-  curHealthAmount: 0
+  healthAmountMax: 1000
+  curHealthAmount: 1000
 --- !u!114 &4397485647293170189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1632,6 +1632,10 @@ PrefabInstance:
     - target: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}
       propertyPath: m_Name
       value: Impact03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8038344524183138614, guid: 0277167a12290af47801444830a2be97, type: 3}
       propertyPath: m_RootOrder

@@ -10,6 +10,8 @@ public class CameraShake : MonoBehaviour
     private void Start()
     {
         BasicMultiChannelPerlin = GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        BasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        BasicMultiChannelPerlin.m_FrequencyGain = 0;
     }
 
     public void Shake(float duration, float magnitude)

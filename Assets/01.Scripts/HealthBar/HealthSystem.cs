@@ -22,9 +22,9 @@ public class HealthSystem : MonoBehaviour
         OnDied.AddListener(InitHealth);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        OnDied?.Invoke();
+        IsFullHealth();
     }
 
     public void Damage(float damageAmount)

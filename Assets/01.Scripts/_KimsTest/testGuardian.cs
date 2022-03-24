@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGuardian : Enemy, IEnemyAttack
+public class testGuardian : TestEnemy, IEnemyAttack
 {
     public float animTime;
     private float atime = 2f;
@@ -19,7 +19,7 @@ public class EnemyGuardian : Enemy, IEnemyAttack
             rot = Quaternion.Euler(0, 90, 0);
         }
 
-        
+
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
 

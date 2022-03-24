@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Enemy : MonoBehaviour
+public class TestEnemy : MonoBehaviour
 {
+    public LayerMask layerMask;
+
     public Animator anim;
 
     protected int enemyType = 0;
@@ -34,6 +36,8 @@ public class Enemy : MonoBehaviour
     protected bool isDying = false;
 
     private float dieSpeed = 20;
+    protected Vector3 dir;
+    protected Transform dir2;
 
 
     protected virtual void OnEnable()
@@ -53,11 +57,12 @@ public class Enemy : MonoBehaviour
     {
         if (!isDying)
         {
-            NewTarget();
 
-            Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
+            dir2 = Physics.OverlapSphere(transform.position, 100, layerMask)[0].transform;
 
-            Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
+            dir = dir2.position;
+
+            Quaternion rot = Quaternion.LookRotation(dir);
 
             EnemyIsDistanceX();
 
@@ -83,14 +88,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void NewTarget()
-    {
-        if (enemyType >= TrainManager.instance.trainContainer.Count)
-        {
-            enemyType--;
-        }
-    }
-
     protected virtual void EnemyWaistLookForward()
     {
         Quaternion quaternion = Quaternion.identity;
@@ -100,7 +97,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void EnemyGetRandom()
     {
-        enemyType = Random.Range(0, TrainManager.instance.trainContainer.Count);
         transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
@@ -120,7 +116,7 @@ public class Enemy : MonoBehaviour
         {
             if (run)
             {
-                run = !(Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) < distance);
+                run = !(Vector3.Distance(transform.position, dir) < distance);
                 EnemyLimitMoveX();
             }
         }
@@ -143,18 +139,8 @@ public class Enemy : MonoBehaviour
 
     void EnemyTargettingMove()
     {
-        if (TrainManager.instance.trainContainer[enemyType].transform.position != null)
-        {
-
-            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position + new Vector3(0, 0, randomZ),
-            enemySpeed * Time.deltaTime);
-        }
-
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType - 1].transform.position,
-            enemySpeed * Time.deltaTime);
-        }
+        transform.position = Vector3.MoveTowards(transform.position, dir + new Vector3(0, 0, randomZ),
+        enemySpeed * Time.deltaTime);
     }
 
     public void EnemyDied()
