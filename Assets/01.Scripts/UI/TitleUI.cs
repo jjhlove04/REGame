@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class UIManager : MonoBehaviour
+public class TitleUI : MonoBehaviour
 {
      
-    private static UIManager _ui = new UIManager();
-    public static UIManager UI { get { return _ui; } }
+    private static TitleUI _ui = new TitleUI();
+    public static TitleUI UI { get { return _ui; } }
 
     public Button[] buyBtns; 
    //public RectTransform trs_cursor;

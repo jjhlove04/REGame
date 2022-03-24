@@ -8,50 +8,50 @@ public class ResourceManager : MonoBehaviour
 {
     private static ResourceManager instance;
     public static ResourceManager Instance { get { return instance; } }
-    // Start is called before the first frame update
-
     public class StatData
     {
-        public TrainStat trainStat;
-        public PlayerStat playerStat;
-        public TurretStat turretStat;
+        public TrainStatData trainStatData;
+        public TowerStatData towerStatData;
+        public TurretStatData turretStatData;
 
         public StatData()
         {
-            /*trainStat = new TrainStat();
+            /*TrainStatData = new TrainStatData();
             playerStat = new PlayerStat();
-            turretStat = new TurretStat();*/
+            TurretStatData = new TurretStatData();*/
         }
 
-        public class TrainStat
+        //기차 관련 데이터 클래스
+        public class TrainStatData
         {
             public float hp;
 
-            public TrainStat(float hp)
+            public TrainStatData(float hp)
             {
                 this.hp = hp;
             }
         }
 
-        public class PlayerStat
+        //타워 관련 데이터 클래스
+        public class TowerStatData
         {
             public float damage; 
             public float attackSpeed;
 
-            public PlayerStat(float damage, float attackSpeed)
+            public TowerStatData(float damage, float attackSpeed)
             {
                 this.damage = damage;
                 this.attackSpeed = attackSpeed;
             }
         }
 
-        public class TurretStat
+        //포탑 관련 데이터 클래스
+        public class TurretStatData
         {
             public float hp;
             public float damage;
             public float attackSpeed;
-
-            public TurretStat(float hp, float damage, float attackSpeed)
+            public TurretStatData(float hp, float damage, float attackSpeed)
             {
                 this.hp = hp;
                 this.damage = damage;
@@ -109,7 +109,7 @@ public class ResourceManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        //���� �Ҹ�����, �ְ� ����, �ҷ�����
+        
         first = PlayerPrefs.GetInt("First");
         if (first == 0)
         {
@@ -122,11 +122,10 @@ public class ResourceManager : MonoBehaviour
 
     private void Init()
     {
-        resources.Add(new ResourceData("Screb", 0));
-        resources.Add(new ResourceData("Copper", 0));
-        resources.Add(new ResourceData("Silver", 0));
         resources.Add(new ResourceData("Gold", 0));
-        stationData = new StationData(1, 0);
+        resources.Add(new ResourceData("Exp", 0));
+        resources.Add(new ResourceData("Tp", 0)); //테크니컬 포인트
+        resources.Add(new ResourceData("Level", 1));
         SaveAll();
     }
 

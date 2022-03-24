@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
+
 public class TitleMoveScript : MonoBehaviour
 {
     // 0: 스타트 버튼 . 1: 업그레이드 버튼, 2: 통계 버튼 , 3: 도감 버튼, 4: 설정 버튼, 5: 종료 버튼, 6: 이전화면
@@ -16,12 +17,14 @@ public class TitleMoveScript : MonoBehaviour
     
     [Header("버튼 그룹")]
     [SerializeField] private GameObject btnGroup;
+    [SerializeField] private RectTransform btnGroupRect;
     [SerializeField] private GameObject backBtn;
 
     int indexNum = 0;
     
     private void Awake() 
     {
+        btnGroupRect = btnGroup.GetComponent<RectTransform>();
         //시작버튼
         titleActionBtn[0].onClick.AddListener(() => {
             timelines[0].Play();
@@ -109,19 +112,20 @@ public class TitleMoveScript : MonoBehaviour
         float dexSpeed = 0;
         if(index == 0)
         {
-            btnGroup.transform.DOMoveX(-50, 0.5f);
+            btnGroupRect.DOAnchorPosX(-578,0.5f);
         }
         //출발 업그레이드 백
         if(index == 1)
         {
             dexSpeed = 0.5f;
-            btnGroup.transform.DOMoveX(350 ,dexSpeed);
+            btnGroupRect.DOAnchorPosX(70,dexSpeed).SetDelay(0.5f);
         } 
         //나머지 버튼 3개 백
         if(index == 2)
         {
             dexSpeed = 0.3f;
-            btnGroup.transform.DOMoveX(350 ,dexSpeed);
+            btnGroupRect.DOAnchorPosX(70,dexSpeed).SetDelay(0.4f);
+
         }
         
     }

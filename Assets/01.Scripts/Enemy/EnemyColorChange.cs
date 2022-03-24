@@ -19,17 +19,6 @@ public class EnemyColorChange : MonoBehaviour
         newRenderer.material.color = basicMaterial.color;
     }
 
-    private void OnMouseEnter()
-    {
-        Debug.Log("target");
-        newRenderer.material.color = Color.white;
-        PlayerInput.Instance.isEnemy = true;
-    }
-    private void OnMouseExit()
-    {
-        newRenderer.material.color = curMaterial.color;
-        PlayerInput.Instance.isEnemy = false;
-    }
 
     public void Hit()
     {

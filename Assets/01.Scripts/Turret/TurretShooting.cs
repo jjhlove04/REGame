@@ -72,7 +72,6 @@ public class TurretShooting : Turret
                     firePosition.position,
                     firePosition.forward, out hit, maxDistance))
             {
-                IDamageable target = hit.transform.GetComponent<IDamageable>();
                 hitPosition = hit.point;
             }
             else
