@@ -58,7 +58,7 @@ public class TestEnemy : MonoBehaviour
         if (!isDying)
         {
 
-            dir2 = Physics.OverlapSphere(transform.position, 100, layerMask)[0].transform;
+            dir2 = Physics.OverlapSphere(transform.position, 500000, layerMask)[0].transform;
 
             dir = dir2.position;
 
@@ -170,5 +170,17 @@ public class TestEnemy : MonoBehaviour
     private void Dying()
     {
         transform.position += Vector3.back * dieSpeed * Time.deltaTime;
+    }
+    public void ChangeDamage(float damage)
+    {
+        this.damage = damage;
+    }
+    public void ChangeSpeed(float enemySpeed)
+    {
+        this.enemySpeed = enemySpeed;
+    }
+    public void ChangeDistance(float distance)
+    {
+        this.distance = distance;
     }
 }

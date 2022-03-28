@@ -166,6 +166,8 @@ public class Enemy : MonoBehaviour
     {
         //GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
         //scrap.transform.position = transform.position;
+        GameManager.Instance.goldAmount += 10;
+        GameManager.Instance.expAmount += SpawnMananger.Instance.round;
         gameObject.SetActive(false);
     }
 

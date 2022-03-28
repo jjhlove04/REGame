@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3190589571035519417}
   - component: {fileID: 6669018693288074851}
   - component: {fileID: 8807814729483426524}
+  - component: {fileID: -7130766952432086756}
   m_Layer: 7
   m_Name: Robot_Guardian 1
   m_TagString: Enemy
@@ -131,6 +132,18 @@ MonoBehaviour:
   waist: {fileID: 0}
   damage: 3
   animTime: 0
+--- !u!114 &-7130766952432086756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262010245510058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40272597158492489a7ebc7d5921a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2937229236405190527
 GameObject:
   m_ObjectHideFlags: 0

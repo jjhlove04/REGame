@@ -103,7 +103,6 @@ public class testScriptts : MonoBehaviour
     {
         GameObject gameObject = turretType[num];
         turret = gameObject;
-        Debug.Log(turret);
     }
     public void Speeeeeed(int num)
     {

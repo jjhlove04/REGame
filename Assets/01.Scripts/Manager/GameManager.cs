@@ -26,8 +26,11 @@ public class GameManager : MonoBehaviour
     private float gameTime = 0f;
     public float gameSpeed = 1f;
 
+    public int goldAmount = 0;
+    public int expAmount = 0;
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         instance = this;
     }
 
@@ -53,10 +56,14 @@ public class GameManager : MonoBehaviour
         if (state == State.Play)
         {
             Time.timeScale = gameSpeed;
+            if (TrainScript.instance.curTrainHp <= 0)
+            {
+                state = State.End;
+            }
         }
 
     }
-    
+
     private void CurState()
     {
         switch (state)

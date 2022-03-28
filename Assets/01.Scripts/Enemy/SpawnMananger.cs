@@ -47,6 +47,7 @@ public class SpawnMananger : MonoBehaviour
 
                 curTime = 0;
                 round++;
+
                 if (round > maxRound)
                 {
                     stopSpawn = true;

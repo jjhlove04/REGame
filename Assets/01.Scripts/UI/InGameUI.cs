@@ -22,6 +22,9 @@ public class InGameUI : MonoBehaviour
 
     RectTransform bpTop;
     RectTransform bpBot;
+
+    public Text goldAmounTxt;
+    public Text waveTxt;
     private void Awake()
     {
         bpTop = bluePrintTop.GetComponent<RectTransform>();
@@ -42,6 +45,8 @@ public class InGameUI : MonoBehaviour
             OpenMenu();
         });
 
+        goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
+        waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
     }
 
     // Update is called once per frame
@@ -52,6 +57,8 @@ public class InGameUI : MonoBehaviour
             index = index * -1;
             OpenBluePrint(index);
         }
+
+        waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
     }
 
     public void OpenBluePrint(int index)

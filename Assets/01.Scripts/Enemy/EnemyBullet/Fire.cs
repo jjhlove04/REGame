@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    EnemyFireAttack enemyFireAttack;
+    testFire enemyFireAttack;
     private void Start()
     {
-        enemyFireAttack = transform.root.GetComponent<EnemyFireAttack>();
+        enemyFireAttack = transform.root.GetComponent<testFire>();
     }
 
     private void OnParticleCollision(GameObject other)
@@ -20,6 +20,7 @@ public class Fire : MonoBehaviour
 
         else if(other.tag == "Turret")
         {
+            Debug.Log(enemyFireAttack);
             other.GetComponent<HealthSystem>()?.Damage(enemyFireAttack.GetDamage() * Time.deltaTime);
         }
     }
