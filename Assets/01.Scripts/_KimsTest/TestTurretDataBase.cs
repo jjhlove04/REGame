@@ -22,11 +22,6 @@ public class TestTurretDataBase : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         instance = this;
     }
-
-    private void Start()
-    {
-        
-    }
     public void Upgrade(int typrTur)
     {
         switch (typrTur)

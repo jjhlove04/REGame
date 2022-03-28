@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestSkillTree : MonoBehaviour
 {
@@ -10,12 +11,13 @@ public class TestSkillTree : MonoBehaviour
 
     public void SkillTree(string nextGameObj)
     {
-        canUpgrade.Add(Resources.Load<GameObject>(nextGameObj));
+        canUpgrade.Add(Resources.Load<GameObject>("Turret/" + nextGameObj));
     }
 
-    public void DisableSkillLine()
+    public void DisableSkillLine(Button btn)
     {
-
+        btn.interactable = false;
+        btn.GetComponent<Image>().color = Color.red;
     }
 
     public void SkillTreeClear()
