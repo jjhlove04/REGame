@@ -19,15 +19,13 @@ public class EnemyGuardian : Enemy, IEnemyAttack
             rot = Quaternion.Euler(0, 90, 0);
         }
 
-        
-
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
 
         AnimationState(false);
 
         animTime += Time.deltaTime;
 
-        if (animTime >= atime)
+        if (animTime >= atime+sAttackTime)
         {
             AnimationState(true);
             animTime = 0f;

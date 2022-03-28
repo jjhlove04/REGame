@@ -50,9 +50,8 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (maxTrainHp - roomHp + smokeHp >= curTrainHp)
+        if (maxTrainHp /10 >= curTrainHp)
         {
-            //DestroyTrain();
             TrainManager.instance.OnSmoke();
         }
     }
@@ -65,28 +64,26 @@ public class TrainScript : MonoBehaviour
     public void Damage(float damage)
     {
         curTrainHp -= damage;
+        UIManager.UI.TakeDamageHpBar();
+
+        if (curTrainHp <= 0)
+        {
+            DestroyTrain();
+        }
    }
 
     IEnumerator Destroy()
     {
-        if (maxTrainHp - roomHp >= curTrainHp)
+        roomHp += initRoomHp;
+        if (TrainManager.instance.curTrainCount > 0)
         {
-            roomHp += initRoomHp;
-            if (TrainManager.instance.curTrainCount > 0)
-            {
-                TrainManager.instance.curTrainCount--;
-                destroy = true;
-                yield return new WaitForSeconds(0.5f);
-                TrainManager.instance.Explotion();
-                yield return new WaitForSeconds(0.75f);
-                TrainManager.instance.RemoveList();
-                destroy = false;
-            }
-
-            if (TrainManager.instance.curTrainCount % 2 == 1 && TrainManager.instance.curTrainCount == 1)
-            {
-                roomHp += 1;
-            }
+            TrainManager.instance.curTrainCount--;
+            destroy = true;
+            yield return new WaitForSeconds(0.5f);
+            TrainManager.instance.Explotion();
+            yield return new WaitForSeconds(0.75f);
+            GameManager.Instance.state = GameManager.State.End;
+            destroy = false;
         }
     }
 }

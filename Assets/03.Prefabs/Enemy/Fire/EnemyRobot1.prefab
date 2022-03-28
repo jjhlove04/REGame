@@ -15326,7 +15326,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4909581772744742714}
   serializedVersion: 7
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 2
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
@@ -15453,7 +15453,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 22.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -20382,8 +20382,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  healthAmountMax: 100
-  curHealthAmount: 100
+  healthAmountMax: 15
+  curHealthAmount: 15
 --- !u!114 &7427247227218404474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20398,12 +20398,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 8857039300854266321}
   enemySpeed: 10
-  distanceX: 15
-  minDistance: 18
-  maxDistance: 23
+  distanceX: 20
+  minDistance: 23
+  maxDistance: 27
   waist: {fileID: 4909221583010691012}
-  damage: 10
-  animTime: 4
+  damage: 2
+  sAttackTime: 0.3333
+  animTime: 0.4166
 --- !u!1 &4911060519047012814
 GameObject:
   m_ObjectHideFlags: 0

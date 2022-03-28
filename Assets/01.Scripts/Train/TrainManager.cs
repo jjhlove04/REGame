@@ -67,15 +67,18 @@ public class TrainManager : MonoBehaviour
 
     public void OnSmoke()
     {
-        if (curTrainCount > 0)
+        for (int i = 0; i < trainContainer.Count; i++)
         {
-            trainContainer[trainContainer.Count - 1].transform.Find("Particle").gameObject.SetActive(true);
+            trainContainer[i].transform.Find("Particle").gameObject.SetActive(true);
         }
     }
 
     public void Explotion()
     {
-        trainContainer[trainContainer.Count - 1].transform.Find("ExplotionParticle").gameObject.SetActive(true);
+        for (int i = 0; i < trainContainer.Count; i++)
+        {
+            trainContainer[i].transform.Find("ExplotionParticle").gameObject.SetActive(true);
+        }
     }
 
     public void MakeCollider()
@@ -86,6 +89,7 @@ public class TrainManager : MonoBehaviour
 
     public void KeepOffTrain()
     {
-        trainContainer[trainContainer.Count-1].transform.position += -new Vector3(0, 0, keppOffSpeed);
+        
+        transform.position += -new Vector3(0, 0, keppOffSpeed);
     }
 }

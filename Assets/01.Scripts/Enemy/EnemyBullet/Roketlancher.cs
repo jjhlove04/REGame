@@ -29,11 +29,11 @@ public class Roketlancher : MonoBehaviour
     private Transform targetEnemy;
     private float damage;
 
-    private Vector3 target;
+    //private Vector3 target;
 
-    private bool guided = false;
+    //private bool guided = false;
 
-    private bool tracking = false;
+    //private bool tracking = false;
 
     /*private void OnEnable()
     {

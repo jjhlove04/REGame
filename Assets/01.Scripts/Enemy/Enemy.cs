@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     private IEnemyAttack enemyAttack;
 
-    protected bool run;
+    public bool run;
 
     [SerializeField]
     protected float damage;
@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour
     protected bool isDying = false;
 
     private float dieSpeed = 20;
+
+    public float sAttackTime;
 
 
     protected virtual void OnEnable()
@@ -48,6 +50,9 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         enemyAttack = GetComponent<IEnemyAttack>();
+        AttackingTime();
+
+        damage = damage * (1 / sAttackTime);
     }
     protected virtual void Update()
     {
@@ -57,7 +62,7 @@ public class Enemy : MonoBehaviour
 
             Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
 
-            Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + TrainManager.instance.trainContainer.Count * 25));
+            Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ randomZ + TrainManager.instance.trainContainer.Count * 25));
 
             EnemyIsDistanceX();
 
@@ -120,7 +125,7 @@ public class Enemy : MonoBehaviour
         {
             if (run)
             {
-                run = !(Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position) < distance);
+                run = !(Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position+ new Vector3(0,0, randomZ)) < distance);
                 EnemyLimitMoveX();
             }
         }
@@ -184,5 +189,10 @@ public class Enemy : MonoBehaviour
     private void Dying()
     {
         transform.position += Vector3.back * dieSpeed * Time.deltaTime;
+    }
+
+    protected virtual void AttackingTime()
+    {
+        anim.SetFloat("AttackTime", (1/sAttackTime));
     }
 }

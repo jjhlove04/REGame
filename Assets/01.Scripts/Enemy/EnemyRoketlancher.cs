@@ -14,8 +14,6 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
 
     private ObjectPool objPool;
 
-    private Vector3 target;
-
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -63,7 +61,7 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
 
         animTime += Time.deltaTime;
 
-        if (animTime >= atime)
+        if (animTime >= atime+ sAttackTime)
         {
             anim.SetBool("IsAttack", true);
             animTime = 0f;

@@ -39,12 +39,12 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
         {
             if (transform.position.x > 0)
             {
-                rot = Quaternion.Euler(0, -90, 0);
+                rot = Quaternion.Euler(0, -60, 0);
             }
 
             else if (transform.position.x < 0)
             {
-                rot = Quaternion.Euler(0, 90, 0);
+                rot = Quaternion.Euler(0, 60, 0);
             }
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
@@ -59,7 +59,7 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
 
         animTime += Time.deltaTime;
 
-        if (animTime >= atime)
+        if (animTime >= atime+ sAttackTime)
         {
             anim.SetBool("IsAttack", true);
             animTime = 0f;
@@ -69,7 +69,7 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
     private IEnumerator Attacking()
     {
         isAttack = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f*sAttackTime);
         isAttack = false;
     }
 
