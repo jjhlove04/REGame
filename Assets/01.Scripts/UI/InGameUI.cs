@@ -13,12 +13,15 @@ public class InGameUI : MonoBehaviour
 
     int index = 1;
     int num = 1;
+    int backIndex = 1;
     [SerializeField] private GameObject[] menuBtn;
     [SerializeField] private RectTransform[] menuBtnRect ;
     private List<RectTransform> menuBtnList = new List<RectTransform>();
     [SerializeField] private Button mainMenuBtn;
     [SerializeField] private GameObject btnGroup;
     [SerializeField] private GameObject upGradePanel;
+    [SerializeField] private GameObject stopPanel;
+    [SerializeField] private  RectTransform stopPanelRect;
     [HideInInspector] public RectTransform upGradePanelRect;
 
     [SerializeField] private Button upGradePanelBackBtn;
@@ -32,6 +35,7 @@ public class InGameUI : MonoBehaviour
     public Text waveTxt;
     private void Awake()
     {
+        stopPanel.transform.localScale = Vector2.zero;
         _instance = this;
         bpTop = bluePrintTop.GetComponent<RectTransform>();
         bpBot = bluePrintBot.GetComponent<RectTransform>();
@@ -79,6 +83,11 @@ public class InGameUI : MonoBehaviour
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            backIndex *= -1;
+            backPanelOpne(backIndex);
+        }
 
 
         if (GameManager.Instance.state == GameManager.State.End)
@@ -96,7 +105,7 @@ public class InGameUI : MonoBehaviour
         {
             bpTop.DOAnchorPosY(300, 1f).SetEase(Ease.OutQuart).SetDelay(1.5f);
             bpBot.DOAnchorPosY(-300, 1f).SetEase(Ease.OutQuart).SetDelay(1.5f);
-            
+
 
         }
         if (index == 1)
@@ -105,6 +114,19 @@ public class InGameUI : MonoBehaviour
             bpTop.DOAnchorPosY(781, 1.5f).SetEase(Ease.OutQuart);
             bpBot.DOAnchorPosY(-789, 1.5f).SetEase(Ease.OutQuart);
         }
+    }
+
+    public void backPanelOpne(int backIndex)
+    {
+        if(backIndex == -1)
+        {
+            stopPanelRect.DOScale(new Vector3(1,1,1), 0.8f);
+        }
+        if(backIndex == 1)
+        {
+            stopPanelRect.DOScale(new Vector3(0,0,0), 0.8f);
+        }
+        
     }
 
     public void OpenMenu()
