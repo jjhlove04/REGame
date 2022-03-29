@@ -15,6 +15,7 @@ public class TitleUI : MonoBehaviour
    //public RectTransform trs_cursor;
     
     public Button startBtn;
+    
 
     private void Awake()
     {
@@ -28,6 +29,8 @@ public class TitleUI : MonoBehaviour
        startBtn.onClick.AddListener(() => {
         LoadingSceneUI.LoadScene("Main");
        });
+
+       
     }
     private void Update()
     {

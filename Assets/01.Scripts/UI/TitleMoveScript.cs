@@ -19,6 +19,7 @@ public class TitleMoveScript : MonoBehaviour
     [SerializeField] private GameObject btnGroup;
     [SerializeField] private RectTransform btnGroupRect;
     [SerializeField] private GameObject backBtn;
+    [SerializeField] private GameObject resultPanel;
 
     int indexNum = 0;
     
@@ -81,6 +82,17 @@ public class TitleMoveScript : MonoBehaviour
             }
             BtnSlide(2);
         }); 
+
+        if(InGameUI.sceneIndex == 1)
+       {
+           btnGroup.SetActive(false);
+           resultPanel.SetActive(true);
+       }
+       if(InGameUI.sceneIndex == 0)
+       {
+           btnGroup.SetActive(true);
+           resultPanel.SetActive(false);
+       }
         
     }
 

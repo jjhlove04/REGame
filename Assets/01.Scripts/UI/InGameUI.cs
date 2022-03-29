@@ -9,6 +9,7 @@ public class InGameUI : MonoBehaviour
     //UImanager로 다 옮겨야 함
     [SerializeField] private GameObject bluePrintTop;
     [SerializeField] private GameObject bluePrintBot;
+    public static int sceneIndex = 0;
 
     int index = 1;
     int num = 1;
@@ -34,6 +35,7 @@ public class InGameUI : MonoBehaviour
             menuBtnRect[i] = menuBtn[i].GetComponent<RectTransform>();
         }
     }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +61,12 @@ public class InGameUI : MonoBehaviour
         }
 
         waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            LoadingSceneUI.LoadScene("TitleScene");
+            sceneIndex = 1;
+        }
     }
 
     public void OpenBluePrint(int index)
