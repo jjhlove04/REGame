@@ -45,13 +45,12 @@ public class GameManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+         
     }
 
     private void Update()
     {
         gameTime = Time.unscaledTime;
-        CurState();
         gameTime++;
         if (state == State.Play)
         {
@@ -62,24 +61,5 @@ public class GameManager : MonoBehaviour
             }
         }
 
-    }
-
-    private void CurState()
-    {
-        switch (state)
-        {
-            case State.Ready:
-                break;
-            case State.Play:
-                break;
-            case State.Stop:
-                break;
-            case State.End:
-                LoadingSceneUI.LoadScene("Station");
-                state = State.Ready;
-                break;
-            default:
-                break;
-        }
     }
 }

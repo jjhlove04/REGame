@@ -23,7 +23,22 @@ public class TestSkillTree : MonoBehaviour
     //clear버튼
     public void SkillTreeClear()
     {
-        canUpgrade.Clear();
+        if (canUpgrade.Count >= 1)
+        {
+            Button[] btn = FindObjectsOfType<Button>();
+             
+            for (int i = 0; i < btn.Length; i++)
+            {
+                btn[i].interactable = true;
+                if (btn[i].GetComponent<Image>())
+                {
+                    btn[i].GetComponent<Image>().color = Color.white;
+                }
+            }
+
+            canUpgrade.Clear();
+
+        }
     }
 
     //apply버튼

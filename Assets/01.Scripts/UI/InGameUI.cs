@@ -79,6 +79,15 @@ public class InGameUI : MonoBehaviour
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
         }
+
+
+        if (GameManager.Instance.state == GameManager.State.End)
+        {
+            Time.timeScale = 1f;
+            LoadingSceneUI.LoadScene("TitleScene");
+            sceneIndex = 1;
+            GameManager.Instance.state = GameManager.State.Ready;
+        }
     }
 
     public void OpenBluePrint(int index)
