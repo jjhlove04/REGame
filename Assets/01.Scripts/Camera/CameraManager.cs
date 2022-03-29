@@ -24,12 +24,16 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            topCamera.SetActive(!topCamera.activeSelf);
-            quaterCamera.SetActive(!quaterCamera.activeSelf);
-        }
+
     }
+
+    public void CameraChangeView()
+    {
+        topCamera.SetActive(!topCamera.activeSelf);
+        quaterCamera.SetActive(!quaterCamera.activeSelf);
+
+    }
+
 
     public void Shake(float duration, float magnitude)
     {

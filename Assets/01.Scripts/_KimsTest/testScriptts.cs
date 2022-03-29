@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class testScriptts : MonoBehaviour
 {
@@ -96,7 +97,8 @@ public class testScriptts : MonoBehaviour
         } 
         else
         {
-            Debug.Log("이미 설치 되어 있습니다");
+            InGameUI._instance.upGradePanelRect.DOAnchorPosY(300, 1.5f);
+            
         }
 
     }

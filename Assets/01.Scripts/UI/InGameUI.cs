@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class InGameUI : MonoBehaviour
 {
-    //UImanager로 다 옮겨야 함
+    public static InGameUI _instance = new InGameUI();
     [SerializeField] private GameObject bluePrintTop;
     [SerializeField] private GameObject bluePrintBot;
     public static int sceneIndex = 0;
@@ -18,6 +18,10 @@ public class InGameUI : MonoBehaviour
     private List<RectTransform> menuBtnList = new List<RectTransform>();
     [SerializeField] private Button mainMenuBtn;
     [SerializeField] private GameObject btnGroup;
+    [SerializeField] private GameObject upGradePanel;
+    [HideInInspector] public RectTransform upGradePanelRect;
+
+    [SerializeField] private Button upGradePanelBackBtn;
     int screenHeight = Screen.height;
     int screenWidth = Screen.width;
 
@@ -28,13 +32,20 @@ public class InGameUI : MonoBehaviour
     public Text waveTxt;
     private void Awake()
     {
+        _instance = this;
         bpTop = bluePrintTop.GetComponent<RectTransform>();
         bpBot = bluePrintBot.GetComponent<RectTransform>();
+        upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         for(int i = 0; i < 4; i++)
         {
             menuBtnRect[i] = menuBtn[i].GetComponent<RectTransform>();
         }
+        upGradePanelBackBtn.onClick.AddListener(() => 
+        {
+            upGradePanelRect.DOAnchorPosY(780, 1.5f);
+        });
     }
+
     
     // Start is called before the first frame update
     void Start()
@@ -58,6 +69,7 @@ public class InGameUI : MonoBehaviour
         {
             index = index * -1;
             OpenBluePrint(index);
+            CameraManager.Instance.CameraChangeView();
         }
 
         waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
