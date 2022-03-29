@@ -8,6 +8,14 @@ public class TestSkillTree : MonoBehaviour
 {   
     public List<GameObject> canUpgrade = new List<GameObject>();
 
+    private void Start()
+    {
+        if (canUpgrade != null)
+        {
+            Debug.Log("비움");
+            canUpgrade.Clear();
+        }
+    }
     //skill버튼 첫번쨰
     public void SkillTree(string nextGameObj)
     {
@@ -37,8 +45,12 @@ public class TestSkillTree : MonoBehaviour
             }
 
             canUpgrade.Clear();
-
         }
+    }
+
+    public void LoadSkillTree(List<GameObject> list)
+    {
+        canUpgrade = list;
     }
 
     //apply버튼
