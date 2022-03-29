@@ -3623,9 +3623,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -4791,6 +4791,7 @@ MonoBehaviour:
   hit: {fileID: 1780996139795400, guid: df365974c854a33438e5aea62ca4b975, type: 3}
   flash: {fileID: 724881963445600005, guid: 7c88e3aed5c2a9e4ab3c7be27b2d0388, type: 3}
   Detached: []
+  moveSpeed: 50
 --- !u!108 &108934438232879496
 Light:
   m_ObjectHideFlags: 0

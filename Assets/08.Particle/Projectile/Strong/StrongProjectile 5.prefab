@@ -3673,7 +3673,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -4833,6 +4833,7 @@ MonoBehaviour:
   flash: {fileID: 3257430581290451757, guid: 294e326774d14e840bb0eef802363558, type: 3}
   Detached:
   - {fileID: 1830546583308538}
+  moveSpeed: 50
 --- !u!199 &199085376630515598
 ParticleSystemRenderer:
   serializedVersion: 6
