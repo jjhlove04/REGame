@@ -43,14 +43,14 @@ public class TurretShooting : Turret
     void Update()
     {
         HandleShooting(shootTimerMax, damage);
-        HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemychil);
+        HandleTargeting(lookForTargetTimerMax, maxDistance);
         //Shot();
 
     }
 
-    protected override void HandleTargeting(float lookForTargetTimerMax, float maxDistance, out Transform targetEnemy)
+    protected override void HandleTargeting(float lookForTargetTimerMax, float maxDistance)
     {
-        base.HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemy);
+        base.HandleTargeting(lookForTargetTimerMax, maxDistance);
     }
     protected override void HandleShooting(float shootTimerMax, int damage)
     {

@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     private float randomZ;
 
-    protected bool isDying = false;
+    public bool isDying = false;
 
     private float dieSpeed = 20;
 
@@ -83,7 +83,6 @@ public class Enemy : MonoBehaviour
 
         else
         {
-            print(1);
             Dying();
         }
     }

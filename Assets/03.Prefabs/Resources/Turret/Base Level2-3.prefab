@@ -177,8 +177,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056976303758440439}
   m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0, w: 0}
-  m_LocalPosition: {x: 0.52500033, y: 2.404, z: -0.13600159}
-  m_LocalScale: {x: 1, y: -0.7, z: 1}
+  m_LocalPosition: {x: 0.45499992, y: 0.7383333, z: -0.28230813}
+  m_LocalScale: {x: 0.83333325, y: -0.6999999, z: 0.7692307}
   m_Children:
   - {fileID: 8173120000437297604}
   - {fileID: 7499597519693300581}
@@ -186,8 +186,8 @@ Transform:
   - {fileID: 4167214372697433572}
   - {fileID: 2087625620748983630}
   - {fileID: 5224940825535513387}
-  m_Father: {fileID: 2338824460951878790}
-  m_RootOrder: 2
+  m_Father: {fileID: 1999424989197581186}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
 --- !u!95 &6333955948145326884
 Animator:
@@ -239,9 +239,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1999424989197581186}
-  - {fileID: 6464648921648773098}
-  - {fileID: 6270250428263777145}
-  - {fileID: 4746942489395622392}
   - {fileID: 5837851722928316362}
   - {fileID: 1957247931016799607}
   m_Father: {fileID: 0}
@@ -276,8 +273,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPos: {fileID: 5224940825535513387}
   bullet: {fileID: 1128728136785006, guid: bc4ee071ac23c134c87b2a124694b847, type: 3}
+  weapons:
+  - {fileID: 6329593478289946479}
+  - {fileID: 2056976303758440439}
+  neck: {fileID: 3979717625137253381}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
   shootTimerMax: 1
   maxDistance: 80
   lookForTargetTimerMax: 0.2
@@ -296,8 +299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPos: {fileID: 3185336519293835822}
   bullet: {fileID: 1128728136785006, guid: bc4ee071ac23c134c87b2a124694b847, type: 3}
+  weapons: []
+  neck: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   shootTimerMax: 1
   maxDistance: 80
   lookForTargetTimerMax: 0.2
@@ -561,6 +568,9 @@ Transform:
   - {fileID: 8711806298695106856}
   - {fileID: 505063541825605941}
   - {fileID: 1809284158794594804}
+  - {fileID: 6464648921648773098}
+  - {fileID: 6270250428263777145}
+  - {fileID: 4746942489395622392}
   m_Father: {fileID: 2338824460951878790}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -921,7 +931,7 @@ Transform:
   - {fileID: 7786347834451025246}
   - {fileID: 4869483574874515533}
   m_Father: {fileID: 2338824460951878790}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5753588622770219925
 GameObject:
@@ -947,12 +957,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5753588622770219925}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.08500028, y: 2.064, z: 1.0039978}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0149998665, y: 0.45499986, z: 0.5946145}
+  m_LocalScale: {x: 0.7692308, y: 0.83333325, z: 1}
   m_Children:
   - {fileID: 3737112711689108996}
-  m_Father: {fileID: 2338824460951878790}
-  m_RootOrder: 3
+  m_Father: {fileID: 1999424989197581186}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &5788927890371050513
 GameObject:
@@ -985,7 +995,7 @@ Transform:
   - {fileID: 3602601583849889111}
   - {fileID: 832288302261793996}
   m_Father: {fileID: 2338824460951878790}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8255960054126702554
 Animator:
@@ -1112,8 +1122,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329593478289946479}
   m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0, w: 0}
-  m_LocalPosition: {x: -0.39599967, y: 2.3999999, z: -0.13600159}
-  m_LocalScale: {x: 1, y: 0.7, z: 1}
+  m_LocalPosition: {x: -0.46600008, y: 0.7349998, z: -0.28230813}
+  m_LocalScale: {x: 0.83333325, y: 0.6999999, z: 0.7692307}
   m_Children:
   - {fileID: 8928826289041612510}
   - {fileID: 6512299007254043559}
@@ -1121,8 +1131,8 @@ Transform:
   - {fileID: 3850929943031590664}
   - {fileID: 1682993620208022603}
   - {fileID: 3185336519293835822}
-  m_Father: {fileID: 2338824460951878790}
-  m_RootOrder: 1
+  m_Father: {fileID: 1999424989197581186}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
 --- !u!95 &186990909541019278
 Animator:

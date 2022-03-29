@@ -14,7 +14,6 @@ public class testSkilll : MonoBehaviour
         this.gameObject.GetComponent<Button>().onClick.AddListener(() =>
         {
             testScriptts.Instance.turPos = count;
-            Debug.Log(count);
             testScriptts.Instance.Create();
         });
     }

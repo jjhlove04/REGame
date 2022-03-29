@@ -15,7 +15,6 @@ public class UIAspectPin : MonoBehaviour
 
     public void SetResolution()
     {
-        Debug.Log("SetResolution");
         int setWidth = 1920;
         int setHeight = 1080;
 

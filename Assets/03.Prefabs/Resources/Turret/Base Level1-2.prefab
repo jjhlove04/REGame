@@ -24,15 +24,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24985677075827173}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.02366893, y: 2.348855, z: 0.06377633}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2964282, y: 0.86923707, z: -0.10847445}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 2900844109650869373}
   - {fileID: 3206997276910501681}
   - {fileID: 8597621846443164330}
-  m_Father: {fileID: 7855253160385135560}
-  m_RootOrder: 2
+  m_Father: {fileID: 3705014321243661217}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &2026520890297780356
 Animator:
@@ -167,6 +167,7 @@ Transform:
   - {fileID: 8904465822124647261}
   - {fileID: 1436107441357834158}
   - {fileID: 5143619261082775938}
+  - {fileID: 1101311761759579004}
   m_Father: {fileID: 7855253160385135560}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -251,7 +252,6 @@ Transform:
   m_Children:
   - {fileID: 3664648417032313796}
   - {fileID: 3705014321243661217}
-  - {fileID: 1101311761759579004}
   - {fileID: 3258606377235257224}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -285,8 +285,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPos: {fileID: 8597621846443164330}
   bullet: {fileID: 1698648575761504, guid: 830dd76fd3a90954d9c9b6e39c51cf3d, type: 3}
+  weapons:
+  - {fileID: 24985677075827173}
+  neck: {fileID: 270472148173492090}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
   shootTimerMax: 1
   maxDistance: 80
   lookForTargetTimerMax: 0.2
@@ -626,7 +631,7 @@ Transform:
   m_Children:
   - {fileID: 5347031784455370125}
   m_Father: {fileID: 7855253160385135560}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90.736, z: 0}
 --- !u!1 &5049805634150557988
 GameObject:

@@ -234,7 +234,7 @@ Transform:
   - {fileID: 7896075749186917233}
   - {fileID: 2098084448188081107}
   m_Father: {fileID: 3566936972097391958}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
 --- !u!95 &4883614767277603293
 Animator:
@@ -368,8 +368,9 @@ Transform:
   - {fileID: 3888441174299016787}
   - {fileID: 8628361764632061359}
   - {fileID: 4679705860851198851}
+  - {fileID: 4982828592121272612}
   m_Father: {fileID: 3566936972097391958}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8182503546431809158
 Animator:
@@ -560,7 +561,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4982828592121272612}
   - {fileID: 5379493719767117118}
   - {fileID: 2951599014363618372}
   m_Father: {fileID: 0}
@@ -595,8 +595,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnPos: {fileID: 5851098554880748485}
   bullet: {fileID: 1018882707796302, guid: 8959801fbf21366469af1e2d0fd4d693, type: 3}
+  weapons:
+  - {fileID: 8762353075460537322}
+  neck: {fileID: 4539649382789366771}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
   shootTimerMax: 1
   maxDistance: 80
   lookForTargetTimerMax: 0.2
@@ -687,16 +692,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8762353075460537322}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2463080711927168777}
   - {fileID: 5512389006912863913}
   - {fileID: 5851098554880748485}
-  m_Father: {fileID: 3566936972097391958}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_Father: {fileID: 5379493719767117118}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8841539574446747377
 Animator:
   serializedVersion: 3

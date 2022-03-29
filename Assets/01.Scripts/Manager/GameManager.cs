@@ -55,10 +55,6 @@ public class GameManager : MonoBehaviour
         if (state == State.Play)
         {
             Time.timeScale = gameSpeed;
-            if (TrainScript.instance.curTrainHp <= 0)
-            {
-                state = State.End;
-            }
         }
 
     }

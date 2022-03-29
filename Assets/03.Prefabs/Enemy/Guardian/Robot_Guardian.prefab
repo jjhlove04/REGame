@@ -47,8 +47,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 0.5
+  m_Radius: 0.6
+  m_Height: 0.6
   m_Direction: 1
   m_Center: {x: 0, y: 1.1744165, z: -0.028170496}
 --- !u!54 &739129030962894347
@@ -114,7 +114,9 @@ MonoBehaviour:
   minDistance: 13
   maxDistance: 20
   waist: {fileID: 0}
+  run: 0
   damage: 1
+  isDying: 0
   sAttackTime: 0.25
   animTime: 0.25
 --- !u!114 &6669018693288074851
@@ -262,7 +264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6570994010745710720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 2.3}
+  m_LocalPosition: {x: 0, y: 1.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9003302577244937269}
@@ -280,7 +282,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 3}
+  m_Center: {x: 0, y: 0, z: 5.3}
 --- !u!1001 &1108724891163521448
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ public class ProjectileMover : MonoBehaviour
     void FixedUpdate ()
     {
         Vector3 moveDir;
-        if (targetEnemy != null)
+        if (targetEnemy != null && !targetEnemy.GetComponent<Enemy>().isDying)
         {
             moveDir = (targetEnemy.transform.position - transform.position).normalized;
             lastMoveDir = moveDir;
@@ -59,7 +59,6 @@ public class ProjectileMover : MonoBehaviour
         // 이동
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
-
         //회전값 적용
         transform.LookAt(targetEnemy);
     }
@@ -71,7 +70,7 @@ public class ProjectileMover : MonoBehaviour
 
     }
 
-    public void Create(Transform enemy, int damge)
+    public void Create(Transform enemy, int damage)
     {
         SetTarget(enemy);
         Damage(damage);
@@ -92,18 +91,13 @@ public class ProjectileMover : MonoBehaviour
         if (other.tag == "Enemy")
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            speed = 0;
 
-            ContactPoint contact = other.GetComponent<Collision>().contacts[0];
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-            Vector3 pos = contact.point + contact.normal * hitOffset;
+            other.GetComponent<HealthSystem>().Damage(damage);
 
             if (hit != null)
             {
-                var hitInstance = Instantiate(hit, pos, rot);
-                if (UseFirePointRotation) { hitInstance.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
-                else if (rotationOffset != Vector3.zero) { hitInstance.transform.rotation = Quaternion.Euler(rotationOffset); }
-                else { hitInstance.transform.LookAt(contact.point + contact.normal); }
+                var hitInstance = Instantiate(hit);
+                hitInstance.transform.position = transform.position + new Vector3(2,0,0);
 
                 var hitPs = hitInstance.GetComponent<ParticleSystem>();
                 if (hitPs != null)
@@ -123,8 +117,7 @@ public class ProjectileMover : MonoBehaviour
                     detachedPrefab.transform.parent = null;
                 }
             }
-            Destroy(gameObject);
-            other.GetComponent<HealthSystem>().Damage(damage);
+            gameObject.SetActive(false);
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }
     }
