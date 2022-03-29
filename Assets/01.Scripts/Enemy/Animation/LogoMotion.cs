@@ -19,7 +19,8 @@ public class LogoMotion : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //animator.transform.root.GetComponent<TestEnemy>().EnemyDied();
+        Debug.Log(animator);
+        animator.transform.root.GetComponent<Enemy>().EnemyDied();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

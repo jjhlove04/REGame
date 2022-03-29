@@ -5,26 +5,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TestSkillTree : MonoBehaviour
-{
+{   
     public List<GameObject> canUpgrade = new List<GameObject>();
 
-
+    //skill버튼 첫번쨰
     public void SkillTree(string nextGameObj)
     {
         canUpgrade.Add(Resources.Load<GameObject>("Turret/" + nextGameObj));
     }
-
-    public void DisableSkillLine(Button btn)
+    //skill버튼 두번쨰
+    public void DisableSkillLine(Button btn/*자기 자신*/)
     {
         btn.interactable = false;
         btn.GetComponent<Image>().color = Color.red;
     }
 
+    //clear버튼
     public void SkillTreeClear()
     {
         canUpgrade.Clear();
     }
 
+    //apply버튼
     public void postData(int num)
     {
         switch (num)
