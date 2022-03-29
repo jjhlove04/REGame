@@ -94,8 +94,8 @@ public class InGameUI : MonoBehaviour
     {
         if (index == -1)
         {
-            bpTop.DOAnchorPosY(300, 1.5f).SetEase(Ease.OutQuart);
-            bpBot.DOAnchorPosY(-300, 1.5f).SetEase(Ease.OutQuart);
+            bpTop.DOAnchorPosY(300, 1f).SetEase(Ease.OutQuart).SetDelay(1.5f);
+            bpBot.DOAnchorPosY(-300, 1f).SetEase(Ease.OutQuart).SetDelay(1.5f);
             
 
         }
