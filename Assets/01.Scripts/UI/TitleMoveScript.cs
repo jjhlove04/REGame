@@ -19,13 +19,17 @@ public class TitleMoveScript : MonoBehaviour
     [SerializeField] private GameObject btnGroup;
     [SerializeField] private RectTransform btnGroupRect;
     [SerializeField] private GameObject backBtn;
+    [SerializeField] private Button repairBtn;
     [SerializeField] private GameObject resultPanel;
+    private RectTransform resultPanelRect;
 
     int indexNum = 0;
     
     private void Awake() 
     {
+        repairBtn = repairBtn.GetComponent<Button>();
         btnGroupRect = btnGroup.GetComponent<RectTransform>();
+        resultPanelRect = resultPanel.GetComponent<RectTransform>();
         //시작버튼
         titleActionBtn[0].onClick.AddListener(() => {
             timelines[0].Play();
@@ -83,9 +87,18 @@ public class TitleMoveScript : MonoBehaviour
             BtnSlide(2);
         }); 
 
+        //수리버튼 눌렀을때
+        repairBtn.onClick.AddListener(()=>
+        {
+            btnGroup.SetActive(true);
+            resultPanelRect.DOAnchorPosX(1742, 0.8f);
+            btnGroupRect.DOAnchorPosX(70, 0.5f);
+        });
+
         if(InGameUI.sceneIndex == 1)
        {
            btnGroup.SetActive(false);
+           btnGroupRect.DOAnchorPosX(-600, 0.1f);
            resultPanel.SetActive(true);
        }
        if(InGameUI.sceneIndex == 0)
@@ -93,6 +106,7 @@ public class TitleMoveScript : MonoBehaviour
            btnGroup.SetActive(true);
            resultPanel.SetActive(false);
        }
+       
         
     }
 
