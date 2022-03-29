@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6189352309219258571}
   - component: {fileID: -3272683501623023552}
+  - component: {fileID: -8120067813884574611}
   m_Layer: 0
   m_Name: Base Level3-4
   m_TagString: Untagged
@@ -61,6 +62,18 @@ MonoBehaviour:
   damage: 10
   upgradeCost: 0
   curBulletAmount: 30
+--- !u!114 &-8120067813884574611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559194191106486792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4220eb16f44bb1844a465a745d6ca627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2313212701350880932
 GameObject:
   m_ObjectHideFlags: 0

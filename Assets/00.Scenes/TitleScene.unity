@@ -32862,6 +32862,14 @@ PrefabInstance:
       value: Base Level1-2
       objectReference: {fileID: 0}
     - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1203757081}
@@ -32869,6 +32877,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1203757081}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SkillTree
@@ -32878,8 +32894,24 @@ PrefabInstance:
       value: DisableSkillLine
       objectReference: {fileID: 0}
     - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: TestSkillTree, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Base Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 557847293637309389, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 557847293654503391, guid: 2dd45f7250914fa4daa5f40bf68c9383, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -33,6 +33,10 @@ public class InGameUI : MonoBehaviour
 
     public Text goldAmounTxt;
     public Text waveTxt;
+
+    [SerializeField]
+    private Button upGradeBtn;
+    public int selectType;
     private void Awake()
     {
         stopPanel.transform.localScale = Vector2.zero;
@@ -47,6 +51,10 @@ public class InGameUI : MonoBehaviour
         upGradePanelBackBtn.onClick.AddListener(() => 
         {
             upGradePanelRect.DOAnchorPosY(780, 1.5f);
+        });
+        upGradeBtn.onClick.AddListener(() =>
+        {
+            TestTurretDataBase.Instance.Upgrade(selectType);
         });
     }
 

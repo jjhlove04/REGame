@@ -31,9 +31,11 @@ public class testScriptts : MonoBehaviour
     private ObjectPool objectPool;
 
     public List<Transform> turretPoses = new List<Transform>();
+    public List<GameObject> turretData = new List<GameObject>();
     public List<GameObject> turretType = new List<GameObject>();
 
     public int turPos = 0;
+    public int turType;
     private void Awake()
     {
         _instance = this;
@@ -94,13 +96,27 @@ public class testScriptts : MonoBehaviour
             gameInst.transform.position = turretPoses[turPos].position;
             gameInst.transform.SetParent(this.gameObject.transform);
             turretPoses[turPos].GetComponent<tesetTurret>().onTurret = true;
+            turretData[turPos] = gameInst;
         } 
         else
         {
             InGameUI._instance.upGradePanelRect.DOAnchorPosY(300, 1.5f);
-            
+            InGameUI._instance.selectType = turType;
         }
 
+    }
+    public void Despawn()
+    {
+        turretData[turPos].SetActive(false);
+    }
+
+    public void ChageMakeTur(GameObject turret)
+    {
+        GameObject gameInst = objectPool.GetObject(turret);
+        gameInst.transform.position = turretPoses[turPos].position;
+        gameInst.transform.SetParent(this.gameObject.transform);
+        Despawn();
+        turretData[turPos] = gameInst;
     }
 
     public void GameEnd()
@@ -110,6 +126,7 @@ public class testScriptts : MonoBehaviour
 
     public void ChangeTur(int num)
     {
+        turType = num;
         GameObject gameObject = turretType[num];
         turret = gameObject;
     }
@@ -118,10 +135,6 @@ public class testScriptts : MonoBehaviour
         speedBtnCount = num;
     }
 
-    public void Despawn()
-    {
-
-    }
     public void TakeDamageHpBar()
     {
         //Time.deltaTime ¿·¿¡ * (TakeDamage) ¸¸Å­ °öÇØÁà¾ßÇÔ. »ý·«µÇ¾î ÀÖÀ½.

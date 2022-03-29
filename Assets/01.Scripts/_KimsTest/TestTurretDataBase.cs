@@ -10,7 +10,6 @@ public class TestTurretDataBase : MonoBehaviour
     {
         get { return instance; }
     }
-
     public List<GameObject> curTurretType = new List<GameObject>();
     public List<GameObject> curTurretType1 = new List<GameObject>();
     public List<GameObject> curTurretType2 = new List<GameObject>();
@@ -28,40 +27,39 @@ public class TestTurretDataBase : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
+
+    private void Start()
+    {
+        
+    }
     public void Upgrade(int typrTur)
     {
+        Debug.Log(typrTur);
         switch (typrTur)
         {
             case 0:
-                testScriptts.Instance.turretType[0] = curTurretType[floor];
-                UpgradeFloor(floor);
+                testScriptts.Instance.ChageMakeTur(curTurretType[floor]);
+                Debug.Log(curTurretType.Count);
+                floor++;
                 break;
             case 1:
-                testScriptts.Instance.turretType[1] = curTurretType[floor1];
-                UpgradeFloor(floor1);
+                testScriptts.Instance.ChageMakeTur(curTurretType1[floor1]);
+                floor1++;
                 break;
             case 2:
-                testScriptts.Instance.turretType[2] = curTurretType[floor2];
-                UpgradeFloor(floor2);
+                testScriptts.Instance.ChageMakeTur(curTurretType2[floor2]);
+                floor2++;
                 break;
             case 3:
-                testScriptts.Instance.turretType[3] = curTurretType[floor3];
-                UpgradeFloor(floor3);
+                testScriptts.Instance.ChageMakeTur(curTurretType3[floor3]);
+                floor3++;
                 break;
             case 4:
-                testScriptts.Instance.turretType[4] = curTurretType[floor4];
-                UpgradeFloor(floor4);
+                testScriptts.Instance.ChageMakeTur(curTurretType4[floor4]);
+                floor4++;
                 break;
             default:
                 break;
-        }
-    }
-
-    public void UpgradeFloor(int floor)
-    {
-        if(floor < curTurretType.Count)
-        {
-            floor++;
         }
     }
 }
