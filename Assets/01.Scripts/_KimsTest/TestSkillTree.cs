@@ -47,19 +47,19 @@ public class TestSkillTree : MonoBehaviour
         switch (num)
         {
             case 0:
-                TestTurretDataBase.Instance.curTurretType = canUpgrade.ToList();
+                TestTurretDataBase.Instance.curTurretType = canUpgrade;
                 break;
             case 1:
-                TestTurretDataBase.Instance.curTurretType1 = canUpgrade.ToList();
+                TestTurretDataBase.Instance.curTurretType1 = canUpgrade;
                 break;
             case 2:
-                TestTurretDataBase.Instance.curTurretType2 = canUpgrade.ToList();
+                TestTurretDataBase.Instance.curTurretType2 = canUpgrade;
                 break;
             case 3:
-                TestTurretDataBase.Instance.curTurretType3 = canUpgrade.ToList();
+                TestTurretDataBase.Instance.curTurretType3 = canUpgrade;
                 break;
             case 4:
-                TestTurretDataBase.Instance.curTurretType4 = canUpgrade.ToList();
+                TestTurretDataBase.Instance.curTurretType4 = canUpgrade;
                 break;
             default:
                 break;

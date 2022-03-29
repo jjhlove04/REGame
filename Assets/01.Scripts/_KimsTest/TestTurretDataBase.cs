@@ -34,29 +34,42 @@ public class TestTurretDataBase : MonoBehaviour
     }
     public void Upgrade(int typrTur)
     {
-        Debug.Log(typrTur);
         switch (typrTur)
         {
             case 0:
                 testScriptts.Instance.ChageMakeTur(curTurretType[floor]);
-                Debug.Log(curTurretType.Count);
-                floor++;
+                if (floor < curTurretType.Count - 1)
+                {
+                    floor++;
+                }
                 break;
             case 1:
                 testScriptts.Instance.ChageMakeTur(curTurretType1[floor1]);
-                floor1++;
+                if (floor1 < curTurretType1.Count - 1)
+                {
+                    floor1++;
+                }
                 break;
             case 2:
                 testScriptts.Instance.ChageMakeTur(curTurretType2[floor2]);
-                floor2++;
+                if (floor2 < curTurretType2.Count - 1)
+                {
+                    floor2++;
+                }
                 break;
             case 3:
                 testScriptts.Instance.ChageMakeTur(curTurretType3[floor3]);
-                floor3++;
+                if (floor3 < curTurretType3.Count - 1)
+                {
+                    floor3++;
+                }
                 break;
             case 4:
                 testScriptts.Instance.ChageMakeTur(curTurretType4[floor4]);
-                floor4++;
+                if (floor4 < curTurretType4.Count - 1)
+                {
+                    floor4++;
+                }
                 break;
             default:
                 break;
