@@ -87,7 +87,7 @@ public class ProjectileMover : MonoBehaviour
         this.damage = damage;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnParticleCollision(GameObject other)
     {
         if (other.tag == "Enemy")
         {
