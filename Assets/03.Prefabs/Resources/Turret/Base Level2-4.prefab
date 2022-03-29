@@ -112,6 +112,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &431855147123520698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5408918004405803961}
+  m_Layer: 0
+  m_Name: BulletPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5408918004405803961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431855147123520698}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: -0.014999809, y: 0.59571457, z: 1.8630003}
+  m_LocalScale: {x: 1.428571, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1751505398315568614}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507887247679789102
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +372,7 @@ Transform:
   - {fileID: 6094963021323554025}
   - {fileID: 1190376910773866755}
   - {fileID: 1028290748582783230}
+  - {fileID: 7268295695733873197}
   m_Father: {fileID: 7166986933884949236}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
@@ -364,6 +395,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2098781616730908682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7268295695733873197}
+  m_Layer: 0
+  m_Name: BulletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7268295695733873197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098781616730908682}
+  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: -0.0109999785, y: 0.6057142, z: 1.8629993}
+  m_LocalScale: {x: 1.4285711, y: -1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2245247831718301187}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2329303564676264760
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +794,7 @@ Transform:
   - {fileID: 6762637212089352538}
   - {fileID: 3713261594938508997}
   - {fileID: 8291915919063622161}
+  - {fileID: 5408918004405803961}
   m_Father: {fileID: 7166986933884949236}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
@@ -1092,6 +1154,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7166986933884949236}
   - component: {fileID: 7166986933884949237}
+  - component: {fileID: 3615414750450215185}
+  - component: {fileID: 6953972162820155128}
   m_Layer: 0
   m_Name: Base Level2-4
   m_TagString: Untagged
@@ -1136,6 +1200,46 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &3615414750450215185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166986933884949130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpawnPos: {fileID: 5408918004405803961}
+  bullet: {fileID: 1569979447995748, guid: e15af77b6d3fbc444a9874eddf8c5c5a, type: 3}
+  shootTimerMax: 1
+  maxDistance: 80
+  lookForTargetTimerMax: 0.2
+  damage: 10
+  upgradeCost: 0
+  curBulletAmount: 30
+--- !u!114 &6953972162820155128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166986933884949130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpawnPos: {fileID: 7268295695733873197}
+  bullet: {fileID: 1569979447995748, guid: e15af77b6d3fbc444a9874eddf8c5c5a, type: 3}
+  shootTimerMax: 1
+  maxDistance: 80
+  lookForTargetTimerMax: 0.2
+  damage: 10
+  upgradeCost: 0
+  curBulletAmount: 30
 --- !u!1 &7221885390863015306
 GameObject:
   m_ObjectHideFlags: 0

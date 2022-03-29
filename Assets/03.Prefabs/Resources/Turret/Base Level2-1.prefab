@@ -118,6 +118,7 @@ Transform:
   - {fileID: 2162658019388426103}
   - {fileID: 5650261324632298424}
   - {fileID: 9068094230037385336}
+  - {fileID: 6521368904220208796}
   m_Father: {fileID: 1860077527970810118}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
@@ -150,6 +151,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1860077527970810118}
   - component: {fileID: 6872020206598876525}
+  - component: {fileID: 6530168834376366003}
+  - component: {fileID: 1096584444788970369}
   m_Layer: 0
   m_Name: Base Level2-1
   m_TagString: Untagged
@@ -193,6 +196,46 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &6530168834376366003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835468239818975249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpawnPos: {fileID: 6521368904220208796}
+  bullet: {fileID: 1519322442116508, guid: e5df3397d7c1ebe42bd0b3830997eb9b, type: 3}
+  shootTimerMax: 1
+  maxDistance: 80
+  lookForTargetTimerMax: 0.2
+  damage: 10
+  upgradeCost: 0
+  curBulletAmount: 30
+--- !u!114 &1096584444788970369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835468239818975249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpawnPos: {fileID: 1623972294175261361}
+  bullet: {fileID: 1519322442116508, guid: e5df3397d7c1ebe42bd0b3830997eb9b, type: 3}
+  shootTimerMax: 1
+  maxDistance: 80
+  lookForTargetTimerMax: 0.2
+  damage: 10
+  upgradeCost: 0
+  curBulletAmount: 30
 --- !u!1 &1207903941217253365
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +533,66 @@ Transform:
   m_Father: {fileID: 7855842630968798198}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4963238942158149815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1623972294175261361}
+  m_Layer: 0
+  m_Name: BulletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1623972294175261361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963238942158149815}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: 0.004000247, y: 0.7057143, z: 2.0840006}
+  m_LocalScale: {x: 1.4285711, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7839464230502830678}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4970585335508632655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6521368904220208796}
+  m_Layer: 0
+  m_Name: BulletPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6521368904220208796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970585335508632655}
+  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: -0.082000084, y: 0.57000005, z: 1.8680005}
+  m_LocalScale: {x: 1.4285711, y: -1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7855842630968798198}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5046223643875430324
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +656,7 @@ Transform:
   - {fileID: 95693641589015901}
   - {fileID: 1671229266625748543}
   - {fileID: 7198621709346277675}
+  - {fileID: 1623972294175261361}
   m_Father: {fileID: 1860077527970810118}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}

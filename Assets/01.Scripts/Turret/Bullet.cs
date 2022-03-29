@@ -19,13 +19,11 @@ public class Bullet : MonoBehaviour
         bulletProjectile.Damage(damage);
 
         return bulletProjectile;
-
     }
 
 
     private Transform targetEnemy;
     private Vector3 lastMoveDir;
-    private float timeToDie = 2f;
     private int damage;
 
 
@@ -49,13 +47,6 @@ public class Bullet : MonoBehaviour
 
         //회전값 적용
         transform.LookAt(targetEnemy);
-
-        // 타이머 처리
-        timeToDie -= Time.deltaTime;
-        if (timeToDie < 0f)
-        {
-            gameObject.SetActive(false);
-        }
     }
 
     void SetTarget(Transform enemy)

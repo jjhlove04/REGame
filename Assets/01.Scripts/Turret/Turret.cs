@@ -14,6 +14,9 @@ public class Turret : MonoBehaviour
     [SerializeField]
     private Transform BulletSpawnPos;
 
+    [SerializeField]
+    private GameObject bullet = null;
+
 
     protected virtual void HandleTargeting(float lookForTargetTimerMax, float maxDistance, out Transform targetEnemy)
     {
@@ -37,7 +40,7 @@ public class Turret : MonoBehaviour
             shootTimer += shootTimerMax;
             if (targetEnemy != null && targetEnemy.gameObject.activeSelf != false)
             {
-                Bullet.Create(BulletSpawnPos.position, targetEnemy, damage);
+                Instantiate(bullet, BulletSpawnPos).GetComponent<ProjectileMover>().Create(targetEnemy, damage);
             }
         }
     }

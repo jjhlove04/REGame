@@ -5,16 +5,16 @@ using System;
 
 public class TurretShooting : Turret
 {
-    [SerializeField]
-    private Transform firePosition;
-    [SerializeField]
-    private float bulletLineEffectTime = 0.03f;
+    //[SerializeField]
+    //private Transform firePosition;
+    //[SerializeField]
+    //private float bulletLineEffectTime = 0.03f;
 
 
     [SerializeField]
     private float shootTimerMax;
 
-    private float curshootTimer;
+    //private float curshootTimer;
 
     [SerializeField]
     private float maxDistance;
@@ -27,8 +27,8 @@ public class TurretShooting : Turret
 
     private Transform targetEnemychil;
 
-    [SerializeField]
-    private bool onPlayer = false;
+    //[SerializeField]
+    //private bool onPlayer = false;
 
     public int upgradeCost;
 
@@ -37,14 +37,14 @@ public class TurretShooting : Turret
 
     private void Start()
     {
-        curshootTimer = shootTimerMax;
+        //curshootTimer = shootTimerMax;
     }
 
     void Update()
     {
         HandleShooting(shootTimerMax, damage);
         HandleTargeting(lookForTargetTimerMax, maxDistance, out targetEnemychil);
-        Shot();
+        //Shot();
 
     }
 
@@ -57,7 +57,7 @@ public class TurretShooting : Turret
         base.HandleShooting(shootTimerMax, damage);
     }
 
-    private void Shot()
+    /*private void Shot()
     {
         if (curshootTimer >= 0)
         {
@@ -84,7 +84,7 @@ public class TurretShooting : Turret
             //StartCoroutine(ShotEffect(hitPosition));
 
         }
-    }
+    }*/
 
     //private IEnumerator ShotEffect(Vector3 hitPosition)
     //{
