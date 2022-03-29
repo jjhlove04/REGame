@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4327961689726464}
   - component: {fileID: 198535436158989410}
   - component: {fileID: 199376967125339144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4886,7 +4886,7 @@ GameObject:
   - component: {fileID: 4211770930619454}
   - component: {fileID: 198980188646035670}
   - component: {fileID: 199140663762227484}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9762,7 +9762,7 @@ GameObject:
   - component: {fileID: 198615336915444328}
   - component: {fileID: 114065034091756020}
   - component: {fileID: 199583846568206714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14604,9 +14604,9 @@ GameObject:
   - component: {fileID: 108538890786167332}
   - component: {fileID: 54921219820361980}
   - component: {fileID: 135890836330974772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StrongProjectile 15
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18264,7 +18264,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -19578,8 +19578,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762457832057232}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}

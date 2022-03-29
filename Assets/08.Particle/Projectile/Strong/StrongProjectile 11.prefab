@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 108279450946548908}
   - component: {fileID: 54665894168347824}
   - component: {fileID: 135617212048905136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StrongProjectile 11
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3674,7 +3674,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -4987,10 +4987,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204016312707044}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1754586803641426
 GameObject:
@@ -5003,7 +5003,7 @@ GameObject:
   - component: {fileID: 4272784787826670}
   - component: {fileID: 198468648650203034}
   - component: {fileID: 199385691493173370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9829,7 +9829,7 @@ GameObject:
   - component: {fileID: 198993377638096586}
   - component: {fileID: 114327962048842084}
   - component: {fileID: 199021857233684606}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14667,7 +14667,7 @@ GameObject:
   - component: {fileID: 3443752966842104629}
   - component: {fileID: 5362705056067558065}
   - component: {fileID: 1473141425841454202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19493,7 +19493,7 @@ GameObject:
   - component: {fileID: 6266347275995562836}
   - component: {fileID: 3073442204876987471}
   - component: {fileID: 2971213738179055671}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bubbles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -40,7 +40,9 @@ public class Turret : MonoBehaviour
             shootTimer += shootTimerMax;
             if (targetEnemy != null && targetEnemy.gameObject.activeSelf != false)
             {
-                Instantiate(bullet, BulletSpawnPos).GetComponent<ProjectileMover>().Create(targetEnemy, damage);
+                GameObject gameObject = Instantiate(bullet);
+                gameObject.transform.position = BulletSpawnPos.position;
+                gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
             }
         }
     }

@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 54953225180484114}
   - component: {fileID: 135567518640564876}
   - component: {fileID: 114065039287725156}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StrongProjectile 23
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3695,7 +3695,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -5009,10 +5009,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047741547062842}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114065039287725156
 MonoBehaviour:
@@ -5037,7 +5037,7 @@ GameObject:
   - component: {fileID: 4702282410706314}
   - component: {fileID: 198849190835321302}
   - component: {fileID: 199745842046434202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9913,7 +9913,7 @@ GameObject:
   - component: {fileID: 198488797301884742}
   - component: {fileID: 199140273679472108}
   - component: {fileID: 114142020104582556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14751,7 +14751,7 @@ GameObject:
   - component: {fileID: 4051456160791628}
   - component: {fileID: 198085877717476928}
   - component: {fileID: 199481876126283556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19626,7 +19626,7 @@ GameObject:
   - component: {fileID: 4655542008584570}
   - component: {fileID: 198875310950276182}
   - component: {fileID: 199858921527799788}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rim
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4621329186527994}
   - component: {fileID: 198741877215741616}
   - component: {fileID: 199486298604746758}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spiral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4944,7 +4944,7 @@ GameObject:
   - component: {fileID: 4219989313957308}
   - component: {fileID: 198350922855048194}
   - component: {fileID: 199588092980158680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9824,7 +9824,7 @@ GameObject:
   - component: {fileID: 4424798454221260}
   - component: {fileID: 198539147046286758}
   - component: {fileID: 199691814781739082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Darkness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14645,7 +14645,7 @@ GameObject:
   - component: {fileID: 4459804747225038}
   - component: {fileID: 198107866682351550}
   - component: {fileID: 199409316376825634}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SideAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19538,7 +19538,7 @@ GameObject:
   - component: {fileID: 4441575915630564}
   - component: {fileID: 198271405244063478}
   - component: {fileID: 199874086736191684}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CenterAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24435,9 +24435,9 @@ GameObject:
   - component: {fileID: 54506116816268022}
   - component: {fileID: 135178183695366598}
   - component: {fileID: 108625486811999762}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StrongProjectile 21
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28097,7 +28097,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -29348,10 +29348,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980571578861810}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108625486811999762
 Light:

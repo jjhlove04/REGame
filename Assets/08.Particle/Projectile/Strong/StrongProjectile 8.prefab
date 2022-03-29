@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 108445672794197852}
   - component: {fileID: 54966962217690858}
   - component: {fileID: 135786414431410116}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StrongProjectile 8
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3676,7 +3676,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -4989,10 +4989,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128728136785006}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1197552173361330
 GameObject:
@@ -5006,7 +5006,7 @@ GameObject:
   - component: {fileID: 198518836926748252}
   - component: {fileID: 114350767316425528}
   - component: {fileID: 199521921230696920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Splash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9836,7 +9836,7 @@ GameObject:
   - component: {fileID: 4240465620660220}
   - component: {fileID: 198089175232673952}
   - component: {fileID: 199210428818871524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14710,7 +14710,7 @@ GameObject:
   - component: {fileID: 4990306732473442}
   - component: {fileID: 198234933476325144}
   - component: {fileID: 199375778162501098}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19526,7 +19526,7 @@ GameObject:
   - component: {fileID: 4963464717961012}
   - component: {fileID: 198290293610539364}
   - component: {fileID: 199799540852237024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24360,7 +24360,7 @@ GameObject:
   - component: {fileID: 4634278251622126}
   - component: {fileID: 198313319477106990}
   - component: {fileID: 199733371228064804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spiral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29176,7 +29176,7 @@ GameObject:
   - component: {fileID: 7359927810111554786}
   - component: {fileID: 400819566517796592}
   - component: {fileID: 5923163682515944332}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Black (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 198971832761314498}
   - component: {fileID: 114822264086722722}
   - component: {fileID: 199265274957548016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4850,7 +4850,7 @@ GameObject:
   - component: {fileID: 4880521554087078}
   - component: {fileID: 198972288435834998}
   - component: {fileID: 199118803832768436}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9734,7 +9734,7 @@ GameObject:
   - component: {fileID: 4831499067876256}
   - component: {fileID: 198791489903056928}
   - component: {fileID: 199425093718077730}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14555,9 +14555,9 @@ GameObject:
   - component: {fileID: 108558352681175776}
   - component: {fileID: 54729807578932012}
   - component: {fileID: 135951470721667518}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StrongProjectile 4
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18234,7 +18234,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -19548,10 +19548,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449260960837898}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1450556779679700
 GameObject:
@@ -19564,7 +19564,7 @@ GameObject:
   - component: {fileID: 4473626720661134}
   - component: {fileID: 198193361827360536}
   - component: {fileID: 199946171430480246}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Conus
   m_TagString: Untagged
   m_Icon: {fileID: 0}

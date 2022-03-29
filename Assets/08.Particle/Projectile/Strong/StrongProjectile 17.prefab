@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 108270398590740674}
   - component: {fileID: 54997735773319930}
   - component: {fileID: 135307989530499592}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StrongProjectile 17
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3673,7 +3673,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -4986,10 +4986,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162549101967096}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1691057967600586
 GameObject:
@@ -5002,7 +5002,7 @@ GameObject:
   - component: {fileID: 4937464707622018}
   - component: {fileID: 198201053788868498}
   - component: {fileID: 199315544735424468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9828,7 +9828,7 @@ GameObject:
   - component: {fileID: 198507400043038998}
   - component: {fileID: 114320419327585434}
   - component: {fileID: 199854269442691580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14669,7 +14669,7 @@ GameObject:
   - component: {fileID: 3128557665737937083}
   - component: {fileID: 5533099515603474404}
   - component: {fileID: 7173667480948936466}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19507,7 +19507,7 @@ GameObject:
   - component: {fileID: 1203641882324326638}
   - component: {fileID: 4480195216771590110}
   - component: {fileID: 3862256519145668002}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
