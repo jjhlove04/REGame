@@ -64,7 +64,7 @@ public class TrainScript : MonoBehaviour
     public void Damage(float damage)
     {
         curTrainHp -= damage;
-        UIManager.UI.TakeDamageHpBar();
+        testScriptts.Instance.TakeDamageHpBar();
 
         if (curTrainHp <= 0)
         {

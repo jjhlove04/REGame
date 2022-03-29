@@ -17,6 +17,8 @@ public class testScriptts : MonoBehaviour
 
     private int speedBtnCount;
 
+    public Slider hpBar;
+
     //public Button NextWaveBtn;
     [SerializeField]
     private float gameTime;
@@ -44,6 +46,11 @@ public class testScriptts : MonoBehaviour
 
         //gameEndBtn.onClick.AddListener(GameEnd);
         //reloadBtn.onClick.AddListener(turretPoses[turPos].GetComponent<tesetTurret>().Reload);
+
+        //hp바 세
+        hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
+        //speedBtn.onClick.AddListener(ChangeSpeed);
+        hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
     }
 
     // Update is called once per frame
@@ -112,5 +119,10 @@ public class testScriptts : MonoBehaviour
     public void Despawn()
     {
 
+    }
+    public void TakeDamageHpBar()
+    {
+        //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
+        hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
     }
 }

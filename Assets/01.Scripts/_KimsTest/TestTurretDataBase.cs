@@ -19,8 +19,14 @@ public class TestTurretDataBase : MonoBehaviour
     public int floor, floor1, floor2, floor3, floor4;
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if(instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
     public void Upgrade(int typrTur)
     {
