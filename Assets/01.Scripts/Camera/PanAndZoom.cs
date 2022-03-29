@@ -22,7 +22,7 @@ public class PanAndZoom : MonoBehaviour
     private float targetorthographicSize;
 
     const float minOrthographicSize = 40;
-    const float maxOrthographicSize = 110;
+    const float maxOrthographicSize = 185f;
 
 
 

@@ -12,7 +12,7 @@ public class BackGround : MonoBehaviour
 
     private void Start()
     {
-        size = transform.GetChild(0).localScale.z;
+        size =  200;
     }
 
 
