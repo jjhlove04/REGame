@@ -23,7 +23,7 @@ public class TitleMoveScript : MonoBehaviour
     [SerializeField] private GameObject resultPanel;
     private RectTransform resultPanelRect;
 
-    int indexNum = 0;
+    public static int indexNum = 0;
     
     private void Awake() 
     {
@@ -74,17 +74,36 @@ public class TitleMoveScript : MonoBehaviour
             if(indexNum == 1)
             {
                 timelines[1].Play();
+                BtnSlide(2);
             }
             if(indexNum == 2)
             {
+                for(int i = 0; i < 3; i++){
+                TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
+                }
+                
                 timelines[3].Play();
+                BtnSlide(2);
             }
             if(indexNum == 3)
             {
                 timelines[5].Play();
                BtnSlide(3);
             }
-            BtnSlide(2);
+            //업그레이드 화면에서 나가기
+            if(indexNum == 4)
+            {
+                for(int i = 0; i < 3; i++)
+                {
+                    TitleUI.UI.upGradePanels[i].SetActive(false);
+                    TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
+                }
+                indexNum = 2;
+                
+            } 
+            
+            
+            
         }); 
 
         //수리버튼 눌렀을때

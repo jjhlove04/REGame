@@ -12,13 +12,18 @@ public class TitleUI : MonoBehaviour
     public static TitleUI UI { get { return _ui; } }
 
     public Button[] buyBtns; 
-   //public RectTransform trs_cursor;
+
+    [Header("업그레이드 관련")]
+    [SerializeField] public Button[] upGradeBtns; //0번 터렛, 1번 기차, 2번 타워
+    [SerializeField] public GameObject[] upGradePanels; //0번 터렛, 1번 기차, 2번 타워
+   
     
     public Button startBtn;
     
 
     private void Awake()
     {
+
         DontDestroyOnLoad(this.gameObject);
 
         _ui = this;
@@ -28,6 +33,18 @@ public class TitleUI : MonoBehaviour
        }
        startBtn.onClick.AddListener(() => {
         LoadingSceneUI.LoadScene("Main");
+       });
+       upGradeBtns[0].onClick.AddListener(()=> 
+       {
+           RemoveBtn();
+           upGradePanels[0].SetActive(true);
+           TitleMoveScript.indexNum = 4;
+       });
+       upGradeBtns[2].onClick.AddListener(()=>
+       {
+           RemoveBtn();
+           upGradePanels[2].SetActive(true);
+           TitleMoveScript.indexNum = 4;
        });
 
        
@@ -51,7 +68,14 @@ public class TitleUI : MonoBehaviour
     
     
     //패널 오픈 함수
-    
+    public void RemoveBtn()
+    {
+        for(int i = 0; i < 3; i++)
+           {
+            upGradeBtns[i].gameObject.SetActive(false);
+
+           }
+    }
 
     private void Update_MousePosition()
     {
