@@ -15,6 +15,13 @@ public class TestTurretDataBase : MonoBehaviour
     public List<GameObject> curTurretType2 = new List<GameObject>();
     public List<GameObject> curTurretType3 = new List<GameObject>();
     public List<GameObject> curTurretType4 = new List<GameObject>();
+
+    public List<bool> btnBool = new List<bool>();
+    public List<bool> btnBool1 = new List<bool>();
+    public List<bool> btnBool2 = new List<bool>();
+    public List<bool> btnBool3 = new List<bool>();
+    public List<bool> btnBool4 = new List<bool>();
+
     public int floor, floor1, floor2, floor3, floor4;
     private void Awake()
     {

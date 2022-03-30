@@ -8,6 +8,8 @@ public class TestSkillTree : MonoBehaviour
 {   
     public List<GameObject> canUpgrade = new List<GameObject>();
 
+    public List<bool> btnList = new List<bool>();
+
     private void Start()
     {
         if (canUpgrade != null)
@@ -15,32 +17,29 @@ public class TestSkillTree : MonoBehaviour
             Debug.Log("비움");
             canUpgrade.Clear();
         }
+
+        
     }
     //skill버튼 첫번쨰
     public void SkillTree(string nextGameObj)
     {
         canUpgrade.Add(Resources.Load<GameObject>("Turret/" + nextGameObj));
     }
-    //skill버튼 두번쨰
-    public void DisableSkillLine(Button btn/*자기 자신*/)
-    {
-        btn.interactable = false;
-        btn.GetComponent<Image>().color = Color.red;
-    }
+
 
     //clear버튼
     public void SkillTreeClear()
     {
         if (canUpgrade.Count >= 1)
         {
-            Button[] btn = FindObjectsOfType<Button>();
+            SkillTreeBtn[] btn = FindObjectsOfType<SkillTreeBtn>();
              
             for (int i = 0; i < btn.Length; i++)
             {
-                btn[i].interactable = true;
-                if (btn[i].GetComponent<Image>())
+                btn[i].GetComponent<Button>().interactable = false;
+                if (btn[i].myCount == 1)
                 {
-                    btn[i].GetComponent<Image>().color = Color.white;
+                    btn[i].GetComponent<Button>().interactable = true;
                 }
             }
 
