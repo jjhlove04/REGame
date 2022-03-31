@@ -91,7 +91,6 @@ public class testScriptts : MonoBehaviour
     {
         if (turretPoses[turPos].GetComponent<tesetTurret>().onTurret != true)
         {
-            Debug.Log(turPos);
             GameObject gameInst = objectPool.GetObject(turret);
             gameInst.transform.position = turretPoses[turPos].position;
             gameInst.transform.SetParent(this.gameObject.transform);
@@ -127,6 +126,7 @@ public class testScriptts : MonoBehaviour
     public void ChangeTur(int num)
     {
         turType = num;
+        InGameUI._instance.selectType = turType;
         GameObject gameObject = turretType[num];
         turret = gameObject;
     }

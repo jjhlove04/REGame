@@ -92,7 +92,7 @@ public class Turret : MonoBehaviour
                 {
                     if (targetEnemy != null)
                     {
-                        Debug.Log(targetEnemy.gameObject.layer+targetEnemy.transform.name);
+                        //Debug.Log(targetEnemy.gameObject.layer+targetEnemy.transform.name);
                         if (targetEnemy.transform.GetComponent<Enemy>().isDying)
                         {
                             targetEnemy = null;
