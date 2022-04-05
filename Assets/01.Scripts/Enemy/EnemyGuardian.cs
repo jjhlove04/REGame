@@ -32,7 +32,6 @@ public class EnemyGuardian : Enemy, IEnemyAttack
         }
     }
 
-
     private void AnimationState(bool value)
     {
         anim.SetBool("IsAttack", value);
@@ -61,13 +60,13 @@ public class EnemyGuardian : Enemy, IEnemyAttack
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Train")
+        if (other.CompareTag("Train"))
         {
             TrainScript.instance.Damage(damage * Time.deltaTime);
             other.GetComponent<TrainHit>()?.Hit();
         }
 
-        else if (other.tag == "Turret")
+        else if (other.CompareTag("Turret"))
         {
             other.GetComponent<HealthSystem>()?.Damage(damage * Time.deltaTime);
         }

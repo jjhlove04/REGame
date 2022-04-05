@@ -17,6 +17,23 @@ public class TrainScript : MonoBehaviour
 
     private bool destroy = false;
 
+    [SerializeField]
+    private float fireDamage;
+
+    [SerializeField]
+    private float drillDamage;
+
+    [SerializeField]
+    private float guardianDamage;
+
+    [SerializeField]
+    private float humanoidDamage;
+
+    [SerializeField]
+    private float roketDamage;
+
+    private TrainHit[] trainhit;
+
     private void Awake()
     {
         instance = this;
@@ -32,6 +49,11 @@ public class TrainScript : MonoBehaviour
         roomHp = maxTrainHp / TrainManager.instance.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
+    }
+
+    private void Start()
+    {
+        trainhit = GetComponentsInChildren<TrainHit>();
     }
 
     private void Update()
@@ -71,6 +93,58 @@ public class TrainScript : MonoBehaviour
             DestroyTrain();
         }
    }
+
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("FireBullet"))
+        {
+            Damage(fireDamage * Time.deltaTime);
+        }
+
+        else if (other.CompareTag("RoketBullet"))
+        {
+            Damage(roketDamage);
+        }
+
+        else if (other.CompareTag("HumanoidRigBullet"))
+        {
+            Damage(humanoidDamage * Time.deltaTime);
+        }
+
+        else
+        {
+            return;
+        }
+
+        for (int i = 0; i < trainhit.Length; i++)
+        {
+            trainhit[i].Hit();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("GuardianBullet"))
+        {
+            Damage(guardianDamage * Time.deltaTime);
+        }
+
+        else if (other.CompareTag("DrillBullet"))
+        {
+            Damage(drillDamage * Time.deltaTime);
+        }
+
+        else
+        {
+            return;
+        }
+
+        for (int i = 0; i < trainhit.Length; i++)
+        {
+            trainhit[i].Hit();
+        }
+    }*/
 
     IEnumerator Destroy()
     {

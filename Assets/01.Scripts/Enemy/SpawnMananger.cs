@@ -33,6 +33,8 @@ public class SpawnMananger : MonoBehaviour
     private void Start()
     {
         curTime = roundCurTime;
+
+        round = 1;
     }
 
     private void Update()

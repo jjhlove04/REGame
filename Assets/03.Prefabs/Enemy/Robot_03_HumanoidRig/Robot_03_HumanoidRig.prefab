@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4314651599337859662}
   m_Layer: 10
   m_Name: Bullet_R
-  m_TagString: Untagged
+  m_TagString: HumanoidRigBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4988,7 +4988,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3527156094378001371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5048,7 +5048,9 @@ MonoBehaviour:
   minDistance: 25
   maxDistance: 30
   waist: {fileID: 1801243030835681930}
+  run: 0
   damage: 8
+  isDying: 0
   sAttackTime: 1
 --- !u!1 &1800106945198865237
 GameObject:
@@ -5064,7 +5066,7 @@ GameObject:
   - component: {fileID: 6734055352162030531}
   m_Layer: 10
   m_Name: Bullet_L
-  m_TagString: Untagged
+  m_TagString: HumanoidRigBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

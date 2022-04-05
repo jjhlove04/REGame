@@ -19,7 +19,7 @@ public class PanAndZoom : MonoBehaviour
 
     //Zoom
     private float orthographicSize;
-    private float targetorthographicSize;
+    public float targetorthographicSize;
 
     const float minOrthographicSize = 40;
     const float maxOrthographicSize = 185f;
@@ -80,7 +80,7 @@ public class PanAndZoom : MonoBehaviour
             cameraTransform.position+new Vector3(direction.x,0,direction.y) * panSpeed,Time.deltaTime);*/
 
         cameraTransform.position=ClampCamera(Vector3.Lerp(cameraTransform.position,
-            cameraTransform.position + new Vector3(direction.x, 0, direction.y) * panSpeed, Time.deltaTime));
+            cameraTransform.position + new Vector3(direction.x, 0, direction.y) * panSpeed, Time.unscaledDeltaTime));
     }
     void HandleZoom()
     {
@@ -89,7 +89,7 @@ public class PanAndZoom : MonoBehaviour
         targetorthographicSize = Mathf.Clamp(targetorthographicSize, minOrthographicSize, maxOrthographicSize);
 
         float zoomSpeed = 10f;
-        orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.deltaTime * zoomSpeed);
+        orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.unscaledDeltaTime * zoomSpeed);
 
         virtualCamera.transform.position = new Vector3(virtualCamera.transform.position.x, orthographicSize, virtualCamera.transform.position.z);
         virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y+5f;

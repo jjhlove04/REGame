@@ -28,21 +28,32 @@ public class Turret : MonoBehaviour
         {
             Vector3 target = this.targetEnemy.position - transform.position;
             Quaternion rot = Quaternion.LookRotation(target);
+
+
+
             for (int i = 0; i < weapons.Length; i++)
             {
-                weapons[i].transform.rotation = Quaternion.Lerp(weapons[i].transform.rotation, rot, Time.deltaTime * 5);
-                weapons[i].transform.localRotation = Quaternion.Euler(new Vector3(weapons[i].transform.rotation.eulerAngles.x, 0, 0));
+                Transform trm = weapons[i].transform;
+
+                trm.rotation = Quaternion.Lerp(trm.rotation, rot, Time.deltaTime * 5);
+                trm.localRotation = Quaternion.Euler(new Vector3(trm.rotation.eulerAngles.x, 0, 0));
             }
 
-            print(neck);
-            neck.transform.rotation = Quaternion.Lerp(neck.transform.rotation, rot, Time.deltaTime * 5);
-            neck.transform.rotation = Quaternion.Euler(new Vector3(0, neck.transform.rotation.eulerAngles.y, 0));
+            Transform neckTrm = neck.transform;
+
+            neckTrm.rotation = Quaternion.Lerp(neckTrm.rotation, rot, Time.deltaTime * 5);
+            neckTrm.rotation = Quaternion.Euler(new Vector3(0, neckTrm.rotation.eulerAngles.y, 0));
 
             //targetEnemy = this.targetEnemy;
         }
 
         else
         {
+            if (targetEnemy != null && targetEnemy.gameObject.GetComponent<Enemy>().isDying)
+            {
+                targetEnemy = null;
+            }
+
             LookForTargets(maxDistance);
         }
 

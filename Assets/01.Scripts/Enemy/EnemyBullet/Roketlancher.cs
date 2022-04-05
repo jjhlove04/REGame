@@ -136,7 +136,7 @@ public class Roketlancher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Train")
+        if (other.CompareTag("Train"))
         {
             TrainScript.instance.Damage(damage);
             other.GetComponent<TrainHit>()?.Hit();
@@ -145,7 +145,7 @@ public class Roketlancher : MonoBehaviour
             CameraManager.Instance.Shake(0.5f, 2f);
         }
 
-        else if (other.tag == "Turret")
+        else if (other.CompareTag("Turret"))
         {
             other.GetComponent<HealthSystem>()?.Damage(damage);
             SpawnParticle();

@@ -37,37 +37,38 @@ public class Enemy : MonoBehaviour
 
     public float sAttackTime;
 
+    protected TrainManager trainManager;
+
 
     protected virtual void OnEnable()
     {
+        trainManager = TrainManager.instance;
+
         distance = Random.Range(minDistance, maxDistance);
         distanceX = Random.Range(distanceX - distanceX * 0.2f, distanceX);
         randomZ = Random.Range(-5, 5);
         isDying = false;
         EnemyTagInit();
+        run = true;
     }
 
     protected virtual void Start()
     {
         enemyAttack = GetComponent<IEnemyAttack>();
         AttackingTime();
-
         damage = damage * (1 / sAttackTime);
     }
     protected virtual void Update()
     {
         if (!isDying)
         {
-            NewTarget();
+            Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
 
-            Vector3 dir = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
-
-            Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ randomZ + TrainManager.instance.trainContainer.Count * 25));
-
-            EnemyIsDistanceX();
+            Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ randomZ + trainManager.trainContainer.Count * 25));
 
             if (run)
             {
+                EnemyIsDistanceX();
                 EnemyTargettingMove();
                 transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
             }
@@ -87,14 +88,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void NewTarget()
-    {
-        if (enemyType >= TrainManager.instance.trainContainer.Count)
-        {
-            enemyType--;
-        }
-    }
-
     protected virtual void EnemyWaistLookForward()
     {
         Quaternion quaternion = Quaternion.identity;
@@ -104,7 +97,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void EnemyGetRandom()
     {
-        enemyType = Random.Range(0, TrainManager.instance.trainContainer.Count);
+        enemyType = Random.Range(0, trainManager.trainContainer.Count);
         transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
@@ -124,7 +117,7 @@ public class Enemy : MonoBehaviour
         {
             if (run)
             {
-                run = !(Vector3.Distance(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position+ new Vector3(0,0, randomZ)) < distance);
+                run = !(Vector3.Distance(transform.position, trainManager.trainContainer[enemyType].transform.position+ new Vector3(0,0, randomZ)) < distance);
                 EnemyLimitMoveX();
             }
         }
@@ -147,16 +140,15 @@ public class Enemy : MonoBehaviour
 
     void EnemyTargettingMove()
     {
-        if (TrainManager.instance.trainContainer[enemyType].transform.position != null)
+        if (trainManager.trainContainer[enemyType].transform.position != null)
         {
-
-            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType].transform.position + new Vector3(0, 0, randomZ),
+            transform.position = Vector3.MoveTowards(transform.position, trainManager.trainContainer[enemyType].transform.position + new Vector3(0, 0, randomZ),
             enemySpeed * Time.deltaTime);
         }
 
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, TrainManager.instance.trainContainer[enemyType - 1].transform.position,
+            transform.position = Vector3.MoveTowards(transform.position, trainManager.trainContainer[enemyType - 1].transform.position,
             enemySpeed * Time.deltaTime);
         }
     }

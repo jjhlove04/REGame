@@ -288,7 +288,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5292206793976661009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +348,9 @@ MonoBehaviour:
   minDistance: 7
   maxDistance: 10
   waist: {fileID: 1521160365377392592}
+  run: 0
   damage: 15
+  isDying: 0
   sAttackTime: 1
   drillAnim: {fileID: 1463234623445430960}
   drillCol: {fileID: 1298730678217742348}
@@ -577,7 +579,7 @@ GameObject:
   - component: {fileID: 5738462624235044825}
   m_Layer: 10
   m_Name: Robot_02_Weapon_01_Low
-  m_TagString: Enemy
+  m_TagString: DrillBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

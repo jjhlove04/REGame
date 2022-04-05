@@ -12,13 +12,13 @@ public class Fire : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if(other.tag == "Train")
+        if(other.CompareTag("Train"))
         {
             TrainScript.instance.Damage(enemyFireAttack.GetDamage() * Time.deltaTime);
             other.GetComponent<TrainHit>()?.Hit();
         }
 
-        else if(other.tag == "Turret")
+        else if(other.CompareTag("Turret"))
         {
             other.GetComponent<HealthSystem>()?.Damage(enemyFireAttack.GetDamage() * Time.deltaTime);
         }

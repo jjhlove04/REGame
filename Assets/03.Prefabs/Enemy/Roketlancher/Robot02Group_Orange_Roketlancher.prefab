@@ -841,7 +841,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &-4919342851118615479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,7 +901,9 @@ MonoBehaviour:
   minDistance: 28
   maxDistance: 35
   waist: {fileID: 1970593138423600}
+  run: 0
   damage: 5
+  isDying: 0
   sAttackTime: 1
   animTime: 1.33333
   pos: {fileID: 7810400568605959108}

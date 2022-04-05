@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,10 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        cinemachineBrain = GetComponent<CinemachineBrain>();
     }
+    private CinemachineBrain cinemachineBrain;
 
     [SerializeField]
     private GameObject topCamera;
@@ -22,16 +26,11 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private GameObject quaterCamera;
 
-    private void Update()
-    {
-
-    }
-
     public void CameraChangeView()
     {
+        cinemachineBrain.m_DefaultBlend.m_Time = 2.5f * Time.timeScale;
         topCamera.SetActive(!topCamera.activeSelf);
         quaterCamera.SetActive(!quaterCamera.activeSelf);
-
     }
 
 

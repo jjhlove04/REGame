@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public int spawnAmount;
+    public float spawnAmount;
+
+    public float amountIncreasion;
+
     private ObjectPool objectPool;
     [SerializeField]
     private GameObject prefab;
@@ -18,26 +21,32 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private bool boss = false;
 
+    SpawnMananger spawnMananger;
+
     private void Start()
     {
+        spawnMananger = SpawnMananger.Instance;
+
         objectPool = FindObjectOfType<ObjectPool>();
 
         if (!boss)
         {
-            SpawnMananger.Instance.spawn += new SpawnMananger.Spawn(SpwanEnemy);
+            spawnMananger.spawn += new SpawnMananger.Spawn(SpwanEnemy);
         }
         else
         {
-            SpawnMananger.Instance.spawn += new SpawnMananger.Spawn(BossSpwanEnemy);
+            spawnMananger.spawn += new SpawnMananger.Spawn(BossSpwanEnemy);
         }
 
     }
 
     private void SpwanEnemy(int s)
     {
-        if(round <= SpawnMananger.Instance.round)
+        int amount = (int)(spawnAmount + (s * amountIncreasion));
+
+        if (round <= s)
         {
-            for (int i = 0; i < spawnAmount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 float randX = Random.Range(-interval, interval);
                 float randY = Random.Range(-interval, interval);
@@ -52,7 +61,7 @@ public class Spawner : MonoBehaviour
     
     private void BossSpwanEnemy(int s)
     {
-        if(round == SpawnMananger.Instance.round)
+        if(round == s)
         {
             for (int i = 0; i < spawnAmount; i++)
             {
