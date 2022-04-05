@@ -13,31 +13,61 @@ public class SkillTreeBtn : MonoBehaviour
     public Button nextLineBtn;
     public GameObject floor;
 
+    TestSkillTree testsk;
+    private void OnEnable()
+    {
+        testsk = FindObjectOfType<TestSkillTree>();
+
+    }
+
     private void Start()
     {
         this.gameObject.GetComponent<Button>().onClick.AddListener(() =>
         {
             if(floor != null)
             {
-                foreach (var item in floor.GetComponentsInChildren<Button>())
+                Button[] str = floor.GetComponentsInChildren<Button>();
+
+                foreach (Button item in str)
                 {
                     item.interactable = false;
                     isUpgrade = false;
                 }
+
+                for (int i = 0; i < str.Length; i++)
+                {
+                    testsk.btnDic[str[i].gameObject.ToString()] = false;
+                }
             }
             this.gameObject.GetComponent<Button>().interactable = false;
             isUpgrade = true;
+
+
+            if (testsk.btnDic[this.gameObject.ToString()] == true)
+            {
+                testsk.btnDic[this.gameObject.ToString()] = false;
+            }
         });
 
-        if (myCount == 1)
+        if (!testsk.btnDic.ContainsKey(this.gameObject.ToString()))
         {
-            this.gameObject.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            this.gameObject.GetComponent<Button>().interactable = false;
+            if (myCount == 1)
+            {
+                this.gameObject.GetComponent<Button>().interactable = true;
+
+                testsk.btnDic.Add(this.gameObject.ToString(), this.gameObject.GetComponent<Button>().interactable);
+            }
+            else
+            {
+                this.gameObject.GetComponent<Button>().interactable = false;
+
+                testsk.btnDic.Add(this.gameObject.ToString(), this.gameObject.GetComponent<Button>().interactable);
+            }
         }
 
+        Debug.Log("µñ¼Å³Ê¸® Áý¾î³ÖÀ½");
+
+        testsk.reDic(this.gameObject);
     }
 
     private void Update()
@@ -50,12 +80,22 @@ public class SkillTreeBtn : MonoBehaviour
             }
 
             nextBtn.interactable = true;
+            if (testsk.btnDic[nextBtn.gameObject.ToString()] == false)
+            {
+                testsk.btnDic[nextBtn.gameObject.ToString()] = true;
+            }
 
             if (nextLineBtn != null)
             {
                 nextLineBtn.interactable = true;
+                if (testsk.btnDic[nextLineBtn.gameObject.ToString()] == false)
+                {
+                    testsk.btnDic[nextLineBtn.gameObject.ToString()] = true;
+                }
             }
             isUpgrade = false;
+
+
         }
     }
 }

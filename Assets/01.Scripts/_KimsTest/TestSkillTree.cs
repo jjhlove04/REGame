@@ -12,15 +12,22 @@ public class TestSkillTree : MonoBehaviour
     public List<GameObject> canUpgrade3 = new List<GameObject>();
     public List<GameObject> canUpgrade4 = new List<GameObject>();
 
-    public List<bool> btnList = new List<bool>();
+    public GameObjectBool btnDic;
 
     private GameObject gameObj;
 
     private TestChangePreset presetChange;
 
+    private void OnEnable()
+    {
+        LoadData();
+    }
+
     private void Start()
     {
         presetChange = GetComponent<TestChangePreset>();
+        btnDic = TestTurretDataBase.Instance.postdic;
+        //StartCoroutine(changedic());
     }
     //skill¹öÆ° Ã¹¹ø¤Š
     public void SkillTree(string nextGameObj)
@@ -50,7 +57,6 @@ public class TestSkillTree : MonoBehaviour
                 break;
         }
     }
-
 
     //clear¹öÆ°
     public void SkillTreeClear(int num)
@@ -92,19 +98,24 @@ public class TestSkillTree : MonoBehaviour
                 break;
         }
 
-
         Button[] btn = presetChange.presetCanvas[num].GetComponentsInChildren<Button>();
         for (int i = 0; i < btn.Length; i++)
         {
             if (btn[i].GetComponent<SkillTreeBtn>())
             {
                 btn[i].interactable = false;
+
+                btnDic[btn[i].gameObject.ToString()] = false;
+
                 if (btn[i].GetComponent<SkillTreeBtn>().myCount == 1)
                 {
                     btn[i].interactable = true;
+                    btnDic[btn[i].gameObject.ToString()] = true;
                 }
             }
+
         }
+
 
     }
 
@@ -131,6 +142,40 @@ public class TestSkillTree : MonoBehaviour
             default:
                 break;
         }
+
     }
 
+    public void LoadData()
+    {
+        canUpgrade = TestTurretDataBase.Instance.curTurretType;
+        canUpgrade1 = TestTurretDataBase.Instance.curTurretType1;
+        canUpgrade2 = TestTurretDataBase.Instance.curTurretType2;
+        canUpgrade3 = TestTurretDataBase.Instance.curTurretType3;
+        canUpgrade4 = TestTurretDataBase.Instance.curTurretType4;
+    }
+
+    public void reDic(GameObject item)
+    {
+
+        if (TestTurretDataBase.Instance.postdic.Keys != null)
+        {
+            //SkillTreeBtn[] brn = FindObjectsOfType<SkillTreeBtn>();
+
+            //for (int i = 0; i < brn.Length; i++)
+            //{
+            //    brn[i].GetComponent<Button>().interactable = TestTurretDataBase.Instance.postdic[];
+            //}
+            
+            item.GetComponent<Button>().interactable = TestTurretDataBase.Instance.postdic[item.ToString()];
+
+            Debug.Log("µñ¼Å³Ê¸® ¹Ù²Þ");
+        }
+    }
+
+    IEnumerator changedic()
+    {
+        yield return new WaitForSeconds(1f);
+        //reDic();
+        StopCoroutine(changedic());
+    }
 }

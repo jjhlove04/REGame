@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[System.Serializable]
+public class GameObjectBool : SerializableDictionary<string, bool> { };
 public class TestTurretDataBase : MonoBehaviour
 {
     private static TestTurretDataBase instance;
@@ -16,11 +19,7 @@ public class TestTurretDataBase : MonoBehaviour
     public List<GameObject> curTurretType3 = new List<GameObject>();
     public List<GameObject> curTurretType4 = new List<GameObject>();
 
-    public List<bool> btnBool = new List<bool>();
-    public List<bool> btnBool1 = new List<bool>();
-    public List<bool> btnBool2 = new List<bool>();
-    public List<bool> btnBool3 = new List<bool>();
-    public List<bool> btnBool4 = new List<bool>();
+    public GameObjectBool postdic = new GameObjectBool();
 
     public int floor, floor1, floor2, floor3, floor4;
     private void Awake()
@@ -33,11 +32,6 @@ public class TestTurretDataBase : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    private void Start()
-    {
-        
     }
     public void Upgrade(int typrTur)
     {
