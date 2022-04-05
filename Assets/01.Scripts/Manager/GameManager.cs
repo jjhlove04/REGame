@@ -30,7 +30,12 @@ public class GameManager : MonoBehaviour
     public int expAmount = 0;
     private void Awake()
     {
-        Application.targetFrameRate = 60;
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        //Application.targetFrameRate = 60;
         instance = this;
     }
 

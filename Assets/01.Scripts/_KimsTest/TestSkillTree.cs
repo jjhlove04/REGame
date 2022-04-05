@@ -21,13 +21,13 @@ public class TestSkillTree : MonoBehaviour
     private void OnEnable()
     {
         LoadData();
+
+        btnDic = TestTurretDataBase.Instance.postdic;
     }
 
     private void Start()
     {
         presetChange = GetComponent<TestChangePreset>();
-        btnDic = TestTurretDataBase.Instance.postdic;
-        //StartCoroutine(changedic());
     }
     //skill¹öÆ° Ã¹¹ø¤Š
     public void SkillTree(string nextGameObj)
@@ -170,12 +170,5 @@ public class TestSkillTree : MonoBehaviour
 
             Debug.Log("µñ¼Å³Ê¸® ¹Ù²Þ");
         }
-    }
-
-    IEnumerator changedic()
-    {
-        yield return new WaitForSeconds(1f);
-        //reDic();
-        StopCoroutine(changedic());
     }
 }
