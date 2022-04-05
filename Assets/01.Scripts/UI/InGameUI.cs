@@ -25,8 +25,11 @@ public class InGameUI : MonoBehaviour
     [HideInInspector] public RectTransform upGradePanelRect;
 
     [SerializeField] private Button upGradePanelBackBtn;
+    [SerializeField] private Button[] applyBtn;
+    [SerializeField] private GameObject[] selectObj;
     int screenHeight = Screen.height;
     int screenWidth = Screen.width;
+    int applybtnIndex = 0;
 
     RectTransform bpTop;
     RectTransform bpBot;
@@ -56,10 +59,33 @@ public class InGameUI : MonoBehaviour
         {
             TestTurretDataBase.Instance.Upgrade(selectType);
         });
+
+        //선택버튼 확인 기능
+        applyBtn[0].onClick.AddListener(() => {
+            ClearSelect();
+            selectObj[0].SetActive(true);
+        });
+        applyBtn[1].onClick.AddListener(() => {
+            ClearSelect();
+            selectObj[1].SetActive(true);
+        });
+        applyBtn[2].onClick.AddListener(() => {
+            ClearSelect();
+            selectObj[2].SetActive(true);
+        });
+        applyBtn[3].onClick.AddListener(() => {
+            ClearSelect();
+            selectObj[3].SetActive(true);
+        });
+        applyBtn[4].onClick.AddListener(() => {
+            ClearSelect();
+            selectObj[4].SetActive(true);
+        });
+        
     }
 
     
-    // Start is called before the first frame update
+    
     void Start()
     {
 
@@ -74,7 +100,7 @@ public class InGameUI : MonoBehaviour
         waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -105,6 +131,15 @@ public class InGameUI : MonoBehaviour
             sceneIndex = 1;
             GameManager.Instance.state = GameManager.State.Ready;
         }
+    }
+
+    public void ClearSelect()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+                selectObj[i].SetActive(false);
+        }
+
     }
 
     public void OpenBluePrint(int index)
