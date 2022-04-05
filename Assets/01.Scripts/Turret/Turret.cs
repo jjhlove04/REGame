@@ -9,8 +9,6 @@ public class Turret : MonoBehaviour
 
     private Transform targetEnemy;
 
-    private float lookForTargetTimer;
-
     [SerializeField]
     private GameObject bullet = null;
 
@@ -24,17 +22,9 @@ public class Turret : MonoBehaviour
     private LayerMask layerMask;
 
 
-    protected virtual void HandleTargeting(float lookForTargetTimerMax, float maxDistance)
+    protected virtual void HandleTargeting(float maxDistance)
     {
-        lookForTargetTimer -= Time.deltaTime;
-
-        if (lookForTargetTimer < 0f)
-        {
-            lookForTargetTimer += lookForTargetTimerMax;
-            LookForTargets(maxDistance);
-        }
-
-        if (this.targetEnemy != null)
+        if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying)
         {
             Vector3 target = this.targetEnemy.position - transform.position;
             Quaternion rot = Quaternion.LookRotation(target);
@@ -44,10 +34,16 @@ public class Turret : MonoBehaviour
                 weapons[i].transform.localRotation = Quaternion.Euler(new Vector3(weapons[i].transform.rotation.eulerAngles.x, 0, 0));
             }
 
+            print(neck);
             neck.transform.rotation = Quaternion.Lerp(neck.transform.rotation, rot, Time.deltaTime * 5);
             neck.transform.rotation = Quaternion.Euler(new Vector3(0, neck.transform.rotation.eulerAngles.y, 0));
 
             //targetEnemy = this.targetEnemy;
+        }
+
+        else
+        {
+            LookForTargets(maxDistance);
         }
 
         /*else
