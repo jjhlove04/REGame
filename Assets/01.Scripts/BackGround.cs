@@ -27,7 +27,7 @@ public class BackGround : MonoBehaviour
 
             for (int i = 0; i < transform.childCount; i++)
             {
-                if (-(size * 1f) >= transform.GetChild(i).position.z)
+                if (-(size * 2f) >= transform.GetChild(i).position.z)
                 {
                     SwapeBackground(transform.GetChild(i));
                 }
@@ -42,6 +42,6 @@ public class BackGround : MonoBehaviour
 
     private void SwapeBackground(Transform transform)
     {
-        transform.position += new Vector3(0, 0, size*2);
+        transform.position += new Vector3(0, 0, size*3f);
     }
 }
