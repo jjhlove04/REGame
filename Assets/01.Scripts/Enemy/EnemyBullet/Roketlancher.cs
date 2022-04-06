@@ -134,23 +134,23 @@ public class Roketlancher : MonoBehaviour
         gameObject.transform.position = pos;
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Train"))
         {
-            TrainScript.instance.Damage(damage);
+            /*TrainScript.instance.Damage(damage);
             SpawnParticle();
+            CameraManager.Instance.Shake(0.5f, 2f);*/
             gameObject.SetActive(false);
-            CameraManager.Instance.Shake(0.5f, 2f);
         }
 
-        else if (other.CompareTag("Turret"))
+        /*else if (other.CompareTag("Turret"))
         {
             other.GetComponent<HealthSystem>()?.Damage(damage);
             SpawnParticle();
             gameObject.SetActive(false);
-        }
-    }*/
+        }*/
+    }
 
     private void SpawnParticle()
     {
