@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        //Application.targetFrameRate = 60;
+        Application.targetFrameRate = 60;
         instance = this;
     }
 

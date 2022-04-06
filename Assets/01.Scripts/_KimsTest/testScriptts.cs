@@ -25,7 +25,8 @@ public class testScriptts : MonoBehaviour
     private float gameTime;
 
     //public Button gameEndBtn;
-   // public Button reloadBtn;
+    public Button reloadBtn;
+    public Slider bulletAmmo;
 
     public GameObject turret;
     private ObjectPool objectPool;
@@ -48,11 +49,15 @@ public class testScriptts : MonoBehaviour
         //NextWaveBtn.onClick.AddListener(NextWave);
 
         //gameEndBtn.onClick.AddListener(GameEnd);
-        //reloadBtn.onClick.AddListener(turretPoses[turPos].GetComponent<tesetTurret>().Reload);
+        reloadBtn.onClick.AddListener(()=>
+        {
+            if (turretPoses[turPos].GetComponent<TurretShooting>())
+            {
+                turretPoses[turPos].GetComponent<TurretShooting>().Reload();
+            }
+        });
 
         //hp¹Ù ¼¼
-        hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
-        //speedBtn.onClick.AddListener(ChangeSpeed);
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
     }
 
@@ -62,6 +67,16 @@ public class testScriptts : MonoBehaviour
         gameTime = Time.time;
         string result = string.Format("{0:0.0}", gameTime);
         ChangeSpeed();
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            NextWave();
+        }
+        
+        if(turretPoses[turPos].GetComponent<TurretShooting>())
+        {
+            bulletAmmo.value = (float)turretPoses[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretPoses[turPos].GetComponent<TurretShooting>().maxBulletAmount;
+        }
     }
     public void ChangeSpeed()
     {
@@ -84,18 +99,33 @@ public class testScriptts : MonoBehaviour
 
     public void NextWave()
     {
-        SpawnMananger.Instance.curTime = SpawnMananger.Instance.roundCurTime;
+        if (SpawnMananger.Instance.round == 0)
+        {
+            SpawnMananger.Instance.stopSpawn = false;
+
+            GameManager.Instance.goldAmount += 30;
+
+        }
+        else
+        {
+            SpawnMananger.Instance.curTime = SpawnMananger.Instance.roundCurTime;
+            GameManager.Instance.goldAmount += (int)(SpawnMananger.Instance.roundCurTime * 0.7f);
+        }
     }
 
     public void Create()
     {
         if (turretPoses[turPos].GetComponent<tesetTurret>().onTurret != true)
         {
-            GameObject gameInst = objectPool.GetObject(turret);
-            gameInst.transform.position = turretPoses[turPos].position;
-            gameInst.transform.SetParent(this.gameObject.transform);
-            turretPoses[turPos].GetComponent<tesetTurret>().onTurret = true;
-            turretData[turPos] = gameInst;
+            if (GameManager.Instance.goldAmount > 10)
+            {
+                GameObject gameInst = objectPool.GetObject(turret);
+                gameInst.transform.position = turretPoses[turPos].position;
+                gameInst.transform.SetParent(this.gameObject.transform);
+                turretPoses[turPos].GetComponent<tesetTurret>().onTurret = true;
+                turretData[turPos] = gameInst;
+                GameManager.Instance.goldAmount -= 10;
+            }
         } 
         else
         {

@@ -32,12 +32,12 @@ public class TurretShooting : Turret
 
     public int upgradeCost;
 
-    private int maxBulletAmount;
-    public int curBulletAmount;
+    public int maxBulletAmount;
 
     private void Start()
     {
         //curshootTimer = shootTimerMax;
+        bulAmount = maxBulletAmount;
     }
 
     void Update()
@@ -45,16 +45,26 @@ public class TurretShooting : Turret
         HandleShooting(shootTimerMax, damage);
         HandleTargeting(maxDistance);
         //Shot();
-
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Reload();
+        }
     }
 
     protected override void HandleTargeting(float maxDistance)
     {
-        base.HandleTargeting( maxDistance);
+        base.HandleTargeting(maxDistance);
     }
     protected override void HandleShooting(float shootTimerMax, int damage)
     {
         base.HandleShooting(shootTimerMax, damage);
+
+        
+    }
+
+    public void Shot()
+    {
+
     }
 
     /*private void Shot()
@@ -95,8 +105,11 @@ public class TurretShooting : Turret
     //    bulletLineRenderer.gameObject.SetActive(false);
     //    muzzleflash.Stop();
     //}
-    private void Reload()
+    public void Reload()
     {
-        curBulletAmount = maxBulletAmount;
+        int result = maxBulletAmount - bulAmount;
+        result *= 2;
+        GameManager.Instance.goldAmount -= result;
+        bulAmount = maxBulletAmount;
     }
 }

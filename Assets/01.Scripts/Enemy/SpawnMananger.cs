@@ -22,7 +22,7 @@ public class SpawnMananger : MonoBehaviour
     public int round;
     public int maxRound;
 
-    private bool stopSpawn = false;
+    public bool stopSpawn = false;
 
     private void Awake()
     {
@@ -33,8 +33,12 @@ public class SpawnMananger : MonoBehaviour
     private void Start()
     {
         curTime = roundCurTime;
+        stopSpawn = true;
+    }
 
-        round = 1;
+    private void FixedUpdate()
+    {
+        
     }
 
     private void Update()

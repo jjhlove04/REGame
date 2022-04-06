@@ -21,6 +21,7 @@ public class Turret : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask;
 
+    public int bulAmount = 10;
 
     protected virtual void HandleTargeting(float maxDistance)
     {
@@ -70,13 +71,14 @@ public class Turret : MonoBehaviour
         if (shootTimer <= 0f)
         {
             shootTimer += shootTimerMax;
-            if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying)
+            if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying && bulAmount > 0)
             {
                 for (int i = 0; i < weapons.Length; i++)
                 {
                     GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
                     gameObject.transform.position = weapons[i].transform.Find("BulletPoint").position;
                     gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
+                    bulAmount--;
                 }
             }
         }

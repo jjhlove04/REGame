@@ -60,6 +60,7 @@ public class InGameUI : MonoBehaviour
             TestTurretDataBase.Instance.Upgrade(selectType);
         });
 
+        
         //선택버튼 확인 기능
         applyBtn[0].onClick.AddListener(() => {
             ClearSelect();
@@ -81,6 +82,7 @@ public class InGameUI : MonoBehaviour
             ClearSelect();
             selectObj[4].SetActive(true);
         });
+        
         
     }
 
@@ -109,7 +111,7 @@ public class InGameUI : MonoBehaviour
             OpenBluePrint(index);
             CameraManager.Instance.CameraChangeView();
         }
-
+        goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
 
         if(Input.GetKeyDown(KeyCode.P))
