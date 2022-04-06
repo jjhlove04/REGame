@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyRoketlancher : Enemy, IEnemyAttack
 {
-    public float animTime;
     private float atime = 5f;
 
     private bool isAttack = false;
@@ -59,12 +58,12 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
 
         anim.SetBool("IsAttack", false);
 
-        animTime += Time.deltaTime;
+        enemyStat.animTime += Time.deltaTime;
 
-        if (animTime >= atime+ sAttackTime)
+        if (enemyStat.animTime >= atime+ enemyStat.sAttackTime)
         {
             anim.SetBool("IsAttack", true);
-            animTime = 0f;
+            enemyStat.animTime = 0f;
         }
     }
 
@@ -80,7 +79,7 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
     private void SpawnBullet()
     {
         GameObject bullet = objPool.GetObject(Resources.Load<GameObject>("Missile"));
-        bullet.GetComponent<Roketlancher>().Create(pos.position, TrainManager.instance.trainContainer[enemyType].transform, damage);
+        bullet.GetComponent<Roketlancher>().Create(pos.position, TrainManager.instance.trainContainer[enemyType].transform, enemyStat.damage);
     }
 
     protected override void EnemyGetRandom()

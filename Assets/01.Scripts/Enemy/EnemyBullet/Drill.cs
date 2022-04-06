@@ -15,7 +15,6 @@ public class Drill : MonoBehaviour
         if (other.CompareTag("Train"))
         {
             TrainScript.instance.Damage(enemyDrill.GetDamage() * Time.deltaTime);
-            other.GetComponent<TrainHit>()?.Hit();
         }
 
         else if (other.CompareTag("Turret"))

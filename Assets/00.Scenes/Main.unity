@@ -861,6 +861,7 @@ PrefabInstance:
     - {fileID: 6939393404365571099, guid: 05bb1df1fb15058419d8b6325e9d1117, type: 3}
     - {fileID: 1396606403865750258, guid: 05bb1df1fb15058419d8b6325e9d1117, type: 3}
     - {fileID: 676412293430645011, guid: 05bb1df1fb15058419d8b6325e9d1117, type: 3}
+    - {fileID: 4062830885267585912, guid: 05bb1df1fb15058419d8b6325e9d1117, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 05bb1df1fb15058419d8b6325e9d1117, type: 3}
 --- !u!4 &62989148 stripped
 Transform:
@@ -9888,6 +9889,7 @@ GameObject:
   - component: {fileID: 1101420634}
   - component: {fileID: 1101420635}
   - component: {fileID: 1101420633}
+  - component: {fileID: 1101420636}
   m_Layer: 6
   m_Name: Train
   m_TagString: Train
@@ -9961,6 +9963,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1101420636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101420631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c87fb262bf2d644896aeff855c26ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
 --- !u!1 &1103096113
 GameObject:
   m_ObjectHideFlags: 0

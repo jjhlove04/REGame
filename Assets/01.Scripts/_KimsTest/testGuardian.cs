@@ -66,7 +66,7 @@ public class testGuardian : TestEnemy, IEnemyAttack
         if (other.tag == "Train")
         {
             TrainScript.instance.Damage(damage * Time.deltaTime);
-            other.GetComponent<TrainHit>()?.Hit();
+            //other.GetComponent<TrainHit>()?.Hit();
         }
 
         else if (other.tag == "Turret")

@@ -56,7 +56,7 @@ public class EnemyHumanoidRig : Enemy, IEnemyAttack
 
     public float GetDamage()
     {
-        return damage;
+        return enemyStat.damage;
     }
 
     public override void PlayDieAnimationTrue()

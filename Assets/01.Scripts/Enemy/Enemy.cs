@@ -5,29 +5,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyData enemyStat;
+
     public Animator anim;
 
     protected int enemyType = 0;
-    [SerializeField]
-    float enemySpeed = 10f;
-
-    [SerializeField]
-    float distanceX = 3;
-
-    [SerializeField]
-    float minDistance, maxDistance;
 
     private float distance;
 
     public GameObject waist = null;
 
-
     private IEnemyAttack enemyAttack;
 
     public bool run;
-
-    [SerializeField]
-    protected float damage;
 
     private float randomZ;
 
@@ -35,17 +25,17 @@ public class Enemy : MonoBehaviour
 
     private float dieSpeed = 20;
 
-    public float sAttackTime;
-
     protected TrainManager trainManager;
+
+    private float distanceX;
 
 
     protected virtual void OnEnable()
     {
         trainManager = TrainManager.instance;
 
-        distance = Random.Range(minDistance, maxDistance);
-        distanceX = Random.Range(distanceX - distanceX * 0.2f, distanceX);
+        distance = Random.Range(enemyStat.minDistance, enemyStat.maxDistance);
+        distanceX = Random.Range(enemyStat.distanceX - enemyStat.distanceX * 0.2f, enemyStat.distanceX);
         randomZ = Random.Range(-5, 5);
         isDying = false;
         EnemyTagInit();
@@ -56,7 +46,7 @@ public class Enemy : MonoBehaviour
     {
         enemyAttack = GetComponent<IEnemyAttack>();
         AttackingTime();
-        damage = damage * (1 / sAttackTime);
+        enemyStat.damage = enemyStat.damage * (1 / enemyStat.sAttackTime);
     }
     protected virtual void Update()
     {
@@ -127,30 +117,13 @@ public class Enemy : MonoBehaviour
 
     void EnemyLimitMoveX()
     {
-        if (transform.position.x < 0)
-        {
-            transform.position = new Vector3(-distanceX, transform.position.y, transform.position.z);
-        }
-
-        else if (transform.position.x > 0)
-        {
-            transform.position = new Vector3(distanceX, transform.position.y, transform.position.z);
-        }
+        transform.position = new Vector3(distanceX, transform.position.y, transform.position.z);
     }
 
     void EnemyTargettingMove()
     {
-        if (trainManager.trainContainer[enemyType].transform.position != null)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, trainManager.trainContainer[enemyType].transform.position + new Vector3(0, 0, randomZ),
-            enemySpeed * Time.deltaTime);
-        }
-
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, trainManager.trainContainer[enemyType - 1].transform.position,
-            enemySpeed * Time.deltaTime);
-        }
+        transform.position = Vector3.MoveTowards(transform.position, trainManager.trainContainer[enemyType].transform.position + new Vector3(0, 0, randomZ),
+        enemyStat.enemySpeed * Time.deltaTime);
     }
 
     public void EnemyDied()
@@ -185,6 +158,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void AttackingTime()
     {
-        anim.SetFloat("AttackTime", (1/sAttackTime));
+        anim.SetFloat("AttackTime", (1/ enemyStat.sAttackTime));
     }
 }

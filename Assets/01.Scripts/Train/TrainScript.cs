@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum EnemyType
+{
+    Fire,
+    Drill,
+    Guardian,
+    HumanoidRig,
+    Roket
+}
+
 public class TrainScript : MonoBehaviour
 {
     public static TrainScript instance { get; private set; }
-
 
     public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
     public float maxTrainHp = 50000;
@@ -32,7 +40,9 @@ public class TrainScript : MonoBehaviour
     [SerializeField]
     private float roketDamage;
 
-    private TrainHit[] trainhit;
+    private TrainHit trainhit;
+
+    Dictionary<EnemyType, EnemyData> dicEnemydata = new Dictionary<EnemyType, EnemyData>();
 
     private void Awake()
     {
@@ -42,6 +52,7 @@ public class TrainScript : MonoBehaviour
 
         TrainManager.instance.curTrainCount = TrainManager.instance.maxTrainCount;
         TrainManager.instance.CreateTrainPrefab();
+        EnemyDataInit();
     }
 
     private void OnEnable()
@@ -53,7 +64,7 @@ public class TrainScript : MonoBehaviour
 
     private void Start()
     {
-        trainhit = GetComponentsInChildren<TrainHit>();
+        trainhit = GetComponentInChildren<TrainHit>();
     }
 
     private void Update()
@@ -63,6 +74,15 @@ public class TrainScript : MonoBehaviour
         {
             TrainManager.instance.KeepOffTrain();
         }
+    }
+
+    private void EnemyDataInit()
+    {
+        dicEnemydata.Add(EnemyType.Fire, Resources.Load<EnemyData>("Fire"));
+        dicEnemydata.Add(EnemyType.Drill, Resources.Load<EnemyData>("Drill"));
+        dicEnemydata.Add(EnemyType.Guardian, Resources.Load<EnemyData>("Guardian"));
+        dicEnemydata.Add(EnemyType.HumanoidRig, Resources.Load<EnemyData>("HumanoidRig"));
+        dicEnemydata.Add(EnemyType.Roket, Resources.Load<EnemyData>("Roket"));
     }
 
     public void DestroyTrain()
@@ -88,28 +108,33 @@ public class TrainScript : MonoBehaviour
         curTrainHp -= damage;
         testScriptts.Instance.TakeDamageHpBar();
 
+        /*for (int i = 0; i < trainhit.Length; i++)
+        {
+            trainhit[i].Hit();
+        }*/
+
         if (curTrainHp <= 0)
         {
             DestroyTrain();
         }
    }
 
-    /*
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("FireBullet"))
         {
-            Damage(fireDamage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.Fire].damage * Time.deltaTime);
         }
 
         else if (other.CompareTag("RoketBullet"))
         {
-            Damage(roketDamage);
+            Damage(dicEnemydata[EnemyType.Roket].damage);
         }
 
         else if (other.CompareTag("HumanoidRigBullet"))
         {
-            Damage(humanoidDamage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.HumanoidRig].damage * Time.deltaTime);
         }
 
         else
@@ -117,22 +142,19 @@ public class TrainScript : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < trainhit.Length; i++)
-        {
-            trainhit[i].Hit();
-        }
+        trainhit.Hit();
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("GuardianBullet"))
         {
-            Damage(guardianDamage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.Guardian].damage * Time.deltaTime);
         }
 
         else if (other.CompareTag("DrillBullet"))
         {
-            Damage(drillDamage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.Drill].damage * Time.deltaTime);
         }
 
         else
@@ -140,11 +162,8 @@ public class TrainScript : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < trainhit.Length; i++)
-        {
-            trainhit[i].Hit();
-        }
-    }*/
+        trainhit.Hit();
+    }
 
     IEnumerator Destroy()
     {

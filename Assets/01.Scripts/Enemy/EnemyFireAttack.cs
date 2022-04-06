@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyFireAttack : Enemy, IEnemyAttack
 {
-    public float animTime;
     private float atime = 5f;
 
     private bool isAttack = false;
@@ -57,19 +56,19 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
 
         anim.SetBool("IsAttack", false);
 
-        animTime += Time.deltaTime;
+        enemyStat.animTime += Time.deltaTime;
 
-        if (animTime >= atime+ sAttackTime)
+        if (enemyStat.animTime >= atime+ enemyStat.sAttackTime)
         {
             anim.SetBool("IsAttack", true);
-            animTime = 0f;
+            enemyStat.animTime = 0f;
         }
     }
 
     private IEnumerator Attacking()
     {
         isAttack = true;
-        yield return new WaitForSeconds(1f*sAttackTime);
+        yield return new WaitForSeconds(1f* enemyStat.sAttackTime);
         isAttack = false;
     }
 
@@ -91,7 +90,7 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
 
     public float GetDamage()
     {
-        return damage;
+        return enemyStat.damage;
     }
 
     public override void PlayDieAnimationTrue()

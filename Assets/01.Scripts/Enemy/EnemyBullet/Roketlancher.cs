@@ -134,12 +134,11 @@ public class Roketlancher : MonoBehaviour
         gameObject.transform.position = pos;
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Train"))
         {
             TrainScript.instance.Damage(damage);
-            other.GetComponent<TrainHit>()?.Hit();
             SpawnParticle();
             gameObject.SetActive(false);
             CameraManager.Instance.Shake(0.5f, 2f);
@@ -151,7 +150,7 @@ public class Roketlancher : MonoBehaviour
             SpawnParticle();
             gameObject.SetActive(false);
         }
-    }
+    }*/
 
     private void SpawnParticle()
     {

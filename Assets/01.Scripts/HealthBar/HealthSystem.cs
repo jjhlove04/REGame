@@ -9,20 +9,20 @@ public class HealthSystem : MonoBehaviour
     public Action OnDamaged;
     public UnityEvent OnDied;
 
-    [SerializeField]
-    private float healthAmountMax;
+    private Enemy enemy;
 
-    [SerializeField]
     private float curHealthAmount;
 
-    private void Awake()
+    private void Start()
     {
-        SetHealthAmountMax(healthAmountMax, true);
+        enemy = GetComponent<Enemy>();
+
         InitHealth();
+        SetHealthAmountMax(enemy.enemyStat.healthAmountMax, true);
         OnDied.AddListener(InitHealth);
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
         IsFullHealth();
     }
@@ -30,7 +30,7 @@ public class HealthSystem : MonoBehaviour
     public void Damage(float damageAmount)
     {
         curHealthAmount -= damageAmount;
-        curHealthAmount = Mathf.Clamp(curHealthAmount, 0, healthAmountMax);
+        curHealthAmount = Mathf.Clamp(curHealthAmount, 0, enemy.enemyStat.healthAmountMax);
         transform.GetChild(0).GetComponentInChildren<EnemyColorChange>()?.Hit();
         OnDamaged?.Invoke();
 
@@ -48,7 +48,7 @@ public class HealthSystem : MonoBehaviour
 
     public bool IsFullHealth()
     {
-        return curHealthAmount == healthAmountMax;
+        return curHealthAmount == enemy.enemyStat.healthAmountMax;
     }
 
     public float GetHealthAmount()
@@ -58,12 +58,13 @@ public class HealthSystem : MonoBehaviour
 
     public float GetHealthAmounetNomalized()
     {
-        return (float)curHealthAmount / healthAmountMax;
+        print(enemy);
+        return (float)curHealthAmount / enemy.enemyStat.healthAmountMax;
     }
 
     public void SetHealthAmountMax(float hpAmountMax, bool updateHpAmount)
     {
-        this.healthAmountMax = hpAmountMax;
+        this.enemy.enemyStat.healthAmountMax = hpAmountMax;
         if (updateHpAmount)
         {
             curHealthAmount = hpAmountMax;
@@ -72,6 +73,6 @@ public class HealthSystem : MonoBehaviour
 
     public void InitHealth()
     {
-        curHealthAmount = healthAmountMax;
+        curHealthAmount = enemy.enemyStat.healthAmountMax;
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyGuardian : Enemy, IEnemyAttack
 {
-    public float animTime;
     private float atime = 2f;
 
     public void Attack(Quaternion rot)
@@ -23,12 +22,12 @@ public class EnemyGuardian : Enemy, IEnemyAttack
 
         AnimationState(false);
 
-        animTime += Time.deltaTime;
+        enemyStat.animTime += Time.deltaTime;
 
-        if (animTime >= atime+sAttackTime)
+        if (enemyStat.animTime >= atime+ enemyStat.sAttackTime)
         {
             AnimationState(true);
-            animTime = 0f;
+            enemyStat.animTime = 0f;
         }
     }
 
@@ -58,19 +57,19 @@ public class EnemyGuardian : Enemy, IEnemyAttack
         base.EnemyGetRandom();
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Train"))
         {
-            TrainScript.instance.Damage(damage * Time.deltaTime);
-            other.GetComponent<TrainHit>()?.Hit();
+            TrainScript.instance.Damage(enemyStat.damage * Time.deltaTime);
+            TrainScript.instance.transform.parent.GetComponent<TrainHit>().Hit();
         }
 
         else if (other.CompareTag("Turret"))
         {
-            other.GetComponent<HealthSystem>()?.Damage(damage * Time.deltaTime);
+            other.GetComponent<HealthSystem>()?.Damage(enemyStat.damage * Time.deltaTime);
         }
-    }
+    }*/
 
     public override void PlayDieAnimationTrue()
     {

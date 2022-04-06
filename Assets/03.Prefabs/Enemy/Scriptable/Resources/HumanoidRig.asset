@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6544285b9c369204abf63354905cdf0b, type: 3}
+  m_Name: HumanoidRig
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1800106945016818593, guid: ced547205fc1de44aa192538e32db8e8, type: 3}
+  enemySpeed: 10
+  distanceX: 5
+  minDistance: 10
+  maxDistance: 10
+  damage: 1
+  sAttackTime: 1
+  animTime: 1
+  healthAmountMax: 10

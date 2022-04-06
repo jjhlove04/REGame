@@ -16,7 +16,6 @@ public class EnemyHumanoidBullet : MonoBehaviour
         if (other.CompareTag("Train"))
         {
             TrainScript.instance.Damage(enemyHumanoidRig.GetDamage() * Time.deltaTime);
-            other.GetComponent<TrainHit>()?.Hit();
         }
 
         else if (other.CompareTag("Turret"))
