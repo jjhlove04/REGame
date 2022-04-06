@@ -49,13 +49,13 @@ public class testScriptts : MonoBehaviour
         //NextWaveBtn.onClick.AddListener(NextWave);
 
         //gameEndBtn.onClick.AddListener(GameEnd);
-        reloadBtn.onClick.AddListener(()=>
-        {
-            if (turretPoses[turPos].GetComponent<TurretShooting>())
-            {
-                turretPoses[turPos].GetComponent<TurretShooting>().Reload();
-            }
-        });
+        //reloadBtn.onClick.AddListener(()=>
+        //{
+        //    if (turretPoses[turPos].GetComponent<TurretShooting>())
+        //    {
+        //        turretPoses[turPos].GetComponent<TurretShooting>().Reload();
+        //    }
+        //});
 
         //hp¹Ù ¼¼
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
@@ -117,7 +117,7 @@ public class testScriptts : MonoBehaviour
     {
         if (turretPoses[turPos].GetComponent<tesetTurret>().onTurret != true)
         {
-            if (GameManager.Instance.goldAmount > 10)
+            if (GameManager.Instance.goldAmount >= 10)
             {
                 GameObject gameInst = objectPool.GetObject(turret);
                 gameInst.transform.position = turretPoses[turPos].position;

@@ -5561,6 +5561,7 @@ MonoBehaviour:
   roundCurTime: 15
   round: 0
   maxRound: 30
+  stopSpawn: 0
 --- !u!1001 &600473907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7824,7 +7825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8000001, b: 0.003921569, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12537,7 +12538,7 @@ MonoBehaviour:
     FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 190
+    FarClipPlane: 45
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -14206,7 +14207,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 190
+  far clip plane: 45
   field of view: 50
   orthographic: 0
   orthographic size: 10
@@ -14260,7 +14261,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 2.5
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -15794,6 +15795,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBar: {fileID: 1181002902}
   gameTime: 0
+  reloadBtn: {fileID: 0}
+  bulletAmmo: {fileID: 0}
   turret: {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
   turretPoses: []
   turretData: []

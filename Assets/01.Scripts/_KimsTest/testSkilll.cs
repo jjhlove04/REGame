@@ -94,9 +94,4 @@ public class testSkilll : MonoBehaviour
             }
         });
     }
-
-    private void Update()
-    {
-
-    }
 }
