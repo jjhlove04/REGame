@@ -23,10 +23,7 @@ public class BackGround : MonoBehaviour
             for (int i = 0; i < transform.childCount; i++)
             {
                 MoveBackground(transform.GetChild(i));
-            }
 
-            for (int i = 0; i < transform.childCount; i++)
-            {
                 if (-(size * 1f) >= transform.GetChild(i).position.z)
                 {
                     SwapeBackground(transform.GetChild(i));

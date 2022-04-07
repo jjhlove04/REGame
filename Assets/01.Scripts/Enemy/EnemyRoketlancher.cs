@@ -30,7 +30,6 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
         base.Update();
     }
 
-
     public void Attack(Quaternion rot)
     {
         EnemyWaistLookForward();
@@ -58,12 +57,12 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
 
         anim.SetBool("IsAttack", false);
 
-        enemyStat.animTime += Time.deltaTime;
+        atime += Time.deltaTime;
 
-        if (enemyStat.animTime >= atime+ enemyStat.sAttackTime)
+        if (atime >= enemyStat.animTime + enemyStat.sAttackTime)
         {
             anim.SetBool("IsAttack", true);
-            enemyStat.animTime = 0f;
+            atime = 0f;
         }
     }
 

@@ -138,9 +138,9 @@ public class Roketlancher : MonoBehaviour
     {
         if (other.CompareTag("Train"))
         {
-            /*TrainScript.instance.Damage(damage);
+            //TrainScript.instance.Damage(damage);
             SpawnParticle();
-            CameraManager.Instance.Shake(0.5f, 2f);*/
+            CameraManager.Instance.Shake(0.5f, 2f);
             gameObject.SetActive(false);
         }
 

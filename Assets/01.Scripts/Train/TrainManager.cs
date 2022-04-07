@@ -49,7 +49,7 @@ public class TrainManager : MonoBehaviour
         MakeCollider();
     }
 
-    public void RemoveList()
+    /*public void RemoveList()
     {
         if (curTrainCount >= 0)
         {
@@ -63,7 +63,7 @@ public class TrainManager : MonoBehaviour
     {
         DestroyImmediate(trainContainer[trainContainer.Count - 1]);
         MakeCollider();
-    }
+    }*/
 
     public void OnSmoke()
     {
@@ -89,7 +89,6 @@ public class TrainManager : MonoBehaviour
 
     public void KeepOffTrain()
     {
-        
         transform.position += -new Vector3(0, 0, keppOffSpeed);
     }
 }

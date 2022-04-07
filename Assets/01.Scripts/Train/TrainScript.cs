@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum EnemyType
-{
-    Fire,
-    Drill,
-    Guardian,
-    HumanoidRig,
-    Roket
-}
-
 public class TrainScript : MonoBehaviour
 {
     public static TrainScript instance { get; private set; }
@@ -69,7 +60,6 @@ public class TrainScript : MonoBehaviour
 
     private void Update()
     {
-        SmokeTrain();
         if (destroy)
         {
             TrainManager.instance.KeepOffTrain();
@@ -94,6 +84,11 @@ public class TrainScript : MonoBehaviour
     {
         if (maxTrainHp /10 >= curTrainHp)
         {
+            if (curTrainHp <= 0)
+            {
+                DestroyTrain();
+            }
+
             TrainManager.instance.OnSmoke();
         }
     }
@@ -112,12 +107,8 @@ public class TrainScript : MonoBehaviour
         {
             trainhit[i].Hit();
         }*/
-
-        if (curTrainHp <= 0)
-        {
-            DestroyTrain();
-        }
-   }
+        SmokeTrain();
+    }
 
     
     private void OnTriggerEnter(Collider other)

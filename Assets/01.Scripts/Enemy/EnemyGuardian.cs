@@ -22,12 +22,12 @@ public class EnemyGuardian : Enemy, IEnemyAttack
 
         AnimationState(false);
 
-        enemyStat.animTime += Time.deltaTime;
+        atime += Time.deltaTime;
 
-        if (enemyStat.animTime >= atime+ enemyStat.sAttackTime)
+        if (atime >= enemyStat.animTime + enemyStat.sAttackTime)
         {
             AnimationState(true);
-            enemyStat.animTime = 0f;
+            atime = 0f;
         }
     }
 
