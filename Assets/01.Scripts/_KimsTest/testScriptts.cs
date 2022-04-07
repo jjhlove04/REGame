@@ -125,13 +125,12 @@ public class testScriptts : MonoBehaviour
                     GameManager.Instance.goldAmount -= 10;
                 }
             }
+            else
+            {
+                InGameUI._instance.upGradePanelRect.DOAnchorPosY(300, 1.5f);
+                InGameUI._instance.selectType = turType;
+            }
         } 
-        else
-        {
-            InGameUI._instance.upGradePanelRect.DOAnchorPosY(300, 1.5f);
-            InGameUI._instance.selectType = turType;
-        }
-
     }
     public void Despawn()
     {
