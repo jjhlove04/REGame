@@ -78,7 +78,9 @@ public class Turret : MonoBehaviour
                     GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
                     gameObject.transform.position = weapons[i].transform.Find("BulletPoint").position;
                     gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
+                    TestTurretDataBase.Instance.resultDamage += damage;
                     bulAmount--;
+
                 }
             }
         }

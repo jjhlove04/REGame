@@ -130,7 +130,36 @@ public class Enemy : MonoBehaviour
     {
         //GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
         //scrap.transform.position = transform.position;
-        GameManager.Instance.expAmount += SpawnMananger.Instance.round;
+
+        GameObject g = gameObject;
+        if(g.GetComponent<EnemyGuardian>())
+        {
+            GameManager.Instance.expAmount += 1;
+            GameManager.Instance.goldAmount += 1;
+        }
+        else if(g.GetComponent<EnemyFireAttack>())
+        {
+            GameManager.Instance.expAmount += 2;
+            GameManager.Instance.goldAmount += 3;
+
+        }
+        else if (g.GetComponent<EnemyDrill>())
+        {
+            GameManager.Instance.expAmount += 2;
+            GameManager.Instance.goldAmount += 2;
+
+        }
+        else if (g.GetComponent<EnemyHumanoidRig>())
+        {
+            GameManager.Instance.expAmount += 2;
+            GameManager.Instance.goldAmount += 2;
+        }
+        else if (g.GetComponent<EnemyRoketlancher>())
+        {
+            GameManager.Instance.expAmount += 2;
+            GameManager.Instance.goldAmount += 2;
+        }
+
         gameObject.SetActive(false);
     }
 

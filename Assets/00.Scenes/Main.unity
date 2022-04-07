@@ -5618,6 +5618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light Probe Group
       objectReference: {fileID: 0}
+    - target: {fileID: 6547740992615425484, guid: f7021b490f9a15846a48f238788cfde9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7021b490f9a15846a48f238788cfde9, type: 3}
 --- !u!1 &608881115
@@ -12553,7 +12557,7 @@ MonoBehaviour:
     FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 190
+    FarClipPlane: 45
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -14222,7 +14226,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 190
+  far clip plane: 45
   field of view: 50
   orthographic: 0
   orthographic size: 10
@@ -15699,6 +15703,7 @@ GameObject:
   - component: {fileID: 1722079219}
   - component: {fileID: 1722079220}
   - component: {fileID: 1722079221}
+  - component: {fileID: 1722079222}
   m_Layer: 0
   m_Name: ManagerOBJ
   m_TagString: Untagged
@@ -15810,8 +15815,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBar: {fileID: 1181002902}
   gameTime: 0
-  reloadBtn: {fileID: 0}
-  bulletAmmo: {fileID: 0}
+  reloadBtn: {fileID: 792173534}
+  bulletAmmo: {fileID: 2047307057}
   turret: {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
   turretPoses: []
   turretData: []
@@ -15823,6 +15828,18 @@ MonoBehaviour:
   - {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
   turPos: 0
   turType: 0
+--- !u!114 &1722079222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722079216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154c080fa50ed744db41fdd917f1f539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1737474201
 GameObject:
   m_ObjectHideFlags: 0

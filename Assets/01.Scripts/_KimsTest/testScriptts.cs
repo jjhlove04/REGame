@@ -49,13 +49,14 @@ public class testScriptts : MonoBehaviour
         //NextWaveBtn.onClick.AddListener(NextWave);
 
         //gameEndBtn.onClick.AddListener(GameEnd);
-        //reloadBtn.onClick.AddListener(()=>
-        //{
-        //    if (turretPoses[turPos].GetComponent<TurretShooting>())
-        //    {
-        //        turretPoses[turPos].GetComponent<TurretShooting>().Reload();
-        //    }
-        //});
+        reloadBtn.onClick.AddListener(() =>
+        {
+            if (turretData[turPos].GetComponent<TurretShooting>())
+            {
+                turretData[turPos].GetComponent<TurretShooting>().Reload();
+                Debug.Log("¿Â¿¸«ÿø‰");
+            }
+        });
 
         //hpπŸ ºº
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
@@ -73,9 +74,10 @@ public class testScriptts : MonoBehaviour
             NextWave();
         }
         
-        if(turretPoses[turPos].GetComponent<TurretShooting>())
+        if(turretData[turPos].GetComponent<TurretShooting>())
         {
-            bulletAmmo.value = (float)turretPoses[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretPoses[turPos].GetComponent<TurretShooting>().maxBulletAmount;
+            bulletAmmo.value = (float)turretData[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretData[turPos].GetComponent<TurretShooting>().maxBulletAmount;
+            Debug.Log("≈∫ ¥‚æ∆ø‰");
         }
     }
     public void ChangeSpeed()

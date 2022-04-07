@@ -22,6 +22,11 @@ public class TestTurretDataBase : MonoBehaviour
     public GameObjectBool postdic = new GameObjectBool();
 
     public int floor, floor1, floor2, floor3, floor4;
+
+    [Header("°á°ú°ª")]
+    public int resultDamage = 0;
+    public int resultEXP = 0;
+    public int resultGold = 0;
     private void Awake()
     {
         if(instance != null)

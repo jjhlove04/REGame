@@ -1514,13 +1514,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base Level1-2
       objectReference: {fileID: 0}
+    - target: {fileID: 1586056992620945989, guid: 0a47ab1b4c553484aa80927eaa736b9b, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7855253160385135560, guid: 0a47ab1b4c553484aa80927eaa736b9b, type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7855253160385135560, guid: 0a47ab1b4c553484aa80927eaa736b9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -327
+      value: -26.9
       objectReference: {fileID: 0}
     - target: {fileID: 7855253160385135560, guid: 0a47ab1b4c553484aa80927eaa736b9b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2028,6 +2032,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3049675759956108456, guid: d27eb310375744f4d8047b4726588458, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4069692103217267128, guid: d27eb310375744f4d8047b4726588458, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -9568,8 +9576,6 @@ MonoBehaviour:
   OnDied:
     m_PersistentCalls:
       m_Calls: []
-  healthAmountMax: 50
-  curHealthAmount: 0
 --- !u!54 &1569180608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10235,6 +10241,7 @@ MonoBehaviour:
   floor2: 0
   floor3: 0
   floor4: 0
+  resultDamage: 0
 --- !u!114 &1880156151
 MonoBehaviour:
   m_ObjectHideFlags: 0
