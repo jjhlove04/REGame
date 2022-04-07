@@ -22,7 +22,8 @@ public class SkillTreeBtn : MonoBehaviour
 
     private void Start()
     {
-        this.gameObject.GetComponent<Button>().onClick.AddListener(() =>
+        this.gameObject.TryGetComponent(out Button btn);
+        btn.onClick.AddListener(() =>
         {
             if(floor != null)
             {
@@ -39,7 +40,8 @@ public class SkillTreeBtn : MonoBehaviour
                     testsk.btnDic[str[i].gameObject.ToString()] = false;
                 }
             }
-            this.gameObject.GetComponent<Button>().interactable = false;
+            this.gameObject.TryGetComponent(out Button obtn);
+            obtn.interactable = false;
             isUpgrade = true;
 
 

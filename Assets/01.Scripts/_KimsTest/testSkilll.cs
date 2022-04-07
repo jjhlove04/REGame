@@ -19,8 +19,10 @@ public class testSkilll : MonoBehaviour
     void Start()
     {
         upgradeBtn = GameObject.Find("UP");
-        
-        this.gameObject.GetComponent<Button>().onClick.AddListener(() =>
+
+        this.gameObject.TryGetComponent(out Button btnm);
+
+        btnm.onClick.AddListener(() =>
         {
             testSkilll[] tskill = FindObjectsOfType<testSkilll>();
 

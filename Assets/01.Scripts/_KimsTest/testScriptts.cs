@@ -111,16 +111,19 @@ public class testScriptts : MonoBehaviour
 
     public void Create()
     {
-        if (turretPoses[turPos].GetComponent<tesetTurret>().onTurret != true)
+        if (turretPoses[turPos].TryGetComponent(out tesetTurret tT))
         {
-            if (GameManager.Instance.goldAmount >= 10)
+            if (tT.onTurret != true)
             {
-                GameObject gameInst = objectPool.GetObject(turret);
-                gameInst.transform.position = turretPoses[turPos].position;
-                gameInst.transform.SetParent(this.gameObject.transform);
-                turretPoses[turPos].GetComponent<tesetTurret>().onTurret = true;
-                turretData[turPos] = gameInst;
-                GameManager.Instance.goldAmount -= 10;
+                if (GameManager.Instance.goldAmount >= 10)
+                {
+                    GameObject gameInst = objectPool.GetObject(turret);
+                    gameInst.transform.position = turretPoses[turPos].position;
+                    gameInst.transform.SetParent(this.gameObject.transform);
+                    tT.onTurret = true;
+                    turretData[turPos] = gameInst;
+                    GameManager.Instance.goldAmount -= 10;
+                }
             }
         } 
         else

@@ -105,6 +105,7 @@ public class TurretShooting : Turret
     //    bulletLineRenderer.gameObject.SetActive(false);
     //    muzzleflash.Stop();
     //}
+
     public void Reload()
     {
         int result = maxBulletAmount - bulAmount;

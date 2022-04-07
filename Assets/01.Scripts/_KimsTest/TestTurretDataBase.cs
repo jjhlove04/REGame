@@ -83,9 +83,4 @@ public class TestTurretDataBase : MonoBehaviour
         }
     }
 
-    void UpgradeCoast()
-    {
-
-    }
-
 }
