@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
 public class testRoketlancher : TestEnemy, IEnemyAttack
 {
@@ -40,7 +41,8 @@ public class testRoketlancher : TestEnemy, IEnemyAttack
 
         if (anim.GetBool("IsAttack"))
         {
-            StartCoroutine(Attacking());
+            //StartCoroutine(Attacking());
+            Timing.RunCoroutine(Attacking());
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
 
@@ -69,12 +71,12 @@ public class testRoketlancher : TestEnemy, IEnemyAttack
         }
     }
 
-    private IEnumerator Attacking()
+    private IEnumerator<float> Attacking()
     {
         isAttack = true;
-        yield return new WaitForSeconds(0.35f);
+        yield return Timing.WaitForSeconds(0.35f);
         SpawnBullet();
-        yield return new WaitForSeconds(0.4f);
+        yield return Timing.WaitForSeconds(0.4f);
         isAttack = false;
     }
 

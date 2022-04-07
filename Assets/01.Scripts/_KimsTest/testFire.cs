@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
 public class testFire : TestEnemy, IEnemyAttack
 {
@@ -31,7 +32,8 @@ public class testFire : TestEnemy, IEnemyAttack
 
         if (anim.GetBool("IsAttack"))
         {
-            StartCoroutine(Attacking());
+            //StartCoroutine(Attacking());
+            Timing.RunCoroutine(Attacking());
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
 
@@ -66,10 +68,10 @@ public class testFire : TestEnemy, IEnemyAttack
         }
     }
 
-    private IEnumerator Attacking()
+    private IEnumerator<float> Attacking()
     {
         isAttack = true;
-        yield return new WaitForSeconds(2f);
+        yield return Timing.WaitForSeconds(2f);
         isAttack = false;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
 public class TrainHit : MonoBehaviour
 {
@@ -32,19 +33,18 @@ public class TrainHit : MonoBehaviour
     {
         if (!startCotoutine)
         {
-            StartCoroutine(HitMaterial());
+            Timing.RunCoroutine(HitMaterial());
             startCotoutine = true;
         }
     }
-
-    IEnumerator HitMaterial()
+    IEnumerator<float> HitMaterial()
     {
         for (int i = 0; i < newRenderer.Length; i++)
         {
             newRenderer[i].materials = hitMaterials;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return Timing.WaitForSeconds(0.1f);
 
         startCotoutine = false;
 

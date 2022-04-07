@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using MEC;
 
 public class CameraShake : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class CameraShake : MonoBehaviour
 
     public void Shake(float duration, float magnitude)
     {
+        //StopCoroutine(ShakeCor(duration, magnitude));
+        //StartCoroutine(ShakeCor(duration, magnitude));
         StopCoroutine(ShakeCor(duration, magnitude));
-        StartCoroutine(ShakeCor(duration, magnitude));
+        Timing.RunCoroutine(ShakeCor(duration, magnitude));
     }
 
-    private IEnumerator ShakeCor(float duration, float magnitude)
+    private IEnumerator<float> ShakeCor(float duration, float magnitude)
      {
 
         float elapsed = 0.0f;
@@ -32,7 +35,7 @@ public class CameraShake : MonoBehaviour
 
             elapsed += Time.deltaTime;
 
-            yield return null;
+            yield return Timing.WaitForOneFrame;
         }
         BasicMultiChannelPerlin.m_AmplitudeGain = 0;
         BasicMultiChannelPerlin.m_FrequencyGain = 0;

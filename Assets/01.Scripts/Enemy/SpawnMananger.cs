@@ -36,11 +36,6 @@ public class SpawnMananger : MonoBehaviour
         stopSpawn = true;
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
-
     private void Update()
     {
         if (!stopSpawn)

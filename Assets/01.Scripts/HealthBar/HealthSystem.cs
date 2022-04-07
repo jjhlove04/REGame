@@ -58,7 +58,6 @@ public class HealthSystem : MonoBehaviour
 
     public float GetHealthAmounetNomalized()
     {
-        print(enemy);
         return (float)curHealthAmount / enemy.enemyStat.healthAmountMax;
     }
 

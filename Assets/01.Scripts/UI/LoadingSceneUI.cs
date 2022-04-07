@@ -20,12 +20,6 @@ public class LoadingSceneUI : MonoBehaviour
         StartCoroutine(LoadSceneProcess());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator LoadSceneProcess()
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);

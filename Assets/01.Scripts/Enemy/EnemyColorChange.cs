@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
 public class EnemyColorChange : MonoBehaviour
 {
@@ -23,14 +24,14 @@ public class EnemyColorChange : MonoBehaviour
     public void Hit()
     {
         StopCoroutine(HitMaterial());
-        StartCoroutine(HitMaterial());
+        Timing.RunCoroutine(HitMaterial());
     }
 
-    IEnumerator HitMaterial()
+    IEnumerator<float> HitMaterial()
     {
         newRenderer.material.color = hitMaterial.color;
 
-        yield return (new WaitForSeconds(0.15f));
+        yield return (Timing.WaitForSeconds(0.15f));
 
         newRenderer.material.color = basicMaterial.color;
     }

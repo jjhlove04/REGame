@@ -51,10 +51,9 @@ public class testScriptts : MonoBehaviour
         //gameEndBtn.onClick.AddListener(GameEnd);
         reloadBtn.onClick.AddListener(() =>
         {
-            if (turretData[turPos].GetComponent<TurretShooting>())
+            if (turretData[turPos].TryGetComponent(out TurretShooting trshot))
             {
-                turretData[turPos].GetComponent<TurretShooting>().Reload();
-                Debug.Log("ÀåÀüÇØ¿ä");
+                trshot.Reload();
             }
         });
 
@@ -68,16 +67,11 @@ public class testScriptts : MonoBehaviour
         gameTime = Time.time;
         string result = string.Format("{0:0.0}", gameTime);
         ChangeSpeed();
+        BulletCheck();
 
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             NextWave();
-        }
-        
-        if(turretData[turPos].GetComponent<TurretShooting>())
-        {
-            bulletAmmo.value = (float)turretData[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretData[turPos].GetComponent<TurretShooting>().maxBulletAmount;
-            Debug.Log("Åº ´â¾Æ¿ä");
         }
     }
     public void ChangeSpeed()
@@ -171,5 +165,13 @@ public class testScriptts : MonoBehaviour
     {
         //Time.deltaTime ¿·¿¡ * (TakeDamage) ¸¸Å­ °öÇØÁà¾ßÇÔ. »ý·«µÇ¾î ÀÖÀ½.
         hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
+    }
+
+    public void BulletCheck()
+    {
+        if (turretData[turPos].GetComponent<TurretShooting>())
+        {
+            bulletAmmo.value = (float)turretData[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretData[turPos].GetComponent<TurretShooting>().maxBulletAmount;
+        }
     }
 }

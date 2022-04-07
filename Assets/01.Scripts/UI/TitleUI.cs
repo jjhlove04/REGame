@@ -53,17 +53,6 @@ public class TitleUI : MonoBehaviour
     {
         Update_MousePosition();
     }
-        
-    private void Start()
-    {
-
-        //hp바 세
-        //hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
-        //speedBtn.onClick.AddListener(ChangeSpeed);
-        //hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
-        
-
-    }
     
     
     

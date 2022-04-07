@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
 public class ParticleReturn : MonoBehaviour
 {
@@ -17,12 +18,12 @@ public class ParticleReturn : MonoBehaviour
     private void OnEnable()
     {
         StopCoroutine(EndParticle());
-        StartCoroutine(EndParticle());
+        Timing.RunCoroutine(EndParticle());
     }
 
-    IEnumerator EndParticle()
+    IEnumerator<float> EndParticle()
     {
-        yield return new WaitForSeconds(dieTime);
+        yield return Timing.WaitForSeconds(dieTime);
         objPool.ReturnGameObject(this.gameObject);
     }
 }
