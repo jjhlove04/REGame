@@ -7,6 +7,7 @@ public class LoadingManager : MonoBehaviour
 {
     public static LoadingManager _instance;
 
+    [SerializeField] private GameObject _loaderCanvas;
     private void Awake()
     {
         if(_instance == null)
@@ -23,5 +24,9 @@ public class LoadingManager : MonoBehaviour
     public async void LoadScene(string sceneName)
     {
         var scene = SceneManager.LoadSceneAsync(sceneName);
+        scene.allowSceneActivation = false;
+
+        
+
     }
 }
