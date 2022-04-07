@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFireAttack : Enemy, IEnemyAttack
+public class EnemyFireAttack : Enemy
 {
     private float atime = 5f;
 
@@ -24,7 +24,7 @@ public class EnemyFireAttack : Enemy, IEnemyAttack
         base.Update();
     }
 
-    public void Attack(Quaternion rot)
+    protected override void Attack(Quaternion rot)
     {
         EnemyWaistLookForward();
 

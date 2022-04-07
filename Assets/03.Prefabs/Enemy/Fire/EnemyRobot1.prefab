@@ -15295,6 +15295,7 @@ GameObject:
   - component: {fileID: 4914785171180626484}
   - component: {fileID: 5108851553973842982}
   - component: {fileID: 5107538063818292772}
+  - component: {fileID: 5541516894306097139}
   m_Layer: 10
   m_Name: Fire
   m_TagString: FireBullet
@@ -18894,7 +18895,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -20100,6 +20101,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &5541516894306097139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4909581772744742714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 8, z: 25}
+  m_Center: {x: -1.75, y: 1, z: 12.5}
 --- !u!1 &4909586840262295456
 GameObject:
   m_ObjectHideFlags: 0

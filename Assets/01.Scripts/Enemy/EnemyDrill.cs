@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDrill : Enemy, IEnemyAttack
+public class EnemyDrill : Enemy
 {
     public Animator drillAnim;
 
@@ -23,11 +23,11 @@ public class EnemyDrill : Enemy, IEnemyAttack
     protected override void Update()
     {
         base.Update();
-        AnimationState(!run && anim.GetBool("IsAttack"));
+        AnimationState(!run);
         drillCol.enabled = anim.GetBool("IsAttack");
     }
 
-    public void Attack(Quaternion rot)
+    protected override void Attack(Quaternion rot)
     {
         EnemyWaistLookForward();
 

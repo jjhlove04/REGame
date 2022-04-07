@@ -115,17 +115,17 @@ public class TrainScript : MonoBehaviour
     {
         if (other.CompareTag("FireBullet"))
         {
-            Damage(dicEnemydata[EnemyType.Fire].damage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.Fire].GetDamage() * Time.deltaTime);
         }
 
         else if (other.CompareTag("RoketBullet"))
         {
-            Damage(dicEnemydata[EnemyType.Roket].damage);
+            Damage(dicEnemydata[EnemyType.Roket].GetDamage());
         }
 
         else if (other.CompareTag("HumanoidRigBullet"))
         {
-            Damage(dicEnemydata[EnemyType.HumanoidRig].damage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.HumanoidRig].GetDamage() * Time.deltaTime);
         }
 
         else
@@ -140,12 +140,12 @@ public class TrainScript : MonoBehaviour
     {
         if (other.CompareTag("GuardianBullet"))
         {
-            Damage(dicEnemydata[EnemyType.Guardian].damage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.Guardian].GetDamage() * Time.deltaTime);
         }
 
         else if (other.CompareTag("DrillBullet"))
         {
-            Damage(dicEnemydata[EnemyType.Drill].damage * Time.deltaTime);
+            Damage(dicEnemydata[EnemyType.Drill].GetDamage() * Time.deltaTime);
         }
 
         else

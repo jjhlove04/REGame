@@ -15,8 +15,6 @@ public class Enemy : MonoBehaviour
 
     public GameObject waist = null;
 
-    private IEnemyAttack enemyAttack;
-
     public bool run;
 
     private float randomZ;
@@ -44,9 +42,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        enemyAttack = GetComponent<IEnemyAttack>();
         AttackingTime();
-        enemyStat.damage = enemyStat.damage * (1 / enemyStat.sAttackTime);
     }
     protected virtual void Update()
     {
@@ -68,7 +64,7 @@ public class Enemy : MonoBehaviour
                 if (dir.magnitude > 0)
                     rot = Quaternion.LookRotation(dir);
 
-                enemyAttack.Attack(rot);
+                Attack(rot);
             }
         }
 
@@ -188,5 +184,10 @@ public class Enemy : MonoBehaviour
     protected virtual void AttackingTime()
     {
         anim.SetFloat("AttackTime", (1/ enemyStat.sAttackTime));
+    }
+
+    protected virtual void Attack(Quaternion rot)
+    {
+
     }
 }

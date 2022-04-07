@@ -20,4 +20,9 @@ public class EnemyData : ScriptableObject
     public float animTime;
 
     public float healthAmountMax;
+
+    public float GetDamage()
+    {
+        return damage * (1 / sAttackTime);
+    }
 }

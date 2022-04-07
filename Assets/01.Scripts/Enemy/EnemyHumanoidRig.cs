@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHumanoidRig : Enemy, IEnemyAttack
+public class EnemyHumanoidRig : Enemy
 {
     private Vector3 target;
 
@@ -26,7 +26,7 @@ public class EnemyHumanoidRig : Enemy, IEnemyAttack
         }
     }
 
-    public void Attack(Quaternion rot)
+    protected override void Attack(Quaternion rot)
     {
         EnemyWaistLookForward();
 

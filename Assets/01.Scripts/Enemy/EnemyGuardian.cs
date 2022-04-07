@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGuardian : Enemy, IEnemyAttack
+public class EnemyGuardian : Enemy
 {
     private float atime = 2f;
 
-    public void Attack(Quaternion rot)
+    protected override void Attack(Quaternion rot)
     {
         if (transform.position.x > 0)
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRoketlancher : Enemy, IEnemyAttack
+public class EnemyRoketlancher : Enemy
 {
     private float atime = 5f;
 
@@ -30,7 +30,7 @@ public class EnemyRoketlancher : Enemy, IEnemyAttack
         base.Update();
     }
 
-    public void Attack(Quaternion rot)
+    protected override void Attack(Quaternion rot)
     {
         EnemyWaistLookForward();
 
