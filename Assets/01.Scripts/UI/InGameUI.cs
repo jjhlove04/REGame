@@ -129,6 +129,7 @@ public class InGameUI : MonoBehaviour
         if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
+            TestTurretDataBase.Instance.resultEXP += GameManager.Instance.expAmount;
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
             GameManager.Instance.state = GameManager.State.Ready;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
 public class Spawner : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class Spawner : MonoBehaviour
 
         objectPool = FindObjectOfType<ObjectPool>();
 
+        Timing.RunCoroutine(spawnFirst());
+
         if (!boss)
         {
             spawnMananger.spawn += new SpawnMananger.Spawn(SpwanEnemy);
@@ -38,6 +41,22 @@ public class Spawner : MonoBehaviour
             spawnMananger.spawn += new SpawnMananger.Spawn(BossSpwanEnemy);
         }
 
+    }
+
+    IEnumerator<float> spawnFirst()
+    {
+        GameObject[] gm = new GameObject[30];
+
+        for (int i = 0; i < gm.Length; i++)
+        {
+            gm[i] = objectPool.GetObject(prefab);
+        }
+        yield return Timing.WaitForSeconds(0.1f);
+
+        for (int i = 0; i < gm.Length; i++)
+        {
+            gm[i].SetActive(false);
+        }
     }
 
     private void SpwanEnemy(int s)
