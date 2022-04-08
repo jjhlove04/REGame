@@ -171,7 +171,11 @@ public class Enemy : MonoBehaviour
 
     private void Gravity()
     {
-        transform.position += new Vector3(0, -2, 0) * Time.deltaTime;
+        if(transform.position.y < 0)
+        {
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        }
+        transform.position += new Vector3(0, -1, 0) * Time.deltaTime;
     }
 
     public virtual void PlayDieAnimationTrue()
