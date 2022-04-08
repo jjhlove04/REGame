@@ -232,10 +232,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1520774237818186900}
   - component: {fileID: 5578952330102476704}
-  - component: {fileID: 8392791960194335440}
   - component: {fileID: 5292206793976661009}
   - component: {fileID: 8414503084658132740}
   - component: {fileID: 7259560175488308635}
+  - component: {fileID: 2400267786464628379}
   m_Layer: 7
   m_Name: Drillenemy
   m_TagString: Enemy
@@ -273,22 +273,6 @@ CapsuleCollider:
   m_Height: 7.5
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &8392791960194335440
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520774237818186899}
-  serializedVersion: 2
-  m_Mass: 0.1
-  m_Drag: 0.1
-  m_AngularDrag: 0.1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 2
 --- !u!114 &5292206793976661009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +331,22 @@ MonoBehaviour:
   isDying: 0
   drillAnim: {fileID: 1463234623445430960}
   drillCol: {fileID: 1298730678217742348}
+--- !u!54 &2400267786464628379
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520774237818186899}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 100
+  m_AngularDrag: 100
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
 --- !u!1 &1521153017951580888
 GameObject:
   m_ObjectHideFlags: 0

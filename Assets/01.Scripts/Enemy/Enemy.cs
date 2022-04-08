@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
 
     private float distanceX;
 
+    private bool isGround = false;
+
 
     protected virtual void OnEnable()
     {
@@ -44,13 +46,21 @@ public class Enemy : MonoBehaviour
     {
         AttackingTime();
     }
+
     protected virtual void Update()
     {
+
+            
         if (!isDying)
         {
             Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
 
             Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ randomZ + trainManager.trainContainer.Count * 25));
+
+            if (!isGround)
+            {
+                Gravity();
+            }
 
             if (run)
             {
@@ -159,6 +169,11 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void Gravity()
+    {
+        transform.position += new Vector3(0, -2, 0) * Time.deltaTime;
+    }
+
     public virtual void PlayDieAnimationTrue()
     {
         anim.SetBool("IsDie", true);
@@ -189,5 +204,21 @@ public class Enemy : MonoBehaviour
     protected virtual void Attack(Quaternion rot)
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Ground"))
+        {
+            isGround = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Ground"))
+        {
+            isGround = false;
+        }
     }
 }

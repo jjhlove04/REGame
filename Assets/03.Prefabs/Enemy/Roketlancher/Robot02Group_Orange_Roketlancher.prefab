@@ -785,10 +785,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4138711559360298}
   - component: {fileID: 7491907264028456969}
-  - component: {fileID: 7483094520262241718}
   - component: {fileID: -4919342851118615479}
   - component: {fileID: 6823841717224754621}
   - component: {fileID: 4397485647293170189}
+  - component: {fileID: -6892944501640415227}
   m_Layer: 7
   m_Name: Robot02Group_Orange_Roketlancher
   m_TagString: Enemy
@@ -826,22 +826,6 @@ CapsuleCollider:
   m_Height: 7
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!54 &7483094520262241718
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532036094782582}
-  serializedVersion: 2
-  m_Mass: 0.1
-  m_Drag: 0.1
-  m_AngularDrag: 0.1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 2
 --- !u!114 &-4919342851118615479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +883,22 @@ MonoBehaviour:
   run: 0
   isDying: 0
   pos: {fileID: 7810400568605959108}
+--- !u!54 &-6892944501640415227
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532036094782582}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 100
+  m_AngularDrag: 100
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
 --- !u!1 &1541351830046624
 GameObject:
   m_ObjectHideFlags: 0
