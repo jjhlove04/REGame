@@ -11,6 +11,8 @@ public class LoadingManager : MonoBehaviour
 
     [SerializeField] private GameObject _loaderCanvas;
     [SerializeField] private Image _progressBar;
+    private float _target;
+    
     private void Awake()
     {
         if(_instance == null)
