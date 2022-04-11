@@ -25,6 +25,8 @@ public class TurretShooting : Turret
     [SerializeField]
     private int damage = 10;
 
+    private int result = 8;
+
     private Transform targetEnemychil;
 
     //[SerializeField]
@@ -108,9 +110,10 @@ public class TurretShooting : Turret
 
     public void Reload()
     {
-        int result = maxBulletAmount - bulAmount;
-        result *= 2;
-        GameManager.Instance.goldAmount -= result;
-        bulAmount = maxBulletAmount;
+        if (GameManager.Instance.goldAmount > result)
+        {
+            GameManager.Instance.goldAmount -= result;
+            bulAmount = maxBulletAmount;
+        }
     }
 }

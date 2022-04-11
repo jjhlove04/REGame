@@ -108,8 +108,13 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             index = index * -1;
+            
+            if (index > 0)
+            {
+                upGradePanelRect.DOAnchorPosY(780, 1.5f);
+            }
+
             OpenBluePrint(index);
-            CameraManager.Instance.CameraChangeView();
         }
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
@@ -149,8 +154,8 @@ public class InGameUI : MonoBehaviour
     {
         if (index == -1)
         {
-            bpTop.DOAnchorPosY(300, 1f).SetEase(Ease.OutQuart).SetDelay(1.5f);
-            bpBot.DOAnchorPosY(-300, 1f).SetEase(Ease.OutQuart).SetDelay(1.5f);
+            bpTop.DOAnchorPosY(300, 1f).SetEase(Ease.OutQuart);
+            bpBot.DOAnchorPosY(-300, 1f).SetEase(Ease.OutQuart);
 
 
         }

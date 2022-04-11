@@ -6,7 +6,6 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     private static CameraManager instance;
-
     public static CameraManager Instance
     {
         get { return instance; }
@@ -15,6 +14,14 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            CameraChangeView();
+        }
     }
 
     [SerializeField]

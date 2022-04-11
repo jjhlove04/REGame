@@ -6171,7 +6171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.07, y: 787}
+  m_AnchoredPosition: {x: 4.07, y: 780}
   m_SizeDelta: {x: 945, y: 446.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &686037966
@@ -6733,7 +6733,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &731635889
 Transform:
   m_ObjectHideFlags: 0
@@ -9032,8 +9032,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 2
-  m_FrequencyGain: 0.5
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1034322554
 MonoBehaviour:
@@ -9554,8 +9554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7e9d761a3cc3e49bc2d7f429620128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curTrainHp: 100000
-  maxTrainHp: 100000
+  curTrainHp: 1000
+  maxTrainHp: 1000
   fireDamage: 0
   drillDamage: 0
   guardianDamage: 0
@@ -9784,7 +9784,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1126854934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10324,7 +10324,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1923579032}
   m_HandleRect: {fileID: 0}
@@ -12038,7 +12038,7 @@ MonoBehaviour:
     FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 170
+    FarClipPlane: 45
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -12092,8 +12092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapMinX: -99
-  mapMaxX: 207.8
-  mapMinY: -86.3
+  mapMaxX: 207.7
+  mapMinY: -86.35
   mapMaxY: 86
   panSpeed: 150
   targetorthographicSize: 0
@@ -13707,7 +13707,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 170
+  far clip plane: 45
   field of view: 50
   orthographic: 0
   orthographic size: 10
