@@ -24,12 +24,15 @@ public class TitleMoveScript : MonoBehaviour
     private RectTransform resultPanelRect;
 
     public static int indexNum = 0;
-    
+
+    public GameObject startC;
+    public GameObject turretC;
     private void Awake() 
     {
         repairBtn = repairBtn.GetComponent<Button>();
         btnGroupRect = btnGroup.GetComponent<RectTransform>();
         resultPanelRect = resultPanel.GetComponent<RectTransform>();
+
         //시작버튼
         titleActionBtn[0].onClick.AddListener(() => {
             timelines[0].Play();
@@ -68,6 +71,7 @@ public class TitleMoveScript : MonoBehaviour
         titleActionBtn[5].onClick.AddListener(()=> {
             indexNum = 3;
             BtnSlide(1);
+            Application.Quit();
         }); 
         //이전화면 버튼
         titleActionBtn[6].onClick.AddListener(() =>{
@@ -129,13 +133,65 @@ public class TitleMoveScript : MonoBehaviour
         
     }
 
-/// <summary>모든 버튼 상호작용 관리</summary>
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (backBtn.activeSelf == true)
+            {
+                if (indexNum == 1)
+                {
+                    timelines[1].Play();
+                    BtnSlide(2);
+                }
+                if (indexNum == 2)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
+                    }
+
+                    timelines[3].Play();
+                    BtnSlide(2);
+                }
+                if (indexNum == 3)
+                {
+                    timelines[5].Play();
+                    BtnSlide(3);
+                }
+                //업그레이드 화면에서 나가기
+                if (indexNum == 4)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        TitleUI.UI.upGradePanels[i].SetActive(false);
+                        TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
+                    }
+                    indexNum = 2;
+
+                }
+            }
+        }
+
+        if(startC.activeSelf == true || turretC.activeSelf == true)
+        {
+            backBtn.SetActive(true);
+        }
+        else
+        {
+            backBtn.SetActive(false);
+        }
+        
+    }
+
+    /// <summary>모든 버튼 상호작용 관리</summary>
     public void BtnSlide(int index)
     {
         if(index == 1)
         {
             BtnGroupMove(0);
             backBtn.SetActive(true);
+
         }
         if(index == 2 || Input.GetKeyDown(KeyCode.Escape))
         {
@@ -155,9 +211,9 @@ public class TitleMoveScript : MonoBehaviour
     public void BtnGroupMove(int index)
     {
         float dexSpeed = 0;
-        if(index == 0)
+        if (index == 0)
         {
-            btnGroupRect.DOAnchorPosX(-578,0.5f);
+            btnGroupRect.DOAnchorPosX(-578, 0.5f);
         }
         //출발 업그레이드 백
         if(index == 1)
