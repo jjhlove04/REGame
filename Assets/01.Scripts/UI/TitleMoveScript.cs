@@ -27,6 +27,8 @@ public class TitleMoveScript : MonoBehaviour
 
     public GameObject startC;
     public GameObject turretC;
+    public GameObject turretP;
+    public GameObject towerP;
     private void Awake() 
     {
         repairBtn = repairBtn.GetComponent<Button>();
@@ -173,7 +175,7 @@ public class TitleMoveScript : MonoBehaviour
             }
         }
 
-        if(startC.activeSelf == true || turretC.activeSelf == true)
+        if(startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
         {
             backBtn.SetActive(true);
         }
