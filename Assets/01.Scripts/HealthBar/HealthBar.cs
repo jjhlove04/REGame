@@ -22,6 +22,11 @@ public class HealthBar : MonoBehaviour
         CallHealthSystemOnDamaged();
     }
 
+    private void Update()
+    {
+        transform.parent.LookAt(Camera.main.transform);
+    }
+
     void CallHealthSystemOnDamaged()
     {
         UpdateBar();

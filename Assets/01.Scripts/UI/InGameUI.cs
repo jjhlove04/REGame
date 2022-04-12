@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class InGameUI : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class InGameUI : MonoBehaviour
     int index = 1;
     int num = 1;
     int backIndex = 1;
-    [SerializeField] private GameObject[] menuBtn;
-    [SerializeField] private RectTransform[] menuBtnRect ;
     private List<RectTransform> menuBtnList = new List<RectTransform>();
     [SerializeField] private Button mainMenuBtn;
     [SerializeField] private GameObject btnGroup;
@@ -25,8 +24,10 @@ public class InGameUI : MonoBehaviour
     [HideInInspector] public RectTransform upGradePanelRect;
 
     [SerializeField] private Button upGradePanelBackBtn;
+    [SerializeField] private Text time;
     [SerializeField] private Button[] applyBtn;
     [SerializeField] private GameObject[] selectObj;
+    [SerializeField] private GameObject giveUPPanel;
     int screenHeight = Screen.height;
     int screenWidth = Screen.width;
     int applybtnIndex = 0;
@@ -41,6 +42,8 @@ public class InGameUI : MonoBehaviour
     private Button upGradeBtn;
     public Text warningTxt;
     public int selectType;
+
+    Coroutine coroutine;
     private void Awake()
     {
         stopPanel.transform.localScale = Vector2.zero;
@@ -48,13 +51,10 @@ public class InGameUI : MonoBehaviour
         bpTop = bluePrintTop.GetComponent<RectTransform>();
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
-        for(int i = 0; i < 4; i++)
-        {
-            menuBtnRect[i] = menuBtn[i].GetComponent<RectTransform>();
-        }
         upGradePanelBackBtn.onClick.AddListener(() => 
         {
-            upGradePanelRect.DOAnchorPosY(780, 1.5f);
+            upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+            testScriptts.Instance.UnSelectTurret();
         });
         upGradeBtn.onClick.AddListener(() =>
         {
@@ -66,37 +66,40 @@ public class InGameUI : MonoBehaviour
         applyBtn[0].onClick.AddListener(() => {
             ClearSelect();
             selectObj[0].SetActive(true);
+            OpenBluePrint();
         });
         applyBtn[1].onClick.AddListener(() => {
             ClearSelect();
             selectObj[1].SetActive(true);
+            OpenBluePrint();
         });
         applyBtn[2].onClick.AddListener(() => {
             ClearSelect();
             selectObj[2].SetActive(true);
+            OpenBluePrint();
         });
         applyBtn[3].onClick.AddListener(() => {
             ClearSelect();
             selectObj[3].SetActive(true);
+            OpenBluePrint();
         });
         applyBtn[4].onClick.AddListener(() => {
             ClearSelect();
             selectObj[4].SetActive(true);
+            OpenBluePrint();
         });
-        
-        
+        applyBtn[5].onClick.AddListener(() => {
+            ClearSelect();
+            selectObj[5].SetActive(true);
+            OpenBluePrint();
+        });
     }
 
-    
-    
     void Start()
     {
-
         mainMenuBtn.onClick.AddListener(() =>
         {
             num *= -1;
-
-            OpenMenu();
         });
 
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
@@ -106,17 +109,6 @@ public class InGameUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            index = index * -1;
-            
-            if (index > 0)
-            {
-                upGradePanelRect.DOAnchorPosY(780, 1.5f);
-            }
-
-            OpenBluePrint(index);
-        }
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
 
@@ -152,60 +144,78 @@ public class InGameUI : MonoBehaviour
         {
             selectObj[i].SetActive(false);
         }
-
     }
 
-    public void OpenBluePrint(int index)
+    private void OpenBluePrint()
     {
-        if (index == -1)
-        {
-            bpTop.DOAnchorPosY(300, 1f).SetEase(Ease.OutQuart);
-            bpBot.DOAnchorPosY(-300, 1f).SetEase(Ease.OutQuart);
+        bpBot.DOAnchorPosY(-350, 1f).SetEase(Ease.OutQuart).SetUpdate(true);
+    }
 
-
-        }
-        if (index == 1)
-        {
-
-            bpTop.DOAnchorPosY(781, 1.5f).SetEase(Ease.OutQuart);
-            bpBot.DOAnchorPosY(-789, 1.5f).SetEase(Ease.OutQuart);
-        }
+    public void CloseBluePrint()
+    {
+        bpBot.DOAnchorPosY(-730, 1.5f).SetEase(Ease.OutQuart).SetUpdate(true);
+        ClearSelect();
+        testScriptts.Instance.turType = -1;
+        upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+        testScriptts.Instance.UnSelectTurret();
     }
 
     public void backPanelOpne(int backIndex)
     {
         if(backIndex == -1)
         {
-            stopPanelRect.DOScale(new Vector3(1,1,1), 0.8f);
+            Time.timeScale = 0;
+            GameManager.Instance.state = GameManager.State.Stop;
+
+            stopPanelRect.DOScale(new Vector3(1,1,1), 0.8f).SetUpdate(true);
         }
         if(backIndex == 1)
         {
-            stopPanelRect.DOScale(new Vector3(0,0,0), 0.8f);
+            Time.timeScale = 1;
+            GameManager.Instance.state = GameManager.State.Play;
+            stopPanelRect.DOScale(new Vector3(0,0,0), 0.8f).SetUpdate(true);
         }
         
     }
 
-    public void OpenMenu()
+    public void OpenTitleScene()
     {
-        if (num == -1)
+        SceneManager.LoadScene("TitleScene");
+    }
+
+    public void OpenGiveUPPanel()
+    {
+        giveUPPanel.SetActive(true);
+        StartGiveUpPanelBackCoroutine();
+    }
+
+    public void CloseGiveUpPanel()
+    {
+        giveUPPanel.SetActive(false);
+        StopGiveUpPanelBackCoroutine();
+    }
+
+    private void StartGiveUpPanelBackCoroutine()
+    {
+        coroutine = StartCoroutine(GiveUpPanelBack());
+    }
+
+    private void StopGiveUpPanelBackCoroutine()
+    {
+        if (coroutine != null)
         {
-            btnGroup.SetActive(true);
-            menuBtnRect[0].DOAnchorPosY(-60,1f);
-            menuBtnRect[1].DOAnchorPosY(-100,1f);
-            menuBtnRect[2].DOAnchorPosY(-140,1f);
-            menuBtnRect[3].DOAnchorPosY(-180,1f);
+            StopCoroutine(coroutine);
+        }
+    }
+
+    private IEnumerator GiveUpPanelBack()
+    {
+        for (int i = 10; i >= 0; i--)
+        {
+            time.text = "" + i;
+            yield return new WaitForSecondsRealtime(1);
         }
 
-        if (num == 1)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                menuBtnRect[i].DOAnchorPosY(0,1).OnComplete(()=>
-                btnGroup.SetActive(false)
-                );
-            }
-            
-        }
-
+        CloseGiveUpPanel();
     }
 }

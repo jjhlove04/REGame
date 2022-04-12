@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour
         instance = this;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {

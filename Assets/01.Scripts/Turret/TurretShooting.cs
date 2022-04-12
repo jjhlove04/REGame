@@ -34,8 +34,6 @@ public class TurretShooting : Turret
 
     public int upgradeCost;
 
-    public int maxBulletAmount;
-
     private void Start()
     {
         //curshootTimer = shootTimerMax;
@@ -60,13 +58,6 @@ public class TurretShooting : Turret
     protected override void HandleShooting(float shootTimerMax, int damage)
     {
         base.HandleShooting(shootTimerMax, damage);
-
-        
-    }
-
-    public void Shot()
-    {
-
     }
 
     /*private void Shot()
@@ -115,5 +106,7 @@ public class TurretShooting : Turret
             GameManager.Instance.goldAmount -= result;
             bulAmount = maxBulletAmount;
         }
+
+        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
     }
 }

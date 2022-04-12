@@ -14,11 +14,15 @@ public class testSkilll : MonoBehaviour
     [SerializeField]
     private int floor;
 
-    [SerializeField]
-    private bool isTest;
+    [HideInInspector]
+    public bool isTest;
+
+    private Image outLine;
+
     void Start()
     {
         upgradeBtn = GameObject.Find("UP");
+        outLine = transform.GetChild(0).GetComponent<Image>();
 
         this.gameObject.TryGetComponent(out Button btnm);
 
@@ -36,9 +40,10 @@ public class testSkilll : MonoBehaviour
 
             testScriptts.Instance.turPos = count;
 
-            if (selectType == -1)
+            if (selectType == -1 && GameManager.Instance.goldAmount >= 10)
             {
                 selectType = InGameUI._instance.selectType;
+                outLine.color = new Color32(255,204,1,255);
             }
             else
             {

@@ -21,7 +21,18 @@ public class Turret : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask;
 
+    public int maxBulletAmount;
+
     public int bulAmount = 10;
+
+    [SerializeField]
+    protected BulletBar bulletBar;
+
+    [HideInInspector]
+    public int turCount;
+
+    [HideInInspector]
+    public int turType;
 
     protected virtual void HandleTargeting(float maxDistance)
     {
@@ -81,6 +92,7 @@ public class Turret : MonoBehaviour
                     TestTurretDataBase.Instance.resultDamage += damage;
                     bulAmount--;
 
+                    bulletBar.UpdateBar(bulAmount, maxBulletAmount);
                 }
             }
         }
@@ -123,5 +135,10 @@ public class Turret : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SelectObj(bool select)
+    {
+        transform.Find("SelectTurret").gameObject.SetActive(select);
     }
 }

@@ -18,12 +18,12 @@ public class CameraQuarterViewMove : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += -Vector3.forward * Time.deltaTime * speed;
+            transform.position += -Vector3.forward * Time.unscaledDeltaTime * speed;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += Vector3.forward * Time.deltaTime * speed;
+            transform.position += Vector3.forward * Time.unscaledDeltaTime * speed;
         }
 
         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Clamp(transform.position.z, -65, 10));

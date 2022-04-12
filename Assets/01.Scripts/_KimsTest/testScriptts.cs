@@ -16,7 +16,7 @@ public class testScriptts : MonoBehaviour
         }
     }
 
-    private int speedBtnCount;
+    private int speedBtnCount = 1;
 
     public Slider hpBar;
 
@@ -35,6 +35,10 @@ public class testScriptts : MonoBehaviour
     public List<GameObject> turretData = new List<GameObject>();
     public List<GameObject> turretType = new List<GameObject>();
 
+    GameManager gameManager;
+    SpawnMananger spawnMananger;
+    InGameUI inGameUI;
+
     public int turPos = 0;
     public int turType;
     private void Awake()
@@ -45,6 +49,10 @@ public class testScriptts : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.Instance;
+        spawnMananger = SpawnMananger.Instance;
+        inGameUI = InGameUI._instance;
+
         objectPool = FindObjectOfType<ObjectPool>();
         //NextWaveBtn.onClick.AddListener(NextWave);
 
@@ -64,9 +72,9 @@ public class testScriptts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ChangeSpeed();
         gameTime = Time.time;
         string result = string.Format("{0:0.0}", gameTime);
-        ChangeSpeed();
         BulletCheck();
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -79,33 +87,33 @@ public class testScriptts : MonoBehaviour
         switch (speedBtnCount)
         {
             case 0:
-                GameManager.Instance.gameSpeed = 1f;
+                gameManager.gameSpeed = 0f;
                 break;
             case 1:
-                GameManager.Instance.gameSpeed = 2f;
+                gameManager.gameSpeed = 1f;
                 break;
             case 2:
-                GameManager.Instance.gameSpeed = 3f;
+                gameManager.gameSpeed = 2f;
                 break;
-            case 3:
-                GameManager.Instance.gameSpeed = 0f;
+            case 4:
+                gameManager.gameSpeed = 4f;
                 break;
         }
     }
 
     public void NextWave()
     {
-        if (SpawnMananger.Instance.round == 0)
+        if (spawnMananger.round == 0)
         {
-            SpawnMananger.Instance.stopSpawn = false;
+            spawnMananger.stopSpawn = false;
 
-            GameManager.Instance.goldAmount += 30;
+            gameManager.goldAmount += 30;
 
         }
         else
         {
-            SpawnMananger.Instance.curTime = SpawnMananger.Instance.roundCurTime;
-            GameManager.Instance.goldAmount += (int)(SpawnMananger.Instance.roundCurTime * 0.7f);
+            spawnMananger.curTime = spawnMananger.roundCurTime;
+            gameManager.goldAmount += (int)(spawnMananger.roundCurTime * 0.7f);
         }
     }
 
@@ -115,25 +123,28 @@ public class testScriptts : MonoBehaviour
         {
             if (tT.onTurret != true)
             {
-                if (GameManager.Instance.goldAmount >= 10)
+                if (gameManager.goldAmount >= 10)
                 {
                     GameObject gameInst = objectPool.GetObject(turret);
+                    gameInst.GetComponent<Turret>().turCount = turPos;
+                    gameInst.GetComponent<Turret>().turType = turType;
                     gameInst.transform.position = turretPoses[turPos].position;
                     gameInst.transform.SetParent(this.gameObject.transform);
                     tT.onTurret = true;
                     turretData[turPos] = gameInst;
-                    GameManager.Instance.goldAmount -= 10;
+                    gameManager.goldAmount -= 10;
                 }
                 else
                 {
-                    InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
-                    InGameUI._instance.warningTxt.text = "Not Enough Gold";
+                    inGameUI.warningTxt.color = new Color(1, 0.8f, 0, 1);
+                    inGameUI.warningTxt.text = "Not Enough Gold";
                 }
             }
             else
             {
-                InGameUI._instance.upGradePanelRect.DOAnchorPosY(300, 1.5f);
-                InGameUI._instance.selectType = turType;
+                inGameUI.upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
+                SelectTurret();
+                inGameUI.selectType = turType;
             }
         } 
     }
@@ -145,6 +156,7 @@ public class testScriptts : MonoBehaviour
     public void ChageMakeTur(GameObject turret)
     {
         GameObject gameInst = objectPool.GetObject(turret);
+        gameInst.GetComponent<Turret>().turCount = turPos;
         gameInst.transform.position = turretPoses[turPos].position;
         gameInst.transform.SetParent(this.gameObject.transform);
         Despawn();
@@ -159,13 +171,23 @@ public class testScriptts : MonoBehaviour
     public void ChangeTur(int num)
     {
         turType = num;
-        InGameUI._instance.selectType = turType;
+        inGameUI.selectType = turType;
         GameObject gameObject = turretType[num];
         turret = gameObject;
     }
-    public void Speeeeeed(int num)
+    public void Speeeeeed()
     {
-        speedBtnCount = num;
+        if (speedBtnCount != 0)
+        {
+            speedBtnCount *= 2;
+            if (speedBtnCount == 8)
+                speedBtnCount = 0;
+        }
+
+        else
+        {
+            speedBtnCount++;
+        }
     }
 
     public void TakeDamageHpBar()
@@ -179,6 +201,30 @@ public class testScriptts : MonoBehaviour
         if (turretData[turPos].GetComponent<TurretShooting>())
         {
             bulletAmmo.value = (float)turretData[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretData[turPos].GetComponent<TurretShooting>().maxBulletAmount;
+        }
+    }
+
+    public void SelectTurret()
+    {
+        for (int i = 0; i < turretPoses.Count; i++)
+        {
+            if (turretPoses[i] != turretPoses[turPos])
+            {
+                turretPoses[i].GetChild(0).gameObject.SetActive(false);
+            }
+
+            else
+            {
+                turretPoses[turPos].GetChild(0).gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void UnSelectTurret()
+    {
+        for (int i = 0; i < turretPoses.Count; i++)
+        {
+            turretPoses[i].GetChild(0).gameObject.SetActive(false);
         }
     }
 }
