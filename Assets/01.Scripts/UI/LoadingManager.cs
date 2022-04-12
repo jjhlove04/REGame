@@ -12,7 +12,7 @@ public class LoadingManager : MonoBehaviour
     [SerializeField] private GameObject _loaderCanvas;
     [SerializeField] private Image _progressBar;
     private float _target;
-    
+
     private void Awake()
     {
         if(_instance == null)
@@ -28,6 +28,8 @@ public class LoadingManager : MonoBehaviour
 
     public async void LoadScene(string sceneName)
     {
+        _target = 0;    
+        _progressBar.fillAmount = 0;
         var scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
 
@@ -36,7 +38,7 @@ public class LoadingManager : MonoBehaviour
         do
         {
             await Task.Delay(100);
-            _progressBar.fillAmount = scene.progress;
+            _target = scene.progress;
         }
         while(scene.progress < 0.8f);
 
@@ -45,5 +47,9 @@ public class LoadingManager : MonoBehaviour
         scene.allowSceneActivation = true;
         _loaderCanvas.SetActive(false);
 
+    }
+
+    private void Update() {
+        _progressBar.fillAmount = Mathf.MoveTowards(_progressBar.fillAmount, _target, 1.5f * Time.deltaTime);
     }
 }
