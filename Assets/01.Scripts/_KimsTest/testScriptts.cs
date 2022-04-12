@@ -124,6 +124,11 @@ public class testScriptts : MonoBehaviour
                     turretData[turPos] = gameInst;
                     GameManager.Instance.goldAmount -= 10;
                 }
+                else
+                {
+                    InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
+                    InGameUI._instance.warningTxt.text = "Not Enough Gold";
+                }
             }
             else
             {

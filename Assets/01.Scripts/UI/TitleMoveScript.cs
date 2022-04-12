@@ -170,7 +170,6 @@ public class TitleMoveScript : MonoBehaviour
                         TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
                     }
                     indexNum = 2;
-
                 }
             }
         }

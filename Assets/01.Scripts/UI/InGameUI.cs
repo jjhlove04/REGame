@@ -39,6 +39,7 @@ public class InGameUI : MonoBehaviour
 
     [SerializeField]
     private Button upGradeBtn;
+    public Text warningTxt;
     public int selectType;
     private void Awake()
     {
@@ -130,7 +131,6 @@ public class InGameUI : MonoBehaviour
             backPanelOpne(backIndex);
         }
 
-
         if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
@@ -139,13 +139,18 @@ public class InGameUI : MonoBehaviour
             sceneIndex = 1;
             GameManager.Instance.state = GameManager.State.Ready;
         }
+
+        if(warningTxt.color.a >= 0)
+        {
+            warningTxt.color = new Color(warningTxt.color.r, warningTxt.color.g, warningTxt.color.b, Mathf.Lerp(warningTxt.color.a, 0, Time.deltaTime * 2));
+        }
     }
 
     public void ClearSelect()
     {
         for(int i = 0; i < 5; i++)
         {
-                selectObj[i].SetActive(false);
+            selectObj[i].SetActive(false);
         }
 
     }
