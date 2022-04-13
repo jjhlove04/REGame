@@ -324,7 +324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4657851587138793068, guid: de5d621e78535b34283b07e5220390bf, type: 3}
       propertyPath: simulationSpeed
-      value: 10
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657851587138793068, guid: de5d621e78535b34283b07e5220390bf, type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4657851587138793068, guid: de5d621e78535b34283b07e5220390bf, type: 3}
       propertyPath: InitialModule.maxNumParticles
@@ -809,6 +813,10 @@ PrefabInstance:
     - target: {fileID: 4247826730901616355, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247826730901616355, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8568402560383066214, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
       propertyPath: healthSystem

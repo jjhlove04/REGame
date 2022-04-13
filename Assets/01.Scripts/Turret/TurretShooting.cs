@@ -44,11 +44,6 @@ public class TurretShooting : Turret
     {
         HandleShooting(shootTimerMax, damage);
         HandleTargeting(maxDistance);
-        //Shot();
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Reload();
-        }
     }
 
     protected override void HandleTargeting(float maxDistance)

@@ -13,10 +13,13 @@ public class HealthSystem : MonoBehaviour
 
     private float curHealthAmount;
 
-    private void Start()
+    private void Awake()
     {
         enemy = GetComponent<Enemy>();
+    }
 
+    private void Start()
+    {
         InitHealth();
         SetHealthAmountMax(enemy.enemyStat.healthAmountMax, true);
         OnDied.AddListener(InitHealth);

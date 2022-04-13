@@ -40,17 +40,11 @@ public class Enemy : MonoBehaviour
         isDying = false;
         EnemyTagInit();
         run = true;
-    }
-
-    protected virtual void Start()
-    {
         AttackingTime();
     }
 
     protected virtual void Update()
     {
-
-            
         if (!isDying)
         {
             Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
@@ -113,7 +107,7 @@ public class Enemy : MonoBehaviour
         {
             if (run)
             {
-                run = !(Vector3.Distance(transform.position, trainManager.trainContainer[enemyType].transform.position+ new Vector3(0,0, randomZ)) < distance);
+                run = Vector3.Distance(transform.position, trainManager.trainContainer[enemyType].transform.position+ new Vector3(0,0, randomZ)) > distance;
                 EnemyLimitMoveX();
             }
         }

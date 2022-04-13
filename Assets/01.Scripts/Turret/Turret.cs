@@ -61,11 +61,6 @@ public class Turret : MonoBehaviour
 
         else
         {
-            if (targetEnemy != null && targetEnemy.gameObject.GetComponent<Enemy>().isDying)
-            {
-                targetEnemy = null;
-            }
-
             LookForTargets(maxDistance);
         }
 
@@ -100,7 +95,9 @@ public class Turret : MonoBehaviour
 
     void LookForTargets(float maxDistance)
     {
-        RaycastHit[] hit = Physics.SphereCastAll(transform.position, maxDistance, transform.forward, 100, layerMask);
+        targetEnemy = null;
+
+        RaycastHit[] hit = Physics.SphereCastAll(transform.position, maxDistance, transform.forward, maxDistance, layerMask);
 
         foreach (RaycastHit hitEnemy in hit)
         {

@@ -19,9 +19,8 @@ public class EnemyRoketlancher : Enemy
         EnemyGetRandom();
     }
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
         objPool = FindObjectOfType<ObjectPool>();
     }
 

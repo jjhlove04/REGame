@@ -56,6 +56,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < gm.Length; i++)
         {
             gm[i].SetActive(false);
+            gm[i].transform.position = transform.position;
         }
     }
 
