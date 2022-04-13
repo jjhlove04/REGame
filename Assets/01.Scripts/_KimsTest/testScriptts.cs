@@ -21,7 +21,7 @@ public class testScriptts : MonoBehaviour
 
     public Slider hpBar;
 
-    //public Button NextWaveBtn;
+    public Button NextWaveBtn;
     [SerializeField]
     private float gameTime;
 
@@ -29,7 +29,9 @@ public class testScriptts : MonoBehaviour
     public Button reloadBtn;
     public Slider bulletAmmo;
 
-    public TextMeshProUGUI gameSpeedText;
+    //public TextMeshProUGUI gameSpeedText;
+    public Image speedImg;
+    public Sprite[] speedList;
 
     public GameObject turret;
     private ObjectPool objectPool;
@@ -57,7 +59,7 @@ public class testScriptts : MonoBehaviour
         inGameUI = InGameUI._instance;
 
         objectPool = FindObjectOfType<ObjectPool>();
-        //NextWaveBtn.onClick.AddListener(NextWave);
+        NextWaveBtn.onClick.AddListener(NextWave);
 
         //gameEndBtn.onClick.AddListener(GameEnd);
         reloadBtn.onClick.AddListener(Reload);
@@ -94,15 +96,19 @@ public class testScriptts : MonoBehaviour
         {
             case 0:
                 gameManager.gameSpeed = 0f;
+                speedImg.sprite = speedList[0];
                 break;
             case 1:
                 gameManager.gameSpeed = 1f;
+                speedImg.sprite = speedList[1];
                 break;
             case 2:
                 gameManager.gameSpeed = 2f;
+                speedImg.sprite = speedList[2];
                 break;
             case 4:
                 gameManager.gameSpeed = 4f;
+                speedImg.sprite = speedList[3];
                 break;
         }
     }
@@ -189,13 +195,12 @@ public class testScriptts : MonoBehaviour
             if (speedBtnCount == 8)
                 speedBtnCount = 0;
         }
-
         else
         {
             speedBtnCount++;
         }
-
-        gameSpeedText.text = ""+speedBtnCount;
+            
+        //gameSpeedText.text = ""+speedBtnCount;
     }
 
     public void TakeDamageHpBar()
