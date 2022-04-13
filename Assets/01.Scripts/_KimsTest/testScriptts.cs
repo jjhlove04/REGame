@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class testScriptts : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class testScriptts : MonoBehaviour
     //public Button gameEndBtn;
     public Button reloadBtn;
     public Slider bulletAmmo;
+
+    public TextMeshProUGUI gameSpeedText;
 
     public GameObject turret;
     private ObjectPool objectPool;
@@ -57,13 +60,7 @@ public class testScriptts : MonoBehaviour
         //NextWaveBtn.onClick.AddListener(NextWave);
 
         //gameEndBtn.onClick.AddListener(GameEnd);
-        reloadBtn.onClick.AddListener(() =>
-        {
-            if (turretData[turPos].TryGetComponent(out TurretShooting trshot))
-            {
-                trshot.Reload();
-            }
-        });
+        reloadBtn.onClick.AddListener(Reload);
 
         //hp¹Ù ¼¼
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
@@ -82,6 +79,15 @@ public class testScriptts : MonoBehaviour
             NextWave();
         }
     }
+
+    public void Reload()
+    {
+        if (turPos != -1 && turretData[turPos].TryGetComponent(out TurretShooting trshot))
+        {
+            trshot.Reload();
+        }
+    }
+
     public void ChangeSpeed()
     {
         switch (speedBtnCount)
@@ -188,6 +194,8 @@ public class testScriptts : MonoBehaviour
         {
             speedBtnCount++;
         }
+
+        gameSpeedText.text = ""+speedBtnCount;
     }
 
     public void TakeDamageHpBar()
@@ -198,7 +206,7 @@ public class testScriptts : MonoBehaviour
 
     public void BulletCheck()
     {
-        if (turretData[turPos].GetComponent<TurretShooting>())
+        if (turPos != -1 && turretData[turPos].GetComponent<TurretShooting>() )
         {
             bulletAmmo.value = (float)turretData[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretData[turPos].GetComponent<TurretShooting>().maxBulletAmount;
         }

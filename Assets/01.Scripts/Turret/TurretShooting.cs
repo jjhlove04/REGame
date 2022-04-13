@@ -101,7 +101,7 @@ public class TurretShooting : Turret
 
     public void Reload()
     {
-        if (GameManager.Instance.goldAmount > result)
+        if (GameManager.Instance.goldAmount >= result && bulAmount != maxBulletAmount)
         {
             GameManager.Instance.goldAmount -= result;
             bulAmount = maxBulletAmount;

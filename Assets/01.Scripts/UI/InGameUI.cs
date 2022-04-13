@@ -117,10 +117,16 @@ public class InGameUI : MonoBehaviour
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
         }
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             backIndex *= -1;
             backPanelOpne(backIndex);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            testScriptts.Instance.Reload();
         }
 
         if (GameManager.Instance.state == GameManager.State.End)
@@ -156,6 +162,7 @@ public class InGameUI : MonoBehaviour
         bpBot.DOAnchorPosY(-730, 1.5f).SetEase(Ease.OutQuart).SetUpdate(true);
         ClearSelect();
         testScriptts.Instance.turType = -1;
+        testScriptts.Instance.turPos = -1;
         upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
         testScriptts.Instance.UnSelectTurret();
     }
