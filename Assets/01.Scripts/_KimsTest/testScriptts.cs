@@ -21,9 +21,13 @@ public class testScriptts : MonoBehaviour
 
     public Slider hpBar;
 
+    [Header("NEXTBTN")]
     public Button NextWaveBtn;
     public Image nextWaveImg;
     public Image autoWaveImg;
+    public Image textImg;
+
+    [Header("")]
     [SerializeField]
     private float gameTime;
 
@@ -142,11 +146,12 @@ public class testScriptts : MonoBehaviour
             if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
             {
                 NextWaveBtn.interactable = true;
+                textImg.gameObject.SetActive(true);
             }
             else
             {
-
                 NextWaveBtn.interactable = false;
+                textImg.gameObject.SetActive(false);
             }
         }
         nextWaveImg.fillAmount = SpawnMananger.Instance.curTime / SpawnMananger.Instance.roundCurTime;
