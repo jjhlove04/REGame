@@ -22,14 +22,14 @@ public class testScriptts : MonoBehaviour
     public Slider hpBar;
 
     public Button NextWaveBtn;
+    public Image nextWaveImg;
+    public Image autoWaveImg;
     [SerializeField]
     private float gameTime;
 
-    //public Button gameEndBtn;
     public Button reloadBtn;
     public Slider bulletAmmo;
 
-    //public TextMeshProUGUI gameSpeedText;
     public Image speedImg;
     public Sprite[] speedList;
 
@@ -61,7 +61,6 @@ public class testScriptts : MonoBehaviour
         objectPool = FindObjectOfType<ObjectPool>();
         NextWaveBtn.onClick.AddListener(NextWave);
 
-        //gameEndBtn.onClick.AddListener(GameEnd);
         reloadBtn.onClick.AddListener(Reload);
 
         //hp¹Ù ¼¼
@@ -75,10 +74,16 @@ public class testScriptts : MonoBehaviour
         gameTime = Time.time;
         string result = string.Format("{0:0.0}", gameTime);
         BulletCheck();
-
+        NextWaveCoolBtn();
         if (Input.GetKeyDown(KeyCode.A))
         {
-            NextWave();
+            if(speedBtnCount != 0)
+            {
+                if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
+                {
+                    NextWave();
+                }
+            }
         }
     }
 
@@ -97,10 +102,12 @@ public class testScriptts : MonoBehaviour
             case 0:
                 gameManager.gameSpeed = 0f;
                 speedImg.sprite = speedList[0];
+                NextWaveBtn.interactable = false;
                 break;
             case 1:
                 gameManager.gameSpeed = 1f;
                 speedImg.sprite = speedList[1];
+                NextWaveBtn.interactable = true;
                 break;
             case 2:
                 gameManager.gameSpeed = 2f;
@@ -115,7 +122,7 @@ public class testScriptts : MonoBehaviour
 
     public void NextWave()
     {
-        if (spawnMananger.round == 0)
+        if (spawnMananger.round == 1)
         {
             spawnMananger.stopSpawn = false;
 
@@ -128,6 +135,23 @@ public class testScriptts : MonoBehaviour
             gameManager.goldAmount += (int)(spawnMananger.roundCurTime * 0.7f);
         }
     }
+    public void NextWaveCoolBtn()
+    {
+        if (speedBtnCount != 0)
+        {
+            if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
+            {
+                NextWaveBtn.interactable = true;
+            }
+            else
+            {
+
+                NextWaveBtn.interactable = false;
+            }
+        }
+        nextWaveImg.fillAmount = SpawnMananger.Instance.curTime / SpawnMananger.Instance.roundCurTime;
+        autoWaveImg.fillAmount = SpawnMananger.Instance.curTime / (SpawnMananger.Instance.roundCurTime * 0.3f);
+    } 
 
     public void Create()
     {
@@ -232,6 +256,7 @@ public class testScriptts : MonoBehaviour
             }
         }
     }
+
 
     public void UnSelectTurret()
     {

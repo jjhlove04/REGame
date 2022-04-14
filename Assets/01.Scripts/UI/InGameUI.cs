@@ -28,6 +28,10 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private Button[] applyBtn;
     [SerializeField] private GameObject[] selectObj;
     [SerializeField] private GameObject giveUPPanel;
+    [SerializeField] private GameObject settingPanel;
+
+    private bool onPanel;
+
     int screenHeight = Screen.height;
     int screenWidth = Screen.width;
     int applybtnIndex = 0;
@@ -46,7 +50,6 @@ public class InGameUI : MonoBehaviour
     Coroutine coroutine;
     private void Awake()
     {
-        stopPanel.transform.localScale = Vector2.zero;
         _instance = this;
         bpTop = bluePrintTop.GetComponent<RectTransform>();
         bpBot = bluePrintBot.GetComponent<RectTransform>();
@@ -103,25 +106,44 @@ public class InGameUI : MonoBehaviour
         });
 
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
-        waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
+        waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
     }
 
 
     void Update()
     {
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
-        waveTxt.text = "WAVE : " + SpawnMananger.Instance.round.ToString();
+        waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
 
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            backIndex *= -1;
-            backPanelOpne(backIndex);
+            //    if ((settingPanel.activeSelf == false && giveUPPanel.activeSelf == true) 
+            //        || (settingPanel.activeSelf == true && giveUPPanel.activeSelf == false)
+            //        || (settingPanel.activeSelf == false && giveUPPanel.activeSelf == false))
+            //    {
+            if (settingPanel.activeSelf == true)
+            {
+                settingPanel.SetActive(false);
+            }
+            else if(giveUPPanel.activeSelf == true)
+            {
+                giveUPPanel.SetActive(false);
+            }
+            else
+            {
+                backIndex *= -1;
+                backPanelOpne(backIndex);
+            }
+            //}
+
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -142,6 +164,7 @@ public class InGameUI : MonoBehaviour
         {
             warningTxt.color = new Color(warningTxt.color.r, warningTxt.color.g, warningTxt.color.b, Mathf.Lerp(warningTxt.color.a, 0, Time.deltaTime * 2));
         }
+
     }
 
     public void ClearSelect()
@@ -160,12 +183,38 @@ public class InGameUI : MonoBehaviour
     public void CloseBluePrint()
     {
         bpBot.DOAnchorPosY(-730, 1.5f).SetEase(Ease.OutQuart).SetUpdate(true);
+
+        upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+    }
+
+    public void CancelTurret()
+    {
         ClearSelect();
         testScriptts.Instance.turType = -1;
         testScriptts.Instance.turPos = -1;
-        upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
         testScriptts.Instance.UnSelectTurret();
+        upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
     }
+
+    public void CancleAll(GameObject bot)
+    {
+        if(bluePrintTop.activeSelf != false)
+        {
+            bpBot.DOAnchorPosY(-730, 1.5f).SetEase(Ease.OutQuart).SetUpdate(true);
+
+            upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+
+            ClearSelect();
+            testScriptts.Instance.turType = -1;
+            testScriptts.Instance.turPos = -1;
+            testScriptts.Instance.UnSelectTurret();
+
+            bot.SetActive(false);
+            Debug.Log("all");
+        }    
+    }
+
+    
 
     public void backPanelOpne(int backIndex)
     {
@@ -173,16 +222,35 @@ public class InGameUI : MonoBehaviour
         {
             Time.timeScale = 0;
             GameManager.Instance.state = GameManager.State.Stop;
-
             stopPanelRect.DOScale(new Vector3(1,1,1), 0.8f).SetUpdate(true);
+            Debug.Log("on");
         }
         if(backIndex == 1)
         {
             Time.timeScale = 1;
             GameManager.Instance.state = GameManager.State.Play;
             stopPanelRect.DOScale(new Vector3(0,0,0), 0.8f).SetUpdate(true);
+            Debug.Log("off");
         }
         
+    }
+    public void backBtn()
+    {
+        backIndex *= -1;
+        backPanelOpne(backIndex);
+    }
+
+    public void OpenPresetBtn(RectTransform bot)
+    {
+        //bot.DOScale(new Vector3(1, 1, 1), 0.8f).SetUpdate(true);
+        if (bot.gameObject.activeSelf == true)
+        {
+            bot.gameObject.SetActive(false);
+        }
+        else
+        {
+            bot.gameObject.SetActive(true);
+        }
     }
 
     public void OpenTitleScene()
@@ -225,4 +293,6 @@ public class InGameUI : MonoBehaviour
 
         CloseGiveUpPanel();
     }
+    
+
 }

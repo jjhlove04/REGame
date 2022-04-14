@@ -28,6 +28,8 @@ public class SpawnMananger : MonoBehaviour
     {
         Instance = this;
 
+        round = 1;
+
         spawn = new Spawn((round)=> { });
     }
     private void Start()
