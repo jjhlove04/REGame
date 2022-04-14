@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6544285b9c369204abf63354905cdf0b, type: 3}
+  m_Name: RoketBoss
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1532036094782582, guid: 7c88ebb876048e34c8a817e4a16569a3, type: 3}
+  enemySpeed: 5.6
+  distanceX: 30
+  minDistance: 33
+  maxDistance: 37
+  damage: 12.5
+  sAttackTime: 0.9
+  animTime: 0.672
+  healthAmountMax: 20

@@ -24,6 +24,8 @@ public class PanAndZoom : MonoBehaviour
     const float minOrthographicSize = 40;
     const float maxOrthographicSize = 185f;
 
+    private bool cameraStop = false;
+
 
 
     Camera mainCam;
@@ -38,13 +40,21 @@ public class PanAndZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = inputProvider.GetAxisValue(0);
-        float y = inputProvider.GetAxisValue(1);
-        float z = inputProvider.GetAxisValue(2);
-
-        if (x != 0 || y !=0 || z != 0)
+        if (Input.GetKeyDown(KeyCode.Y))
         {
-            PanScreen(x,y);
+            cameraStop = !cameraStop;
+        }
+
+        if (!cameraStop)
+        {
+            float x = inputProvider.GetAxisValue(0);
+            float y = inputProvider.GetAxisValue(1);
+            float z = inputProvider.GetAxisValue(2);
+
+            if (x != 0 || y != 0 || z != 0 && !cameraStop)
+            {
+                PanScreen(x, y);
+            }
         }
 
         HandleZoom();
