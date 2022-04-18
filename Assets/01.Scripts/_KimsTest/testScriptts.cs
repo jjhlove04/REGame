@@ -50,6 +50,18 @@ public class testScriptts : MonoBehaviour
 
     public int turPos = 0;
     public int turType;
+
+    private int floor;
+
+    [SerializeField]
+    private Image image;
+
+    [SerializeField]
+    private Image upGradeImage;
+
+    [SerializeField]
+    private Sprite[] imageType;
+
     private void Awake()
     {
         _instance = this;
@@ -187,7 +199,9 @@ public class testScriptts : MonoBehaviour
                 SelectTurret();
                 inGameUI.selectType = turType;
             }
-        } 
+        }
+
+        SelectTurret();
     }
     public void Despawn()
     {
@@ -198,6 +212,7 @@ public class testScriptts : MonoBehaviour
     {
         GameObject gameInst = objectPool.GetObject(turret);
         gameInst.GetComponent<Turret>().turCount = turPos;
+        gameInst.GetComponent<Turret>().turType = turType;
         gameInst.transform.position = turretPoses[turPos].position;
         gameInst.transform.SetParent(this.gameObject.transform);
         Despawn();
@@ -216,6 +231,7 @@ public class testScriptts : MonoBehaviour
         GameObject gameObject = turretType[num];
         turret = gameObject;
     }
+
     public void Speeeeeed()
     {
         if (speedBtnCount != 0)
@@ -260,6 +276,8 @@ public class testScriptts : MonoBehaviour
                 turretPoses[turPos].GetChild(0).gameObject.SetActive(true);
             }
         }
+
+        NextUpgrade();
     }
 
 
@@ -268,6 +286,39 @@ public class testScriptts : MonoBehaviour
         for (int i = 0; i < turretPoses.Count; i++)
         {
             turretPoses[i].GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    public void NextUpgrade()
+    {
+        int[] imageCount = TestTurretDataBase.Instance.GetTurretImageCount();
+
+        if(imageCount[0] != 100)
+        {
+            image.sprite = imageType[imageCount[0]];
+            if (imageCount[1] != 100)
+            {
+                if (imageCount[0] == 4 && imageCount[0] == 9 && imageCount[0] == 14)
+                {
+                    upGradeImage.sprite = imageType[imageCount[15]];
+                }
+
+                else
+                {
+                    upGradeImage.sprite = imageType[imageCount[1]];
+                }
+            }
+
+            else
+            {
+                upGradeImage.sprite = imageType[imageCount[15]];
+            }
+        }
+
+        else
+        {
+            image.sprite = imageType[imageCount[15]];
+            upGradeImage.sprite = imageType[imageCount[15]];
         }
     }
 }

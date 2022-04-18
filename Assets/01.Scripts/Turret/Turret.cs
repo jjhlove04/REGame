@@ -34,6 +34,8 @@ public class Turret : MonoBehaviour
     [HideInInspector]
     public int turType;
 
+    public int turImageCount;
+
     protected virtual void HandleTargeting(float maxDistance)
     {
         if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying)
@@ -132,10 +134,5 @@ public class Turret : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void SelectObj(bool select)
-    {
-        transform.Find("SelectTurret").gameObject.SetActive(select);
     }
 }

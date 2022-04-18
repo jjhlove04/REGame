@@ -81,6 +81,149 @@ public class TestTurretDataBase : MonoBehaviour
             default:
                 break;
         }
+
+        testScriptts.Instance.NextUpgrade();
     }
 
+    public int[] GetTurretImageCount()
+    {
+        int[] intArr = new int[2];
+        switch (InGameUI._instance.selectType)
+        {
+            case 0:
+
+                if (floor < curTurretType.Count)
+                {
+                    intArr[0] = curTurretType[floor].GetComponent<Turret>().turImageCount;
+
+                    if (floor+1 < curTurretType.Count)
+                    {
+                        intArr[1] = curTurretType[floor + 1].GetComponent<Turret>().turImageCount;
+                    }
+
+                    else
+                    {
+                        intArr[1] = 100;
+                    }
+                }
+
+                else
+                {
+                    intArr[0] = 100;
+                    intArr[1] = 100;
+                }
+
+                break;
+
+            case 1:
+
+                if (floor1 < curTurretType1.Count)
+                {
+                    intArr[0] = curTurretType1[floor1].GetComponent<Turret>().turImageCount;
+
+                    if (floor1 + 1 < curTurretType1.Count)
+                    {
+                        intArr[1] = curTurretType1[floor1 + 1].GetComponent<Turret>().turImageCount;
+                    }
+
+                    else
+                    {
+                        intArr[1] = 100;
+                    }
+                }
+
+                else
+                {
+                    intArr[0] = 100;
+                    intArr[1] = 100;
+                }
+
+                break;
+
+            case 2:
+
+                if (floor2 < curTurretType2.Count)
+                {
+                    intArr[0] = curTurretType2[floor2].GetComponent<Turret>().turImageCount;
+
+                    if (floor2 + 1 < curTurretType2.Count)
+                    {
+                        intArr[1] = curTurretType2[floor2 + 1].GetComponent<Turret>().turImageCount;
+                    }
+
+                    else
+                    {
+                        intArr[1] = 100;
+                    }
+                }
+
+                else
+                {
+                    intArr[0] = 100;
+                    intArr[1] = 100;
+                }
+
+                break;
+
+            case 3:
+
+                if (floor3 < curTurretType3.Count)
+                {
+                    intArr[0] = curTurretType4[floor3].GetComponent<Turret>().turImageCount;
+
+                    if (floor3 + 1 < curTurretType3.Count)
+                    {
+                        intArr[1] = curTurretType3[floor3 + 1].GetComponent<Turret>().turImageCount;
+                    }
+
+                    else
+                    {
+                        intArr[1] = 100;
+                    }
+                }
+
+                else
+                {
+                    intArr[0] = 100;
+                    intArr[1] = 100;
+                }
+
+                break;
+
+            case 4:
+
+                if (floor4 < curTurretType4.Count)
+                {
+                    intArr[0] = curTurretType4[floor4].GetComponent<Turret>().turImageCount;
+
+                    if (floor4 + 1 < curTurretType4.Count)
+                    {
+                        intArr[1] = curTurretType4[floor4 + 1].GetComponent<Turret>().turImageCount;
+                    }
+
+                    else
+                    {
+                        intArr[1] = 100;
+                    }
+                }
+
+                else
+                {
+                    intArr[0] = 100;
+                    intArr[1] = 100;
+                }
+                break;
+                /*case 5:
+
+                    if (floor4 < curTurretType4.Count)
+                    {
+                        testScriptts.Instance.ChageMakeTur(curTurretType5[floor5]);
+                        floor5++;
+                    }
+
+                    break;*/
+        }
+
+        return intArr;
+    }
 }

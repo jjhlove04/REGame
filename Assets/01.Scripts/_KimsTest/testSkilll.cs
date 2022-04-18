@@ -43,6 +43,7 @@ public class testSkilll : MonoBehaviour
             if (selectType == -1 && GameManager.Instance.goldAmount >= 10)
             {
                 selectType = InGameUI._instance.selectType;
+                testScriptts.Instance.turType = selectType;
                 outLine.color = new Color32(255,204,1,255);
             }
             else

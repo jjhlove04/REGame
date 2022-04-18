@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GetTurretUpgrade : MonoBehaviour
 {
@@ -40,10 +41,7 @@ public class GetTurretUpgrade : MonoBehaviour
                 testScriptts.Instance.turPos = turCount;
 
                 testScriptts.Instance.SelectTurret();
-
-                print(turCount);
             }
-
         }
     }
 }
