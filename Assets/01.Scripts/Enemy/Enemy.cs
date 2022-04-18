@@ -170,7 +170,7 @@ public class Enemy : MonoBehaviour
 
     private void Gravity()
     {
-        if(transform.position.y < 0)
+        if(transform.position.y < -5)
         {
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         }
