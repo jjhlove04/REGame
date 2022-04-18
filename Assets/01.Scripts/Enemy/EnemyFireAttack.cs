@@ -44,7 +44,7 @@ public class EnemyFireAttack : Enemy
         }
 
         else
-        {
+        {            
             rot = Quaternion.LookRotation(Vector3.zero);
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }

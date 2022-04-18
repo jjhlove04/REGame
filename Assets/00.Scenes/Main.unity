@@ -3911,7 +3911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5176471}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -5293,15 +5293,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788826733118601942, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1788826733118601942, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1788826733118601942, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1788826733118601942, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -12616,8 +12616,8 @@ RectTransform:
   - {fileID: 884339827}
   - {fileID: 2087980831}
   - {fileID: 1776102694}
-  - {fileID: 1566562247}
   - {fileID: 1769425569}
+  - {fileID: 1566562247}
   - {fileID: 968348392}
   - {fileID: 1051496553}
   - {fileID: 686037965}
@@ -12894,7 +12894,7 @@ MonoBehaviour:
     FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 190
+    FarClipPlane: 45
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -14775,7 +14775,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 190
+  far clip plane: 45
   field of view: 50
   orthographic: 0
   orthographic size: 10
@@ -14995,7 +14995,7 @@ RectTransform:
   - {fileID: 803280761}
   - {fileID: 2117497707}
   m_Father: {fileID: 1321207655}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16925,7 +16925,7 @@ RectTransform:
   - {fileID: 48696988}
   - {fileID: 1653350023}
   m_Father: {fileID: 1321207655}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

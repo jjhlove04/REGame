@@ -65,10 +65,15 @@ public class Enemy : MonoBehaviour
 
             else
             {
-                if (dir.magnitude > 0)
-                    rot = Quaternion.LookRotation(dir);
+                if (dir != Vector3.zero)
+                {
+                    if (dir.magnitude > 0)
+                    {
+                        rot = Quaternion.LookRotation(dir);
 
-                Attack(rot);
+                        Attack(rot);
+                    }
+                }
             }
         }
 
