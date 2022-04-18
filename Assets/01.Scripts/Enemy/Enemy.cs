@@ -172,9 +172,9 @@ public class Enemy : MonoBehaviour
     {
         if(transform.position.y < -5)
         {
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -5, transform.position.z);
         }
-        transform.position += new Vector3(0, -1, 0) * Time.deltaTime;
+        transform.position += new Vector3(0, -1.5f, 0) * Time.deltaTime;
     }
 
     public virtual void PlayDieAnimationTrue()
