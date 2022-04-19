@@ -40,7 +40,7 @@ public class TitleUI : MonoBehaviour
           buyBtns[i].gameObject.AddComponent<TooltipScript>();
        }
        startBtn.onClick.AddListener(() => {
-        LoadingSceneUI.LoadScene("Main");
+           LoadingSceneUI.LoadScene("Main");
        });
        upGradeBtns[0].onClick.AddListener(()=> 
        {
@@ -55,34 +55,13 @@ public class TitleUI : MonoBehaviour
            TitleMoveScript.indexNum = 4;
        });
 
-       
+        curExp += TestTurretDataBase.Instance.resultEXP;
     }
     private void Update()
     {
         Update_MousePosition();
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            curExp += 100;
-        }
-        else if (Input.GetKeyDown(KeyCode.M))
-        {
-            curExp += 1000;
-        }
-
-            ExpBar();
-
-        if(expBar.value >= 0.99f)
-        {
-            if (curExp >= maxExp)
-            {
-                level++;
-                curExp = curExp - maxExp;
-                maxExp += maxExp;
-                expBar.value = 0;
-                levelTxt.text = level.ToString();
-            }
-        }
+        ExpBar();
     }
     
     
@@ -105,5 +84,17 @@ public class TitleUI : MonoBehaviour
     private void ExpBar()
     {
         expBar.value = Mathf.Lerp(expBar.value, (float)curExp / (float)maxExp, Time.deltaTime * (2 +(curExp / 500)));
+
+        if (expBar.value >= 0.99f)
+        {
+            if (curExp >= maxExp)
+            {
+                level++;
+                curExp = curExp - maxExp;
+                maxExp += maxExp;
+                expBar.value = 0;
+                levelTxt.text = level.ToString();
+            }
+        }
     }
 }

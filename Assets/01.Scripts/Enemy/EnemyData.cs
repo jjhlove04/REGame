@@ -21,6 +21,9 @@ public class EnemyData : ScriptableObject
 
     public float healthAmountMax;
 
+    public int dropExp;
+    public int dropGold;
+
     public float GetDamage()
     {
         return damage * (1 / sAttackTime);
