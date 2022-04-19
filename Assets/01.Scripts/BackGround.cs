@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,42 @@ public class BackGround : MonoBehaviour
 
     public float speed = 1;
 
-    public GameObject[] terrain;
+    [SerializeField]
+    private int roundCheckCount = 5;
+
+    public int mapNumber = 0;
+
+    public List<TerrainData> terrainList = new List<TerrainData>();
+
+    public List<TerrainData> terrainChainList = new List<TerrainData>();
+
+    public TerrainData changeTerrainObj;
+    public TerrainData changeTerrainChainObj;
+
+    Action OnChangeTerrain;
+
+    bool isChangingTerrain = false;
+
     private void Start()
     {
         size =  200;
+
+        changeTerrainObj = terrainList[0];
+        changeTerrainChainObj = terrainChainList[0];
+
+        OnChangeTerrain += () =>
+        {
+            isChangingTerrain = true;
+
+            mapNumber++;
+            if (mapNumber == terrainList.Count)
+            {
+                mapNumber = 0;
+            }
+
+            changeTerrainObj = terrainList[mapNumber];
+            changeTerrainChainObj = terrainChainList[mapNumber];
+        };
     }
 
 
@@ -24,9 +57,16 @@ public class BackGround : MonoBehaviour
             {
                 MoveBackground(transform.GetChild(i));
 
-                if (-(size * 1f) >= transform.GetChild(i).position.z)
+                if (-(size * 2f) >= transform.GetChild(i).position.z)
                 {
-                    SwapeBackground(transform.GetChild(i));
+                    SwapBackground(transform.GetChild(i));
+                    
+                    if (SpawnMananger.Instance.round >= roundCheckCount)
+                    {
+                        OnChangeTerrain?.Invoke();
+
+                        roundCheckCount+= 5;
+                    }
                 }
             }
         }
@@ -37,49 +77,24 @@ public class BackGround : MonoBehaviour
         transform.position -= new Vector3(0, 0, speed * GameManager.Instance.gameSpeed);
     }
 
-    private void SwapeBackground(Transform transform)
+    private void ChangeTerrainObj(Transform trm)
     {
-        transform.position += new Vector3(0, 0, size*3f);
+        if (isChangingTerrain)
+        {
+            trm.GetChild(1).GetComponent<Terrain>().terrainData = changeTerrainChainObj;
+            isChangingTerrain = false;
+        }
+
+        else
+        {
+            trm.GetChild(1).GetComponent<Terrain>().terrainData = changeTerrainObj;
+        }
     }
 
-    public void ChangeBackground(int round)
+    private void SwapBackground(Transform trm)
     {
-        if(round % 100 == 0)
-        {
-            Debug.Log("0ตส");
-            for (int i = 0; i < terrain.Length; i++)
-            {
-                terrain[i].SetActive(false);
-            }
+        trm.transform.position = new Vector3(trm.transform.position.x , trm.transform.position.y, trm.transform.position.z + size * 3f);
 
-            switch (round)
-            {
-                case 100:
-                    terrain[0].SetActive(true);
-                    terrain[1].SetActive(true);
-                    terrain[2].SetActive(true);
-                    break;
-
-                case 200:
-                    terrain[3].SetActive(true);
-                    terrain[4].SetActive(true);
-                    terrain[5].SetActive(true);
-                    break;
-
-                case 300:
-                    terrain[6].SetActive(true);
-                    terrain[7].SetActive(true);
-                    terrain[8].SetActive(true);
-                    break;
-
-                case 400:
-                    terrain[9].SetActive(true);
-                    terrain[10].SetActive(true);
-                    terrain[11].SetActive(true);
-                    break;
-                default:
-                    break;
-            }
-        }
+        ChangeTerrainObj(trm);
     }
 }

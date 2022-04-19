@@ -290,6 +290,4 @@ public class InGameUI : MonoBehaviour
 
         CloseGiveUpPanel();
     }
-    
-
 }
