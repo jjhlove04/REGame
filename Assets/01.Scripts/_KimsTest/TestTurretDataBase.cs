@@ -27,6 +27,9 @@ public class TestTurretDataBase : MonoBehaviour
     public int resultDamage = 0;
     public int resultEXP = 0;
     public int resultGold = 0;
+
+    public int level;
+    public int tp;
     private void Awake()
     {
         if(instance != null)

@@ -20,10 +20,8 @@ public class TitleUI : MonoBehaviour
     
     public Button startBtn;
 
-    private int level = 1;
     public int curExp = 0;
-    public int maxExp = 7;
-    private int tp;
+    public int maxExp = 30;
     public Slider expBar;
     public Text levelTxt;
     //public Text techPointTxt;
@@ -32,9 +30,8 @@ public class TitleUI : MonoBehaviour
     private void Awake()
     {
 
-        DontDestroyOnLoad(this.gameObject);
-
         _ui = this;
+
        for(int i = 0; i < 7; i++)
        {
           buyBtns[i].gameObject.AddComponent<TooltipScript>();
@@ -89,11 +86,18 @@ public class TitleUI : MonoBehaviour
         {
             if (curExp >= maxExp)
             {
-                level++;
+                TestTurretDataBase.Instance.level++;
                 curExp = curExp - maxExp;
-                maxExp += maxExp;
+                if(TestTurretDataBase.Instance.level % 20 == 0)
+                {
+                    maxExp = (int)(((maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp) * 1.2f);
+                }
+                else
+                {
+                    maxExp = (maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp;
+                }
                 expBar.value = 0;
-                levelTxt.text = level.ToString();
+                levelTxt.text = TestTurretDataBase.Instance.level.ToString();
             }
         }
     }

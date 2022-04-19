@@ -117,8 +117,7 @@ public class InGameUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            LoadingSceneUI.LoadScene("TitleScene");
-            sceneIndex = 1;
+            GameManager.Instance.state = GameManager.State.End;
         }
 
 
