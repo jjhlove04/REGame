@@ -19,7 +19,15 @@ public class TitleUI : MonoBehaviour
    
     
     public Button startBtn;
-    
+
+    private int level = 1;
+    public int curExp = 0;
+    public int maxExp = 7;
+    private int tp;
+    public Slider expBar;
+    public Text levelTxt;
+    //public Text techPointTxt;
+    //public Text goldTxt;
 
     private void Awake()
     {
@@ -52,6 +60,29 @@ public class TitleUI : MonoBehaviour
     private void Update()
     {
         Update_MousePosition();
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            curExp += 100;
+        }
+        else if (Input.GetKeyDown(KeyCode.M))
+        {
+            curExp += 1000;
+        }
+
+            ExpBar();
+
+        if(expBar.value >= 0.99f)
+        {
+            if (curExp >= maxExp)
+            {
+                level++;
+                curExp = curExp - maxExp;
+                maxExp += maxExp;
+                expBar.value = 0;
+                levelTxt.text = level.ToString();
+            }
+        }
     }
     
     
@@ -61,8 +92,7 @@ public class TitleUI : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
            {
-            upGradeBtns[i].gameObject.SetActive(false);
-
+                upGradeBtns[i].gameObject.SetActive(false);
            }
     }
 
@@ -71,41 +101,9 @@ public class TitleUI : MonoBehaviour
         Vector2 mousePos = Input.mousePosition;
         //{"Wav {0}"}
     }
-    // public void TakeDamageHpBar()
-    // {
-    //     //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
-    //     hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
-    // }
 
-    // public void ChangeSpeed()
-    // {
-    //     speedBtnCount++;
-    //     switch (speedBtnCount)
-    //     {
-    //         case 0:
-    //             GameManager.Instance.gameSpeed = 1f;
-    //             speedTxt.text = GameManager.Instance.gameSpeed + "X";
-    //             break;
-    //         case 1:
-    //             GameManager.Instance.gameSpeed = 1.5f;
-    //             speedTxt.text = GameManager.Instance.gameSpeed + "X";
-    //             break;
-    //         case 2:
-    //             GameManager.Instance.gameSpeed = 2f;
-    //             speedTxt.text = GameManager.Instance.gameSpeed + "X";
-    //             break;
-    //         case 3:
-    //             GameManager.Instance.gameSpeed = 4f;
-    //             speedTxt.text = GameManager.Instance.gameSpeed + "X";
-    //             speedBtnCount = -1;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-
-
-
+    private void ExpBar()
+    {
+        expBar.value = Mathf.Lerp(expBar.value, (float)curExp / (float)maxExp, Time.deltaTime * (2 +(curExp / 500)));
     }
-   
-    
-
+}

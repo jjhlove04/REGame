@@ -67,8 +67,6 @@ public class SkillTreeBtn : MonoBehaviour
             }
         }
 
-        Debug.Log("µñ¼Å³Ê¸® Áý¾î³ÖÀ½");
-
         testsk.reDic(this.gameObject);
     }
 

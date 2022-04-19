@@ -91,7 +91,7 @@ public class testScriptts : MonoBehaviour
         string result = string.Format("{0:0.0}", gameTime);
         BulletCheck();
         NextWaveCoolBtn();
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if(speedBtnCount != 0)
             {
@@ -246,6 +246,21 @@ public class testScriptts : MonoBehaviour
         }
             
         //gameSpeedText.text = ""+speedBtnCount;
+    }
+    public void Minuspeed()
+    {
+        if (speedBtnCount != 0)
+        {
+            speedBtnCount /= 2;
+            if (speedBtnCount < 1)
+            {
+                speedBtnCount = 0;
+            }
+        }
+        else
+        {
+            speedBtnCount = 4;
+        }
     }
 
     public void TakeDamageHpBar()

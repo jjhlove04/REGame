@@ -167,8 +167,6 @@ public class TestSkillTree : MonoBehaviour
             //}
             
             item.GetComponent<Button>().interactable = TestTurretDataBase.Instance.postdic[item.ToString()];
-
-            Debug.Log("µñ¼Å³Ê¸® ¹Ù²Þ");
         }
     }
 }
