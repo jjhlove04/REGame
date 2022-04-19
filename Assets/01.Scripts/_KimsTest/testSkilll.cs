@@ -71,7 +71,7 @@ public class testSkilll : MonoBehaviour
                 default:
                     break;
             }
-            testScriptts.Instance.Create();
+            TestTurretDataBase.Instance.Create(selectType);
             isTest = true;
         });
 

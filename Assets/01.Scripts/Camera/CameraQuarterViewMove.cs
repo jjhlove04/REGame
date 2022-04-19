@@ -7,6 +7,8 @@ public class CameraQuarterViewMove : MonoBehaviour
     [SerializeField]
     private float speed = 20;
 
+    private Vector3 pos;
+
     private void Update()
     {
         float speed = this.speed;   
@@ -25,7 +27,12 @@ public class CameraQuarterViewMove : MonoBehaviour
         {
             transform.position += Vector3.forward * Time.unscaledDeltaTime * speed;
         }
+    
+        if(Input.mouseScrollDelta.y != 0)
+        {
+            pos = transform.position + new Vector3(-Input.mouseScrollDelta.y*10, -Input.mouseScrollDelta.y*10, 0);
+        }
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Clamp(transform.position.z, -65, 10));
+        transform.position = Vector3.Lerp(transform.position, new Vector3(Mathf.Clamp(pos.x, 50, 90), Mathf.Clamp(pos.y, 50, 90), Mathf.Clamp(transform.position.z, -20, 20)), Time.deltaTime*5);
     }
 }

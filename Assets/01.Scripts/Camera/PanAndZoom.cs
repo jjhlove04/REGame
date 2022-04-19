@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.EventSystems;
 
 public class PanAndZoom : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PanAndZoom : MonoBehaviour
     //Pan
     [SerializeField]
     private float panSpeed = 2f;
+
+    private float speed;
 
     private CinemachineInputProvider inputProvider;
     private CinemachineVirtualCamera virtualCamera;
@@ -35,21 +38,31 @@ public class PanAndZoom : MonoBehaviour
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
         cameraTransform = virtualCamera.VirtualCameraGameObject.transform;
         mainCam = Camera.main;
+
+        speed = panSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
+        /*if (Input.GetKeyDown(KeyCode.Y))
         {
             cameraStop = !cameraStop;
-        }
+        }*/
 
         if (!cameraStop)
         {
-            float x = inputProvider.GetAxisValue(0);
+            /*float x = inputProvider.GetAxisValue(0);
             float y = inputProvider.GetAxisValue(1);
-            float z = inputProvider.GetAxisValue(2);
+            float z = inputProvider.GetAxisValue(2);*/
+
+            float x = 0;
+            float y = 0;
+            float z = 0;
+
+            x = Input.GetAxisRaw("Horizontal");
+
+            y = Input.GetAxisRaw("Vertical");
 
             if (x != 0 || y != 0 || z != 0 && !cameraStop)
             {
@@ -57,10 +70,20 @@ public class PanAndZoom : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = panSpeed * 2;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = panSpeed;
+        }
+
         HandleZoom();
     }
 
-    public Vector2 PanDirection(float x, float y)
+    /*public Vector2 PanDirection(float x, float y)
     {
         Vector2 direction = Vector2.zero;
 
@@ -81,6 +104,16 @@ public class PanAndZoom : MonoBehaviour
             direction.x -= 1;
         }
         return direction;
+    }*/
+
+    public Vector2 PanDirection(float x, float y)
+    {
+        Vector2 direction = Vector2.zero;
+
+        direction.x = x;
+        direction.y = y;
+
+        return direction;
     }
 
     public void PanScreen(float x, float y)
@@ -89,11 +122,12 @@ public class PanAndZoom : MonoBehaviour
         /*cameraTransform.position = Vector3.Lerp(cameraTransform.position,
             cameraTransform.position+new Vector3(direction.x,0,direction.y) * panSpeed,Time.deltaTime);*/
 
-        cameraTransform.position=ClampCamera(Vector3.Lerp(cameraTransform.position,
-            cameraTransform.position + new Vector3(direction.x, 0, direction.y) * panSpeed, Time.unscaledDeltaTime));
+        cameraTransform.position = ClampCamera(Vector3.Lerp(cameraTransform.position,
+            cameraTransform.position + new Vector3(direction.x, 0, direction.y) * speed, Time.unscaledDeltaTime));
     }
+
     void HandleZoom()
-    {
+    {   
         float zoomAmount = 2f;
         targetorthographicSize -= Input.mouseScrollDelta.y * zoomAmount;
         targetorthographicSize = Mathf.Clamp(targetorthographicSize, minOrthographicSize, maxOrthographicSize);
@@ -101,7 +135,7 @@ public class PanAndZoom : MonoBehaviour
         float zoomSpeed = 10f;
         orthographicSize = Mathf.Lerp(orthographicSize, targetorthographicSize, Time.unscaledDeltaTime * zoomSpeed);
 
-        virtualCamera.transform.position = new Vector3(virtualCamera.transform.position.x, orthographicSize, virtualCamera.transform.position.z);
+        cameraTransform.position = Vector3.Lerp(cameraTransform.position,ClampCamera(new Vector3(cameraTransform.position.x, orthographicSize, cameraTransform.position.z)), Time.deltaTime * 5);
         virtualCamera.m_Lens.FarClipPlane = virtualCamera.transform.position.y+5f;
         virtualCamera.m_Lens.FieldOfView = 50;
     }
@@ -119,6 +153,16 @@ public class PanAndZoom : MonoBehaviour
         float newX = Mathf.Clamp(targetPosition.x, minX, maxX);
         float newY = Mathf.Clamp(targetPosition.z, minY, maxY);
 
-        return new Vector3(newX, 50, newY);
+        return new Vector3(newX, orthographicSize, newY);
     }
+
+    /*public void OnPointerEnter(PointerEventData eventData)
+    {
+        cameraStop = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        cameraStop = false;
+    }*/
 }

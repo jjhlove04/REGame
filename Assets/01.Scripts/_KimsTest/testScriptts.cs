@@ -176,7 +176,7 @@ public class testScriptts : MonoBehaviour
         autoWaveImg.fillAmount = SpawnMananger.Instance.curTime / (SpawnMananger.Instance.roundCurTime * 0.3f);
     } 
 
-    public void Create()
+    public void Create(GameObject turret)
     {
         if (turretPoses[turPos].TryGetComponent(out tesetTurret tT))
         {
@@ -206,7 +206,7 @@ public class testScriptts : MonoBehaviour
                 inGameUI.selectType = turType;
             }
         }
-
+        inGameUI.upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
         SelectTurret();
     }
     public void Despawn()
@@ -314,14 +314,15 @@ public class testScriptts : MonoBehaviour
     {
         int[] imageCount = TestTurretDataBase.Instance.GetTurretImageCount();
 
-        if(imageCount[0] != 100)
+        if (imageCount[0] != 100)
         {
             image.sprite = imageType[imageCount[0]];
+
             if (imageCount[1] != 100)
             {
-                if (imageCount[0] == 4 && imageCount[0] == 9 && imageCount[0] == 14)
+                if (imageCount[0] == 5 && imageCount[0] == 9 && imageCount[0] == 14)
                 {
-                    upGradeImage.sprite = imageType[imageCount[15]];
+                    upGradeImage.sprite = null;
                 }
 
                 else
@@ -332,14 +333,13 @@ public class testScriptts : MonoBehaviour
 
             else
             {
-                upGradeImage.sprite = imageType[imageCount[15]];
+                upGradeImage.sprite = null;
             }
         }
 
         else
         {
-            image.sprite = imageType[imageCount[15]];
-            upGradeImage.sprite = imageType[imageCount[15]];
+            upGradeImage.sprite = null;
         }
     }
 }

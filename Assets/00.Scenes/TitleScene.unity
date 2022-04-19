@@ -4462,7 +4462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bc79d8a4844630a43ad88be620dbc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9864b098dde31744ab2a8a6c23947d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10804,11 +10804,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77e0311366d2224ebd30298c27eafb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curTurretType: []
-  curTurretType1: []
-  curTurretType2: []
-  curTurretType3: []
-  curTurretType4: []
+  curTurretType:
+  - {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
+  curTurretType1:
+  - {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
+  curTurretType2:
+  - {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
+  curTurretType3:
+  - {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
+  curTurretType4:
+  - {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
   postdic:
     m_keys: []
     m_values: 
@@ -13926,7 +13931,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Base Level2-1 1
+          m_StringArgument: Base Level2-2
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4150013539714268422}
@@ -25390,7 +25395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bc79d8a4844630a43ad88be620dbc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9864b098dde31744ab2a8a6c23947d1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -44026,7 +44031,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Base Level2-1 1
+          m_StringArgument: Base Level2-2
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4150013539714268422}
@@ -83257,7 +83262,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Base Level2-1 1
+          m_StringArgument: Base Level2-2
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4150013539714268422}

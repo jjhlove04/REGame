@@ -57,7 +57,7 @@ public class BackGround : MonoBehaviour
             {
                 MoveBackground(transform.GetChild(i));
 
-                if (-(size * 2f) >= transform.GetChild(i).position.z)
+                if (-(size * 1.75f) >= transform.GetChild(i).position.z)
                 {
                     SwapBackground(transform.GetChild(i));
                     

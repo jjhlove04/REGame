@@ -91,6 +91,8 @@ public class EnemyFireAttack : Enemy
     public override void PlayDieAnimationTrue()
     {
         base.PlayDieAnimationTrue();
+
+        CameraManager.Instance.Shake(0.1f, 0.5f);
     }
 
     protected override void PlayDieAnimationFalse()

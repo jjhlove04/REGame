@@ -95,4 +95,11 @@ public class EnemyRoketlancher : Enemy
     {
         base.EnemyWaistInit();
     }
+
+    public override void PlayDieAnimationTrue()
+    {
+        base.PlayDieAnimationTrue();
+
+        CameraManager.Instance.Shake(0.15f,1);
+    }
 }

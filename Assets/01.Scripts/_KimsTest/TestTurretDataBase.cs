@@ -43,39 +43,42 @@ public class TestTurretDataBase : MonoBehaviour
 
         switch (typrTur)
         {
-            case 0:                
+            case 0:
+                floor++;
                 if (floor < curTurretType.Count)
                 {
                     testScriptts.Instance.ChageMakeTur(curTurretType[floor]);
-                    floor++;
                 }
                 break;
             case 1:
+                floor1++;
                 if (floor1 < curTurretType1.Count)
                 {
                     testScriptts.Instance.ChageMakeTur(curTurretType1[floor1]);
-                    floor1++;
                 }
                 break;
             case 2:
+
+                floor2++;
                 if (floor2 < curTurretType2.Count)
                 {
                     testScriptts.Instance.ChageMakeTur(curTurretType2[floor2]);
-                    floor2++;
                 }
                 break;
             case 3:
+
+                floor3++;
                 if (floor3 < curTurretType3.Count)
                 {
                     testScriptts.Instance.ChageMakeTur(curTurretType3[floor3]);
-                    floor3++;
                 }
                 break;
             case 4:
+
+                floor4++;
                 if (floor4 < curTurretType4.Count)
                 {
                     testScriptts.Instance.ChageMakeTur(curTurretType4[floor4]);
-                    floor4++;
                 }
                 break;
             default:
@@ -83,6 +86,46 @@ public class TestTurretDataBase : MonoBehaviour
         }
 
         testScriptts.Instance.NextUpgrade();
+    }
+
+    public void Create(int typrTur)
+    {
+
+        switch (typrTur)
+        {
+            case 0:
+                if (floor < curTurretType.Count)
+                {
+                    testScriptts.Instance.Create(curTurretType[floor]);
+                }
+                break;
+            case 1:
+                if (floor1 < curTurretType1.Count)
+                {
+                    testScriptts.Instance.Create(curTurretType1[floor1]);
+                }
+                break;
+            case 2:
+                if (floor2 < curTurretType2.Count)
+                {
+                    testScriptts.Instance.Create(curTurretType2[floor2]);
+                }
+                break;
+            case 3:
+                if (floor3 < curTurretType3.Count)
+                {
+                    testScriptts.Instance.Create(curTurretType3[floor3]);
+                }
+                break;
+            case 4:
+                if (floor4 < curTurretType4.Count)
+                {
+                    testScriptts.Instance.Create(curTurretType4[floor4]);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public int[] GetTurretImageCount()
@@ -169,7 +212,7 @@ public class TestTurretDataBase : MonoBehaviour
 
                 if (floor3 < curTurretType3.Count)
                 {
-                    intArr[0] = curTurretType4[floor3].GetComponent<Turret>().turImageCount;
+                    intArr[0] = curTurretType3[floor3].GetComponent<Turret>().turImageCount;
 
                     if (floor3 + 1 < curTurretType3.Count)
                     {
