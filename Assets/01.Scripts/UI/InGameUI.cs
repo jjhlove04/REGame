@@ -29,6 +29,7 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private GameObject[] selectObj;
     [SerializeField] private GameObject giveUPPanel;
     [SerializeField] private GameObject settingPanel;
+    [SerializeField] private GameObject trainWorldUI;
 
     private bool onPanel;
 

@@ -17,14 +17,20 @@ public class testSkilll : MonoBehaviour
     [HideInInspector]
     public bool isTest;
 
-    private Image outLine;
 
     void Start()
     {
+        CameraManager cameraManager = CameraManager.Instance;
+
+
         upgradeBtn = GameObject.Find("UP");
-        outLine = transform.GetChild(0).GetComponent<Image>();
 
         this.gameObject.TryGetComponent(out Button btnm);
+        this.gameObject.TryGetComponent(out Image image);
+
+        cameraManager.TopView += LookCameraTopView;
+        cameraManager.QuarterView += LookCameraQuarterView;
+
 
         btnm.onClick.AddListener(() =>
         {
@@ -40,38 +46,38 @@ public class testSkilll : MonoBehaviour
 
             testScriptts.Instance.turPos = count;
 
-            if (selectType == -1 && GameManager.Instance.goldAmount >= 10)
+            selectType = testScriptts.Instance.turType;
+
+            if (selectType != -1 && GameManager.Instance.goldAmount >= 10)
             {
-                selectType = InGameUI._instance.selectType;
-                testScriptts.Instance.turType = selectType;
-                outLine.color = new Color32(255,204,1,255);
-            }
-            else
-            {
-                testScriptts.Instance.turType = selectType;
+                InGameUI._instance.selectType = selectType;
+
+                switch (selectType)
+                {
+                    case 0:
+                        TestTurretDataBase.Instance.floor = floor;
+                        break;
+                    case 1:
+                        TestTurretDataBase.Instance.floor1 = floor;
+                        break;
+                    case 2:
+                        TestTurretDataBase.Instance.floor2 = floor;
+                        break;
+                    case 3:
+                        TestTurretDataBase.Instance.floor3 = floor;
+                        break;
+                    case 4:
+                        TestTurretDataBase.Instance.floor4 = floor;
+                        break;
+                    default:
+                        break;
+                }
+
+                TestTurretDataBase.Instance.Create(selectType);
+
+                image.color = new Color(1,1,1,0);
             }
 
-            switch (selectType)
-            {
-                case 0:
-                    TestTurretDataBase.Instance.floor = floor;
-                    break;
-                case 1:
-                    TestTurretDataBase.Instance.floor1 = floor;
-                    break;
-                case 2:
-                    TestTurretDataBase.Instance.floor2 = floor;
-                    break;
-                case 3:
-                    TestTurretDataBase.Instance.floor3 = floor;
-                    break;
-                case 4:
-                    TestTurretDataBase.Instance.floor4 = floor;
-                    break;
-                default:
-                    break;
-            }
-            TestTurretDataBase.Instance.Create(selectType);
             isTest = true;
         });
 
@@ -101,5 +107,15 @@ public class testSkilll : MonoBehaviour
                 }
             }
         });
+    }
+
+    private void LookCameraTopView()
+    {
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)),Time.deltaTime);
+    }
+
+    private void LookCameraQuarterView()
+    {
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.deltaTime);
     }
 }

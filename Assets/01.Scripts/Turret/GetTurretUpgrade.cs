@@ -33,11 +33,8 @@ public class GetTurretUpgrade : MonoBehaviour
 
                 tS[turCount].isTest = true;
 
-                InGameUI._instance.selectType = turType;
-
                 InGameUI._instance.upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
 
-                testScriptts.Instance.turType = turType;
                 testScriptts.Instance.turPos = turCount;
 
                 testScriptts.Instance.SelectTurret();

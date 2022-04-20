@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7432251054224900496}
   - component: {fileID: 5396634090708175958}
   - component: {fileID: 3269941882245945029}
+  - component: {fileID: 5740316962868843671}
   m_Layer: 6
   m_Name: TurretPos (8)
   m_TagString: Untagged
@@ -174,7 +175,7 @@ BoxCollider:
   m_GameObject: {fileID: 2696476086870401024}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: -0.0000009536743}
@@ -193,6 +194,22 @@ MonoBehaviour:
   onTurret: 0
   curBulletAmount: 0
   turType: 0
+--- !u!114 &5740316962868843671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696476086870401024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fabfc42b9cea046a963989d8a27542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  selectType: -1
+  floor: 0
+  isTest: 0
 --- !u!1 &3916302789980768025
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +220,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4400667814723886499}
   - component: {fileID: 2612964979552209261}
-  - component: {fileID: 6707811052708366447}
   m_Layer: 6
   m_Name: HopperVagon
   m_TagString: Train
@@ -245,19 +261,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!65 &6707811052708366447
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3916302789980768025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.5, y: 4.210445, z: 11.961087}
-  m_Center: {x: 0, y: 2.0841806, z: 0.08564673}
 --- !u!1 &3966071948949070424
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +274,7 @@ GameObject:
   - component: {fileID: 4650507258475867403}
   - component: {fileID: 323837708018350044}
   - component: {fileID: 3357465021723542802}
+  - component: {fileID: 1970037137572999857}
   m_Layer: 6
   m_Name: TurretPos (9)
   m_TagString: Untagged
@@ -351,7 +355,7 @@ BoxCollider:
   m_GameObject: {fileID: 3966071948949070424}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: -0.0000019073486}
@@ -370,6 +374,22 @@ MonoBehaviour:
   onTurret: 0
   curBulletAmount: 0
   turType: 0
+--- !u!114 &1970037137572999857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3966071948949070424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fabfc42b9cea046a963989d8a27542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  selectType: -1
+  floor: 0
+  isTest: 0
 --- !u!1 &4954962481822645944
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +619,7 @@ GameObject:
   - component: {fileID: 8436417915623205827}
   - component: {fileID: 4014084539523871236}
   - component: {fileID: 1608900398296174305}
+  - component: {fileID: 7122596004675923989}
   m_Layer: 6
   m_Name: TurretPos (6)
   m_TagString: Untagged
@@ -679,7 +700,7 @@ BoxCollider:
   m_GameObject: {fileID: 5065708372134660566}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
@@ -698,6 +719,22 @@ MonoBehaviour:
   onTurret: 0
   curBulletAmount: 0
   turType: 0
+--- !u!114 &7122596004675923989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5065708372134660566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fabfc42b9cea046a963989d8a27542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  selectType: -1
+  floor: 0
+  isTest: 0
 --- !u!1 &5607980394252055557
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +748,7 @@ GameObject:
   - component: {fileID: 4094781689047392057}
   - component: {fileID: 446548577073401724}
   - component: {fileID: 6050079354397326235}
+  - component: {fileID: 7983781653851281384}
   m_Layer: 6
   m_Name: TurretPos (5)
   m_TagString: Untagged
@@ -791,7 +829,7 @@ BoxCollider:
   m_GameObject: {fileID: 5607980394252055557}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0.00000017881393}
@@ -810,6 +848,22 @@ MonoBehaviour:
   onTurret: 0
   curBulletAmount: 0
   turType: 0
+--- !u!114 &7983781653851281384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607980394252055557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fabfc42b9cea046a963989d8a27542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  selectType: -1
+  floor: 0
+  isTest: 0
 --- !u!1 &5665448233375945000
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,10 +28,8 @@ public class Turret : MonoBehaviour
     [SerializeField]
     protected BulletBar bulletBar;
 
-    [HideInInspector]
     public int turCount;
 
-    [HideInInspector]
     public int turType;
 
     public int turImageCount;

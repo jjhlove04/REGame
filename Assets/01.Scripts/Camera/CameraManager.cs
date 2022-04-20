@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,16 @@ public class CameraManager : MonoBehaviour
         get { return instance; }
     }
 
+    public Action TopView;
+    public Action QuarterView;
+
     private void Awake()
     {
         instance = this;
+
+
+        TopView = () => { };
+        QuarterView = () => { };
     }
 
     private void Update()
@@ -21,6 +29,16 @@ public class CameraManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             CameraChangeView();
+        }
+
+        if (topCamera.activeSelf)
+        {
+            TopView.Invoke();
+        }
+
+        else
+        {
+            QuarterView.Invoke();
         }
     }
 

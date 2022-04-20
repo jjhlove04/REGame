@@ -218,7 +218,7 @@ public class testScriptts : MonoBehaviour
     {
         GameObject gameInst = objectPool.GetObject(turret);
         gameInst.GetComponent<Turret>().turCount = turPos;
-        gameInst.GetComponent<Turret>().turType = turType;
+        gameInst.GetComponent<Turret>().turType = InGameUI._instance.selectType;
         gameInst.transform.position = turretPoses[turPos].position;
         gameInst.transform.SetParent(this.gameObject.transform);
         Despawn();

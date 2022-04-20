@@ -82,12 +82,14 @@ public class BackGround : MonoBehaviour
         if (isChangingTerrain)
         {
             trm.GetChild(1).GetComponent<Terrain>().terrainData = changeTerrainChainObj;
+            trm.GetChild(1).GetComponent<TerrainCollider>().terrainData = changeTerrainChainObj;
             isChangingTerrain = false;
         }
 
         else
         {
             trm.GetChild(1).GetComponent<Terrain>().terrainData = changeTerrainObj;
+            trm.GetChild(1).GetComponent<TerrainCollider>().terrainData = changeTerrainObj;
         }
     }
 
