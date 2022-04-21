@@ -75,9 +75,13 @@ public class testSkilll : MonoBehaviour
 
                 TestTurretDataBase.Instance.Create(selectType);
 
-                image.color = new Color(1,1,1,0);
+                image.color = new Color(1, 1, 1, 0);
             }
-
+            else if (GameManager.Instance.goldAmount < 10)
+            {
+                InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
+                InGameUI._instance.warningTxt.text = "Not Enough Gold";
+            }
             else
             {
                 InGameUI._instance.OpenPresetBtn();
