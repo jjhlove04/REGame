@@ -145,6 +145,16 @@ public class testScriptts : MonoBehaviour
         {
             inGameUI.PresetBtn();
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Speeeeeed();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Minuspeed();
+        }
     }
 
     public void Reload()

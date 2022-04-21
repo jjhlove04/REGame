@@ -16,7 +16,7 @@ public class BulletBar : MonoBehaviour
     private void Update()
     {
         //transform.parent.LookAt(Camera.main.transform);
-        transform.parent.rotation = Quaternion.Euler(new Vector3(90, 0, 90));
+        transform.parent.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         BarSize();
     }
 

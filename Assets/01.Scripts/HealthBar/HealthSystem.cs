@@ -16,18 +16,13 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
+        InitHealth();
     }
 
     private void Start()
     {
-        InitHealth();
         SetHealthAmountMax(enemy.enemyStat.healthAmountMax, true);
         OnDied.AddListener(InitHealth);
-    }
-
-    private void OnDisable()
-    {
-        IsFullHealth();
     }
 
     public void Damage(float damageAmount)

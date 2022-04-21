@@ -147,7 +147,8 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         }
-        transform.position += new Vector3(0, -1.5f, 0) * Time.deltaTime;
+
+        transform.position += new Vector3(0, -9.8f, 0) * Time.deltaTime;
     }
 
     public virtual void PlayDieAnimationTrue()
