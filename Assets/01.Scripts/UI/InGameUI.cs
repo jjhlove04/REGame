@@ -49,6 +49,8 @@ public class InGameUI : MonoBehaviour
     public int selectType;
 
     Coroutine coroutine;
+
+    testScriptts testScriptts;
     private void Awake()
     {
         _instance = this;
@@ -58,49 +60,35 @@ public class InGameUI : MonoBehaviour
         upGradePanelBackBtn.onClick.AddListener(() => 
         {
             upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
-            testScriptts.Instance.UnSelectTurret();
+            testScriptts.UnSelectTurret();
         });
         upGradeBtn.onClick.AddListener(() =>
         {
             TestTurretDataBase.Instance.Upgrade(selectType);
         });
 
-        
         //선택버튼 확인 기능
-        applyBtn[0].onClick.AddListener(() => {
-            ClearSelect();
-            selectObj[0].SetActive(true);
-            OpenBluePrint();
+        applyBtn[0].onClick.AddListener(() => { 
+            NewSelect(0); 
         });
         applyBtn[1].onClick.AddListener(() => {
-            ClearSelect();
-            selectObj[1].SetActive(true);
-            OpenBluePrint();
+            NewSelect(1);
         });
         applyBtn[2].onClick.AddListener(() => {
-            ClearSelect();
-            selectObj[2].SetActive(true);
-            OpenBluePrint();
+            NewSelect(2);
         });
         applyBtn[3].onClick.AddListener(() => {
-            ClearSelect();
-            selectObj[3].SetActive(true);
-            OpenBluePrint();
+            NewSelect(3);
         });
         applyBtn[4].onClick.AddListener(() => {
-            ClearSelect();
-            selectObj[4].SetActive(true);
-            OpenBluePrint();
-        });
-        applyBtn[5].onClick.AddListener(() => {
-            ClearSelect();
-            selectObj[5].SetActive(true);
-            OpenBluePrint();
+            NewSelect(4);
         });
     }
 
     void Start()
     {
+        testScriptts = testScriptts.Instance;
+
         mainMenuBtn.onClick.AddListener(() =>
         {
             num *= -1;
@@ -115,13 +103,6 @@ public class InGameUI : MonoBehaviour
     {
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GameManager.Instance.state = GameManager.State.End;
-        }
-
-
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -148,7 +129,7 @@ public class InGameUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            testScriptts.Instance.Reload();
+            testScriptts.Reload();
         }
 
         if (GameManager.Instance.state == GameManager.State.End)
@@ -167,6 +148,18 @@ public class InGameUI : MonoBehaviour
             warningTxt.color = new Color(warningTxt.color.r, warningTxt.color.g, warningTxt.color.b, Mathf.Lerp(warningTxt.color.a, 0, Time.deltaTime * 2));
         }
 
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
+
+
+            if (Physics.Raycast(ray, out hit) && hit.transform.CompareTag("Ground"))
+            {
+                CancleAll();
+            }
+        }*/
+
     }
 
     public void ClearSelect()
@@ -177,10 +170,17 @@ public class InGameUI : MonoBehaviour
         }
     }
 
-    private void OpenBluePrint()
+    public void NewSelect(int num)
+    {
+        ClearSelect();
+
+        selectObj[num].SetActive(true);
+    }
+
+    /*private void OpenBluePrint()
     {
         bpBot.DOAnchorPosY(-350, 1f).SetEase(Ease.OutQuart).SetUpdate(true);
-    }
+    }*/
 
     public void CloseBluePrint()
     {
@@ -192,26 +192,24 @@ public class InGameUI : MonoBehaviour
     public void CancelTurret()
     {
         ClearSelect();
-        testScriptts.Instance.turType = -1;
-        testScriptts.Instance.turPos = -1;
-        testScriptts.Instance.UnSelectTurret();
+        testScriptts.turType = -1;
+        testScriptts.turPos = -1;
+        testScriptts.UnSelectTurret();
         upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
     }
 
-    public void CancleAll(GameObject bot)
+    public void CancleAll()
     {
         if(bluePrintTop.activeSelf != false)
         {
-            bpBot.DOAnchorPosY(-730, 1.5f).SetEase(Ease.OutQuart).SetUpdate(true);
+            ClosePresetBtn();
 
             upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
 
             ClearSelect();
-            testScriptts.Instance.turType = -1;
-            testScriptts.Instance.turPos = -1;
-            testScriptts.Instance.UnSelectTurret();
-
-            bot.SetActive(false);
+            testScriptts.turType = -1;
+            testScriptts.turPos = -1;
+            testScriptts.UnSelectTurret();
         }    
     }
 
@@ -239,17 +237,28 @@ public class InGameUI : MonoBehaviour
         backPanelOpne(backIndex);
     }
 
-    public void OpenPresetBtn(RectTransform bot)
+    public void PresetBtn()
     {
-        //bot.DOScale(new Vector3(1, 1, 1), 0.8f).SetUpdate(true);
-        if (bot.gameObject.activeSelf == true)
+        if(bpTop.position.x == -300)
         {
-            bot.gameObject.SetActive(false);
+            bpTop.DOAnchorPosX(300, 0.8f).SetUpdate(true);
         }
-        else
+
+        else if(bpTop.position.x == 300)
         {
-            bot.gameObject.SetActive(true);
+            bpTop.DOAnchorPosX(-300, 0.8f).SetUpdate(true);
+            testScriptts.TurCancle();
         }
+    }
+
+    public void OpenPresetBtn()
+    {
+        bpTop.DOAnchorPosX(300, 0.8f).SetUpdate(true);
+    }
+
+    public void ClosePresetBtn()
+    {
+        bpTop.DOAnchorPosX(-300, 0.8f).SetUpdate(true);
     }
 
     public void OpenTitleScene()

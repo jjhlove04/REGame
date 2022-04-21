@@ -78,6 +78,11 @@ public class testSkilll : MonoBehaviour
                 image.color = new Color(1,1,1,0);
             }
 
+            else
+            {
+                InGameUI._instance.OpenPresetBtn();
+            }
+
             isTest = true;
         });
 

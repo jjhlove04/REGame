@@ -62,6 +62,9 @@ public class testScriptts : MonoBehaviour
     [SerializeField]
     private Sprite[] imageType;
 
+    [SerializeField]
+    private Image[] images;
+
     private void Awake()
     {
         _instance = this;
@@ -106,6 +109,41 @@ public class testScriptts : MonoBehaviour
         {
             inGameUI.warningTxt.color = new Color(1, 0f, 0, 1);
             inGameUI.warningTxt.text = "Press \"p\"";
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeTur(0);
+            inGameUI.NewSelect(0);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeTur(1);
+            inGameUI.NewSelect(1);
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeTur(2);
+            inGameUI.NewSelect(2);
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ChangeTur(3);
+            inGameUI.NewSelect(3);
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ChangeTur(4);
+            inGameUI.NewSelect(4);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            inGameUI.PresetBtn();
         }
     }
 
@@ -232,10 +270,46 @@ public class testScriptts : MonoBehaviour
 
     public void ChangeTur(int num)
     {
+        TurSelect();
+
         turType = num;
         inGameUI.selectType = turType;
         GameObject gameObject = turretType[num];
         turret = gameObject;
+
+        inGameUI.OpenPresetBtn();
+    }
+
+    public void TurSelect()
+    {
+        for (int i = 0; i < images.Length; i++)
+        {
+            if (images[i].color.a == 0)
+            {
+                images[i].color = new Color(1, 1, 0, 0);
+            }
+
+            else
+            {
+                images[i].color = new Color(1, 1, 0, 1);
+            }
+        }
+    }
+
+    public void TurCancle()
+    {
+        for (int i = 0; i < images.Length; i++)
+        {
+            if (images[i].color.a == 0)
+            {
+                images[i].color = new Color(1, 1, 1, 0);
+            }
+
+            else
+            {
+                images[i].color = new Color(1, 1, 1, 1);
+            }
+        }
     }
 
     public void Speeeeeed()
@@ -308,6 +382,8 @@ public class testScriptts : MonoBehaviour
         {
             turretPoses[i].GetChild(0).gameObject.SetActive(false);
         }
+
+        TurCancle();
     }
 
     public void NextUpgrade()
