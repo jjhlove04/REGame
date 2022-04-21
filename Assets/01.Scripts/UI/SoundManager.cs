@@ -47,9 +47,10 @@ public class SoundManager : MonoBehaviour
             audioClipsDic.Add(audioclip.name, audioclip);
         }
     }
-private void Start() {
-    PlayBGMSound();
-}
+    private void Start()
+    {
+        PlayBGMSound();
+    }
     // 효과 사운드 재생 : 이름을 필수 매개변수, 볼륨을 선택적 매개변수로 지정
     public void PlaySFXSound(string name, float volume = 1f)
     {

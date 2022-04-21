@@ -263,7 +263,9 @@ public class InGameUI : MonoBehaviour
 
     public void OpenTitleScene()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("TitleScene");
+
     }
 
     public void OpenGiveUPPanel()
