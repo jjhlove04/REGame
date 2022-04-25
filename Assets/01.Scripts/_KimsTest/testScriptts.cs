@@ -108,7 +108,7 @@ public class testScriptts : MonoBehaviour
         if(SpawnMananger.Instance.round > SpawnMananger.Instance.maxRound)
         {
             inGameUI.warningTxt.color = new Color(1, 0f, 0, 1);
-            inGameUI.warningTxt.text = "Press \"p\"";
+            inGameUI.warningTxt.text = "Press \"x\"";
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))

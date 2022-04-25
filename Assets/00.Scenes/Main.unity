@@ -5979,7 +5979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a25d39ac8a6c504989b69f5da1054ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 1
+  spawnAmount: 2
   amountIncreasion: 0
   prefab: {fileID: 1532036094782582, guid: 7c88ebb876048e34c8a817e4a16569a3, type: 3}
   interval: 3
@@ -9511,8 +9511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7e9d761a3cc3e49bc2d7f429620128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curTrainHp: 1000
-  maxTrainHp: 1000
+  curTrainHp: 50
+  maxTrainHp: 50
   fireDamage: 0
   drillDamage: 0
   guardianDamage: 0
@@ -9759,7 +9759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a25d39ac8a6c504989b69f5da1054ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 1
+  spawnAmount: 2
   amountIncreasion: 0
   prefab: {fileID: 4909745345928348176, guid: c6ae3caa50cfbbc4f8a5b7cc6567ddc8, type: 3}
   interval: 3
@@ -12194,8 +12194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
-  m_FrequencyGain: 0
+  m_AmplitudeGain: 2
+  m_FrequencyGain: 0.5
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1355436465
 MonoBehaviour:
@@ -12253,7 +12253,7 @@ MonoBehaviour:
     FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 170
+    FarClipPlane: 45
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -14234,7 +14234,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 170
+  far clip plane: 45
   field of view: 50
   orthographic: 0
   orthographic size: 10
@@ -15858,6 +15858,7 @@ MonoBehaviour:
   state: 1
   gameTime: 0
   gameSpeed: 1
+  turretPtice: 10
   goldAmount: 0
   expAmount: 0
 --- !u!4 &1722079218
@@ -15910,7 +15911,6 @@ MonoBehaviour:
   - {fileID: 1808473914}
   giveUPPanel: {fileID: 1564638629}
   settingPanel: {fileID: 2022539008}
-  trainWorldUI: {fileID: 7903071702831073257}
   goldAmounTxt: {fileID: 2063052290}
   waveTxt: {fileID: 872924424}
   upGradeBtn: {fileID: 1612825819}

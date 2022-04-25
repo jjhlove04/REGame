@@ -29,7 +29,6 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private GameObject[] selectObj;
     [SerializeField] private GameObject giveUPPanel;
     [SerializeField] private GameObject settingPanel;
-    [SerializeField] private GameObject trainWorldUI;
 
     private bool onPanel;
 
@@ -136,7 +135,7 @@ public class InGameUI : MonoBehaviour
         {
             Time.timeScale = 1f;
             TestTurretDataBase.Instance.resultEXP += GameManager.Instance.expAmount;
-            TestTurretDataBase.Instance.resultGold += GameManager.Instance.goldAmount;
+            TestTurretDataBase.Instance.resultGold += GameManager.Instance.goldAmount / 30;
 
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;

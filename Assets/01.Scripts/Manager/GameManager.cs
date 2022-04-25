@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private float gameTime = 0f;
     public float gameSpeed = 1f;
 
+    public int turretPtice = 10;
+
     public int goldAmount = 0;
     public int expAmount = 0;
     private void Awake()

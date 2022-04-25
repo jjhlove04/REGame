@@ -16,7 +16,11 @@ public class TitleUI : MonoBehaviour
     [Header("업그레이드 관련")]
     [SerializeField] public Button[] upGradeBtns; //0번 터렛, 1번 기차, 2번 타워
     [SerializeField] public GameObject[] upGradePanels; //0번 터렛, 1번 기차, 2번 타워
-   
+
+    [SerializeField]
+    private Text repairCost;
+    [SerializeField]
+    private Text towingCost;
     
     public Button startBtn;
 
@@ -53,6 +57,8 @@ public class TitleUI : MonoBehaviour
        });
 
         curExp += TestTurretDataBase.Instance.resultEXP;
+
+        levelTxt.text = TestTurretDataBase.Instance.level.ToString();
     }
     private void Update()
     {

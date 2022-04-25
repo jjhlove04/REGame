@@ -48,7 +48,7 @@ public class testSkilll : MonoBehaviour
 
             selectType = testScriptts.Instance.turType;
 
-            if (selectType != -1 && GameManager.Instance.goldAmount >= 10)
+            if (selectType != -1 && GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
             {
                 InGameUI._instance.selectType = selectType;
 
@@ -74,6 +74,8 @@ public class testSkilll : MonoBehaviour
                 }
 
                 TestTurretDataBase.Instance.Create(selectType);
+
+                GameManager.Instance.turretPtice += (int)(GameManager.Instance.turretPtice * 0.2f);
 
                 image.color = new Color(1, 1, 1, 0);
             }
