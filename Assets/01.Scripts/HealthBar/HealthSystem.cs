@@ -87,9 +87,12 @@ public class HealthSystem : MonoBehaviour
 
         for (int i = 0; i < dotcount; i++)
         {
-            Damage(dotDamage);
+            if(curHealthAmount > 0)
+            {
+                Damage(dotDamage);
 
-            yield return new WaitForSeconds(dotDelay);
+                yield return new WaitForSeconds(dotDelay);
+            }
         }
 
         particleObj.transform.parent = null;

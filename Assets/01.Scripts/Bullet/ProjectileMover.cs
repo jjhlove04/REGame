@@ -10,7 +10,6 @@ public class ProjectileMover : MonoBehaviour
     public Vector3 rotationOffset = new Vector3(0, 0, 0);
     public GameObject hit;
     public GameObject flash;
-    private Rigidbody rb;
     public GameObject[] Detached;
 
     // 이동
@@ -23,7 +22,6 @@ public class ProjectileMover : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         if (flash != null)
         {
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
@@ -81,8 +79,6 @@ public class ProjectileMover : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-
         if (hit != null)
         {
             var hitInstance = Instantiate(hit);

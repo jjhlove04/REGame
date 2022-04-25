@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 4199571684918917521}
   - {fileID: 704113632828485482}
   neck: {fileID: 8514335660095916553}
+  maxDistance: 80
   layerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -65,9 +66,8 @@ MonoBehaviour:
   turType: 0
   turImageCount: 14
   shootTimerMax: 1
-  maxDistance: 80
   lookForTargetTimerMax: 0.2
-  damage: 10
+  damage: 0
   upgradeCost: 0
 --- !u!114 &-8120067813884574611
 MonoBehaviour:

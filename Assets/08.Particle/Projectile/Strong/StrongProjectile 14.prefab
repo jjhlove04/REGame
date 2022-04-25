@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 108950823119357486}
   - component: {fileID: 54530307865729164}
   - component: {fileID: 135664649076355494}
-  - component: {fileID: 948945414526895873}
+  - component: {fileID: 6485294473688210989}
   m_Layer: 10
   m_Name: StrongProjectile 14
   m_TagString: Bullet
@@ -4970,7 +4970,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &948945414526895873
+--- !u!114 &6485294473688210989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4979,7 +4979,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1228652472414832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
+  m_Script: {fileID: 11500000, guid: 612f823df9b05134eb3e4d4c60f2637a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
@@ -4991,6 +4991,10 @@ MonoBehaviour:
   Detached:
   - {fileID: 1993799643894748}
   moveSpeed: 50
+  particle: {fileID: 1270335207818070, guid: 8f5e087c57b11ef4cbed619d26886292, type: 3}
+  dotDelay: 0.5
+  dotTime: 3
+  dotDamage: 3
 --- !u!1 &1715675216902642
 GameObject:
   m_ObjectHideFlags: 0
