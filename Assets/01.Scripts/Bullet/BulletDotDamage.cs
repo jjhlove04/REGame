@@ -38,7 +38,7 @@ public class BulletDotDamage : ProjectileMover
 
             healthSystem.DotDamageCoroutine(particle, dotcount, dotDelay, dotDamage);
 
-            other.GetComponent<HealthSystem>().Damage(damage);
+            healthSystem.Damage(damage);
         }
     }
 }
