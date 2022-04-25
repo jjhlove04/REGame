@@ -132,6 +132,6 @@ public class testSkilll : MonoBehaviour
 
     private void LookCameraQuarterView()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(30, -50, 0)), Time.unscaledDeltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(30, 50, 0)), Time.unscaledDeltaTime);
     }
 }
