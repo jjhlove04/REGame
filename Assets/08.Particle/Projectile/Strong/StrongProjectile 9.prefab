@@ -4785,7 +4785,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c90a3c23b0fc60244a9f3588ff9e721f, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4841,11 +4840,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4909937937562004}
   - component: {fileID: 198083583485761130}
-  - component: {fileID: 114422754261059378}
   - component: {fileID: 108991988279912604}
   - component: {fileID: 199561921135206354}
   - component: {fileID: 54071781892700886}
   - component: {fileID: 135993822685259368}
+  - component: {fileID: -2354722324092959840}
   m_Layer: 10
   m_Name: StrongProjectile 9
   m_TagString: Bullet
@@ -4862,7 +4861,7 @@ Transform:
   m_GameObject: {fileID: 1569979447995748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4676422881007772}
   m_Father: {fileID: 0}
@@ -9644,27 +9643,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &114422754261059378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569979447995748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605a456cfc02f6b499a64717539a27e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 1059669524233346, guid: 7bb551564a4a9a1498e0624fd34ce7d3, type: 3}
-  flash: {fileID: 1982413722389785707, guid: c06e02bf744004a44b521ee1ec3565a1, type: 3}
-  Detached:
-  - {fileID: 1113143600131104}
-  moveSpeed: 50
 --- !u!108 &108991988279912604
 Light:
   m_ObjectHideFlags: 0
@@ -9823,6 +9801,27 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2354722324092959840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569979447995748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  hitOffset: 0.1
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 1059669524233346, guid: 7bb551564a4a9a1498e0624fd34ce7d3, type: 3}
+  flash: {fileID: 1982413722389785707, guid: c06e02bf744004a44b521ee1ec3565a1, type: 3}
+  Detached:
+  - {fileID: 1113143600131104}
+  moveSpeed: 50
 --- !u!1 &1679846206416546
 GameObject:
   m_ObjectHideFlags: 0
@@ -14594,7 +14593,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f70cc5513449bfb4cb538cf5118a4189, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

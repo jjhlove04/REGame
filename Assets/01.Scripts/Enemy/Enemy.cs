@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
 
             if (!isGround)
             {
-                Gravity();
+                //Gravity();
             }
 
             if (run)

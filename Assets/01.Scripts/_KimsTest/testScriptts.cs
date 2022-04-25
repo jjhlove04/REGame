@@ -73,6 +73,8 @@ public class testScriptts : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        turType = -1;
+
         gameManager = GameManager.Instance;
         spawnMananger = SpawnMananger.Instance;
         inGameUI = InGameUI._instance;
@@ -96,7 +98,7 @@ public class testScriptts : MonoBehaviour
         NextWaveCoolBtn();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(speedBtnCount != 0)
+            if (speedBtnCount != 0)
             {
                 if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
                 {
@@ -105,7 +107,7 @@ public class testScriptts : MonoBehaviour
             }
         }
 
-        if(SpawnMananger.Instance.round > SpawnMananger.Instance.maxRound)
+        if (SpawnMananger.Instance.round > SpawnMananger.Instance.maxRound)
         {
             inGameUI.warningTxt.color = new Color(1, 0f, 0, 1);
             inGameUI.warningTxt.text = "Press \"x\"";
@@ -123,19 +125,19 @@ public class testScriptts : MonoBehaviour
             inGameUI.NewSelect(1);
         }
 
-        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ChangeTur(2);
             inGameUI.NewSelect(2);
         }
 
-        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ChangeTur(3);
             inGameUI.NewSelect(3);
         }
 
-        else if(Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             ChangeTur(4);
             inGameUI.NewSelect(4);
@@ -146,12 +148,12 @@ public class testScriptts : MonoBehaviour
             inGameUI.PresetBtn();
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Period))
         {
             Speeeeeed();
         }
 
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.Colon))
         {
             Minuspeed();
         }
@@ -222,7 +224,7 @@ public class testScriptts : MonoBehaviour
         }
         nextWaveImg.fillAmount = SpawnMananger.Instance.curTime / SpawnMananger.Instance.roundCurTime;
         autoWaveImg.fillAmount = SpawnMananger.Instance.curTime / (SpawnMananger.Instance.roundCurTime * 0.3f);
-    } 
+    }
 
     public void Create(GameObject turret)
     {
@@ -297,11 +299,13 @@ public class testScriptts : MonoBehaviour
             if (images[i].color.a == 0)
             {
                 images[i].color = new Color(1, 1, 0, 0);
+                images[i].transform.GetChild(0).gameObject.SetActive(false);
             }
 
             else
             {
                 images[i].color = new Color(1, 1, 0, 1);
+                images[i].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
@@ -313,11 +317,13 @@ public class testScriptts : MonoBehaviour
             if (images[i].color.a == 0)
             {
                 images[i].color = new Color(1, 1, 1, 0);
+                images[i].transform.GetChild(0).gameObject.SetActive(false);
             }
 
             else
             {
                 images[i].color = new Color(1, 1, 1, 1);
+                images[i].transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
@@ -334,7 +340,7 @@ public class testScriptts : MonoBehaviour
         {
             speedBtnCount++;
         }
-            
+
         //gameSpeedText.text = ""+speedBtnCount;
     }
     public void Minuspeed()
@@ -361,7 +367,7 @@ public class testScriptts : MonoBehaviour
 
     public void BulletCheck()
     {
-        if (turPos != -1 && turretData[turPos].GetComponent<TurretShooting>() )
+        if (turPos != -1 && turretData[turPos].GetComponent<TurretShooting>())
         {
             bulletAmmo.value = (float)turretData[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretData[turPos].GetComponent<TurretShooting>().maxBulletAmount;
         }

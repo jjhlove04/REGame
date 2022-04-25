@@ -4829,7 +4829,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7116dbb1ed4d1124c8fd292aa0155c93, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9704,7 +9703,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1b66e22bcee135c45b22ba1f3cbd815d, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14543,7 +14541,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9aaa13d175bcf1c4b8acc4d930ee06ee, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14599,11 +14596,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4672947558624018}
   - component: {fileID: 198845241570023694}
-  - component: {fileID: 114800049613133648}
   - component: {fileID: 199904888891523420}
   - component: {fileID: 108538890786167332}
   - component: {fileID: 54921219820361980}
   - component: {fileID: 135890836330974772}
+  - component: {fileID: 5445806842266936777}
   m_Layer: 10
   m_Name: StrongProjectile 15
   m_TagString: Bullet
@@ -14620,7 +14617,7 @@ Transform:
   m_GameObject: {fileID: 1762457832057232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4327961689726464}
   - {fileID: 4211770930619454}
@@ -19404,27 +19401,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &114800049613133648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762457832057232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605a456cfc02f6b499a64717539a27e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 1479929942879240, guid: 4776bca22f3b439449b75f5931a27440, type: 3}
-  flash: {fileID: 5224300851835895545, guid: 211198f509f49904ab87aa9fa9024077, type: 3}
-  Detached:
-  - {fileID: 1603163787069334}
-  moveSpeed: 50
 --- !u!199 &199904888891523420
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -19446,7 +19422,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6ba0e06c5fb9a8249929b097d5906366, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19583,3 +19558,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5445806842266936777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762457832057232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  hitOffset: 0.1
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 1479929942879240, guid: 4776bca22f3b439449b75f5931a27440, type: 3}
+  flash: {fileID: 5224300851835895545, guid: 211198f509f49904ab87aa9fa9024077, type: 3}
+  Detached:
+  - {fileID: 1603163787069334}
+  moveSpeed: 50

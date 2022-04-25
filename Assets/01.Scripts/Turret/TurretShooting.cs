@@ -17,9 +17,6 @@ public class TurretShooting : Turret
     //private float curshootTimer;
 
     [SerializeField]
-    private float maxDistance;
-
-    [SerializeField]
     private float lookForTargetTimerMax = 0.2f;
 
     [SerializeField]
@@ -43,12 +40,12 @@ public class TurretShooting : Turret
     void Update()
     {
         HandleShooting(shootTimerMax, damage);
-        HandleTargeting(maxDistance);
+        HandleTargeting();
     }
 
-    protected override void HandleTargeting(float maxDistance)
+    protected override void HandleTargeting()
     {
-        base.HandleTargeting(maxDistance);
+        base.HandleTargeting();
     }
     protected override void HandleShooting(float shootTimerMax, int damage)
     {

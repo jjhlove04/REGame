@@ -56,5 +56,9 @@ public class GameManager : MonoBehaviour
             Time.timeScale = gameSpeed;
         }
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            state = State.End;
+        }
     }
 }

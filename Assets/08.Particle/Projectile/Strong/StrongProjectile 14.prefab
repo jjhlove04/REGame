@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4778643779538310}
   - component: {fileID: 198574560645227440}
-  - component: {fileID: 114972768729341038}
   - component: {fileID: 199069760737636358}
   - component: {fileID: 108950823119357486}
   - component: {fileID: 54530307865729164}
   - component: {fileID: 135664649076355494}
+  - component: {fileID: 948945414526895873}
   m_Layer: 10
   m_Name: StrongProjectile 14
   m_TagString: Bullet
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1228652472414832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4274804163080188}
   m_Father: {fileID: 0}
@@ -4813,27 +4813,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &114972768729341038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228652472414832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605a456cfc02f6b499a64717539a27e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 15
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 1270335207818070, guid: 8f5e087c57b11ef4cbed619d26886292, type: 3}
-  flash: {fileID: 4711997277570565513, guid: bfa61fb3bab3e424e91f9f993cdd7b8f, type: 3}
-  Detached:
-  - {fileID: 1993799643894748}
-  moveSpeed: 50
 --- !u!199 &199069760737636358
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4991,6 +4970,27 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &948945414526895873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228652472414832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0.1
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 1270335207818070, guid: 8f5e087c57b11ef4cbed619d26886292, type: 3}
+  flash: {fileID: 4711997277570565513, guid: bfa61fb3bab3e424e91f9f993cdd7b8f, type: 3}
+  Detached:
+  - {fileID: 1993799643894748}
+  moveSpeed: 50
 --- !u!1 &1715675216902642
 GameObject:
   m_ObjectHideFlags: 0

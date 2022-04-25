@@ -15,8 +15,15 @@ public class CameraManager : MonoBehaviour
     public Action TopView;
     public Action QuarterView;
 
+    private float cameraChangeTime = 2;
+    private float cameraChangeCurTime;
+
+    private bool canChangeCamera = true;
+
     private void Awake()
     {
+        cameraChangeCurTime = cameraChangeTime;
+
         instance = this;
 
 
@@ -26,9 +33,26 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (canChangeCamera)
         {
-            CameraChangeView();
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                canChangeCamera = false;
+
+                CameraChangeView();
+            }
+        }
+
+        else
+        {
+            cameraChangeCurTime -= Time.unscaledDeltaTime;
+
+            if (cameraChangeCurTime < 0)
+            {
+                canChangeCamera = true;
+
+                cameraChangeCurTime = cameraChangeTime;
+            }
         }
 
         if (topCamera.activeSelf)

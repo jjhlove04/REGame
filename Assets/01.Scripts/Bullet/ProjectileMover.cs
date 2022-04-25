@@ -17,9 +17,9 @@ public class ProjectileMover : MonoBehaviour
     public float moveSpeed = 50;
 
 
-    private Transform targetEnemy;
+    protected Transform targetEnemy;
     private Vector3 lastMoveDir;
-    private int damage;
+    protected int damage;
 
     void Start()
     {
@@ -63,13 +63,6 @@ public class ProjectileMover : MonoBehaviour
         transform.LookAt(targetEnemy);
     }
 
-    //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
-    void OnCollisionEnter(Collision collision)
-    {
-        //Lock all axes movement and rotation
-
-    }
-
     public void Create(Transform enemy, int damage)
     {
         SetTarget(enemy);
@@ -86,39 +79,34 @@ public class ProjectileMover : MonoBehaviour
         this.damage = damage;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+
+        if (hit != null)
         {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            var hitInstance = Instantiate(hit);
+            hitInstance.transform.position = transform.position + new Vector3(2, 0, 0);
 
-            other.GetComponent<HealthSystem>().Damage(damage);
-
-            if (hit != null)
+            var hitPs = hitInstance.GetComponent<ParticleSystem>();
+            if (hitPs != null)
             {
-                var hitInstance = Instantiate(hit);
-                hitInstance.transform.position = transform.position + new Vector3(2,0,0);
-
-                var hitPs = hitInstance.GetComponent<ParticleSystem>();
-                if (hitPs != null)
-                {
-                    Destroy(hitInstance, hitPs.main.duration);
-                }
-                else
-                {
-                    var hitPsParts = hitInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
-                    Destroy(hitInstance, hitPsParts.main.duration);
-                }
+                Destroy(hitInstance, hitPs.main.duration);
             }
-            foreach (var detachedPrefab in Detached)
+            else
             {
-                if (detachedPrefab != null)
-                {
-                    detachedPrefab.transform.parent = null;
-                }
+                var hitPsParts = hitInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
+                Destroy(hitInstance, hitPsParts.main.duration);
             }
-            gameObject.SetActive(false);
-            //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }
+        foreach (var detachedPrefab in Detached)
+        {
+            if (detachedPrefab != null)
+            {
+                detachedPrefab.transform.parent = null;
+            }
+        }
+        gameObject.SetActive(false);
+        //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));ㄴ
     }
 }

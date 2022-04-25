@@ -18,6 +18,10 @@ public class Turret : MonoBehaviour
     [SerializeField]
     private GameObject neck;
 
+
+    [SerializeField]
+    private float maxDistance;
+
     [SerializeField]
     private LayerMask layerMask;
 
@@ -34,7 +38,7 @@ public class Turret : MonoBehaviour
 
     public int turImageCount;
 
-    protected virtual void HandleTargeting(float maxDistance)
+    protected virtual void HandleTargeting()
     {
         if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying)
         {
@@ -97,13 +101,13 @@ public class Turret : MonoBehaviour
     {
         targetEnemy = null;
 
-        RaycastHit[] hit = Physics.SphereCastAll(transform.position, maxDistance, transform.forward, maxDistance, layerMask);
+        Collider[] hit = Physics.OverlapSphere(transform.position, maxDistance, layerMask);
 
-        foreach (RaycastHit hitEnemy in hit)
+        foreach (Collider hitEnemy in hit)
         {
-            if (hitEnemy.transform.CompareTag("Enemy"))
+            if (hitEnemy.CompareTag("Enemy"))
             {
-                if (hitEnemy.transform == null|| hitEnemy.transform.GetComponent<Enemy>().isDying)
+                if (!hitEnemy.gameObject.activeSelf || hitEnemy.transform.GetComponent<Enemy>().isDying)
                 {
                     targetEnemy = null;
                 }
@@ -118,15 +122,15 @@ public class Turret : MonoBehaviour
                             targetEnemy = null;
                         }
 
-                        else if (Vector3.Distance(transform.position, hitEnemy.collider.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                        else if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
                         {
-                            targetEnemy = hitEnemy.collider.transform;
+                            targetEnemy = hitEnemy.transform;
                         }
                     }
 
                     else
                     {
-                        targetEnemy = hitEnemy.collider.transform;
+                        targetEnemy = hitEnemy.transform;
                     }
 
                 }

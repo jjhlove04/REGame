@@ -16,13 +16,14 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
+        OnDied.AddListener(InitHealth);
         InitHealth();
     }
 
     private void Start()
     {
         SetHealthAmountMax(enemy.enemyStat.healthAmountMax, true);
-        OnDied.AddListener(InitHealth);
+
     }
 
     public void Damage(float damageAmount)
@@ -71,5 +72,28 @@ public class HealthSystem : MonoBehaviour
     public void InitHealth()
     {
         curHealthAmount = enemy.enemyStat.healthAmountMax;
+    }
+
+    public void DotDamageCoroutine(GameObject particle, int dotcount, float dotDelay, float dotDamage)
+    {
+        StartCoroutine(DotDamage(particle, dotcount, dotDelay, dotDamage));
+    }
+
+    IEnumerator DotDamage(GameObject particle, int dotcount, float dotDelay, float dotDamage)
+    {
+        GameObject particleObj = ObjectPool.instacne.GetObject(particle);
+
+        particleObj.transform.parent = transform;
+
+        for (int i = 0; i < dotcount; i++)
+        {
+            Damage(dotDamage);
+
+            yield return new WaitForSeconds(dotDelay);
+        }
+
+        particleObj.transform.parent = null;
+        particle.transform.position = Vector3.zero;
+        particleObj.SetActive(false);
     }
 }

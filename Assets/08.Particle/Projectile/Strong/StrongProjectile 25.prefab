@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4590470024651680}
   - component: {fileID: 198246708193852092}
   - component: {fileID: 199132381681854488}
-  - component: {fileID: 114457725672127144}
   - component: {fileID: 54354589119405752}
   - component: {fileID: 135410414464420550}
+  - component: {fileID: -4649654751781875805}
   m_Layer: 10
   m_Name: StrongProjectile 25
   m_TagString: Bullet
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1574263468501362}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4878,26 +4878,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &114457725672127144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574263468501362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605a456cfc02f6b499a64717539a27e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 30
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 90, z: 0}
-  hit: {fileID: 1157033039736294, guid: 266bfc3979b19d3478e92304dab844d6, type: 3}
-  flash: {fileID: 3373276231861928681, guid: 0a7308ac88361fb488f63832c47aece9, type: 3}
-  Detached: []
-  moveSpeed: 50
 --- !u!54 &54354589119405752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4927,3 +4907,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4649654751781875805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574263468501362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 30
+  hitOffset: 0.1
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 1157033039736294, guid: 266bfc3979b19d3478e92304dab844d6, type: 3}
+  flash: {fileID: 3373276231861928681, guid: 0a7308ac88361fb488f63832c47aece9, type: 3}
+  Detached: []
+  moveSpeed: 50
