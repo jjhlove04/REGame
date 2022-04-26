@@ -232,7 +232,7 @@ public class testScriptts : MonoBehaviour
         {
             if (tT.onTurret != true)
             {
-                if (gameManager.goldAmount >= 10)
+                if (gameManager.goldAmount >= gameManager.turretPtice)
                 {
                     GameObject gameInst = objectPool.GetObject(turret);
                     gameInst.GetComponent<Turret>().turCount = turPos;
@@ -241,7 +241,7 @@ public class testScriptts : MonoBehaviour
                     gameInst.transform.SetParent(this.gameObject.transform);
                     tT.onTurret = true;
                     turretData[turPos] = gameInst;
-                    gameManager.goldAmount -= 10;
+                    gameManager.goldAmount -= gameManager.turretPtice;
                 }
                 else
                 {

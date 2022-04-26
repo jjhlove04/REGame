@@ -46,7 +46,7 @@ public class testtestSkilll : MonoBehaviour
 
             testScriptts.Instance.turPos = count;
 
-            if (selectType == -1 && GameManager.Instance.goldAmount >= 10)
+            if (selectType == -1 && GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
             {
                 selectType = InGameUI._instance.selectType;
                 testScriptts.Instance.turType = selectType;

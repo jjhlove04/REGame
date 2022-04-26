@@ -30,6 +30,8 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private GameObject giveUPPanel;
     [SerializeField] private GameObject settingPanel;
 
+    public List<Text> turPriceList = new List<Text>();
+
     private bool onPanel;
 
     int screenHeight = Screen.height;
@@ -95,6 +97,7 @@ public class InGameUI : MonoBehaviour
 
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
+        ShowTurPrice();
     }
 
 
@@ -301,5 +304,13 @@ public class InGameUI : MonoBehaviour
         }
 
         CloseGiveUpPanel();
+    }
+
+    public void ShowTurPrice()
+    {
+        for (int i = 0; i < turPriceList.Count; i++)
+        {
+            turPriceList[i].text = GameManager.Instance.turretPtice.ToString();
+        }
     }
 }

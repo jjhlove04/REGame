@@ -74,8 +74,11 @@ public class testSkilll : MonoBehaviour
                         default:
                             break;
                     }
-                    TestTurretDataBase.Instance.createPrice += GameManager.Instance.turretPtice;
+
                     TestTurretDataBase.Instance.Create(selectType);
+                    TestTurretDataBase.Instance.createPrice += GameManager.Instance.turretPtice;
+                    GameManager.Instance.turretPtice += (int)(GameManager.Instance.turretPtice * 0.2f);
+                    InGameUI._instance.ShowTurPrice();
 
                     image.color = new Color(1, 1, 1, 0);
                     image.transform.GetChild(0).gameObject.SetActive(false);
