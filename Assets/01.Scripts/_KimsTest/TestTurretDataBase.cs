@@ -32,6 +32,9 @@ public class TestTurretDataBase : MonoBehaviour
 
     public int level;
     public int tp;
+
+    public int round;
+    public int createPrice;
     private void Awake()
     {
         if(instance != null)

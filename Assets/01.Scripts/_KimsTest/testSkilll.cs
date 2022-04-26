@@ -50,7 +50,7 @@ public class testSkilll : MonoBehaviour
 
             if (selectType != -1)
             {
-                if (GameManager.Instance.goldAmount >= 10 && GameManager.Instance.goldAmount >= 10)
+                if (GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
                 {
                     InGameUI._instance.selectType = selectType;
 
@@ -74,7 +74,7 @@ public class testSkilll : MonoBehaviour
                         default:
                             break;
                     }
-
+                    TestTurretDataBase.Instance.createPrice += GameManager.Instance.turretPtice;
                     TestTurretDataBase.Instance.Create(selectType);
 
                     image.color = new Color(1, 1, 1, 0);

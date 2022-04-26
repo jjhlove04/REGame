@@ -118,8 +118,8 @@ public class TitleMoveScript : MonoBehaviour
             btnGroup.SetActive(true);
             resultPanelRect.DOAnchorPosX(1742, 0.8f);
             btnGroupRect.DOAnchorPosX(70, 0.5f);
+            
 
-            TestTurretDataBase.Instance.resultGold = 0;
             TestTurretDataBase.Instance.resultEXP = 0;
             TestTurretDataBase.Instance.resultDamage = 0;
         });

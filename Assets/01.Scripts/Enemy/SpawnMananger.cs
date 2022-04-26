@@ -56,6 +56,8 @@ public class SpawnMananger : MonoBehaviour
                 {
                     stopSpawn = true;
                 }
+
+                TestTurretDataBase.Instance.round = round;
             }
         }
     }
