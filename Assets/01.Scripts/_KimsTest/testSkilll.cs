@@ -19,16 +19,26 @@ public class testSkilll : MonoBehaviour
 
     private bool onTurret = false;
 
+    private testScriptts testScripts;
+    private TestTurretDataBase testTurData;
+    private InGameUI inGameUI;
+
 
     void Start()
     {
+        testScripts = GetComponent<testScriptts>();
+        testTurData = GetComponent<TestTurretDataBase>();
+        inGameUI = GetComponent<InGameUI>();
+
+        gameObject.TryGetComponent(out Button btnm);
+        gameObject.TryGetComponent(out Image image);
+
         CameraManager cameraManager = CameraManager.Instance;
 
 
         upgradeBtn = GameObject.Find("UP");
 
-        this.gameObject.TryGetComponent(out Button btnm);
-        this.gameObject.TryGetComponent(out Image image);
+
 
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;
@@ -46,31 +56,31 @@ public class testSkilll : MonoBehaviour
                 }
             }
 
-            testScriptts.Instance.turPos = count;
+            testScripts.turPos = count;
 
 
             if (!onTurret)
             {
-                selectType = testScriptts.Instance.turType;
+                selectType = testScripts.turType;
 
                 if (selectType != -1)
                 {
                     switch (selectType)
                     {
                         case 0:
-                            TestTurretDataBase.Instance.floor = floor;
+                            testTurData.floor = floor;
                             break;
                         case 1:
-                            TestTurretDataBase.Instance.floor1 = floor;
+                            testTurData.floor1 = floor;
                             break;
                         case 2:
-                            TestTurretDataBase.Instance.floor2 = floor;
+                            testTurData.floor2 = floor;
                             break;
                         case 3:
-                            TestTurretDataBase.Instance.floor3 = floor;
+                            testTurData.floor3 = floor;
                             break;
                         case 4:
-                            TestTurretDataBase.Instance.floor4 = floor;
+                            testTurData.floor4 = floor;
                             break;
                         default:
                             break;
@@ -78,13 +88,13 @@ public class testSkilll : MonoBehaviour
 
                     if (GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
                     {
-                        InGameUI._instance.selectType = selectType;
+                        inGameUI.selectType = selectType;
 
 
-                        TestTurretDataBase.Instance.Create(selectType);
-                        TestTurretDataBase.Instance.createPrice += GameManager.Instance.turretPtice;
+                        testTurData.Create(selectType);
+                        testTurData.createPrice += GameManager.Instance.turretPtice;
                         GameManager.Instance.turretPtice += (int)(GameManager.Instance.turretPtice * 0.2f);
-                        InGameUI._instance.ShowTurPrice();
+                        inGameUI.ShowTurPrice();
 
                         image.color = new Color(1, 1, 1, 0);
                         image.transform.GetChild(0).gameObject.SetActive(false);
@@ -94,14 +104,14 @@ public class testSkilll : MonoBehaviour
 
                     else
                     {
-                        InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
-                        InGameUI._instance.warningTxt.text = "Not Enough Gold";
+                        inGameUI.warningTxt.color = new Color(1, 0.8f, 0, 1);
+                        inGameUI.warningTxt.text = "Not Enough Gold";
                     }
                 }
                 else
                 {
-                    testScriptts.Instance.turPos = count;
-                    InGameUI._instance.OpenPresetBtn();
+                    testScripts.turPos = count;
+                    inGameUI.OpenPresetBtn();
                 }
             }
 
@@ -110,27 +120,27 @@ public class testSkilll : MonoBehaviour
                 switch (selectType)
                 {
                     case 0:
-                        TestTurretDataBase.Instance.floor = floor;
+                        testTurData.floor = floor;
                         break;
                     case 1:
-                        TestTurretDataBase.Instance.floor1 = floor;
+                        testTurData.floor1 = floor;
                         break;
                     case 2:
-                        TestTurretDataBase.Instance.floor2 = floor;
+                        testTurData.floor2 = floor;
                         break;
                     case 3:
-                        TestTurretDataBase.Instance.floor3 = floor;
+                        testTurData.floor3 = floor;
                         break;
                     case 4:
-                        TestTurretDataBase.Instance.floor4 = floor;
+                        testTurData.floor4 = floor;
                         break;
                     default:
                         break;
                 }
 
-                InGameUI._instance.selectType = selectType;
-                testScriptts.Instance.turPos = count;
-                testScriptts.Instance.SelectTurret();
+                inGameUI.selectType = selectType;
+                testScripts.turPos = count;
+                testScripts.SelectTurret();
             }
 
 
@@ -141,22 +151,22 @@ public class testSkilll : MonoBehaviour
         {
             if (isTest)
             {
-                switch (InGameUI._instance.selectType)
+                switch (inGameUI.selectType)
                 {
                     case 0:
-                        floor = TestTurretDataBase.Instance.floor;
+                        floor = testTurData.floor;
                         break;
                     case 1:
-                        floor = TestTurretDataBase.Instance.floor1;
+                        floor = testTurData.floor1;
                         break;
                     case 2:
-                        floor = TestTurretDataBase.Instance.floor2;
+                        floor = testTurData.floor2;
                         break;
                     case 3:
-                        floor = TestTurretDataBase.Instance.floor3;
+                        floor = testTurData.floor3;
                         break;
                     case 4:
-                        floor = TestTurretDataBase.Instance.floor4;
+                        floor = testTurData.floor4;
                         break;
                     default:
                         break;
