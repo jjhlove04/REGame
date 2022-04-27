@@ -85,14 +85,14 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  maxBulletAmount: 100000000
+  maxBulletAmount: 30
   bulAmount: 10
   bulletBar: {fileID: 3383226532995010287}
   turCount: 0
   turType: 0
   turImageCount: 0
-  shootTimerMax: 0.000001
-  damage: 10000
+  shootTimerMax: 1
+  damage: 10
   upgradeCost: 0
 --- !u!65 &9103460477162629435
 BoxCollider:
