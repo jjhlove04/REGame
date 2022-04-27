@@ -146,6 +146,8 @@ public class testScriptts : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.P))
         {
             inGameUI.PresetBtn();
+            inGameUI.ClearSelect();
+            turType = -1;
         }
 
         if (Input.GetKeyDown(KeyCode.Period))
@@ -285,7 +287,6 @@ public class testScriptts : MonoBehaviour
         TurSelect();
 
         turType = num;
-        inGameUI.selectType = turType;
         GameObject gameObject = turretType[num];
         turret = gameObject;
 

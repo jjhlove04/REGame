@@ -98,7 +98,6 @@ public class TestTurretDataBase : MonoBehaviour
 
     public void Create(int typrTur)
     {
-
         switch (typrTur)
         {
             case 0:

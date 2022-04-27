@@ -58,6 +58,11 @@ public class Enemy : MonoBehaviour
 
             if (run)
             {
+                if(transform.position.y < 0)
+                {
+                    transform.position += new Vector3(0, -transform.position.y, 0);
+                }
+
                 EnemyIsDistanceX();
                 EnemyTargettingMove();
                 transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);

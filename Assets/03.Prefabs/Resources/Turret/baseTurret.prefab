@@ -81,19 +81,18 @@ MonoBehaviour:
   weapons:
   - {fileID: 8185287192311258175}
   neck: {fileID: 8185287190796678487}
+  maxDistance: 80
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  maxBulletAmount: 30
+  maxBulletAmount: 100000000
   bulAmount: 10
   bulletBar: {fileID: 3383226532995010287}
   turCount: 0
   turType: 0
   turImageCount: 0
-  shootTimerMax: 1
-  maxDistance: 80
-  lookForTargetTimerMax: 0.2
-  damage: 10
+  shootTimerMax: 0.000001
+  damage: 10000
   upgradeCost: 0
 --- !u!65 &9103460477162629435
 BoxCollider:

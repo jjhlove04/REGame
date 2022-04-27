@@ -62,67 +62,56 @@ public class Turret : MonoBehaviour
 
             //targetEnemy = this.targetEnemy;
         }
-
-        else
-        {
-            LookForTargets(maxDistance);
-        }
-
-        /*else
-        {
-            targetEnemy = null;
-        }*/
     }
 
 
     protected virtual void HandleShooting(float shootTimerMax, int damage)
     {
-        shootTimer -= Time.deltaTime;
-        if (shootTimer <= 0f)
+        if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying && Vector3.Distance(transform.position, targetEnemy.position) < 80)
         {
-            shootTimer += shootTimerMax;
-            if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying && bulAmount > 0)
+            shootTimer -= Time.deltaTime;
+            if (bulAmount > 0)
             {
-                for (int i = 0; i < weapons.Length; i++)
+                if (shootTimer <= 0f)
                 {
-                    GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
-                    gameObject.transform.position = weapons[i].transform.Find("BulletPoint").position;
-                    gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
-                    TestTurretDataBase.Instance.resultDamage += damage;
-                    bulAmount--;
+                    shootTimer = shootTimerMax;
 
-                    bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+                    for (int i = 0; i < weapons.Length; i++)
+                    {
+
+                        GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
+                        gameObject.transform.position = weapons[i].transform.Find("BulletPoint").position;
+                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
+                        TestTurretDataBase.Instance.resultDamage += damage;
+                        bulAmount--;
+
+                        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+                    }
                 }
-            }
+            } 
         }
+
+        else
+        {
+            targetEnemy = null; 
+            LookForTargets();
+        }
+
     }
 
-    void LookForTargets(float maxDistance)
+    void LookForTargets()
     {
-        targetEnemy = null;
-
         Collider[] hit = Physics.OverlapSphere(transform.position, maxDistance, layerMask);
 
         foreach (Collider hitEnemy in hit)
         {
             if (hitEnemy.CompareTag("Enemy"))
             {
-                if (!hitEnemy.gameObject.activeSelf || hitEnemy.transform.GetComponent<Enemy>().isDying)
-                {
-                    targetEnemy = null;
-                }
-
-                else
+                if (!hitEnemy.transform.GetComponent<Enemy>().isDying)
                 {
                     if (targetEnemy != null)
                     {
-                        //Debug.Log(targetEnemy.gameObject.layer+targetEnemy.transform.name);
-                        if (targetEnemy.transform.GetComponent<Enemy>().isDying)
-                        {
-                            targetEnemy = null;
-                        }
-
-                        else if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                        if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
                         {
                             targetEnemy = hitEnemy.transform;
                         }
@@ -132,7 +121,6 @@ public class Turret : MonoBehaviour
                     {
                         targetEnemy = hitEnemy.transform;
                     }
-
                 }
             }
         }

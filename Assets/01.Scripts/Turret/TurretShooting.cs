@@ -15,10 +15,6 @@ public class TurretShooting : Turret
     private float shootTimerMax;
 
     //private float curshootTimer;
-
-    [SerializeField]
-    private float lookForTargetTimerMax = 0.2f;
-
     [SerializeField]
     private int damage = 10;
 
