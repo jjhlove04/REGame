@@ -13372,6 +13372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406744654}
+  - component: {fileID: 1406744655}
   m_Layer: 0
   m_Name: --------Object
   m_TagString: Untagged
@@ -13393,6 +13394,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1406744655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406744653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154c080fa50ed744db41fdd917f1f539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1410874377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16483,7 +16496,6 @@ GameObject:
   - component: {fileID: 1722079219}
   - component: {fileID: 1722079220}
   - component: {fileID: 1722079221}
-  - component: {fileID: 1722079222}
   m_Layer: 0
   m_Name: ManagerOBJ
   m_TagString: Untagged
@@ -16565,6 +16577,10 @@ MonoBehaviour:
   upGradeBtn: {fileID: 1612825819}
   warningTxt: {fileID: 160211377}
   selectType: 0
+  dashiObj: {fileID: 1406744653}
+  moneyPos: {fileID: 2063052288}
+  wavePos: {fileID: 872924423}
+  incomMoney: {fileID: 6261382080463543147, guid: e106f0b2cee30814ab61b459f29bcea3, type: 3}
 --- !u!114 &1722079220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16646,18 +16662,6 @@ MonoBehaviour:
   - {fileID: 2957103898448255472}
   - {fileID: 8634976866488616931}
   - {fileID: 6309263800692696802}
---- !u!114 &1722079222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722079216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 154c080fa50ed744db41fdd917f1f539, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1735865799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601681510908809259, guid: 11aea87437ab51d429adcb873617733d, type: 3}

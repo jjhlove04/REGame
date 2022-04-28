@@ -86,6 +86,8 @@ public class testScriptts : MonoBehaviour
 
         //hp¹Ù ¼¼
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
+
+        gameManager.goldAmount += 30;
     }
 
     // Update is called once per frame
@@ -176,12 +178,10 @@ public class testScriptts : MonoBehaviour
             case 0:
                 gameManager.gameSpeed = 0f;
                 speedImg.sprite = speedList[0];
-                NextWaveBtn.interactable = false;
                 break;
             case 1:
                 gameManager.gameSpeed = 1f;
                 speedImg.sprite = speedList[1];
-                NextWaveBtn.interactable = true;
                 break;
             case 2:
                 gameManager.gameSpeed = 2f;
@@ -199,14 +199,12 @@ public class testScriptts : MonoBehaviour
         if (spawnMananger.round == 1)
         {
             spawnMananger.stopSpawn = false;
-
-            gameManager.goldAmount += 30;
-
         }
         else
         {
             spawnMananger.curTime = spawnMananger.roundCurTime;
             gameManager.goldAmount += (int)(spawnMananger.roundCurTime * 0.7f);
+            InGameUI._instance.CreateMonjeyTxt((int)(spawnMananger.roundCurTime * 0.7f));
         }
     }
     public void NextWaveCoolBtn()

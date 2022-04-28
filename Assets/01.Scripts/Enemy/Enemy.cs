@@ -145,6 +145,7 @@ public class Enemy : MonoBehaviour
         //scrap.transform.position = transform.position;
         GameManager.Instance.expAmount += enemyStat.dropExp;
         GameManager.Instance.goldAmount += enemyStat.dropGold;
+        InGameUI._instance.CreateMonjeyTxt(enemyStat.dropExp);
 
         gameObject.SetActive(false);
     }
