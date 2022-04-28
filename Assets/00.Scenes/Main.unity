@@ -12761,8 +12761,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 2
-  m_FrequencyGain: 0.5
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1355436465
 MonoBehaviour:
@@ -16571,7 +16571,19 @@ MonoBehaviour:
   - {fileID: 1808473914}
   giveUPPanel: {fileID: 1564638629}
   settingPanel: {fileID: 2022539008}
-  turPriceList: []
+  turPriceList:
+  - {fileID: 493059877}
+  - {fileID: 1277698050}
+  - {fileID: 872760040}
+  - {fileID: 1889288395}
+  - {fileID: 51781785}
+  - {fileID: 2079391861}
+  - {fileID: 5767450}
+  - {fileID: 785127098}
+  - {fileID: 1366242193}
+  - {fileID: 746519380}
+  - {fileID: 2053669138}
+  - {fileID: 1947155733}
   goldAmounTxt: {fileID: 2063052290}
   waveTxt: {fileID: 872924424}
   upGradeBtn: {fileID: 1612825819}
@@ -16581,6 +16593,7 @@ MonoBehaviour:
   moneyPos: {fileID: 2063052288}
   wavePos: {fileID: 872924423}
   incomMoney: {fileID: 6261382080463543147, guid: e106f0b2cee30814ab61b459f29bcea3, type: 3}
+  moneyX: 190
 --- !u!114 &1722079220
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,11 +34,9 @@ public class testSkilll : MonoBehaviour
         gameObject.TryGetComponent(out Image image);
 
         CameraManager cameraManager = CameraManager.Instance;
-
-
         upgradeBtn = GameObject.Find("UP");
 
-
+        gameObject.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.turretPtice.ToString();
 
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;

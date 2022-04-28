@@ -55,6 +55,7 @@ public class InGameUI : MonoBehaviour
     public GameObject moneyPos;
     public Transform wavePos;
     public GameObject incomMoney;
+    public float moneyX;
 
 
 
@@ -344,9 +345,10 @@ public class InGameUI : MonoBehaviour
     {
         GameObject prefab = objectPool.GetObject(incomMoney);
         prefab.transform.parent = wavePos;
-        prefab.transform.position = wavePos.position;
+        prefab.transform.position = new Vector2( wavePos.position.x + moneyX, wavePos.position.y);
         prefab.TryGetComponent<Text>(out Text txt);
-        txt.text = goldAmount.ToString();
+        txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 1f);
+        txt.text = "+" + goldAmount.ToString();
         Debug.Log("생성");
     }
 }
