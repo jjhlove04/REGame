@@ -165,7 +165,7 @@ public class testScriptts : MonoBehaviour
 
     public void Reload()
     {
-        if (turPos != -1 && turretData[turPos].TryGetComponent(out TurretShooting trshot))
+        if (turPos != -1 && turretData[turPos].TryGetComponent(out Turret trshot))
         {
             trshot.Reload();
         }

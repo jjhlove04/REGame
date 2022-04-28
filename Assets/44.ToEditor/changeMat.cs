@@ -17,12 +17,6 @@ public class changeMat : MonoBehaviour
         changeBtn.onClick.AddListener(ChangeTexture);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void ChangeTexture()
     {
         int randooom = Random.Range(0, _textures.Count);

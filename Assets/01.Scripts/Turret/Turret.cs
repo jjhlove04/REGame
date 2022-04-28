@@ -29,8 +29,16 @@ public class Turret : MonoBehaviour
 
     public int bulAmount = 10;
 
+    private int result = 8;
+
     [SerializeField]
-    protected BulletBar bulletBar;
+    private BulletBar bulletBar;
+
+    [SerializeField]
+    private float shootTimerMax;
+
+    [SerializeField]
+    private int damage = 10;
 
     public int turCount;
 
@@ -38,17 +46,41 @@ public class Turret : MonoBehaviour
 
     public int turImageCount;
 
+    public int upgradeCost;
+
     [HideInInspector]
     public bool detection = false;
+    
+    [SerializeField]
+    private AudioSource shootAudioSource;
 
-    protected virtual void HandleTargeting()
+    [SerializeField]
+    private AudioSource waitingAudioSource;
+
+    [SerializeField]
+    private AudioSource reloadAudioSource;
+
+
+    private bool waiting = false;
+
+
+    private void Start()
+    {
+        bulAmount = maxBulletAmount;
+    }
+
+    private void Update()
+    {
+        HandleTargeting();
+        HandleShooting();
+    }
+
+    private void HandleTargeting()
     {
         if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying)
         {
             Vector3 target = this.targetEnemy.position - transform.position;
             Quaternion rot = Quaternion.LookRotation(target);
-
-
 
             for (int i = 0; i < weapons.Length; i++)
             {
@@ -68,7 +100,7 @@ public class Turret : MonoBehaviour
     }
 
 
-    protected virtual void HandleShooting(float shootTimerMax, int damage)
+    private void HandleShooting()
     {
         if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying && Vector3.Distance(transform.position, targetEnemy.position) < 80)
         {
@@ -77,6 +109,8 @@ public class Turret : MonoBehaviour
             {
                 if (shootTimer <= 0f)
                 {
+                    ShootSound();
+
                     shootTimer = shootTimerMax;
 
                     for (int i = 0; i < weapons.Length; i++)
@@ -91,6 +125,11 @@ public class Turret : MonoBehaviour
                         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
                     }
                 }
+
+                else
+                {
+                    WaitingTimeSound();
+                }
             } 
         }
 
@@ -99,7 +138,6 @@ public class Turret : MonoBehaviour
             targetEnemy = null; 
             LookForTargets();
         }
-
     }
 
     void LookForTargets()
@@ -146,6 +184,60 @@ public class Turret : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void Reload()
+    {
+        if (GameManager.Instance.goldAmount >= result && bulAmount != maxBulletAmount)
+        {
+            ReloadSound();
+
+            GameManager.Instance.goldAmount -= result;
+            bulAmount = maxBulletAmount;
+        }
+        else
+        {
+            InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
+            InGameUI._instance.warningTxt.text = "Not Enough Gold";
+        }
+        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+    }
+
+    private void ShootSound()
+    {
+        if(shootAudioSource.clip != null)
+        {
+            shootAudioSource.Play();
+
+            shootAudioSource.pitch = (shootAudioSource.clip.length * (1 / shootAudioSource.clip.length)) * Time.timeScale;
+
+            waiting = true;
+        }
+    }
+
+    private void WaitingTimeSound()
+    {
+        if(waitingAudioSource.clip != null)
+        {
+            waitingAudioSource.pitch = waitingAudioSource.clip.length / shootTimerMax * Time.timeScale;
+
+            if (waiting)
+            {
+                waitingAudioSource.Play();
+
+                waiting = false;
+            }
+        }
+    }
+
+    private void ReloadSound()
+    {
+        if(reloadAudioSource.clip != null)
+        {
+            reloadAudioSource.pitch = reloadAudioSource.clip.length / shootTimerMax;
+
+            reloadAudioSource.Play();
         }
     }
 }

@@ -10,43 +10,10 @@ public class TurretShooting : Turret
     //[SerializeField]
     //private float bulletLineEffectTime = 0.03f;
 
-
-    [SerializeField]
-    private float shootTimerMax;
-
     //private float curshootTimer;
-    [SerializeField]
-    private int damage = 10;
-
-    private int result = 8;
-
-    private Transform targetEnemychil;
 
     //[SerializeField]
     //private bool onPlayer = false;
-
-    public int upgradeCost;
-
-    private void Start()
-    {
-        //curshootTimer = shootTimerMax;
-        bulAmount = maxBulletAmount;
-    }
-
-    void Update()
-    {
-        HandleShooting(shootTimerMax, damage);
-        HandleTargeting();
-    }
-
-    protected override void HandleTargeting()
-    {
-        base.HandleTargeting();
-    }
-    protected override void HandleShooting(float shootTimerMax, int damage)
-    {
-        base.HandleShooting(shootTimerMax, damage);
-    }
 
     /*private void Shot()
     {
@@ -86,19 +53,4 @@ public class TurretShooting : Turret
     //    bulletLineRenderer.gameObject.SetActive(false);
     //    muzzleflash.Stop();
     //}
-
-    public void Reload()
-    {
-        if (GameManager.Instance.goldAmount >= result && bulAmount != maxBulletAmount)
-        {
-            GameManager.Instance.goldAmount -= result;
-            bulAmount = maxBulletAmount;
-        }
-        else
-        {
-            InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
-            InGameUI._instance.warningTxt.text = "Not Enough Gold";
-        }
-        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
-    }
 }
