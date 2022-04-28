@@ -49,15 +49,29 @@ public class InGameUI : MonoBehaviour
     public Text warningTxt;
     public int selectType;
 
+    [SerializeField]
+    public GameObject dashiObj;
+
+    public GameObject moneyPos;
+    public Transform wavePos;
+    public GameObject incomMoney;
+    public float moneyX;
+
+
+
     Coroutine coroutine;
 
     testScriptts testScriptts;
+
+    private ObjectPool objectPool;
     private void Awake()
     {
         _instance = this;
         bpTop = bluePrintTop.GetComponent<RectTransform>();
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
+        objectPool = FindObjectOfType<ObjectPool>();
+
         upGradePanelBackBtn.onClick.AddListener(() => 
         {
             upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
@@ -161,6 +175,19 @@ public class InGameUI : MonoBehaviour
                 CancleAll();
             }
         }*/
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (dashiObj.activeSelf == false)
+            {
+                dashiObj.SetActive(true);
+            }
+            else
+            {
+                dashiObj.SetActive(false);
+            }
+            
+        }
 
     }
 
@@ -312,5 +339,16 @@ public class InGameUI : MonoBehaviour
         {
             turPriceList[i].text = GameManager.Instance.turretPtice.ToString();
         }
+    }
+
+    public void CreateMonjeyTxt(int goldAmount)
+    {
+        GameObject prefab = objectPool.GetObject(incomMoney);
+        prefab.transform.parent = wavePos;
+        prefab.transform.position = new Vector2( wavePos.position.x + moneyX, wavePos.position.y);
+        prefab.TryGetComponent<Text>(out Text txt);
+        txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 1f);
+        txt.text = "+" + goldAmount.ToString();
+        Debug.Log("생성");
     }
 }
