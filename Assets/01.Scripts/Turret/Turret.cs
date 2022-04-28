@@ -38,6 +38,9 @@ public class Turret : MonoBehaviour
 
     public int turImageCount;
 
+    [HideInInspector]
+    public bool detection = false;
+
     protected virtual void HandleTargeting()
     {
         if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying)
@@ -105,21 +108,41 @@ public class Turret : MonoBehaviour
 
         foreach (Collider hitEnemy in hit)
         {
+            Enemy enemy = hitEnemy.GetComponent<Enemy>();
             if (hitEnemy.CompareTag("Enemy"))
             {
-                if (!hitEnemy.transform.GetComponent<Enemy>().isDying)
+                if (!enemy.isDying)
                 {
-                    if (targetEnemy != null)
+                    if (!enemy.IsStealth())
                     {
-                        if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                        if (targetEnemy != null)
+                        {
+                            if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                            {
+                                targetEnemy = hitEnemy.transform;
+                            }
+                        }
+
+                        else
                         {
                             targetEnemy = hitEnemy.transform;
                         }
                     }
 
-                    else
+                    else if(detection)
                     {
-                        targetEnemy = hitEnemy.transform;
+                        if (targetEnemy != null)
+                        {
+                            if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                            {
+                                targetEnemy = hitEnemy.transform;
+                            }
+                        }
+
+                        else
+                        {
+                            targetEnemy = hitEnemy.transform;
+                        }
                     }
                 }
             }

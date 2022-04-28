@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour
 
     private bool isGround = false;
 
+    private bool stealth = false;
+
 
     protected virtual void OnEnable()
     {
@@ -186,6 +188,11 @@ public class Enemy : MonoBehaviour
     protected virtual void Attack(Quaternion rot)
     {
 
+    }
+
+    public bool IsStealth()
+    {
+        return stealth;
     }
 
     private void OnTriggerEnter(Collider other)

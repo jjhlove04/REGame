@@ -7,14 +7,29 @@ public class EnemyColorChange : MonoBehaviour
 {
     [Header("targeting effect")]
     public Material hitMaterial;
-    public Material curMaterial;
-    public Material basicMaterial;
+    public Material stealthMaterial = null;
+    private Material basicMaterial;
+
     private Renderer newRenderer;
+
+    private Enemy enemy;
 
     private void Awake()
     {
         newRenderer = GetComponent<Renderer>();
+        enemy = transform.root.GetComponent<Enemy>();
     }
+
+    private void Start()
+    {
+        if (enemy.IsStealth())
+        {
+            OnStealth();
+        }
+
+        basicMaterial.color = newRenderer.material.color;
+    }
+
     private void OnEnable()
     {
         newRenderer.material.color = basicMaterial.color;
@@ -34,5 +49,10 @@ public class EnemyColorChange : MonoBehaviour
         yield return (Timing.WaitForSeconds(0.15f));
 
         newRenderer.material.color = basicMaterial.color;
+    }
+
+    private void OnStealth()
+    {
+        newRenderer.material.color = stealthMaterial.color;
     }
 }
