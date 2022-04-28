@@ -8,15 +8,15 @@ public class EnemyColorChange : MonoBehaviour
     [Header("targeting effect")]
     public Material hitMaterial;
     public Material stealthMaterial = null;
-    private Material basicMaterial;
+    private List<Material> basicMaterial = new List<Material>();
 
-    private Renderer newRenderer;
+    [SerializeField]
+    private Renderer[] newRenderer;
 
     private Enemy enemy;
 
     private void Awake()
     {
-        newRenderer = GetComponent<Renderer>();
         enemy = transform.root.GetComponent<Enemy>();
     }
 
@@ -27,14 +27,19 @@ public class EnemyColorChange : MonoBehaviour
             OnStealth();
         }
 
-        basicMaterial.color = newRenderer.material.color;
+        for (int i = 0; i < newRenderer.Length; i++)
+        {
+            basicMaterial.Add(newRenderer[i].material);
+        }
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
-        newRenderer.material.color = basicMaterial.color;
+        for (int i = 0; i < newRenderer.Length; i++)
+        {
+            newRenderer[i].material = basicMaterial[i];
+        }
     }
-
 
     public void Hit()
     {
@@ -44,15 +49,24 @@ public class EnemyColorChange : MonoBehaviour
 
     IEnumerator<float> HitMaterial()
     {
-        newRenderer.material.color = hitMaterial.color;
+        for (int i = 0; i < newRenderer.Length; i++)
+        {
+            newRenderer[i].material = hitMaterial;
+        }
 
         yield return (Timing.WaitForSeconds(0.15f));
 
-        newRenderer.material.color = basicMaterial.color;
+        for (int i = 0; i < newRenderer.Length; i++)
+        {
+            newRenderer[i].material = basicMaterial[i];
+        }
     }
 
     private void OnStealth()
     {
-        newRenderer.material.color = stealthMaterial.color;
+        for (int i = 0; i < newRenderer.Length; i++)
+        {
+            newRenderer[i].material = stealthMaterial;
+        }
     }
 }

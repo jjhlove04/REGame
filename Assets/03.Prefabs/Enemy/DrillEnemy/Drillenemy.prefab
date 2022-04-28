@@ -329,6 +329,7 @@ MonoBehaviour:
   waist: {fileID: 1521160365377392592}
   run: 0
   isDying: 0
+  stealth: 0
   drillAnim: {fileID: 1463234623445430960}
   drillCol: {fileID: 1298730678217742348}
 --- !u!54 &2400267786464628379
@@ -10779,6 +10780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1516572270097151646}
   - component: {fileID: 1509550128253273112}
+  - component: {fileID: 4195601865560262897}
   m_Layer: 7
   m_Name: SkinMesh_Robot_02_low
   m_TagString: Enemy
@@ -10880,6 +10882,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 3.81884, z: -0.00000023841858}
     m_Extent: {x: 3.9099994, y: 3.8243437, z: 1.6634063}
   m_DirtyAABB: 0
+--- !u!114 &4195601865560262897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522103053439744204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc19c200568b2b46a856f18250c339e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
+  stealthMaterial: {fileID: 2100000, guid: df606561a5baa94418abcdeb31cdebf7, type: 2}
+  newRenderer:
+  - {fileID: 1509550128253273112}
+  - {fileID: 1509336146947548994}
 --- !u!1 &1522107176677970554
 GameObject:
   m_ObjectHideFlags: 0

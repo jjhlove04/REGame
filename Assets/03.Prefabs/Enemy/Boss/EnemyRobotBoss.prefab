@@ -4967,7 +4967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4909049649406452426}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4912095162393938414}
@@ -5067,8 +5067,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
-  curMaterial: {fileID: 2100000, guid: 55c4fbda24eb7a149a5fee2f659b7db7, type: 2}
-  basicMaterial: {fileID: 2100000, guid: 55c4fbda24eb7a149a5fee2f659b7db7, type: 2}
+  stealthMaterial: {fileID: 2100000, guid: df606561a5baa94418abcdeb31cdebf7, type: 2}
+  newRenderer:
+  - {fileID: 5029481172778952076}
+  - {fileID: 4933240828215721740}
 --- !u!1 &4909080043467470792
 GameObject:
   m_ObjectHideFlags: 0
@@ -20415,6 +20417,7 @@ MonoBehaviour:
   waist: {fileID: 4909221583010691012}
   run: 0
   isDying: 0
+  stealth: 0
 --- !u!54 &5008228942030677962
 Rigidbody:
   m_ObjectHideFlags: 0

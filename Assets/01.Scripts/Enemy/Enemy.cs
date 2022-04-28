@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     private bool isGround = false;
 
+    [SerializeField]
     private bool stealth = false;
 
 

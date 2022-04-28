@@ -692,8 +692,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
-  curMaterial: {fileID: 2100000, guid: bf99f0da42e7ec74ea506654a0f17f45, type: 2}
-  basicMaterial: {fileID: 2100000, guid: bf99f0da42e7ec74ea506654a0f17f45, type: 2}
+  stealthMaterial: {fileID: 2100000, guid: df606561a5baa94418abcdeb31cdebf7, type: 2}
+  newRenderer:
+  - {fileID: 137557908154489016}
+  - {fileID: 23093054811413482}
+  - {fileID: 23086810955129976}
+  - {fileID: 23179662297318136}
+  - {fileID: 23821517140867520}
+  - {fileID: 23396758171174670}
 --- !u!1 &1522625354783608
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +888,7 @@ MonoBehaviour:
   waist: {fileID: 1970593138423600}
   run: 0
   isDying: 0
+  stealth: 0
   pos: {fileID: 7810400568605959108}
 --- !u!54 &-6892944501640415227
 Rigidbody:

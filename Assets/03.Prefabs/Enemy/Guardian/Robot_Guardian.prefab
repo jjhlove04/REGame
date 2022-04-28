@@ -95,6 +95,7 @@ MonoBehaviour:
   waist: {fileID: 0}
   run: 0
   isDying: 0
+  stealth: 0
 --- !u!114 &6669018693288074851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +167,7 @@ GameObject:
   - component: {fileID: 2588026428398104086}
   - component: {fileID: 8096899835199596298}
   - component: {fileID: 5567139747609816826}
+  - component: {fileID: 2259075505689849884}
   m_Layer: 10
   m_Name: Renderer
   m_TagString: Bullet
@@ -259,6 +261,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2259075505689849884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937229236405190527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc19c200568b2b46a856f18250c339e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
+  stealthMaterial: {fileID: 2100000, guid: 179d9399cb3cf834f907f1fb702711d1, type: 2}
+  newRenderer:
+  - {fileID: 2588026428398104086}
 --- !u!1 &6570994010745710720
 GameObject:
   m_ObjectHideFlags: 0

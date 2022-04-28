@@ -26,9 +26,9 @@ public class testSkilll : MonoBehaviour
 
     void Start()
     {
-        testScripts = GetComponent<testScriptts>();
-        testTurData = GetComponent<TestTurretDataBase>();
-        inGameUI = GetComponent<InGameUI>();
+        testScripts = testScriptts.Instance;
+        testTurData = TestTurretDataBase.Instance; ;
+        inGameUI = InGameUI._instance;
 
         gameObject.TryGetComponent(out Button btnm);
         gameObject.TryGetComponent(out Image image);

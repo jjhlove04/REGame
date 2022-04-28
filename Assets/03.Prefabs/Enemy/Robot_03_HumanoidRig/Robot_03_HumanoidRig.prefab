@@ -5016,6 +5016,7 @@ MonoBehaviour:
   waist: {fileID: 1801243030835681930}
   run: 0
   isDying: 0
+  stealth: 0
 --- !u!54 &-8767357619722234707
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24732,6 +24733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1798609352610786628}
   - component: {fileID: 1807039001571899082}
+  - component: {fileID: 1099713666661771418}
   m_Layer: 7
   m_Name: SkinMesh_Robot03
   m_TagString: Enemy
@@ -24834,6 +24836,22 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 3.4732707, z: 0.64301026}
     m_Extent: {x: 2.2038233, y: 3.4797313, z: 2.3099504}
   m_DirtyAABB: 0
+--- !u!114 &1099713666661771418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800754768745275298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc19c200568b2b46a856f18250c339e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: d6dcbfd9a109fef4993339fe13eb92bc, type: 2}
+  stealthMaterial: {fileID: 2100000, guid: df606561a5baa94418abcdeb31cdebf7, type: 2}
+  newRenderer:
+  - {fileID: 1807039001571899082}
 --- !u!1 &1800871852124864530
 GameObject:
   m_ObjectHideFlags: 0
