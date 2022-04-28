@@ -16,6 +16,7 @@ public class BulletBar : MonoBehaviour
     {
         CameraManager.Instance.TopView += LookCameraTopView;
         CameraManager.Instance.QuarterView += LookCameraQuarterView;
+        gameObject.SetActive(false);
     }
     private void Update()
     {

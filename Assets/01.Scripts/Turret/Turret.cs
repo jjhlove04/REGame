@@ -63,6 +63,7 @@ public class Turret : MonoBehaviour
 
     private bool waiting = false;
 
+    public GameObject warning;
 
     private void Start()
     {
@@ -238,6 +239,18 @@ public class Turret : MonoBehaviour
             reloadAudioSource.pitch = reloadAudioSource.clip.length / shootTimerMax;
 
             reloadAudioSource.Play();
+        }
+    }
+
+    public void OnWarning()
+    {
+        if (bulAmount / maxBulletAmount <= 0.3)
+        {
+            warning.SetActive(true);
+        }
+        else
+        {
+            warning.SetActive(false);
         }
     }
 }
