@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8185287190290843107}
-  - component: {fileID: -6722349026293080237}
   - component: {fileID: 9103460477162629435}
   - component: {fileID: 8053271095124646408}
   - component: {fileID: 1825246462373510102}
@@ -69,39 +68,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6722349026293080237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8185287190290843104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b51210cdcad3c84478f72307e167209a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 1762457832057232, guid: 157da6469982c244fb32d95e6c7a2e7f, type: 3}
-  weapons:
-  - {fileID: 8185287192311258175}
-  neck: {fileID: 8185287190796678487}
-  maxDistance: 80
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  maxBulletAmount: 30
-  bulAmount: 10
-  bulletBar: {fileID: 3383226532995010287}
-  shootTimerMax: 1
-  damage: 10
-  turCount: 0
-  turType: 0
-  turImageCount: 0
-  upgradeCost: 0
-  detection: 0
-  shootAudioSource: {fileID: 0}
-  waitingAudioSource: {fileID: 0}
-  reloadAudioSource: {fileID: 0}
 --- !u!65 &9103460477162629435
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -137,7 +103,7 @@ MonoBehaviour:
     m_Bits: 128
   maxBulletAmount: 30
   bulAmount: 10
-  bulletBar: {fileID: 0}
+  bulletBar: {fileID: 3383226532995010287}
   shootTimerMax: 1
   damage: 10
   turCount: 0
@@ -157,7 +123,7 @@ AudioSource:
   m_GameObject: {fileID: 8185287190290843104}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2990533539517837292, guid: cb6eabea4be3cd347a257ecb346db686, type: 2}
   m_audioClip: {fileID: 8300000, guid: 08f78eba48bb21c44ac5a74ca84efc83, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -253,7 +219,7 @@ AudioSource:
   m_GameObject: {fileID: 8185287190290843104}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2990533539517837292, guid: cb6eabea4be3cd347a257ecb346db686, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6a32a0d49cd240b4cb9934adf37a49a5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -349,9 +315,9 @@ AudioSource:
   m_GameObject: {fileID: 8185287190290843104}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2990533539517837292, guid: cb6eabea4be3cd347a257ecb346db686, type: 2}
   m_audioClip: {fileID: 8300000, guid: ace79a9e0d4a65547af6715539b6e0c0, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

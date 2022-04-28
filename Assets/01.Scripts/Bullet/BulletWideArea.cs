@@ -8,7 +8,7 @@ public class BulletWideArea : ProjectileMover
     private float m_MaxDistance;
 
     [SerializeField]
-    private LayerMask m_Mask;   
+    private LayerMask m_Mask;
 
     protected override void OnTriggerEnter(Collider other)
     {
