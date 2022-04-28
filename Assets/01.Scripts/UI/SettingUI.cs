@@ -8,31 +8,40 @@ using DG.Tweening;
 public class SettingUI : MonoBehaviour
 {
 
-    public RenderPipelineAsset[] qualityLevel;
-
-    //option은 setting 안에서 움직이는 인덱스 Ex => settingIndex 1, 
-    //optionIndex 3
-    //지금 settingPanel 기준으로 resolution에 3번쨰 세팅
-
-    [SerializeField] private int _settingIndex;
+    [SerializeField] Dropdown _qualityOption;
     [SerializeField] private int _optionIndex;
-    
+    [SerializeField] private RectTransform _settingPanel;
+
     Text _resolutionTxt;
     Text _qualityTxt;
-
-    public void SetResolution()
+    private void Awake()
     {
-        switch(_optionIndex)
-        {
-            case 0: _resolutionTxt.text = string.Format("{0} * {1}",1920, 1080);
-            break;
-        }
-        
+        _qualityOption = GameObject.Find("QualitySelect").GetComponent<Dropdown>();
+        _settingPanel = GameObject.Find("Setting").GetComponent<RectTransform>();
     }
-    public  void ChangeQuality(int value)
+    private void Start()
+    {
+        _qualityOption.onValueChanged.AddListener(delegate{
+            SeeMenu();
+        });
+
+
+            }
+    private void Update()
+    {
+        _optionIndex = _qualityOption.value;
+        ChangeQuality(_optionIndex);
+    }
+    public void ChangeQuality(int value)
     {
         QualitySettings.SetQualityLevel(value);
-        QualitySettings.renderPipeline = qualityLevel[value];
+    }
+
+    public void SeeMenu()
+    {
+        _settingPanel.DOAnchorPosX(620, 0.5f);
+        _settingPanel.DOAnchorPosX(0, 1f).SetDelay(2f);
+
     }
 
 }
