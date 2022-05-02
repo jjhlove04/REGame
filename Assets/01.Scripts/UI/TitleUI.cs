@@ -23,14 +23,26 @@ public class TitleUI : MonoBehaviour
     [SerializeField] private RectTransform mapPanel;
     [SerializeField] private RectTransform itemPanel;
     [SerializeField] private RectTransform turretPanel;
-
-    [SerializeField]
-    private Text repairCost;
-    [SerializeField]
-    private Text towingCost;
-
     public Button startBtn;
 
+    [Header("등록관련")]
+    [SerializeField] private InputField nickName;
+    [SerializeField] private RectTransform registerPanel;
+    [SerializeField] private GameObject checkPanel;
+    [SerializeField] private Button registerApplyBtn;
+    [SerializeField] private Button nickCheckBtn;
+    [SerializeField] private Text playerCardNick;
+    [Header("플레이어 카드 관련")]
+    [SerializeField] private RectTransform playerCard;
+    [SerializeField] private Text haveGold;
+    [SerializeField] private Text haveExp;
+    [SerializeField] private Text haveTp;
+
+
+    [Space(30)]
+    [SerializeField] private Text repairCost;
+    [SerializeField] private Text towingCost;
+    
     public int curExp = 0;
     public int maxExp = 30;
     public Slider expBar;
@@ -40,10 +52,19 @@ public class TitleUI : MonoBehaviour
 
     private void Awake()
     {
+        RegisterPanelOpen();
 
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
         _ui = this;
+        checkPanel.transform.localScale = Vector3.zero;
+        
+        registerApplyBtn.onClick.AddListener(() => RegisterDataConnect());
+
+        //닉네임 확인
+        //checkPanel.transform.DOScale(new Vector3(1,1,1),0.8f)
+        //nickCheckBtn.onClick.AddListener(()=> RegisterDataConnect());
+
 
         for (int i = 0; i < 7; i++)
         {
@@ -79,12 +100,18 @@ public class TitleUI : MonoBehaviour
     private void Update()
     {
         Update_MousePosition();
-
+        InitPlayerInfo();
         ExpBar();
     }
 
 
-
+    
+    public void InitPlayerInfo()
+    {
+        haveGold.text = TestTurretDataBase.Instance.resultGold.ToString();
+        haveExp.text =TestTurretDataBase.Instance.level.ToString();
+        //haveTp.text = TestTurretDataBase.Instance.curTp.ToString();
+    }
     //패널 오픈 함수
     public void RemoveBtn()
     {
@@ -125,6 +152,20 @@ public class TitleUI : MonoBehaviour
         }
 
     }
+    //초기 등록화면 띄우기
+    public void RegisterPanelOpen()
+    {
+        registerPanel.DOAnchorPosX(0,1f).SetEase(Ease.InOutCubic);
+    }
+
+    public void RegisterDataConnect()
+    {
+        TestTurretDataBase.Instance._nickName = nickName.text;
+        playerCardNick.text = TestTurretDataBase.Instance._nickName;
+        registerPanel.DOAnchorPosX(-1289, 1f).SetEase(Ease.InOutCubic);
+        playerCard.DOAnchorPosX(-178,1f).SetEase(Ease.InOutCubic);
+        
+    }
 
 
     private void ExpBar()
@@ -135,6 +176,7 @@ public class TitleUI : MonoBehaviour
         {
             if (curExp >= maxExp)
             {
+                //TestTurretDataBase.Instance.curTp++;
                 TestTurretDataBase.Instance.level++;
                 curExp = curExp - maxExp;
                 if (TestTurretDataBase.Instance.level % 20 == 0)

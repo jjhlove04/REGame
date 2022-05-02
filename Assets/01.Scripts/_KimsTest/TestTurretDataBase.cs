@@ -31,7 +31,8 @@ public class TestTurretDataBase : MonoBehaviour
     public int resultGold = 0;
 
     public int level;
-    public int tp;
+    public int curTp;
+    public string _nickName;
 
     public int round;
     public int createPrice;
