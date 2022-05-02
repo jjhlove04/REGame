@@ -26,19 +26,6 @@ public class HealthSystem : MonoBehaviour
 
     }
 
-    public void Damage(float damageAmount)
-    {
-        curHealthAmount -= damageAmount;
-        curHealthAmount = Mathf.Clamp(curHealthAmount, 0, enemy.enemyStat.healthAmountMax);
-        transform.GetChild(0).GetComponentInChildren<EnemyColorChange>()?.Hit();
-        OnDamaged?.Invoke();
-
-        if (IsDead())
-        {
-            OnDied?.Invoke();
-        }
-    }
-
     public bool IsDead()
     {
         return curHealthAmount == 0;
@@ -74,9 +61,36 @@ public class HealthSystem : MonoBehaviour
         curHealthAmount = enemy.enemyStat.healthAmountMax;
     }
 
+    public void WideAreaDamge(float damage)
+    {
+        if(enemy.onlyDamage != OnlyDamage.singular)
+        {
+            Damage(damage);
+        }
+    }
+
+    public void Damage(float damageAmount)
+    {
+        if(enemy.onlyDamage != OnlyDamage.wideArea)
+        {
+            curHealthAmount -= damageAmount;
+            curHealthAmount = Mathf.Clamp(curHealthAmount, 0, enemy.enemyStat.healthAmountMax);
+            transform.GetChild(0).GetComponentInChildren<EnemyColorChange>()?.Hit();
+            OnDamaged?.Invoke();
+
+            if (IsDead())
+            {
+                OnDied?.Invoke();
+            }
+        }
+    }
+
     public void DotDamageCoroutine(GameObject particle, int dotcount, float dotDelay, float dotDamage)
     {
-        StartCoroutine(DotDamage(particle, dotcount, dotDelay, dotDamage));
+        if (enemy.onlyDamage != OnlyDamage.wideArea)
+        {
+            StartCoroutine(DotDamage(particle, dotcount, dotDelay, dotDamage));
+        }
     }
 
     IEnumerator DotDamage(GameObject particle, int dotcount, float dotDelay, float dotDamage)

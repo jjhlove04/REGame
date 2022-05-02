@@ -3,34 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum OnlyDamage
+{
+    singular,
+    wideArea,
+    Null
+}
 public class Enemy : MonoBehaviour
 {
     public EnemyData enemyStat;
 
-    public Animator anim;
-
     protected int enemyType = 0;
 
-    private float distance;
-
+    public Animator anim;
     public GameObject waist = null;
+
+    private float distance;
+    private float randomZ;
+    private float distanceX;
 
     public bool run;
 
-    private float randomZ;
-
     public bool isDying = false;
-
     private float dieSpeed = 20;
 
     protected TrainManager trainManager;
 
-    private float distanceX;
-
-    private bool isGround = false;
-
     [SerializeField]
     private bool stealth = false;
+
+    public OnlyDamage onlyDamage = OnlyDamage.Null;
 
 
     protected virtual void OnEnable()
@@ -53,11 +55,6 @@ public class Enemy : MonoBehaviour
             Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
 
             Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ randomZ + trainManager.trainContainer.Count * 25));
-
-            if (!isGround)
-            {
-                //Gravity();
-            }
 
             if (run)
             {
@@ -195,21 +192,5 @@ public class Enemy : MonoBehaviour
     public bool IsStealth()
     {
         return stealth;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.CompareTag("Ground"))
-        {
-            isGround = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.CompareTag("Ground"))
-        {
-            isGround = false;
-        }
     }
 }

@@ -39,7 +39,7 @@ public class BulletWideArea : ProjectileMover
             {
                 healthSystem = collider[i].GetComponent<HealthSystem>();
 
-                healthSystem.Damage(damage);
+                healthSystem.WideAreaDamge(damage);
             }
         }
     }
