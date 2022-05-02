@@ -21,6 +21,10 @@ public class TrainManager : MonoBehaviour
 
     public float keppOffSpeed = 1;
 
+    private int smokeCount = 0;
+
+    private int fireCount = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -67,17 +71,81 @@ public class TrainManager : MonoBehaviour
 
     public void OnSmoke()
     {
-        for (int i = 0; i < trainContainer.Count; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            trainContainer[i].transform.Find("Particle").gameObject.SetActive(true);
+            transform.GetChild(i).Find("Smoke" + smokeCount).gameObject.SetActive(true);
         }
+
+        smokeCount++;
+    }
+
+    public void AllOffSmoke()
+    {
+        for (int i = 0; i < smokeCount; i++)
+        {
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                transform.GetChild(j).Find("Smoke" + i).gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void OffSmoke()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).Find("Smoke" + (smokeCount-1)).gameObject.SetActive(false);
+        }
+
+        smokeCount--;
+    }
+
+    public void OnBlackSmoke()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).Find("BlackSmoke").gameObject.SetActive(true);
+        }
+
+        Invoke("AllOffSmoke", 1);
+    }
+
+    public void OnFire()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).Find("Fire" + fireCount).gameObject.SetActive(true);
+        }
+
+        fireCount++;
+    }
+
+    public void AllOffFire()
+    {
+        for (int i = 0; i < fireCount; i++)
+        {
+            for (int j = 0; j < transform.childCount; j++)
+            {
+                transform.GetChild(j).Find("Fire" + i).gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void OffFire()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).Find("Fire" + (fireCount - 1)).gameObject.SetActive(false);
+        }
+
+        fireCount--;
     }
 
     public void Explotion()
     {
-        for (int i = 0; i < trainContainer.Count; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            trainContainer[i].transform.Find("ExplotionParticle").gameObject.SetActive(true);
+            transform.GetChild(i).Find("ExplotionParticle").gameObject.SetActive(true);
         }
     }
 

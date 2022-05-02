@@ -8,6 +8,7 @@ public class TrainScript : MonoBehaviour
 
     public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
     public float maxTrainHp = 50000;
+    private float hpCheck =70;
 
     private float initRoomHp;
     private float roomHp;
@@ -82,14 +83,43 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (maxTrainHp /10 >= curTrainHp)
+        if (hpCheck * maxTrainHp / 100 >= curTrainHp)
         {
-            if (curTrainHp <= 0)
+            switch (hpCheck)
             {
-                DestroyTrain();
-            }
+                case 70:
+                    TrainManager.instance.OnSmoke();
+                    hpCheck = 50;
+                    break;
+                case 50:
+                    TrainManager.instance.OnSmoke();
+                    hpCheck = 35;
+                    break;
+                case 35:
+                    TrainManager.instance.OnSmoke();
+                    hpCheck = 20;
+                    break;
+                case 20:
+                    TrainManager.instance.OnBlackSmoke();
+                    hpCheck = 15;
+                    break;
+                case 15:
+                    TrainManager.instance.OnFire();
+                    hpCheck = 5;
+                    break;
+                case 5:
+                    TrainManager.instance.OnFire();
+                    hpCheck = 0;
+                    break;
+                case 0:
+                    hpCheck = 0;
 
-            TrainManager.instance.OnSmoke();
+                    if (curTrainHp <= 0)
+                    {
+                        DestroyTrain();
+                    }
+                    break;
+            }
         }
     }
 
