@@ -37,8 +37,6 @@ public class CameraManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                canChangeCamera = false;
-
                 CameraChangeView();
             }
         }
@@ -74,8 +72,13 @@ public class CameraManager : MonoBehaviour
 
     public void CameraChangeView()
     {
-        topCamera.SetActive(!topCamera.activeSelf);
-        quaterCamera.SetActive(!quaterCamera.activeSelf);
+        if (canChangeCamera)
+        {
+            topCamera.SetActive(!topCamera.activeSelf);
+            quaterCamera.SetActive(!quaterCamera.activeSelf);
+
+            canChangeCamera = false;
+        }
     }
 
 
