@@ -19,8 +19,6 @@ public class SettingUI : MonoBehaviour
     Text _qualityTxt;
     private void Awake()
     {
-        _qualityOption = GameObject.Find("QualitySelect").GetComponent<Dropdown>();
-        _settingPanel = GameObject.Find("Setting").GetComponent<RectTransform>();
     }
     private void Start()
     {
