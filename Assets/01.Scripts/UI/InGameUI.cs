@@ -74,7 +74,7 @@ public class InGameUI : MonoBehaviour
 
         upGradePanelBackBtn.onClick.AddListener(() => 
         {
-            upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+            upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
             testScriptts.UnSelectTurret();
         });
         upGradeBtn.onClick.AddListener(() =>
@@ -215,7 +215,7 @@ public class InGameUI : MonoBehaviour
     {
         bpBot.DOAnchorPosY(-730, 1.5f).SetEase(Ease.OutQuart).SetUpdate(true);
 
-        upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+        upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
     }
 
     public void CancelTurret()
@@ -224,7 +224,7 @@ public class InGameUI : MonoBehaviour
         testScriptts.turType = -1;
         testScriptts.turPos = -1;
         testScriptts.UnSelectTurret();
-        upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+        upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
     }
 
     public void CancleAll()
@@ -233,7 +233,7 @@ public class InGameUI : MonoBehaviour
         {
             ClosePresetBtn();
 
-            upGradePanelRect.DOAnchorPosX(200, 1.5f).SetUpdate(true);
+            upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
 
             ClearSelect();
             testScriptts.turType = -1;
