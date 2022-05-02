@@ -40,6 +40,7 @@ public class TitleMoveScript : MonoBehaviour
             timelines[0].Play();
             indexNum = 1;
             BtnSlide(1);
+            TitleUI.UI.ReadySetUpPanel(1);
         });   
        
          //업그레이드 버튼
@@ -79,8 +80,10 @@ public class TitleMoveScript : MonoBehaviour
         titleActionBtn[6].onClick.AddListener(() =>{
             if(indexNum == 1)
             {
+                TitleUI.UI.ReadySetUpPanel(2);
                 timelines[1].Play();
                 BtnSlide(2);
+                
             }
             if(indexNum == 2)
             {
