@@ -23,7 +23,7 @@ public class Turret : MonoBehaviour
     private float maxDistance;
 
     [SerializeField]
-    private LayerMask layerMask;
+    private LayerMask enemy;
 
     public int maxBulletAmount;
 
@@ -40,6 +40,10 @@ public class Turret : MonoBehaviour
     [SerializeField]
     private int damage = 10;
 
+
+    [HideInInspector]
+    public bool detection = false;
+
     public int turCount;
 
     public int turType;
@@ -48,9 +52,6 @@ public class Turret : MonoBehaviour
 
     public int upgradeCost;
 
-    [HideInInspector]
-    public bool detection = false;
-    
     [SerializeField]
     private AudioSource shootAudioSource;
 
@@ -60,10 +61,22 @@ public class Turret : MonoBehaviour
     [SerializeField]
     private AudioSource reloadAudioSource;
 
+    public LayerMask rader;
 
     private bool waiting = false;
 
     public GameObject warning;
+
+    private void OnEnable()
+    {
+        OffDetection();
+
+        if(Physics.OverlapSphere(transform.position, 4, rader).Length > 0)
+        {
+            OnDetection();
+        }
+
+    }
 
     private void Start()
     {
@@ -74,6 +87,11 @@ public class Turret : MonoBehaviour
     {
         HandleTargeting();
         HandleShooting();
+    }
+
+    private void OnDisable()
+    {
+        OffDetection();
     }
 
     private void HandleTargeting()
@@ -143,7 +161,7 @@ public class Turret : MonoBehaviour
 
     void LookForTargets()
     {
-        Collider[] hit = Physics.OverlapSphere(transform.position, maxDistance, layerMask);
+        Collider[] hit = Physics.OverlapSphere(transform.position, maxDistance, enemy);
 
         foreach (Collider hitEnemy in hit)
         {
@@ -186,6 +204,16 @@ public class Turret : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnDetection()
+    {
+        detection = true;
+    }
+
+    public void OffDetection()
+    {
+        detection = false;
     }
 
     public void Reload()

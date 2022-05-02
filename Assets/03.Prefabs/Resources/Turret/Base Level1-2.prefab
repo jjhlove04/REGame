@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1101311761759579004}
   - component: {fileID: 2026520890297780356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon_Plasma_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3664648417032313796}
   - component: {fileID: 2475379427292220035}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Turret_Lt_Lvl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8597621846443164330}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3705014321243661217}
   - component: {fileID: 3311598710608596192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Gun_Mount_1x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6668711360559613284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rotation_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 8323535157124605058}
   - component: {fileID: 7140437542584861478}
   - component: {fileID: 8373923809832633957}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base Level1-2
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ MonoBehaviour:
   - {fileID: 24985677075827173}
   neck: {fileID: 270472148173492090}
   maxDistance: 80
-  layerMask:
+  enemy:
     serializedVersion: 2
     m_Bits: 128
   maxBulletAmount: 30
@@ -329,14 +329,18 @@ MonoBehaviour:
   bulletBar: {fileID: 4088453733512495086}
   shootTimerMax: 1
   damage: 10
+  detection: 0
   turCount: 0
   turType: 0
   turImageCount: 2
   upgradeCost: 0
-  detection: 0
   shootAudioSource: {fileID: 8323535157124605058}
   waitingAudioSource: {fileID: 7140437542584861478}
   reloadAudioSource: {fileID: 8373923809832633957}
+  rader:
+    serializedVersion: 2
+    m_Bits: 2048
+  warning: {fileID: 0}
 --- !u!82 &8323535157124605058
 AudioSource:
   m_ObjectHideFlags: 0
@@ -634,7 +638,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2900844109650869373}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barrel_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +670,7 @@ GameObject:
   - component: {fileID: 8904465822124647261}
   - component: {fileID: 5201948569997462784}
   - component: {fileID: 3269472908369108212}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Gun_Mount_1x_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +751,7 @@ GameObject:
   - component: {fileID: 3915985757390774294}
   - component: {fileID: 6544273445585481230}
   - component: {fileID: 6920808762102050401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Turret_Lt_Lvl2_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3306299528161713207}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +863,7 @@ GameObject:
   - component: {fileID: 3206997276910501681}
   - component: {fileID: 7154336377894512876}
   - component: {fileID: 7563693521130952118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon_Plasma_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,7 +942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3258606377235257224}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Props_Battery_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -971,7 +975,7 @@ GameObject:
   - component: {fileID: 5347031784455370125}
   - component: {fileID: 7008227549517937302}
   - component: {fileID: 5983691917902339305}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Props_Battery_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1050,7 +1054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7080437687703994905}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1080,7 +1084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436107441357834158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5143619261082775938}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1140,7 +1144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8472382461815876032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,6 +1175,22 @@ PrefabInstance:
     - target: {fileID: 217412489622463116, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_Name
       value: BulletBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 217412489622463116, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 866067625143676058, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022828673406801099, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520071935077363396, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_RootOrder
@@ -1215,6 +1235,18 @@ PrefabInstance:
     - target: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057747245235876273, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340425743863578403, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487135727236507040, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}

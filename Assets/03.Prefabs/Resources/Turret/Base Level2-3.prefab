@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1329036987228616589}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barrel_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1358036077717998758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Raygun_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2795736712131287143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2087625620748983630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Raygun_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6512299007254043559}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6270250428263777145}
   - component: {fileID: 6333955948145326884}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Weapon_Raygun_Lvl1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 763296439007758411}
   - component: {fileID: -3408658165018658371}
   - component: {fileID: -6585246986954758051}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base Level2-3
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ MonoBehaviour:
   - {fileID: 2056976303758440439}
   neck: {fileID: 3979717625137253381}
   maxDistance: 80
-  layerMask:
+  enemy:
     serializedVersion: 2
     m_Bits: 128
   maxBulletAmount: 30
@@ -317,14 +317,18 @@ MonoBehaviour:
   bulletBar: {fileID: 802548447376277636}
   shootTimerMax: 1
   damage: 10
+  detection: 0
   turCount: 0
   turType: 0
   turImageCount: 8
   upgradeCost: 0
-  detection: 0
   shootAudioSource: {fileID: 763296439007758411}
   waitingAudioSource: {fileID: -3408658165018658371}
   reloadAudioSource: {fileID: -6585246986954758051}
+  rader:
+    serializedVersion: 2
+    m_Bits: 2048
+  warning: {fileID: 0}
 --- !u!82 &763296439007758411
 AudioSource:
   m_ObjectHideFlags: 0
@@ -622,7 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1809284158794594804}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8928826289041612510}
   - component: {fileID: 5891281944867432546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Weapon_Raygun_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +743,7 @@ GameObject:
   - component: {fileID: 3602601583849889111}
   - component: {fileID: 3949607296954196235}
   - component: {fileID: 7534637947405814378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Top_Mount_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 832288302261793996}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999424989197581186}
   - component: {fileID: 5553615721914060624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Gun_Mount_2x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +910,7 @@ GameObject:
   - component: {fileID: 3737112711689108996}
   - component: {fileID: 2593500616482158201}
   - component: {fileID: 1010288864158038212}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Resonator_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -986,7 +990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8173120000437297604}
   - component: {fileID: 7296389789003314692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Weapon_Raygun_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,7 +1074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1503152932166657628}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Raygun_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1103,7 +1107,7 @@ GameObject:
   - component: {fileID: 8711806298695106856}
   - component: {fileID: 9061217337780097800}
   - component: {fileID: 5060089028502517511}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Gun_Mount_2x_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 879001612777342099}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barrel_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5837851722928316362}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Tower_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4746942489395622392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Top_Resonator_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,7 +1280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957247931016799607}
   - component: {fileID: 8255960054126702554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Top_Mount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,7 +1333,7 @@ GameObject:
   - component: {fileID: 7786347834451025246}
   - component: {fileID: 3376232856824061318}
   - component: {fileID: 3983218531940755645}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Tower_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,7 +1413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6464648921648773098}
   - component: {fileID: 186990909541019278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Weapon_Raygun_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1464,7 +1468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3185336519293835822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1494,7 +1498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4869483574874515533}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5224940825535513387}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1554,7 +1558,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4167214372697433572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1584,7 +1588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 505063541825605941}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1614,7 +1618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1682993620208022603}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Raygun_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,7 +1649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3850929943031590664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1675,7 +1679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3476543601104250869}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1705,7 +1709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7499597519693300581}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1736,6 +1740,22 @@ PrefabInstance:
     - target: {fileID: 217412489622463116, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_Name
       value: BulletBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 217412489622463116, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 866067625143676058, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022828673406801099, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520071935077363396, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_RootOrder
@@ -1780,6 +1800,18 @@ PrefabInstance:
     - target: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057747245235876273, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340425743863578403, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487135727236507040, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}

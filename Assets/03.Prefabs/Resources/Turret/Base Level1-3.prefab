@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7395836022727375948}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3869504030041126279}
   - component: {fileID: 8253356055039692611}
   - component: {fileID: -6206765686879031062}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base Level1-3
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   - {fileID: 8454649856279589337}
   neck: {fileID: 8454649855835039530}
   maxDistance: 80
-  layerMask:
+  enemy:
     serializedVersion: 2
     m_Bits: 128
   maxBulletAmount: 30
@@ -119,14 +119,18 @@ MonoBehaviour:
   bulletBar: {fileID: 695223266308849347}
   shootTimerMax: 1
   damage: 10
+  detection: 0
   turCount: 0
   turType: 0
   turImageCount: 3
   upgradeCost: 0
-  detection: 0
   shootAudioSource: {fileID: 3869504030041126279}
   waitingAudioSource: {fileID: 8253356055039692611}
   reloadAudioSource: {fileID: -6206765686879031062}
+  rader:
+    serializedVersion: 2
+    m_Bits: 2048
+  warning: {fileID: 0}
 --- !u!82 &3869504030041126279
 AudioSource:
   m_ObjectHideFlags: 0
@@ -426,6 +430,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletBar
       objectReference: {fileID: 0}
+    - target: {fileID: 217412489622463116, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 866067625143676058, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022828673406801099, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520071935077363396, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -470,6 +490,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6057747245235876273, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340425743863578403, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487135727236507040, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
 --- !u!4 &6166892614357200701 stripped
@@ -498,6 +530,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
       propertyPath: m_Name
       value: Props_Ammo_Lvl1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
       propertyPath: m_RootOrder
@@ -556,9 +596,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8454649854897597422}
     m_Modifications:
+    - target: {fileID: 100000, guid: 9b4a856486d23d1459116f0b34641313, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9b4a856486d23d1459116f0b34641313, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 9b4a856486d23d1459116f0b34641313, type: 3}
       propertyPath: m_Name
       value: Base_Turret_Lt_Lvl2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 9b4a856486d23d1459116f0b34641313, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 9b4a856486d23d1459116f0b34641313, type: 3}
       propertyPath: m_RootOrder
@@ -618,9 +670,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8454649854897597422}
     m_Modifications:
+    - target: {fileID: 100000, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
       propertyPath: m_Name
       value: Cockpit_Fork
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5a53807c594003745acb03b6afd147d2, type: 3}
       propertyPath: m_RootOrder
@@ -689,6 +769,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_Plasma_Lvl2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 600c8c686245fcf41b89ec5147ab4478, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 600c8c686245fcf41b89ec5147ab4478, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 600c8c686245fcf41b89ec5147ab4478, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 600c8c686245fcf41b89ec5147ab4478, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -755,6 +847,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
       propertyPath: m_Name
       value: Props_Ammo_Lvl1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c79d21d76ab8e0469376b5d4e2a2138, type: 3}
       propertyPath: m_RootOrder

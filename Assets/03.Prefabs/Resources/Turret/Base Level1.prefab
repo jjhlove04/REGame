@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7896075749186917233}
   - component: {fileID: 7183643936526740708}
   - component: {fileID: 5454658898098573826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Turret_Lt_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1355871394581922707}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2177738082640372072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4679705860851198851}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3444047411764709295}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rotation_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2951599014363618372}
   - component: {fileID: 4883614767277603293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base_Turret_Lt_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 3888441174299016787}
   - component: {fileID: 2742476813009951368}
   - component: {fileID: 1578079592372201742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Gun_Mount_1x_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5379493719767117118}
   - component: {fileID: 8182503546431809158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit_Gun_Mount_1x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098084448188081107}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8628361764632061359}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mount_Weapon_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 5512389006912863913}
   - component: {fileID: 6205140477236683342}
   - component: {fileID: 8385668438509531984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon_Plasma_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 909126237175452602}
   - component: {fileID: 7331845139759072806}
   - component: {fileID: -2835964737483183701}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base Level1
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -631,7 +631,7 @@ MonoBehaviour:
   - {fileID: 8762353075460537322}
   neck: {fileID: 4539649382789366771}
   maxDistance: 80
-  layerMask:
+  enemy:
     serializedVersion: 2
     m_Bits: 128
   maxBulletAmount: 30
@@ -639,14 +639,18 @@ MonoBehaviour:
   bulletBar: {fileID: 494900635711776655}
   shootTimerMax: 1
   damage: 10
+  detection: 0
   turCount: 0
   turType: 0
   turImageCount: 1
   upgradeCost: 0
-  detection: 0
   shootAudioSource: {fileID: 909126237175452602}
   waitingAudioSource: {fileID: 7331845139759072806}
   reloadAudioSource: {fileID: -2835964737483183701}
+  rader:
+    serializedVersion: 2
+    m_Bits: 2048
+  warning: {fileID: 0}
 --- !u!82 &909126237175452602
 AudioSource:
   m_ObjectHideFlags: 0
@@ -944,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5851098554880748485}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -974,7 +978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2463080711927168777}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barrel_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4982828592121272612}
   - component: {fileID: 8841539574446747377}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon_Plasma_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1059,6 +1063,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletBar
       objectReference: {fileID: 0}
+    - target: {fileID: 217412489622463116, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 866067625143676058, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5022828673406801099, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520071935077363396, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1102,6 +1122,18 @@ PrefabInstance:
     - target: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057747245235876273, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340425743863578403, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487135727236507040, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
