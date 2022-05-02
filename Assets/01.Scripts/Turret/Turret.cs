@@ -225,10 +225,16 @@ public class Turret : MonoBehaviour
             GameManager.Instance.goldAmount -= result;
             bulAmount = maxBulletAmount;
         }
+        else if(bulAmount == maxBulletAmount)
+        {
+            InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
+            InGameUI._instance.warningTxt.text = "It's Already Loaded";
+        }
         else
         {
             InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
             InGameUI._instance.warningTxt.text = "Not Enough Gold";
+
         }
         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
     }
@@ -280,5 +286,15 @@ public class Turret : MonoBehaviour
         {
             warning.SetActive(false);
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        gameObject.transform.GetChild(2).gameObject.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        gameObject.transform.GetChild(2).gameObject.SetActive(false);
     }
 }

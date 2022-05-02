@@ -16,7 +16,6 @@ public class BulletBar : MonoBehaviour
     {
         CameraManager.Instance.TopView += LookCameraTopView;
         CameraManager.Instance.QuarterView += LookCameraQuarterView;
-        gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -64,11 +63,13 @@ public class BulletBar : MonoBehaviour
 
     private void LookCameraTopView()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
+        transform.rotation = Quaternion.LookRotation(new Vector3(0, -90, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
+        transform.localPosition = new Vector3(1.75f, 0, 0);
     }
 
     private void LookCameraQuarterView()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
+        transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
+        transform.localPosition = new Vector3(1.75f, 2, 0);
     }
 }

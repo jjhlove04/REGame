@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class testSkilll : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class testSkilll : MonoBehaviour
     private TestTurretDataBase testTurData;
     private InGameUI inGameUI;
 
+    private int clickCount;
+    float clickTime;
 
     void Start()
     {
@@ -104,6 +107,7 @@ public class testSkilll : MonoBehaviour
                     {
                         inGameUI.warningTxt.color = new Color(1, 0.8f, 0, 1);
                         inGameUI.warningTxt.text = "Not Enough Gold";
+
                     }
                 }
                 else
@@ -143,6 +147,12 @@ public class testSkilll : MonoBehaviour
 
 
             isTest = true;
+            clickCount++;
+            if(clickCount == 2)
+            {
+                testScriptts.Instance.Reload();
+                clickCount = 0;
+            }
         });
 
         upgradeBtn.GetComponent<Button>().onClick.AddListener(() =>
@@ -171,6 +181,20 @@ public class testSkilll : MonoBehaviour
                 }
             }
         });
+    }
+
+    private void Update()
+    {
+        if (clickCount > 0)
+        {
+            clickTime += Time.deltaTime;
+        }
+
+        if (clickTime >= 0.51f)
+        {
+            clickCount = 0;
+            clickTime = 0;
+        }
     }
 
     private void LookCameraTopView()

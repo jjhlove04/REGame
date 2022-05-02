@@ -91,4 +91,9 @@ public class CameraManager : MonoBehaviour
             quaterCamera.GetComponent<CameraShake>().Shake(duration, magnitude);
         }
     }
+
+    public bool ReturnCanCam()
+    {
+        return canChangeCamera;
+    }
 }
