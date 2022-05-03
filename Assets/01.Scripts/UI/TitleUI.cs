@@ -33,7 +33,7 @@ public class TitleUI : MonoBehaviour
     [SerializeField] private Button nickCheckBtn;
     [SerializeField] private Text playerCardNick;
     [Header("플레이어 카드 관련")]
-    [SerializeField] private RectTransform playerCard;
+    public RectTransform playerCard;
     [SerializeField] private Text haveGold;
     [SerializeField] private Text haveExp;
     [SerializeField] private Text haveTp;

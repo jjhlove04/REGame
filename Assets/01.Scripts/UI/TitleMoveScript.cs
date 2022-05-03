@@ -222,19 +222,21 @@ public class TitleMoveScript : MonoBehaviour
         if (index == 0)
         {
             btnGroupRect.DOAnchorPosX(-578, 0.5f);
+            TitleUI.UI.playerCard.DOAnchorPosX(547, 0.5f);
         }
         //출발 업그레이드 백
         if(index == 1)
         {
             dexSpeed = 0.5f;
             btnGroupRect.DOAnchorPosX(70,dexSpeed).SetDelay(0.5f);
+            TitleUI.UI.playerCard.DOAnchorPosX(-178, 0.5f).SetDelay(0.5f);
         } 
         //나머지 버튼 3개 백
         if(index == 2)
         {
             dexSpeed = 0.3f;
             btnGroupRect.DOAnchorPosX(70,dexSpeed).SetDelay(0.4f);
-
+            TitleUI.UI.playerCard.DOAnchorPosX(-178, 0.3f).SetDelay(0.5f);
         }
         
     }
