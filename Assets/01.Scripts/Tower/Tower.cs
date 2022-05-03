@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class Tower : MonoBehaviour
 {
     protected abstract void Skill();
+    protected abstract void OnButton();
 }
