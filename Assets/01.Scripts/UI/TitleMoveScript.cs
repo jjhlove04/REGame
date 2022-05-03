@@ -55,6 +55,7 @@ public class TitleMoveScript : MonoBehaviour
             timelines[4].Play();
             indexNum = 3;
             BtnSlide(1);
+            backBtn.SetActive(true);
         });
          //컬렉션 버튼
         titleActionBtn[3].onClick.AddListener(()=> {
@@ -206,11 +207,11 @@ public class TitleMoveScript : MonoBehaviour
             BtnGroupMove(1);
             backBtn.SetActive(false);
         }
-        // if(index == 3 || Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     BtnGroupMove(2);
-        //     backBtn.SetActive(false);
-        // }
+        if(index == 3 || Input.GetKeyDown(KeyCode.Escape))
+        {
+            BtnGroupMove(2);
+            backBtn.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -229,14 +230,14 @@ public class TitleMoveScript : MonoBehaviour
         {
             dexSpeed = 0.5f;
             btnGroupRect.DOAnchorPosX(70,dexSpeed).SetDelay(0.5f);
-            TitleUI.UI.playerCard.DOAnchorPosX(-178, 0.5f).SetDelay(0.5f);
+            TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.5f).SetDelay(0.5f);
         } 
         //나머지 버튼 3개 백
         if(index == 2)
         {
             dexSpeed = 0.3f;
             btnGroupRect.DOAnchorPosX(70,dexSpeed).SetDelay(0.4f);
-            TitleUI.UI.playerCard.DOAnchorPosX(-178, 0.3f).SetDelay(0.5f);
+            TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.3f).SetDelay(0.5f);
         }
         
     }

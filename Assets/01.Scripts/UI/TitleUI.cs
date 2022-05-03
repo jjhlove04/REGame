@@ -42,6 +42,7 @@ public class TitleUI : MonoBehaviour
     [Space(30)]
     [SerializeField] private Text repairCost;
     [SerializeField] private Text towingCost;
+    public CanvasGroup btnGroupAct;
     
     public int curExp = 0;
     public int maxExp = 30;
@@ -53,7 +54,7 @@ public class TitleUI : MonoBehaviour
     private void Awake()
     {
         RegisterPanelOpen();
-
+        btnGroupAct.interactable = false;
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
         _ui = this;
@@ -160,10 +161,11 @@ public class TitleUI : MonoBehaviour
 
     public void RegisterDataConnect()
     {
+        btnGroupAct.interactable = true;
         TestDatabase.Instance._nickName = nickName.text;
         playerCardNick.text = TestDatabase.Instance._nickName;
         registerPanel.DOAnchorPosX(-1289, 1f).SetEase(Ease.InOutCubic);
-        playerCard.DOAnchorPosX(-178,1f).SetEase(Ease.InOutCubic);
+        playerCard.DOAnchorPosX(-18,1f).SetEase(Ease.InOutCubic);
         
     }
 
