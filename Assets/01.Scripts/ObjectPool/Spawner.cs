@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
     SpawnMananger spawnMananger;
 
     [SerializeField]
-    private int adjustmentRound;
+    private int adjustmentRound = 12;
 
     private void Start()
     {
