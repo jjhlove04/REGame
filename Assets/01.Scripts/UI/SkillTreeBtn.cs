@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SkillTreeBtn : MonoBehaviour
@@ -14,10 +15,15 @@ public class SkillTreeBtn : MonoBehaviour
     public GameObject floor;
 
     TestSkillTree testsk;
+
+    public UnityEvent OnClick;
+
+    public int price;
+
+
     private void OnEnable()
     {
         testsk = FindObjectOfType<TestSkillTree>();
-
     }
 
     private void Start()
@@ -25,29 +31,40 @@ public class SkillTreeBtn : MonoBehaviour
         this.gameObject.TryGetComponent(out Button btn);
         btn.onClick.AddListener(() =>
         {
-            if(floor != null)
+            if (TestDatabase.Instance.curTp > price)
             {
-                Button[] str = floor.GetComponentsInChildren<Button>();
+                TestDatabase.Instance.curTp -= price;
+                OnClick?.Invoke();
 
-                foreach (Button item in str)
+                if (floor != null)
                 {
-                    item.interactable = false;
-                    isUpgrade = false;
+                    Button[] str = floor.GetComponentsInChildren<Button>();
+
+                    foreach (Button item in str)
+                    {
+                        item.interactable = false;
+                        isUpgrade = false;
+                    }
+
+                    for (int i = 0; i < str.Length; i++)
+                    {
+                        testsk.btnDic[str[i].gameObject.ToString()] = false;
+                    }
                 }
+                this.gameObject.TryGetComponent(out Button obtn);
+                obtn.interactable = false;
+                isUpgrade = true;
 
-                for (int i = 0; i < str.Length; i++)
+
+                if (testsk.btnDic[this.gameObject.ToString()] == true)
                 {
-                    testsk.btnDic[str[i].gameObject.ToString()] = false;
+                    testsk.btnDic[this.gameObject.ToString()] = false;
                 }
             }
-            this.gameObject.TryGetComponent(out Button obtn);
-            obtn.interactable = false;
-            isUpgrade = true;
 
-
-            if (testsk.btnDic[this.gameObject.ToString()] == true)
+            else
             {
-                testsk.btnDic[this.gameObject.ToString()] = false;
+                //Tp가 부족할 때
             }
         });
 
@@ -68,6 +85,7 @@ public class SkillTreeBtn : MonoBehaviour
         }
 
         testsk.reDic(this.gameObject);
+
     }
 
     private void Update()

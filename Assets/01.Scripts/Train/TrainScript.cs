@@ -193,9 +193,9 @@ public class TrainScript : MonoBehaviour
         {
             TrainManager.instance.curTrainCount--;
             destroy = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
             TrainManager.instance.Explotion();
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSecondsRealtime(4);
             GameManager.Instance.state = GameManager.State.End;
             destroy = false;
         }

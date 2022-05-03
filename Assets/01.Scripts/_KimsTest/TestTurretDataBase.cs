@@ -25,15 +25,6 @@ public class TestTurretDataBase : MonoBehaviour
 
     public GameObject towerObj;
 
-    [Header("°á°ú°ª")]
-    public int resultDamage = 0;
-    public int resultEXP = 0;
-    public int resultGold = 0;
-
-    public int level;
-    public int curTp;
-    public string _nickName;
-
     public int round;
     public int createPrice;
     private void Awake()

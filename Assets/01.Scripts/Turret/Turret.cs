@@ -138,7 +138,7 @@ public class Turret : MonoBehaviour
                         GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
                         gameObject.transform.position = weapons[i].transform.Find("BulletPoint").position;
                         gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
-                        TestTurretDataBase.Instance.resultDamage += damage;
+                        TestDatabase.Instance.resultDamage += damage;
                         bulAmount--;
 
                         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
@@ -291,10 +291,30 @@ public class Turret : MonoBehaviour
     private void OnMouseEnter()
     {
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
+
+        Transform attackRange = transform.Find("AttackRange");
+
+        attackRange.gameObject.SetActive(true);
+        attackRange.transform.localScale = new Vector3(maxDistance, maxDistance, 1);
+
+        if (detection)
+        {
+            attackRange.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 0, 30);
+        }
+
+        else
+        {
+            attackRange.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 255, 30);
+        }
     }
 
     private void OnMouseExit()
     {
         gameObject.transform.GetChild(2).gameObject.SetActive(false);
+
+
+        Transform attackRange = transform.Find("AttackRange");
+
+        attackRange.gameObject.SetActive(false);
     }
 }

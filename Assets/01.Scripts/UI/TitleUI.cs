@@ -87,9 +87,9 @@ public class TitleUI : MonoBehaviour
             TitleMoveScript.indexNum = 4;
         });
 
-        curExp += TestTurretDataBase.Instance.resultEXP;
+        curExp += TestDatabase.Instance.resultEXP;
 
-        levelTxt.text = TestTurretDataBase.Instance.level.ToString();
+        levelTxt.text = TestDatabase.Instance.Level.ToString();
     }
 
     private void Start()
@@ -108,8 +108,8 @@ public class TitleUI : MonoBehaviour
     
     public void InitPlayerInfo()
     {
-        haveGold.text = TestTurretDataBase.Instance.resultGold.ToString();
-        haveExp.text =TestTurretDataBase.Instance.level.ToString();
+        haveGold.text = TestDatabase.Instance.resultGold.ToString();
+        haveExp.text = TestDatabase.Instance.Level.ToString();
         //haveTp.text = TestTurretDataBase.Instance.curTp.ToString();
     }
     //패널 오픈 함수
@@ -160,8 +160,8 @@ public class TitleUI : MonoBehaviour
 
     public void RegisterDataConnect()
     {
-        TestTurretDataBase.Instance._nickName = nickName.text;
-        playerCardNick.text = TestTurretDataBase.Instance._nickName;
+        TestDatabase.Instance._nickName = nickName.text;
+        playerCardNick.text = TestDatabase.Instance._nickName;
         registerPanel.DOAnchorPosX(-1289, 1f).SetEase(Ease.InOutCubic);
         playerCard.DOAnchorPosX(-178,1f).SetEase(Ease.InOutCubic);
         
@@ -177,18 +177,18 @@ public class TitleUI : MonoBehaviour
             if (curExp >= maxExp)
             {
                 //TestTurretDataBase.Instance.curTp++;
-                TestTurretDataBase.Instance.level++;
+                TestDatabase.Instance.Level++;
                 curExp = curExp - maxExp;
-                if (TestTurretDataBase.Instance.level % 20 == 0)
+                if (TestDatabase.Instance.Level % 20 == 0)
                 {
-                    maxExp = (int)(((maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp) * 1.2f);
+                    maxExp = (int)(((maxExp + (TestDatabase.Instance.Level + (TestDatabase.Instance.Level - 1))) * (TestDatabase.Instance.Level / (TestDatabase.Instance.Level - 1)) + maxExp) * 1.2f);
                 }
                 else
                 {
-                    maxExp = (maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp;
+                    maxExp = (maxExp + (TestDatabase.Instance.Level + (TestDatabase.Instance.Level - 1))) * (TestDatabase.Instance.Level / (TestDatabase.Instance.Level - 1)) + maxExp;
                 }
                 expBar.value = 0;
-                levelTxt.text = TestTurretDataBase.Instance.level.ToString();
+                levelTxt.text = TestDatabase.Instance.Level.ToString();
             }
         }
     }

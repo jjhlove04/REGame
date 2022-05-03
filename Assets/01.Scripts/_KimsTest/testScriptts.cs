@@ -239,7 +239,7 @@ public class testScriptts : MonoBehaviour
                     gameInst.GetComponent<Turret>().turCount = turPos;
                     gameInst.GetComponent<Turret>().turType = turType;
                     gameInst.transform.position = turretPoses[turPos].position;
-                    gameInst.transform.SetParent(this.gameObject.transform);
+                    gameInst.transform.SetParent(TrainScript.instance.transform.GetChild(0));
                     tT.onTurret = true;
                     turretData[turPos] = gameInst;
                     gameManager.goldAmount -= gameManager.turretPtice;

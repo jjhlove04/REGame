@@ -24,6 +24,9 @@ public class Spawner : MonoBehaviour
 
     SpawnMananger spawnMananger;
 
+    [SerializeField]
+    private int adjustmentRound;
+
     private void Start()
     {
         spawnMananger = SpawnMananger.Instance;
@@ -62,16 +65,21 @@ public class Spawner : MonoBehaviour
 
     private void SpwanEnemy(int s)
     {
-        int amount = (int)(spawnAmount + (s * amountIncreasion));
+        float amount = spawnAmount + (s * amountIncreasion);
+
+        if (s % adjustmentRound == 0)
+        {
+            amount=amount * 0.6f;
+        }
 
         if (round <= s)
         {
-            for (int i = 0; i < amount; i++)
+            for (int i = 0; i < (int)amount; i++)
             {
                 float randX = Random.Range(-interval, interval);
                 float randY = Random.Range(-interval, interval);
 
-                Vector3 randPos = new Vector3(randX,0,randY);
+                Vector3 randPos = new Vector3(randX, 0, randY);
 
                 GameObject newPrefab = objectPool.GetObject(prefab);
                 newPrefab.transform.position = transform.position + randPos;
