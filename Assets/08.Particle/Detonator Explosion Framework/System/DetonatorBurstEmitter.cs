@@ -48,7 +48,7 @@ public class DetonatorBurstEmitter : DetonatorComponent
 	public float sizeGrow = 20f;
 	public bool exponentialGrowth = true;
 	public float durationVariation = 0f;
-	public bool useWorldSpace = true;
+	public bool useWorldSpace = false;
 	public float upwardsBias = 0f;
 	public float angularVelocity = 20f;
 	public bool randomRotation = true;

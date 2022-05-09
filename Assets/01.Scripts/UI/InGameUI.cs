@@ -64,6 +64,9 @@ public class InGameUI : MonoBehaviour
     testScriptts testScriptts;
 
     private ObjectPool objectPool;
+
+    public Button towerActive;
+
     private void Awake()
     {
         _instance = this;
@@ -112,6 +115,20 @@ public class InGameUI : MonoBehaviour
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
         ShowTurPrice();
+
+        if (TowerManager.Instance != null && TowerManager.Instance.tower != null)
+        {
+            towerActive.onClick.AddListener(() =>
+            {
+                TowerManager.Instance.tower.GetComponent<ITowerActiveSkill>().UseTower();
+            });
+        }
+
+        else
+        {
+            towerActive.gameObject.SetActive(false);
+        }
+
     }
 
 

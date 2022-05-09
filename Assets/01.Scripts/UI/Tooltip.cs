@@ -40,7 +40,7 @@ public class Tooltip : MonoBehaviour
 
     public void Show(string tooltipText)
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
     }
    
 
@@ -50,7 +50,7 @@ public class Tooltip : MonoBehaviour
     }
      public void Hide()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
      void HandleFollowMouse()

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4742855550413791501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4742855550413791499}
+  - component: {fileID: 4742855550413791498}
+  m_Layer: 0
+  m_Name: TowerActive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4742855550413791499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742855550413791501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4742855550413791498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742855550413791501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5471dd6d30845089def3ab7d16052c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDetonator: {fileID: 100000, guid: 2a6951ec14b27ed4da27d13818dbebd2, type: 3}
+  detonatorPrefabs:
+  - {fileID: 100000, guid: 2a6951ec14b27ed4da27d13818dbebd2, type: 3}
+  - {fileID: 100000, guid: 7514e3ecececf4075a101607065d0ea5, type: 3}
+  - {fileID: 100000, guid: c8fd86fe5050dc04bb501b291c30f591, type: 3}
+  - {fileID: 100000, guid: 5a5dc44bfe769d94ba1bcab91c5c3107, type: 3}
+  - {fileID: 100000, guid: 49ee383306650b645b8a12b582a38b10, type: 3}
+  - {fileID: 100000, guid: dc533b4ca16d3cd4d94b4d9e8b3376f0, type: 3}
+  - {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 3}
+  - {fileID: 100000, guid: 2d036894dd2a9024a978924c521444bf, type: 3}
+  - {fileID: 100000, guid: b9dd5ecd168e0b54295932b5b107b983, type: 3}
+  - {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 3}
+  - {fileID: 1088249624829290, guid: a5986c220614bc143866ceb522e86b82, type: 3}
+  - {fileID: 100000, guid: 67e5b9f09995840449c988b145cc1d7b, type: 3}
+  - {fileID: 100000, guid: 809320482fb694b6e8149a226202b86a, type: 3}
+  - {fileID: 100000, guid: 8e02e06584f51ab42986fd44c73d976e, type: 3}
+  explosionLife: 20
+  timeScale: 1
+  detailLevel: 1
+  wall: {fileID: 100002, guid: 6b19ffae570acfd41a615a3d676cde91, type: 3}
+  coolTime: 60
+  targetAreaObj: {fileID: 895787898609933132, guid: 0b3918bead2c5f64db7ede4b4652333a, type: 3}

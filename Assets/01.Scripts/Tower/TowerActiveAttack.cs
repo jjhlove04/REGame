@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DetonatorTest : MonoBehaviour
+public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 {
     public GameObject currentDetonator;
     private int _currentExpIdx = -1;
@@ -15,9 +15,22 @@ public class DetonatorTest : MonoBehaviour
     private float _spawnWallTime = -1000;
     private Rect _guiRect;
 
+    private bool useTower = false;
+
+    private bool coolingTower = true;
+
+    [SerializeField]
+    private float coolTime = 60;
+
+    private float curTime = 0;
+
+    [SerializeField]
+    private GameObject targetAreaObj;
+
     private void Start()
     {
-        SpawnWall();
+        _spawnWallTime = Time.time;
+        //SpawnWall();
         //if (!currentDetonator) NextExplosion();
         //else _currentExpIdx = 0;
     }
@@ -69,8 +82,6 @@ public class DetonatorTest : MonoBehaviour
     {
         if (_currentWall) Destroy(_currentWall);
         _currentWall = (GameObject) Instantiate(wall, new Vector3(-7, -12, 48), Quaternion.identity);
-
-        _spawnWallTime = Time.time;
     }
 
     //is this a bug? We can't use the same rect for placing the GUI as for checking if the mouse contains it...
@@ -82,17 +93,38 @@ public class DetonatorTest : MonoBehaviour
         _guiRect = new Rect(7, Screen.height - 150, 250, 200);
 
         //keeps the play button from making an explosion
-        if ((Time.time + _spawnWallTime) > 0.5f)
+        if (coolingTower)
         {
-            //don't spawn an explosion if we're using the UI
-            if (!checkRect.Contains(Input.mousePosition))
+            if (useTower)
             {
-                if (Input.GetMouseButtonDown(0))
+                targetAreaObj.transform.position = Input.mousePosition;
+
+                if (!checkRect.Contains(Input.mousePosition))
                 {
-                    SpawnExplosion();
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        coolingTower = false;
+
+                        useTower = false;
+
+                        InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(false);
+
+                        SpawnExplosion();
+                    }
                 }
             }
+
+            else
+            {
+                targetAreaObj.SetActive(false);
+            }
         }
+
+        else
+        {
+            CoolingTime();
+        }
+
     }
 
     private void SpawnExplosion()
@@ -111,6 +143,39 @@ public class DetonatorTest : MonoBehaviour
             dTemp.detail = detailLevel;
 
             Destroy(exp, explosionLife);
+        }
+    }
+
+    public void UseTower()
+    {
+        if (useTower == true)
+        {
+            useTower = false;
+
+            targetAreaObj.SetActive(false);
+
+            InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(false);
+        }
+
+        else
+        {
+            useTower = true;
+
+            targetAreaObj.SetActive(true);
+
+            InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(true);
+        }
+    }
+
+    private void CoolingTime()
+    {
+        curTime += Time.deltaTime;
+
+        if (coolTime < curTime)
+        {
+            coolingTower = true;
+
+            curTime = 0;
         }
     }
 }
