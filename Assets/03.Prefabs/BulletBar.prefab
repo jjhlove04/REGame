@@ -27,11 +27,11 @@ Transform:
   m_LocalPosition: {x: -0.5, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7245432821364243971}
+  - {fileID: 2151153932734180457}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8532196806718593063
+--- !u!1001 &1098577128032438861
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -43,16 +43,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1361354863353538084, guid: eb468a3816d303e43837071231069819, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1361354863353538084, guid: eb468a3816d303e43837071231069819, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1361354863353538084, guid: eb468a3816d303e43837071231069819, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1361354863353538084, guid: eb468a3816d303e43837071231069819, type: 3}
       propertyPath: m_LocalPosition.y
@@ -92,12 +84,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4247826730901616355, guid: eb468a3816d303e43837071231069819, type: 3}
       propertyPath: m_Name
-      value: BulletBarPrefab
+      value: BulletBarPrefab (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb468a3816d303e43837071231069819, type: 3}
---- !u!4 &7245432821364243971 stripped
+--- !u!4 &2151153932734180457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1361354863353538084, guid: eb468a3816d303e43837071231069819, type: 3}
-  m_PrefabInstance: {fileID: 8532196806718593063}
+  m_PrefabInstance: {fileID: 1098577128032438861}
   m_PrefabAsset: {fileID: 0}
