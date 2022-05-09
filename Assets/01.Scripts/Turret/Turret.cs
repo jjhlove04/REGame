@@ -216,6 +216,16 @@ public class Turret : MonoBehaviour
         detection = false;
     }
 
+    public bool IsNeedReload()
+    {
+        if(bulAmount <= 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void Reload()
     {
         if (GameManager.Instance.goldAmount >= result && bulAmount != maxBulletAmount)

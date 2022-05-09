@@ -67,6 +67,10 @@ public class InGameUI : MonoBehaviour
 
     public Button towerActive;
 
+    public List<Button> itemList = new List<Button>();
+
+    private ItemManager itemManager;
+
     private void Awake()
     {
         _instance = this;
@@ -105,6 +109,8 @@ public class InGameUI : MonoBehaviour
 
     void Start()
     {
+        itemManager = ItemManager.Instance;
+
         testScriptts = testScriptts.Instance;
 
         mainMenuBtn.onClick.AddListener(() =>
@@ -129,6 +135,22 @@ public class InGameUI : MonoBehaviour
             towerActive.gameObject.SetActive(false);
         }
 
+        if(itemManager != null && itemManager.items.Count > 0)
+        {
+            for (int i = 0; i < itemManager.items.Count; i++)
+            {
+                itemList[i].gameObject.SetActive(true);
+                itemList[i].onClick.AddListener(itemManager.items[i].GetComponent<Item>().UseItem);
+            }
+        }
+
+        else
+        {
+            foreach(var item in itemList) 
+            {
+                item.gameObject.SetActive(false);
+            }
+        }
     }
 
 

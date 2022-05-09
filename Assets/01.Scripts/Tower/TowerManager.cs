@@ -34,7 +34,7 @@ public class TowerManager : MonoBehaviour
     {
         if(scene.name == "main" && selectTower != null)
         {
-                tower = Instantiate(selectTower, TrainManager.instance.transform.GetChild(0).Find("TowerPos"));
+            tower = Instantiate(selectTower, TrainManager.instance.transform.GetChild(0).Find("TowerPos"));
         }
     }
 

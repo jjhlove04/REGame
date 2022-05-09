@@ -33,14 +33,6 @@ public class TrainManager : MonoBehaviour
 
     public void CreateTrainPrefab()
     {
-        if (transform.childCount != 0)
-        {
-            for (int i = transform.childCount - 1; i > 0; i--)
-            {
-                DestroyImmediate(transform.GetChild(i).gameObject);
-            }
-        }
-
         for (int i = 0; i < curTrainCount; i++)
         {
             var newCube = Instantiate(trainPrefab);
@@ -73,7 +65,7 @@ public class TrainManager : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).Find("Smoke" + smokeCount).gameObject.SetActive(true);
+            transform.GetChild(i).Find("Smoke" + smokeCount)?.gameObject.SetActive(true);
         }
 
         smokeCount++;
@@ -85,7 +77,7 @@ public class TrainManager : MonoBehaviour
         {
             for (int j = 0; j < transform.childCount; j++)
             {
-                transform.GetChild(j).Find("Smoke" + i).gameObject.SetActive(false);
+                transform.GetChild(j).Find("Smoke" + i)?.gameObject.SetActive(false);
             }
         }
     }
@@ -94,7 +86,7 @@ public class TrainManager : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).Find("Smoke" + (smokeCount-1)).gameObject.SetActive(false);
+            transform.GetChild(i).Find("Smoke" + (smokeCount-1))?.gameObject.SetActive(false);
         }
 
         smokeCount--;
@@ -104,7 +96,7 @@ public class TrainManager : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).Find("BlackSmoke").gameObject.SetActive(true);
+            transform.GetChild(i).Find("BlackSmoke")?.gameObject.SetActive(true);
         }
 
         Invoke("AllOffSmoke", 1);
@@ -114,7 +106,7 @@ public class TrainManager : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).Find("Fire" + fireCount).gameObject.SetActive(true);
+            transform.GetChild(i).Find("Fire" + fireCount)?.gameObject.SetActive(true);
         }
 
         fireCount++;
@@ -126,7 +118,7 @@ public class TrainManager : MonoBehaviour
         {
             for (int j = 0; j < transform.childCount; j++)
             {
-                transform.GetChild(j).Find("Fire" + i).gameObject.SetActive(false);
+                transform.GetChild(j).Find("Fire" + i)?.gameObject.SetActive(false);
             }
         }
     }
@@ -135,7 +127,7 @@ public class TrainManager : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).Find("Fire" + (fireCount - 1)).gameObject.SetActive(false);
+            transform.GetChild(i).Find("Fire" + (fireCount - 1))?.gameObject.SetActive(false);
         }
 
         fireCount--;
@@ -145,7 +137,7 @@ public class TrainManager : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).Find("ExplotionParticle").gameObject.SetActive(true);
+            transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(true);
         }
     }
 
