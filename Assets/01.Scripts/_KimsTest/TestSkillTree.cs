@@ -18,6 +18,8 @@ public class TestSkillTree : MonoBehaviour
 
     private TestChangePreset presetChange;
 
+    public GameObject baseTurret;
+
     private void OnEnable()
     {
         LoadData();
@@ -68,30 +70,35 @@ public class TestSkillTree : MonoBehaviour
                 if (canUpgrade.Count >= 1)
                 {
                     canUpgrade.Clear();
+                    canUpgrade.Add(baseTurret);
                 }
                 break;
             case 1:
                 if (canUpgrade1.Count >= 1)
                 {
                     canUpgrade1.Clear();
+                    canUpgrade1.Add(baseTurret);
                 }
                 break;
             case 2:
                 if (canUpgrade2.Count >= 1)
                 {
                     canUpgrade2.Clear();
+                    canUpgrade2.Add(baseTurret);
                 }
                 break;
             case 3:
                 if (canUpgrade3.Count >= 1)
                 {
                     canUpgrade3.Clear();
+                    canUpgrade3.Add(baseTurret);
                 }
                 break;
             case 4:
                 if (canUpgrade4.Count >= 1)
                 {
                     canUpgrade4.Clear();
+                    canUpgrade4.Add(baseTurret);
                 }
                 break;
             default:

@@ -295,7 +295,8 @@ public class Turret : MonoBehaviour
         Transform attackRange = transform.Find("AttackRange");
 
         attackRange.gameObject.SetActive(true);
-        attackRange.transform.localScale = new Vector3(maxDistance, maxDistance, 1);
+        attackRange.transform.localScale = new Vector3(maxDistance*2, maxDistance*2, 1);
+        attackRange.transform.localPosition = new Vector3(0, 0, 0);
 
         if (detection)
         {

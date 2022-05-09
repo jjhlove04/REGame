@@ -32,9 +32,9 @@ public class TowerManager : MonoBehaviour
 
     public void OnSceneLoeded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if(scene.name == "main")
+        if(scene.name == "main" && selectTower != null)
         {
-            tower = Instantiate(selectTower, TrainManager.instance.transform.GetChild(0).Find("TowerPos"));
+                tower = Instantiate(selectTower, TrainManager.instance.transform.GetChild(0).Find("TowerPos"));
         }
     }
 
