@@ -31,6 +31,7 @@ public class testSkillScript : MonoBehaviour
         inGameUI = InGameUII._instance;
 
         gameObject.TryGetComponent(out Button btnm);
+        gameObject.TryGetComponent(out Image img);
 
         CameraManager cameraManager = CameraManager.Instance;
         upgradeBtn = GameObject.Find("UP");
@@ -76,7 +77,6 @@ public class testSkillScript : MonoBehaviour
             }
             else
             {
-                Debug.Log("isod");
                 circleTree.transform.GetChild(0).gameObject.SetActive(true);
                 circleTree.transform.GetChild(2).gameObject.SetActive(true);
 

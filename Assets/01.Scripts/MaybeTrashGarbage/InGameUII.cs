@@ -198,6 +198,13 @@ public class InGameUII : MonoBehaviour
         testScriptts.turType = -1;
         testScriptts.turPos = -1;
         testScriptts.UnSelectTurret();
+
+        //CircleTree[] circle = FindObjectsOfType<CircleTree>();
+
+        //for (int i = 0; i < circle.Length; i++)
+        //{
+        //    circle[i].transform.
+        //}
     }
 
 

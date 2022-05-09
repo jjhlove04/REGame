@@ -240,7 +240,7 @@ public class testScripttss : MonoBehaviour
 
     public void ChangeTur(int num)
     {
-        TurSelect();
+        //TurSelect();
 
         turType = num;
         GameObject gameObject = turretType[num];

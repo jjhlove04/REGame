@@ -49,6 +49,7 @@ public class TitleUII : MonoBehaviour
 
         startBtn.onClick.AddListener(() =>
         {
+            TestTurretDataBasee.Instance.curTurretType.Add(Resources.Load<GameObject>("Turret/" + "Base Level1"));
             LoadingSceneUI.LoadScene("MainKIm");
         });
         upGradeBtns[0].onClick.AddListener(() =>
