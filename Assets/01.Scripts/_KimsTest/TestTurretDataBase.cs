@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class GameObjectBool : SerializableDictionary<string, bool> { };
+
+[System.Serializable]
+public class GameObjectString : SerializableDictionary<string, GameObject> { };
+
 public class TestTurretDataBase : MonoBehaviour
 {
     private static TestTurretDataBase instance;

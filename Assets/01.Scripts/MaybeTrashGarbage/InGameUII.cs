@@ -66,16 +66,6 @@ public class InGameUII : MonoBehaviour
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = FindObjectOfType<ObjectPool>();
-
-        upGradePanelBackBtn.onClick.AddListener(() =>
-        {
-            upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
-            testScriptts.UnSelectTurret();
-        });
-        upGradeBtn.onClick.AddListener(() =>
-        {
-            TestTurretDataBasee.Instance.Upgrade();
-        });
     }
 
     void Start()

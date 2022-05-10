@@ -53,6 +53,7 @@ public class TitleMoveScriptt : MonoBehaviour
             timelines[4].Play();
             indexNum = 3;
             BtnSlide(1);
+            backBtn.SetActive(true);
         });
         //컬렉션 버튼
         titleActionBtn[3].onClick.AddListener(() => {
@@ -205,11 +206,11 @@ public class TitleMoveScriptt : MonoBehaviour
             BtnGroupMove(1);
             backBtn.SetActive(false);
         }
-        // if(index == 3 || Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     BtnGroupMove(2);
-        //     backBtn.SetActive(false);
-        // }
+        if (index == 3 || Input.GetKeyDown(KeyCode.Escape))
+        {
+            BtnGroupMove(2);
+            backBtn.SetActive(false);
+        }
     }
 
     /// <summary>

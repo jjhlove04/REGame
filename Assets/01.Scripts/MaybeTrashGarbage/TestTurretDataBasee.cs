@@ -12,11 +12,9 @@ public class TestTurretDataBasee : MonoBehaviour
     {
         get { return instance; }
     }
-    public List<GameObject> curTurretType = new List<GameObject>();
+    public GameObjectString curTurretType = new GameObjectString();
 
     public GameObjectBool postdic = new GameObjectBool();
-
-    public int floor;
 
     public GameObject towerObj;
 
@@ -43,65 +41,57 @@ public class TestTurretDataBasee : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void Upgrade()
+    public void Upgrade(int strdat,int floor)
     {
-        floor++;
-        if (floor < curTurretType.Count)
+        if (floor <= curTurretType.Count)
         {
-            testScripttss.Instance.ChageMakeTur(curTurretType[floor]);
+           testScripttss.Instance.ChageMakeTur(curTurretType[strdat + "-" + floor]);
         }
 
-        testScripttss.Instance.NextUpgrade();
     }
 
-    public void Create(Image img, int count, int flor)
+    public void Create(Image img, int count)
     {
 
-        if (floor < curTurretType.Count)
+        if (GameManagerr.Instance.goldAmount >= GameManagerr.Instance.turretPtice)
         {
-            if (GameManagerr.Instance.goldAmount >= GameManagerr.Instance.turretPtice)
-            {
-                testScripttss.Instance.Create(curTurretType[floor]);
+            testScripttss.Instance.Create(curTurretType["1-1"]);
 
-                img.color = new Color(1, 1, 1, 0);
-                img.transform.GetChild(0).gameObject.SetActive(false);
-            }
-            else
-            {
-                InGameUII._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
-                InGameUII._instance.warningTxt.text = "Not Enough Gold";
-
-            }
+            img.color = new Color(1, 1, 1, 0);
+            img.transform.GetChild(0).gameObject.SetActive(false);
         }
         else
         {
-            testScripttss.Instance.turPos = count;
+            InGameUII._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
+            InGameUII._instance.warningTxt.text = "Not Enough Gold";
+
         }
+        testScripttss.Instance.turPos = count;
     }
 
-    public int[] GetTurretImageCount()
-    {
-        int[] intArr = new int[2];
-        if (floor < curTurretType.Count)
-        {
-            intArr[0] = curTurretType[floor].GetComponent<Turret>().turImageCount;
+    //public int[] GetTurretImageCount()
+    //{
+    //    int[] intArr = new int[2];
+    //    if (floor < curTurretType.Count)
+    //    {
+    //        intArr[0] = curTurretType[floor].GetComponent<Turret>().turImageCount;
 
-            if (floor + 1 < curTurretType.Count)
-            {
-                intArr[1] = curTurretType[floor + 1].GetComponent<Turret>().turImageCount;
-            }
+    //        if (floor + 1 < curTurretType.Count)
+    //        {
+    //            intArr[1] = curTurretType[floor + 1].GetComponent<Turret>().turImageCount;
+    //        }
 
-            else
-            {
-                intArr[1] = 100;
-            }
-        }
+    //        else
+    //        {
+    //            intArr[1] = 100;
+    //        }
+    //    }
 
-        else
-        {
-            intArr[0] = 100;
-            intArr[1] = 100;
-        }
-        return intArr;
-    }
+    //    else
+    //    {
+    //        intArr[0] = 100;
+    //        intArr[1] = 100;
+    //    }
+    //    return intArr;
+    //}
 }

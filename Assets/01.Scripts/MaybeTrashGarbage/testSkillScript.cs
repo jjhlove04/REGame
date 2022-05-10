@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class testSkillScript : MonoBehaviour
 {
-    private GameObject upgradeBtn;
     public GameObject circleTree;
 
     public int count;
@@ -34,7 +33,6 @@ public class testSkillScript : MonoBehaviour
         gameObject.TryGetComponent(out Image img);
 
         CameraManager cameraManager = CameraManager.Instance;
-        upgradeBtn = GameObject.Find("UP");
 
         gameObject.transform.GetChild(0).GetComponent<Text>().text = GameManagerr.Instance.turretPtice.ToString();
 
@@ -49,10 +47,22 @@ public class testSkillScript : MonoBehaviour
 
             for (int i = 0; i < tskill.Length; i++)
             {
+                if (!onTurret)
+                {
+                    if (tskill[i].GetComponent<Image>().color.a != 0)
+                    {
+                        tskill[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    }
+                }
+                if (tskill[i].gameObject != this.gameObject)
+                {
+                    tskill[i].clickCount = 0;
+                }
                 if (tskill[i] != this.gameObject)
                 {
                     tskill[i].isTest = false;
                 }
+
             }
 
 
@@ -69,25 +79,28 @@ public class testSkillScript : MonoBehaviour
 
             testScripts.turPos = count;
 
-
             if (!onTurret)
             {
                 circleTree.transform.GetChild(0).gameObject.SetActive(true);
                 circleTree.transform.GetChild(1).gameObject.SetActive(true);
+                circleTree.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+                circleTree.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+
+                img.color = new Color(1, 1, 0, 1);
             }
             else
             {
-                circleTree.transform.GetChild(0).gameObject.SetActive(true);
-                circleTree.transform.GetChild(2).gameObject.SetActive(true);
-
-                testTurData.floor = floor;
-
-                testScripts.turPos = count;
                 testScripts.SelectTurret();
+
+                //if (testScripts.turretData[count] == "asd")
+                //{
+                //    circleTree.transform.GetChild(0).gameObject.SetActive(true);
+                //    circleTree.transform.GetChild(1).gameObject.SetActive(true);
+                //}
+
             }
 
             isTest = true;
-
 
             clickCount++;
             if (clickCount == 2)
@@ -96,17 +109,16 @@ public class testSkillScript : MonoBehaviour
                 {
                     testScripttss.Instance.Reload();
                 }
+                else
+                {
+                    circleTree.transform.GetChild(0).gameObject.SetActive(false);
+                    circleTree.transform.GetChild(1).gameObject.SetActive(false);
+
+                    img.color = new Color(1, 1, 1, 1);
+                }
                 clickCount = 0;
             }
 
-        });
-
-        upgradeBtn.GetComponent<Button>().onClick.AddListener(() =>
-        {
-            if (isTest)
-            {
-                floor = testTurData.floor;
-            }
         });
     }
 

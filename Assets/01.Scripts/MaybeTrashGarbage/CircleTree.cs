@@ -29,8 +29,7 @@ public class CircleTree : MonoBehaviour
 
                 TestTurretDataBasee.Instance.Create(
                 installBtn.GetComponent<Image>(),
-                installBtn.GetComponent<testSkillScript>().count,
-                installBtn.GetComponent<testSkillScript>().floor
+                installBtn.GetComponent<testSkillScript>().count
                 );
             }
             else
@@ -39,6 +38,8 @@ public class CircleTree : MonoBehaviour
                 InGameUII._instance.warningTxt.text = "Not Enough Gold";
             }
         });
+
+
     }
 
     private void LookCameraTopView()

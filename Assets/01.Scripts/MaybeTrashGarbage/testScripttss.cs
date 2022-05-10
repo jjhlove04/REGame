@@ -344,8 +344,6 @@ public class testScripttss : MonoBehaviour
                 turretPoses[turPos].GetChild(0).gameObject.SetActive(true);
             }
         }
-
-        NextUpgrade();
     }
 
 
@@ -357,38 +355,5 @@ public class testScripttss : MonoBehaviour
         }
 
         TurCancle();
-    }
-
-    public void NextUpgrade()
-    {
-        int[] imageCount = TestTurretDataBasee.Instance.GetTurretImageCount();
-
-        if (imageCount[0] != 100)
-        {
-            image.sprite = imageType[imageCount[0]];
-
-            if (imageCount[1] != 100)
-            {
-                if (imageCount[0] == 5 && imageCount[0] == 9 && imageCount[0] == 14)
-                {
-                    upGradeImage.sprite = null;
-                }
-
-                else
-                {
-                    upGradeImage.sprite = imageType[imageCount[1]];
-                }
-            }
-
-            else
-            {
-                upGradeImage.sprite = null;
-            }
-        }
-
-        else
-        {
-            upGradeImage.sprite = null;
-        }
     }
 }

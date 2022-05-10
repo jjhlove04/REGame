@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TestSkillTreee : MonoBehaviour
 {
-    public List<GameObject> canUpgrade = new List<GameObject>();
+    public GameObjectString canUpgrade = new GameObjectString();
 
     public GameObjectBool btnDic;
 
@@ -22,7 +22,10 @@ public class TestSkillTreee : MonoBehaviour
     public void SkillTree(string nextGameObj)
     {
         gameObj = Resources.Load<GameObject>("Turret/" + nextGameObj);
-        canUpgrade.Add(gameObj);
+
+        string num = nextGameObj.Substring(10, 3);
+
+        canUpgrade.Add(num, gameObj);
     }
 
     //clear¹öÆ°
