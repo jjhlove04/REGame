@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerBullet : MonoBehaviour
+public class MoveBack : MonoBehaviour
 {
     private void Update()
     {

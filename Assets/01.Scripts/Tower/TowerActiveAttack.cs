@@ -1,19 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 {
     public GameObject currentDetonator;
-    private int _currentExpIdx = -1;
+    public GameObject bomb;
+    //private int _currentExpIdx = -1;
     public GameObject[] detonatorPrefabs;
+    public float bombLife = 3;
     public float explosionLife = 10;
     public float timeScale = 1.0f;
     public float detailLevel = 1.0f;
 
-    public GameObject wall;
+    /*public GameObject wall;
     private GameObject _currentWall;
     private float _spawnWallTime = -1000;
-    private Rect _guiRect;
+    private Rect _guiRect;*/
 
     private bool useTower = false;
 
@@ -27,12 +31,22 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
     [SerializeField]
     private GameObject targetAreaObj;
 
+    private Vector3 hitPoint;
+
+    [SerializeField]
+    private float attackArea = 50;
+
+    [SerializeField]
+    private LayerMask layerMask;
+
     private void Start()
     {
-        _spawnWallTime = Time.time;
+        //_spawnWallTime = Time.time;
         //SpawnWall();
         //if (!currentDetonator) NextExplosion();
         //else _currentExpIdx = 0;
+
+        targetAreaObj.transform.localScale = new Vector3(attackArea-5, attackArea-5, 1);
     }
 
     /*private void OnGUI()
@@ -71,7 +85,7 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
         GUILayout.EndArea();
     }*/
 
-    private void NextExplosion()
+    /*private void NextExplosion()
     {
         if (_currentExpIdx >= detonatorPrefabs.Length - 1) _currentExpIdx = 0;
         else _currentExpIdx++;
@@ -82,7 +96,7 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
     {
         if (_currentWall) Destroy(_currentWall);
         _currentWall = (GameObject) Instantiate(wall, new Vector3(-7, -12, 48), Quaternion.identity);
-    }
+    }*/
 
     //is this a bug? We can't use the same rect for placing the GUI as for checking if the mouse contains it...
     private Rect checkRect = new Rect(0, 0, 260, 180);
@@ -90,26 +104,32 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
     private void Update()
     {
         //keeps the UI in the corner in case of resize... 
-        _guiRect = new Rect(7, Screen.height - 150, 250, 200);
+        //_guiRect = new Rect(7, Screen.height - 150, 250, 200);
 
         //keeps the play button from making an explosion
         if (coolingTower)
         {
             if (useTower)
             {
-                targetAreaObj.transform.position = Input.mousePosition;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-                if (!checkRect.Contains(Input.mousePosition))
+                Detonator dTemp = (Detonator)currentDetonator.GetComponent("Detonator");
+
+                if (Physics.Raycast(ray, out hit ,1000))
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    float offsetSize = dTemp.size / 3;
+                    hitPoint = hit.point +
+                                              ((Vector3.Scale(hit.normal, new Vector3(offsetSize, offsetSize, offsetSize))));
+
+                    targetAreaObj.transform.position = hitPoint + new Vector3(0,1 ,0);
+
+                    if (!checkRect.Contains(Input.mousePosition))
                     {
-                        coolingTower = false;
-
-                        useTower = false;
-
-                        InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(false);
-
-                        SpawnExplosion();
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            SpawnBomb();
+                        }
                     }
                 }
             }
@@ -123,26 +143,57 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
         else
         {
             CoolingTime();
+
+            targetAreaObj.SetActive(false);
         }
 
     }
 
+    private void SpawnBomb()
+    {
+        if (!IsPointerOverUIObject())
+        {
+            CameraManager.Instance.Shake(bombLife, 0.75f);
+
+            targetAreaObj.SetActive(false);
+
+            coolingTower = false;
+
+            useTower = false;
+
+            InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(false);
+
+            GameObject exp = (GameObject)Instantiate(bomb, hitPoint + new Vector3(0,185,0), Quaternion.identity);
+
+            Destroy(exp, bombLife);
+
+            Invoke("SpawnExplosion", bombLife);
+        }
+    }
+
     private void SpawnExplosion()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000))
+        CameraManager.Instance.Shake(3, explosionLife);
+
+        Damage();
+
+        Detonator dTemp = (Detonator)currentDetonator.GetComponent("Detonator");
+
+        GameObject exp = (GameObject)Instantiate(currentDetonator, hitPoint, Quaternion.identity);
+        dTemp = (Detonator)exp.GetComponent("Detonator");
+        dTemp.detail = detailLevel;
+
+        Destroy(exp, explosionLife);
+    }
+
+    private void Damage()
+    {
+        Collider[] enemys = Physics.OverlapSphere(hitPoint, attackArea,layerMask);
+
+        foreach (var enemy in enemys)
         {
-            Detonator dTemp = (Detonator)currentDetonator.GetComponent("Detonator");
-
-            float offsetSize = dTemp.size/3;
-            Vector3 hitPoint = hit.point +
-                                      ((Vector3.Scale(hit.normal, new Vector3(offsetSize, offsetSize, offsetSize))));
-            GameObject exp = (GameObject) Instantiate(currentDetonator, hitPoint, Quaternion.identity);
-            dTemp = (Detonator)exp.GetComponent("Detonator");
-            dTemp.detail = detailLevel;
-
-            Destroy(exp, explosionLife);
+            HealthSystem healthSystem = enemy.GetComponent<HealthSystem>();
+            healthSystem.Damage(1000);
         }
     }
 
@@ -177,5 +228,14 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 
             curTime = 0;
         }
+    }
+
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 2;
     }
 }

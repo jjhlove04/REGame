@@ -140,7 +140,8 @@ public class InGameUI : MonoBehaviour
             for (int i = 0; i < itemManager.items.Count; i++)
             {
                 itemList[i].gameObject.SetActive(true);
-                itemList[i].onClick.AddListener(itemManager.items[i].GetComponent<Item>().UseItem);
+                itemManager.gameItems[i].GetComponent<Item>().GetItemUI(itemList[i].gameObject);
+                itemList[i].onClick.AddListener(itemManager.gameItems[i].GetComponent<Item>().UseItem);
             }
         }
 

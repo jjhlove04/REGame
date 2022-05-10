@@ -11,8 +11,6 @@ public class TitleUI : MonoBehaviour
     private static TitleUI _ui = new TitleUI();
     public static TitleUI UI { get { return _ui; } }
 
-    public Button[] buyBtns;
-
     [Header("업그레이드 관련")]
     public Button[] upGradeBtns; //0번 터렛, 1번 기차, 2번 타워
     public GameObject[] upGradePanels; //0번 터렛, 1번 기차, 2번 타워
@@ -66,11 +64,6 @@ public class TitleUI : MonoBehaviour
         //checkPanel.transform.DOScale(new Vector3(1,1,1),0.8f)
         //nickCheckBtn.onClick.AddListener(()=> RegisterDataConnect());
 
-
-        for (int i = 0; i < 7; i++)
-        {
-            buyBtns[i].gameObject.AddComponent<TooltipScript>();
-        }
         startBtn.onClick.AddListener(() =>
         {
             LoadingSceneUI.LoadScene("Main");

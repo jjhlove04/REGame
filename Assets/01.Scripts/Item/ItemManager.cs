@@ -14,6 +14,8 @@ public class ItemManager : MonoBehaviour
 
     public List<GameObject> items = new List<GameObject> ();
 
+    public List<GameObject> gameItems = new List<GameObject> ();
+
     private void Awake()
     {
         if (instance != null)
@@ -28,7 +30,7 @@ public class ItemManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoeded;
     }
 
-    public void SelecteItme(GameObject gameitem, int price)
+    public void SelecteItme(GameObject gameitem)
     {
         foreach (var item in items)
         {
@@ -39,20 +41,30 @@ public class ItemManager : MonoBehaviour
         }
 
         items.Add(gameitem);
+    }
 
+    public void Buy(int price)
+    {
         TestDatabase.Instance.resultGold -= price;
     }
 
     public void OnSceneLoeded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if(scene.name == "main")
+        if(scene.name == "Main")
         {
             foreach (var item in items)
             {
                 GameObject gameItem = Instantiate(item);
                 gameItem.transform.parent = GameObject.Find("Items").transform;
                 gameItem.transform.localPosition = Vector3.zero;
+
+                gameItems.Add(gameItem);
             }
+        }
+
+        else if(scene.name == "TitleScene")
+        {
+            items.Clear();
         }
     }
 }

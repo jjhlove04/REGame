@@ -141,7 +141,7 @@ public class Turret : MonoBehaviour
                         TestDatabase.Instance.resultDamage += damage;
                         bulAmount--;
 
-                        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+                        //bulletBar.UpdateBar(bulAmount, maxBulletAmount);
                     }
                 }
 
@@ -218,7 +218,7 @@ public class Turret : MonoBehaviour
 
     public bool IsNeedReload()
     {
-        if(bulAmount <= 1)
+        if(bulAmount < 1)
         {
             return true;
         }
@@ -246,7 +246,7 @@ public class Turret : MonoBehaviour
             InGameUI._instance.warningTxt.text = "Not Enough Gold";
 
         }
-        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+        //bulletBar.UpdateBar(bulAmount, maxBulletAmount);
     }
 
     private void ShootSound()

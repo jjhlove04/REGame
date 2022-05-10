@@ -13,10 +13,12 @@ public class Item : MonoBehaviour
 {
     public ItemType itemType;
 
-    public GameObject itemUI;
+    protected GameObject itemUI;
 
-    public virtual void UseItem()
-    {
-        itemUI.transform.Find("Background").gameObject.SetActive(!itemUI.transform.Find("Background").gameObject.activeSelf);
-    }
+    protected bool useItem;
+
+    public virtual void UseItem() { }
+
+    public virtual void GetItemUI(GameObject UI) { }
+
 }
