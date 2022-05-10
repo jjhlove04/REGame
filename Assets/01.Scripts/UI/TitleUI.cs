@@ -88,8 +88,8 @@ public class TitleUI : MonoBehaviour
 
     private void Start()
     {
-        repairCost.text = ((TestTurretDataBase.Instance.round - 1) * TestTurretDataBase.Instance.createPrice).ToString();
-        towingCost.text = ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1)).ToString();
+        repairCost.text = ((TestTurretDataBasee.Instance.round - 1) * TestTurretDataBasee.Instance.createPrice).ToString();
+        towingCost.text = ((TestTurretDataBasee.Instance.round - 1) * (TestTurretDataBasee.Instance.round - 1)).ToString();
     }
     private void Update()
     {

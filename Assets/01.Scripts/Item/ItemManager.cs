@@ -52,8 +52,6 @@ public class ItemManager : MonoBehaviour
 
             background.SetActive(true);
         }
-
-        print(0);
     }
 
     public void UnSelecteItem(GameObject gameitem,GameObject background, int price)
@@ -63,8 +61,6 @@ public class ItemManager : MonoBehaviour
         TestDatabase.Instance.resultGold += price;
 
         background.SetActive(false);
-
-        print(1);
     }
 
     public void OnSceneLoeded(Scene scene, LoadSceneMode loadSceneMode)

@@ -10,7 +10,7 @@ public class SkillTreeBtnn : MonoBehaviour
     private bool isUpgrade = false;
 
     public Button nextBtn;
-    public Button nextLineBtn;
+    public Button[] nextLineBtn;
     public GameObject floor;
 
     TestSkillTreee testsk;
@@ -36,36 +36,36 @@ public class SkillTreeBtnn : MonoBehaviour
 
                 for (int i = 0; i < str.Length; i++)
                 {
-                    testsk.btnDic[str[i].gameObject.ToString()] = false;
+                    testsk.btnDic[str[i].transform.parent.gameObject.ToString()] = false;
                 }
             }
-            this.gameObject.TryGetComponent(out Button obtn);
-            obtn.interactable = false;
+
+            btn.interactable = false;
             isUpgrade = true;
 
-            if (testsk.btnDic[this.gameObject.ToString()] == true)
+            if (testsk.btnDic[this.transform.parent.gameObject.ToString()] == true)
             {
-                testsk.btnDic[this.gameObject.ToString()] = false;
+                testsk.btnDic[this.transform.parent.gameObject.ToString()] = false;
             }
         });
 
-        if (!testsk.btnDic.ContainsKey(this.gameObject.ToString()))
+        if (!testsk.btnDic.ContainsKey(this.transform.parent.gameObject.ToString()))
         {
             if (myCount == 1)
             {
                 this.gameObject.GetComponent<Button>().interactable = true;
 
-                testsk.btnDic.Add(this.gameObject.ToString(), this.gameObject.GetComponent<Button>().interactable);
+                testsk.btnDic.Add(this.transform.parent.gameObject.ToString(), this.transform.GetComponent<Button>().interactable);
             }
             else
             {
                 this.gameObject.GetComponent<Button>().interactable = false;
 
-                testsk.btnDic.Add(this.gameObject.ToString(), this.gameObject.GetComponent<Button>().interactable);
+                testsk.btnDic.Add(this.transform.parent.gameObject.ToString(), this.transform.GetComponent<Button>().interactable);
             }
         }
 
-        testsk.reDic(this.gameObject);
+        testsk.reDic(this.transform.parent.gameObject);
     }
 
     private void Update()
@@ -78,17 +78,20 @@ public class SkillTreeBtnn : MonoBehaviour
             }
 
             nextBtn.interactable = true;
-            if (testsk.btnDic[nextBtn.gameObject.ToString()] == false)
+            if (testsk.btnDic[nextBtn.transform.parent.gameObject.ToString()] == false)
             {
-                testsk.btnDic[nextBtn.gameObject.ToString()] = true;
+                testsk.btnDic[nextBtn.transform.parent.gameObject.ToString()] = true;
             }
 
-            if (nextLineBtn != null)
+            if (nextLineBtn.Length > 0)
             {
-                nextLineBtn.interactable = true;
-                if (testsk.btnDic[nextLineBtn.gameObject.ToString()] == false)
+                for (int i = 0; i < nextLineBtn.Length; i++)
                 {
-                    testsk.btnDic[nextLineBtn.gameObject.ToString()] = true;
+                    nextLineBtn[i].interactable = true;
+                    if (testsk.btnDic[nextLineBtn[i].transform.parent.gameObject.ToString()] == false)
+                    {
+                        testsk.btnDic[nextLineBtn[i].transform.parent.gameObject.ToString()] = true;
+                    }
                 }
             }
 

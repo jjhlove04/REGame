@@ -54,7 +54,7 @@ public class TestSkillTreee : MonoBehaviour
             //    brn[i].GetComponent<Button>().interactable = TestTurretDataBase.Instance.postdic[];
             //}
 
-            item.GetComponent<Button>().interactable = TestTurretDataBasee.Instance.postdic[item.ToString()];
+            item.transform.Find("TurretBtn").GetComponent<Button>().interactable = TestTurretDataBasee.Instance.postdic[item.ToString()];
         }
     }
 }
