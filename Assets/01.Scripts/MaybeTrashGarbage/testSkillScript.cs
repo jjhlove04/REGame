@@ -39,6 +39,7 @@ public class testSkillScript : MonoBehaviour
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;
 
+        floor = -1;
 
         btnm.onClick.AddListener(() =>
         {
@@ -92,11 +93,16 @@ public class testSkillScript : MonoBehaviour
             {
                 testScripts.SelectTurret();
 
-                //if (testScripts.turretData[count] == "asd")
-                //{
-                //    circleTree.transform.GetChild(0).gameObject.SetActive(true);
-                //    circleTree.transform.GetChild(1).gameObject.SetActive(true);
-                //}
+                if (testScripts.turretData[count].name == "Base Level1-1" || testScripts.turretData[count].name == "Base Level2-1")
+                {
+                    circleTree.transform.GetChild(0).gameObject.SetActive(true);
+                    circleTree.transform.GetChild(2).gameObject.SetActive(true);
+                }
+                else
+                {
+                    circleTree.transform.GetChild(0).gameObject.SetActive(true);
+                    circleTree.transform.GetChild(1).gameObject.SetActive(true);
+                }
 
             }
 

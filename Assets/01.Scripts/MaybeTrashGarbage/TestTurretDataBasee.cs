@@ -41,10 +41,11 @@ public class TestTurretDataBasee : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void Upgrade(int strdat,int floor)
+    public void Upgrade(int strdat, int floor)
     {
         if (floor <= curTurretType.Count)
         {
+            Debug.Log(curTurretType[strdat + "-" + floor]);
            testScripttss.Instance.ChageMakeTur(curTurretType[strdat + "-" + floor]);
         }
 
@@ -52,7 +53,6 @@ public class TestTurretDataBasee : MonoBehaviour
 
     public void Create(Image img, int count)
     {
-
         if (GameManagerr.Instance.goldAmount >= GameManagerr.Instance.turretPtice)
         {
             testScripttss.Instance.Create(curTurretType["1-1"]);

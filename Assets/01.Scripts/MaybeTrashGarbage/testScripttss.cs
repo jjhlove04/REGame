@@ -88,6 +88,7 @@ public class testScripttss : MonoBehaviour
         hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
 
         gameManager.goldAmount += 30;
+        
     }
 
     // Update is called once per frame
@@ -226,7 +227,6 @@ public class testScripttss : MonoBehaviour
     {
         GameObject gameInst = objectPool.GetObject(turret);
         gameInst.GetComponent<Turret>().turCount = turPos;
-        gameInst.GetComponent<Turret>().turType = InGameUI._instance.selectType;
         gameInst.transform.position = turretPoses[turPos].position;
         gameInst.transform.SetParent(this.gameObject.transform);
         Despawn();

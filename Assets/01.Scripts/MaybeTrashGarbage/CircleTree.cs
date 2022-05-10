@@ -23,14 +23,16 @@ public class CircleTree : MonoBehaviour
         {
             if (GameManagerr.Instance.goldAmount >= GameManagerr.Instance.turretPtice)
             {
-                installBtn.GetComponent<testSkillScript>().onTurret = true;
-                gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                if (installBtn.GetComponent<testSkillScript>().floor == -1)
+                {
+                    installBtn.GetComponent<testSkillScript>().onTurret = true;
+                    gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                    gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
-                TestTurretDataBasee.Instance.Create(
-                installBtn.GetComponent<Image>(),
-                installBtn.GetComponent<testSkillScript>().count
-                );
+                    TestTurretDataBasee.Instance.Create(installBtn.GetComponent<Image>(), installBtn.GetComponent<testSkillScript>().count);
+
+                    installBtn.GetComponent<testSkillScript>().floor += 2;
+                }
             }
             else
             {
@@ -39,7 +41,38 @@ public class CircleTree : MonoBehaviour
             }
         });
 
+        gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            if (testScripttss.Instance.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level1-1")
+            {
+                CircleUpgrade(1);
+            }
+            else if(testScripttss.Instance.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level2-1")
+            {
+                CircleUpgrade(2);
+            }
 
+        });
+        gameObject.transform.GetChild(2).GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            if (testScripttss.Instance.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level1-1")
+            {
+                CircleUpgrade(2);
+            }
+            else if (testScripttss.Instance.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level2-1")
+            {
+                CircleUpgrade(3);
+            }
+
+        });
+    }
+
+    private void CircleUpgrade(int num)
+    {
+        TestTurretDataBasee.Instance.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
+        installBtn.GetComponent<testSkillScript>().floor++;
+        gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        gameObject.transform.GetChild(2).gameObject.SetActive(false);
     }
 
     private void LookCameraTopView()
