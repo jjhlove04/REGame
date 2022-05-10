@@ -9,7 +9,7 @@ public class InGameUI : MonoBehaviour
 {
     public static InGameUI _instance = new InGameUI();
     [SerializeField] private GameObject bluePrintTop;
-    [SerializeField] private GameObject bluePrintBot;
+    [SerializeField] private GameObject bluePrintBot; 
     public static int sceneIndex = 0;
 
     int index = 1;
