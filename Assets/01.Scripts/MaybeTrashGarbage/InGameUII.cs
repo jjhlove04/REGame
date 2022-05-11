@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class InGameUII : MonoBehaviour
 {
     public static InGameUII _instance = new InGameUII();
+    [SerializeField] private GameObject bluePrintTop;
     [SerializeField] private GameObject bluePrintBot;
     public static int sceneIndex = 0;
 
@@ -24,6 +25,8 @@ public class InGameUII : MonoBehaviour
 
     [SerializeField] private Button upGradePanelBackBtn;
     [SerializeField] private Text time;
+    [SerializeField] private Button[] applyBtn;
+    [SerializeField] private GameObject[] selectObj;
     [SerializeField] private GameObject giveUPPanel;
     [SerializeField] private GameObject settingPanel;
 
@@ -44,6 +47,7 @@ public class InGameUII : MonoBehaviour
     [SerializeField]
     private Button upGradeBtn;
     public Text warningTxt;
+    public int selectType;
 
     [SerializeField]
     public GameObject dashiObj;
@@ -57,30 +61,86 @@ public class InGameUII : MonoBehaviour
 
     Coroutine coroutine;
 
-    testScripttss testScriptts;
+    testScriptts testScriptts;
 
     private ObjectPool objectPool;
+
+    public Button towerActive;
+
+    public List<Button> itemList = new List<Button>();
+
+    private ItemManager itemManager;
+
     private void Awake()
     {
         _instance = this;
+        bpTop = bluePrintTop.GetComponent<RectTransform>();
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = FindObjectOfType<ObjectPool>();
+
+        //선택버튼 확인 기능
+        applyBtn[0].onClick.AddListener(() => {
+            NewSelect(0);
+        });
+        applyBtn[1].onClick.AddListener(() => {
+            NewSelect(1);
+        });
+        applyBtn[2].onClick.AddListener(() => {
+            NewSelect(2);
+        });
+        applyBtn[3].onClick.AddListener(() => {
+            NewSelect(3);
+        });
+        applyBtn[4].onClick.AddListener(() => {
+            NewSelect(4);
+        });
     }
 
     void Start()
     {
-        testScriptts = testScripttss.Instance;
+        itemManager = ItemManager.Instance;
+
+        testScriptts = testScriptts.Instance;
 
         mainMenuBtn.onClick.AddListener(() =>
         {
             num *= -1;
         });
 
-        goldAmounTxt.text = GameManagerr.Instance.goldAmount.ToString();
+        goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
         ShowTurPrice();
-        //TestTurretDataBasee.Instance.curTurretType.Add("1-1", Resources.Load<GameObject>("Turret/Base Level1-1"));
+
+        if (TowerManager.Instance != null && TowerManager.Instance.tower != null)
+        {
+            towerActive.onClick.AddListener(() =>
+            {
+                TowerManager.Instance.tower.GetComponent<ITowerActiveSkill>().UseTower();
+            });
+        }
+
+        else
+        {
+            towerActive.gameObject.SetActive(false);
+        }
+
+        if (itemManager != null && itemManager.items.Count > 0)
+        {
+            for (int i = 0; i < itemManager.items.Count; i++)
+            {
+                itemList[i].gameObject.SetActive(true);
+                itemList[i].onClick.AddListener(itemManager.items[i].GetComponent<Item>().UseItem);
+            }
+        }
+
+        else
+        {
+            foreach (var item in itemList)
+            {
+                item.gameObject.SetActive(false);
+            }
+        }
     }
 
 
@@ -158,6 +218,21 @@ public class InGameUII : MonoBehaviour
 
         }
 
+    }
+
+    public void ClearSelect()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            selectObj[i].SetActive(false);
+        }
+    }
+
+    public void NewSelect(int num)
+    {
+        ClearSelect();
+
+        selectObj[num].SetActive(true);
     }
 
     /*private void OpenBluePrint()
