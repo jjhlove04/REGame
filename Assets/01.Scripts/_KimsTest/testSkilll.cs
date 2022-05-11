@@ -6,14 +6,10 @@ using UnityEngine.EventSystems;
 
 public class testSkilll : MonoBehaviour
 {
-    private GameObject upgradeBtn;
+    public GameObject circleTree;
 
-    [SerializeField]
-    private int count;
-    [SerializeField]
-    private int selectType = -1;
-    [SerializeField]
-    private int floor;
+    public int count;
+    public int floor;
 
     [HideInInspector]
     public bool isTest;
@@ -37,7 +33,6 @@ public class testSkilll : MonoBehaviour
         gameObject.TryGetComponent(out Image image);
 
         CameraManager cameraManager = CameraManager.Instance;
-        upgradeBtn = GameObject.Find("UP");
 
         gameObject.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.turretPtice.ToString();
 
@@ -49,136 +44,85 @@ public class testSkilll : MonoBehaviour
         {
             testSkilll[] tskill = FindObjectsOfType<testSkilll>();
 
+            CircleTree[] cTree = FindObjectsOfType<CircleTree>();
+
             for (int i = 0; i < tskill.Length; i++)
             {
+                if (!onTurret)
+                {
+                    if (tskill[i].GetComponent<Image>().color.a != 0)
+                    {
+                        tskill[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    }
+                }
+                if (tskill[i].gameObject != this.gameObject)
+                {
+                    tskill[i].clickCount = 0;
+                }
                 if (tskill[i] != this.gameObject)
                 {
                     tskill[i].isTest = false;
+                }
+
+            }
+
+
+            for (int i = 0; i < cTree.Length; i++)
+            {
+                if (cTree[i].gameObject != circleTree)
+                {
+                    cTree[i].transform.GetChild(0).gameObject.SetActive(false);
+                    cTree[i].transform.GetChild(1).gameObject.SetActive(false);
+                    cTree[i].transform.GetChild(2).gameObject.SetActive(false);
+                    cTree[i].transform.GetChild(3).gameObject.SetActive(false);
                 }
             }
 
             testScripts.turPos = count;
 
-
             if (!onTurret)
             {
-                selectType = testScripts.turType;
+                circleTree.transform.GetChild(0).gameObject.SetActive(true);
+                circleTree.transform.GetChild(1).gameObject.SetActive(true);
+                circleTree.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+                circleTree.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
 
-                if (selectType != -1)
+                image.color = new Color(1, 1, 0, 1);
+            }
+            else
+            {
+                testScripts.SelectTurret();
+
+                if (testScripts.turretData[count].name == "Base Level1-1" || testScripts.turretData[count].name == "Base Level2-1")
                 {
-                    switch (selectType)
-                    {
-                        case 0:
-                            testTurData.floor = floor;
-                            break;
-                        case 1:
-                            testTurData.floor1 = floor;
-                            break;
-                        case 2:
-                            testTurData.floor2 = floor;
-                            break;
-                        case 3:
-                            testTurData.floor3 = floor;
-                            break;
-                        case 4:
-                            testTurData.floor4 = floor;
-                            break;
-                        default:
-                            break;
-                    }
-
-                    if (GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
-                    {
-                        inGameUI.selectType = selectType;
-
-
-                        testTurData.Create(selectType);
-                        testTurData.createPrice += GameManager.Instance.turretPtice;
-                        GameManager.Instance.turretPtice += (int)(GameManager.Instance.turretPtice * 0.2f);
-                        inGameUI.ShowTurPrice();
-
-                        image.color = new Color(1, 1, 1, 0);
-                        image.transform.GetChild(0).gameObject.SetActive(false);
-
-                        onTurret = true;
-                    }
-
-                    else
-                    {
-                        inGameUI.warningTxt.color = new Color(1, 0.8f, 0, 1);
-                        inGameUI.warningTxt.text = "Not Enough Gold";
-
-                    }
+                    circleTree.transform.GetChild(0).gameObject.SetActive(true);
+                    circleTree.transform.GetChild(2).gameObject.SetActive(true);
                 }
                 else
                 {
-                    testScripts.turPos = count;
-                    inGameUI.OpenPresetBtn();
-                }
-            }
-
-            else
-            {
-                switch (selectType)
-                {
-                    case 0:
-                        testTurData.floor = floor;
-                        break;
-                    case 1:
-                        testTurData.floor1 = floor;
-                        break;
-                    case 2:
-                        testTurData.floor2 = floor;
-                        break;
-                    case 3:
-                        testTurData.floor3 = floor;
-                        break;
-                    case 4:
-                        testTurData.floor4 = floor;
-                        break;
-                    default:
-                        break;
+                    circleTree.transform.GetChild(0).gameObject.SetActive(true);
+                    circleTree.transform.GetChild(1).gameObject.SetActive(true);
                 }
 
-                inGameUI.selectType = selectType;
-                testScripts.turPos = count;
-                testScripts.SelectTurret();
             }
-
 
             isTest = true;
-            clickCount++;
-            if(clickCount == 2)
-            {
-                testScriptts.Instance.Reload();
-                clickCount = 0;
-            }
-        });
 
-        upgradeBtn.GetComponent<Button>().onClick.AddListener(() =>
-        {
-            if (isTest)
+            clickCount++;
+            if (clickCount == 2)
             {
-                switch (inGameUI.selectType)
+                if (onTurret)
                 {
-                    case 0:
-                        floor = testTurData.floor;
-                        break;
-                    case 1:
-                        floor = testTurData.floor1;
-                        break;
-                    case 2:
-                        floor = testTurData.floor2;
-                        break;
-                    case 3:
-                        floor = testTurData.floor3;
-                        break;
-                    case 4:
-                        floor = testTurData.floor4;
-                        break;
-                    default:
-                        break;
+                    testScripttss.Instance.Reload();
                 }
+                else
+                {
+                    circleTree.transform.GetChild(0).gameObject.SetActive(false);
+                    circleTree.transform.GetChild(1).gameObject.SetActive(false);
+
+                    image.color = new Color(1, 1, 1, 1);
+                }
+                clickCount = 0;
             }
         });
     }

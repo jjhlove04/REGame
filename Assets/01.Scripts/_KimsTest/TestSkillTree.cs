@@ -5,12 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TestSkillTree : MonoBehaviour
-{   
-    public List<GameObject> canUpgrade = new List<GameObject>();
-    public List<GameObject> canUpgrade1 = new List<GameObject>();
-    public List<GameObject> canUpgrade2 = new List<GameObject>();
-    public List<GameObject> canUpgrade3 = new List<GameObject>();
-    public List<GameObject> canUpgrade4 = new List<GameObject>();
+{
+    public GameObjectString canUpgrade = new GameObjectString();
 
     public GameObjectBool btnDic;
 
@@ -35,74 +31,18 @@ public class TestSkillTree : MonoBehaviour
     public void SkillTree(string nextGameObj)
     {
         gameObj = Resources.Load<GameObject>("Turret/" + nextGameObj);
-    }
-    public void SkillTreeNum(int num)
-    {
-        switch (num)
-        {
-            case 0:
-                canUpgrade.Add(gameObj);
-                break;
-            case 1:
-                canUpgrade1.Add(gameObj);
-                break;
-            case 2:
-                canUpgrade2.Add(gameObj);
-                break;
-            case 3:
-                canUpgrade3.Add(gameObj);
-                break;
-            case 4:
-                canUpgrade4.Add(gameObj);
-                break;
-            default:
-                break;
-        }
+
+        string num = nextGameObj.Substring(10, 3);
+
+        canUpgrade.Add(num, gameObj);
     }
 
     //clear버튼
     public void SkillTreeClear(int num)
     {
-        switch (num)
+        if (canUpgrade.Count >= 1)
         {
-            case 0:
-
-                if (canUpgrade.Count >= 1)
-                {
-                    canUpgrade.Clear();
-                    canUpgrade.Add(baseTurret);
-                }
-                break;
-            case 1:
-                if (canUpgrade1.Count >= 1)
-                {
-                    canUpgrade1.Clear();
-                    canUpgrade1.Add(baseTurret);
-                }
-                break;
-            case 2:
-                if (canUpgrade2.Count >= 1)
-                {
-                    canUpgrade2.Clear();
-                    canUpgrade2.Add(baseTurret);
-                }
-                break;
-            case 3:
-                if (canUpgrade3.Count >= 1)
-                {
-                    canUpgrade3.Clear();
-                    canUpgrade3.Add(baseTurret);
-                }
-                break;
-            case 4:
-                if (canUpgrade4.Count >= 1)
-                {
-                    canUpgrade4.Clear();
-                    canUpgrade4.Add(baseTurret);
-                }
-                break;
-            default:
-                break;
+            canUpgrade.Clear();
         }
 
         Button[] btn = presetChange.presetCanvas[num].GetComponentsInChildren<Button>();
@@ -126,39 +66,9 @@ public class TestSkillTree : MonoBehaviour
 
     }
 
-    //apply버튼
-    public void postData(int num)
-    {
-        switch (num)
-        {
-            case 0:
-                TestTurretDataBase.Instance.curTurretType = canUpgrade;
-                break;
-            case 1:
-                TestTurretDataBase.Instance.curTurretType1 = canUpgrade1;
-                break;
-            case 2:
-                TestTurretDataBase.Instance.curTurretType2 = canUpgrade2;
-                break;
-            case 3:
-                TestTurretDataBase.Instance.curTurretType3 = canUpgrade3;
-                break;
-            case 4:
-                TestTurretDataBase.Instance.curTurretType4 = canUpgrade4;
-                break;
-            default:
-                break;
-        }
-
-    }
-
     public void LoadData()
     {
         canUpgrade = TestTurretDataBase.Instance.curTurretType;
-        canUpgrade1 = TestTurretDataBase.Instance.curTurretType1;
-        canUpgrade2 = TestTurretDataBase.Instance.curTurretType2;
-        canUpgrade3 = TestTurretDataBase.Instance.curTurretType3;
-        canUpgrade4 = TestTurretDataBase.Instance.curTurretType4;
     }
 
     public void reDic(GameObject item)

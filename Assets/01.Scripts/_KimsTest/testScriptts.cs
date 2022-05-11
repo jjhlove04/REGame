@@ -388,7 +388,7 @@ public class testScriptts : MonoBehaviour
             }
         }
 
-        NextUpgrade();
+        //NextUpgrade();
     }
 
 
@@ -400,38 +400,39 @@ public class testScriptts : MonoBehaviour
         }
 
         TurCancle();
-    }
+        //}
 
-    public void NextUpgrade()
-    {
-        int[] imageCount = TestTurretDataBase.Instance.GetTurretImageCount();
+        //public void NextUpgrade()
+        //{
+        //    int[] imageCount = TestTurretDataBase.Instance.GetTurretImageCount();
 
-        if (imageCount[0] != 100)
-        {
-            image.sprite = imageType[imageCount[0]];
+        //    if (imageCount[0] != 100)
+        //    {
+        //        image.sprite = imageType[imageCount[0]];
 
-            if (imageCount[1] != 100)
-            {
-                if (imageCount[0] == 5 && imageCount[0] == 9 && imageCount[0] == 14)
-                {
-                    upGradeImage.sprite = null;
-                }
+        //        if (imageCount[1] != 100)
+        //        {
+        //            if (imageCount[0] == 5 && imageCount[0] == 9 && imageCount[0] == 14)
+        //            {
+        //                upGradeImage.sprite = null;
+        //            }
 
-                else
-                {
-                    upGradeImage.sprite = imageType[imageCount[1]];
-                }
-            }
+        //            else
+        //            {
+        //                upGradeImage.sprite = imageType[imageCount[1]];
+        //            }
+        //        }
 
-            else
-            {
-                upGradeImage.sprite = null;
-            }
-        }
+        //        else
+        //        {
+        //            upGradeImage.sprite = null;
+        //        }
+        //    }
 
-        else
-        {
-            upGradeImage.sprite = null;
-        }
+        //    else
+        //    {
+        //        upGradeImage.sprite = null;
+        //    }
+        //}
     }
 }

@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class GameObjectBool : SerializableDictionary<string, bool> { };
 
-public class TestTurretDataBasee : MonoBehaviour
+[System.Serializable]
+public class GameObjectString : SerializableDictionary<string, GameObject> { };
+
+public class TestTurretDataBase : MonoBehaviour
 {
-    private static TestTurretDataBasee instance;
+    private static TestTurretDataBase instance;
 
-    public static TestTurretDataBasee Instance
+    public static TestTurretDataBase Instance
     {
         get { return instance; }
     }

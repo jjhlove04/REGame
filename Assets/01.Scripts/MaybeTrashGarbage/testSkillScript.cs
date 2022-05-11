@@ -17,7 +17,7 @@ public class testSkillScript : MonoBehaviour
     public bool onTurret = false;
 
     private testScripttss testScripts;
-    private TestTurretDataBasee testTurData;
+    private TestTurretDataBase testTurData;
     private InGameUII inGameUI;
 
     public int clickCount;
@@ -26,7 +26,7 @@ public class testSkillScript : MonoBehaviour
     void Start()
     {
         testScripts = testScripttss.Instance;
-        testTurData = TestTurretDataBasee.Instance; ;
+        testTurData = TestTurretDataBase.Instance; ;
         inGameUI = InGameUII._instance;
 
         gameObject.TryGetComponent(out Button btnm);

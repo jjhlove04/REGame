@@ -79,16 +79,6 @@ public class InGameUI : MonoBehaviour
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = FindObjectOfType<ObjectPool>();
 
-        upGradePanelBackBtn.onClick.AddListener(() => 
-        {
-            upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
-            testScriptts.UnSelectTurret();
-        });
-        upGradeBtn.onClick.AddListener(() =>
-        {
-            TestTurretDataBase.Instance.Upgrade(selectType);
-        });
-
         //선택버튼 확인 기능
         applyBtn[0].onClick.AddListener(() => { 
             NewSelect(0); 

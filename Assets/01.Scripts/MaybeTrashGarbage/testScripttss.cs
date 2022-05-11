@@ -198,14 +198,14 @@ public class testScripttss : MonoBehaviour
             if (tT.onTurret != true)
             {
                 GameObject gameInst = objectPool.GetObject(turret);
-                gameInst.GetComponent<Turret>().turCount = turPos;
-                gameInst.GetComponent<Turret>().turType = turType;
+                //gameInst.GetComponent<Turret>().turCount = turPos;
+                //gameInst.GetComponent<Turret>().turType = turType;
                 gameInst.transform.position = turretPoses[turPos].position;
                 gameInst.transform.SetParent(TrainScript.instance.transform.GetChild(0));
                 tT.onTurret = true;
                 turretData[turPos] = gameInst;
                 gameManager.goldAmount -= gameManager.turretPtice;
-                TestTurretDataBasee.Instance.createPrice += gameManager.turretPtice;
+                TestTurretDataBase.Instance.createPrice += gameManager.turretPtice;
                 gameManager.turretPtice += (int)(gameManager.turretPtice * 0.2f);
                 inGameUI.ShowTurPrice();
             }
@@ -226,7 +226,7 @@ public class testScripttss : MonoBehaviour
     public void ChageMakeTur(GameObject turret)
     {
         GameObject gameInst = objectPool.GetObject(turret);
-        gameInst.GetComponent<Turret>().turCount = turPos;
+        //gameInst.GetComponent<Turret>().turCount = turPos;
         gameInst.transform.position = turretPoses[turPos].position;
         gameInst.transform.SetParent(this.gameObject.transform);
         Despawn();

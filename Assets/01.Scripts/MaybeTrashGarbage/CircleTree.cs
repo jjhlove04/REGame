@@ -29,7 +29,7 @@ public class CircleTree : MonoBehaviour
                     gameObject.transform.GetChild(1).gameObject.SetActive(false);
                     gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
-                    TestTurretDataBasee.Instance.Create(installBtn.GetComponent<Image>(), installBtn.GetComponent<testSkillScript>().count);
+                    TestTurretDataBase.Instance.Create(installBtn.GetComponent<Image>(), installBtn.GetComponent<testSkillScript>().count);
 
                     installBtn.GetComponent<testSkillScript>().floor += 2;
                 }
@@ -69,7 +69,7 @@ public class CircleTree : MonoBehaviour
 
     private void CircleUpgrade(int num)
     {
-        TestTurretDataBasee.Instance.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
+        TestTurretDataBase.Instance.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
         installBtn.GetComponent<testSkillScript>().floor++;
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
         gameObject.transform.GetChild(2).gameObject.SetActive(false);

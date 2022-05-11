@@ -67,10 +67,10 @@ public class TitleUI : MonoBehaviour
         //nickCheckBtn.onClick.AddListener(()=> RegisterDataConnect());
 
 
-        for (int i = 0; i < 7; i++)
-        {
-            buyBtns[i].gameObject.AddComponent<TooltipScript>();
-        }
+        //for (int i = 0; i < 7; i++)
+        //{
+        //    buyBtns[i].gameObject.AddComponent<TooltipScript>();
+        //}
         startBtn.onClick.AddListener(() =>
         {
             LoadingSceneUI.LoadScene("Main");

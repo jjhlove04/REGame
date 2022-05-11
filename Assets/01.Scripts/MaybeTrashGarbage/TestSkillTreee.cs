@@ -15,7 +15,7 @@ public class TestSkillTreee : MonoBehaviour
     {
         LoadData();
 
-        btnDic = TestTurretDataBasee.Instance.postdic;
+        btnDic = TestTurretDataBase.Instance.postdic;
     }
 
     //skill버튼 첫번쨰
@@ -39,13 +39,13 @@ public class TestSkillTreee : MonoBehaviour
 
     public void LoadData()
     {
-        canUpgrade = TestTurretDataBasee.Instance.curTurretType;
+        canUpgrade = TestTurretDataBase.Instance.curTurretType;
     }
 
     public void reDic(GameObject item)
     {
 
-        if (TestTurretDataBasee.Instance.postdic.Keys != null)
+        if (TestTurretDataBase.Instance.postdic.Keys != null)
         {
             //SkillTreeBtn[] brn = FindObjectsOfType<SkillTreeBtn>();
 
@@ -54,7 +54,7 @@ public class TestSkillTreee : MonoBehaviour
             //    brn[i].GetComponent<Button>().interactable = TestTurretDataBase.Instance.postdic[];
             //}
 
-            item.transform.Find("TurretBtn").GetComponent<Button>().interactable = TestTurretDataBasee.Instance.postdic[item.ToString()];
+            item.transform.Find("TurretBtn").GetComponent<Button>().interactable = TestTurretDataBase.Instance.postdic[item.ToString()];
         }
     }
 }

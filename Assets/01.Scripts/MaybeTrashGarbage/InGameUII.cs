@@ -80,6 +80,7 @@ public class InGameUII : MonoBehaviour
         goldAmounTxt.text = GameManagerr.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
         ShowTurPrice();
+        //TestTurretDataBasee.Instance.curTurretType.Add("1-1", Resources.Load<GameObject>("Turret/Base Level1-1"));
     }
 
 

@@ -64,7 +64,7 @@ public class TitleUII : MonoBehaviour
             TitleMoveScript.indexNum = 4;
         });
 
-        curExp += TestTurretDataBasee.Instance.resultEXP;
+        curExp += TestTurretDataBase.Instance.resultEXP;
 
     }
     private void Update()
@@ -123,18 +123,18 @@ public class TitleUII : MonoBehaviour
             if (curExp >= maxExp)
             {
                 //TestTurretDataBase.Instance.curTp++;
-                TestTurretDataBasee.Instance.level++;
+                TestTurretDataBase.Instance.level++;
                 curExp = curExp - maxExp;
-                if (TestTurretDataBasee.Instance.level % 20 == 0)
+                if (TestTurretDataBase.Instance.level % 20 == 0)
                 {
-                    maxExp = (int)(((maxExp + (TestTurretDataBasee.Instance.level + (TestTurretDataBasee.Instance.level - 1))) * (TestTurretDataBasee.Instance.level / (TestTurretDataBasee.Instance.level - 1)) + maxExp) * 1.2f);
+                    maxExp = (int)(((maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp) * 1.2f);
                 }
                 else
                 {
-                    maxExp = (maxExp + (TestTurretDataBasee.Instance.level + (TestTurretDataBasee.Instance.level - 1))) * (TestTurretDataBasee.Instance.level / (TestTurretDataBasee.Instance.level - 1)) + maxExp;
+                    maxExp = (maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp;
                 }
                 expBar.value = 0;
-                levelTxt.text = TestTurretDataBasee.Instance.level.ToString();
+                levelTxt.text = TestTurretDataBase.Instance.level.ToString();
             }
         }
     }
