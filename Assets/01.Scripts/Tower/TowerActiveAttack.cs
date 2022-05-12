@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 {
@@ -39,12 +40,15 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
     [SerializeField]
     private LayerMask layerMask;
 
+    InGameUII inGameUII;
+
     private void Start()
     {
         //_spawnWallTime = Time.time;
         //SpawnWall();
         //if (!currentDetonator) NextExplosion();
         //else _currentExpIdx = 0;
+        inGameUII = InGameUII._instance;
 
         targetAreaObj.transform.localScale = new Vector3(attackArea-5, attackArea-5, 1);
     }
@@ -161,7 +165,7 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 
             useTower = false;
 
-            InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(false);
+            inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(false);
 
             GameObject exp = (GameObject)Instantiate(bomb, hitPoint + new Vector3(0,185,0), Quaternion.identity);
 
@@ -205,7 +209,7 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 
             targetAreaObj.SetActive(false);
 
-            InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(false);
+            inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(false);
         }
 
         else
@@ -214,12 +218,15 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 
             targetAreaObj.SetActive(true);
 
-            InGameUI._instance.towerActive.transform.Find("Background").gameObject.SetActive(true);
+            inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(true);
         }
+
     }
 
     private void CoolingTime()
     {
+        CoolTimeImg();
+
         curTime += Time.deltaTime;
 
         if (coolTime < curTime)
@@ -227,6 +234,8 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
             coolingTower = true;
 
             curTime = 0;
+
+            inGameUII.towerActive.transform.Find("CoolTimer").GetComponent<Image>().fillAmount = 0;
         }
     }
 
@@ -237,5 +246,10 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 2;
+    }
+
+    public void CoolTimeImg()
+    {
+        inGameUII.towerActive.transform.Find("CoolTimer").GetComponent<Image>().fillAmount = curTime / coolTime;
     }
 }

@@ -12,10 +12,8 @@ public class ItemManager : MonoBehaviour
         get { return instance; }
     }
 
-    [HideInInspector]
     public List<GameObject> items = new List<GameObject> ();
 
-    [HideInInspector]
     public List<GameObject> gameItems = new List<GameObject> ();
 
     private void Awake()

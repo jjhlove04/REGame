@@ -106,12 +106,14 @@ public class InGameUII : MonoBehaviour
             towerActive.gameObject.SetActive(false);
         }
 
-        if (itemManager != null && itemManager.items.Count > 0)
+        if (itemManager != null && itemManager.gameItems.Count > 0)
         {
-            for (int i = 0; i < itemManager.items.Count; i++)
+            for (int i = 0; i < itemManager.gameItems.Count; i++)
             {
                 itemList[i].gameObject.SetActive(true);
-                itemList[i].onClick.AddListener(itemManager.items[i].GetComponent<Item>().UseItem);
+                itemManager.gameItems[i].GetComponent<Item>().GetItemUI(itemList[i].gameObject);
+
+                itemList[i].onClick.AddListener(itemManager.gameItems[i].GetComponent<Item>().UseItem);
             }
         }
 

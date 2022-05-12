@@ -121,7 +121,7 @@ public class testScripttss : MonoBehaviour
             Speeeeeed();
         }
 
-        else if (Input.GetKeyDown(KeyCode.Colon))
+        else if (Input.GetKeyDown(KeyCode.Comma))
         {
             Minuspeed();
         }

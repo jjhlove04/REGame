@@ -14,8 +14,6 @@ public class AutoReloadItem : Item
 
     private void Update()
     {
-        print(useItem);
-
         if (useItem)
         {
             for (int i = 0; i < turrets.childCount; i++)
@@ -31,7 +29,7 @@ public class AutoReloadItem : Item
     }
 
     public override void UseItem()
-    { 
+    {
         base.UseItem();
 
         itemUI.transform.Find("Background").gameObject.SetActive(!itemUI.transform.Find("Background").gameObject.activeSelf);
