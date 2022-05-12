@@ -19,6 +19,7 @@ public class TitleMoveScript : MonoBehaviour
     [SerializeField] private GameObject btnGroup;
     [SerializeField] private RectTransform btnGroupRect;
     [SerializeField] private GameObject backBtn;
+    [SerializeField] private GameObject _settingPanel;
     [SerializeField] private Button repairBtn;
     [SerializeField] private GameObject resultPanel;
     private RectTransform resultPanelRect;
@@ -168,6 +169,7 @@ public class TitleMoveScript : MonoBehaviour
                 {
                     timelines[5].Play();
                     BtnSlide(3);
+                    _settingPanel.SetActive(false);
                 }
                 //업그레이드 화면에서 나가기
                 if (indexNum == 4)
@@ -180,16 +182,17 @@ public class TitleMoveScript : MonoBehaviour
                     indexNum = 2;
                 }
             }
+             if(startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
+            {
+            backBtn.SetActive(true);
+            }
+            else
+            {
+            backBtn.SetActive(false);
+            }
         }
 
-        if(startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
-        {
-            backBtn.SetActive(true);
-        }
-        else
-        {
-            backBtn.SetActive(false);
-        }
+       
         
     }
 
