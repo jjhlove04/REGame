@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -237,13 +238,15 @@ public class Turret : MonoBehaviour
         }
         else if(bulAmount == maxBulletAmount)
         {
-            InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
-            InGameUI._instance.warningTxt.text = "It's Already Loaded";
+            InGameUI._instance.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "It's Already Loaded";
         }
         else
         {
-            InGameUI._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
-            InGameUI._instance.warningTxt.text = "Not Enough Gold";
+            InGameUI._instance.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "Not Enough Gold";
 
         }
         //bulletBar.UpdateBar(bulAmount, maxBulletAmount);

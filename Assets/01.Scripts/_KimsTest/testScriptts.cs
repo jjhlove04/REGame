@@ -111,8 +111,8 @@ public class testScriptts : MonoBehaviour
 
         if (SpawnMananger.Instance.round > SpawnMananger.Instance.maxRound)
         {
-            inGameUI.warningTxt.color = new Color(1, 0f, 0, 1);
-            inGameUI.warningTxt.text = "Press \"x\"";
+            inGameUI.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0f, 0, 1);
+            inGameUI.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "Press \"x\"";
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -246,8 +246,9 @@ public class testScriptts : MonoBehaviour
                 }
                 else
                 {
-                    inGameUI.warningTxt.color = new Color(1, 0.8f, 0, 1);
-                    inGameUI.warningTxt.text = "Not Enough Gold";
+                    inGameUI.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+                    inGameUI.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+                    inGameUI.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "Not Enough Gold";
                 }
             }
             else

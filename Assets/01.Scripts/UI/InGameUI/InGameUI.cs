@@ -25,7 +25,6 @@ public class InGameUI : MonoBehaviour
 
     [SerializeField] private Button upGradePanelBackBtn;
     [SerializeField] private Text time;
-    [SerializeField] private Button[] applyBtn;
     [SerializeField] private GameObject[] selectObj;
     [SerializeField] private GameObject giveUPPanel;
     [SerializeField] private GameObject settingPanel;
@@ -46,7 +45,7 @@ public class InGameUI : MonoBehaviour
 
     [SerializeField]
     private Button upGradeBtn;
-    public Text warningTxt;
+    public  CanvasGroup warningTxt;
     public int selectType;
 
     [SerializeField]
@@ -78,23 +77,6 @@ public class InGameUI : MonoBehaviour
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = FindObjectOfType<ObjectPool>();
-
-        //선택버튼 확인 기능
-        applyBtn[0].onClick.AddListener(() => { 
-            NewSelect(0); 
-        });
-        applyBtn[1].onClick.AddListener(() => {
-            NewSelect(1);
-        });
-        applyBtn[2].onClick.AddListener(() => {
-            NewSelect(2);
-        });
-        applyBtn[3].onClick.AddListener(() => {
-            NewSelect(3);
-        });
-        applyBtn[4].onClick.AddListener(() => {
-            NewSelect(4);
-        });
     }
 
     void Start()
@@ -188,9 +170,20 @@ public class InGameUI : MonoBehaviour
             GameManager.Instance.state = GameManager.State.Ready;
         }
 
-        if(warningTxt.color.a >= 0)
+        if(warningTxt.alpha >= 0)
         {
-            warningTxt.color = new Color(warningTxt.color.r, warningTxt.color.g, warningTxt.color.b, Mathf.Lerp(warningTxt.color.a, 0, Time.deltaTime * 2));
+            warningTxt.transform.GetChild(0).GetComponent<Image>().color =
+                new Color(warningTxt.transform.GetChild(0).GetComponent<Image>().color.r,
+                warningTxt.transform.GetChild(0).GetComponent<Image>().color.g,
+                warningTxt.transform.GetChild(0).GetComponent<Image>().color.b,
+                Mathf.Lerp(warningTxt.transform.GetChild(0).GetComponent<Image>().color.a, 0, Time.deltaTime * 2));
+
+            warningTxt.transform.GetChild(1).GetComponent<Image>().color =
+            new Color(warningTxt.transform.GetChild(1).GetComponent<Image>().color.r,
+            warningTxt.transform.GetChild(1).GetComponent<Image>().color.g,
+            warningTxt.transform.GetChild(1).GetComponent<Image>().color.b,
+            Mathf.Lerp(warningTxt.transform.GetChild(1).GetComponent<Image>().color.a, 0, Time.deltaTime * 2));
+
         }
 
         /*if (Input.GetMouseButtonDown(0))
