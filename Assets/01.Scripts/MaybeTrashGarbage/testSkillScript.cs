@@ -17,8 +17,6 @@ public class testSkillScript : MonoBehaviour
     public bool onTurret = false;
 
     private testScripttss testScripts;
-    private TestTurretDataBase testTurData;
-    private InGameUII inGameUI;
 
     public int clickCount;
     float clickTime;
@@ -26,8 +24,6 @@ public class testSkillScript : MonoBehaviour
     void Start()
     {
         testScripts = testScripttss.Instance;
-        testTurData = TestTurretDataBase.Instance; ;
-        inGameUI = InGameUII._instance;
 
         gameObject.TryGetComponent(out Button btnm);
         gameObject.TryGetComponent(out Image img);
@@ -93,10 +89,10 @@ public class testSkillScript : MonoBehaviour
             {
                 testScripts.SelectTurret();
 
-                if (testScripts.turretData[count].name == "Base Level1-1" || testScripts.turretData[count].name == "Base Level2-1")
+                if (testScripts.turretData[count].name == "Base Level1-1"/* || testScripts.turretData[count].name == "Base Level2-1"*/)
                 {
                     circleTree.transform.GetChild(0).gameObject.SetActive(true);
-                    circleTree.transform.GetChild(2).gameObject.SetActive(true);
+                    circleTree.transform.GetChild(3).gameObject.SetActive(true);
                 }
                 else
                 {
@@ -119,6 +115,8 @@ public class testSkillScript : MonoBehaviour
                 {
                     circleTree.transform.GetChild(0).gameObject.SetActive(false);
                     circleTree.transform.GetChild(1).gameObject.SetActive(false);
+                    circleTree.transform.GetChild(2).gameObject.SetActive(false);
+                    circleTree.transform.GetChild(3).gameObject.SetActive(false);
 
                     img.color = new Color(1, 1, 1, 1);
                 }

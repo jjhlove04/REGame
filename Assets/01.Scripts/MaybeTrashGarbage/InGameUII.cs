@@ -44,8 +44,15 @@ public class InGameUII : MonoBehaviour
 
     [SerializeField]
     private Button upGradeBtn;
-    public Text warningTxt;
+    public CanvasGroup GoldWarning;
+    [HideInInspector]
+    public Text warningtxt;
+    [HideInInspector]
+    public Image warningIcon;
+
     public int selectType;
+
+
 
     [SerializeField]
     public GameObject dashiObj;
@@ -69,6 +76,8 @@ public class InGameUII : MonoBehaviour
 
     private ItemManager itemManager;
 
+    public Sprite lockSprite;
+
     private void Awake()
     {
         _instance = this;
@@ -83,6 +92,9 @@ public class InGameUII : MonoBehaviour
         itemManager = ItemManager.Instance;
 
         testScriptts = testScriptts.Instance;
+
+        warningtxt = GoldWarning.transform.GetChild(1).GetComponent<Text>();
+        warningIcon = GoldWarning.transform.GetChild(0).GetComponent<Image>();
 
         mainMenuBtn.onClick.AddListener(() =>
         {
@@ -160,6 +172,7 @@ public class InGameUII : MonoBehaviour
             testScriptts.Reload();
         }
 
+
         if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
@@ -171,9 +184,9 @@ public class InGameUII : MonoBehaviour
             GameManager.Instance.state = GameManager.State.Ready;
         }
 
-        if (warningTxt.color.a >= 0)
+        if (GoldWarning.alpha >= 0)
         {
-            warningTxt.color = new Color(warningTxt.color.r, warningTxt.color.g, warningTxt.color.b, Mathf.Lerp(warningTxt.color.a, 0, Time.deltaTime * 2));
+            GoldWarning.alpha = Mathf.Lerp(GoldWarning.alpha, 0, Time.deltaTime * 2);
         }
 
         /*if (Input.GetMouseButtonDown(0))

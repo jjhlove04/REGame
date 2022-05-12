@@ -112,8 +112,9 @@ public class testScripttss : MonoBehaviour
 
         if (SpawnMananger.Instance.round > SpawnMananger.Instance.maxRound)
         {
-            inGameUI.warningTxt.color = new Color(1, 0f, 0, 1);
-            inGameUI.warningTxt.text = "Press \"x\"";
+            inGameUI.warningtxt.color = new Color(1, 0f, 0, 1);
+            inGameUI.warningIcon.color = new Color(1, 0f, 0, 1);
+            inGameUI.warningtxt.GetComponent<Text>().text = "Press \"x\"";
         }
 
         if (Input.GetKeyDown(KeyCode.Period))

@@ -241,15 +241,15 @@ public class Turret : MonoBehaviour
         }
         else if(bulAmount == maxBulletAmount)
         {
-            inGameUII.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "It's Already Loaded";
+            inGameUII.GoldWarning.GetComponent<CanvasGroup>().alpha = 1;
+            inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
+            inGameUII.warningtxt.text = "It's Already Loaded";
         }
         else
         {
-            inGameUII.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "Not Enough Gold";
+            inGameUII.GoldWarning.GetComponent<CanvasGroup>().alpha = 1;
+            inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
+            inGameUII.warningtxt.text = "Not Enough Gold";
 
         }
         //bulletBar.UpdateBar(bulAmount, maxBulletAmount);

@@ -60,15 +60,17 @@ public class TestTurretDataBase : MonoBehaviour
     {
         if (GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
         {
-            testScripttss.Instance.Create(curTurretType["1-1"]);
+            testScripttss.Instance.Create(curTurretType["0-0"]);
 
             img.color = new Color(1, 1, 1, 0);
             img.transform.GetChild(0).gameObject.SetActive(false);
         }
         else
         {
-            InGameUII._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
-            InGameUII._instance.warningTxt.text = "Not Enough Gold";
+            InGameUII._instance.warningtxt.color = new Color(1, 0.8f, 0, 1);
+            InGameUII._instance.warningIcon.color = new Color(1, 0.8f, 0, 1);
+            InGameUII._instance.GoldWarning.alpha = 1;
+            InGameUII._instance.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
 
         }
         testScripttss.Instance.turPos = count;

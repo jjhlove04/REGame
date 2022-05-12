@@ -73,6 +73,11 @@ public class TitleUI : MonoBehaviour
         //}
         startBtn.onClick.AddListener(() =>
         {
+            if(TestTurretDataBase.Instance.curTurretType.Count == 0)
+            {
+                TestTurretDataBase.Instance.curTurretType.Add("0-0", Resources.Load<GameObject>("Turret/baseTurret0-0"));
+            }
+
             LoadingSceneUI.LoadScene("Main");
         });
         upGradeBtns[0].onClick.AddListener(() =>
