@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private float randomZ;
     private float distanceX;
 
+    protected float speed;
+
     public bool run;
 
     public bool isDying = false;
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour
         EnemyTagInit();
         run = true;
         AttackingTime();
+        RandomAnimSpeed();
     }
 
     protected virtual void Update()
@@ -60,7 +63,7 @@ public class Enemy : MonoBehaviour
             {
                 if(transform.position.y < 0)
                 {
-                    transform.position += new Vector3(0, -transform.position.y, 0);
+                    transform.position += new Vector3(0, 0.1f, 0);
                 }
 
                 EnemyIsDistanceX();
@@ -133,7 +136,7 @@ public class Enemy : MonoBehaviour
     void EnemyTargettingMove()
     {
         transform.position = Vector3.MoveTowards(transform.position, trainManager.trainContainer[enemyType].transform.position + new Vector3(0, 0, randomZ),
-        enemyStat.enemySpeed * Time.deltaTime);
+        speed * Time.deltaTime);
     }
 
     public void EnemyDied()
@@ -192,5 +195,17 @@ public class Enemy : MonoBehaviour
     public bool IsStealth()
     {
         return stealth;
+    }
+
+    public void RandomAnimSpeed()
+    {
+        anim.speed = Random.Range(0.9f, 1.1f);
+
+        RandomMoveSpeed();
+    }
+
+    public void RandomMoveSpeed()
+    {
+        speed = enemyStat.enemySpeed * anim.speed;
     }
 }

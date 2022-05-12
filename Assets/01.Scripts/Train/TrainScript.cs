@@ -36,20 +36,24 @@ public class TrainScript : MonoBehaviour
 
     Dictionary<EnemyType, EnemyData> dicEnemydata = new Dictionary<EnemyType, EnemyData>();
 
+    private TrainManager trainManager;
+
     private void Awake()
     {
         instance = this;
 
         curTrainHp = maxTrainHp;
 
-        TrainManager.instance.curTrainCount = TrainManager.instance.maxTrainCount;
-        TrainManager.instance.CreateTrainPrefab();
+        trainManager= GetComponent<TrainManager>();
+
+        trainManager.curTrainCount = trainManager.maxTrainCount;
+        trainManager.CreateTrainPrefab();
         EnemyDataInit();
     }
 
     private void OnEnable()
     {
-        roomHp = maxTrainHp / TrainManager.instance.curTrainCount;
+        roomHp = maxTrainHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
     }
@@ -63,7 +67,7 @@ public class TrainScript : MonoBehaviour
     {
         if (destroy)
         {
-            TrainManager.instance.KeepOffTrain();
+            trainManager.KeepOffTrain();
         }
     }
 
@@ -88,27 +92,27 @@ public class TrainScript : MonoBehaviour
             switch (hpCheck)
             {
                 case 70:
-                    TrainManager.instance.OnSmoke();
+                    trainManager.OnSmoke();
                     hpCheck = 50;
                     break;
                 case 50:
-                    TrainManager.instance.OnSmoke();
+                    trainManager.OnSmoke();
                     hpCheck = 35;
                     break;
                 case 35:
-                    TrainManager.instance.OnSmoke();
+                    trainManager.OnSmoke();
                     hpCheck = 20;
                     break;
                 case 20:
-                    TrainManager.instance.OnBlackSmoke();
+                    trainManager.OnBlackSmoke();
                     hpCheck = 15;
                     break;
                 case 15:
-                    TrainManager.instance.OnFire();
+                    trainManager.OnFire();
                     hpCheck = 5;
                     break;
                 case 5:
-                    TrainManager.instance.OnFire();
+                    trainManager.OnFire();
                     hpCheck = 0;
                     break;
                 case 0:
@@ -131,7 +135,7 @@ public class TrainScript : MonoBehaviour
     public void Damage(float damage)
     {
         curTrainHp -= damage;
-        testScriptts.Instance.TakeDamageHpBar();
+        testScripttss.Instance.TakeDamageHpBar();
 
         /*for (int i = 0; i < trainhit.Length; i++)
         {
@@ -189,12 +193,12 @@ public class TrainScript : MonoBehaviour
     IEnumerator Destroy()
     {
         roomHp += initRoomHp;
-        if (TrainManager.instance.curTrainCount > 0)
+        if (trainManager.curTrainCount > 0)
         {
-            TrainManager.instance.curTrainCount--;
+            trainManager.curTrainCount--;
             destroy = true;
             yield return new WaitForSeconds(0.5f);
-            TrainManager.instance.Explotion();
+            trainManager.Explotion();
             yield return new WaitForSeconds(4);
             GameManager.Instance.state = GameManager.State.End;
             destroy = false;

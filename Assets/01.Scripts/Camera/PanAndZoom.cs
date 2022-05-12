@@ -40,6 +40,8 @@ public class PanAndZoom : MonoBehaviour
         mainCam = Camera.main;
 
         speed = panSpeed;
+
+        targetorthographicSize = 70;
     }
 
     // Update is called once per frame
