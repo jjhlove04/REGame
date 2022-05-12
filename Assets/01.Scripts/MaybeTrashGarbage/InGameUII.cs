@@ -262,13 +262,13 @@ public class InGameUII : MonoBehaviour
         {
             Time.timeScale = 0;
             GameManager.Instance.state = GameManager.State.Stop;
-            stopPanelRect.DOScale(new Vector3(1, 1, 1), 0.8f).SetUpdate(true);
+            stopPanelRect.DOScale(new Vector3(1, 1, 1), 0.3f).SetUpdate(true);
         }
         if (backIndex == 1)
         {
             Time.timeScale = 1;
             GameManager.Instance.state = GameManager.State.Play;
-            stopPanelRect.DOScale(new Vector3(0, 0, 0), 0.8f).SetUpdate(true);
+            stopPanelRect.DOScale(new Vector3(0, 0, 0), 0.3f).SetUpdate(true);
         }
 
     }

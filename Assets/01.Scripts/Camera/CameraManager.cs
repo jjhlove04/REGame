@@ -15,7 +15,7 @@ public class CameraManager : MonoBehaviour
     public Action TopView;
     public Action QuarterView;
 
-    private float cameraChangeTime = 2;
+    private float cameraChangeTime = 1;
     private float cameraChangeCurTime;
 
     private bool canChangeCamera = true;
