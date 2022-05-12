@@ -19,9 +19,9 @@ public class CircleTree : MonoBehaviour
         }
 
 
-        gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
+        gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().onClick.AddListener((UnityEngine.Events.UnityAction)(() =>
         {
-            if (GameManagerr.Instance.goldAmount >= GameManagerr.Instance.turretPtice)
+            if (GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
             {
                 if (installBtn.GetComponent<testSkillScript>().floor == -1)
                 {
@@ -39,7 +39,7 @@ public class CircleTree : MonoBehaviour
                 InGameUII._instance.warningTxt.color = new Color(1, 0.8f, 0, 1);
                 InGameUII._instance.warningTxt.text = "Not Enough Gold";
             }
-        });
+        }));
 
         gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
         {

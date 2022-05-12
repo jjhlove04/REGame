@@ -58,7 +58,7 @@ public class TestTurretDataBase : MonoBehaviour
 
     public void Create(Image img, int count)
     {
-        if (GameManagerr.Instance.goldAmount >= GameManagerr.Instance.turretPtice)
+        if (GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
         {
             testScripttss.Instance.Create(curTurretType["1-1"]);
 

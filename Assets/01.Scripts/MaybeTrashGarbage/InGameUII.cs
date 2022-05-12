@@ -25,7 +25,6 @@ public class InGameUII : MonoBehaviour
 
     [SerializeField] private Button upGradePanelBackBtn;
     [SerializeField] private Text time;
-    [SerializeField] private Button[] applyBtn;
     [SerializeField] private GameObject[] selectObj;
     [SerializeField] private GameObject giveUPPanel;
     [SerializeField] private GameObject settingPanel;
@@ -38,7 +37,6 @@ public class InGameUII : MonoBehaviour
     int screenWidth = Screen.width;
     int applybtnIndex = 0;
 
-    RectTransform bpTop;
     RectTransform bpBot;
 
     public Text goldAmounTxt;
@@ -74,27 +72,10 @@ public class InGameUII : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        bpTop = bluePrintTop.GetComponent<RectTransform>();
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = FindObjectOfType<ObjectPool>();
 
-        //선택버튼 확인 기능
-        applyBtn[0].onClick.AddListener(() => {
-            NewSelect(0);
-        });
-        applyBtn[1].onClick.AddListener(() => {
-            NewSelect(1);
-        });
-        applyBtn[2].onClick.AddListener(() => {
-            NewSelect(2);
-        });
-        applyBtn[3].onClick.AddListener(() => {
-            NewSelect(3);
-        });
-        applyBtn[4].onClick.AddListener(() => {
-            NewSelect(4);
-        });
     }
 
     void Start()
@@ -146,7 +127,7 @@ public class InGameUII : MonoBehaviour
 
     void Update()
     {
-        goldAmounTxt.text = GameManagerr.Instance.goldAmount.ToString();
+        goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -177,15 +158,15 @@ public class InGameUII : MonoBehaviour
             testScriptts.Reload();
         }
 
-        if (GameManagerr.Instance.state == GameManagerr.State.End)
+        if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
-            TestDatabase.Instance.resultEXP += GameManagerr.Instance.expAmount;
-            TestDatabase.Instance.resultGold += GameManagerr.Instance.goldAmount / 30;
+            TestDatabase.Instance.resultEXP += GameManager.Instance.expAmount;
+            TestDatabase.Instance.resultGold += GameManager.Instance.goldAmount / 30;
 
-            LoadingSceneUI.LoadScene("TitleSceneKIm");
+            LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
-            GameManagerr.Instance.state = GameManagerr.State.Ready;
+            GameManager.Instance.state = GameManager.State.Ready;
         }
 
         if (warningTxt.color.a >= 0)
@@ -257,8 +238,6 @@ public class InGameUII : MonoBehaviour
 
     public void CancleAll()
     {
-        ClosePresetBtn();
-
         upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
 
         testScriptts.turType = -1;
@@ -280,13 +259,13 @@ public class InGameUII : MonoBehaviour
         if (backIndex == -1)
         {
             Time.timeScale = 0;
-            GameManagerr.Instance.state = GameManagerr.State.Stop;
+            GameManager.Instance.state = GameManager.State.Stop;
             stopPanelRect.DOScale(new Vector3(1, 1, 1), 0.8f).SetUpdate(true);
         }
         if (backIndex == 1)
         {
             Time.timeScale = 1;
-            GameManagerr.Instance.state = GameManagerr.State.Play;
+            GameManager.Instance.state = GameManager.State.Play;
             stopPanelRect.DOScale(new Vector3(0, 0, 0), 0.8f).SetUpdate(true);
         }
 
@@ -297,29 +276,29 @@ public class InGameUII : MonoBehaviour
         backPanelOpne(backIndex);
     }
 
-    public void PresetBtn()
-    {
-        if (bpTop.position.x == -300)
-        {
-            bpTop.DOAnchorPosX(300, 0.8f).SetUpdate(true);
-        }
+    //public void PresetBtn()
+    //{
+    //    if (bpTop.position.x == -300)
+    //    {
+    //        bpTop.DOAnchorPosX(300, 0.8f).SetUpdate(true);
+    //    }
 
-        else if (bpTop.position.x == 300)
-        {
-            bpTop.DOAnchorPosX(-300, 0.8f).SetUpdate(true);
-            testScriptts.TurCancle();
-        }
-    }
+    //    else if (bpTop.position.x == 300)
+    //    {
+    //        bpTop.DOAnchorPosX(-300, 0.8f).SetUpdate(true);
+    //        testScriptts.TurCancle();
+    //    }
+    //}
 
-    public void OpenPresetBtn()
-    {
-        bpTop.DOAnchorPosX(300, 0.8f).SetUpdate(true);
-    }
+    //public void OpenPresetBtn()
+    //{
+    //    bpTop.DOAnchorPosX(300, 0.8f).SetUpdate(true);
+    //}
 
-    public void ClosePresetBtn()
-    {
-        bpTop.DOAnchorPosX(-300, 0.8f).SetUpdate(true);
-    }
+    //public void ClosePresetBtn()
+    //{
+    //    bpTop.DOAnchorPosX(-300, 0.8f).SetUpdate(true);
+    //}
 
     public void OpenTitleScene()
     {
@@ -368,7 +347,7 @@ public class InGameUII : MonoBehaviour
     {
         for (int i = 0; i < turPriceList.Count; i++)
         {
-            turPriceList[i].text = GameManagerr.Instance.turretPtice.ToString();
+            turPriceList[i].text = GameManager.Instance.turretPtice.ToString();
         }
     }
 

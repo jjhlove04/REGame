@@ -44,7 +44,7 @@ public class testScripttss : MonoBehaviour
     public List<GameObject> turretData = new List<GameObject>();
     public List<GameObject> turretType = new List<GameObject>();
 
-    GameManagerr gameManager;
+    GameManager gameManager;
     SpawnMananger spawnMananger;
     InGameUII inGameUI;
 
@@ -75,7 +75,7 @@ public class testScripttss : MonoBehaviour
     {
         turType = -1;
 
-        gameManager = GameManagerr.Instance;
+        gameManager = GameManager.Instance;
         spawnMananger = SpawnMananger.Instance;
         inGameUI = InGameUII._instance;
 
@@ -246,7 +246,6 @@ public class testScripttss : MonoBehaviour
         GameObject gameObject = turretType[num];
         turret = gameObject;
 
-        inGameUI.OpenPresetBtn();
     }
 
     public void TurSelect()

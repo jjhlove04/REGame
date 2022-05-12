@@ -49,7 +49,7 @@ public class TitleUII : MonoBehaviour
 
         startBtn.onClick.AddListener(() =>
         {
-            LoadingSceneUI.LoadScene("MainKIm");
+            LoadingSceneUI.LoadScene("Main");
         });
         upGradeBtns[0].onClick.AddListener(() =>
         {
