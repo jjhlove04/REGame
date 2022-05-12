@@ -305,7 +305,7 @@ public class InGameUII : MonoBehaviour
     public void OpenTitleScene()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("TitleSceneKIM");
+        SceneManager.LoadScene("TitleScene");
 
     }
 

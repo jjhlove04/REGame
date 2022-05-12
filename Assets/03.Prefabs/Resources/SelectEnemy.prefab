@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 4619307326055891498}
   - component: {fileID: 3216045219905090882}
   m_Layer: 0
-  m_Name: SelectTurret
+  m_Name: SelectEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4426070855941895878
 Transform:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3bed0a56cf0b27b439e3d6a543ff0bbb, type: 2}
+  - {fileID: 2100000, guid: ececd77bc4586c841bd02b6f6047d402, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -5569,6 +5569,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarningText
       objectReference: {fileID: 0}
+    - target: {fileID: 1788826733118601943, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1788826733118601945, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -11834,7 +11838,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1076716721
 GameObject:
@@ -19901,6 +19905,7 @@ GameObject:
   - component: {fileID: 1722079220}
   - component: {fileID: 1722079219}
   - component: {fileID: 1722079217}
+  - component: {fileID: 1722079221}
   m_Layer: 0
   m_Name: ManagerOBJ
   m_TagString: Untagged
@@ -19938,7 +19943,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1722079219
 MonoBehaviour:
@@ -20019,6 +20024,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7e3b48b26c4e481ebab63e53e891d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1722079221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722079216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988c85cf50b4b7843a829ca8aa9617eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1722079222

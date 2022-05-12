@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour
         //scrap.transform.position = transform.position;
         GameManager.Instance.expAmount += enemyStat.dropExp;
         GameManager.Instance.goldAmount += enemyStat.dropGold;
-        InGameUI._instance.CreateMonjeyTxt(enemyStat.dropExp);
+        InGameUII._instance.CreateMonjeyTxt(enemyStat.dropExp);
 
         gameObject.SetActive(false);
     }
@@ -207,5 +207,20 @@ public class Enemy : MonoBehaviour
     public void RandomMoveSpeed()
     {
         speed = enemyStat.enemySpeed * anim.speed;
+    }
+
+    private void OnMouseDown()
+    {
+        TurretManager.Instance.SelectTargetEnemy(this);
+    }
+
+    private void OnMouseEnter()
+    {
+        transform.Find("SelectEnemy").gameObject.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        transform.Find("SelectEnemy").gameObject.SetActive(false);
     }
 }

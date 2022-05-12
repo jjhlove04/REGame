@@ -50,7 +50,10 @@ public class TrainHit : MonoBehaviour
 
         for (int i = 0; i < newRenderer.Length; i++)
         {
-            newRenderer[i].materials = material[i];
+            if(newRenderer[i] != null)
+            {
+                newRenderer[i].materials = material[i];
+            }
         }
 
     }

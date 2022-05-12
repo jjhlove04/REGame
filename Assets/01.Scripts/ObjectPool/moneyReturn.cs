@@ -33,12 +33,12 @@ public class moneyReturn : MonoBehaviour
         if (txt.color.g != 0)
         {
             prefab.transform.position = new Vector3(prefab.transform.position.x, Mathf.Lerp(prefab.transform.position.y,
-                InGameUI._instance.moneyPos.transform.position.y, Time.deltaTime), 0);
+                InGameUII._instance.moneyPos.transform.position.y, Time.deltaTime), 0);
         }
         else
         {
             prefab.transform.position = new Vector3(prefab.transform.position.x, Mathf.Lerp(prefab.transform.position.y,
-                InGameUI._instance.wavePos.transform.position.y, Time.deltaTime), 0);
+                InGameUII._instance.wavePos.transform.position.y, Time.deltaTime), 0);
         }
 
         txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, Mathf.Lerp(txt.color.a, 0f, Time.deltaTime));

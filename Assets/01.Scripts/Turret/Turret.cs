@@ -68,6 +68,8 @@ public class Turret : MonoBehaviour
 
     public GameObject warning;
 
+    private InGameUII inGameUII;
+
     private void OnEnable()
     {
         OffDetection();
@@ -81,6 +83,7 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
+        inGameUII = InGameUII._instance;
         bulAmount = maxBulletAmount;
     }
 
@@ -238,15 +241,15 @@ public class Turret : MonoBehaviour
         }
         else if(bulAmount == maxBulletAmount)
         {
-            InGameUI._instance.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "It's Already Loaded";
+            inGameUII.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "It's Already Loaded";
         }
         else
         {
-            InGameUI._instance.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
-            InGameUI._instance.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "Not Enough Gold";
+            inGameUII.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 0.8f, 0, 1);
+            inGameUII.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "Not Enough Gold";
 
         }
         //bulletBar.UpdateBar(bulAmount, maxBulletAmount);
@@ -301,24 +304,41 @@ public class Turret : MonoBehaviour
         }
     }
 
+    public void DesignateTarget(Enemy enemy)
+    {
+        if (!enemy.isDying)
+        {
+            if (!enemy.IsStealth())
+            {
+                targetEnemy = enemy.transform;
+            }
+
+            else if (detection)
+            {
+                targetEnemy = enemy.transform;
+            }
+        }
+    }
+
     private void OnMouseEnter()
     {
         gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
         Transform attackRange = transform.Find("AttackRange");
 
-        attackRange.gameObject.SetActive(true);
-        attackRange.transform.localScale = new Vector3(maxDistance*2, maxDistance*2, 1);
+        attackRange.transform.localScale = new Vector3(maxDistance * 2, maxDistance * 2, 1);
         attackRange.transform.localPosition = new Vector3(0, 0, 0);
+        attackRange.gameObject.SetActive(true);
+
 
         if (detection)
         {
-            attackRange.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 0, 30);
+            attackRange.GetComponentInChildren<SpriteRenderer>().color = new Color32(255, 255, 0, 30);
         }
 
         else
         {
-            attackRange.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 255, 30);
+            attackRange.GetComponentInChildren<SpriteRenderer>().color = new Color32(0, 0, 255, 30);
         }
     }
 
@@ -330,5 +350,10 @@ public class Turret : MonoBehaviour
         Transform attackRange = transform.Find("AttackRange");
 
         attackRange.gameObject.SetActive(false);
+    }
+
+    private void OnMouseDown()
+    {
+        TurretManager.Instance.SelectTurret(this);
     }
 }
