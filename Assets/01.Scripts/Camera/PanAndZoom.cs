@@ -31,6 +31,7 @@ public class PanAndZoom : MonoBehaviour
 
 
 
+
     Camera mainCam;
     private void Awake()
     {
@@ -43,6 +44,22 @@ public class PanAndZoom : MonoBehaviour
 
         targetorthographicSize = 70;
     }
+
+
+    Vector3 CamMove()
+    {
+        Vector3 pos = Vector3.zero;
+
+        pos.x -= Input.GetAxis("Mouse X");
+        pos.z = Input.GetAxis("Mouse Y") * -1;
+
+        //centralAxis.rotation = Quaternion.Euler(new Vector3(centralAxis.rotation.x + mouseY, centralAxis.rotation.y + mouseX, 0) * camSpeed);
+
+        return pos;
+    }
+    // Start is called before the first frame update
+
+    // Update is called once per frame
 
     // Update is called once per frame
     void Update()
@@ -65,6 +82,17 @@ public class PanAndZoom : MonoBehaviour
             x = Input.GetAxisRaw("Horizontal");
 
             y = Input.GetAxisRaw("Vertical");
+
+            if (Input.GetMouseButton(1))
+            {
+                Vector3 pos = Vector3.zero;
+
+                pos = CamMove();
+
+                x = pos.x;
+                y = pos.z;
+            }
+
 
             if (x != 0 || y != 0 || z != 0 && !cameraStop)
             {
