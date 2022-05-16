@@ -168,9 +168,9 @@ RectTransform:
   m_Father: {fileID: 1103096114}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 730, y: -180}
   m_SizeDelta: {x: 1460, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &412100
@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 3
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &48696987
@@ -1244,8 +1244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 6
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &109270277
@@ -1516,8 +1516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 10
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &115336518
@@ -1583,6 +1583,7 @@ MonoBehaviour:
   interval: 3
   round: 11
   boss: 0
+  adjustmentRound: 12
 --- !u!1 &118707590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,17 +1952,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1788826733118601942, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
   m_PrefabInstance: {fileID: 516994089}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &160211377 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1788826733118601945, guid: adf6f923fb1eb4a41a34fb2803207c86, type: 3}
-  m_PrefabInstance: {fileID: 516994089}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &184422388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4850246953900376, guid: 217be87c6593a4a469799aa528bc3898, type: 3}
@@ -2619,8 +2609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 7
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &308649227
@@ -4246,8 +4236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 11
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &503710880
@@ -4962,8 +4952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 2
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &574849633
@@ -5087,6 +5077,7 @@ MonoBehaviour:
   interval: 3
   round: 0
   boss: 0
+  adjustmentRound: 12
 --- !u!1 &622356918
 GameObject:
   m_ObjectHideFlags: 0
@@ -6191,6 +6182,7 @@ MonoBehaviour:
   interval: 3
   round: 0
   boss: 0
+  adjustmentRound: 12
 --- !u!4 &744409779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601681510908809259, guid: 11aea87437ab51d429adcb873617733d, type: 3}
@@ -9971,6 +9963,7 @@ MonoBehaviour:
   interval: 3
   round: 20
   boss: 0
+  adjustmentRound: 12
 --- !u!4 &1126854936
 Transform:
   m_ObjectHideFlags: 0
@@ -10409,8 +10402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 8
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1001 &1155580224
@@ -11304,8 +11297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 1
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &1252716868
@@ -12670,6 +12663,7 @@ MonoBehaviour:
   interval: 3
   round: 20
   boss: 0
+  adjustmentRound: 12
 --- !u!1 &1371144772
 GameObject:
   m_ObjectHideFlags: 0
@@ -13505,8 +13499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 5
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &1455231351
@@ -14229,8 +14223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 0
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &1546832520
@@ -16065,6 +16059,7 @@ MonoBehaviour:
   state: 1
   gameTime: 0
   gameSpeed: 1
+  turretPtice: 10
   goldAmount: 0
   expAmount: 0
 --- !u!4 &1722079218
@@ -16103,13 +16098,6 @@ MonoBehaviour:
   upGradePanelRect: {fileID: 0}
   upGradePanelBackBtn: {fileID: 243645481}
   time: {fileID: 1129060216}
-  applyBtn:
-  - {fileID: 343450985}
-  - {fileID: 719329231}
-  - {fileID: 1071362097}
-  - {fileID: 1868108920}
-  - {fileID: 529711723}
-  - {fileID: 49413631}
   selectObj:
   - {fileID: 65333037}
   - {fileID: 1064310821}
@@ -16119,11 +16107,19 @@ MonoBehaviour:
   - {fileID: 513891292}
   giveUPPanel: {fileID: 1564638629}
   settingPanel: {fileID: 2022539008}
+  turPriceList: []
   goldAmounTxt: {fileID: 2063052290}
   waveTxt: {fileID: 872924424}
   upGradeBtn: {fileID: 1612825819}
-  warningTxt: {fileID: 160211377}
+  warningTxt: {fileID: 0}
   selectType: 0
+  dashiObj: {fileID: 0}
+  moneyPos: {fileID: 0}
+  wavePos: {fileID: 0}
+  incomMoney: {fileID: 0}
+  moneyX: 0
+  towerActive: {fileID: 0}
+  itemList: []
 --- !u!114 &1722079220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16192,6 +16188,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f93b490a45a5b3a499b3f73c2f71b881, type: 3}
   - {fileID: 21300000, guid: ece86aa09dba3fb49811ba9723563a3f, type: 3}
   - {fileID: 21300000, guid: c187d1df90914084499f7be44beb8763, type: 3}
+  images: []
 --- !u!114 &1722079222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17784,8 +17781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 4
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &1924589337
@@ -20437,8 +20434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205bdf80a86fab04b8740f0576e99773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleTree: {fileID: 0}
   count: 9
-  selectType: -1
   floor: 0
   isTest: 0
 --- !u!1 &2143911059
