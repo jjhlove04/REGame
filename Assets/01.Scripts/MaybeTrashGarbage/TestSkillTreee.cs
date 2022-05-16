@@ -35,6 +35,24 @@ public class TestSkillTreee : MonoBehaviour
         {
             canUpgrade.Clear();
         }
+
+        SkillTreeBtnn[] btn = GetComponentsInChildren<SkillTreeBtnn>();
+        for (int i = 0; i < btn.Length; i++)
+        {
+            if (btn[i].GetComponent<SkillTreeBtnn>())
+            {
+                btn[i].GetComponent<Button>().interactable = false;
+
+                btnDic[btn[i].gameObject.ToString()] = false;
+
+                if (btn[i].GetComponent<SkillTreeBtnn>().myCount == 1)
+                {
+                    btn[i].GetComponent<Button>().interactable = true;
+                    btnDic[btn[i].gameObject.ToString()] = true;
+                }
+            }
+
+        }
     }
 
     public void LoadData()
