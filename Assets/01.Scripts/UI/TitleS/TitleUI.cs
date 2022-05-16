@@ -71,6 +71,12 @@ public class TitleUI : MonoBehaviour
         //{
         //    buyBtns[i].gameObject.AddComponent<TooltipScript>();
         //}
+
+        if(TestTurretDataBase.Instance.curTurretType.Count == 1)
+        {
+            TestTurretDataBase.Instance.curTurretType.Clear();
+        }
+
         startBtn.onClick.AddListener(() =>
         {
             if(TestTurretDataBase.Instance.curTurretType.Count == 0)

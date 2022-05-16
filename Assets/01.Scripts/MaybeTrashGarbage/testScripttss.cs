@@ -256,13 +256,11 @@ public class testScripttss : MonoBehaviour
             if (images[i].color.a == 0)
             {
                 images[i].color = new Color(1, 1, 0, 0);
-                images[i].transform.GetChild(0).gameObject.SetActive(false);
             }
 
             else
             {
                 images[i].color = new Color(1, 1, 0, 1);
-                images[i].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
@@ -274,13 +272,11 @@ public class testScripttss : MonoBehaviour
             if (images[i].color.a == 0)
             {
                 images[i].color = new Color(1, 1, 1, 0);
-                images[i].transform.GetChild(0).gameObject.SetActive(false);
             }
 
             else
             {
                 images[i].color = new Color(1, 1, 1, 1);
-                images[i].transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }

@@ -195,11 +195,8 @@ public class CircleTree : MonoBehaviour
         gameObject.transform.GetChild(3).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
-        Debug.Log(num + "-" + installBtn.GetComponent<testSkillScript>().floor);
-
         if (!testturretdatabase.curTurretType.ContainsKey(num + "-" + installBtn.GetComponent<testSkillScript>().floor))
         {
-            Debug.Log("false");
             gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = false;
         }
     }

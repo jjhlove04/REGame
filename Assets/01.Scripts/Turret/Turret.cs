@@ -85,6 +85,7 @@ public class Turret : MonoBehaviour
     {
         inGameUII = InGameUII._instance;
         bulAmount = maxBulletAmount;
+        gameObject.transform.GetChild(2).gameObject.SetActive(false);
     }
 
     private void Update()
@@ -322,7 +323,7 @@ public class Turret : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        gameObject.transform.GetChild(2).gameObject.SetActive(true);
+        //gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
         Transform attackRange = transform.Find("AttackRange");
 
@@ -344,7 +345,7 @@ public class Turret : MonoBehaviour
 
     private void OnMouseExit()
     {
-        gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        //gameObject.transform.GetChild(2).gameObject.SetActive(false);
 
 
         Transform attackRange = transform.Find("AttackRange");

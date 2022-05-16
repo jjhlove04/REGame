@@ -66,7 +66,7 @@ public class InGameUII : MonoBehaviour
 
     Coroutine coroutine;
 
-    testScriptts testScriptts;
+    testScripttss testScriptts;
 
     private ObjectPool objectPool;
 
@@ -91,7 +91,7 @@ public class InGameUII : MonoBehaviour
     {
         itemManager = ItemManager.Instance;
 
-        testScriptts = testScriptts.Instance;
+        testScriptts = testScripttss.Instance;
 
         warningtxt = GoldWarning.transform.GetChild(1).GetComponent<Text>();
         warningIcon = GoldWarning.transform.GetChild(0).GetComponent<Image>();
@@ -248,23 +248,23 @@ public class InGameUII : MonoBehaviour
         testScriptts.turType = -1;
         testScriptts.turPos = -1;
         testScriptts.UnSelectTurret();
-        upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
     }
 
     public void CancleAll()
     {
-        upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
-
         testScriptts.turType = -1;
         testScriptts.turPos = -1;
         testScriptts.UnSelectTurret();
 
-        //CircleTree[] circle = FindObjectsOfType<CircleTree>();
+        CircleTree[] circle = FindObjectsOfType<CircleTree>();
 
-        //for (int i = 0; i < circle.Length; i++)
-        //{
-        //    circle[i].transform.
-        //}
+        for (int i = 0; i < circle.Length; i++)
+        {
+            circle[i].transform.GetChild(0).gameObject.SetActive(false);
+            circle[i].transform.GetChild(1).gameObject.SetActive(false);
+            circle[i].transform.GetChild(2).gameObject.SetActive(false);
+            circle[i].transform.GetChild(3).gameObject.SetActive(false);
+        }
     }
 
 
