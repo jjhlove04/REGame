@@ -147,8 +147,8 @@ public class TrainManager : MonoBehaviour
         collider.size = new Vector3(6, 10, curTrainCount * distance + 27);
     }
 
-    public void KeepOffTrain()
+    /*public void KeepOffTrain()
     {
         transform.position += -new Vector3(0, 0, keppOffSpeed);
-    }
+    }*/
 }

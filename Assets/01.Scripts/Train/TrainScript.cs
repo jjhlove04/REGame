@@ -15,7 +15,8 @@ public class TrainScript : MonoBehaviour
 
     private float smokeHp;
 
-    private bool destroy = false;
+    [HideInInspector]
+    public bool destroy = false;
 
     [SerializeField]
     private float fireDamage;
@@ -63,13 +64,13 @@ public class TrainScript : MonoBehaviour
         trainhit = GetComponentInChildren<TrainHit>();
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (destroy)
         {
             trainManager.KeepOffTrain();
         }
-    }
+    }*/
 
     private void EnemyDataInit()
     {

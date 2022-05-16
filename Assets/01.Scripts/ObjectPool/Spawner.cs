@@ -53,6 +53,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < gm.Length; i++)
         {
             gm[i] = objectPool.GetObject(prefab);
+            gm[i].transform.position = transform.position;
         }
         yield return Timing.WaitForSeconds(0.1f);
 

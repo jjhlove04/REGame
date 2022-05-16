@@ -78,6 +78,9 @@ public class InGameUII : MonoBehaviour
 
     public Sprite lockSprite;
 
+    [SerializeField]
+    private GameObject worldCanvas;
+
     private void Awake()
     {
         _instance = this;
@@ -212,6 +215,11 @@ public class InGameUII : MonoBehaviour
                 dashiObj.SetActive(false);
             }
 
+        }
+
+        if (TrainScript.instance.destroy)
+        {
+            worldCanvas.SetActive(false);
         }
 
     }

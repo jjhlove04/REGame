@@ -74,6 +74,11 @@ public class BackGround : MonoBehaviour
 
     private void MoveBackground(Transform transform)
     {
+        if (TrainScript.instance.destroy)
+        {
+            speed = Mathf.Lerp(speed, 0, Time.deltaTime);
+        }
+
         transform.position -= new Vector3(0, 0, speed * GameManager.Instance.gameSpeed);
     }
 
