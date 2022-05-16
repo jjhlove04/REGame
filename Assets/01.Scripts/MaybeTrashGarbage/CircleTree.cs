@@ -142,12 +142,12 @@ public class CircleTree : MonoBehaviour
                     gameObject.transform.GetChild(3).GetChild(1).GetComponent<Button>().interactable = false;
                 }
 
-                if (!testturretdatabase.curTurretType.ContainsKey("2-1"))
+                if (!testturretdatabase.curTurretType.ContainsKey("2-2"))
                 {
                     gameObject.transform.GetChild(3).GetChild(2).GetComponent<Button>().interactable = false;
                 }
 
-                if (!testturretdatabase.curTurretType.ContainsKey("3-1"))
+                if (!testturretdatabase.curTurretType.ContainsKey("3-2"))
                 {
                     gameObject.transform.GetChild(3).GetChild(3).GetComponent<Button>().interactable = false;
                 }

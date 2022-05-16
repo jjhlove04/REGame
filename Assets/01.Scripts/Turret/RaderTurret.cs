@@ -30,7 +30,7 @@ public class RaderTurret : MonoBehaviour
 
         attackRange.gameObject.SetActive(true);
         attackRange.transform.localScale = new Vector3(maxDistance, maxDistance, 1);
-        attackRange.GetComponent<SpriteRenderer>().color = new Color32(0, 255, 0, 30);
+        attackRange.GetComponentInChildren<SpriteRenderer>().color = new Color32(0, 255, 0, 30);
     }
 
     private void OnMouseExit()

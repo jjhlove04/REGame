@@ -8,6 +8,8 @@ public class BulletBar : MonoBehaviour
     public SpriteRenderer barSprite;
     public GameObject txt;
 
+    public GameObject warningSprite;
+
     private void Awake()
     {
         barTrm = transform.Find("bar");
@@ -21,29 +23,37 @@ public class BulletBar : MonoBehaviour
     {
         //transform.parent.LookAt(Camera.main.transform);
         transform.parent.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
-        BarSize();
+        //BarSize();
 
-        if (barTrm.localScale.x <= 0.3)
-        {
-            barSprite.color = Color.red;
-        }
-        else if (barTrm.localScale.x <= 0.6)
-        {
-            barSprite.color = new Color(0.8f, 0.5f, 0, 1);
-            txt.SetActive(true);
-        }
-        else
-        {
-            barSprite.color = new Color(0.8f, 0.8f, 0, 1);
+        //if (barTrm.localScale.x <= 0.3)
+        //{
+        //    barSprite.color = Color.red;
+        //}
+        //else if (barTrm.localScale.x <= 0.6)
+        //{
+        //    barSprite.color = new Color(0.8f, 0.5f, 0, 1);
+        //    txt.SetActive(true);
+        //}
+        //else
+        //{
+        //    barSprite.color = new Color(0.8f, 0.8f, 0, 1);
 
-            txt.SetActive(false);
-        }
+        //    txt.SetActive(false);
+        //}
     }
 
     public void UpdateBar(int curBulletAmount, int bulletAmountMax)
     {
-        barTrm.localScale = new Vector3(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax), 1, 1);
+        //barTrm.localScale = new Vector3(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax), 1, 1);
 
+        if(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax) <= 0.3)
+        {
+            warningSprite.SetActive(true);
+        }
+        else
+        {
+            warningSprite.SetActive(false);
+        }
     }
 
     private float GetBulletAmounetNomalized(int curBulletAmount, int bulletAmountMax)
@@ -64,12 +74,14 @@ public class BulletBar : MonoBehaviour
     private void LookCameraTopView()
     {
         transform.rotation = Quaternion.LookRotation(new Vector3(0, -90, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
+        warningSprite.transform.rotation = Quaternion.LookRotation(new Vector3(0, -90, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
         transform.localPosition = new Vector3(1.75f, 0, 0);
     }
 
     private void LookCameraQuarterView()
     {
         transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
+        warningSprite.transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
         transform.localPosition = new Vector3(1.75f, 2, 0);
     }
 }
