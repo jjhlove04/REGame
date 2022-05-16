@@ -10076,12 +10076,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background:
   - {fileID: 1667646546}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1069633749}
+  - {fileID: 660714872}
+  - {fileID: 1113908784}
+  - {fileID: 1137758909}
+  - {fileID: 1693956447}
   tower: {fileID: 4742855550413791501, guid: a97ccd07b4258fb4187b238466ce5c33, type: 3}
 --- !u!1001 &255970952
 PrefabInstance:
@@ -13056,13 +13055,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background:
+  - {fileID: 1667646546}
+  - {fileID: 1069633749}
+  - {fileID: 660714872}
+  - {fileID: 1113908784}
+  - {fileID: 1137758909}
   - {fileID: 1693956447}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   tower: {fileID: 4742855550413791501, guid: a97ccd07b4258fb4187b238466ce5c33, type: 3}
 --- !u!61 &360485775
 BoxCollider2D:
@@ -24517,13 +24515,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background:
+  - {fileID: 1667646546}
+  - {fileID: 1069633749}
+  - {fileID: 660714872}
+  - {fileID: 1113908784}
   - {fileID: 1137758909}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1693956447}
   tower: {fileID: 4742855550413791501, guid: a97ccd07b4258fb4187b238466ce5c33, type: 3}
 --- !u!61 &711065027
 BoxCollider2D:
@@ -32157,13 +32154,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background:
+  - {fileID: 1667646546}
   - {fileID: 1069633749}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 660714872}
+  - {fileID: 1113908784}
+  - {fileID: 1137758909}
+  - {fileID: 1693956447}
   tower: {fileID: 4742855550413791501, guid: a97ccd07b4258fb4187b238466ce5c33, type: 3}
 --- !u!61 &931076125
 BoxCollider2D:
@@ -48511,13 +48507,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background:
+  - {fileID: 1667646546}
+  - {fileID: 1069633749}
   - {fileID: 660714872}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1113908784}
+  - {fileID: 1137758909}
+  - {fileID: 1693956447}
   tower: {fileID: 4742855550413791501, guid: a97ccd07b4258fb4187b238466ce5c33, type: 3}
 --- !u!61 &1406107526
 BoxCollider2D:
@@ -69612,13 +69607,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background:
+  - {fileID: 1667646546}
+  - {fileID: 1069633749}
+  - {fileID: 660714872}
   - {fileID: 1113908784}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1137758909}
+  - {fileID: 1693956447}
   tower: {fileID: 4742855550413791501, guid: a97ccd07b4258fb4187b238466ce5c33, type: 3}
 --- !u!61 &2032856387
 BoxCollider2D:
@@ -74734,22 +74728,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TestSkillTree, Assembly-CSharp
-        m_MethodName: postData
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TestSkillTree, Assembly-CSharp
+      - m_Target: {fileID: 557847292018208796}
+        m_TargetAssemblyTypeName: TestSkillTreee, Assembly-CSharp
         m_MethodName: SkillTreeClear
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -74859,7 +74841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &557847293824919570
 MonoBehaviour:
   m_ObjectHideFlags: 0

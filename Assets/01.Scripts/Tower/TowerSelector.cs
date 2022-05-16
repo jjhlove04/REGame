@@ -20,7 +20,7 @@ public class TowerSelector : MonoBehaviour
                 back.gameObject.SetActive(false);
             }
 
-            gameObject.transform.parent.Find("Background").gameObject.SetActive(true);
+            transform.parent.Find("Background").gameObject.SetActive(true);
 
             TowerManager.Instance.SelectTower(tower);
         });
