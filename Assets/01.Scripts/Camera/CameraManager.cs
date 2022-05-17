@@ -20,6 +20,13 @@ public class CameraManager : MonoBehaviour
 
     private bool canChangeCamera = true;
 
+    private GameObject curCamera;
+
+    private Transform curCameraTrm;
+
+    [SerializeField]
+    private GameObject nuclearCamera;
+
     private void Awake()
     {
         cameraChangeCurTime = cameraChangeTime;
@@ -72,7 +79,7 @@ public class CameraManager : MonoBehaviour
 
     public void CameraChangeView()
     {
-        if (canChangeCamera)
+        if (canChangeCamera && curCamera == null)
         {
             topCamera.SetActive(!topCamera.activeSelf);
             quaterCamera.SetActive(!quaterCamera.activeSelf);
@@ -84,19 +91,58 @@ public class CameraManager : MonoBehaviour
 
     public void Shake(float duration, float magnitude)
     {
-        if (topCamera.activeSelf)
-        {
+        if(topCamera.activeSelf)
             topCamera.GetComponent<CameraShake>().Shake(duration, magnitude);
-        }
 
-        if (quaterCamera.activeSelf)
-        {
+        else if(quaterCamera.activeSelf)
             quaterCamera.GetComponent<CameraShake>().Shake(duration, magnitude);
+
+        if(curCamera != null)
+        {
+            curCamera.GetComponent<CameraShake>().Shake(duration, magnitude);
         }
     }
 
     public bool ReturnCanCam()
     {
         return canChangeCamera;
+    }
+
+    public void OnNuclearView()
+    {
+        if (topCamera.activeSelf)
+        {
+            curCamera = topCamera;
+
+            curCameraTrm = null;
+        }
+
+        else
+        {
+            curCamera = quaterCamera;
+
+            curCameraTrm = quaterCamera.transform;
+
+            topCamera.SetActive(true);
+
+            quaterCamera.SetActive(false);
+        }
+
+        topCamera.GetComponent<PanAndZoom>().targetorthographicSize = 185;
+    }
+
+    public void OffNuclearView()
+    {
+        topCamera.SetActive(false);
+
+        curCamera.SetActive(true);
+
+        if(curCameraTrm != null)
+        {
+            curCamera.transform.position = curCameraTrm.position;
+        }
+
+        curCamera = null;
+        curCameraTrm = null;
     }
 }

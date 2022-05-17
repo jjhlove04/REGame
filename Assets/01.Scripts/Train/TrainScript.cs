@@ -83,6 +83,7 @@ public class TrainScript : MonoBehaviour
 
     public void DestroyTrain()
     {
+        GameObject.Find("Particle").SetActive(false);
         transform.Find("Turrets").gameObject.SetActive(false);
         StartCoroutine(Destroy());
     }

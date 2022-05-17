@@ -42,6 +42,8 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 
     InGameUII inGameUII;
 
+    CameraManager cameraManager;
+
     private void Start()
     {
         //_spawnWallTime = Time.time;
@@ -51,6 +53,8 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
         inGameUII = InGameUII._instance;
 
         targetAreaObj.transform.localScale = new Vector3(attackArea-5, attackArea-5, 1);
+
+        cameraManager = CameraManager.Instance;
     }
 
     /*private void OnGUI()
@@ -157,7 +161,9 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
     {
         if (!IsPointerOverUIObject())
         {
-            CameraManager.Instance.Shake(bombLife, 0.75f);
+            inGameUII.towerActive.interactable = false;
+
+            cameraManager.Shake(bombLife, 0.75f);
 
             targetAreaObj.SetActive(false);
 
@@ -172,12 +178,14 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
             Destroy(exp, bombLife);
 
             Invoke("SpawnExplosion", bombLife);
+
+            cameraManager.OffNuclearView();
         }
     }
 
     private void SpawnExplosion()
     {
-        CameraManager.Instance.Shake(3, explosionLife);
+        cameraManager.Shake(3, explosionLife);
 
         Damage();
 
@@ -210,6 +218,8 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
             targetAreaObj.SetActive(false);
 
             inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(false);
+
+            cameraManager.OffNuclearView();
         }
 
         else
@@ -219,8 +229,9 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
             targetAreaObj.SetActive(true);
 
             inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(true);
-        }
 
+            cameraManager.OnNuclearView();
+        }
     }
 
     private void CoolingTime()
@@ -236,6 +247,8 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
             curTime = 0;
 
             inGameUII.towerActive.transform.Find("CoolTimer").GetComponent<Image>().fillAmount = 0;
+
+            inGameUII.towerActive.interactable = true;
         }
     }
 
