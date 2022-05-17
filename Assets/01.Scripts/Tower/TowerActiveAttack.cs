@@ -250,6 +250,6 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
 
     public void CoolTimeImg()
     {
-        inGameUII.towerActive.transform.Find("CoolTimer").GetComponent<Image>().fillAmount = curTime / coolTime;
+        inGameUII.towerActive.transform.Find("CoolTimer").GetComponent<Image>().fillAmount = 1 - (curTime / coolTime);
     }
 }

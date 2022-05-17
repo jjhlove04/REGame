@@ -78,6 +78,7 @@ public class ItemManager : MonoBehaviour
         else if(scene.name == "TitleScene")
         {
             items.Clear();
+            gameItems.Clear();
         }
     }
 }
