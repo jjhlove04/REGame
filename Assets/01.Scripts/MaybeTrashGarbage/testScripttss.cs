@@ -236,7 +236,7 @@ public class testScripttss : MonoBehaviour
         GameObject gameInst = objectPool.GetObject(turret);
         //gameInst.GetComponent<Turret>().turCount = turPos;
         gameInst.transform.position = turretPoses[turPos].position;
-        gameInst.transform.SetParent(this.gameObject.transform);
+        gameInst.transform.SetParent(TrainScript.instance.transform.Find("Turrets"));
         turretData[turPos].SetActive(false);
         turretData[turPos] = gameInst;
     }

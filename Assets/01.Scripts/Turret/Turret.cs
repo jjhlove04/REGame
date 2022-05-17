@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
+    private int shootCount = 1;
 
     private float shootTimer;
 
@@ -129,25 +130,27 @@ public class Turret : MonoBehaviour
     {
         if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying && Vector3.Distance(transform.position, targetEnemy.position) < 80)
         {
-            shootTimer -= Time.deltaTime;
+            shootTimer += Time.deltaTime;
             if (bulAmount > 0)
             {
-                if (shootTimer <= 0f)
+                if (shootTimer >= (shootTimerMax / weapons.Length) * shootCount)
                 {
                     ShootSound();
 
-                    shootTimer = shootTimerMax;
+                    GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
+                    gameObject.transform.position = weapons[shootCount-1].transform.Find("BulletPoint").position;
+                    gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
+                    TestDatabase.Instance.resultDamage += damage;
+                    bulAmount--;
 
-                    for (int i = 0; i < weapons.Length; i++)
+                    bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+
+                    shootCount++;
+
+                    if (shootCount == weapons.Length+1)
                     {
-
-                        GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
-                        gameObject.transform.position = weapons[i].transform.Find("BulletPoint").position;
-                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
-                        TestDatabase.Instance.resultDamage += damage;
-                        bulAmount--;
-
-                        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+                        shootTimer = 0;
+                        shootCount = 1;
                     }
                 }
 

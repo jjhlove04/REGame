@@ -63,7 +63,7 @@ public class HealthSystem : MonoBehaviour
 
     public void WideAreaDamge(float damage)
     {
-        if(enemy.onlyDamage != OnlyDamage.singular)
+        if(enemy.onlyDamage != OnlyDamage.singular && !enemy.isDying)
         {
             Damage(damage);
         }
@@ -71,7 +71,7 @@ public class HealthSystem : MonoBehaviour
 
     public void Damage(float damageAmount)
     {
-        if(enemy.onlyDamage != OnlyDamage.wideArea)
+        if(enemy.onlyDamage != OnlyDamage.wideArea && !enemy.isDying)
         {
             curHealthAmount -= damageAmount;
             curHealthAmount = Mathf.Clamp(curHealthAmount, 0, enemy.enemyStat.healthAmountMax);
@@ -87,7 +87,7 @@ public class HealthSystem : MonoBehaviour
 
     public void DotDamageCoroutine(GameObject particle, int dotcount, float dotDelay, float dotDamage)
     {
-        if (enemy.onlyDamage != OnlyDamage.wideArea)
+        if (enemy.onlyDamage != OnlyDamage.wideArea && !enemy.isDying)
         {
             StartCoroutine(DotDamage(particle, dotcount, dotDelay, dotDamage));
         }
