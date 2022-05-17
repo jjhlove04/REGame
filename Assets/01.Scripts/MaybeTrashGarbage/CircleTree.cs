@@ -183,10 +183,16 @@ public class CircleTree : MonoBehaviour
     private void DesTurret()
     {
         installBtn.GetComponent<testSkillScript>().onTurret = false;
-        gameObject.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-        gameObject.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
         gameObject.transform.GetChild(2).gameObject.SetActive(false);
         gameObject.transform.GetChild(3).gameObject.SetActive(false);
+
+        gameObject.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+        gameObject.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+
+        installBtn.GetComponent<testSkillScript>().floor = -1;
+        gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = true;
+        installBtn.GetComponent<Image>().color = new Color(1,1,0,1);
+        installBtn.GetComponent<Image>().transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void ChoseTree(int num)

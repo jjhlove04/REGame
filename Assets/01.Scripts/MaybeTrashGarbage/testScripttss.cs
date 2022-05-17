@@ -221,7 +221,14 @@ public class testScripttss : MonoBehaviour
     }
     public void Despawn()
     {
+        turretPoses[turPos].TryGetComponent(out tesetTurret tT);
+
         turretData[turPos].SetActive(false);
+
+        turretData[turPos] = turretPoses[turPos].gameObject;
+        tT.onTurret = false;
+
+        UnSelectTurret();
     }
 
     public void ChageMakeTur(GameObject turret)
@@ -230,7 +237,7 @@ public class testScripttss : MonoBehaviour
         //gameInst.GetComponent<Turret>().turCount = turPos;
         gameInst.transform.position = turretPoses[turPos].position;
         gameInst.transform.SetParent(this.gameObject.transform);
-        Despawn();
+        turretData[turPos].SetActive(false);
         turretData[turPos] = gameInst;
     }
 
