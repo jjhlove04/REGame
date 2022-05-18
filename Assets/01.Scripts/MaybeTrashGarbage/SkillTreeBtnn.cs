@@ -14,6 +14,10 @@ public class SkillTreeBtnn : MonoBehaviour
     public GameObject floor;
 
     TestSkillTreee testsk;
+
+
+    //[Header("포탑 정보")]
+    //public float 
     private void OnEnable()
     {
         testsk = FindObjectOfType<TestSkillTreee>();

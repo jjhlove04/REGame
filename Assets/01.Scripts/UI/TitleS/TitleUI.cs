@@ -16,6 +16,9 @@ public class TitleUI : MonoBehaviour
     [Header("업그레이드 관련")]
     public Button[] upGradeBtns; //0번 터렛, 1번 기차, 2번 타워
     public GameObject[] upGradePanels; //0번 터렛, 1번 기차, 2번 타워
+    public Image explainTurretImage;
+    public Text[] TurretInfo;
+    public Image informationPanel;
 
     [Header("출발준비 패널 관련")]
     Sequence openSequence;
