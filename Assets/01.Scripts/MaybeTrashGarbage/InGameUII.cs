@@ -76,6 +76,8 @@ public class InGameUII : MonoBehaviour
 
     private ItemManager itemManager;
 
+    private TowerManager towerManager;
+
     public Sprite lockSprite;
 
     [SerializeField]
@@ -92,6 +94,8 @@ public class InGameUII : MonoBehaviour
 
     void Start()
     {
+        towerManager = TowerManager.Instance;
+
         itemManager = ItemManager.Instance;
 
         testScriptts = testScripttss.Instance;
@@ -108,11 +112,14 @@ public class InGameUII : MonoBehaviour
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
         ShowTurPrice();
 
-        if (TowerManager.Instance != null && TowerManager.Instance.tower != null)
+        if (towerManager != null && towerManager.tower != null)
         {
+            Tower tower = towerManager.tower.GetComponent<Tower>();
+            towerActive.transform.Find("Icon").GetComponent<Image>().sprite = tower.icon;
+
             towerActive.onClick.AddListener(() =>
             {
-                TowerManager.Instance.tower.GetComponent<ITowerActiveSkill>().UseTower();
+                tower.UseTower();
             });
         }
 
@@ -125,8 +132,10 @@ public class InGameUII : MonoBehaviour
         {
             for (int i = 0; i < itemManager.gameItems.Count; i++)
             {
+                Item item = itemManager.gameItems[i].GetComponent<Item>();
                 itemList[i].gameObject.SetActive(true);
-                itemManager.gameItems[i].GetComponent<Item>().GetItemUI(itemList[i].gameObject);
+                item.GetItemUI(itemList[i].gameObject);
+                itemList[i].transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
 
                 itemList[i].onClick.AddListener(itemManager.gameItems[i].GetComponent<Item>().UseItem);
             }

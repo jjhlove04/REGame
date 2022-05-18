@@ -4,12 +4,11 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
+public class TowerActiveAttack : Tower
 {
     public GameObject currentDetonator;
     public GameObject bomb;
     //private int _currentExpIdx = -1;
-    public GameObject[] detonatorPrefabs;
     public float bombLife = 3;
     public float explosionLife = 10;
     public float timeScale = 1.0f;
@@ -209,7 +208,7 @@ public class TowerActiveAttack : MonoBehaviour, ITowerActiveSkill
         }
     }
 
-    public void UseTower()
+    public override void UseTower()
     {
         if (useTower == true)
         {

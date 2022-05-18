@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour
 
     public OnlyDamage onlyDamage = OnlyDamage.Null;
 
+    private bool emp = false;
+
 
     protected virtual void OnEnable()
     {
@@ -53,31 +55,34 @@ public class Enemy : MonoBehaviour
     {
         if (!isDying)
         {
-            Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
-
-            Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z+ randomZ + trainManager.trainContainer.Count * 25));
-
-            if (run)
+            if (!emp)
             {
-                if(transform.position.y < 0)
+                Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
+
+                Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + randomZ + trainManager.trainContainer.Count * 25));
+
+                if (run)
                 {
-                    transform.position += new Vector3(0, 0.1f, 0);
+                    if (transform.position.y < 0)
+                    {
+                        transform.position += new Vector3(0, 0.1f, 0);
+                    }
+
+                    EnemyIsDistanceX();
+                    EnemyTargettingMove();
+                    transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
                 }
 
-                EnemyIsDistanceX();
-                EnemyTargettingMove();
-                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
-            }
-
-            else
-            {
-                if (dir != Vector3.zero)
+                else
                 {
-                    if (dir.magnitude > 0)
+                    if (dir != Vector3.zero)
                     {
-                        rot = Quaternion.LookRotation(dir);
+                        if (dir.magnitude > 0)
+                        {
+                            rot = Quaternion.LookRotation(dir);
 
-                        Attack(rot);
+                            Attack(rot);
+                        }
                     }
                 }
             }
@@ -167,6 +172,18 @@ public class Enemy : MonoBehaviour
     protected virtual void PlayDieAnimationFalse()
     {
         anim.SetBool("IsDie", false);
+    }
+
+    public void OnEmp(float duration)
+    {
+        emp = true;
+
+        Invoke("OffEmp", duration);
+    }
+
+    public void OffEmp()
+    {
+        emp = false;
     }
 
     private void IsDying()

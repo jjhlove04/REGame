@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITowerActiveSkill
+public class Tower : MonoBehaviour
 {
-    public void UseTower();
+    public Sprite icon;
+    public virtual void UseTower()
+    {
+
+    }
 }

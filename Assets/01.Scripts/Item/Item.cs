@@ -17,8 +17,12 @@ public class Item : MonoBehaviour
 
     protected bool useItem;
 
+    public int count;
+
     public virtual void UseItem() { }
 
     public virtual void GetItemUI(GameObject UI) { }
+
+    public Sprite icon;
 
 }

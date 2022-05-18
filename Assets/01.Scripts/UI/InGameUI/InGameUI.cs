@@ -98,7 +98,7 @@ public class InGameUI : MonoBehaviour
         {
             towerActive.onClick.AddListener(() =>
             {
-                TowerManager.Instance.tower.GetComponent<ITowerActiveSkill>().UseTower();
+                TowerManager.Instance.tower.GetComponent<Tower>().UseTower();
             });
         }
 

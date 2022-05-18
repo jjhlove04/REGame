@@ -14,11 +14,17 @@ public class ItemSeletor : MonoBehaviour
     [SerializeField]
     private GameObject background;
 
+    [SerializeField]
+    bool count = false;
+
+    [SerializeField]
+    int maxCount = 0;
+
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(() => 
         {
-            ItemManager.Instance.SelecteItem(item, price, background);
+            ItemManager.Instance.SelecteItem(item, price, background, count, maxCount);
         });
     }
 }
