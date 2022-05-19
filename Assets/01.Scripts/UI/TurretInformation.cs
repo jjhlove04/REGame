@@ -26,7 +26,6 @@ public class TurretInformation : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         titleUI.informationPanel.gameObject.SetActive(true);
         titleUI.informationPanel.transform.GetChild(0).GetComponent<Text>().text = information;
-        Debug.Log("on");
     }
 
     public void OnPointerExit(PointerEventData eventData)
