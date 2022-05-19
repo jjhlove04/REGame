@@ -48,9 +48,6 @@ public class TestTurretDataBase : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-
-        gameManager = GameManager.Instance;
-        ingameUII = InGameUII._instance;
     }
 
     public void Upgrade(int strdat, int floor)
@@ -64,6 +61,9 @@ public class TestTurretDataBase : MonoBehaviour
 
     public void Create(Image img, int count)
     {
+        gameManager = GameManager.Instance;
+        ingameUII = InGameUII._instance;
+
         if (gameManager.goldAmount >= gameManager.turretPtice)
         {
             ingameUII.CreateOutMoney(gameManager.turretPtice);
