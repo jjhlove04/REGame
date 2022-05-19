@@ -18,6 +18,7 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     public GameObject floor;
 
     TestSkillTreee testsk;
+    TitleUI titleUI;
 
     private bool isClick;
 
@@ -31,6 +32,7 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     private void Start()
     {
+        titleUI = TitleUI.UI;
         if (!testsk.btnDic.ContainsKey(this.transform.parent.gameObject.ToString()))
         {
             if (myCount == 1)
@@ -54,7 +56,11 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     {
         if(isClick)
         {
+            Vector3 mousPos = Input.mousePosition;
             clickTime += Time.deltaTime;
+
+            titleUI.upgradeBar.fillAmount = clickTime / 2;
+            titleUI.upgradeBar.transform.position = mousPos;
         }
         else
         {
@@ -64,7 +70,10 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         if(clickTime >= 2f)
         {
             clickBtn();
+            titleUI.upgradeBar.gameObject.SetActive(false);
+            isClick = false;
             clickTime = 0;
+
         }
 
         if (isUpgrade)
@@ -134,6 +143,7 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        titleUI.upgradeBar.gameObject.SetActive(false);
         isClick = false;
         clickTime = 0;
     }
@@ -145,8 +155,8 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         {
             if(btn.interactable == true)
             {
+                titleUI.upgradeBar.gameObject.SetActive(true);
                 isClick = true;
-                Debug.Log("asd");
             }
         }
 
