@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkillTreeBtnn : MonoBehaviour
+public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
+    public string turretGameObj;
+    private GameObject gameObj;
+
     public int myCount;
 
     private bool isUpgrade = false;
@@ -15,7 +19,9 @@ public class SkillTreeBtnn : MonoBehaviour
 
     TestSkillTreee testsk;
 
+    private bool isClick;
 
+    private float clickTime;
     //[Header("포탑 정보")]
     //public float 
     private void OnEnable()
@@ -25,34 +31,6 @@ public class SkillTreeBtnn : MonoBehaviour
 
     private void Start()
     {
-        this.gameObject.TryGetComponent(out Button btn);
-        btn.onClick.AddListener(() =>
-        {
-            if (floor != null)
-            {
-                Button[] str = floor.GetComponentsInChildren<Button>();
-
-                foreach (Button item in str)
-                {
-                    item.interactable = false; 
-                    isUpgrade = false;
-                }
-
-                for (int i = 0; i < str.Length; i++)
-                {
-                    testsk.btnDic[str[i].transform.parent.gameObject.ToString()] = false;
-                }
-            }
-
-            btn.interactable = false;
-            isUpgrade = true;
-
-            if (testsk.btnDic[this.transform.parent.gameObject.ToString()] == true)
-            {
-                testsk.btnDic[this.transform.parent.gameObject.ToString()] = false;
-            }
-        });
-
         if (!testsk.btnDic.ContainsKey(this.transform.parent.gameObject.ToString()))
         {
             if (myCount == 1)
@@ -74,6 +52,21 @@ public class SkillTreeBtnn : MonoBehaviour
 
     private void Update()
     {
+        if(isClick)
+        {
+            clickTime += Time.deltaTime;
+        }
+        else
+        {
+            clickTime = 0;
+        }
+
+        if(clickTime >= 2f)
+        {
+            clickBtn();
+            clickTime = 0;
+        }
+
         if (isUpgrade)
         {
             if (nextBtn == null)
@@ -101,5 +94,61 @@ public class SkillTreeBtnn : MonoBehaviour
 
             isUpgrade = false;
         }
+    }
+    private void clickBtn()
+    {
+        TryGetComponent(out Button btn);
+
+        if (floor != null)
+        {
+            Button[] str = floor.GetComponentsInChildren<Button>();
+
+            foreach (Button item in str)
+            {
+                item.interactable = false;
+                isUpgrade = false;
+            }
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                testsk.btnDic[str[i].transform.parent.gameObject.ToString()] = false;
+            }
+        }
+
+        btn.interactable = false;
+        isUpgrade = true;
+
+        if (testsk.btnDic[this.transform.parent.gameObject.ToString()] == true)
+        {
+            testsk.btnDic[this.transform.parent.gameObject.ToString()] = false;
+        }
+
+        gameObj = Resources.Load<GameObject>("Turret/" + turretGameObj);
+
+        string num = turretGameObj.Substring(10, 3);
+
+        testsk.canUpgrade.Add(num, gameObj);
+
+    }
+    
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        isClick = false;
+        clickTime = 0;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        TitleUI.UI.explainTurretImage.sprite = this.gameObject.GetComponent<Image>().sprite;
+        if (gameObject.TryGetComponent(out Button btn))
+        {
+            if(btn.interactable == true)
+            {
+                isClick = true;
+                Debug.Log("asd");
+            }
+        }
+
     }
 }

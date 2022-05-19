@@ -18,15 +18,15 @@ public class TestSkillTreee : MonoBehaviour
         btnDic = TestTurretDataBase.Instance.postdic;
     }
 
-    //skill버튼 첫번쨰
-    public void SkillTree(string nextGameObj)
-    {
-        gameObj = Resources.Load<GameObject>("Turret/" + nextGameObj);
+    ////skill버튼 첫번쨰
+    //public void SkillTree(string nextGameObj)
+    //{
+    //    gameObj = Resources.Load<GameObject>("Turret/" + nextGameObj);
 
-        string num = nextGameObj.Substring(10, 3);
+    //    string num = nextGameObj.Substring(10, 3);
 
-        canUpgrade.Add(num, gameObj);
-    }
+    //    canUpgrade.Add(num, gameObj);
+    //}
 
     //clear버튼
     public void SkillTreeClear()

@@ -12,14 +12,21 @@ public class TurretInformation : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         titleUI = TitleUI.UI;
     }
+    private void Update()
+    {
+        if (titleUI.informationPanel.gameObject.activeSelf == true)
+        {
+            Vector3 mousePos = Input.mousePosition;
+
+            titleUI.informationPanel.transform.position = mousePos;
+        }
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Vector3 mousePos = Input.mousePosition;
-
         titleUI.informationPanel.gameObject.SetActive(true);
         titleUI.informationPanel.transform.GetChild(0).GetComponent<Text>().text = information;
-        titleUI.informationPanel.transform.position = mousePos;
+        Debug.Log("on");
     }
 
     public void OnPointerExit(PointerEventData eventData)
