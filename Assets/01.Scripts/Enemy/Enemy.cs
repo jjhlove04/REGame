@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
 
     public bool isDying = false;
     private float dieSpeed = 20;
+    private float animSpeed;
 
     protected TrainManager trainManager;
 
@@ -56,6 +57,8 @@ public class Enemy : MonoBehaviour
         {
             if (!emp)
             {
+                anim.speed = animSpeed;
+
                 Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
 
                 Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + randomZ + trainManager.trainContainer.Count * 25));
@@ -89,6 +92,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 Dying();
+                anim.speed = 0;
             }
         }
 
@@ -180,9 +184,19 @@ public class Enemy : MonoBehaviour
 
     public void OnEmp(float duration)
     {
-        emp = true;
+        if (emp)
+        {
+            CancelInvoke("OffEmp");
 
-        Invoke("OffEmp", duration);
+            Invoke("OffEmp", duration);
+        }
+
+        else
+        {
+            emp = true;
+
+            Invoke("OffEmp", duration);
+        }
     }
 
     public void OffEmp()
@@ -218,7 +232,8 @@ public class Enemy : MonoBehaviour
 
     public void RandomAnimSpeed()
     {
-        anim.speed = Random.Range(0.9f, 1.1f);
+        animSpeed = Random.Range(0.9f, 1.1f);
+        anim.speed = animSpeed;
 
         RandomMoveSpeed();
     }

@@ -34,7 +34,7 @@ public class EmpItem : Item
         empCount.gameObject.SetActive(true);
         empCount.text = "" + count;
 
-        targetAreaObj.transform.localScale = new Vector3(empArea, empArea, 1);
+        targetAreaObj.transform.localScale = new Vector3(empArea + 15, empArea + 15, 1);
     }
 
     private void Update()

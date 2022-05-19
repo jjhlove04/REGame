@@ -64,7 +64,7 @@ public class TowerEmp : Tower
         //else _currentExpIdx = 0;
         inGameUII = InGameUII._instance;
 
-        targetAreaObj.transform.localScale = new Vector3(attackArea - 5, attackArea - 5, 1);
+        targetAreaObj.transform.localScale = new Vector3(attackArea- 5, attackArea-5, 1);
 
         cameraManager = CameraManager.Instance;
     }
