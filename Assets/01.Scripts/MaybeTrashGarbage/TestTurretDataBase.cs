@@ -56,7 +56,6 @@ public class TestTurretDataBase : MonoBehaviour
         {
            testScripttss.Instance.ChageMakeTur(curTurretType[strdat + "-" + floor]);
         }
-
     }
 
     public void Create(Image img, int count)
