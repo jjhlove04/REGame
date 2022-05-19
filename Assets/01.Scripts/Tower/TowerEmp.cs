@@ -7,9 +7,7 @@ using UnityEngine.UI;
 public class TowerEmp : Tower
 {
     public GameObject currentDetonator;
-    public GameObject bomb;
     //private int _currentExpIdx = -1;
-    public float bombLife = 3;
     public float explosionLife = 10;
     public float timeScale = 1.0f;
     public float detailLevel = 1.0f;
@@ -29,6 +27,13 @@ public class TowerEmp : Tower
     private float curTime = 0;
 
     [SerializeField]
+    private float spawnTime = 0;
+
+    private float spawncurTime = 0;
+
+    private bool spawnBomb = false;
+
+    [SerializeField]
     private GameObject targetAreaObj;
 
     private Vector3 hitPoint;
@@ -42,9 +47,14 @@ public class TowerEmp : Tower
     [SerializeField]
     private float empDuration = 3;
 
+    [SerializeField]
+    private float onEmpTime = 3;
+
     InGameUII inGameUII;
 
     CameraManager cameraManager;
+
+    private bool onEmp;
 
     private void Start()
     {
@@ -132,7 +142,7 @@ public class TowerEmp : Tower
                     hitPoint = hit.point +
                                               ((Vector3.Scale(hit.normal, new Vector3(offsetSize, offsetSize, offsetSize))));
 
-                    targetAreaObj.transform.position = hitPoint + new Vector3(0, 1, 0);
+                    targetAreaObj.transform.position = hitPoint + new Vector3(0, 30-hitPoint.y, 0);
 
                     if (!checkRect.Contains(Input.mousePosition))
                     {
@@ -152,11 +162,42 @@ public class TowerEmp : Tower
 
         else
         {
+            if (spawnBomb)
+            {
+                spawncurTime += Time.deltaTime;
+
+                GameObject timer = transform.Find("Timer").gameObject;
+
+                timer.transform.position = hitPoint + new Vector3(0, 30 - hitPoint.y, 0);
+
+                timer.SetActive(true);
+
+                timer.GetComponent<SpriteRenderer>().material.SetFloat("_Arc1", (int)((spawncurTime/spawnTime)*360));
+
+
+                if (spawnTime <= spawncurTime)
+                {
+                    timer.SetActive(false);
+
+                    inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(false);
+
+                    timer.GetComponent<SpriteRenderer>().material.SetFloat("_Arc1", (int)((spawncurTime / spawnTime) * 0));
+
+                    spawncurTime = 0;
+
+                    SpawnExplosion();
+                }
+            }
+
             CoolingTime();
 
             targetAreaObj.SetActive(false);
         }
 
+        if (onEmp)
+        {
+            Emp();
+        }
     }
 
     private void SpawnBomb()
@@ -165,21 +206,11 @@ public class TowerEmp : Tower
         {
             inGameUII.towerActive.interactable = false;
 
-            cameraManager.Shake(bombLife, 0.75f);
-
-            targetAreaObj.SetActive(false);
+            spawnBomb = true;
 
             coolingTower = false;
 
             useTower = false;
-
-            inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(false);
-
-            GameObject exp = (GameObject)Instantiate(bomb, hitPoint + new Vector3(0, 185, 0), Quaternion.identity);
-
-            Destroy(exp, bombLife);
-
-            Invoke("SpawnExplosion", bombLife);
 
             cameraManager.OffNuclearView();
         }
@@ -187,9 +218,15 @@ public class TowerEmp : Tower
 
     private void SpawnExplosion()
     {
+        spawnBomb = false;
+
+        targetAreaObj.SetActive(false);
+
         cameraManager.Shake(3, explosionLife);
 
-        Emp();
+        onEmp = true;
+
+        Invoke("OffEmp", onEmpTime);
 
         Detonator dTemp = (Detonator)currentDetonator.GetComponent("Detonator");
 
@@ -210,6 +247,11 @@ public class TowerEmp : Tower
 
             enemyEmp.OnEmp(empDuration);
         }
+    }
+
+    private void OffEmp()
+    {
+        onEmp = false;
     }
 
     public override void UseTower()

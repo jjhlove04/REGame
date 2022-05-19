@@ -52,7 +52,7 @@ public class ItemManager : MonoBehaviour
             {
                 if (count)
                 {
-                    if (!(TestDatabase.Instance.resultGold >= price)&&!(maxCount <= itemIsCount[item].count))
+                    if (TestDatabase.Instance.resultGold < price && maxCount <= itemIsCount[item].count)
                     {
                         return;
                     }
@@ -76,7 +76,7 @@ public class ItemManager : MonoBehaviour
         {
             items.Add(gameitem);
 
-            itemIsCount.Add(items[items.Count - 1], new ItemCount(1, false));
+            itemIsCount.Add(gameitem,  new ItemCount(1, count));
 
             TestDatabase.Instance.resultGold -= price;
 
@@ -118,8 +118,10 @@ public class ItemManager : MonoBehaviour
             foreach (var item in items)
             {
                 GameObject gameItem = Instantiate(item);
-                gameItem.transform.parent = GameObject.Find("Items").transform;
+                gameItem.transform.parent = transform;
                 gameItem.transform.localPosition = Vector3.zero;
+
+                print(1);
 
                 if (itemIsCount[item].isCount)
                 {
@@ -132,12 +134,31 @@ public class ItemManager : MonoBehaviour
 
         else if(scene.name == "TitleScene")
         {
-            foreach (var item in items)
+            for (int i = 0; i < items.Count; i++)
             {
-                if (itemIsCount[item].count <= 0)
+                if (itemIsCount[items[i]].isCount)
                 {
-                    items.Remove(item);
+                    if (itemIsCount[items[i]].count <= 0)
+                    {
+                        items.Remove(items[i]);
+                        itemIsCount.Remove(items[i]);
+                    }
+
+                    else
+                    {
+                        itemIsCount[items[i]].count = gameItems[i].GetComponent<Item>().count;
+                    }
                 }
+
+                else
+                {
+                    items.Remove(items[i]);
+                }
+            }
+
+            foreach (var item in gameItems)
+            {
+                Destroy(item);
             }
             gameItems.Clear();
         }

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public enum OnlyDamage
 {
     singular,
@@ -85,6 +84,11 @@ public class Enemy : MonoBehaviour
                         }
                     }
                 }
+            }
+
+            else
+            {
+                Dying();
             }
         }
 

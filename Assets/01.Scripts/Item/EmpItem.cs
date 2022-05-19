@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class EmpItem : Item
 {
@@ -10,7 +11,7 @@ public class EmpItem : Item
 
     [SerializeField]
     private GameObject targetAreaObj;
-
+    
     public float explosionLife = 2;
 
     public int empArea;
@@ -32,6 +33,8 @@ public class EmpItem : Item
 
         empCount.gameObject.SetActive(true);
         empCount.text = "" + count;
+
+        targetAreaObj.transform.localScale = new Vector3(empArea, empArea, 1);
     }
 
     private void Update()
@@ -99,21 +102,28 @@ public class EmpItem : Item
 
     private void SpawnExplosion()
     {
-        count--;
+        if (!IsPointerOverUIObject())
+        {
+            count--;
 
-        empCount.text = "" + count;
+            empCount.text = "" + count;
 
-        itemUI.transform.Find("Background").gameObject.SetActive(false);
+            itemUI.transform.Find("Background").gameObject.SetActive(false);
 
-        useItem = false;
+            targetAreaObj.SetActive(false);
 
-        CameraManager.Instance.Shake(1, explosionLife);
+            useItem = false;
 
-        Emp();
+            CameraManager.Instance.Shake(1, explosionLife);
 
-        GameObject exp = (GameObject)Instantiate(currentDetonator, hitPoint, Quaternion.identity);
+            Emp();
 
-        Destroy(exp, explosionLife);
+            GameObject exp = (GameObject)Instantiate(currentDetonator, hitPoint, Quaternion.identity);
+
+            Destroy(exp, explosionLife);
+
+
+        }
     }
 
     private void Emp()
@@ -131,5 +141,14 @@ public class EmpItem : Item
     public override void GetItemUI(GameObject UI)
     {
         itemUI = UI;
+    }
+
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 2;
     }
 }
