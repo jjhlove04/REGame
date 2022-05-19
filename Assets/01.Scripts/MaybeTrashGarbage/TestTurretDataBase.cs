@@ -34,6 +34,10 @@ public class TestTurretDataBase : MonoBehaviour
 
     public int round;
     public int createPrice;
+
+    GameManager gameManager;
+    InGameUII ingameUII;
+
     private void Awake()
     {
         if (instance != null)
@@ -44,13 +48,15 @@ public class TestTurretDataBase : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+
+        gameManager = GameManager.Instance;
+        ingameUII = InGameUII._instance;
     }
 
     public void Upgrade(int strdat, int floor)
     {
         if (floor <= curTurretType.Count)
         {
-            Debug.Log(curTurretType[strdat + "-" + floor]);
            testScripttss.Instance.ChageMakeTur(curTurretType[strdat + "-" + floor]);
         }
 
@@ -58,8 +64,9 @@ public class TestTurretDataBase : MonoBehaviour
 
     public void Create(Image img, int count)
     {
-        if (GameManager.Instance.goldAmount >= GameManager.Instance.turretPtice)
+        if (gameManager.goldAmount >= gameManager.turretPtice)
         {
+            ingameUII.CreateOutMoney(gameManager.turretPtice);
             testScripttss.Instance.Create(curTurretType["0-0"]);
 
             img.color = new Color(1, 1, 1, 0);
@@ -67,10 +74,10 @@ public class TestTurretDataBase : MonoBehaviour
         }
         else
         {
-            InGameUII._instance.warningtxt.color = new Color(1, 0.8f, 0, 1);
-            InGameUII._instance.warningIcon.color = new Color(1, 0.8f, 0, 1);
-            InGameUII._instance.GoldWarning.alpha = 1;
-            InGameUII._instance.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
+            ingameUII.warningtxt.color = new Color(1, 0.8f, 0, 1);
+            ingameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
+            ingameUII.GoldWarning.alpha = 1;
+            ingameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
 
         }
         testScripttss.Instance.turPos = count;

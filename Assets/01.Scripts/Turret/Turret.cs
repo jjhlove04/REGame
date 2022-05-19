@@ -242,6 +242,7 @@ public class Turret : MonoBehaviour
             ReloadSound();
 
             GameManager.Instance.goldAmount -= result;
+            InGameUII._instance.CreateOutMoney(result);
             bulAmount = maxBulletAmount;
         }
         else if(bulAmount == maxBulletAmount)

@@ -38,7 +38,7 @@ public class moneyReturn : MonoBehaviour
         else
         {
             prefab.transform.position = new Vector3(prefab.transform.position.x, Mathf.Lerp(prefab.transform.position.y,
-                InGameUII._instance.wavePos.transform.position.y, Time.deltaTime), 0);
+                InGameUII._instance.downMoneyPos.transform.position.y, Time.deltaTime), 0);
         }
 
         txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, Mathf.Lerp(txt.color.a, 0f, Time.deltaTime));

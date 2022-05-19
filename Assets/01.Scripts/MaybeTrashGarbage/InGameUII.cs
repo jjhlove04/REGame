@@ -58,7 +58,7 @@ public class InGameUII : MonoBehaviour
     public GameObject dashiObj;
 
     public GameObject moneyPos;
-    public Transform wavePos;
+    public Transform downMoneyPos;
     public GameObject incomMoney;
     public float moneyX;
 
@@ -386,8 +386,8 @@ public class InGameUII : MonoBehaviour
     public void CreateMonjeyTxt(int goldAmount)
     {
         GameObject prefab = objectPool.GetObject(incomMoney);
-        prefab.transform.parent = wavePos;
-        prefab.transform.position = new Vector2(wavePos.position.x + moneyX, wavePos.position.y);
+        prefab.transform.parent = downMoneyPos;
+        prefab.transform.position = new Vector2(downMoneyPos.position.x, downMoneyPos.position.y);
         prefab.TryGetComponent<Text>(out Text txt);
         txt.color = new Color(1f, 0.9f, 0f, 1f);
         txt.text = "+" + goldAmount.ToString();
@@ -396,8 +396,8 @@ public class InGameUII : MonoBehaviour
     public void CreateOutMoney(int goldAmount)
     {
         GameObject prefab = objectPool.GetObject(incomMoney);
-        prefab.transform.parent = wavePos;
-        prefab.transform.position = new Vector2(wavePos.position.x + moneyX, moneyPos.transform.position.y);
+        prefab.transform.parent = downMoneyPos;
+        prefab.transform.position = new Vector2(downMoneyPos.position.x, moneyPos.transform.position.y);
         prefab.TryGetComponent<Text>(out Text txt);
         txt.color = new Color(1f, 0f, 0f, 1f);
         txt.text = "-" + goldAmount.ToString();

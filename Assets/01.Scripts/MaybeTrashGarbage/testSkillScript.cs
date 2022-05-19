@@ -130,7 +130,7 @@ public class testSkillScript : MonoBehaviour
     {
         if (clickCount > 0 && onTurret)
         {
-            clickTime += Time.deltaTime;
+            clickTime += Time.unscaledDeltaTime;
         }
 
         if (clickTime >= 0.51f)
