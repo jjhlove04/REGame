@@ -626,7 +626,6 @@ RectTransform:
   - {fileID: 4228220314574125193}
   - {fileID: 4228220313521916475}
   - {fileID: 4228220314602062172}
-  - {fileID: 8896091243786806712}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -648,6 +647,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   installBtn: {fileID: 0}
+  count: 0
+  autoReload: 0
 --- !u!1 &4228220314602062175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,13 +1267,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8688199564559005954}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6259763574066911377}
-  m_Father: {fileID: 4228220313921630119}
-  m_RootOrder: 4
+  m_Father: {fileID: 4228220313847217731}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

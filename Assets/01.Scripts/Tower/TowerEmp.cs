@@ -271,8 +271,6 @@ public class TowerEmp : Tower
         {
             useTower = true;
 
-            print(useTower);
-
             targetAreaObj.SetActive(true);
 
             inGameUII.towerActive.transform.Find("Background").gameObject.SetActive(true);

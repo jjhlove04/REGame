@@ -12,6 +12,11 @@ public class CircleTree : MonoBehaviour
     private GameManager gameManager;
     private InGameUII inGameUII;
     private testScripttss testscriptts;
+
+    public int count;
+
+    [HideInInspector]
+    public bool autoReload;
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -22,6 +27,7 @@ public class CircleTree : MonoBehaviour
         CameraManager cameraManager = CameraManager.Instance;
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;
+
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {

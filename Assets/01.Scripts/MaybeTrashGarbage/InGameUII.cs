@@ -83,6 +83,9 @@ public class InGameUII : MonoBehaviour
     [SerializeField]
     private GameObject worldCanvas;
 
+    [SerializeField]
+    private List<Button> selectAutoReloadlist = new List<Button>();
+
     private void Awake()
     {
         _instance = this;
@@ -401,5 +404,10 @@ public class InGameUII : MonoBehaviour
         prefab.TryGetComponent<Text>(out Text txt);
         txt.color = new Color(1f, 0f, 0f, 1f);
         txt.text = "-" + goldAmount.ToString();
+    }
+
+    public List<Button> SetSelectReloadButton()
+    {
+        return selectAutoReloadlist;
     }
 }

@@ -44,7 +44,7 @@ public class ItemManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoeded;
     }
 
-    public void SelecteItem(GameObject gameitem, int price, GameObject background, bool count, int maxCount)
+    public void SelecteItem(GameObject gameitem, int price, GameObject background, bool count, int maxCount, out int curCount)
     {
         foreach (var item in items)
         {
@@ -52,8 +52,10 @@ public class ItemManager : MonoBehaviour
             {
                 if (count)
                 {
-                    if (TestDatabase.Instance.resultGold < price && maxCount <= itemIsCount[item].count)
+                    if (TestDatabase.Instance.resultGold < price || maxCount <= itemIsCount[item].count)
                     {
+                        curCount = itemIsCount[item].count;
+
                         return;
                     }
 
@@ -61,12 +63,15 @@ public class ItemManager : MonoBehaviour
                     itemIsCount[item].isCount = true;
                     itemIsCount[item].count++;
 
+                    curCount = itemIsCount[item].count;
+
                     return;
                 }
 
                 else
                 {
                     UnSelecteItem(gameitem, background, price);
+                    curCount = 0;
                     return;
                 }
             }
@@ -81,6 +86,16 @@ public class ItemManager : MonoBehaviour
             TestDatabase.Instance.resultGold -= price;
 
             background.SetActive(true);
+        }
+
+        if (!count)
+        {
+            curCount = 0;
+        }
+
+        else
+        {
+            curCount = 1;
         }
     }
 
@@ -121,8 +136,6 @@ public class ItemManager : MonoBehaviour
                 gameItem.transform.parent = transform;
                 gameItem.transform.localPosition = Vector3.zero;
 
-                print(1);
-
                 if (itemIsCount[item].isCount)
                 {
                     gameItem.GetComponent<Item>().count = itemIsCount[item].count;
@@ -138,6 +151,7 @@ public class ItemManager : MonoBehaviour
             {
                 if (itemIsCount[items[i]].isCount)
                 {
+                    print(1);
                     if (itemIsCount[items[i]].count <= 0)
                     {
                         items.Remove(items[i]);

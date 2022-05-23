@@ -1,26 +1,61 @@
-
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AutoReloadItem : Item
 {
-    protected Transform turrets;
+    public List<Button> selectButton = new List<Button>();
+
+    private List<int> countArr= new List<int>();
+
+    TextMeshProUGUI empCount;
+
+    CircleTree circleTree;
+
+    testScripttss testScripttss;
 
     private void Start()
     {
-        turrets = TrainManager.instance.transform.Find("Turrets");
+        testScripttss = testScripttss.Instance;
+
+        empCount = itemUI.transform.Find("Count").GetComponent<TextMeshProUGUI>();
+
+        empCount.gameObject.SetActive(true);
+
+        empCount.text = "" + count;
+
+        selectButton = InGameUII._instance.SetSelectReloadButton();
+
+        foreach (var item in selectButton)
+        {
+            item.transform.parent.gameObject.SetActive(true);
+
+            circleTree = item.transform.parent.parent.parent.GetComponent<CircleTree>();
+
+            item.onClick.AddListener(() =>
+            {
+                CircleTree itemCircleTree = item.transform.parent.parent.parent.GetComponent<CircleTree>();
+
+                if (!itemCircleTree.autoReload)
+                {
+                    SelectReload(itemCircleTree);
+                }
+
+            });
+        }
     }
 
     private void Update()
     {
         if (useItem)
         {
-            for (int i = 0; i < turrets.childCount; i++)
+            for (int i = 0; i < countArr.Count; i++)
             {
-                Turret turret = turrets.GetChild(i).GetComponent<Turret>();
+                Turret turret = testScripttss.turretData[countArr[i]].GetComponent<Turret>();
 
-                if (turret.IsNeedReload())
+                if (turret!=null && turret.IsNeedReload())
                 {
                     turret.Reload();
                 }
@@ -35,6 +70,26 @@ public class AutoReloadItem : Item
         itemUI.transform.Find("Background").gameObject.SetActive(!itemUI.transform.Find("Background").gameObject.activeSelf);
 
         useItem = !useItem;
+    }
+
+    private void SelectReload(CircleTree circletree)
+    {
+        if (count > 0)
+        {
+            Turret turret = testScripttss.turretData[circletree.count].GetComponent<Turret>();
+
+            if (turret != null)
+            {
+                countArr.Add(circletree.count);
+                count--;
+
+                circletree.autoReload = true;
+            }
+
+        }
+
+        empCount.text = "" + count;
+
     }
 
     public override void GetItemUI(GameObject UI)
