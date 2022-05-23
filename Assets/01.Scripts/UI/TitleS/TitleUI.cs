@@ -55,8 +55,12 @@ public class TitleUI : MonoBehaviour
     //public Text techPointTxt;
     //public Text goldTxt;
 
+    public Image cursor;
+
     private void Awake()
     {
+        Cursor.visible = false;
+
         RegisterPanelOpen();
         btnGroupAct.interactable = false;
         openSequence = DOTween.Sequence();
@@ -118,6 +122,8 @@ public class TitleUI : MonoBehaviour
         Update_MousePosition();
         InitPlayerInfo();
         ExpBar();
+
+        cursor.transform.position = Input.mousePosition;
     }
 
 
