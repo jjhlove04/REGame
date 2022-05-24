@@ -22,7 +22,7 @@ public class EnemyColorChange : MonoBehaviour
 
     private void Start()
     {
-        if (enemy.IsStealth())
+        if (enemy != null &&enemy.IsStealth())
         {
             OnStealth();
         }

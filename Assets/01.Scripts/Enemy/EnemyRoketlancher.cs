@@ -77,7 +77,7 @@ public class EnemyRoketlancher : Enemy
     private void SpawnBullet()
     {
         GameObject bullet = objPool.GetObject(Resources.Load<GameObject>("Missile"));
-        bullet.GetComponent<Roketlancher>().Create(pos.position, TrainManager.instance.trainContainer[enemyType].transform, enemyStat.damage);
+        bullet.GetComponent<Roketlancher>().Create(pos.position, target, enemyStat.damage);
     }
 
     protected override void EnemyGetRandom()

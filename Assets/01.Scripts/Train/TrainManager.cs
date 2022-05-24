@@ -15,7 +15,6 @@ public class TrainManager : MonoBehaviour
     public List<GameObject> trainContainer = new List<GameObject>();
 
     public int curTrainCount;
-    public int maxTrainCount;
 
     public BoxCollider collider;
 
@@ -33,6 +32,8 @@ public class TrainManager : MonoBehaviour
 
     public void CreateTrainPrefab()
     {
+        curTrainCount = TestTurretDataBase.Instance.trainCount;
+
         for (int i = 0; i < curTrainCount; i++)
         {
             var newCube = Instantiate(trainPrefab);

@@ -36,6 +36,9 @@ public class Enemy : MonoBehaviour
 
     private bool emp = false;
 
+    protected Transform target;
+    private Transform saveTarget;
+
 
     protected virtual void OnEnable()
     {
@@ -63,6 +66,8 @@ public class Enemy : MonoBehaviour
 
                 Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + randomZ + trainManager.trainContainer.Count * 25));
 
+                EnemyIsDistanceX();
+
                 if (run)
                 {
                     if (transform.position.y < 0)
@@ -70,8 +75,9 @@ public class Enemy : MonoBehaviour
                         transform.position += new Vector3(0, 0.1f, 0);
                     }
 
-                    EnemyIsDistanceX();
                     EnemyTargettingMove();
+
+
                     transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
                 }
 
@@ -127,11 +133,17 @@ public class Enemy : MonoBehaviour
 
     void EnemyIsDistanceX()
     {
-        if (Mathf.Abs(transform.position.x) < distanceX)
+        if (target == null)
+        {
+            target = trainManager.trainContainer[enemyType].transform;
+            saveTarget = null;
+        }
+
+        if (Mathf.Abs(transform.position.x) < target.position.x+distanceX)
         {
             if (run)
             {
-                run = Vector3.Distance(transform.position, trainManager.trainContainer[enemyType].transform.position+ new Vector3(0,0, randomZ)) > distance;
+                run = Vector3.Distance(transform.position, target.position+ new Vector3(0,0, randomZ)) > distance;
                 EnemyLimitMoveX();
             }
         }
@@ -141,12 +153,18 @@ public class Enemy : MonoBehaviour
 
     void EnemyLimitMoveX()
     {
-        transform.position = new Vector3(distanceX, transform.position.y, transform.position.z);
+        transform.position = new Vector3(target.position.x+distanceX, transform.position.y, transform.position.z);
     }
 
     void EnemyTargettingMove()
     {
-        transform.position = Vector3.MoveTowards(transform.position, trainManager.trainContainer[enemyType].transform.position + new Vector3(0, 0, randomZ),
+        if(target == null)
+        {
+            target = trainManager.trainContainer[enemyType].transform;
+            saveTarget = null;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, target.position + new Vector3(0, 0, randomZ),
         speed * Time.deltaTime);
     }
 
@@ -202,6 +220,16 @@ public class Enemy : MonoBehaviour
     public void OffEmp()
     {
         emp = false;
+    }
+
+    public void Aggro(Transform bait)
+    {
+        saveTarget = target;
+
+        if(Vector3.Distance(transform.position, target.position)> Vector3.Distance(transform.position, bait.position))
+        {
+            target = bait;
+        }
     }
 
     private void IsDying()

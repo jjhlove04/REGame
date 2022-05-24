@@ -122,7 +122,7 @@ public class EmpItem : Item
 
             Destroy(exp, explosionLife);
 
-
+            CameraManager.Instance.OffNuclearView();
         }
     }
 
