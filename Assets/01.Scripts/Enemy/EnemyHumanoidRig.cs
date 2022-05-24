@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyHumanoidRig : Enemy
 {
-    private Vector3 target;
-
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -27,8 +25,7 @@ public class EnemyHumanoidRig : Enemy
 
         anim?.SetBool("IsAttack", true);
 
-        target = TrainManager.instance.trainContainer[enemyType].transform.position - transform.position;
-        rot = Quaternion.LookRotation(target);
+        rot = Quaternion.LookRotation(target.position);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
     }

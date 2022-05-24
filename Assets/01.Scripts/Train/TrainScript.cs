@@ -149,12 +149,7 @@ public class TrainScript : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("FireBullet"))
-        {
-            Damage(dicEnemydata[EnemyType.Fire].GetDamage() * Time.deltaTime);
-        }
-
-        else if (other.CompareTag("RoketBullet"))
+        if (other.CompareTag("RoketBullet"))
         {
             Damage(dicEnemydata[EnemyType.Roket].GetDamage());
         }
@@ -174,7 +169,12 @@ public class TrainScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("GuardianBullet"))
+        if (other.CompareTag("FireBullet"))
+        {
+            Damage(dicEnemydata[EnemyType.Fire].GetDamage() * Time.deltaTime);
+        }
+
+        else if (other.CompareTag("GuardianBullet"))
         {
             Damage(dicEnemydata[EnemyType.Guardian].GetDamage() * Time.deltaTime);
         }
