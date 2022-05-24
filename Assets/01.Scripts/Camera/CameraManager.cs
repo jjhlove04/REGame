@@ -133,16 +133,15 @@ public class CameraManager : MonoBehaviour
 
     public void OffNuclearView()
     {
-        topCamera.SetActive(false);
+        curCamera = null;
+        //topCamera.SetActive(true);
 
-        curCamera.SetActive(true);
-
-        if(curCameraTrm != null)
+        /*if(curCameraTrm != null)
         {
             curCamera.transform.position = curCameraTrm.position;
         }
 
         curCamera = null;
-        curCameraTrm = null;
+        curCameraTrm = null;*/
     }
 }
