@@ -15,6 +15,7 @@ public class TestDatabase : MonoBehaviour
     public int resultDamage = 0;
     public int resultEXP = 0;
     public int resultGold = 0;
+    public bool isRegister;
 
 
     private int level;

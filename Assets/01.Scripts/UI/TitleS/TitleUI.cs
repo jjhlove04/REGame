@@ -59,9 +59,12 @@ public class TitleUI : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
+        
+        if(!TestDatabase.Instance.isRegister)
+        {
+            RegisterPanelOpen();
+        }
 
-        RegisterPanelOpen();
         btnGroupAct.interactable = false;
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
@@ -114,8 +117,14 @@ public class TitleUI : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         repairCost.text = ((TestTurretDataBase.Instance.round - 1) * TestTurretDataBase.Instance.createPrice).ToString();
         towingCost.text = ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1)).ToString();
+
+        if (TestDatabase.Instance.isRegister)
+        {
+            RegisterDataConnect();
+        }
     }
     private void Update()
     {
@@ -187,6 +196,8 @@ public class TitleUI : MonoBehaviour
         playerCardNick.text = TestDatabase.Instance._nickName;
         registerPanel.DOAnchorPosX(-1289, 1f).SetEase(Ease.InOutCubic);
         playerCard.DOAnchorPosX(-18,1f).SetEase(Ease.InOutCubic);
+
+        TestDatabase.Instance.isRegister = true;
         
     }
 

@@ -47,7 +47,6 @@ public class TrainScript : MonoBehaviour
 
         trainManager= GetComponent<TrainManager>();
 
-        trainManager.curTrainCount = trainManager.maxTrainCount;
         trainManager.CreateTrainPrefab();
         EnemyDataInit();
     }

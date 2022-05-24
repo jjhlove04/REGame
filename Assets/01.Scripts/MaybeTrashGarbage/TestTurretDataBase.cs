@@ -23,6 +23,8 @@ public class TestTurretDataBase : MonoBehaviour
 
     public GameObject towerObj;
 
+    public int trainCount;
+
     [Header("°á°ú°ª")]
     public int resultDamage = 0;
     public int resultEXP = 0;
