@@ -86,6 +86,8 @@ public class InGameUII : MonoBehaviour
     [SerializeField]
     private List<Button> selectAutoReloadlist = new List<Button>();
 
+    public Image cursor;
+
     private void Awake()
     {
         _instance = this;
@@ -158,6 +160,8 @@ public class InGameUII : MonoBehaviour
     {
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
+
+        cursor.transform.position = Input.mousePosition;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
