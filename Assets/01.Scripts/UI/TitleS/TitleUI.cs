@@ -19,7 +19,6 @@ public class TitleUI : MonoBehaviour
     public Image explainTurretImage;
     public Text[] TurretInfo;
     public Image informationPanel;
-    public Image upgradeBar;
 
     [Header("출발준비 패널 관련")]
     Sequence openSequence;

@@ -23,6 +23,8 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     private bool isClick;
 
     private float clickTime;
+
+    public Image upgradeBar;
     //[Header("포탑 정보")]
     //public float 
     private void OnEnable()
@@ -56,21 +58,19 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     {
         if(isClick)
         {
-            Vector3 mousPos = Input.mousePosition;
             clickTime += Time.deltaTime;
 
-            titleUI.upgradeBar.fillAmount = clickTime / 2;
-            titleUI.upgradeBar.transform.position = mousPos;
+            upgradeBar.fillAmount = clickTime / 1.6f;
         }
         else
         {
             clickTime = 0;
         }
 
-        if(clickTime >= 2f)
+        if(clickTime >= 1.6f)
         {
             clickBtn();
-            titleUI.upgradeBar.gameObject.SetActive(false);
+            upgradeBar.gameObject.SetActive(false);
             isClick = false;
             clickTime = 0;
 
@@ -143,7 +143,7 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        titleUI.upgradeBar.gameObject.SetActive(false);
+        upgradeBar.gameObject.SetActive(false);
         isClick = false;
         clickTime = 0;
     }
@@ -155,7 +155,7 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         {
             if(btn.interactable == true)
             {
-                titleUI.upgradeBar.gameObject.SetActive(true);
+                upgradeBar.gameObject.SetActive(true);
                 isClick = true;
             }
         }
