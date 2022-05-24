@@ -38,10 +38,7 @@ public class AutoReloadItem : Item
             {
                 CircleTree itemCircleTree = item.transform.parent.parent.parent.GetComponent<CircleTree>();
 
-                if (!itemCircleTree.autoReload)
-                {
-                    SelectReload(itemCircleTree);
-                }
+                SelectReload(itemCircleTree);
 
             });
         }
@@ -74,22 +71,48 @@ public class AutoReloadItem : Item
 
     private void SelectReload(CircleTree circletree)
     {
+        if (!circletree.autoReload)
+        {
+            OnReload(circletree);
+            print(0);
+        }
+
+        else
+        {
+            OffReload(circletree);
+
+            print(1);
+        }
+    }
+
+    private void OnReload(CircleTree circletree)
+    {
         if (count > 0)
         {
             Turret turret = testScripttss.turretData[circletree.count].GetComponent<Turret>();
 
-            if (turret != null)
-            {
-                countArr.Add(circletree.count);
-                count--;
+            circletree.transform.GetChild(0).GetChild(0).Find("Background").gameObject.SetActive(true);
 
-                circletree.autoReload = true;
-            }
+            countArr.Add(circletree.count);
+            count--;
 
+            circletree.autoReload = true;
         }
 
         empCount.text = "" + count;
 
+    }
+
+    private void OffReload(CircleTree circletree)
+    {
+        circletree.transform.GetChild(0).GetChild(0).Find("Background").gameObject.SetActive(false);
+
+        countArr.Remove(circletree.count);
+        count++;
+
+        circletree.autoReload = false;
+
+        empCount.text = "" + count;
     }
 
     public override void GetItemUI(GameObject UI)
