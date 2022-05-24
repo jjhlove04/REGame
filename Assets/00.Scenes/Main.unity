@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20916,6 +20916,10 @@ MonoBehaviour:
   - {fileID: 197411165}
   - {fileID: 1634465476}
   - {fileID: 399367214}
+  trainUiObjs:
+  - {fileID: 3120500545569772357}
+  - {fileID: 2437586598000951726}
+  - {fileID: 1573831733138755975}
   cursor: {fileID: 1523932331}
 --- !u!4 &1735865799 stripped
 Transform:
@@ -25835,7 +25839,6 @@ MonoBehaviour:
   distance: 27
   trainContainer: []
   curTrainCount: 0
-  maxTrainCount: 3
   collider: {fileID: 2096114843}
   keppOffSpeed: 1
 --- !u!65 &2096114843

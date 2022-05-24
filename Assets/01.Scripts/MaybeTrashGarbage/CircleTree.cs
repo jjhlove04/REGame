@@ -37,26 +37,15 @@ public class CircleTree : MonoBehaviour
 
         gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (!installBtn.GetComponent<testSkillScript>().onTurret)
+            if(installBtn.GetComponent<testSkillScript>().onTurret)
+            {
+                levelTurret();
+            }
+            else
             {
                 if (gameManager.goldAmount >= gameManager.turretPtice)
                 {
-                    if (installBtn.GetComponent<testSkillScript>().floor == -1)
-                    {
-                        installBtn.GetComponent<testSkillScript>().onTurret = true;
-
-                        gameObject.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-
-                        testturretdatabase.Create(installBtn.GetComponent<Image>(), installBtn.GetComponent<testSkillScript>().count);
-
-                        installBtn.GetComponent<testSkillScript>().floor += 2;
-
-                        if (!testturretdatabase.curTurretType.ContainsKey("1-1"))
-                        {
-                            gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = false;
-                            return;
-                        }
-                    }
+                    return;
                 }
                 else
                 {
@@ -66,11 +55,39 @@ public class CircleTree : MonoBehaviour
                     inGameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
                 }
             }
-            else
-            {
-                levelTurret();
+            //if (!installBtn.GetComponent<testSkillScript>().onTurret)
+            //{
+            //    if (gameManager.goldAmount >= gameManager.turretPtice)
+            //    {
+            //        if (installBtn.GetComponent<testSkillScript>().floor == -1)
+            //        {
+            //            installBtn.GetComponent<testSkillScript>().onTurret = true;
 
-            }
+            //            gameObject.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+
+            //            testturretdatabase.Create(installBtn.GetComponent<Image>(), installBtn.GetComponent<testSkillScript>().count);
+
+            //            installBtn.GetComponent<testSkillScript>().floor += 2;
+
+            //            if (!testturretdatabase.curTurretType.ContainsKey("1-1"))
+            //            {
+            //                gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = false;
+            //                return;
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        inGameUII.warningtxt.color = new Color(1, 0.8f, 0, 1);
+            //        inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
+            //        inGameUII.GoldWarning.alpha = 1;
+            //        inGameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
+            //    }
+            //}
+            //else
+            //{
+            //    levelTurret();
+            //}
         });
 
         //gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>

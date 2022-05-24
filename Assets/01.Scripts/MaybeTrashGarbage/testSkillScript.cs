@@ -17,13 +17,18 @@ public class testSkillScript : MonoBehaviour
     public bool onTurret = false;
 
     private testScripttss testScripts;
+    GameManager gameManager;
+    InGameUII inGameUII;
 
     public int clickCount;
     float clickTime;
 
+
     void Start()
     {
+        gameManager = GameManager.Instance;
         testScripts = testScripttss.Instance;
+        inGameUII = InGameUII._instance;
 
         gameObject.TryGetComponent(out Button btnm);
         gameObject.TryGetComponent(out Image img);
@@ -121,6 +126,32 @@ public class testSkillScript : MonoBehaviour
                     img.color = new Color(1, 1, 1, 1);
                 }
                 clickCount = 0;
+            }
+            if (!onTurret)
+            {
+                //포탑 설치
+                if (gameManager.goldAmount >= gameManager.turretPtice)
+                {
+                    if (floor == -1)
+                    {
+                        onTurret = true;
+                        circleTree.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+                        TestTurretDataBase.Instance.Create(GetComponent<Image>(), count);
+                        floor += 2;
+                        if (!TestTurretDataBase.Instance.curTurretType.ContainsKey("1-1"))
+                        {
+                            circleTree.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = false;
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    inGameUII.warningtxt.color = new Color(1, 0.8f, 0, 1);
+                    inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
+                    inGameUII.GoldWarning.alpha = 1;
+                    inGameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
+                }
             }
 
         });

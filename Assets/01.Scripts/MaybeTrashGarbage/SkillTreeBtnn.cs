@@ -60,14 +60,14 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         {
             clickTime += Time.deltaTime;
 
-            upgradeBar.fillAmount = clickTime / 1.6f;
+            upgradeBar.fillAmount = clickTime;
         }
         else
         {
             clickTime = 0;
         }
 
-        if(clickTime >= 1.6f)
+        if(clickTime >= 1f)
         {
             clickBtn();
             upgradeBar.gameObject.SetActive(false);

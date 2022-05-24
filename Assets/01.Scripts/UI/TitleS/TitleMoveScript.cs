@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -146,7 +146,7 @@ public class TitleMoveScript : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (backBtn.activeSelf == true)
             {
@@ -182,18 +182,18 @@ public class TitleMoveScript : MonoBehaviour
                     indexNum = 2;
                 }
             }
-             if(startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
+            if (startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
             {
-            backBtn.SetActive(true);
+                backBtn.SetActive(true);
             }
             else
             {
-            backBtn.SetActive(false);
+                backBtn.SetActive(false);
             }
         }
 
-       
-        
+
+
     }
 
     /// <summary>모든 버튼 상호작용 관리</summary>

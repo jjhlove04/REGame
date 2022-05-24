@@ -58,7 +58,6 @@ public class TitleUI : MonoBehaviour
 
     private void Awake()
     {
-        
         if(!TestDatabase.Instance.isRegister)
         {
             RegisterPanelOpen();
@@ -100,6 +99,12 @@ public class TitleUI : MonoBehaviour
         {
             RemoveBtn();
             upGradePanels[0].SetActive(true);
+            TitleMoveScript.indexNum = 4;
+        });
+        upGradeBtns[1].onClick.AddListener(() =>
+        {
+            RemoveBtn();
+            upGradePanels[1].SetActive(true);
             TitleMoveScript.indexNum = 4;
         });
         upGradeBtns[2].onClick.AddListener(() =>

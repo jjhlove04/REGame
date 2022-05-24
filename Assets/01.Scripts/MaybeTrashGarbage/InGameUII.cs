@@ -86,6 +86,11 @@ public class InGameUII : MonoBehaviour
     [SerializeField]
     private List<Button> selectAutoReloadlist = new List<Button>();
 
+
+
+    public GameObject[] trainUiObjs;
+
+
     public Image cursor;
 
     private void Awake()
@@ -152,6 +157,11 @@ public class InGameUII : MonoBehaviour
             {
                 item.gameObject.SetActive(false);
             }
+        }
+
+        for (int i = 0; i < TestTurretDataBase.Instance.trainCount; i++)
+        {
+            trainUiObjs[i].SetActive(true);
         }
     }
 
