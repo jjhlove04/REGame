@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour
 
     public float amountIncreasion;
 
+   public GameObject enemyMark;
+   public GameObject[] enemyCounts;
     private ObjectPool objectPool;
     [SerializeField]
     private GameObject prefab;
@@ -34,6 +36,7 @@ public class Spawner : MonoBehaviour
         objectPool = FindObjectOfType<ObjectPool>();
 
         Timing.RunCoroutine(spawnFirst());
+        //Timing.RunCoroutine(FindEnemyMarkerLogic());
 
         if (!boss)
         {
@@ -46,7 +49,7 @@ public class Spawner : MonoBehaviour
 
     }
 
-    IEnumerator<float> spawnFirst()
+    public IEnumerator<float> spawnFirst()
     {
         GameObject[] gm = new GameObject[30];
 
@@ -61,6 +64,25 @@ public class Spawner : MonoBehaviour
         {
             gm[i].SetActive(false);
             gm[i].transform.position = transform.position;
+        }
+    }
+
+        public IEnumerator<float> FindEnemyMarkerLogic()
+    {
+        
+
+        GameObject[] markers = new GameObject[10];
+        for(int i = 0; i < markers.Length; i++)
+        {
+            markers[i] =objectPool.GetObject(enemyMark);
+            markers[i].transform.position = transform.position;
+        }
+        yield return Timing.WaitForSeconds(0.1f);
+
+        for (int i = 0; i < markers.Length; i++)
+        {
+            markers[i].SetActive(false);
+            markers[i].transform.position = transform.position;
         }
     }
 
@@ -104,6 +126,8 @@ public class Spawner : MonoBehaviour
             }
         }
     }
+
+    
 }
 
 

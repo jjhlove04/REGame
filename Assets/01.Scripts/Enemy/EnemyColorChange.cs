@@ -5,6 +5,7 @@ using MEC;
 
 public class EnemyColorChange : MonoBehaviour
 {
+    
     [Header("targeting effect")]
     public Material hitMaterial;
     public Material stealthMaterial = null;

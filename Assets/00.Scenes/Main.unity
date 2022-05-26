@@ -1373,6 +1373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAmount: 1
   amountIncreasion: 0.7
+  enemyMark: {fileID: 1827540119822746913, guid: 6bdf9aafca21e436b9c52ffdd39f5e17, type: 3}
+  enemyCounts: []
   prefab: {fileID: 4909745345928348176, guid: d1006b6c002e02e43ad9fc4aa3270268, type: 3}
   interval: 3
   round: 12
@@ -6542,6 +6544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d09f6093bfdbc2419fec431665a4a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyList: []
   curTime: 0
   roundCurTime: 15
   round: 0
@@ -6843,6 +6846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAmount: 3
   amountIncreasion: 0.8
+  enemyMark: {fileID: 1827540119822746913, guid: 6bdf9aafca21e436b9c52ffdd39f5e17, type: 3}
+  enemyCounts: []
   prefab: {fileID: 1262010245510058, guid: d0e2b6bf944e12c439220558bf7de75a, type: 3}
   interval: 3
   round: 0
@@ -8156,6 +8161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAmount: 2
   amountIncreasion: 0
+  enemyMark: {fileID: 1827540119822746913, guid: 6bdf9aafca21e436b9c52ffdd39f5e17, type: 3}
+  enemyCounts: []
   prefab: {fileID: 1532036094782582, guid: 7c88ebb876048e34c8a817e4a16569a3, type: 3}
   interval: 0
   round: 20
@@ -13258,6 +13265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAmount: 2
   amountIncreasion: 0
+  enemyMark: {fileID: 1827540119822746913, guid: 6bdf9aafca21e436b9c52ffdd39f5e17, type: 3}
+  enemyCounts: []
   prefab: {fileID: 4909745345928348176, guid: c6ae3caa50cfbbc4f8a5b7cc6567ddc8, type: 3}
   interval: 0
   round: 11
@@ -16509,6 +16518,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366242191}
   m_CullTransparentMesh: 1
+--- !u!1 &1367961120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367961122}
+  - component: {fileID: 1367961121}
+  m_Layer: 0
+  m_Name: MarkSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1367961121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367961120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2950cc4c7c34faa94dfadcaea38bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1367961122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367961120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 212.29108, y: 28.6647, z: 726.2728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1367974786
 GameObject:
   m_ObjectHideFlags: 0
@@ -16759,6 +16811,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAmount: 0.5
   amountIncreasion: 0.4
+  enemyMark: {fileID: 1827540119822746913, guid: 6bdf9aafca21e436b9c52ffdd39f5e17, type: 3}
+  enemyCounts: []
   prefab: {fileID: 1532036094782582, guid: 4b442773e365df5498e9b99dd3c5fa13, type: 3}
   interval: 3
   round: 21
@@ -21301,6 +21355,8 @@ GameObject:
   - component: {fileID: 1722079219}
   - component: {fileID: 1722079217}
   - component: {fileID: 1722079221}
+  - component: {fileID: 1722079224}
+  - component: {fileID: 1722079223}
   m_Layer: 0
   m_Name: ManagerOBJ
   m_TagString: Untagged
@@ -21508,6 +21564,33 @@ MonoBehaviour:
   - {fileID: 2437586598000951726}
   - {fileID: 1573831733138755975}
   cursor: {fileID: 1523932331}
+  areaObj: {fileID: 0}
+--- !u!114 &1722079223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722079216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5598566fd314420970900833bf9a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorInHierarchy: {r: 0.2747419, g: 0.581791, b: 0.9245283, a: 1}
+--- !u!114 &1722079224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722079216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ee582341eb7654d8ea630034e5ec0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!4 &1735865799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601681510908809259, guid: 11aea87437ab51d429adcb873617733d, type: 3}
@@ -26636,6 +26719,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curTrainHp: 50
   maxTrainHp: 50
+  curTrainShield: 10000
+  maxTrainShield: 10000
+  dieEnemy: 0
   destroy: 0
   fireDamage: 0
   drillDamage: 0

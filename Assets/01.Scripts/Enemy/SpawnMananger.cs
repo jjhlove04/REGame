@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using MEC;
 
 public class SpawnMananger : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class SpawnMananger : MonoBehaviour
     }
 
     public delegate void Spawn(int i);
+    
+ 
+    private ObjectPool _objPool;
+
+    public List<GameObject> enemyList = new List<GameObject>();
 
     public Spawn spawn;
 
@@ -26,6 +32,12 @@ public class SpawnMananger : MonoBehaviour
 
     private void Awake()
     {
+        
+        foreach(var item in enemyList)
+        {
+            Debug.Log(item.name);
+        }
+        
         Instance = this;
 
         round = 1;
@@ -34,6 +46,7 @@ public class SpawnMananger : MonoBehaviour
     }
     private void Start()
     {
+        _objPool = FindObjectOfType<ObjectPool>();
         curTime = roundCurTime;
         stopSpawn = true;
     }
@@ -46,6 +59,7 @@ public class SpawnMananger : MonoBehaviour
 
             if (curTime >= roundCurTime)
             {
+                
                 spawn(round);
 
                 curTime = 0;
@@ -61,4 +75,8 @@ public class SpawnMananger : MonoBehaviour
             }
         }
     }
+
+
+    
+
 }

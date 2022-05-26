@@ -44,6 +44,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        
+        
+        SpawnMananger.Instance.enemyList.Add(this.gameObject);
         trainManager = TrainManager.instance;
         trainScript = TrainScript.instance;
         gameManager = GameManager.Instance;
@@ -57,6 +60,10 @@ public class Enemy : MonoBehaviour
         AttackingTime();
         RandomAnimSpeed();
     }
+    
+    private void Start() {
+        SpawnMananger.Instance.enemyList.Clear();
+    }
 
     protected virtual void Update()
     {
@@ -65,7 +72,6 @@ public class Enemy : MonoBehaviour
             if (!emp)
             {
                 EnemyIsDistanceX();
-
                 anim.speed = animSpeed;
 
                 Vector3 dir = target.position - transform.position;
