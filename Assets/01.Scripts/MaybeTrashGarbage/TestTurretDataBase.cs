@@ -25,6 +25,7 @@ public class TestTurretDataBase : MonoBehaviour
     [Header("Train업그레이드값")]
     public int trainCount;
     public float trainShield;
+    public float trainHp;
 
     [Header("결과값")]
     public int resultDamage = 0;

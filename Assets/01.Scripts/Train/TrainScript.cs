@@ -48,8 +48,6 @@ public class TrainScript : MonoBehaviour
     {
         instance = this;
 
-        curTrainHp = maxTrainHp;
-
         trainManager= GetComponent<TrainManager>();
 
         trainManager.CreateTrainPrefab();
@@ -58,6 +56,10 @@ public class TrainScript : MonoBehaviour
 
     private void OnEnable()
     {
+        maxTrainHp = TestTurretDataBase.Instance.trainHp;
+        maxTrainShield = TestTurretDataBase.Instance.trainShield;
+        curTrainHp = maxTrainHp;
+        curTrainShield = maxTrainShield;
         roomHp = maxTrainHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
@@ -142,7 +144,11 @@ public class TrainScript : MonoBehaviour
     {
         if (curTrainShield < maxTrainShield)
         {
-            curTrainShield++;
+            if (dieEnemy >= 10)
+            {
+                curTrainShield++;
+
+            }
         }
     }
 

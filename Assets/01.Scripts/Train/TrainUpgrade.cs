@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class TrainUpgrade : MonoBehaviour
 {
     public float shield = 0;
+    public float hp  = 0;
 
     private void Start()
     {
-        gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(() => { });
-        gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(() => { });
-        gameObject.transform.GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(TrainShieldUpgrade);
-        gameObject.transform.GetChild(2).GetChild(1).GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(TrainShieldDowbgrade);
-        gameObject.transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetComponent<Button>().onClick.AddListener(TrainCountUpgrade);
-        gameObject.transform.GetChild(2).GetChild(2).GetChild(0).GetChild(1).GetComponent<Button>().onClick.AddListener(TrainCountDowngrade);
-
+        transform.Find("BackUI/UpgradeObj/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainHpUpgrade);
+        transform.Find("BackUI/UpgradeObj/Panel/UPBtn").GetComponent<Button>().onClick.AddListener(TrainHpDowngrade);
+        transform.Find("BackUI/UpgradeObj1/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainShieldUpgrade);
+        transform.Find("BackUI/UpgradeObj1/Panel/UPBtn").GetComponent<Button>().onClick.AddListener(TrainShieldDowbgrade);
+        transform.Find("BackUI/UpgradeObj2/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainCountUpgrade);
+        transform.Find("BackUI/UpgradeObj2/Panel/UPBtn").GetComponent<Button>().onClick.AddListener(TrainCountDowngrade);
     }
 
     public void TrainCountUpgrade()
@@ -36,8 +36,12 @@ public class TrainUpgrade : MonoBehaviour
         TestTurretDataBase.Instance.trainShield -= shield;
     }
 
-    public void TrainMoney()
+    public void TrainHpUpgrade()
     {
-
+        TestTurretDataBase.Instance.trainHp += hp;
+    }
+    public void TrainHpDowngrade()
+    {
+        TestTurretDataBase.Instance.trainHp -= hp;
     }
 }
