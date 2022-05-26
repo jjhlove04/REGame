@@ -30,7 +30,7 @@ public class CameraShake : MonoBehaviour
 
         while(elapsed < duration)
         {
-            BasicMultiChannelPerlin.m_AmplitudeGain = magnitude;
+            BasicMultiChannelPerlin.m_AmplitudeGain = magnitude * ((duration+1-elapsed)/duration);
             BasicMultiChannelPerlin.m_FrequencyGain = duration;
 
             elapsed += Time.deltaTime;

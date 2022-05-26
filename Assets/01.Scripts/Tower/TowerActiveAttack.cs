@@ -184,7 +184,7 @@ public class TowerActiveAttack : Tower
 
     private void SpawnExplosion()
     {
-        cameraManager.Shake(3, explosionLife);
+        cameraManager.Shake(explosionLife, 5);
 
         Damage();
 

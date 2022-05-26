@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TowerEmp : Tower
+public class TowerBlackHole : Tower
 {
     public GameObject currentDetonator;
     //private int _currentExpIdx = -1;
@@ -45,16 +45,11 @@ public class TowerEmp : Tower
     private LayerMask layerMask;
 
     [SerializeField]
-    private float empDuration = 3;
-
-    [SerializeField]
-    private float onEmpTime = 3;
+    private float blackHoleDuration = 3;
 
     InGameUII inGameUII;
 
     CameraManager cameraManager;
-
-    private bool onEmp;
 
     private void Start()
     {
@@ -64,7 +59,7 @@ public class TowerEmp : Tower
         //else _currentExpIdx = 0;
         inGameUII = InGameUII._instance;
 
-        targetAreaObj.transform.localScale = new Vector3(attackArea- 5, attackArea-5, 1);
+        targetAreaObj.transform.localScale = new Vector3(attackArea - 10, attackArea - 10, 1);
 
         cameraManager = CameraManager.Instance;
     }
@@ -134,15 +129,13 @@ public class TowerEmp : Tower
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                Detonator dTemp = (Detonator)currentDetonator.GetComponent("Detonator");
-
                 if (Physics.Raycast(ray, out hit, 1000))
                 {
-                    float offsetSize = dTemp.size / 3;
+                    float offsetSize = attackArea / 3;
                     hitPoint = hit.point +
                                               ((Vector3.Scale(hit.normal, new Vector3(offsetSize, offsetSize, offsetSize))));
 
-                    targetAreaObj.transform.position = hitPoint + new Vector3(0, 30-hitPoint.y, 0);
+                    targetAreaObj.transform.position = hitPoint + new Vector3(0, 30 - hitPoint.y, 0);
 
                     if (!checkRect.Contains(Input.mousePosition))
                     {
@@ -172,7 +165,7 @@ public class TowerEmp : Tower
 
                 timer.SetActive(true);
 
-                timer.GetComponent<SpriteRenderer>().material.SetFloat("_Arc1", (int)((spawncurTime/spawnTime)*360));
+                timer.GetComponent<SpriteRenderer>().material.SetFloat("_Arc1", (int)((spawncurTime / spawnTime) * 360));
 
 
                 if (spawnTime <= spawncurTime)
@@ -185,18 +178,13 @@ public class TowerEmp : Tower
 
                     spawncurTime = 0;
 
-                    SpawnExplosion();
+                    SpawnBlackHole();
                 }
             }
 
             CoolingTime();
 
             targetAreaObj.SetActive(false);
-        }
-
-        if (onEmp)
-        {
-            Emp();
         }
     }
 
@@ -216,42 +204,19 @@ public class TowerEmp : Tower
         }
     }
 
-    private void SpawnExplosion()
+    private void SpawnBlackHole()
     {
         spawnBomb = false;
 
         targetAreaObj.SetActive(false);
 
-        cameraManager.Shake(explosionLife, 5);
-
-        onEmp = true;
-
-        Invoke("OffEmp", onEmpTime);
-
-        Detonator dTemp = (Detonator)currentDetonator.GetComponent("Detonator");
-
         GameObject exp = (GameObject)Instantiate(currentDetonator, hitPoint, Quaternion.identity);
-        dTemp = (Detonator)exp.GetComponent("Detonator");
-        dTemp.detail = detailLevel;
 
-        Destroy(exp, explosionLife);
-    }
+        exp.transform.localScale = new Vector3(attackArea/2, attackArea/2, attackArea/2);
 
-    private void Emp()
-    {
-        Collider[] enemys = Physics.OverlapSphere(hitPoint, attackArea, layerMask);
+        Destroy(exp, blackHoleDuration);
 
-        foreach (var enemy in enemys)
-        {
-            Enemy enemyEmp = enemy.GetComponent<Enemy>();
-
-            enemyEmp.OnEmp(empDuration);
-        }
-    }
-
-    private void OffEmp()
-    {
-        onEmp = false;
+        cameraManager.Shake(blackHoleDuration, 4);
     }
 
     public override void UseTower()
