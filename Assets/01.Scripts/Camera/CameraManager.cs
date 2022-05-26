@@ -144,4 +144,9 @@ public class CameraManager : MonoBehaviour
         curCamera = null;
         curCameraTrm = null;*/
     }
+
+    public bool IsTopView()
+    {
+        return topCamera.activeSelf;
+    }
 }

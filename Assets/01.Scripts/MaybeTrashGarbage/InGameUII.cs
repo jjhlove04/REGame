@@ -93,12 +93,17 @@ public class InGameUII : MonoBehaviour
 
     public Image cursor;
 
+    [SerializeField]
+    private GameObject areaObj;
+
+    private GameObject Obj;
+
     private void Awake()
     {
         _instance = this;
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
-        objectPool = FindObjectOfType<ObjectPool>();
+        objectPool = ObjectPool.instacne;
 
     }
 
@@ -423,5 +428,26 @@ public class InGameUII : MonoBehaviour
     public List<Button> SetSelectReloadButton()
     {
         return selectAutoReloadlist;
+    }
+
+    public void DrawArea(Vector3 size, Vector3 pos)
+    {
+        Obj = objectPool.GetObject(areaObj);
+
+        Obj.SetActive(true);
+
+        Obj.transform.localScale = size;
+
+        Obj.transform.position = pos;
+    }
+
+    public void Drawing(Vector3 pos)
+    {
+        Obj.transform.position = pos;
+    }
+
+    public void ClearArea()
+    {
+        Obj.SetActive(false);
     }
 }

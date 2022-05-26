@@ -25,7 +25,7 @@ public class EnemyHumanoidRig : Enemy
 
         anim?.SetBool("IsAttack", true);
 
-        rot = Quaternion.LookRotation(target.position);
+        rot = Quaternion.LookRotation(target.position - transform.position);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
     }

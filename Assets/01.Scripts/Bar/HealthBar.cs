@@ -9,22 +9,39 @@ public class HealthBar : MonoBehaviour
 
     private Transform barTrm;
 
+    bool topView;
+
     private void Awake()
     {
         barTrm = transform.Find("bar");
+
+        CameraManager.Instance.TopView += TopView;
+        CameraManager.Instance.QuarterView += QuarterView;
     }
 
     private void Start()
     {
         healthSystem.OnDamaged += CallHealthSystemOnDamaged;
-        healthSystem.OnDied.AddListener(CallHealthSystemOnDamaged);
 
+        CallHealthSystemOnDamaged();
+    }
+
+    private void OnDisable()
+    {
         CallHealthSystemOnDamaged();
     }
 
     private void Update()
     {
-        transform.parent.LookAt(Camera.main.transform);
+        if (topView)
+        {
+            transform.parent.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
+        }
+
+        else
+        {
+            transform.parent.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+        }
     }
 
     void CallHealthSystemOnDamaged()
@@ -49,5 +66,15 @@ public class HealthBar : MonoBehaviour
         {
             gameObject.SetActive(true);
         }
+    }
+
+    private void TopView()
+    {
+        topView = true;
+    }
+
+    private void QuarterView()
+    {
+        topView = false;
     }
 }

@@ -60,13 +60,13 @@ public class Enemy : MonoBehaviour
         {
             if (!emp)
             {
+                EnemyIsDistanceX();
+
                 anim.speed = animSpeed;
 
-                Vector3 dir = trainManager.trainContainer[enemyType].transform.position - transform.position;
+                Vector3 dir = target.position - transform.position;
 
-                Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + randomZ + trainManager.trainContainer.Count * 25));
-
-                EnemyIsDistanceX();
+                Quaternion rot = LookTarget(dir);
 
                 if (run)
                 {
@@ -126,6 +126,18 @@ public class Enemy : MonoBehaviour
         waist.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
+    private Quaternion LookTarget(Vector3 dir)
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(dir.x, dir.y, dir.z + randomZ + trainManager.trainContainer.Count * 25));
+
+        if (target != trainManager.trainContainer[enemyType].transform)
+        {
+            rot = Quaternion.LookRotation(dir);
+        }
+
+        return rot;
+    }
+
     private void EnemyTagInit()
     {
         gameObject.tag = "Enemy";
@@ -139,13 +151,18 @@ public class Enemy : MonoBehaviour
             saveTarget = null;
         }
 
-        if (Mathf.Abs(transform.position.x) < target.position.x+distanceX)
+        else if(target != trainManager.trainContainer[enemyType].transform)
         {
-            if (run)
+            if(Vector3.Distance(transform.position, target.position) > 30 || target.GetComponent<Bait>().isDie)
             {
-                run = Vector3.Distance(transform.position, target.position+ new Vector3(0,0, randomZ)) > distance;
-                EnemyLimitMoveX();
+                target = trainManager.trainContainer[enemyType].transform;
             }
+        }
+
+        if (Mathf.Abs(transform.position.x) <= target.position.x+distanceX)
+        {
+            run = Vector3.Distance(transform.position, target.position + new Vector3(0, 0, randomZ)) > distance;
+            //EnemyLimitMoveX();
         }
 
         else run = true;
@@ -158,13 +175,7 @@ public class Enemy : MonoBehaviour
 
     void EnemyTargettingMove()
     {
-        if(target == null)
-        {
-            target = trainManager.trainContainer[enemyType].transform;
-            saveTarget = null;
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, target.position + new Vector3(0, 0, randomZ),
+        transform.position = Vector3.MoveTowards(transform.position, target.position + new Vector3(distanceX, 0, randomZ),
         speed * Time.deltaTime);
     }
 
@@ -226,7 +237,7 @@ public class Enemy : MonoBehaviour
     {
         saveTarget = target;
 
-        if(Vector3.Distance(transform.position, target.position)> Vector3.Distance(transform.position, bait.position))
+        if(bait != null&&Vector3.Distance(transform.position, target.position)> Vector3.Distance(transform.position, bait.position))
         {
             target = bait;
         }

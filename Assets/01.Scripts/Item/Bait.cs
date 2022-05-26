@@ -13,7 +13,26 @@ public class Bait : MonoBehaviour
 
     BaitHealthSystem baitHealthSystem;
 
+    private int explotionArea = 10;
+
+    public bool isDie;
+
+    private bool timeOut = false;
+
+    private InGameUII inGameUII;
+
     // Update is called once per frame
+
+    private void OnEnable()
+    {
+        isDie = false;
+
+        timeOut = false;
+
+        transform.Find("Particle").gameObject.SetActive(false);
+
+        Invoke("Move", 40);
+    }
 
     private void Awake()
     {
@@ -25,13 +44,21 @@ public class Bait : MonoBehaviour
         baitHealthSystem = GetComponent<BaitHealthSystem>();
 
         baitHealthSystem.maxHp = (int)hp;
+
+        inGameUII = InGameUII._instance;
     }
 
     void Update()
     {
-        Invoke("Move", 40);
+        if (!isDie)
+        {
+            Aggro();
 
-        Aggro();
+            if (timeOut)
+            {
+                transform.position += new Vector3(0,10,10) * Time.deltaTime;
+            }
+        }
 
         transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.LookRotation(new Vector3(-100, 1, 0)),Time.deltaTime);
     }
@@ -42,7 +69,7 @@ public class Bait : MonoBehaviour
 
         foreach (var enemy in enemys)
         {
-            enemy.GetComponent<Enemy>().Aggro(transform);
+            enemy.GetComponent<Enemy>()?.Aggro(transform);
         }
     }
 
@@ -115,11 +142,42 @@ public class Bait : MonoBehaviour
 
     private void Move()
     {
-        transform.position += Vector3.forward * Time.deltaTime * 10;
+        timeOut = true;
+    }
 
-        if(transform.position.z > 100)
+    public void Dying()
+    {
+        Collider[] enemys = Physics.OverlapSphere(transform.position, explotionArea, LayerMask.GetMask("Enemy"));
+
+        isDie = true;
+
+        foreach (var enemy in enemys)
         {
-            Destroy(gameObject);
+            enemy.GetComponent<HealthSystem>().Damage(10);
         }
+
+        transform.Find("Particle").gameObject.SetActive(true);
+
+        Invoke("Die", 1);
+    }
+
+    private void Die()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnMouseEnter()
+    {
+        //inGameUII.DrawArea(new Vector3(aggroArea*1.5f, aggroArea*1.5f, 1), transform.position + new Vector3(0,5,0));
+    }
+
+    private void OnMouseOver()
+    {
+        //inGameUII.Drawing(transform.position + new Vector3(0, 5, 0));
+    }
+
+    private void OnMouseExit()
+    {
+        //inGameUII.ClearArea();
     }
 }

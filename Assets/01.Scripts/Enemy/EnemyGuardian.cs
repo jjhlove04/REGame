@@ -8,7 +8,15 @@ public class EnemyGuardian : Enemy
 
     protected override void Attack(Quaternion rot)
     {
-        rot = Quaternion.Euler(0, -90, 0);
+        if (target != trainManager.trainContainer[enemyType].transform)
+        {
+            rot = Quaternion.LookRotation(target.position - transform.position);
+        }
+
+        else
+        {
+            rot = Quaternion.Euler(0, -90, 0);
+        }
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
 

@@ -15,13 +15,17 @@ public class BaitHealthSystem : MonoBehaviour
 
     private void Awake()
     {
-        OnDied.AddListener(InitHealth);
         InitHealth();
     }
 
     private void Start()
     {
         SetHealthAmountMax(maxHp, true);
+    }
+
+    private void OnDisable()
+    {
+        InitHealth();
     }
 
     public bool IsDead()

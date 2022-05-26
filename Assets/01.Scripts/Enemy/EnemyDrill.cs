@@ -38,6 +38,12 @@ public class EnemyDrill : Enemy
 
         AnimationState(true);
 
+        if (target != trainManager.trainContainer[enemyType].transform)
+        {
+            rot = Quaternion.LookRotation(target.position - transform.position);
+        }
+
+
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
     }
 

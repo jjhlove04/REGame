@@ -8,12 +8,11 @@ public class ObjectReturn : MonoBehaviour
 
     void Start()
     {
-        objPool = FindObjectOfType<ObjectPool>();
+        objPool = ObjectPool.instacne;
     }
 
     private void OnDisable()
     {
         objPool.ReturnGameObject(this.gameObject);
     }
-
 }

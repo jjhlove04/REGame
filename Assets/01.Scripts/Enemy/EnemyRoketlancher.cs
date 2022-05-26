@@ -37,6 +37,12 @@ public class EnemyRoketlancher : Enemy
         if (anim.GetBool("IsAttack"))
         {
             StartCoroutine(Attacking());
+
+            if (target != trainManager.trainContainer[enemyType].transform)
+            {
+                rot = Quaternion.LookRotation(target.position - transform.position);
+            }
+
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
 

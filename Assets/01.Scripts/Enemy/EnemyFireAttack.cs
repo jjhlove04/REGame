@@ -31,15 +31,24 @@ public class EnemyFireAttack : Enemy
 
         if (isAttack)
         {
-            if (transform.position.x > 0)
+            if (target != trainManager.trainContainer[enemyType].transform)
             {
-                rot = Quaternion.Euler(0, -60, 0);
+                rot = Quaternion.LookRotation(target.position - transform.position);
             }
 
-            else if (transform.position.x < 0)
+            else
             {
-                rot = Quaternion.Euler(0, 60, 0);
+                if (transform.position.x > 0)
+                {
+                    rot = Quaternion.Euler(0, -60, 0);
+                }
+
+                else if (transform.position.x < 0)
+                {
+                    rot = Quaternion.Euler(0, 60, 0);
+                }
             }
+
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
         }
 

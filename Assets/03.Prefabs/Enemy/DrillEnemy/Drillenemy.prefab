@@ -254,9 +254,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
-  - {fileID: 1519191008169774604}
   - {fileID: 9073527040703826081}
   - {fileID: 4023778474339994170}
+  - {fileID: 1519191008169774604}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10647,7 +10647,7 @@ Transform:
   m_Children:
   - {fileID: 1518991212382784698}
   m_Father: {fileID: 1520774237818186900}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1521993723743534914
 GameObject:
@@ -11136,7 +11136,7 @@ Transform:
   m_Children:
   - {fileID: 434308261988797104}
   m_Father: {fileID: 1520774237818186900}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &773452322792946940
 PrefabInstance:
@@ -11147,7 +11147,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4426070855941895878, guid: dfafc317428fce44ca49423caea0cdb8, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426070855941895878, guid: dfafc317428fce44ca49423caea0cdb8, type: 3}
       propertyPath: m_LocalScale.x
@@ -11303,6 +11303,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5486138506288848180, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
+      propertyPath: healthSystem
+      value: 
+      objectReference: {fileID: 8414503084658132740}
     - target: {fileID: 8568402560383066214, guid: 24ccbbd942a2fc94598709cf05584264, type: 3}
       propertyPath: healthSystem
       value: 

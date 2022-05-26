@@ -110,8 +110,10 @@ public class BaitItem : Item
 
             useItem = false;
 
-            GameObject exp = (GameObject)Instantiate(bait, hitPoint, Quaternion.Euler(new Vector3(0,-90,0)));
+            GameObject exp = ObjectPool.instacne.GetObject(bait);
 
+            exp.transform.position = hitPoint - new Vector3(0, 5, 0);
+            exp.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
             exp.GetComponent<Bait>().Spawn(aggroArea, hp);
 
             CameraManager.Instance.OffNuclearView();
