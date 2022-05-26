@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour
     private float animSpeed;
 
     protected TrainManager trainManager;
+    protected TrainScript trainScript;
+    protected GameManager gameManager;
 
     [SerializeField]
     private bool stealth = false;
@@ -43,6 +45,8 @@ public class Enemy : MonoBehaviour
     protected virtual void OnEnable()
     {
         trainManager = TrainManager.instance;
+        trainScript = TrainScript.instance;
+        gameManager = GameManager.Instance;
 
         distance = Random.Range(enemyStat.minDistance, enemyStat.maxDistance);
         distanceX = Random.Range(enemyStat.distanceX - enemyStat.distanceX * 0.2f, enemyStat.distanceX);
@@ -183,9 +187,11 @@ public class Enemy : MonoBehaviour
     {
         //GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
         //scrap.transform.position = transform.position;
-        GameManager.Instance.expAmount += enemyStat.dropExp;
-        GameManager.Instance.goldAmount += enemyStat.dropGold;
+        gameManager.expAmount += enemyStat.dropExp;
+        gameManager.goldAmount += enemyStat.dropGold;
         InGameUII._instance.CreateMonjeyTxt(enemyStat.dropExp);
+
+        trainScript.dieEnemy++;
 
         gameObject.SetActive(false);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
@@ -59,20 +60,20 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         if(isClick)
         {
             clickTime += Time.deltaTime;
-
-            upgradeBar.fillAmount = clickTime;
+            upgradeBar.DOFillAmount(1,1f);
         }
         else
         {
+            upgradeBar.DORewind();
+            upgradeBar.fillAmount = 0;
             clickTime = 0;
         }
 
-        if(clickTime >= 1f)
+        if(clickTime >= 1)
         {
             clickBtn();
             upgradeBar.gameObject.SetActive(false);
             isClick = false;
-            clickTime = 0;
 
         }
 

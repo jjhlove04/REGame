@@ -8,6 +8,11 @@ public class TrainScript : MonoBehaviour
 
     public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
     public float maxTrainHp = 50000;
+
+    public float curTrainShield = 10000;
+    public float maxTrainShield = 10000;
+    public int dieEnemy = 0;
+
     private float hpCheck =70;
 
     private float initRoomHp;
@@ -133,17 +138,28 @@ public class TrainScript : MonoBehaviour
     {
         curTrainHp = maxTrainHp;
     }
+    public void FixShield()
+    {
+        if (curTrainShield < maxTrainShield)
+        {
+            curTrainShield++;
+        }
+    }
 
     public void Damage(float damage)
     {
-        curTrainHp -= damage;
-        testScripttss.Instance.TakeDamageHpBar();
-
-        /*for (int i = 0; i < trainhit.Length; i++)
+        curTrainShield -= damage;
+        if (curTrainShield <= 0)
         {
-            trainhit[i].Hit();
-        }*/
-        SmokeTrain();
+            curTrainHp -= damage;
+            testScripttss.Instance.TakeDamageHpBar();
+
+            /*for (int i = 0; i < trainhit.Length; i++)
+            {
+                trainhit[i].Hit();
+            }*/
+            SmokeTrain();
+        }
     }
 
     
