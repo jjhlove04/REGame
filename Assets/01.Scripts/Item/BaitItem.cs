@@ -35,8 +35,10 @@ public class BaitItem : Item
         targetAreaObj.transform.localScale = new Vector3(aggroArea + 15, aggroArea + 15, 1);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (useItem)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -46,7 +48,7 @@ public class BaitItem : Item
             {
                 float offsetSize = aggroArea / 3;
                 hitPoint = hit.point +
-                                          ((Vector3.Scale(hit.normal, new Vector3(offsetSize, offsetSize, offsetSize))));
+                                          ((Vector3.Scale(hit.normal, new Vector3(offsetSize, offsetSize - 5, offsetSize))));
 
                 targetAreaObj.transform.position = hitPoint;
 
@@ -68,8 +70,6 @@ public class BaitItem : Item
 
     public override void UseItem()
     {
-        base.UseItem();
-
         if (count > 0)
         {
             if (useItem == true)

@@ -44,8 +44,10 @@ public class AutoReloadItem : Item
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (useItem)
         {
             for (int i = 0; i < countArr.Count; i++)
@@ -62,8 +64,6 @@ public class AutoReloadItem : Item
 
     public override void UseItem()
     {
-        base.UseItem();
-
         itemUI.transform.Find("Background").gameObject.SetActive(!itemUI.transform.Find("Background").gameObject.activeSelf);
 
         useItem = !useItem;

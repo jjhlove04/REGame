@@ -130,15 +130,19 @@ public class ItemManager : MonoBehaviour
     {
         if(scene.name == "Main")
         {
-            foreach (var item in items)
+            for (int i = 0;i < items.Count; i++)
             {
-                GameObject gameItem = Instantiate(item);
+                GameObject gameItem = Instantiate(items[i]);
                 gameItem.transform.parent = transform;
                 gameItem.transform.localPosition = Vector3.zero;
 
-                if (itemIsCount[item].isCount)
+                Item itemCom = gameItem.GetComponent<Item>();
+
+                itemCom.itemNum = i + 1;
+
+                if (itemIsCount[items[i]].isCount)
                 {
-                    gameItem.GetComponent<Item>().count = itemIsCount[item].count;
+                    itemCom.count = itemIsCount[items[i]].count;
                 }
 
                 gameItems.Add(gameItem);
@@ -151,7 +155,6 @@ public class ItemManager : MonoBehaviour
             {
                 if (itemIsCount[items[i]].isCount)
                 {
-                    print(1);
                     if (itemIsCount[items[i]].count <= 0)
                     {
                         items.Remove(items[i]);

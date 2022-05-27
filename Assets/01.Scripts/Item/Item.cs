@@ -9,7 +9,7 @@ public enum ItemType
     Passive
 }
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
     public ItemType itemType;
 
@@ -19,10 +19,50 @@ public class Item : MonoBehaviour
 
     public int count;
 
-    public virtual void UseItem() { }
-
-    public virtual void GetItemUI(GameObject UI) { }
-
     public Sprite icon;
 
+    public int itemNum;
+
+    protected virtual void Update()
+    {
+        KeyDown();
+    }
+
+    public abstract void UseItem();
+
+    public abstract void GetItemUI(GameObject UI);
+
+    public virtual void KeyDown()
+    {
+        switch (itemNum)
+        {
+            case 1:
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    UseItem();
+                }
+                    break;
+            case 2:
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    UseItem();
+                }
+                break;
+            case 3:
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    UseItem();
+                }
+                break;
+            case 4:
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    UseItem();
+                }
+                break;
+            default:
+                break;
+        }
+
+    }
 }

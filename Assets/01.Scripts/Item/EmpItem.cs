@@ -11,7 +11,7 @@ public class EmpItem : Item
 
     [SerializeField]
     private GameObject targetAreaObj;
-    
+
     public float explosionLife = 2;
 
     public int empArea;
@@ -37,8 +37,10 @@ public class EmpItem : Item
         targetAreaObj.transform.localScale = new Vector3(empArea + 15, empArea + 15, 1);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (useItem)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -70,10 +72,9 @@ public class EmpItem : Item
         }
     }
 
+
     public override void UseItem()
     {
-        base.UseItem();
-
         if(count > 0)
         {
             if (useItem == true)
