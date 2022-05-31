@@ -91,7 +91,7 @@ public class AutoReloadItem : Item
         {
             Turret turret = testScripttss.turretData[circletree.count].GetComponent<Turret>();
 
-            circletree.transform.GetChild(0).GetChild(0).Find("Background").gameObject.SetActive(true);
+            circletree.transform.Find("Circle/ReloadItem/Background").gameObject.SetActive(true);
 
             countArr.Add(circletree.count);
             count--;
@@ -105,7 +105,7 @@ public class AutoReloadItem : Item
 
     private void OffReload(CircleTree circletree)
     {
-        circletree.transform.GetChild(0).GetChild(0).Find("Background").gameObject.SetActive(false);
+        circletree.transform.Find("Circle/ReloadItem/Background").gameObject.SetActive(false);
 
         countArr.Remove(circletree.count);
         count++;
