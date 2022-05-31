@@ -44,6 +44,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
+            InGameUII._instance.bossIcon.SetActive(true);
             spawnMananger.spawn += new SpawnMananger.Spawn(BossSpwanEnemy);
         }
 
