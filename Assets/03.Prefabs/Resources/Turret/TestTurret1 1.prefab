@@ -106,9 +106,9 @@ MonoBehaviour:
     m_Bits: 128
   maxBulletAmount: 30
   bulAmount: 10
-  bulletBar: {fileID: 6013357946969227447}
+  bulletBar: {fileID: 0}
   shootTimerMax: 1
-  damage: 10
+  damage: 1
   detection: 0
   turCount: 0
   turType: 0
@@ -760,17 +760,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5795547577884688346, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
   m_PrefabInstance: {fileID: 6858576691468430995}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6013357946969227447 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 890923383437422116, guid: 4d01f71ad3ae0a84db9e3bed3a69daad, type: 3}
-  m_PrefabInstance: {fileID: 6858576691468430995}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f02fa0d128f1ca4081cfd031d9a2176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8185287192311356063
 PrefabInstance:
   m_ObjectHideFlags: 0
