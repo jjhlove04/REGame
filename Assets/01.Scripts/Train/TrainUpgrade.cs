@@ -10,21 +10,27 @@ public class TrainUpgrade : MonoBehaviour
 
     private void Start()
     {
-        transform.Find("BackUI/UpgradeObj/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainHpUpgrade);
-        transform.Find("BackUI/UpgradeObj/Panel/UPBtn").GetComponent<Button>().onClick.AddListener(TrainHpDowngrade);
-        transform.Find("BackUI/UpgradeObj1/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainShieldUpgrade);
-        transform.Find("BackUI/UpgradeObj1/Panel/UPBtn").GetComponent<Button>().onClick.AddListener(TrainShieldDowbgrade);
-        transform.Find("BackUI/UpgradeObj2/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainCountUpgrade);
-        transform.Find("BackUI/UpgradeObj2/Panel/UPBtn").GetComponent<Button>().onClick.AddListener(TrainCountDowngrade);
+        transform.Find("BackUI/UpgradeObj/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainHpDowngrade);
+        transform.Find("BackUI/UpgradeObj/Panel/UPBtn").GetComponent<Button>().onClick.AddListener( TrainHpUpgrade);
+        transform.Find("BackUI/UpgradeObj1/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainShieldDowbgrade);
+        transform.Find("BackUI/UpgradeObj1/Panel/UPBtn").GetComponent<Button>().onClick.AddListener( TrainShieldUpgrade);
+        transform.Find("BackUI/UpgradeObj2/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainCountDowngrade);
+        transform.Find("BackUI/UpgradeObj2/Panel/UPBtn").GetComponent<Button>().onClick.AddListener( TrainCountUpgrade);
     }
 
     public void TrainCountUpgrade()
     {
-        TestTurretDataBase.Instance.trainCount++;
+        if (TestTurretDataBase.Instance.trainCount < 3)
+        {
+            TestTurretDataBase.Instance.trainCount++;
+        }
     }
     public void TrainCountDowngrade()
     {
-        TestTurretDataBase.Instance.trainCount--;
+        if (TestTurretDataBase.Instance.trainCount > 1)
+        {
+            TestTurretDataBase.Instance.trainCount--;
+        }
     }
 
     public void TrainShieldUpgrade()

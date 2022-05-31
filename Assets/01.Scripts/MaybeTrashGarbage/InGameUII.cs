@@ -401,7 +401,7 @@ public class InGameUII : MonoBehaviour
     {
         for (int i = 0; i < turPriceList.Count; i++)
         {
-            turPriceList[i].text = GameManager.Instance.turretPtice.ToString();
+            turPriceList[i].text = GameManager.Instance.turretPtice + "G";
         }
     }
 

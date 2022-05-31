@@ -83,12 +83,32 @@ public class testSkillScript : MonoBehaviour
 
             if (!onTurret)
             {
-                circleTree.transform.GetChild(0).gameObject.SetActive(true);
-                circleTree.transform.GetChild(1).gameObject.SetActive(true);
-                circleTree.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-                circleTree.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+                //포탑 설치
+                if (gameManager.goldAmount >= gameManager.turretPtice)
+                {
+                    circleTree.transform.GetChild(0).gameObject.SetActive(true);
+                    circleTree.transform.GetChild(1).gameObject.SetActive(true);
+                    if (floor == -1)
+                    {
+                        onTurret = true;
+                        circleTree.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+                        TestTurretDataBase.Instance.Create(GetComponent<Image>(), count);
+                        floor += 2;
+                        if (!TestTurretDataBase.Instance.curTurretType.ContainsKey("1-1"))
+                        {
+                            circleTree.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = false;
+                            return;
+                        }
+                    }
 
-                img.color = new Color(1, 1, 0, 1);
+                }
+                else
+                {
+                    inGameUII.warningtxt.color = new Color(1, 0.8f, 0, 1);
+                    inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
+                    inGameUII.GoldWarning.alpha = 1;
+                    inGameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
+                }
             }
             else
             {
@@ -104,7 +124,6 @@ public class testSkillScript : MonoBehaviour
                     circleTree.transform.GetChild(0).gameObject.SetActive(true);
                     circleTree.transform.GetChild(1).gameObject.SetActive(true);
                 }
-
             }
 
             isTest = true;
@@ -126,32 +145,6 @@ public class testSkillScript : MonoBehaviour
                     img.color = new Color(1, 1, 1, 1);
                 }
                 clickCount = 0;
-            }
-            if (!onTurret)
-            {
-                //포탑 설치
-                if (gameManager.goldAmount >= gameManager.turretPtice)
-                {
-                    if (floor == -1)
-                    {
-                        onTurret = true;
-                        circleTree.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-                        TestTurretDataBase.Instance.Create(GetComponent<Image>(), count);
-                        floor += 2;
-                        if (!TestTurretDataBase.Instance.curTurretType.ContainsKey("1-1"))
-                        {
-                            circleTree.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = false;
-                            return;
-                        }
-                    }
-                }
-                else
-                {
-                    inGameUII.warningtxt.color = new Color(1, 0.8f, 0, 1);
-                    inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
-                    inGameUII.GoldWarning.alpha = 1;
-                    inGameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
-                }
             }
 
         });

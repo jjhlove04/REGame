@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217412489622463116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 6, z: 0}
+  m_LocalPosition: {x: -0.5, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2151153932734180457}
@@ -486,7 +486,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 420900524367144708, guid: eb468a3816d303e43837071231069819, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1361354863353538084, guid: eb468a3816d303e43837071231069819, type: 3}
       propertyPath: m_RootOrder
@@ -532,14 +532,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2484019746703255958, guid: eb468a3816d303e43837071231069819, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3737107921228532972, guid: eb468a3816d303e43837071231069819, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918485419229288757, guid: eb468a3816d303e43837071231069819, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918485419229288757, guid: eb468a3816d303e43837071231069819, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.030000001
+      objectReference: {fileID: 0}
     - target: {fileID: 4247826730901616355, guid: eb468a3816d303e43837071231069819, type: 3}
       propertyPath: m_Name
       value: BulletBarPrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784571715421476538, guid: eb468a3816d303e43837071231069819, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784571715421476538, guid: eb468a3816d303e43837071231069819, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8806017018836776451, guid: eb468a3816d303e43837071231069819, type: 3}
       propertyPath: warningSprite
       value: 
       objectReference: {fileID: 1846121292572512828}
+    - target: {fileID: 8821584240816207037, guid: eb468a3816d303e43837071231069819, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb468a3816d303e43837071231069819, type: 3}
 --- !u!4 &2151153932734180457 stripped

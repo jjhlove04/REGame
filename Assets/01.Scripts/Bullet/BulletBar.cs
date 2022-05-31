@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class BulletBar : MonoBehaviour
 {
-    private Transform barTrm;
-    public SpriteRenderer barSprite;
-    public GameObject txt;
-
     public GameObject warningSprite;
+    public Material halfCircle;
 
     private void Awake()
     {
-        barTrm = transform.Find("bar");
+
     }
     private void Start()
     {
         CameraManager.Instance.TopView += LookCameraTopView;
         CameraManager.Instance.QuarterView += LookCameraQuarterView;
+        halfCircle = transform.GetChild(0).GetComponent<SpriteRenderer>().material;
+        //halfCircle.SetFloat("_Arc2", 360);
     }
     private void Update()
     {
@@ -45,6 +44,8 @@ public class BulletBar : MonoBehaviour
     public void UpdateBar(int curBulletAmount, int bulletAmountMax)
     {
         //barTrm.localScale = new Vector3(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax), 1, 1);
+
+        //halfCircle.SetFloat("_Arc2", ((curBulletAmount / bulletAmountMax) * 360));
 
         if(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax) <= 0.3)
         {
@@ -75,13 +76,11 @@ public class BulletBar : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(new Vector3(0, -90, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
         warningSprite.transform.rotation = Quaternion.LookRotation(new Vector3(0, -90, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
-        transform.localPosition = new Vector3(1.75f, 0, 0);
     }
 
     private void LookCameraQuarterView()
     {
         transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
         warningSprite.transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
-        transform.localPosition = new Vector3(1.75f, 2, 0);
     }
 }
