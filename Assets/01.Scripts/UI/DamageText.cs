@@ -32,8 +32,8 @@ public class DamageText : MonoBehaviour
         destroyTime = 2.0f;
 
         text = GetComponent<TextMeshPro>();
-        text.color = alpha;
-        text.text = "-"+damage.ToString();
+        //text.color = alpha;
+        //text.text = "-"+damage.ToString();
         Invoke("DestroyObject", destroyTime);
     }
 
@@ -43,7 +43,7 @@ public class DamageText : MonoBehaviour
         transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0)); // 텍스트 위치
 
         alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed); // 텍스트 알파값
-        text.color = alpha;
+        //text.color = alpha;
     }
 
     private void DestroyObject()

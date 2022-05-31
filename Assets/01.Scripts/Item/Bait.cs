@@ -31,6 +31,8 @@ public class Bait : MonoBehaviour
 
         transform.Find("Particle").gameObject.SetActive(false);
 
+        CancelInvoke("Move");
+
         Invoke("Move", 40);
     }
 
@@ -58,6 +60,11 @@ public class Bait : MonoBehaviour
             {
                 transform.position += new Vector3(0,10,10) * Time.deltaTime;
             }
+        }
+
+        else
+        {
+            transform.position += Vector3.back * 20 * Time.deltaTime;
         }
 
         transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.LookRotation(new Vector3(-100, 1, 0)),Time.deltaTime);
@@ -101,42 +108,43 @@ public class Bait : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("RoketBullet"))
+        if (!isDie)
         {
-            Damage(dicEnemydata[EnemyType.Roket].GetDamage());
-        }
+            if (other.CompareTag("RoketBullet"))
+            {
+                Damage(dicEnemydata[EnemyType.Roket].GetDamage());
+            }
 
-        else if (other.CompareTag("HumanoidRigBullet"))
-        {
-            Damage(dicEnemydata[EnemyType.HumanoidRig].GetDamage() * Time.deltaTime);
-        }
+            else if (other.CompareTag("HumanoidRigBullet"))
+            {
+                Damage(dicEnemydata[EnemyType.HumanoidRig].GetDamage() * Time.deltaTime);
+            }
 
-        else
-        {
-            return;
-        }
+            else
+            {
+                return;
+            }
+        }      
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("FireBullet"))
+        if (!isDie)
         {
-            Damage(dicEnemydata[EnemyType.Fire].GetDamage() * Time.deltaTime);
-        }
+            if (other.CompareTag("FireBullet"))
+            {
+                Damage(dicEnemydata[EnemyType.Fire].GetDamage() * Time.deltaTime);
+            }
 
-        else if (other.CompareTag("GuardianBullet"))
-        {
-            Damage(dicEnemydata[EnemyType.Guardian].GetDamage() * Time.deltaTime);
-        }
+            else if (other.CompareTag("GuardianBullet"))
+            {
+                Damage(dicEnemydata[EnemyType.Guardian].GetDamage() * Time.deltaTime);
+            }
 
-        else if (other.CompareTag("DrillBullet"))
-        {
-            Damage(dicEnemydata[EnemyType.Drill].GetDamage() * Time.deltaTime);
-        }
-
-        else
-        {
-            return;
+            else if (other.CompareTag("DrillBullet"))
+            {
+                Damage(dicEnemydata[EnemyType.Drill].GetDamage() * Time.deltaTime);
+            }
         }
     }
 
@@ -158,7 +166,7 @@ public class Bait : MonoBehaviour
 
         transform.Find("Particle").gameObject.SetActive(true);
 
-        Invoke("Die", 1);
+        Invoke("Die", 5);
     }
 
     private void Die()

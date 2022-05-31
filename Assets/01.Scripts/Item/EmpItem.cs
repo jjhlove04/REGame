@@ -27,14 +27,28 @@ public class EmpItem : Item
 
     private Rect checkRect = new Rect(0, 0, 260, 180);
 
+    ItemManager itemManager;
+
+    List<Item> activeItems = new List<Item>();
+
     private void Start()
     {
+        itemManager = ItemManager.Instance;
+
         empCount = itemUI.transform.Find("Count").GetComponent<TextMeshProUGUI>();
 
         empCount.gameObject.SetActive(true);
         empCount.text = "" + count;
 
         targetAreaObj.transform.localScale = new Vector3(empArea + 15, empArea + 15, 1);
+        
+        foreach (var item in itemManager.gameItems)
+        {
+            if (item.GetComponent<Item>().itemType == ItemType.Active)
+            {
+                activeItems.Add(item.GetComponent<Item>());
+            }
+        }
     }
 
     protected override void Update()
@@ -43,6 +57,11 @@ public class EmpItem : Item
 
         if (useItem)
         {
+            if (Input.GetMouseButtonDown(1))
+            {
+                UnUseItem();
+            }
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -90,6 +109,11 @@ public class EmpItem : Item
 
             else
             {
+                foreach (var item in activeItems)
+                {
+                    item.UnUseItem();
+                }
+
                 useItem = true;
 
                 targetAreaObj.SetActive(true);
@@ -99,6 +123,17 @@ public class EmpItem : Item
                 CameraManager.Instance.OnNuclearView();
             }
         }
+    }
+
+    public override void UnUseItem()
+    {
+        base.UnUseItem();
+
+        targetAreaObj.SetActive(false);
+
+        itemUI.transform.Find("Background").gameObject.SetActive(false);
+
+        CameraManager.Instance.OffNuclearView();
     }
 
     private void SpawnExplosion()

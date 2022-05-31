@@ -25,19 +25,37 @@ public class BaitItem : Item
 
     private Rect checkRect = new Rect(0, 0, 260, 180);
 
+    ItemManager itemManager;
+
+    List<Item> activeItems = new List<Item>();
+
     private void Start()
     {
+        itemManager = ItemManager.Instance;
         baitCount = itemUI.transform.Find("Count").GetComponent<TextMeshProUGUI>();
 
         baitCount.gameObject.SetActive(true);
         baitCount.text = "" + count;
 
         targetAreaObj.transform.localScale = new Vector3(aggroArea + 15, aggroArea + 15, 1);
+
+        foreach (var item in itemManager.gameItems)
+        {
+            if(item.GetComponent<Item>().itemType == ItemType.Active)
+            {
+                activeItems.Add(item.GetComponent<Item>());
+            }
+        }
     }
 
     protected override void Update()
     {
         base.Update();
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            UnUseItem();
+        }
 
         if (useItem)
         {
@@ -85,6 +103,11 @@ public class BaitItem : Item
 
             else
             {
+                foreach (var item in activeItems)
+                {
+                    item.UnUseItem();
+                }
+
                 useItem = true;
 
                 targetAreaObj.SetActive(true);
@@ -94,6 +117,17 @@ public class BaitItem : Item
                 CameraManager.Instance.OnNuclearView();
             }
         }
+    }
+
+    public override void UnUseItem()
+    {
+        base.UnUseItem();
+
+        targetAreaObj.SetActive(false);
+
+        itemUI.transform.Find("Background").gameObject.SetActive(false);
+
+        CameraManager.Instance.OffNuclearView();
     }
 
     private void SpawnBait()

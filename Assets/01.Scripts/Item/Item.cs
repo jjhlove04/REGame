@@ -63,6 +63,10 @@ public abstract class Item : MonoBehaviour
             default:
                 break;
         }
+    }
 
+    public virtual void UnUseItem()
+    {
+        useItem = false;
     }
 }

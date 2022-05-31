@@ -136,7 +136,7 @@ public class Roketlancher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Train"))
+        if (other.CompareTag("Train")||other.CompareTag("Bait"))
         {
             //TrainScript.instance.Damage(damage);
             SpawnParticle();

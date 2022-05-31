@@ -41,11 +41,15 @@ public class Enemy : MonoBehaviour
     protected Transform target;
     private Transform saveTarget;
 
+    private bool blackhole;
+    private float balckholeDamage;
+    private float balckgoleDuration;
+
 
     protected virtual void OnEnable()
     {
-        
-        
+        blackhole = false;
+
         SpawnMananger.Instance.enemyList.Add(this.gameObject);
         trainManager = TrainManager.instance;
         trainScript = TrainScript.instance;
@@ -69,6 +73,11 @@ public class Enemy : MonoBehaviour
     {
         if (!isDying)
         {
+            if (blackhole)
+            {
+                GetComponent<HealthSystem>().Damage(balckholeDamage/ balckgoleDuration*Time.deltaTime);
+            }
+
             if (!emp)
             {
                 EnemyIsDistanceX();
@@ -292,6 +301,13 @@ public class Enemy : MonoBehaviour
     public void RandomMoveSpeed()
     {
         speed = enemyStat.enemySpeed * anim.speed;
+    }
+
+    public void BlackHole(float damage, float duration ,bool isBlackhole)
+    {
+        blackhole = isBlackhole;
+        balckholeDamage = damage;
+        balckgoleDuration = duration;
     }
 
     private void OnMouseDown()

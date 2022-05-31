@@ -9,14 +9,14 @@ public class Spawner : MonoBehaviour
 
     public float amountIncreasion;
 
-   public GameObject enemyMark;
-   public GameObject[] enemyCounts;
+    public GameObject enemyMark;
+    public GameObject[] enemyCounts;
     private ObjectPool objectPool;
     [SerializeField]
     private GameObject prefab;
 
     [SerializeField]
-    private float interval=3;
+    private float interval = 3;
 
     [SerializeField]
     private int round;
@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            InGameUII._instance.bossIcon.SetActive(true);
+            //InGameUII._instance.bossIcon.SetActive(true);
             spawnMananger.spawn += new SpawnMananger.Spawn(BossSpwanEnemy);
         }
 
@@ -68,14 +68,12 @@ public class Spawner : MonoBehaviour
         }
     }
 
-        public IEnumerator<float> FindEnemyMarkerLogic()
+    public IEnumerator<float> FindEnemyMarkerLogic()
     {
-        
-
         GameObject[] markers = new GameObject[10];
-        for(int i = 0; i < markers.Length; i++)
+        for (int i = 0; i < markers.Length; i++)
         {
-            markers[i] =objectPool.GetObject(enemyMark);
+            markers[i] = objectPool.GetObject(enemyMark);
             markers[i].transform.position = transform.position;
         }
         yield return Timing.WaitForSeconds(0.1f);
@@ -89,11 +87,18 @@ public class Spawner : MonoBehaviour
 
     private void SpwanEnemy(int s)
     {
+        StartCoroutine(Spawn(s));
+    }
+
+    IEnumerator Spawn(int s)
+    {
         float amount = spawnAmount + (s * amountIncreasion);
+
+        float time = spawnMananger.roundCurTime / amount;
 
         if (s % adjustmentRound == 0)
         {
-            amount=amount * 0.6f;
+            amount = amount * 0.6f;
         }
 
         if (round <= s)
@@ -107,20 +112,24 @@ public class Spawner : MonoBehaviour
 
                 GameObject newPrefab = objectPool.GetObject(prefab);
                 newPrefab.transform.position = transform.position + randPos;
+
+
+
+                yield return new WaitForSeconds(time);
             }
         }
     }
-    
+
     private void BossSpwanEnemy(int s)
     {
-        if(round == s)
+        if (round == s)
         {
             for (int i = 0; i < spawnAmount; i++)
             {
                 float randX = Random.Range(-interval, interval);
                 float randY = Random.Range(-interval, interval);
 
-                Vector3 randPos = new Vector3(randX,0,randY);
+                Vector3 randPos = new Vector3(randX, 0, randY);
 
                 GameObject newPrefab = objectPool.GetObject(prefab);
                 newPrefab.transform.position = transform.position + randPos;
@@ -128,7 +137,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    
+
 }
 
 
