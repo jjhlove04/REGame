@@ -51,13 +51,27 @@ public class TitleUI : MonoBehaviour
     public int maxExp = 30;
     public Slider expBar;
     public Text levelTxt;
-    //public Text techPointTxt;
-    //public Text goldTxt;
+
+    [Header("업그레이드 패널 관련")]
+    public Text curHpText;
+    public Text upHpText;
+    [Space(20)]
+    public Text curCellText;
+    public Text upCellText;
+    [Space(20)]
+    public Text curShieldText;
+    public Text upShieldText;
+
+  
+  
 
     public Image cursor;
 
     private void Awake()
     {
+        ShowShieldUpGradeText();
+        ShowHpUpgradeText();
+        ShowCountUPGradeText();
         if(!TestDatabase.Instance.isRegister)
         {
             RegisterPanelOpen();
@@ -135,6 +149,7 @@ public class TitleUI : MonoBehaviour
         Update_MousePosition();
         InitPlayerInfo();
         ExpBar();
+        
 
         cursor.transform.position = Input.mousePosition;
     }
@@ -230,4 +245,26 @@ public class TitleUI : MonoBehaviour
             }
         }
     }
+
+    public void ShowHpUpgradeText()
+    {
+        curHpText.text = TestTurretDataBase.Instance.trainHp.ToString();
+        upHpText.text = (TestTurretDataBase.Instance.trainHp + 50).ToString();
+    }
+    public void ShowCountUPGradeText()
+    {
+        curCellText.text = TestTurretDataBase.Instance.trainCount.ToString();
+        upCellText.text = (TestTurretDataBase.Instance.trainCount + 1).ToString();
+        if(TestTurretDataBase.Instance.trainCount == 3)
+        {
+            upCellText.text = string.Format("최고 강화 수치입니다.");
+        }
+    }
+    public void ShowShieldUpGradeText()
+    {
+        curShieldText.text = TestTurretDataBase.Instance.trainShield.ToString();
+        upShieldText.text = (TestTurretDataBase.Instance.trainShield+50).ToString();
+
+    }
+    
 }
