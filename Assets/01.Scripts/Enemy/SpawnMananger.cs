@@ -14,7 +14,6 @@ public class SpawnMananger : MonoBehaviour
 
     public delegate void Spawn(int i);
     
- 
     private ObjectPool _objPool;
 
     public List<GameObject> enemyList = new List<GameObject>();
