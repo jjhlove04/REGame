@@ -124,24 +124,26 @@ public class TitleMoveScript : MonoBehaviour
             resultPanelRect.DOAnchorPosX(1742, 0.8f);
             btnGroupRect.DOAnchorPosX(70, 0.5f);
 
-
             TestDatabase.Instance.resultEXP = 0;
             TestDatabase.Instance.resultDamage = 0;
+            TestDatabase.Instance.resultGold -= 
+            (TestTurretDataBase.Instance.trainCount * (TestTurretDataBase.Instance.round - 1)) +
+            ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1));
         });
 
-        if(InGameUI.sceneIndex == 1)
-       {
-           btnGroup.SetActive(false);
-           btnGroupRect.DOAnchorPosX(-600, 0.1f);
-           resultPanel.SetActive(true);
-       }
-       if(InGameUI.sceneIndex == 0)
-       {
-           btnGroup.SetActive(true);
-           resultPanel.SetActive(false);
-       }
-       
-        
+        if (InGameUII.sceneIndex == 1)
+        {
+            btnGroup.SetActive(false);
+            btnGroupRect.DOAnchorPosX(-600, 0.1f);
+            resultPanel.SetActive(true);
+        }
+        if (InGameUII.sceneIndex == 0)
+        {
+            btnGroup.SetActive(true);
+            resultPanel.SetActive(false);
+        }
+
+
     }
 
     private void Update()

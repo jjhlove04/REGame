@@ -35,7 +35,7 @@ public class testSkillScript : MonoBehaviour
 
         CameraManager cameraManager = CameraManager.Instance;
 
-        gameObject.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.turretPtice.ToString();
+        gameObject.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.turretPtice + "G";
 
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;
