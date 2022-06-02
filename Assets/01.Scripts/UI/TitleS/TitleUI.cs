@@ -7,7 +7,6 @@ using DG.Tweening;
 
 public class TitleUI : MonoBehaviour
 {
-
     private static TitleUI _ui = new TitleUI();
     public static TitleUI UI { get { return _ui; } }
 

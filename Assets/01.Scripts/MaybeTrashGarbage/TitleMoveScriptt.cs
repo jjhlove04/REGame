@@ -22,11 +22,8 @@ public class TitleMoveScriptt : MonoBehaviour
     private RectTransform resultPanelRect;
 
     public static int indexNum = 0;
+    private bool isDoneTween = false;
 
-    public GameObject startC;
-    public GameObject turretC;
-    public GameObject turretP;
-    public GameObject towerP;
     private void Awake()
     {
         repairBtn = repairBtn.GetComponent<Button>();
@@ -146,12 +143,13 @@ public class TitleMoveScriptt : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (backBtn.activeSelf == true)
+            if (backBtn.activeSelf == true && isDoneTween)
             {
                 if (indexNum == 1)
                 {
                     timelines[1].Play();
                     BtnSlide(2);
+                    isDoneTween = false;
                 }
                 if (indexNum == 2)
                 {
@@ -162,11 +160,13 @@ public class TitleMoveScriptt : MonoBehaviour
 
                     timelines[3].Play();
                     BtnSlide(2);
+                    isDoneTween = false;
                 }
                 if (indexNum == 3)
                 {
                     timelines[5].Play();
                     BtnSlide(3);
+                    isDoneTween = false;
                 }
                 //업그레이드 화면에서 나가기
                 if (indexNum == 4)
@@ -177,17 +177,9 @@ public class TitleMoveScriptt : MonoBehaviour
                         TitleUII.UI.upGradeBtns[i].gameObject.SetActive(true);
                     }
                     indexNum = 2;
+                    isDoneTween = false;
                 }
             }
-        }
-
-        if (startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
-        {
-            backBtn.SetActive(true);
-        }
-        else
-        {
-            backBtn.SetActive(false);
         }
 
     }
@@ -201,12 +193,12 @@ public class TitleMoveScriptt : MonoBehaviour
             backBtn.SetActive(true);
 
         }
-        if (index == 2 || Input.GetKeyDown(KeyCode.Escape))
+        if (index == 2)
         {
             BtnGroupMove(1);
             backBtn.SetActive(false);
         }
-        if (index == 3 || Input.GetKeyDown(KeyCode.Escape))
+        if (index == 3)
         {
             BtnGroupMove(2);
             backBtn.SetActive(false);
@@ -221,21 +213,20 @@ public class TitleMoveScriptt : MonoBehaviour
         float dexSpeed = 0;
         if (index == 0)
         {
-            btnGroupRect.DOAnchorPosX(-578, 0.5f);
+            btnGroupRect.DOAnchorPosX(-578, 0.5f).OnComplete(()=> {isDoneTween = true;});
         }
         //출발 업그레이드 백
         if (index == 1)
         {
             dexSpeed = 0.5f;
-            btnGroupRect.DOAnchorPosX(70, dexSpeed).SetDelay(0.5f);
+            btnGroupRect.DOAnchorPosX(70, dexSpeed).SetDelay(0.5f).OnComplete(()=>{isDoneTween = true;});
         }
         //나머지 버튼 3개 백
         if (index == 2)
         {
             dexSpeed = 0.3f;
-            btnGroupRect.DOAnchorPosX(70, dexSpeed).SetDelay(0.4f);
+            btnGroupRect.DOAnchorPosX(70, dexSpeed).SetDelay(0.4f).OnComplete(()=>{isDoneTween = true;});
 
         }
-
     }
 }
