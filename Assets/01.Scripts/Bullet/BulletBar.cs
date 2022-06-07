@@ -9,13 +9,12 @@ public class BulletBar : MonoBehaviour
 
     private void Awake()
     {
-
+        halfCircle = transform.GetChild(0).GetComponent<SpriteRenderer>().material;
     }
     private void Start()
     {
         CameraManager.Instance.TopView += LookCameraTopView;
         CameraManager.Instance.QuarterView += LookCameraQuarterView;
-        halfCircle = transform.GetChild(0).GetComponent<SpriteRenderer>().material;
         //halfCircle.SetFloat("_Arc2", 360);
     }
     private void Update()
@@ -45,15 +44,17 @@ public class BulletBar : MonoBehaviour
     {
         //barTrm.localScale = new Vector3(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax), 1, 1);
 
-        //halfCircle.SetFloat("_Arc2", ((curBulletAmount / bulletAmountMax) * 360));
+        halfCircle.SetFloat("_Arc2", 160f * (1f - ((float)curBulletAmount / (float)bulletAmountMax)));
 
-        if(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax) <= 0.3)
+        if(GetBulletAmounetNomalized(curBulletAmount, bulletAmountMax) <= 0)
         {
             warningSprite.SetActive(true);
+            transform.GetChild(0).gameObject.SetActive(false);
         }
         else
         {
             warningSprite.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 

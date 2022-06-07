@@ -74,14 +74,11 @@ public class AutoReloadItem : Item
         if (!circletree.autoReload)
         {
             OnReload(circletree);
-            print(0);
         }
 
         else
         {
             OffReload(circletree);
-
-            print(1);
         }
     }
 

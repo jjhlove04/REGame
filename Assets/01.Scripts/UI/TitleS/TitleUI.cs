@@ -61,8 +61,6 @@ public class TitleUI : MonoBehaviour
     public Text curShieldText;
     public Text upShieldText;
 
-  
-  
 
     public Image cursor;
 

@@ -29,10 +29,14 @@ public class EmpItem : Item
 
     ItemManager itemManager;
 
+    CameraManager cameraManager;
+
     List<Item> activeItems = new List<Item>();
 
     private void Start()
     {
+        cameraManager = CameraManager.Instance;
+
         itemManager = ItemManager.Instance;
 
         empCount = itemUI.transform.Find("Count").GetComponent<TextMeshProUGUI>();
@@ -104,7 +108,7 @@ public class EmpItem : Item
 
                 itemUI.transform.Find("Background").gameObject.SetActive(false);
 
-                CameraManager.Instance.OffNuclearView();
+                cameraManager.OffNuclearView();
             }
 
             else
@@ -120,7 +124,7 @@ public class EmpItem : Item
 
                 itemUI.transform.Find("Background").gameObject.SetActive(true);
 
-                CameraManager.Instance.OnNuclearView();
+                cameraManager.OnNuclearView();
             }
         }
     }
@@ -133,7 +137,7 @@ public class EmpItem : Item
 
         itemUI.transform.Find("Background").gameObject.SetActive(false);
 
-        CameraManager.Instance.OffNuclearView();
+        cameraManager.OffNuclearView();
     }
 
     private void SpawnExplosion()
@@ -150,7 +154,7 @@ public class EmpItem : Item
 
             useItem = false;
 
-            CameraManager.Instance.Shake(1, explosionLife);
+            cameraManager.Shake(1, explosionLife);
 
             Emp();
 
@@ -158,7 +162,7 @@ public class EmpItem : Item
 
             Destroy(exp, explosionLife);
 
-            CameraManager.Instance.OffNuclearView();
+            cameraManager.OffNuclearView();
         }
     }
 

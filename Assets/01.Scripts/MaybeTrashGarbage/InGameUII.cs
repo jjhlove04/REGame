@@ -211,7 +211,7 @@ public class InGameUII : MonoBehaviour
         {
             Time.timeScale = 1f;
             TestDatabase.Instance.resultEXP += GameManager.Instance.expAmount;
-            TestDatabase.Instance.resultGold += GameManager.Instance.goldAmount / 30;
+            TestDatabase.Instance.resultGold += GameManager.Instance.goldAmount;
 
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;

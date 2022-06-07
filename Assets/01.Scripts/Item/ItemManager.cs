@@ -30,6 +30,8 @@ public class ItemManager : MonoBehaviour
 
     private Dictionary<GameObject, ItemCount> itemIsCount = new Dictionary<GameObject, ItemCount>();
 
+    private TestDatabase testDatabase;
+
     private void Awake()
     {
         if (instance != null)
@@ -44,6 +46,11 @@ public class ItemManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoeded;
     }
 
+    private void Start()
+    {
+        testDatabase = TestDatabase.Instance;
+    }
+
     public void SelecteItem(GameObject gameitem, int price, GameObject background, bool count, int maxCount, out int curCount)
     {
         foreach (var item in items)
@@ -52,14 +59,14 @@ public class ItemManager : MonoBehaviour
             {
                 if (count)
                 {
-                    if (TestDatabase.Instance.resultGold < price || maxCount <= itemIsCount[item].count)
+                    if (testDatabase.resultGold < price || maxCount <= itemIsCount[item].count)
                     {
                         curCount = itemIsCount[item].count;
 
                         return;
                     }
 
-                    TestDatabase.Instance.resultGold -= price;
+                    testDatabase.resultGold -= price;
                     itemIsCount[item].isCount = true;
                     itemIsCount[item].count++;
 
@@ -77,13 +84,13 @@ public class ItemManager : MonoBehaviour
             }
         }
 
-        if (TestDatabase.Instance.resultGold >= price)
+        if (testDatabase.resultGold >= price)
         {
             items.Add(gameitem);
 
             itemIsCount.Add(gameitem,  new ItemCount(1, count));
 
-            TestDatabase.Instance.resultGold -= price;
+            testDatabase.resultGold -= price;
 
             background.SetActive(true);
         }
@@ -105,7 +112,7 @@ public class ItemManager : MonoBehaviour
         {
             itemIsCount[gameitem].count--;
 
-            TestDatabase.Instance.resultGold += price;
+            testDatabase.resultGold += price;
 
             if (itemIsCount[gameitem].count == 0)
             {
@@ -120,7 +127,7 @@ public class ItemManager : MonoBehaviour
         {
             items.Remove(gameitem);
 
-            TestDatabase.Instance.resultGold += price;
+            testDatabase.resultGold += price;
 
             background.SetActive(false);
         }

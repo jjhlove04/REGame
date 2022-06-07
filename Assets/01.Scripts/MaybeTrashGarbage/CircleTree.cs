@@ -17,6 +17,7 @@ public class CircleTree : MonoBehaviour
 
     [HideInInspector]
     public bool autoReload;
+
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -216,6 +217,8 @@ public class CircleTree : MonoBehaviour
         gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = true;
         installBtn.GetComponent<Image>().color = new Color(1,1,0,1);
         installBtn.GetComponent<Image>().transform.GetChild(0).gameObject.SetActive(true);
+
+        gameManager.turretPtice = (int)(gameManager.turretPtice / 1.2f); 
     }
 
     private void ChoseTree(int num)
@@ -232,11 +235,33 @@ public class CircleTree : MonoBehaviour
 
     private void LookCameraTopView()
     {
-        transform.rotation = Quaternion.LookRotation(new Vector3(0, -90, 0)); //Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
+        transform.rotation = Quaternion.LookRotation(new Vector3(-1, -90, 0)); //Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, -90, 0)), Time.unscaledDeltaTime);
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(i != 0)
+            {
+                for (int j = 0; j < transform.GetChild(i).childCount; j++)
+                {
+                    transform.GetChild(i).GetChild(j).rotation = Quaternion.LookRotation(new Vector3(0, -1, 0)).normalized;
+                }
+            }
+        }
     }
 
     private void LookCameraQuarterView()
     {
         transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (i != 0)
+            {
+                for (int j = 0; j < transform.GetChild(i).childCount; j++)
+                {
+                    transform.GetChild(1).GetChild(0).rotation = Quaternion.LookRotation(new Vector3(1, 1.68f, 0)).normalized;
+                }
+            }
+        }
     }
 }

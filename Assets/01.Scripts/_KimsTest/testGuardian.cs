@@ -20,7 +20,6 @@ public class testGuardian : TestEnemy, IEnemyAttack
         }
 
 
-
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
 
         AnimationState(false);

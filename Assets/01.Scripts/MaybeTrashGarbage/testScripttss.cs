@@ -47,6 +47,7 @@ public class testScripttss : MonoBehaviour
     GameManager gameManager;
     SpawnMananger spawnMananger;
     InGameUII inGameUI;
+    TestTurretDataBase testTurretDataBase;
 
     public int turPos = 0;
     public int turType;
@@ -78,6 +79,7 @@ public class testScripttss : MonoBehaviour
         gameManager = GameManager.Instance;
         spawnMananger = SpawnMananger.Instance;
         inGameUI = InGameUII._instance;
+        testTurretDataBase = TestTurretDataBase.Instance;
 
         objectPool = FindObjectOfType<ObjectPool>();
         NextWaveBtn.onClick.AddListener(NextWave);
@@ -103,14 +105,14 @@ public class testScripttss : MonoBehaviour
         {
             if (speedBtnCount != 0)
             {
-                if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
+                if (spawnMananger.curTime >= (spawnMananger.roundCurTime * 0.3f))
                 {
                     NextWave();
                 }
             }
         }
 
-        if (SpawnMananger.Instance.round > SpawnMananger.Instance.maxRound)
+        if (spawnMananger.round > spawnMananger.maxRound)
         {
             inGameUI.warningtxt.color = new Color(1, 0f, 0, 1);
             inGameUI.warningIcon.color = new Color(1, 0f, 0, 1);
@@ -170,14 +172,14 @@ public class testScripttss : MonoBehaviour
         {
             spawnMananger.curTime = spawnMananger.roundCurTime;
             gameManager.goldAmount += (int)(spawnMananger.roundCurTime * 0.7f);
-            InGameUII._instance.CreateMonjeyTxt((int)(spawnMananger.roundCurTime * 0.7f));
+            inGameUI.CreateMonjeyTxt((int)(spawnMananger.roundCurTime * 0.7f));
         }
     }
     public void NextWaveCoolBtn()
     {
         if (speedBtnCount != 0)
         {
-            if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
+            if (spawnMananger.curTime >= (spawnMananger.roundCurTime * 0.3f))
             {
                 NextWaveBtn.interactable = true;
                 textImg.gameObject.SetActive(true);
@@ -188,8 +190,8 @@ public class testScripttss : MonoBehaviour
                 textImg.gameObject.SetActive(false);
             }
         }
-        nextWaveImg.fillAmount = SpawnMananger.Instance.curTime / SpawnMananger.Instance.roundCurTime;
-        autoWaveImg.fillAmount = SpawnMananger.Instance.curTime / (SpawnMananger.Instance.roundCurTime * 0.3f);
+        nextWaveImg.fillAmount = spawnMananger.curTime / spawnMananger.roundCurTime;
+        autoWaveImg.fillAmount = spawnMananger.curTime / (spawnMananger.roundCurTime * 0.3f);
     }
 
     public void Create(GameObject turret)
@@ -206,7 +208,7 @@ public class testScripttss : MonoBehaviour
                 tT.onTurret = true;
                 turretData[turPos] = gameInst;
                 gameManager.goldAmount -= gameManager.turretPtice;
-                TestTurretDataBase.Instance.createPrice += gameManager.turretPtice;
+                testTurretDataBase.createPrice += gameManager.turretPtice;
                 gameManager.turretPtice += (int)(gameManager.turretPtice * 0.2f);
                 inGameUI.ShowTurPrice();
             }

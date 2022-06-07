@@ -89,11 +89,6 @@ public class Enemy : MonoBehaviour
 
                 if (run)
                 {
-                    if (transform.position.y < 0)
-                    {
-                        transform.position += new Vector3(0, 0.1f, 0);
-                    }
-
                     EnemyTargettingMove();
 
 
@@ -124,6 +119,11 @@ public class Enemy : MonoBehaviour
         else
         {
             Dying();
+        }
+
+        if (transform.position.y < 0)
+        {
+            transform.position += new Vector3(0, 1, 0);
         }
     }
 

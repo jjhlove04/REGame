@@ -65,6 +65,8 @@ public class testScriptts : MonoBehaviour
     [SerializeField]
     private Image[] images;
 
+    private TrainScript trainScript;
+
     private void Awake()
     {
         _instance = this;
@@ -78,6 +80,7 @@ public class testScriptts : MonoBehaviour
         gameManager = GameManager.Instance;
         spawnMananger = SpawnMananger.Instance;
         inGameUI = InGameUI._instance;
+        trainScript = TrainScript.instance;
 
         objectPool = FindObjectOfType<ObjectPool>();
         NextWaveBtn.onClick.AddListener(NextWave);
@@ -85,7 +88,7 @@ public class testScriptts : MonoBehaviour
         reloadBtn.onClick.AddListener(Reload);
 
         //hp바 세
-        hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp;
+        hpBar.value = (float)trainScript.curTrainHp / (float)trainScript.maxTrainHp;
 
         gameManager.goldAmount += 30;
     }
@@ -102,14 +105,14 @@ public class testScriptts : MonoBehaviour
         {
             if (speedBtnCount != 0)
             {
-                if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
+                if (spawnMananger.curTime >= (spawnMananger.roundCurTime * 0.3f))
                 {
                     NextWave();
                 }
             }
         }
 
-        if (SpawnMananger.Instance.round > SpawnMananger.Instance.maxRound)
+        if (spawnMananger.round > spawnMananger.maxRound)
         {
             inGameUI.warningTxt.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0f, 0, 1);
             inGameUI.warningTxt.transform.GetChild(1).GetComponent<Text>().text = "Press \"x\"";
@@ -212,7 +215,7 @@ public class testScriptts : MonoBehaviour
     {
         if (speedBtnCount != 0)
         {
-            if (SpawnMananger.Instance.curTime >= (SpawnMananger.Instance.roundCurTime * 0.3f))
+            if (spawnMananger.curTime >= (spawnMananger.roundCurTime * 0.3f))
             {
                 NextWaveBtn.interactable = true;
                 textImg.gameObject.SetActive(true);
@@ -223,8 +226,8 @@ public class testScriptts : MonoBehaviour
                 textImg.gameObject.SetActive(false);
             }
         }
-        nextWaveImg.fillAmount = SpawnMananger.Instance.curTime / SpawnMananger.Instance.roundCurTime;
-        autoWaveImg.fillAmount = SpawnMananger.Instance.curTime / (SpawnMananger.Instance.roundCurTime * 0.3f);
+        nextWaveImg.fillAmount = spawnMananger.curTime / spawnMananger.roundCurTime;
+        autoWaveImg.fillAmount = spawnMananger.curTime / (spawnMananger.roundCurTime * 0.3f);
     }
 
     public void Create(GameObject turret)
@@ -239,7 +242,7 @@ public class testScriptts : MonoBehaviour
                     gameInst.GetComponent<Turret>().turCount = turPos;
                     gameInst.GetComponent<Turret>().turType = turType;
                     gameInst.transform.position = turretPoses[turPos].position;
-                    gameInst.transform.SetParent(TrainScript.instance.transform.Find("Turrets"));
+                    gameInst.transform.SetParent(trainScript.transform.Find("Turrets"));
                     tT.onTurret = true;
                     turretData[turPos] = gameInst;
                     gameManager.goldAmount -= gameManager.turretPtice;
@@ -363,7 +366,7 @@ public class testScriptts : MonoBehaviour
     public void TakeDamageHpBar()
     {
         //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
-        hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.maxTrainHp, Time.deltaTime);
+        hpBar.value = Mathf.Lerp(hpBar.value, (float)trainScript.curTrainHp / (float)trainScript.maxTrainHp, Time.deltaTime);
     }
 
     public void BulletCheck()

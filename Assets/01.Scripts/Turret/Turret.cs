@@ -31,7 +31,7 @@ public class Turret : MonoBehaviour
 
     public int bulAmount = 10;
 
-    private int result = 8;
+    private int result = 2;
 
     [SerializeField]
     private BulletBar bulletBar;
