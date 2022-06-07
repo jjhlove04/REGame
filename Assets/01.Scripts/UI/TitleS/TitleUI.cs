@@ -13,6 +13,9 @@ public class TitleUI : MonoBehaviour
     public Button[] buyBtns;
 
     [Header("업그레이드 관련")]
+    Sequence upGradeSequence;
+    Sequence outUpGradeSequence;
+    public GameObject[] upGradeTexts;
     public Button[] upGradeBtns; //0번 터렛, 1번 기차, 2번 타워
     public GameObject[] upGradePanels; //0번 터렛, 1번 기차, 2번 타워
     public Image explainTurretImage;
@@ -24,8 +27,9 @@ public class TitleUI : MonoBehaviour
     Sequence closeSequence;
     [SerializeField] private RectTransform mapPanel;
     [SerializeField] private RectTransform itemPanel;
-    [SerializeField] private RectTransform turretPanel;
     public Button startBtn;
+    private Text startText;
+    public bool titleBack = false;
 
     [Header("등록관련")]
     [SerializeField] private InputField nickName;
@@ -64,23 +68,24 @@ public class TitleUI : MonoBehaviour
 
     public Image cursor;
 
+
     private void Awake()
     {
         ShowShieldUpGradeText();
         ShowHpUpgradeText();
         ShowCountUPGradeText();
-        if(!TestDatabase.Instance.isRegister)
-        {
-            RegisterPanelOpen();
-        }
-
-        btnGroupAct.interactable = false;
+        
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
+
+        upGradeSequence = DOTween.Sequence();
+        outUpGradeSequence = DOTween.Sequence();
+
         _ui = this;
         checkPanel.transform.localScale = Vector3.zero;
-        
-        registerApplyBtn.onClick.AddListener(() => RegisterDataConnect());
+        startText = startBtn.GetComponent<Text>();
+        {//등록관련
+        //registerApplyBtn.onClick.AddListener(() => RegisterDataConnect());
 
         //닉네임 확인
         //checkPanel.transform.DOScale(new Vector3(1,1,1),0.8f)
@@ -91,6 +96,7 @@ public class TitleUI : MonoBehaviour
         //{
         //    buyBtns[i].gameObject.AddComponent<TooltipScript>();
         //}
+        }
 
         if(TestTurretDataBase.Instance.curTurretType.Count == 1)
         {
@@ -136,10 +142,11 @@ public class TitleUI : MonoBehaviour
         repairCost.text = ((TestTurretDataBase.Instance.round - 1) * TestTurretDataBase.Instance.createPrice).ToString();
         towingCost.text = ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1)).ToString();
 
-        if (TestDatabase.Instance.isRegister)
-        {
-            RegisterDataConnect();
-        }
+        //등록관련
+        // if (TestDatabase.Instance.isRegister)
+        // {
+        //     RegisterDataConnect();
+        // }
     }
     private void Update()
     {
@@ -155,8 +162,8 @@ public class TitleUI : MonoBehaviour
     
     public void InitPlayerInfo()
     {
-        haveGold.text = TestDatabase.Instance.resultGold.ToString();
-        haveExp.text = TestDatabase.Instance.Level.ToString();
+        // haveGold.text = TestDatabase.Instance.resultGold.ToString();
+        // haveExp.text = TestDatabase.Instance.Level.ToString();
         //haveTp.text = TestTurretDataBase.Instance.curTp.ToString();
     }
     //패널 오픈 함수
@@ -181,41 +188,96 @@ public class TitleUI : MonoBehaviour
         if (num == 1)
         {
             openSequence.Kill();
+            startBtn.enabled = true;
+            openSequence.Append(startText.DOFade(1.0f, 1.2f)).SetEase(Ease.InOutExpo);
+
             openSequence.Append(mapPanel.DOAnchorPosX(49, 1.2f).SetEase(Ease.InOutExpo));
-            openSequence.Append(turretPanel.DOAnchorPosX(362, 1.2f).SetEase(Ease.InOutExpo));
-            openSequence.Append(turretPanel.DOAnchorPosY(291, 1.2f).SetEase(Ease.InOutExpo));
-            openSequence.Append(itemPanel.DOAnchorPosX(362, 1.2f).SetEase(Ease.InOutExpo));
-            openSequence.Append(itemPanel.DOAnchorPosY(-156, 1.2f).SetEase(Ease.InOutExpo));
+            openSequence.Append(itemPanel.DOAnchorPosX(353, 1.2f).SetEase(Ease.InOutExpo));
         }
         if(num == 2)
         {
+
+            
+
             closeSequence.Kill();
+
+            openSequence.Append(startText.DOFade(0.0f, 1.2f)).SetEase(Ease.InOutExpo).OnComplete(()=>
+            startBtn.enabled = false
+            );
             closeSequence.Append(mapPanel.DOAnchorPosX(-727, 0.6f).SetEase(Ease.InOutExpo));
-            closeSequence.Append(turretPanel.DOAnchorPosX(1253, 0.6f).SetEase(Ease.InOutExpo));
-            closeSequence.Append(turretPanel.DOAnchorPosY(768, 0.6f).SetEase(Ease.InOutExpo));
-            closeSequence.Append(itemPanel.DOAnchorPosX(1253, 0.6f).SetEase(Ease.InOutExpo));
-            closeSequence.Append(itemPanel.DOAnchorPosY(-768, 0.6f).SetEase(Ease.InOutExpo));
+            closeSequence.Append(itemPanel.DOAnchorPosX(1601, 0.6f).SetEase(Ease.InOutExpo));
 
         }
-
-    }
-    //초기 등록화면 띄우기
-    public void RegisterPanelOpen()
-    {
-        registerPanel.DOAnchorPosX(0,1f).SetEase(Ease.InOutCubic);
     }
 
-    public void RegisterDataConnect()
+    public void UpGradePanelOpen(int num)
     {
-        btnGroupAct.interactable = true;
-        TestDatabase.Instance._nickName = nickName.text;
-        playerCardNick.text = TestDatabase.Instance._nickName;
-        registerPanel.DOAnchorPosX(-1289, 1f).SetEase(Ease.InOutCubic);
-        playerCard.DOAnchorPosX(-18,1f).SetEase(Ease.InOutCubic);
+        // upGradeSequence.SetAutoKill(true);
+        // outUpGradeSequence.SetAutoKill(true);
 
-        TestDatabase.Instance.isRegister = true;
+        if(num == 1)
+        {
+            for(int i = 0; i<upGradeBtns.Length; i++)
+            {
+                upGradeTexts[i].SetActive(true);
+            }
+            upGradeSequence.Append(upGradeTexts[0].GetComponent<Text>()
+            .DOFade(1,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
+            upGradeSequence.Append(upGradeTexts[1].GetComponent<Text>()
+            .DOFade(1,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
+            upGradeSequence.Append(upGradeTexts[2].GetComponent<Text>()
+            .DOFade(1,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
+            upGradeSequence.SetAutoKill(true);
+            
+        }
+        if(num == 2)
+        {
+            for(int i = 0; i<upGradeBtns.Length; i++)
+            {
+                upGradeTexts[i].SetActive(false);
+            }
+            outUpGradeSequence.Append(upGradeTexts[0].GetComponent<Text>()
+            .DOFade(0,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
+            outUpGradeSequence.Append(upGradeTexts[1].GetComponent<Text>()
+            .DOFade(0,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
+            outUpGradeSequence.Append(upGradeTexts[2].GetComponent<Text>()
+            .DOFade(0,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
+            outUpGradeSequence.SetAutoKill(true);
+
+
+        }
         
     }
+
+    //초기 등록화면 띄우기
+    // public void RegisterPanelOpen()
+    // {
+    //     registerPanel.DOAnchorPosX(0,1f).SetEase(Ease.InOutCubic);
+    // }
+
+    // public void RegisterDataConnect()
+    // {
+    //     btnGroupAct.interactable = true;
+    //     TestDatabase.Instance._nickName = nickName.text;
+    //     playerCardNick.text = TestDatabase.Instance._nickName;
+    //     registerPanel.DOAnchorPosX(-1289, 1f).SetEase(Ease.InOutCubic);
+    //     playerCard.DOAnchorPosX(-18,1f).SetEase(Ease.InOutCubic);
+
+    //     TestDatabase.Instance.isRegister = true;
+        
+    // }
 
 
     private void ExpBar()
@@ -245,22 +307,28 @@ public class TitleUI : MonoBehaviour
 
     public void ShowHpUpgradeText()
     {
-        curHpText.text = TestTurretDataBase.Instance.trainHp.ToString();
-        upHpText.text = (TestTurretDataBase.Instance.trainHp + 50).ToString();
+        curHpText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
+        TestTurretDataBase.Instance.trainHp,
+        (TestTurretDataBase.Instance.trainHp + 50));
+        //upHpText.text = (TestTurretDataBase.Instance.trainHp + 50).ToString();
     }
     public void ShowCountUPGradeText()
     {
-        curCellText.text = TestTurretDataBase.Instance.trainCount.ToString();
-        upCellText.text = (TestTurretDataBase.Instance.trainCount + 1).ToString();
+        //curCellText.text = TestTurretDataBase.Instance.trainCount.ToString();
+        upCellText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
+        TestTurretDataBase.Instance.trainCount,
+        (TestTurretDataBase.Instance.trainCount + 1));
         if(TestTurretDataBase.Instance.trainCount == 3)
         {
-            upCellText.text = string.Format("최고 강화 수치입니다.");
+            upCellText.text = string.Format("<color=red>Max</color>");
         }
     }
     public void ShowShieldUpGradeText()
     {
-        curShieldText.text = TestTurretDataBase.Instance.trainShield.ToString();
-        upShieldText.text = (TestTurretDataBase.Instance.trainShield+50).ToString();
+        curShieldText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
+        TestTurretDataBase.Instance.trainShield,
+        (TestTurretDataBase.Instance.trainShield+50));
+        //upShieldText.text = (TestTurretDataBase.Instance.trainShield+50).ToString();
 
     }
     

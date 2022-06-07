@@ -38,7 +38,7 @@ public class TitleMoveScript : MonoBehaviour
 
         //시작버튼
         titleActionBtn[0].onClick.AddListener(() => {
-            timelines[0].Play();
+            //timelines[0].Play();
             indexNum = 1;
             BtnSlide(1);
             TitleUI.UI.ReadySetUpPanel(1);
@@ -46,7 +46,7 @@ public class TitleMoveScript : MonoBehaviour
        
          //업그레이드 버튼
         titleActionBtn[1].onClick.AddListener(()=> {
-            timelines[2].Play();
+            TitleUI.UI.UpGradePanelOpen(1);
             indexNum = 2;
             BtnSlide(1);
         });
@@ -83,22 +83,22 @@ public class TitleMoveScript : MonoBehaviour
             if(indexNum == 1)
             {
                 TitleUI.UI.ReadySetUpPanel(2);
-                timelines[1].Play();
+                //timelines[1].Play();
                 BtnSlide(2);
                 
             }
             if(indexNum == 2)
             {
+                TitleUI.UI.UpGradePanelOpen(2);
                 for(int i = 0; i < 3; i++){
                 TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
                 }
-                
-                timelines[3].Play();
+                //timelines[3].Play();
                 BtnSlide(2);
             }
             if(indexNum == 3)
             {
-                timelines[5].Play();
+                //timelines[5].Play();
                BtnSlide(3);
             }
             //업그레이드 화면에서 나가기
@@ -148,14 +148,21 @@ public class TitleMoveScript : MonoBehaviour
 
     private void Update()
     {
+        InputBackBtn();
+    }
+
+    public void InputBackBtn()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (backBtn.activeSelf == true)
+            if(TitleUI.UI.titleBack == true)
             {
                 if (indexNum == 1)
                 {
-                    timelines[1].Play();
+                    //timelines[1].Play();
+                    TitleUI.UI.ReadySetUpPanel(2);
                     BtnSlide(2);
+                    backBtn.SetActive(false);
                 }
                 if (indexNum == 2)
                 {
@@ -164,12 +171,12 @@ public class TitleMoveScript : MonoBehaviour
                         TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
                     }
 
-                    timelines[3].Play();
+                    //timelines[3].Play();
                     BtnSlide(2);
                 }
                 if (indexNum == 3)
                 {
-                    timelines[5].Play();
+                    //timelines[5].Play();
                     BtnSlide(3);
                     _settingPanel.SetActive(false);
                 }
@@ -184,18 +191,15 @@ public class TitleMoveScript : MonoBehaviour
                     indexNum = 2;
                 }
             }
-            if (startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
-            {
-                backBtn.SetActive(true);
-            }
-            else
-            {
-                backBtn.SetActive(false);
-            }
+            // if (startC.activeSelf == true || turretC.activeSelf == true || turretP.activeSelf == true || towerP.activeSelf == true)
+            // {
+            //     backBtn.SetActive(true);
+            // }
+            // else
+            // {
+            //     backBtn.SetActive(false);
+            // }
         }
-
-
-
     }
 
     /// <summary>모든 버튼 상호작용 관리</summary>

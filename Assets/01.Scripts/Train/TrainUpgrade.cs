@@ -8,14 +8,15 @@ public class TrainUpgrade : MonoBehaviour
     public float shield = 0;
     public float hp  = 0;
 
+    public GameObject[] upGradeBtns;
     private void Start()
     {
-        transform.Find("BackUI/hpUP/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainHpDowngrade);
-        transform.Find("BackUI/hpUP/Panel/UPBtn").GetComponent<Button>().onClick.AddListener( TrainHpUpgrade);
-        transform.Find("BackUI/ShUP/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainShieldDowngrade);
-        transform.Find("BackUI/ShUP/Panel/UPBtn").GetComponent<Button>().onClick.AddListener( TrainShieldUpgrade);
-        transform.Find("BackUI/countUP/Panel/DownBtn").GetComponent<Button>().onClick.AddListener(TrainCountDowngrade);
-        transform.Find("BackUI/countUP/Panel/UPBtn").GetComponent<Button>().onClick.AddListener( TrainCountUpgrade);
+        upGradeBtns[0].GetComponent<Button>().onClick.AddListener(TrainHpDowngrade);
+        upGradeBtns[1].GetComponent<Button>().onClick.AddListener( TrainHpUpgrade);
+        upGradeBtns[2].GetComponent<Button>().onClick.AddListener(TrainShieldDowngrade);
+        upGradeBtns[3].GetComponent<Button>().onClick.AddListener( TrainShieldUpgrade);
+        upGradeBtns[4].GetComponent<Button>().onClick.AddListener(TrainCountDowngrade);
+        upGradeBtns[5].GetComponent<Button>().onClick.AddListener( TrainCountUpgrade);
     }
 
     public void TrainCountUpgrade()
