@@ -92,18 +92,23 @@ public class Spawner : MonoBehaviour
 
     IEnumerator Spawn(int s)
     {
-        float amount = spawnAmount + (s * amountIncreasion);
+        //float amount = spawnAmount + (s * amountIncreasion);
 
-        float time = spawnMananger.roundCurTime / amount;
+        float time = spawnMananger.roundCurTime; /// amount;
 
-        if (s % adjustmentRound == 0)
+        //if (s % adjustmentRound == 0)
+        //{
+        //    amount = amount * 0.6f;
+        //}
+
+        if(s % 10 == 0)
         {
-            amount = amount * 0.6f;
+            spawnAmount = spawnAmount + 1;
         }
 
         if (round <= s)
         {
-            for (int i = 0; i < (int)amount; i++)
+            for (int i = 0; i < (int)spawnAmount; i++)
             {
                 float randX = Random.Range(-interval, interval);
                 float randY = Random.Range(-interval, interval);
@@ -112,8 +117,6 @@ public class Spawner : MonoBehaviour
 
                 GameObject newPrefab = objectPool.GetObject(prefab);
                 newPrefab.transform.position = transform.position + randPos;
-
-
 
                 yield return new WaitForSeconds(time);
             }

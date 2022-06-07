@@ -114,10 +114,10 @@ public class testSkillScript : MonoBehaviour
             {
                 testScripts.SelectTurret();
 
-                if (testScripts.turretData[count].name == "Base Level1-1"/* || testScripts.turretData[count].name == "Base Level2-1"*/)
+                if (testScripts.turretData[count].name == "Base Level1-1" || testScripts.turretData[count].name == "Base Level1-2")
                 {
                     circleTree.transform.GetChild(0).gameObject.SetActive(true);
-                    circleTree.transform.GetChild(3).gameObject.SetActive(true);
+                    circleTree.transform.GetChild(2).gameObject.SetActive(true);
                 }
                 else
                 {
@@ -172,4 +172,5 @@ public class testSkillScript : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
     }
+
 }

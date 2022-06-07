@@ -31,7 +31,9 @@ public class Turret : MonoBehaviour
 
     public int bulAmount = 10;
 
-    private int result = 2;
+    public int turretPrice = 0;
+
+    public int reloadPrice = 2;
 
     [SerializeField]
     private BulletBar bulletBar;
@@ -239,12 +241,12 @@ public class Turret : MonoBehaviour
 
     public void Reload()
     {
-        if (GameManager.Instance.goldAmount >= result && bulAmount != maxBulletAmount)
+        if (GameManager.Instance.goldAmount >= reloadPrice && bulAmount != maxBulletAmount)
         {
             ReloadSound();
 
-            GameManager.Instance.goldAmount -= result;
-            InGameUII._instance.CreateOutMoney(result);
+            GameManager.Instance.goldAmount -= reloadPrice;
+            InGameUII._instance.CreateOutMoney(reloadPrice);
             bulAmount = maxBulletAmount;
         }
         else if(bulAmount == maxBulletAmount)

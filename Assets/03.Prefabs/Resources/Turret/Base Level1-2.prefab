@@ -321,15 +321,17 @@ MonoBehaviour:
   weapons:
   - {fileID: 24985677075827173}
   neck: {fileID: 270472148173492090}
-  maxDistance: 80
+  maxDistance: 35
   enemy:
     serializedVersion: 2
     m_Bits: 128
-  maxBulletAmount: 30
-  bulAmount: 10
+  maxBulletAmount: 20
+  bulAmount: 20
+  turretPrice: 155
+  reloadPrice: 20
   bulletBar: {fileID: 4750038510540467588}
-  shootTimerMax: 1
-  damage: 1
+  shootTimerMax: 0.41
+  damage: 2
   detection: 0
   turCount: 0
   turType: 0

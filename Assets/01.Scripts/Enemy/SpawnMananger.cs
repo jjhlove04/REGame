@@ -63,7 +63,7 @@ public class SpawnMananger : MonoBehaviour
 
                 curTime = 0;
                 round++;
-                roundCurTime = roundCurTime * 1.01f;
+                //roundCurTime = roundCurTime * 1.01f;
 
                 if (round > maxRound)
                 {

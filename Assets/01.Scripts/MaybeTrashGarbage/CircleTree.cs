@@ -40,11 +40,11 @@ public class CircleTree : MonoBehaviour
         {
             if(installBtn.GetComponent<testSkillScript>().onTurret)
             {
-                levelTurret();
+                levelTurret(1);
             }
             else
             {
-                if (gameManager.goldAmount >= gameManager.turretPtice)
+                if (gameManager.goldAmount >= testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].GetComponent<Turret>().turretPrice)
                 {
                     return;
                 }
@@ -117,22 +117,22 @@ public class CircleTree : MonoBehaviour
 
         //});
 
-        gameObject.transform.GetChild(3).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
+        gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
         {
-            CircleUpgrade(1);
-            ChoseTree(1);
+            levelTurret(1);
         });
-        gameObject.transform.GetChild(3).GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
+        gameObject.transform.GetChild(2).GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
         {
-            CircleUpgrade(2);
-
-            ChoseTree(2);
-        });
-        gameObject.transform.GetChild(3).GetChild(3).GetComponent<Button>().onClick.AddListener(() =>
-        {
-            CircleUpgrade(3);
-
-            ChoseTree(3);
+            if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level1-1")
+            {
+                installBtn.GetComponent<testSkillScript>().floor = 2;
+                levelTurret(2);
+            }
+            else if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level1-2")
+            {
+                installBtn.GetComponent<testSkillScript>().floor = 2;
+                levelTurret(3);
+            }
         });
 
         gameObject.transform.GetChild(1).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
@@ -152,49 +152,66 @@ public class CircleTree : MonoBehaviour
         });
     }
 
-    private void levelTurret()
+    private void levelTurret(int floor)
     {
         if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name.Substring(10, 1) == "0")
         {
             if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name == "baseTurret0-0")
             {
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                gameObject.transform.GetChild(3).gameObject.SetActive(true);
+                gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).gameObject.SetActive(true);
+
+                CircleUpgrade(floor);
 
                 if (!testturretdatabase.curTurretType.ContainsKey("1-2"))
                 {
-                    gameObject.transform.GetChild(3).GetChild(1).GetComponent<Button>().interactable = false;
+                    gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().interactable = false;
                 }
 
                 if (!testturretdatabase.curTurretType.ContainsKey("2-2"))
                 {
-                    gameObject.transform.GetChild(3).GetChild(2).GetComponent<Button>().interactable = false;
-                }
-
-                if (!testturretdatabase.curTurretType.ContainsKey("3-2"))
-                {
-                    gameObject.transform.GetChild(3).GetChild(3).GetComponent<Button>().interactable = false;
+                    gameObject.transform.GetChild(2).GetChild(2).GetComponent<Button>().interactable = false;
                 }
             }
-
-            CircleUpgrade(1);
-
-            gameObject.transform.GetChild(1).gameObject.SetActive(false);
         }
         else if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name.Substring(10, 1) == "1")
         {
-            CircleUpgrade(1);
-            ChoseTree(1);
+            if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level1-1")
+            {
+                gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).gameObject.SetActive(true);
+
+                CircleUpgrade(floor);
+                if (floor == 2)
+                {
+                    ChoseTree(floor);
+                }
+
+                if (!testturretdatabase.curTurretType.ContainsKey("1-3"))
+                {
+                    gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().interactable = false;
+                }
+
+                if(!testturretdatabase.curTurretType.ContainsKey("3-2"))
+                {
+                    gameObject.transform.GetChild(2).GetChild(2).GetComponent<Button>().interactable = false;
+                }
+            }
+            else
+            {
+                CircleUpgrade(floor);
+                ChoseTree(floor);
+            }
         }
         else if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name.Substring(10, 1) == "2")
         {
             CircleUpgrade(2);
-            ChoseTree(1);
+            ChoseTree(2);
         }
         else if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name.Substring(10, 1) == "3")
         {
             CircleUpgrade(3);
-            ChoseTree(1);
+            ChoseTree(3);
         }
     }
 
@@ -207,24 +224,25 @@ public class CircleTree : MonoBehaviour
     private void DesTurret()
     {
         installBtn.GetComponent<testSkillScript>().onTurret = false;
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        gameObject.transform.GetChild(1).gameObject.SetActive(false);
         gameObject.transform.GetChild(2).gameObject.SetActive(false);
         gameObject.transform.GetChild(3).gameObject.SetActive(false);
-
-        gameObject.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-        gameObject.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
 
         installBtn.GetComponent<testSkillScript>().floor = -1;
         gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = true;
         installBtn.GetComponent<Image>().color = new Color(1,1,0,1);
         installBtn.GetComponent<Image>().transform.GetChild(0).gameObject.SetActive(true);
 
-        gameManager.turretPtice = (int)(gameManager.turretPtice / 1.2f); 
+        gameManager.goldAmount += (int)(testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].GetComponent<Turret>().turretPrice / 0.7f);
+        inGameUII.ShowTurPrice();
     }
 
     private void ChoseTree(int num)
     {
 
-        gameObject.transform.GetChild(3).gameObject.SetActive(false);
+        gameObject.transform.GetChild(2).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
         if (!testturretdatabase.curTurretType.ContainsKey(num + "-" + installBtn.GetComponent<testSkillScript>().floor))
@@ -259,7 +277,7 @@ public class CircleTree : MonoBehaviour
             {
                 for (int j = 0; j < transform.GetChild(i).childCount; j++)
                 {
-                    transform.GetChild(1).GetChild(0).rotation = Quaternion.LookRotation(new Vector3(1, 1.68f, 0)).normalized;
+                    transform.GetChild(i).GetChild(j).rotation = Quaternion.LookRotation(new Vector3(1, 1.68f, 0)).normalized;
                 }
             }
         }

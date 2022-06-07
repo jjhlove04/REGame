@@ -13,8 +13,4 @@ public class tesetTurret : MonoBehaviour
         testScripttss.Instance.turretPoses.Add(this.gameObject.transform);
         testScripttss.Instance.turretData.Add(this.gameObject);
     }
-    public void Reload()
-    {
-        curBulletAmount = maxBulletAmount;
-    }
 }

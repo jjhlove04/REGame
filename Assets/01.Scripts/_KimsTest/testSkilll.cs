@@ -34,8 +34,6 @@ public class testSkilll : MonoBehaviour
 
         CameraManager cameraManager = CameraManager.Instance;
 
-        gameObject.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.turretPtice.ToString();
-
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;
 
