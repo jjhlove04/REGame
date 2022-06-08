@@ -1331,7 +1331,7 @@ GameObject:
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &115336519
 Transform:
   m_ObjectHideFlags: 0
@@ -6546,9 +6546,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyList: []
   curTime: 0
-  roundCurTime: 15
+  roundCurTime: 1
   round: 0
-  maxRound: 50
+  maxRound: 1000000
   stopSpawn: 0
 --- !u!4 &575101698 stripped
 Transform:
@@ -6844,7 +6844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a25d39ac8a6c504989b69f5da1054ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAmount: 3
+  spawnAmount: 1
   amountIncreasion: 0.8
   enemyMark: {fileID: 1827540119822746913, guid: 6bdf9aafca21e436b9c52ffdd39f5e17, type: 3}
   enemyCounts: []
@@ -8119,7 +8119,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &731635889
 Transform:
   m_ObjectHideFlags: 0
@@ -13237,7 +13237,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1126854934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16769,7 +16769,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1369331219
 Transform:
   m_ObjectHideFlags: 0
@@ -21356,6 +21356,7 @@ GameObject:
   - component: {fileID: 1722079217}
   - component: {fileID: 1722079221}
   - component: {fileID: 1722079223}
+  - component: {fileID: 1722079224}
   m_Layer: 0
   m_Name: ManagerOBJ
   m_TagString: Untagged
@@ -21577,6 +21578,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorInHierarchy: {r: 0.2747419, g: 0.581791, b: 0.9245283, a: 1}
+--- !u!114 &1722079224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722079216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5890a81b1de599c46994fc66a6649e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: e5942c65cd8b67049a7533382c08f43f, type: 2}
 --- !u!4 &1735865799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601681510908809259, guid: 11aea87437ab51d429adcb873617733d, type: 3}

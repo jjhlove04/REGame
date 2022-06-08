@@ -65,12 +65,14 @@ public class Enemy : MonoBehaviour
         RandomAnimSpeed();
     }
     
-    private void Start() {
+    private void Start()
+    {
         SpawnMananger.Instance.enemyList.Clear();
     }
 
     protected virtual void Update()
     {
+
         if (!isDying)
         {
             if (blackhole)

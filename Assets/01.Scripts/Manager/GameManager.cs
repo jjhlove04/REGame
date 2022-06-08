@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         Stop,
         End
     }
+    EnemyData enemyStat;
 
     public State state;
 
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.X))
-        {
+        { 
             state = State.End;
         }
     }
