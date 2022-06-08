@@ -32,6 +32,8 @@ public class TitleMoveScript : MonoBehaviour
     public GameObject towerP;
     private void Awake() 
     {
+        TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.5f);
+        
         repairBtn = repairBtn.GetComponent<Button>();
         btnGroupRect = btnGroup.GetComponent<RectTransform>();
         resultPanelRect = resultPanel.GetComponent<RectTransform>();

@@ -57,20 +57,18 @@ public class TitleUI : MonoBehaviour
 
     [Header("업그레이드 패널 관련")]
     public Text curHpText;
-    public Text upHpText;
     [Space(20)]
     public Text curCellText;
-    public Text upCellText;
     [Space(20)]
     public Text curShieldText;
-    public Text upShieldText;
-
 
     public Image cursor;
 
 
     private void Awake()
     {
+
+        RegisterPanelOpen();
         ShowShieldUpGradeText();
         ShowHpUpgradeText();
         ShowCountUPGradeText();
@@ -183,27 +181,25 @@ public class TitleUI : MonoBehaviour
 
     public void ReadySetUpPanel(int num)
     {
-        openSequence.SetAutoKill(true);
-        closeSequence.SetAutoKill(true);
+        openSequence.SetAutoKill(false);
+        closeSequence.SetAutoKill(false);
         if (num == 1)
         {
             openSequence.Kill();
             startBtn.enabled = true;
-            openSequence.Append(startText.DOFade(1.0f, 1.2f)).SetEase(Ease.InOutExpo);
-
+            startBtn.interactable = true;
+            openSequence.Append(startText.DOFade(1.0f, 1.2f)).SetEase(Ease.InOutExpo); 
             openSequence.Append(mapPanel.DOAnchorPosX(49, 1.2f).SetEase(Ease.InOutExpo));
             openSequence.Append(itemPanel.DOAnchorPosX(353, 1.2f).SetEase(Ease.InOutExpo));
         }
         if(num == 2)
         {
-
-            
-
             closeSequence.Kill();
 
-            openSequence.Append(startText.DOFade(0.0f, 1.2f)).SetEase(Ease.InOutExpo).OnComplete(()=>
-            startBtn.enabled = false
-            );
+            openSequence.Append(startText.DOFade(0.0f, 1.2f).SetEase(Ease.InOutExpo).OnComplete(()=>{
+                startBtn.enabled = false;
+            startBtn.interactable = false;
+            }));
             closeSequence.Append(mapPanel.DOAnchorPosX(-727, 0.6f).SetEase(Ease.InOutExpo));
             closeSequence.Append(itemPanel.DOAnchorPosX(1601, 0.6f).SetEase(Ease.InOutExpo));
 
@@ -233,7 +229,7 @@ public class TitleUI : MonoBehaviour
             .DOFade(1,0.6f)
             .SetDelay(0.7f)
             .SetEase(Ease.OutQuint));
-            upGradeSequence.SetAutoKill(true);
+            upGradeSequence.SetAutoKill(false);
             
         }
         if(num == 2)
@@ -254,7 +250,7 @@ public class TitleUI : MonoBehaviour
             .DOFade(0,0.6f)
             .SetDelay(0.7f)
             .SetEase(Ease.OutQuint));
-            outUpGradeSequence.SetAutoKill(true);
+            outUpGradeSequence.SetAutoKill(false);
 
 
         }
@@ -262,10 +258,10 @@ public class TitleUI : MonoBehaviour
     }
 
     //초기 등록화면 띄우기
-    // public void RegisterPanelOpen()
-    // {
-    //     registerPanel.DOAnchorPosX(0,1f).SetEase(Ease.InOutCubic);
-    // }
+    public void RegisterPanelOpen()
+    {
+        registerPanel.DOAnchorPosX(0,1f).SetEase(Ease.InOutCubic);
+    }
 
     // public void RegisterDataConnect()
     // {
@@ -315,12 +311,12 @@ public class TitleUI : MonoBehaviour
     public void ShowCountUPGradeText()
     {
         //curCellText.text = TestTurretDataBase.Instance.trainCount.ToString();
-        upCellText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
+        curCellText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
         TestTurretDataBase.Instance.trainCount,
         (TestTurretDataBase.Instance.trainCount + 1));
         if(TestTurretDataBase.Instance.trainCount == 3)
         {
-            upCellText.text = string.Format("<color=red>Max</color>");
+            curCellText.text = string.Format("<color=red>Max</color>");
         }
     }
     public void ShowShieldUpGradeText()
