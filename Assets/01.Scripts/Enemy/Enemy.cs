@@ -260,7 +260,7 @@ public class Enemy : MonoBehaviour
     {
         saveTarget = target;
 
-        if(bait != null&&Vector3.Distance(transform.position, target.position)> Vector3.Distance(transform.position, bait.position))
+        if(bait.gameObject.activeSelf && bait != null && Vector3.Distance(transform.position, target.position)> Vector3.Distance(transform.position, bait.position))
         {
             target = bait;
         }
