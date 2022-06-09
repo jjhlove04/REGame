@@ -29,6 +29,9 @@ public class TurretInfo : ScriptableObject
         [Tooltip("터렛 재장전비용")]
         public int reroadPrice;
         [Space(5)]
+        [Tooltip("터렛 치명타확률")]
+        public int cirticlPER;
+        [Space(5)]
         [Tooltip("터렛 타입")]
         public TurretType type;
         
@@ -39,7 +42,8 @@ public class TurretInfo : ScriptableObject
             rader,
             buff,
             debuff
-        }
+            
+            }
 
     
 }
