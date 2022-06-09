@@ -9,22 +9,39 @@ public class TestDatabase : MonoBehaviour
         get { return instance; }
     }
 
+    ResourceManager resourceManager;
+
     [Header("°á°ú°ª")]
     public int resultDamage = 0;
-    public int resultEXP = 0;
-    public int resultGold = 0;
+    public int resultEXP
+    {
+        get { return resourceManager.playerData.GetExp(); }
+        set { resourceManager.playerData.SetExp(value); }
+    }
+
+    public int resultGold
+    {
+        get { return resourceManager.playerData.GetGold(); }
+        set { resourceManager.playerData.SetGold(value); }
+    }
+
     public bool isRegister;
 
 
     private int level;
     public int Level
     {
-        get { return level; }
+        get 
+        {
+            level = resourceManager.playerData.GetLevel();
+            return level; 
+        }
 
         set
         {
             if (level < value)
             {
+                resourceManager.playerData.SetLevel(value);
                 level = value;
 
                 curTp++;
@@ -32,7 +49,11 @@ public class TestDatabase : MonoBehaviour
         }
     }
 
-    public int curTp;
+    public int curTp
+    {
+        get { return resourceManager.playerData.GetTp(); }
+        set { resourceManager.playerData.SetTp(value); }
+    }
     public string _nickName;
 
     private void Awake()
@@ -45,5 +66,10 @@ public class TestDatabase : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
+        resourceManager = ResourceManager.Instance;
     }
 }

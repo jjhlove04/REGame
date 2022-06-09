@@ -12,11 +12,11 @@ public class ResourceManager : MonoBehaviour
     //기차 관련 데이터 클래스
     public class PlayerData
     {
-        private int exp;
-        private int level;
-        private int gold;
-        private int tp;
-        private int clearBestWave;
+        public int exp;
+        public int level;
+        public int gold;
+        public int tp;
+        public int clearBestWave;
 
         public PlayerData(int exp, int level, int gold, int tp, int clearBestWave)
         {
@@ -89,16 +89,16 @@ public class ResourceManager : MonoBehaviour
 
     public class TrainData
     {
-        private float hp;
-        private int traincar;
+        public int hp;
+        public int traincar;
 
-        public TrainData(float hp, int traincar)
+        public TrainData(int hp, int traincar)
         {
             this.hp = hp;
             this.traincar = traincar;
         }
 
-        public void SetData(float hp, int traincar)
+        public void SetData(int hp, int traincar)
         {
             this.hp = hp;
             this.traincar = traincar;
@@ -118,7 +118,7 @@ public class ResourceManager : MonoBehaviour
     //포탑 관련 데이터 클래스
     public class TurretData
     {
-        List<int> turretUpgrade = new List<int>();
+        public List<int> turretUpgrade = new List<int>();
 
         public TurretData(List<int> turretUpgrade)
         {
@@ -145,6 +145,10 @@ public class ResourceManager : MonoBehaviour
         TurretData
     }
 
+    public PlayerData playerData;
+    public TrainData trainStatData;
+    public TurretData turretStatData;
+
     private void Awake()
     {
         if (Instance != null)
@@ -157,8 +161,15 @@ public class ResourceManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
+        playerData = new PlayerData(0, 0, 0, 0, 0);
+        trainStatData = new TrainData(0, 0);
+        turretStatData = new TurretData(new List<int>());
+
 
         first = PlayerPrefs.GetInt("First");
+
+        first = 0;
+
         if (first == 0)
         {
             Init();
@@ -187,25 +198,21 @@ public class ResourceManager : MonoBehaviour
         SaveJSONFile(DataType.TurretData);
     }
 
-    public PlayerData playerData;
-    public TrainData trainStatData;
-    public TurretData turretStatData;
-
     public void SaveJSONFile(DataType dataType)
     {
         switch (dataType)
         {
             case DataType.PlayerData:
                 JsonData playerDataJson = JsonMapper.ToJson(playerData);
-                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", playerDataJson.ToString());
+                File.WriteAllText(Application.dataPath + "/Resources/Data/PlayerData.json", playerDataJson.ToString());
                 break;
             case DataType.TrainData:
                 JsonData trainStatDataJson = JsonMapper.ToJson(trainStatData);
-                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", trainStatDataJson.ToString());
+                File.WriteAllText(Application.dataPath + "/Resources/Data/TrainData.json", trainStatDataJson.ToString());
                 break;
             case DataType.TurretData:
                 JsonData turretStatDataJson = JsonMapper.ToJson(turretStatData);
-                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", turretStatDataJson.ToString());
+                File.WriteAllText(Application.dataPath + "/Resources/Data/TurretData.json", turretStatDataJson.ToString());
                 break;
         }
     }
@@ -218,14 +225,19 @@ public class ResourceManager : MonoBehaviour
                 playerData = new PlayerData(int.Parse(data["exp"].ToString()),int.Parse(data["level"].ToString()), int.Parse(data["gold"].ToString()),int.Parse(data["tp"].ToString()),int.Parse(data["clearBestWave"].ToString()));
                 break;
             case DataType.TrainData:
-                trainStatData = new TrainData(float.Parse(data["hp"].ToString()), int.Parse(data["traincar"].ToString()));
+                trainStatData = new TrainData(int.Parse(data["hp"].ToString()), int.Parse(data["traincar"].ToString()));
                 break;
             case DataType.TurretData:
                 List<int> intlist = new List<int>();
 
-                foreach (var item in data)
+                foreach (var item in data["turretUpgrade"])
                 {
                     intlist.Add(int.Parse(item.ToString()));
+                }
+
+                foreach (var item in intlist)
+                {
+                    print(item);
                 }
 
                 turretStatData = new TurretData(intlist);
@@ -240,11 +252,15 @@ public class ResourceManager : MonoBehaviour
         switch (dataType)
         {
             case DataType.PlayerData:
-                jsonString = File.ReadAllText(Application.persistentDataPath + "/Resources/Data/ResourcesData.json");
+                jsonString = File.ReadAllText(Application.dataPath + "/Resources/Data/PlayerData.json");
 
                 break;
             case DataType.TrainData:
-                jsonString = File.ReadAllText(Application.persistentDataPath + "/Resources/Data/StationData.json");
+                jsonString = File.ReadAllText(Application.dataPath + "/Resources/Data/TrainData.json");
+                break;
+
+            case DataType.TurretData:
+                jsonString = File.ReadAllText(Application.dataPath + "/Resources/Data/TurretData.json");
                 break;
         }
         JsonData jsondata = JsonMapper.ToObject(jsonString);
