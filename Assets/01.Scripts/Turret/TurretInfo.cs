@@ -32,6 +32,9 @@ public class TurretInfo : ScriptableObject
         [Tooltip("터렛 치명타확률")]
         public int cirticlPER;
         [Space(5)]
+        [Tooltip("터렛 해금 TP 비용")]
+        public int tpoint;
+        [Space(5)]
         [Tooltip("터렛 타입")]
         public TurretType type;
         

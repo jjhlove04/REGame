@@ -32,7 +32,7 @@ public class TitleMoveScript : MonoBehaviour
     public GameObject towerP;
     private void Awake() 
     {
-        TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.5f);
+        
         
         repairBtn = repairBtn.GetComponent<Button>();
         btnGroupRect = btnGroup.GetComponent<RectTransform>();
@@ -125,6 +125,7 @@ public class TitleMoveScript : MonoBehaviour
             btnGroup.SetActive(true);
             resultPanelRect.DOAnchorPosX(1742, 0.8f);
             btnGroupRect.DOAnchorPosX(70, 0.5f);
+            TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.5f);
 
             TestDatabase.Instance.resultEXP = 0;
             TestDatabase.Instance.resultDamage = 0;
