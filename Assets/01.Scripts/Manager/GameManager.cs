@@ -61,5 +61,10 @@ public class GameManager : MonoBehaviour
         { 
             state = State.End;
         }
+
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            goldAmount += 100;
+        }    
     }
 }
