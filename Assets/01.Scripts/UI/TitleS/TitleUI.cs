@@ -160,9 +160,9 @@ public class TitleUI : MonoBehaviour
     
     public void InitPlayerInfo()
     {
-        // haveGold.text = TestDatabase.Instance.resultGold.ToString();
-        // haveExp.text = TestDatabase.Instance.Level.ToString();
-        //haveTp.text = TestTurretDataBase.Instance.curTp.ToString();
+        haveGold.text = TestDatabase.Instance.resultGold.ToString();
+        haveExp.text = TestDatabase.Instance.Level.ToString();
+        haveTp.text = TestDatabase.Instance.curTp.ToString();
     }
     //패널 오픈 함수
     public void RemoveBtn()

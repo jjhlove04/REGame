@@ -138,6 +138,7 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         string num = turretGameObj.Substring(10, 3);
 
         testsk.canUpgrade.Add(num, gameObj);
+        TestDatabase.Instance.curTp--;
 
     }
     
@@ -151,13 +152,16 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        TitleUI.UI.explainTurretImage.sprite = this.gameObject.GetComponent<Image>().sprite;
-        if (gameObject.TryGetComponent(out Button btn))
+        if (TestDatabase.Instance.curTp >= 1)
         {
-            if(btn.interactable == true)
+            TitleUI.UI.explainTurretImage.sprite = this.gameObject.GetComponent<Image>().sprite;
+            if (gameObject.TryGetComponent(out Button btn))
             {
-                upgradeBar.gameObject.SetActive(true);
-                isClick = true;
+                if (btn.interactable == true)
+                {
+                    upgradeBar.gameObject.SetActive(true);
+                    isClick = true;
+                }
             }
         }
 
