@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
 using System.IO;
@@ -7,94 +6,143 @@ using System.IO;
 public class ResourceManager : MonoBehaviour
 {
     private static ResourceManager instance;
-    public static ResourceManager Instance { get { return instance; } }
-    public class StatData
+    public static ResourceManager Instance { get { return instance; }}
+
+
+    //기차 관련 데이터 클래스
+    public class PlayerData
     {
-        public TrainStatData trainStatData;
-        public TowerStatData towerStatData;
-        public TurretStatData turretStatData;
+        private int exp;
+        private int level;
+        private int gold;
+        private int tp;
+        private int clearBestWave;
 
-        public StatData()
+        public PlayerData(int exp, int level, int gold, int tp, int clearBestWave)
         {
-            /*TrainStatData = new TrainStatData();
-            playerStat = new PlayerStat();
-            TurretStatData = new TurretStatData();*/
+            this.exp = exp;
+            this.level = level;
+            this.gold = gold;
+            this.tp = tp;
+            this.clearBestWave = clearBestWave;
         }
 
-        //기차 관련 데이터 클래스
-        public class TrainStatData
+        public void SetData(int exp, int level, int gold, int tp, int clearBestWave)
         {
-            public float hp;
-
-            public TrainStatData(float hp)
-            {
-                this.hp = hp;
-            }
+            this.exp = exp;
+            this.level = level;
+            this.gold = gold;
+            this.tp = tp;
+            this.clearBestWave = clearBestWave;
         }
 
-        //타워 관련 데이터 클래스
-        public class TowerStatData
+        public void SetExp(int exp)
         {
-            public float damage; 
-            public float attackSpeed;
-
-            public TowerStatData(float damage, float attackSpeed)
-            {
-                this.damage = damage;
-                this.attackSpeed = attackSpeed;
-            }
+            this.exp = exp;
         }
 
-        //포탑 관련 데이터 클래스
-        public class TurretStatData
+        public void SetLevel(int level)
         {
-            public float hp;
-            public float damage;
-            public float attackSpeed;
-            public TurretStatData(float hp, float damage, float attackSpeed)
-            {
-                this.hp = hp;
-                this.damage = damage;
-                this.attackSpeed = attackSpeed;
-            }
+            this.level = level;
+        }
+
+        public void SetGold(int gold)
+        {
+            this.gold = gold;
+        }
+
+        public void SetTp(int tp)
+        {
+            this.tp = tp;
+        }
+
+        public void SetClearBestWave(int clearBestWave)
+        {
+            this.clearBestWave = clearBestWave;
+        }
+
+        public int GetExp()
+        {
+            return exp;
+        }
+
+        public int GetLevel()
+        {
+            return level;
+        }
+
+        public int GetGold()
+        {
+            return gold;
+        }
+
+        public int GetTp()
+        {
+            return tp;
+        }
+
+        public int GetClearBestWave()
+        {
+            return clearBestWave;
         }
     }
 
-    public class ResourceData
+    public class TrainData
     {
-        public string itemName;
-        public int itemAmount;
+        private float hp;
+        private int traincar;
 
-        public ResourceData(string itemName, int itemAmount)
+        public TrainData(float hp, int traincar)
         {
-            this.itemName = itemName;
-            this.itemAmount = itemAmount;
+            this.hp = hp;
+            this.traincar = traincar;
+        }
+
+        public void SetData(float hp, int traincar)
+        {
+            this.hp = hp;
+            this.traincar = traincar;
+        }
+
+        public float GetHp()
+        {
+            return hp;
+        }
+
+        public int Gettraincar()
+        {
+            return traincar;
         }
     }
 
-    public class StationData
+    //포탑 관련 데이터 클래스
+    public class TurretData
     {
-        public int currentStationNum;
-        public int stationClearNum;
+        List<int> turretUpgrade = new List<int>();
 
-        public StationData(int currentStationNum, int stationClearNum)
+        public TurretData(List<int> turretUpgrade)
         {
-            this.currentStationNum = currentStationNum;
-            this.stationClearNum = stationClearNum;
+            this.turretUpgrade = turretUpgrade;
+        }
+
+        public void TurretUpgrade(int num)
+        {
+            turretUpgrade.Add(num);
+        }
+
+        public List<int> GetTurretupgrade()
+        {
+            return turretUpgrade;
         }
     }
-
-    public List<ResourceData> resources = new List<ResourceData>();
-    public StationData stationData;
-    public StatData statData;
 
     private int first = 0;
 
     public enum DataType
     {
-        ResourceData,
-        StationData,
-        StatData
+        PlayerData,
+        TrainData,
+        TurretData
     }
 
     private void Awake()
@@ -109,7 +157,7 @@ public class ResourceManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        
+
         first = PlayerPrefs.GetInt("First");
         if (first == 0)
         {
@@ -122,42 +170,42 @@ public class ResourceManager : MonoBehaviour
 
     private void Init()
     {
-        resources.Add(new ResourceData("Gold", 0));
-        resources.Add(new ResourceData("Exp", 0));
-        resources.Add(new ResourceData("Tp", 0)); //테크니컬 포인트
-        resources.Add(new ResourceData("Level", 1));
         SaveAll();
     }
 
     private void LoadAll()
     {
-        Load(DataType.ResourceData);
-        Load(DataType.StationData);
-        Load(DataType.StatData);
+        Load(DataType.PlayerData);
+        Load(DataType.TrainData);
+        Load(DataType.TurretData);
     }
 
     private void SaveAll()
     {
-        SaveJSONFile(DataType.ResourceData);
-        SaveJSONFile(DataType.StationData);
-        SaveJSONFile(DataType.StatData);
+        SaveJSONFile(DataType.PlayerData);
+        SaveJSONFile(DataType.TrainData);
+        SaveJSONFile(DataType.TurretData);
     }
+
+    public PlayerData playerData;
+    public TrainData trainStatData;
+    public TurretData turretStatData;
 
     public void SaveJSONFile(DataType dataType)
     {
         switch (dataType)
         {
-            case DataType.ResourceData:
-                JsonData resourceData = JsonMapper.ToJson(resources);
-                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", resourceData.ToString());
+            case DataType.PlayerData:
+                JsonData playerDataJson = JsonMapper.ToJson(playerData);
+                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", playerDataJson.ToString());
                 break;
-            case DataType.StationData:
-                JsonData stationData = JsonMapper.ToJson(resources);
-                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", stationData.ToString());
+            case DataType.TrainData:
+                JsonData trainStatDataJson = JsonMapper.ToJson(trainStatData);
+                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", trainStatDataJson.ToString());
                 break;
-            case DataType.StatData:
-                JsonData statData = JsonMapper.ToJson(resources);
-                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", statData.ToString());
+            case DataType.TurretData:
+                JsonData turretStatDataJson = JsonMapper.ToJson(turretStatData);
+                File.WriteAllText(Application.dataPath + "/Resources/Data/ResourcesData.json", turretStatDataJson.ToString());
                 break;
         }
     }
@@ -166,17 +214,21 @@ public class ResourceManager : MonoBehaviour
     {
         switch (dataType)
         {
-            case DataType.ResourceData:
-                for (int i = 0; i < data.Count; i++)
+            case DataType.PlayerData:
+                playerData = new PlayerData(int.Parse(data["exp"].ToString()),int.Parse(data["level"].ToString()), int.Parse(data["gold"].ToString()),int.Parse(data["tp"].ToString()),int.Parse(data["clearBestWave"].ToString()));
+                break;
+            case DataType.TrainData:
+                trainStatData = new TrainData(float.Parse(data["hp"].ToString()), int.Parse(data["traincar"].ToString()));
+                break;
+            case DataType.TurretData:
+                List<int> intlist = new List<int>();
+
+                foreach (var item in data)
                 {
-                    resources.Add(new ResourceData(data[i]["itemName"].ToString(), int.Parse(data[i]["itemAmount"].ToString())));
+                    intlist.Add(int.Parse(item.ToString()));
                 }
-                break;
-            case DataType.StationData:
-                stationData = new StationData(int.Parse(data["currentStationNum"].ToString()), int.Parse(data["stationClearNum"].ToString()));
-                break;
-            case DataType.StatData:
-                statData = new StatData();
+
+                turretStatData = new TurretData(intlist);
                 break;
         }
 
@@ -187,15 +239,15 @@ public class ResourceManager : MonoBehaviour
         string jsonString = "";
         switch (dataType)
         {
-            case DataType.ResourceData:
+            case DataType.PlayerData:
                 jsonString = File.ReadAllText(Application.persistentDataPath + "/Resources/Data/ResourcesData.json");
 
                 break;
-            case DataType.StationData:
+            case DataType.TrainData:
                 jsonString = File.ReadAllText(Application.persistentDataPath + "/Resources/Data/StationData.json");
                 break;
         }
         JsonData jsondata = JsonMapper.ToObject(jsonString);
-        Parsing(jsondata,dataType);
+        Parsing(jsondata, dataType);
     }
 }

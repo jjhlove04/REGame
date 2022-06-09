@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 public class TitleMoveScriptt : MonoBehaviour
 { // 0: 스타트 버튼 . 1: 업그레이드 버튼, 2: 통계 버튼 , 3: 도감 버튼, 4: 설정 버튼, 5: 종료 버튼, 6: 이전화면

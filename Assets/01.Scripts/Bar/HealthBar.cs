@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour
@@ -59,12 +57,18 @@ public class HealthBar : MonoBehaviour
     {
         if (healthSystem.IsFullHealth())
         {
-            gameObject.SetActive(false);
+            if (gameObject.activeSelf)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         else
         {
-            gameObject.SetActive(true);
+            if (gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+            }
         }
     }
 

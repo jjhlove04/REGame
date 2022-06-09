@@ -1,7 +1,3 @@
-/**
-     Couroutine 사용시 return Yield return의 Object가 동적으로 생성되는 것 같다.
-    반복적인 생성이 GC를 생성하기 때문에 캐싱하여 사용한다.
-*/
 using UnityEngine;
 using System.Collections.Generic;
 
