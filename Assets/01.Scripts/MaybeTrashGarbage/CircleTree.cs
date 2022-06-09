@@ -158,11 +158,16 @@ public class CircleTree : MonoBehaviour
         {
             if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name == "baseTurret0-0")
             {
-                gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                if (testturretdatabase.curTurretType.ContainsKey("1-" + installBtn.GetComponent<testSkillScript>().floor))
+                {
+                    if (gameManager.goldAmount >= testturretdatabase.curTurretType["1-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
+                    {
+                        gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                        gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
-                CircleUpgrade(floor);
 
+                    }
+                }
                 if (!testturretdatabase.curTurretType.ContainsKey("1-2"))
                 {
                     gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().interactable = false;
@@ -172,30 +177,46 @@ public class CircleTree : MonoBehaviour
                 {
                     gameObject.transform.GetChild(2).GetChild(2).GetComponent<Button>().interactable = false;
                 }
+                CircleUpgrade(floor);
+
             }
         }
         else if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name.Substring(10, 1) == "1")
         {
             if (testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].name == "Base Level1-1")
             {
-                gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                gameObject.transform.GetChild(2).gameObject.SetActive(true);
-
-                CircleUpgrade(floor);
-                if (floor == 2)
+                if (testturretdatabase.curTurretType.ContainsKey("1-" + installBtn.GetComponent<testSkillScript>().floor))
                 {
-                    ChoseTree(floor);
+                    if (gameManager.goldAmount >= testturretdatabase.curTurretType["1-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
+                    {
+                        gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                        gameObject.transform.GetChild(2).gameObject.SetActive(true);
+
+                        if (testturretdatabase.curTurretType.ContainsKey("3-2"))
+                        {
+                            gameObject.transform.GetChild(2).GetChild(2).GetComponent<Button>().interactable = true;
+                        }
+
+                    }
                 }
+
 
                 if (!testturretdatabase.curTurretType.ContainsKey("1-3"))
                 {
                     gameObject.transform.GetChild(2).GetChild(1).GetComponent<Button>().interactable = false;
                 }
 
-                if(!testturretdatabase.curTurretType.ContainsKey("3-2"))
+                if (!testturretdatabase.curTurretType.ContainsKey("3-2"))
                 {
                     gameObject.transform.GetChild(2).GetChild(2).GetComponent<Button>().interactable = false;
                 }
+                CircleUpgrade(floor);
+                if (floor == 2)
+                {
+                    ChoseTree(floor);
+                }
+
+
             }
             else
             {
@@ -217,8 +238,26 @@ public class CircleTree : MonoBehaviour
 
     private void CircleUpgrade(int num)
     {
-        testturretdatabase.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
-        installBtn.GetComponent<testSkillScript>().floor++;
+        if (testturretdatabase.curTurretType.ContainsKey(num + "-" + installBtn.GetComponent<testSkillScript>().floor))
+        {
+            if(num == 3)
+            {
+                testturretdatabase.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
+                installBtn.GetComponent<testSkillScript>().floor++;
+            }
+            else if (gameManager.goldAmount >= testturretdatabase.curTurretType[num + "-" + installBtn.GetComponent<testSkillScript>().floor].GetComponent<Turret>().turretPrice)
+            {
+                testturretdatabase.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
+                installBtn.GetComponent<testSkillScript>().floor++;
+            }
+            else
+            {
+                inGameUII.warningtxt.color = new Color(1, 0.8f, 0, 1);
+                inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
+                inGameUII.GoldWarning.alpha = 1;
+                inGameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
+            }
+        }
     }
 
     private void DesTurret()
@@ -241,12 +280,24 @@ public class CircleTree : MonoBehaviour
 
     private void ChoseTree(int num)
     {
-
-        gameObject.transform.GetChild(2).gameObject.SetActive(false);
-        gameObject.transform.GetChild(1).gameObject.SetActive(true);
-
-        if (!testturretdatabase.curTurretType.ContainsKey(num + "-" + installBtn.GetComponent<testSkillScript>().floor))
+        if (testturretdatabase.curTurretType.ContainsKey(num + "-" + installBtn.GetComponent<testSkillScript>().floor))
         {
+            if (num == 3)
+            {
+                gameObject.transform.GetChild(2).gameObject.SetActive(false);
+                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else if (gameManager.goldAmount >= testturretdatabase.curTurretType[num + "-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
+            {
+                gameObject.transform.GetChild(2).gameObject.SetActive(false);
+                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+
             gameObject.transform.GetChild(1).GetChild(1).GetComponent<Button>().interactable = false;
         }
     }
