@@ -128,14 +128,14 @@ public class TitleUI : MonoBehaviour
             upGradePanels[2].SetActive(true);
             TitleMoveScript.indexNum = 4;
         });
-
-        curExp += TestDatabase.Instance.resultEXP;
-
-        levelTxt.text = TestDatabase.Instance.Level.ToString();
     }
 
     private void Start()
     {
+        curExp += TestDatabase.Instance.resultEXP;
+
+        levelTxt.text = TestDatabase.Instance.Level.ToString();
+
         Cursor.visible = false;
         repairCost.text = ((TestTurretDataBase.Instance.round - 1) * TestTurretDataBase.Instance.createPrice).ToString();
         towingCost.text = ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1)).ToString();
