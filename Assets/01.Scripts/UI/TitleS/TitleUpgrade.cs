@@ -21,9 +21,9 @@ public class TitleUpgrade : MonoBehaviour
         {
             btn.onClick.AddListener(() =>
             {
-                if(TestDatabase.Instance.resultGold > price)
+                if(TestTurretDataBase.Instance.resultGold > price)
                 {
-                    TestDatabase.Instance.resultGold -= price;
+                    TestTurretDataBase.Instance.resultGold -= price;
                     TowerUpgrade();
                 }
             });
@@ -33,9 +33,9 @@ public class TitleUpgrade : MonoBehaviour
         {
             btn.onClick.AddListener(() =>
             {
-                if (TestDatabase.Instance.resultGold > price)
+                if (TestTurretDataBase.Instance.resultGold > price)
                 {
-                    TestDatabase.Instance.resultGold -= price;
+                    TestTurretDataBase.Instance.resultGold -= price;
                     TrainUpgrade();
                 }
             });

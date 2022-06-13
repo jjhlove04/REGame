@@ -2976,9 +2976,9 @@ RectTransform:
   m_Father: {fileID: 2039455092}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 930.27673, y: -385.985}
   m_SizeDelta: {x: 505.82, y: 642.329}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178480849
@@ -5394,9 +5394,9 @@ RectTransform:
   m_Father: {fileID: 2039455092}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 274.91, y: -385.985}
   m_SizeDelta: {x: 505.82, y: 642.329}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &290965462
@@ -5950,11 +5950,12 @@ MonoBehaviour:
   resultDamage: 0
   resultEXP: 0
   resultGold: 0
+  killEnemy: 0
+  round: 0
+  createPrice: 0
   level: 0
   curTp: 0
   _nickName: 
-  round: 0
-  createPrice: 0
 --- !u!114 &314761276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5968,10 +5969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultDamage: 0
-  resultEXP: 0
-  resultGold: 0
   isRegister: 0
-  curTp: 0
   _nickName: 
 --- !u!1 &318471938
 GameObject:
@@ -8380,9 +8378,13 @@ MonoBehaviour:
   haveGold: {fileID: 1020499617}
   haveExp: {fileID: 720918280}
   haveTp: {fileID: 667421776}
+  btnGroupAct: {fileID: 1522632272}
   repairCost: {fileID: 6711930405305154155}
   towingCost: {fileID: 6711930404126316123}
-  btnGroupAct: {fileID: 1522632272}
+  killEnemy: {fileID: 1919176057}
+  acquiredGold: {fileID: 1313081768}
+  acquiredExp: {fileID: 811164312}
+  damageTxt: {fileID: 392456608}
   curExp: 0
   maxExp: 7
   expBar: {fileID: 751725725}
@@ -9205,7 +9207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &487025954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13145,7 +13147,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.685
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13565,7 +13567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &790786645
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25722,7 +25724,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.685, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
@@ -31096,9 +31098,9 @@ RectTransform:
   m_Father: {fileID: 2039455092}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1585.6434, y: -385.985}
   m_SizeDelta: {x: 505.82, y: 642.329}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1927340469

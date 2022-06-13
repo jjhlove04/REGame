@@ -29,13 +29,14 @@ public class TestTurretDataBase : MonoBehaviour
     public int resultDamage = 0;
     public int resultEXP = 0;
     public int resultGold = 0;
+    public int killEnemy = 0;
+    public int round;
+    public int createPrice;
 
     public int level;
     public int curTp;
     public string _nickName;
 
-    public int round;
-    public int createPrice;
 
     GameManager gameManager;
     InGameUII ingameUII;

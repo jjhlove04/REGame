@@ -70,13 +70,14 @@ public class TrainScript : MonoBehaviour
         trainhit = GetComponentInChildren<TrainHit>();
     }
 
-    /*private void Update()
+    private void Update()
     {
-        if (destroy)
-        {
-            trainManager.KeepOffTrain();
-        }
-    }*/
+        //if (destroy)
+        //{
+        //    trainManager.KeepOffTrain();
+        //}
+        FixShield();
+    }
 
     private void EnemyDataInit()
     {
@@ -147,6 +148,7 @@ public class TrainScript : MonoBehaviour
             if (dieEnemy >= 10)
             {
                 curTrainShield++;
+                dieEnemy = 0;
 
             }
         }

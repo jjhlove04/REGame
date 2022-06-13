@@ -44,12 +44,17 @@ public class TitleUI : MonoBehaviour
     [SerializeField] private Text haveExp;
     [SerializeField] private Text haveTp;
 
-
     [Space(30)]
+    public CanvasGroup btnGroupAct;
+
+    [Header("결과 패널 관련")]
     [SerializeField] private Text repairCost;
     [SerializeField] private Text towingCost;
-    public CanvasGroup btnGroupAct;
-    
+    public Text killEnemy;
+    public Text acquiredGold;
+    public Text acquiredExp;
+    public Text damageTxt;
+
     public int curExp = 0;
     public int maxExp = 30;
     public Slider expBar;
@@ -132,13 +137,17 @@ public class TitleUI : MonoBehaviour
 
     private void Start()
     {
-        curExp += TestDatabase.Instance.resultEXP;
+        curExp += TestTurretDataBase.Instance.resultEXP;
 
-        levelTxt.text = TestDatabase.Instance.Level.ToString();
+        levelTxt.text = TestTurretDataBase.Instance.level.ToString();
 
         Cursor.visible = false;
-        repairCost.text = ((TestTurretDataBase.Instance.round - 1) * TestTurretDataBase.Instance.createPrice).ToString();
-        towingCost.text = ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1)).ToString();
+        repairCost.text = ((TestTurretDataBase.Instance.round - 1) * 1.5f)/*TestTurretDataBase.Instance.trainCount)*/.ToString();
+        towingCost.text = 0 + "";//((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1)).ToString();
+        killEnemy.text = TestTurretDataBase.Instance.killEnemy.ToString();
+        acquiredGold.text = TestTurretDataBase.Instance.resultGold.ToString();
+        acquiredExp.text = TestTurretDataBase.Instance.resultEXP.ToString();
+        damageTxt.text = TestTurretDataBase.Instance.resultDamage.ToString();
 
         //등록관련
         // if (TestDatabase.Instance.isRegister)
@@ -160,9 +169,9 @@ public class TitleUI : MonoBehaviour
     
     public void InitPlayerInfo()
     {
-        haveGold.text = TestDatabase.Instance.resultGold.ToString();
-        haveExp.text = TestDatabase.Instance.Level.ToString();
-        haveTp.text = TestDatabase.Instance.curTp.ToString();
+        haveGold.text = TestTurretDataBase.Instance.resultGold.ToString();
+        haveExp.text = TestTurretDataBase.Instance.level.ToString();
+        haveTp.text = TestTurretDataBase.Instance.curTp.ToString();
     }
     //패널 오픈 함수
     public void RemoveBtn()
@@ -285,18 +294,18 @@ public class TitleUI : MonoBehaviour
             if (curExp >= maxExp)
             {
                 //TestTurretDataBase.Instance.curTp++;
-                TestDatabase.Instance.Level++;
+                TestTurretDataBase.Instance.level++;
                 curExp = curExp - maxExp;
                 if (TestDatabase.Instance.Level % 20 == 0)
                 {
-                    maxExp = (int)(((maxExp + (TestDatabase.Instance.Level + (TestDatabase.Instance.Level - 1))) * (TestDatabase.Instance.Level / (TestDatabase.Instance.Level - 1)) + maxExp) * 1.2f);
+                    maxExp = (int)(((maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp) * 1.2f);
                 }
                 else
                 {
-                    maxExp = (maxExp + (TestDatabase.Instance.Level + (TestDatabase.Instance.Level - 1))) * (TestDatabase.Instance.Level / (TestDatabase.Instance.Level - 1)) + maxExp;
+                    maxExp = (maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestDatabase.Instance.Level / (TestTurretDataBase.Instance.level - 1)) + maxExp;
                 }
                 expBar.value = 0;
-                levelTxt.text = TestDatabase.Instance.Level.ToString();
+                levelTxt.text = TestTurretDataBase.Instance.level.ToString();
             }
         }
     }

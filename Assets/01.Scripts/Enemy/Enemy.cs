@@ -209,6 +209,7 @@ public class Enemy : MonoBehaviour
         InGameUII._instance.CreateMonjeyTxt(enemyStat.dropGold);
 
         trainScript.dieEnemy++;
+        TestTurretDataBase.Instance.killEnemy++;
 
         gameObject.SetActive(false);
     }

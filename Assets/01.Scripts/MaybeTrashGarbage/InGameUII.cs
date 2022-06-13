@@ -210,8 +210,8 @@ public class InGameUII : MonoBehaviour
         if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
-            TestDatabase.Instance.resultEXP += GameManager.Instance.expAmount;
-            TestDatabase.Instance.resultGold += GameManager.Instance.goldAmount;
+            TestTurretDataBase.Instance.resultEXP += GameManager.Instance.expAmount;
+            TestTurretDataBase.Instance.resultGold += GameManager.Instance.goldAmount;
 
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;

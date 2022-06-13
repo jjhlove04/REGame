@@ -9,7 +9,7 @@ public class TurretManager : MonoBehaviour
         get { return instance; }
     }
 
-    private Turret turret;
+    private Turret turret; 
 
     private void Awake()
     {

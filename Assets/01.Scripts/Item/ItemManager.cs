@@ -29,7 +29,7 @@ public class ItemManager : MonoBehaviour
 
     private Dictionary<GameObject, ItemCount> itemIsCount = new Dictionary<GameObject, ItemCount>();
 
-    private TestDatabase testDatabase;
+    private TestTurretDataBase testDatabase;
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        testDatabase = TestDatabase.Instance;
+        testDatabase = TestTurretDataBase.Instance;
     }
 
     public void SelecteItem(GameObject gameitem, int price, GameObject background, bool count, int maxCount, out int curCount)

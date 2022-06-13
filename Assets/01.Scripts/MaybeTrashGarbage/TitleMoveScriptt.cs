@@ -117,8 +117,11 @@ public class TitleMoveScriptt : MonoBehaviour
             btnGroupRect.DOAnchorPosX(70, 0.5f);
 
 
-            TestDatabase.Instance.resultEXP = 0;
-            TestDatabase.Instance.resultDamage = 0;
+            TestTurretDataBase.Instance.resultEXP = 0;
+            TestTurretDataBase.Instance.resultDamage = 0;
+            TestTurretDataBase.Instance.killEnemy = 0;
+            TestTurretDataBase.Instance.resultDamage = 0;
+            TestTurretDataBase.Instance.createPrice = 0;
         });
 
         if (InGameUI.sceneIndex == 1)

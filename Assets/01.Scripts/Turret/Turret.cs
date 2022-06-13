@@ -71,7 +71,6 @@ public class Turret : MonoBehaviour
     private InGameUII inGameUII;
 
 
-
     private void OnEnable()
     {
         OffDetection();
@@ -141,7 +140,7 @@ public class Turret : MonoBehaviour
                     GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
                     gameObject.transform.position = weapons[shootCount-1].transform.Find("BulletPoint").position;
                     gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
-                    TestDatabase.Instance.resultDamage += damage;
+                    TestTurretDataBase.Instance.resultDamage += damage;
                     bulAmount--;
 
                     bulletBar.UpdateBar(bulAmount, maxBulletAmount);
@@ -312,7 +311,7 @@ public class Turret : MonoBehaviour
     }
 
     public void DesignateTarget(Enemy enemy)
-    {
+    { 
         if (!enemy.isDying)
         {
             if (!enemy.IsStealth())

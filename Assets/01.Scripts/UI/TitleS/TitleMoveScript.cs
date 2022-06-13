@@ -117,21 +117,23 @@ public class TitleMoveScript : MonoBehaviour
             
             
             
-        }); 
+        });
 
         //수리버튼 눌렀을때
-        repairBtn.onClick.AddListener(()=>
+        repairBtn.onClick.AddListener(() =>
         {
-            btnGroup.SetActive(true);
-            resultPanelRect.DOAnchorPosX(1742, 0.8f);
-            btnGroupRect.DOAnchorPosX(70, 0.5f);
-            TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.5f);
+        btnGroup.SetActive(true);
+        resultPanelRect.DOAnchorPosX(1742, 0.8f);
+        btnGroupRect.DOAnchorPosX(70, 0.5f);
+        TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.5f);
 
-            TestDatabase.Instance.resultEXP = 0;
-            TestDatabase.Instance.resultDamage = 0;
-            TestDatabase.Instance.resultGold -= 
+        TestTurretDataBase.Instance.resultEXP = 0;
+        TestTurretDataBase.Instance.resultDamage = 0;
+        TestTurretDataBase.Instance.resultGold -= (int)((TestTurretDataBase.Instance.round - 1) * 1.5f);
+            /*
             (TestTurretDataBase.Instance.trainCount * (TestTurretDataBase.Instance.round - 1)) +
             ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1));
+            */
         });
 
         if (InGameUII.sceneIndex == 1)
