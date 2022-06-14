@@ -42,6 +42,7 @@ public class TitleMoveScript : MonoBehaviour
         titleActionBtn[0].onClick.AddListener(() => {
             //timelines[0].Play();
             indexNum = 1;
+            TitleUI.UI.titleBack = true;
             BtnSlide(1);
             TitleUI.UI.ReadySetUpPanel(1);
         });   
@@ -50,6 +51,7 @@ public class TitleMoveScript : MonoBehaviour
         titleActionBtn[1].onClick.AddListener(()=> {
             TitleUI.UI.UpGradePanelOpen(1);
             indexNum = 2;
+            TitleUI.UI.titleBack = true;
             BtnSlide(1);
         });
          //통계 버튼
@@ -168,6 +170,7 @@ public class TitleMoveScript : MonoBehaviour
                     TitleUI.UI.ReadySetUpPanel(2);
                     BtnSlide(2);
                     backBtn.SetActive(false);
+                    TitleUI.UI.titleBack = false;
                 }
                 if (indexNum == 2)
                 {
@@ -178,6 +181,8 @@ public class TitleMoveScript : MonoBehaviour
 
                     //timelines[3].Play();
                     BtnSlide(2);
+                    TitleUI.UI.titleBack = false;
+
                 }
                 if (indexNum == 3)
                 {

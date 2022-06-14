@@ -66,6 +66,7 @@ public class TitleUI : MonoBehaviour
     public Text curCellText;
     [Space(20)]
     public Text curShieldText;
+    public Text upPanelTP;
 
     public Image cursor;
 
@@ -77,6 +78,7 @@ public class TitleUI : MonoBehaviour
         ShowShieldUpGradeText();
         ShowHpUpgradeText();
         ShowCountUPGradeText();
+        ShowTPText();
         
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
@@ -112,13 +114,14 @@ public class TitleUI : MonoBehaviour
             {
                 TestTurretDataBase.Instance.curTurretType.Add("0-0", Resources.Load<GameObject>("Turret/baseTurret0-0"));
             }
-
+            TitleUI.UI.titleBack = true;
             LoadingSceneUI.LoadScene("Main");
         });
         upGradeBtns[0].onClick.AddListener(() =>
         {
             RemoveBtn();
             upGradePanels[0].SetActive(true);
+            TitleUI.UI.titleBack = true;
             TitleMoveScript.indexNum = 4;
         });
         upGradeBtns[1].onClick.AddListener(() =>
@@ -126,12 +129,15 @@ public class TitleUI : MonoBehaviour
             RemoveBtn();
             upGradePanels[1].SetActive(true);
             TitleMoveScript.indexNum = 4;
+            TitleUI.UI.titleBack = true;
+            
         });
         upGradeBtns[2].onClick.AddListener(() =>
         {
             RemoveBtn();
             upGradePanels[2].SetActive(true);
             TitleMoveScript.indexNum = 4;
+            TitleUI.UI.titleBack = true;
         });
     }
 
@@ -160,6 +166,7 @@ public class TitleUI : MonoBehaviour
         Update_MousePosition();
         InitPlayerInfo();
         ExpBar();
+        ShowTPText();
         
 
         cursor.transform.position = Input.mousePosition;
@@ -336,5 +343,10 @@ public class TitleUI : MonoBehaviour
         //upShieldText.text = (TestTurretDataBase.Instance.trainShield+50).ToString();
 
     }
+    public void ShowTPText()
+    {
+        upPanelTP.text = string.Format("Retain T.P : {0}", TestTurretDataBase.Instance.curTp);
+    }
+
     
 }
