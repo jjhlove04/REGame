@@ -70,6 +70,8 @@ public class Turret : MonoBehaviour
 
     private InGameUII inGameUII;
 
+    private Vector3 targetPos;
+
 
     private void OnEnable()
     {
@@ -79,6 +81,8 @@ public class Turret : MonoBehaviour
         {
             OnDetection();
         }
+
+        targetPos = transform.position;
 
     }
 
@@ -183,7 +187,7 @@ public class Turret : MonoBehaviour
                     {
                         if (targetEnemy != null)
                         {
-                            if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                            if (Vector3.Distance(targetPos, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
                             {
                                 targetEnemy = hitEnemy.transform;
                             }
@@ -199,7 +203,7 @@ public class Turret : MonoBehaviour
                     {
                         if (targetEnemy != null)
                         {
-                            if (Vector3.Distance(transform.position, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                            if (Vector3.Distance(targetPos, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
                             {
                                 targetEnemy = hitEnemy.transform;
                             }
@@ -310,20 +314,9 @@ public class Turret : MonoBehaviour
         }
     }
 
-    public void DesignateTarget(Enemy enemy)
-    { 
-        if (!enemy.isDying)
-        {
-            if (!enemy.IsStealth())
-            {
-                targetEnemy = enemy.transform;
-            }
-
-            else if (detection)
-            {
-                targetEnemy = enemy.transform;
-            }
-        }
+    public void DesignateTarget(Vector3 target)
+    {
+        targetPos = target;
     }
 
     private void OnMouseEnter()

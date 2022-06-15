@@ -313,11 +313,6 @@ public class Enemy : MonoBehaviour
         balckgoleDuration = duration;
     }
 
-    private void OnMouseDown()
-    {
-        TurretManager.Instance.SelectTargetEnemy(this);
-    }
-
     private void OnMouseEnter()
     {
         transform.Find("SelectEnemy").gameObject.SetActive(true);

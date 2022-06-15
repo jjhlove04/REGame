@@ -27,11 +27,11 @@ public class TurretManager : MonoBehaviour
         turret = tur;
     }
 
-    public void SelectTargetEnemy(Enemy enemy)
+    public void SelectTargetEnemy()
     {
         if(turret != null)
         {
-            turret.DesignateTarget(enemy);
+            turret.DesignateTarget(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 }
