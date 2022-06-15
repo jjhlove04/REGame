@@ -62,6 +62,7 @@ public class TitleUI : MonoBehaviour
 
     [Header("업그레이드 패널 관련")]
     public Text curHpText;
+    public Button[] towerPanels;
     [Space(20)]
     public Text curCellText;
     [Space(20)]
@@ -139,6 +140,28 @@ public class TitleUI : MonoBehaviour
             TitleMoveScript.indexNum = 4;
             TitleUI.UI.titleBack = true;
         });
+
+        if(TestTurretDataBase.Instance.level == 1)
+        {
+            for (int i = 0; i < towerPanels.Length; i++)
+            {
+                towerPanels[i].interactable = false;
+            }
+
+        }
+
+        if(TestTurretDataBase.Instance.level >= 3)
+        {
+            towerPanels[0].interactable = true;
+            if(TestTurretDataBase.Instance.level >= 5)
+            {
+                towerPanels[1].interactable = true;
+                if(TestTurretDataBase.Instance.level >= 7)
+                {
+                    towerPanels[2].interactable = true;
+                }
+            }
+        }
     }
 
     private void Start()
@@ -167,7 +190,8 @@ public class TitleUI : MonoBehaviour
         InitPlayerInfo();
         ExpBar();
         ShowTPText();
-        
+
+        levelTxt.text = TestTurretDataBase.Instance.level.ToString();
 
         cursor.transform.position = Input.mousePosition;
     }

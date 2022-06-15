@@ -30,6 +30,8 @@ public class TitleMoveScript : MonoBehaviour
     public GameObject turretC;
     public GameObject turretP;
     public GameObject towerP;
+
+
     private void Awake() 
     {
         
@@ -45,9 +47,13 @@ public class TitleMoveScript : MonoBehaviour
             TitleUI.UI.titleBack = true;
             BtnSlide(1);
             TitleUI.UI.ReadySetUpPanel(1);
-        });   
-       
-         //업그레이드 버튼
+        });
+
+        if (TestTurretDataBase.Instance.isfirst)
+        {
+            titleActionBtn[1].interactable = false;
+        }
+        //업그레이드 버튼
         titleActionBtn[1].onClick.AddListener(()=> {
             TitleUI.UI.UpGradePanelOpen(1);
             indexNum = 2;
@@ -136,6 +142,8 @@ public class TitleMoveScript : MonoBehaviour
             (TestTurretDataBase.Instance.trainCount * (TestTurretDataBase.Instance.round - 1)) +
             ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1));
             */
+
+            TestTurretDataBase.Instance.isfirst = false;
         });
 
         if (InGameUII.sceneIndex == 1)

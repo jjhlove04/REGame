@@ -41,6 +41,8 @@ public class TestTurretDataBase : MonoBehaviour
     GameManager gameManager;
     InGameUII ingameUII;
 
+    public bool isfirst;
+
     private void Awake()
     {
         if (instance != null)

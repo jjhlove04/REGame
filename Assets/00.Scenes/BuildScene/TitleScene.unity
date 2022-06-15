@@ -6108,6 +6108,7 @@ MonoBehaviour:
   level: 0
   curTp: 0
   _nickName: 
+  isfirst: 0
 --- !u!114 &314761276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8538,10 +8539,11 @@ MonoBehaviour:
   acquiredExp: {fileID: 811164312}
   damageTxt: {fileID: 392456608}
   curExp: 0
-  maxExp: 7
+  maxExp: 30
   expBar: {fileID: 751725725}
   levelTxt: {fileID: 217591053}
   curHpText: {fileID: 907738886}
+  towerPanels: []
   curCellText: {fileID: 1247722177}
   curShieldText: {fileID: 1243453176}
   upPanelTP: {fileID: 2073411604}
@@ -18420,7 +18422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.2199707, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -4.2199755, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1040799833
