@@ -125,7 +125,7 @@ public class Spawner : MonoBehaviour
 
     private void BossSpwanEnemy(int s)
     {
-        if (round == s)
+        if (s % round == 0)
         {
             for (int i = 0; i < spawnAmount; i++)
             {
