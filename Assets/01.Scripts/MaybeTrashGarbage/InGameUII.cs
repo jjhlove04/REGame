@@ -178,6 +178,11 @@ public class InGameUII : MonoBehaviour
 
         cursor.transform.position = Input.mousePosition;
 
+        if(Input.GetMouseButtonDown(1))
+        {
+            CancleAll();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //    if ((settingPanel.activeSelf == false && giveUPPanel.activeSelf == true) 

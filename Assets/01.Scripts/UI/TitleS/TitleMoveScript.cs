@@ -90,40 +90,6 @@ public class TitleMoveScript : MonoBehaviour
         }); 
         //이전화면 버튼
         titleActionBtn[6].onClick.AddListener(() =>{
-            if(indexNum == 1)
-            {
-                TitleUI.UI.ReadySetUpPanel(2);
-                //timelines[1].Play();
-                BtnSlide(2);
-                
-            }
-            if(indexNum == 2)
-            {
-                TitleUI.UI.UpGradePanelOpen(2);
-                for(int i = 0; i < 3; i++){
-                TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
-                }
-                //timelines[3].Play();
-                BtnSlide(2);
-            }
-            if(indexNum == 3)
-            {
-                //timelines[5].Play();
-               BtnSlide(3);
-            }
-            //업그레이드 화면에서 나가기
-            if(indexNum == 4)
-            {
-                for(int i = 0; i < 3; i++)
-                {
-                    TitleUI.UI.upGradePanels[i].SetActive(false);
-                    TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
-                }
-                indexNum = 2;
-                
-            } 
-            
-            
             
         });
 
@@ -272,5 +238,40 @@ public class TitleMoveScript : MonoBehaviour
         }
         
     }
+    public void BackMove()
+    {
+        if (indexNum == 1)
+        {
+            TitleUI.UI.ReadySetUpPanel(2);
+            //timelines[1].Play();
+            BtnSlide(2);
 
+        }
+        if (indexNum == 2)
+        {
+            TitleUI.UI.UpGradePanelOpen(2);
+            for (int i = 0; i < 3; i++)
+            {
+                TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
+            }
+            //timelines[3].Play();
+            BtnSlide(2);
+        }
+        if (indexNum == 3)
+        {
+            //timelines[5].Play();
+            BtnSlide(3);
+        }
+        //업그레이드 화면에서 나가기
+        if (indexNum == 4)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                TitleUI.UI.upGradePanels[i].SetActive(false);
+                TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
+            }
+            indexNum = 2;
+
+        }
+    }
 }

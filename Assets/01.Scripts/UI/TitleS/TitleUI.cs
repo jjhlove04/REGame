@@ -79,11 +79,12 @@ public class TitleUI : MonoBehaviour
     {
 
         RegisterPanelOpen();
-        ShowShieldUpGradeText();
-        ShowHpUpgradeText();
-        ShowCountUPGradeText();
-        ShowTPText();
-        
+
+        //ShowShieldUpGradeText();
+        //ShowHpUpgradeText();
+        //ShowCountUPGradeText();
+        //ShowTPText();
+
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
 
@@ -366,6 +367,10 @@ public class TitleUI : MonoBehaviour
     }
     public void ShowShieldUpGradeText()
     {
+        Debug.Log(curShieldText.text);
+        Debug.Log(string.Format("{0} -> <color=#34A11F>{1}</color>",
+        trainInfo.trainMaxShield,
+        (trainInfo.trainMaxShield + trainInfo.shieldUpgrade)));
         curShieldText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
         trainInfo.trainMaxShield,
         (trainInfo.trainMaxShield + trainInfo.shieldUpgrade));

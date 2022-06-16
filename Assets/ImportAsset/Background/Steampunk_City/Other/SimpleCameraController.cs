@@ -70,6 +70,7 @@ namespace UnityTemplateProject
         [Tooltip("Whether or not to invert our Y axis for mouse input to rotation.")]
         public bool invertY = false;
 
+        public TitleMoveScript titlemove;
         void OnEnable()
         {
             m_TargetCameraState.SetFromTransform(transform);
@@ -123,7 +124,8 @@ namespace UnityTemplateProject
             // Hide and lock cursor when right mouse button pressed
             if (Input.GetMouseButtonDown(1))
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
+                titlemove.BackMove();
             }
 
             // Unlock and show cursor when right mouse button released

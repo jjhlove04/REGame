@@ -152,9 +152,9 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        TitleUI.UI.explainTurretImage.sprite = this.gameObject.GetComponent<Image>().sprite;
         if (TestTurretDataBase.Instance.curTp >= 1)
         {
-            TitleUI.UI.explainTurretImage.sprite = this.gameObject.GetComponent<Image>().sprite;
             if (gameObject.TryGetComponent(out Button btn))
             {
                 if (btn.interactable == true)
@@ -164,6 +164,7 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
                 }
             }
         }
+
 
     }
 }
