@@ -5059,7 +5059,8 @@ MonoBehaviour:
   turretGameObj: Base Level1-2
   myCount: 0
   nextBtn: {fileID: 1630352045}
-  nextLineBtn: []
+  nextLineBtn:
+  - {fileID: 327556110}
   floor: {fileID: 557847293529245242}
   upgradeBar: {fileID: 1352633349}
 --- !u!1 &267323250
@@ -6108,7 +6109,7 @@ MonoBehaviour:
   level: 0
   curTp: 0
   _nickName: 
-  isfirst: 0
+  isfirst: 1
 --- !u!114 &314761276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7917,10 +7918,7 @@ MonoBehaviour:
   turretGameObj: baseTurret0-0
   myCount: 1
   nextBtn: {fileID: 1465899928}
-  nextLineBtn:
-  - {fileID: 1465899928}
-  - {fileID: 536138421}
-  - {fileID: 327556110}
+  nextLineBtn: []
   floor: {fileID: 557847293529245242}
   upgradeBar: {fileID: 1664822208}
 --- !u!1 &430948701
@@ -8543,7 +8541,8 @@ MonoBehaviour:
   expBar: {fileID: 751725725}
   levelTxt: {fileID: 217591053}
   curHpText: {fileID: 907738886}
-  towerPanels: []
+  towerPanelsBtn: []
+  towerRockImg: []
   curCellText: {fileID: 1247722177}
   curShieldText: {fileID: 1243453176}
   upPanelTP: {fileID: 2073411604}
@@ -18422,7 +18421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.2199707, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -4.2199755, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1040799833
@@ -24988,7 +24987,8 @@ MonoBehaviour:
   turretGameObj: Base Level1-1
   myCount: 0
   nextBtn: {fileID: 252040709}
-  nextLineBtn: []
+  nextLineBtn:
+  - {fileID: 536138421}
   floor: {fileID: 557847293529245242}
   upgradeBar: {fileID: 1720414346}
 --- !u!1 &1466788650

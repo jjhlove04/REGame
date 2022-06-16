@@ -101,7 +101,7 @@ public class Spawner : MonoBehaviour
         //    amount = amount * 0.6f;
         //}
 
-        if(s % 10 == 0)
+        if(s % 20 == 0)
         {
             spawnAmount = spawnAmount + 1;
         }

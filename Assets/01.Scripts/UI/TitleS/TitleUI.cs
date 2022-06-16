@@ -62,7 +62,8 @@ public class TitleUI : MonoBehaviour
 
     [Header("업그레이드 패널 관련")]
     public Text curHpText;
-    public Button[] towerPanels;
+    public Button[] towerPanelsBtn;
+    public Image[] towerRockImg;
     [Space(20)]
     public Text curCellText;
     [Space(20)]
@@ -143,22 +144,24 @@ public class TitleUI : MonoBehaviour
 
         if(TestTurretDataBase.Instance.level == 1)
         {
-            for (int i = 0; i < towerPanels.Length; i++)
+            for (int i = 0; i < towerPanelsBtn.Length; i++)
             {
-                towerPanels[i].interactable = false;
+                towerPanelsBtn[i].interactable = false;
             }
-
         }
 
         if(TestTurretDataBase.Instance.level >= 3)
         {
-            towerPanels[0].interactable = true;
+            towerRockImg[0].gameObject.SetActive(false);
+            towerPanelsBtn[0].interactable = true;
             if(TestTurretDataBase.Instance.level >= 5)
             {
-                towerPanels[1].interactable = true;
+                towerRockImg[1].gameObject.SetActive(false);
+                towerPanelsBtn[1].interactable = true;
                 if(TestTurretDataBase.Instance.level >= 7)
                 {
-                    towerPanels[2].interactable = true;
+                    towerRockImg[2].gameObject.SetActive(false);
+                    towerPanelsBtn[2].interactable = true;
                 }
             }
         }
@@ -324,7 +327,7 @@ public class TitleUI : MonoBehaviour
         {
             if (curExp >= maxExp)
             {
-                //TestTurretDataBase.Instance.curTp++;
+                TestTurretDataBase.Instance.curTp++;
                 TestTurretDataBase.Instance.level++;
                 curExp = curExp - maxExp;
                 if (TestDatabase.Instance.Level % 20 == 0)
