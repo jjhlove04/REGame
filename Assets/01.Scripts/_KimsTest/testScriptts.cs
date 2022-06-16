@@ -85,7 +85,7 @@ public class testScriptts : MonoBehaviour
         reloadBtn.onClick.AddListener(Reload);
 
         //hp바 세
-        hpBar.value = (float)trainScript.curTrainHp / (float)trainScript.maxTrainHp;
+        hpBar.value = (float)trainScript.curTrainHp / (float)trainScript.traininfo.trainMaxHp;
 
         gameManager.goldAmount += 30;
     }
@@ -102,7 +102,7 @@ public class testScriptts : MonoBehaviour
         {
             if (speedBtnCount != 0)
             {
-                if (spawnMananger.curTime >= (spawnMananger.roundCurTime * 0.3f))
+                if (spawnMananger.curTime >= (spawnMananger.Info.roundCurTime * 0.3f))
                 {
                     NextWave();
                 }
@@ -203,16 +203,16 @@ public class testScriptts : MonoBehaviour
         }
         else
         {
-            spawnMananger.curTime = spawnMananger.roundCurTime;
-            gameManager.goldAmount += (int)(spawnMananger.roundCurTime * 0.7f);
-            InGameUI._instance.CreateMonjeyTxt((int)(spawnMananger.roundCurTime * 0.7f));
+            spawnMananger.curTime = spawnMananger.Info.roundCurTime;
+            gameManager.goldAmount += (int)(spawnMananger.Info.roundCurTime * 0.7f);
+            InGameUI._instance.CreateMonjeyTxt((int)(spawnMananger.Info.roundCurTime * 0.7f));
         }
     }
     public void NextWaveCoolBtn()
     {
         if (speedBtnCount != 0)
         {
-            if (spawnMananger.curTime >= (spawnMananger.roundCurTime * 0.3f))
+            if (spawnMananger.curTime >= (spawnMananger.Info.roundCurTime * 0.3f))
             {
                 NextWaveBtn.interactable = true;
                 textImg.gameObject.SetActive(true);
@@ -223,8 +223,8 @@ public class testScriptts : MonoBehaviour
                 textImg.gameObject.SetActive(false);
             }
         }
-        nextWaveImg.fillAmount = spawnMananger.curTime / spawnMananger.roundCurTime;
-        autoWaveImg.fillAmount = spawnMananger.curTime / (spawnMananger.roundCurTime * 0.3f);
+        nextWaveImg.fillAmount = spawnMananger.curTime / spawnMananger.Info.roundCurTime;
+        autoWaveImg.fillAmount = spawnMananger.curTime / (spawnMananger.Info.roundCurTime * 0.3f);
     }
 
     public void Create(GameObject turret)
@@ -363,7 +363,7 @@ public class testScriptts : MonoBehaviour
     public void TakeDamageHpBar()
     {
         //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
-        hpBar.value = Mathf.Lerp(hpBar.value, (float)trainScript.curTrainHp / (float)trainScript.maxTrainHp, Time.deltaTime);
+        hpBar.value = Mathf.Lerp(hpBar.value, (float)trainScript.curTrainHp / (float)trainScript.traininfo.trainMaxHp, Time.deltaTime);
     }
 
     public void BulletCheck()

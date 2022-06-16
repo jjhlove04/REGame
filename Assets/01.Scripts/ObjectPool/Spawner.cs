@@ -94,7 +94,7 @@ public class Spawner : MonoBehaviour
     {
         //float amount = spawnAmount + (s * amountIncreasion);
 
-        float time = spawnMananger.roundCurTime; /// amount;
+        float time = spawnMananger.Info.roundCurTime; /// amount;
 
         //if (s % adjustmentRound == 0)
         //{

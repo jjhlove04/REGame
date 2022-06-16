@@ -164,7 +164,7 @@ public class InGameUII : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < TestTurretDataBase.Instance.trainCount; i++)
+        for (int i = 0; i < TrainScript.instance.traininfo.trainCount; i++)
         {
             trainUiObjs[i].SetActive(true);
         }

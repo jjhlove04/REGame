@@ -6,11 +6,11 @@ public class TrainScript : MonoBehaviour
 {
     public static TrainScript instance { get; private set; }
 
+    public TrainInfo traininfo;
+
     public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
-    public float maxTrainHp = 50000;
 
     public float curTrainShield = 10000;
-    public float maxTrainShield = 10000;
     public int dieEnemy = 0;
 
     private float hpCheck =70;
@@ -48,21 +48,20 @@ public class TrainScript : MonoBehaviour
     {
         instance = this;
 
-        trainManager= GetComponent<TrainManager>();
-
-        trainManager.CreateTrainPrefab();
         EnemyDataInit();
     }
 
     private void OnEnable()
     {
-        maxTrainHp = TestTurretDataBase.Instance.trainHp;
-        maxTrainShield = TestTurretDataBase.Instance.trainShield;
-        curTrainHp = maxTrainHp;
-        curTrainShield = maxTrainShield;
-        roomHp = maxTrainHp / trainManager.curTrainCount;
+        curTrainHp = traininfo.trainMaxHp;
+        curTrainShield = traininfo.trainMaxShield;
+        roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
+
+        trainManager = GetComponent<TrainManager>();
+
+        trainManager.CreateTrainPrefab(traininfo.trainCount);
     }
 
     private void Start()
@@ -97,7 +96,7 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (hpCheck * maxTrainHp / 100 >= curTrainHp)
+        if (hpCheck * traininfo.trainMaxHp / 100 >= curTrainHp)
         {
             switch (hpCheck)
             {
@@ -139,11 +138,11 @@ public class TrainScript : MonoBehaviour
 
     public void FixHP()
     {
-        curTrainHp = maxTrainHp;
+        curTrainHp = traininfo.trainMaxHp;
     }
     public void FixShield()
     {
-        if (curTrainShield < maxTrainShield)
+        if (curTrainShield < traininfo.trainMaxShield)
         {
             if (dieEnemy >= 10)
             {

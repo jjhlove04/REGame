@@ -20,10 +20,6 @@ public class TestTurretDataBase : MonoBehaviour
     public GameObjectBool postdic = new GameObjectBool();
 
     public GameObject towerObj;
-    [Header("Train업그레이드값")]
-    public int trainCount;
-    public float trainShield;
-    public float trainHp;
 
     [Header("결과값")]
     public int resultDamage = 0;

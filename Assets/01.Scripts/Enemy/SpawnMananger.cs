@@ -10,6 +10,8 @@ public class SpawnMananger : MonoBehaviour
     }
 
     public delegate void Spawn(int i);
+
+    public SpawnInfo Info;
     
     private ObjectPool _objPool;
 
@@ -17,8 +19,7 @@ public class SpawnMananger : MonoBehaviour
 
     public Spawn spawn;
 
-    public float curTime;
-    public float roundCurTime;
+    public float curTime; 
 
     [HideInInspector]
     public int round;
@@ -43,7 +44,7 @@ public class SpawnMananger : MonoBehaviour
     private void Start()
     {
         _objPool = FindObjectOfType<ObjectPool>();
-        curTime = roundCurTime;
+        curTime = Info.roundCurTime;
         stopSpawn = true;
     }
 
@@ -53,7 +54,7 @@ public class SpawnMananger : MonoBehaviour
         {
             curTime += Time.deltaTime;
 
-            if (curTime >= roundCurTime)
+            if (curTime >= Info.roundCurTime)
             {
                 
                 spawn(round);

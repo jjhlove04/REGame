@@ -29,9 +29,9 @@ public class TrainManager : MonoBehaviour
     }
 
 
-    public void CreateTrainPrefab()
+    public void CreateTrainPrefab(int trainCount)
     {
-        curTrainCount = TestTurretDataBase.Instance.trainCount;
+        curTrainCount = trainCount;
 
         for (int i = 0; i < curTrainCount; i++)
         {

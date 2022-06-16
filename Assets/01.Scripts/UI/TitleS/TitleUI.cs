@@ -10,6 +10,8 @@ public class TitleUI : MonoBehaviour
     private static TitleUI _ui = new TitleUI();
     public static TitleUI UI { get { return _ui; } }
 
+    public TrainInfo trainInfo;
+
     public Button[] buyBtns;
 
     [Header("업그레이드 관련")]
@@ -347,17 +349,17 @@ public class TitleUI : MonoBehaviour
     public void ShowHpUpgradeText()
     {
         curHpText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
-        TestTurretDataBase.Instance.trainHp,
-        (TestTurretDataBase.Instance.trainHp + 50));
+        trainInfo.trainMaxHp,
+        (trainInfo.trainMaxHp + trainInfo.hpUpgrade));
         //upHpText.text = (TestTurretDataBase.Instance.trainHp + 50).ToString();
     }
     public void ShowCountUPGradeText()
     {
         //curCellText.text = TestTurretDataBase.Instance.trainCount.ToString();
         curCellText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
-        TestTurretDataBase.Instance.trainCount,
-        (TestTurretDataBase.Instance.trainCount + 1));
-        if(TestTurretDataBase.Instance.trainCount == 3)
+        trainInfo.trainCount,
+        (trainInfo.trainCount + 1));
+        if(trainInfo.trainCount == 3)
         {
             curCellText.text = string.Format("<color=red>Max</color>");
         }
@@ -365,8 +367,8 @@ public class TitleUI : MonoBehaviour
     public void ShowShieldUpGradeText()
     {
         curShieldText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
-        TestTurretDataBase.Instance.trainShield,
-        (TestTurretDataBase.Instance.trainShield+50));
+        trainInfo.trainMaxShield,
+        (trainInfo.trainMaxShield + trainInfo.shieldUpgrade));
         //upShieldText.text = (TestTurretDataBase.Instance.trainShield+50).ToString();
 
     }

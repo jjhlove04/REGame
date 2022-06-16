@@ -6553,9 +6553,6 @@ MonoBehaviour:
     m_keys: []
     m_values: 
   towerObj: {fileID: 8185287190290843104, guid: ae4c3d0996645c34990aabe42c1684d5, type: 3}
-  trainCount: 1
-  trainShield: 10
-  trainHp: 70
   resultDamage: 0
   resultEXP: 0
   resultGold: 0
@@ -9073,6 +9070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bd98e881521f343beda0529991a9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trainInfo: {fileID: 0}
   buyBtns: []
   upGradeTexts:
   - {fileID: 1892165970}
@@ -10523,12 +10521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0234438dfb44c44395273b21a986ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 150
-  item: {fileID: 404234841304166137, guid: a83e3977c5448334393537d0e51e1b7c, type: 3}
+  _itemInfo: {fileID: 11400000, guid: c035d95ec3c03d441a0b02ddfbf27230, type: 2}
   background: {fileID: 1152019929}
   count: 1
-  maxCountPrice: 370
-  countPriceUp: 125
   upgradeBtn: {fileID: 754511685}
   priceText: {fileID: 190323622}
   text: {fileID: 486868644}
@@ -19252,7 +19247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.2199707, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -4.2199755, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1040799833
@@ -19362,12 +19357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0234438dfb44c44395273b21a986ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 80
-  item: {fileID: 9177793698644172939, guid: b2230cb755130b24d82c5e1a79874a98, type: 3}
+  _itemInfo: {fileID: 11400000, guid: 238c0fba1c0fb6e43a33fd0bd7424ddc, type: 2}
   background: {fileID: 1781958932}
   count: 1
-  maxCountPrice: 0
-  countPriceUp: 0
   upgradeBtn: {fileID: 0}
   priceText: {fileID: 0}
   text: {fileID: 719129155}
@@ -26509,12 +26501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0234438dfb44c44395273b21a986ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 120
-  item: {fileID: 5926695830497288254, guid: 3bef256877fa8aa45aa556398b10782e, type: 3}
+  _itemInfo: {fileID: 11400000, guid: fdc6d17a7097705499d31937fbb0b96d, type: 2}
   background: {fileID: 2106649933}
   count: 1
-  maxCountPrice: 300
-  countPriceUp: 75
   upgradeBtn: {fileID: 1389896633}
   priceText: {fileID: 2079499720}
   text: {fileID: 804440927}
@@ -41689,8 +41678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405d91b8ae17e5544b7454e4d8fea44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: 50
-  hp: 50
+  trainInfo: {fileID: 11400000, guid: 25fb0e97759409841a6044cefeab7a77, type: 2}
   upGradeBtns:
   - {fileID: 747654474482739272}
   - {fileID: 7864486276904457681}

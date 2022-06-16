@@ -4,26 +4,13 @@ using TMPro;
 
 public class ItemSeletor : MonoBehaviour
 {
-    [SerializeField]
-    private int price = 10;
-
-    [SerializeField]
-    private GameObject item;
+    public ItemInfo _itemInfo;
 
     [SerializeField]
     private GameObject background;
 
     [SerializeField]
     bool count = false;
-
-    [SerializeField]
-    private int maxCountPrice;
-
-    [SerializeField]
-    private int countPriceUp;
-
-    [SerializeField]
-    static int maxCount = 1;
 
     [SerializeField]
     private Button upgradeBtn;
@@ -55,15 +42,15 @@ public class ItemSeletor : MonoBehaviour
 
         GetComponent<Button>().onClick.AddListener(() => 
         {
-            ItemManager.Instance.SelecteItem(item, price, background, count, maxCount, out curCount);
+            ItemManager.Instance.SelecteItem(_itemInfo.item, _itemInfo.price, background, count, _itemInfo.maxCount, out curCount);
 
             if(curCount != 0)
             {
-                if(testDatabase.resultGold >= price)
+                if(testDatabase.resultGold >= _itemInfo.price)
                 {
                     text.gameObject.SetActive(true);
 
-                    text.text = "" + curCount + " / " + maxCount;
+                    text.text = "" + curCount + " / " + _itemInfo.maxCount;
                 }
             }
         });
@@ -71,11 +58,11 @@ public class ItemSeletor : MonoBehaviour
 
     public void UpgradeItmeCount()
     {
-        if(testDatabase.resultGold >= maxCountPrice + countPriceUp * (maxCount - 1))
+        if(testDatabase.resultGold >= _itemInfo.maxCountPrice + _itemInfo.countPriceUp * (_itemInfo.maxCount - 1))
         {
-            testDatabase.resultGold -= maxCountPrice + countPriceUp * (maxCount-1);
+            testDatabase.resultGold -= _itemInfo.maxCountPrice + _itemInfo.countPriceUp * (_itemInfo.maxCount - 1);
 
-            maxCount++;
+            _itemInfo.maxCount++;
         }
 
         TextPrice();
@@ -83,6 +70,6 @@ public class ItemSeletor : MonoBehaviour
 
     public void TextPrice()
     {
-        priceText.text = ""+(maxCountPrice + countPriceUp * (maxCount - 1));
+        priceText.text = ""+(_itemInfo.maxCountPrice + _itemInfo.countPriceUp * (_itemInfo.maxCount - 1));
     }
 }
