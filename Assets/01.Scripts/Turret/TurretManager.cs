@@ -22,6 +22,14 @@ public class TurretManager : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.T) && Input.GetMouseButtonDown(0))
+        {
+            SelectTargetEnemy();
+        }
+    }
+
     public void SelectTurret(Turret tur)
     {
         turret = tur;
@@ -31,7 +39,14 @@ public class TurretManager : MonoBehaviour
     {
         if(turret != null)
         {
-            turret.DesignateTarget(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1000))
+            {
+                turret.DesignateTarget(hit.point);
+            }
         }
     }
 }

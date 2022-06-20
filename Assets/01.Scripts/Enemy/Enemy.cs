@@ -312,14 +312,4 @@ public class Enemy : MonoBehaviour
         balckholeDamage = damage;
         balckgoleDuration = duration;
     }
-
-    private void OnMouseEnter()
-    {
-        transform.Find("SelectEnemy").gameObject.SetActive(true);
-    }
-
-    private void OnMouseExit()
-    {
-        transform.Find("SelectEnemy").gameObject.SetActive(false);
-    }
 }

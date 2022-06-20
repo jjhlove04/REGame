@@ -296,18 +296,21 @@ public class InGameUII : MonoBehaviour
 
     public void CancleAll()
     {
-        testScriptts.turType = -1;
-        testScriptts.turPos = -1;
-        testScriptts.UnSelectTurret();
-
-        CircleTree[] circle = FindObjectsOfType<CircleTree>();
-
-        for (int i = 0; i < circle.Length; i++)
+        if (!Input.GetKey(KeyCode.T))
         {
-            circle[i].transform.GetChild(0).gameObject.SetActive(false);
-            circle[i].transform.GetChild(1).gameObject.SetActive(false);
-            circle[i].transform.GetChild(2).gameObject.SetActive(false);
-            circle[i].transform.GetChild(3).gameObject.SetActive(false);
+            testScriptts.turType = -1;
+            testScriptts.turPos = -1;
+            testScriptts.UnSelectTurret();
+
+            CircleTree[] circle = FindObjectsOfType<CircleTree>();
+
+            for (int i = 0; i < circle.Length; i++)
+            {
+                circle[i].transform.GetChild(0).gameObject.SetActive(false);
+                circle[i].transform.GetChild(1).gameObject.SetActive(false);
+                circle[i].transform.GetChild(2).gameObject.SetActive(false);
+                circle[i].transform.GetChild(3).gameObject.SetActive(false);
+            }
         }
     }
 

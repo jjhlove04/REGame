@@ -53,15 +53,17 @@ public class TrainScript : MonoBehaviour
 
     private void OnEnable()
     {
+        trainManager = GetComponent<TrainManager>();
+
+        trainManager.CreateTrainPrefab(traininfo.trainCount);
+
         curTrainHp = traininfo.trainMaxHp;
         curTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
 
-        trainManager = GetComponent<TrainManager>();
 
-        trainManager.CreateTrainPrefab(traininfo.trainCount);
     }
 
     private void Start()
@@ -89,8 +91,6 @@ public class TrainScript : MonoBehaviour
 
     public void DestroyTrain()
     {
-        GameObject.Find("Particle").SetActive(false);
-        transform.Find("Turrets").gameObject.SetActive(false);
         StartCoroutine(Destroy());
     }
 

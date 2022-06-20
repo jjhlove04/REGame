@@ -317,6 +317,8 @@ public class Turret : MonoBehaviour
     public void DesignateTarget(Vector3 target)
     {
         targetPos = target;
+
+        LookForTargets();
     }
 
     private void OnMouseEnter()
