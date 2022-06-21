@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -129,11 +129,7 @@ public class TitleMoveScript : MonoBehaviour
 
     private void Update()
     {
-        InputBackBtn();
-        if (!TestTurretDataBase.Instance.isfirst)
-        {
-            titleActionBtn[1].interactable = true;
-        }
+        
     }
 
     public void InputBackBtn()

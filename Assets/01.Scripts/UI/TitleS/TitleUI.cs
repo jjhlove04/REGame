@@ -73,18 +73,20 @@ public class TitleUI : MonoBehaviour
     public Text upPanelTP;
 
     public Image cursor;
+    [Header("튜토리얼 관련")]
+    
+    public GameObject[] tutorialPanels;
 
 
     private void Awake()
     {
 
         RegisterPanelOpen();
-
         //ShowShieldUpGradeText();
         //ShowHpUpgradeText();
-        //ShowCountUPGradeText();
+       // ShowCountUPGradeText();
         //ShowTPText();
-
+        
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
 
@@ -367,10 +369,6 @@ public class TitleUI : MonoBehaviour
     }
     public void ShowShieldUpGradeText()
     {
-        Debug.Log(curShieldText.text);
-        Debug.Log(string.Format("{0} -> <color=#34A11F>{1}</color>",
-        trainInfo.trainMaxShield,
-        (trainInfo.trainMaxShield + trainInfo.shieldUpgrade)));
         curShieldText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
         trainInfo.trainMaxShield,
         (trainInfo.trainMaxShield + trainInfo.shieldUpgrade));
