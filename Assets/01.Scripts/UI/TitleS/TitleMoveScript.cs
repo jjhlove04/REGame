@@ -47,6 +47,11 @@ public class TitleMoveScript : MonoBehaviour
             TitleUI.UI.titleBack = true;
             BtnSlide(1);
             TitleUI.UI.ReadySetUpPanel(1);
+            if(TutorialManager._instance.isFirstTutorial)
+            {
+                TutorialManager._instance.ProcessTutorial(TutorialManager._instance.processIndex);
+                TutorialManager._instance.processIndex++;
+            }
         });
 
         if (TestTurretDataBase.Instance.isfirst)
