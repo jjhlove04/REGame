@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public int goldAmount = 0;
     public int expAmount = 0;
+
+    public int gameLevel = 1;
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -65,6 +67,6 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.M))
         {
             goldAmount += 100;
-        }    
+        }
     }
 }
