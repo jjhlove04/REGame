@@ -98,12 +98,20 @@ public class InGameUII : MonoBehaviour
 
     private GameObject Obj;
 
+    public GameObject selectPanel;
+    public GameObject[] selectPanelBtns;
+
     private void Awake()
     {
         _instance = this;
         bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = ObjectPool.instacne;
+        selectPanel.transform.localScale = Vector3.zero;
+        for(int i = 0; i < 3; i++)
+        {
+            selectPanelBtns[i].transform.localScale = Vector3.zero;
+        }
 
     }
 
@@ -173,6 +181,14 @@ public class InGameUII : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            ShowSelectPanel();
+        }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            CloseSelectPanel();
+        }
         goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
 
@@ -258,6 +274,26 @@ public class InGameUII : MonoBehaviour
             worldCanvas.SetActive(false);
         }
 
+    }
+    public void ShowSelectPanel()
+    {
+        selectPanel.transform.DOScale(new Vector3(1,1,1),0.5f).SetEase(Ease.InExpo).OnComplete(()=>{
+            selectPanelBtns[0].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo).OnComplete(()=>{
+                selectPanelBtns[1].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo).OnComplete(()=>{
+                selectPanelBtns[2].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo);
+            });
+            });
+            });
+    }
+    public void CloseSelectPanel(){
+        selectPanel.transform.DOScale(new Vector3(0,0,0),0.4f).OnComplete(()=>
+        {
+            selectPanel.transform.localScale = Vector3.zero;
+        for(int i = 0; i < 3; i++)
+        {
+            selectPanelBtns[i].transform.localScale = Vector3.zero;
+        }
+        });
     }
 
     public void ClearSelect()
