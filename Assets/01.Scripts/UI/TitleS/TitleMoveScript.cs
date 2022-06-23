@@ -115,6 +115,10 @@ public class TitleMoveScript : MonoBehaviour
             */
 
             TestTurretDataBase.Instance.isfirst = false;
+            if (!TestTurretDataBase.Instance.isfirst)
+            {
+                titleActionBtn[1].interactable = true;
+            }
         });
 
         if (InGameUII.sceneIndex == 1)
@@ -128,13 +132,6 @@ public class TitleMoveScript : MonoBehaviour
             btnGroup.SetActive(true);
             resultPanel.SetActive(false);
         }
-
-
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void InputBackBtn()

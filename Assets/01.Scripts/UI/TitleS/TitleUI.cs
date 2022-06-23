@@ -83,10 +83,10 @@ public class TitleUI : MonoBehaviour
 
         RegisterPanelOpen();
         //ShowShieldUpGradeText();
-        //ShowHpUpgradeText();
-       // ShowCountUPGradeText();
-        //ShowTPText();
-        
+        ShowHpUpgradeText();
+        ShowCountUPGradeText();
+        ShowTPText();
+
         openSequence = DOTween.Sequence();
         closeSequence = DOTween.Sequence();
 

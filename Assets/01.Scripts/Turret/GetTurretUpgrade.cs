@@ -5,10 +5,11 @@ public class GetTurretUpgrade : MonoBehaviour
 {
     // Update is called once per frame
     [SerializeField]
-    private testSkilll[] tS;
+    //private testSkilll[] tS;
 
     void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -36,6 +37,10 @@ public class GetTurretUpgrade : MonoBehaviour
 
                 testScriptts.Instance.SelectTurret();
             }
+
         }
+        */
+
+        Debug.Log("asd");
     }
 }
