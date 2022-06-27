@@ -67,6 +67,7 @@ public class InGameUII : MonoBehaviour
     Coroutine coroutine;
 
     testScripttss testScriptts;
+    GameManager gameManager;
 
     private ObjectPool objectPool;
 
@@ -101,6 +102,8 @@ public class InGameUII : MonoBehaviour
     public GameObject selectPanel;
     public GameObject[] selectPanelBtns;
 
+    public Image expBar;
+    public Text gameLevel;
     private void Awake()
     {
         _instance = this;
@@ -122,6 +125,7 @@ public class InGameUII : MonoBehaviour
         itemManager = ItemManager.Instance;
 
         testScriptts = testScripttss.Instance;
+        gameManager = GameManager.Instance;
 
         warningtxt = GoldWarning.transform.GetChild(1).GetComponent<Text>();
         warningIcon = GoldWarning.transform.GetChild(0).GetComponent<Image>();
@@ -181,17 +185,10 @@ public class InGameUII : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            ShowSelectPanel();
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            CloseSelectPanel();
-        }
-        goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
+        ExpBar();
+        goldAmounTxt.text = gameManager.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
-
+        gameLevel.text = "LV : " + gameManager.trainLevel;
         cursor.transform.position = Input.mousePosition;
 
         if(Input.GetMouseButtonDown(1))
@@ -231,7 +228,7 @@ public class InGameUII : MonoBehaviour
         if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
-            TestTurretDataBase.Instance.resultEXP += GameManager.Instance.expAmount;
+            TestTurretDataBase.Instance.resultEXP += (int)GameManager.Instance.expAmount;
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.goldAmount;
 
             LoadingSceneUI.LoadScene("TitleScene");
@@ -284,6 +281,8 @@ public class InGameUII : MonoBehaviour
             });
             });
             });
+
+
     }
     public void CloseSelectPanel(){
         selectPanel.transform.DOScale(new Vector3(0,0,0),0.4f).OnComplete(()=>
@@ -493,5 +492,20 @@ public class InGameUII : MonoBehaviour
     public void ClearArea()
     {
         Obj.SetActive(false);
+    }
+
+    public void ExpBar()
+    {
+        expBar.fillAmount = Mathf.Lerp(expBar.fillAmount, gameManager.expAmount / gameManager.maxExp, Time.deltaTime * (2 + (gameManager.expAmount / 500)));
+
+        if(expBar.fillAmount >= 1f)
+        {
+            gameManager.trainLevel++;
+            gameManager.gameSpeed = 0f;
+            gameManager.expAmount -= gameManager.maxExp;
+            ShowSelectPanel();
+            gameManager.maxExp = (gameManager.maxExp + (gameManager.trainLevel + (gameManager.trainLevel - 1))) * (gameManager.trainLevel / gameManager.trainLevel - 1) + gameManager.maxExp; 
+            expBar.fillAmount = 0;
+        }
     }
 }

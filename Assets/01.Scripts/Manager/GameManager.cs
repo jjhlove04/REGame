@@ -30,9 +30,11 @@ public class GameManager : MonoBehaviour
     public int turretPtice = 10;
 
     public int goldAmount = 0;
-    public int expAmount = 0;
+    public float expAmount = 0;
+    public float maxExp = 0;
 
     public int gameLevel = 1;
+    public int trainLevel = 1;
     private void Awake()
     {
         Application.targetFrameRate = 60;
