@@ -49,7 +49,8 @@ public class TitleMoveScript : MonoBehaviour
             TitleUI.UI.ReadySetUpPanel(1);
             if(TutorialManager._instance.isFirstTutorial)
             {
-                TutorialManager._instance.ProcessTutorial(TutorialManager._instance.processIndex);
+                if(TutorialManager._instance!=null)
+                    TutorialManager._instance.ProcessTutorial(TutorialManager._instance.processIndex);
                 TutorialManager._instance.processIndex++;
             }
         });

@@ -72,6 +72,12 @@ public class Turret : MonoBehaviour
 
     private Vector3 targetPos;
 
+    private bool redNut = false;
+    [SerializeField]
+    private int redNutHealHp = 3;
+
+    private TrainScript trainScript;
+
 
     private void OnEnable()
     {
@@ -88,6 +94,7 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
+        trainScript = TrainScript.instance;
         inGameUII = InGameUII._instance;
         bulAmount = maxBulletAmount;
 
@@ -155,6 +162,11 @@ public class Turret : MonoBehaviour
                     {
                         shootTimer = 0;
                         shootCount = 1;
+                    }
+
+                    if (redNut)
+                    {
+                        RedNut();
                     }
                 }
 
@@ -319,6 +331,19 @@ public class Turret : MonoBehaviour
         targetPos = target;
 
         LookForTargets();
+    }
+
+    public void OnRedNut()
+    {
+        redNut = true;
+    }
+
+    private void RedNut()
+    {
+        if(Random.Range(0,100) < 8)
+        {
+            trainScript.curTrainHp += redNutHealHp;
+        }
     }
 
     private void OnMouseEnter()

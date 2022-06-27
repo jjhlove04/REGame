@@ -334,7 +334,7 @@ namespace MEC
                     }
                     catch (System.Exception ex)
                     {
-                        Debug.LogException(ex);
+                        //Debug.LogException(ex);
 
                         if (ex is MissingReferenceException)
                             Debug.LogError("This exception can probably be fixed by adding \"CancelWith(gameObject)\" when you run the coroutine.\n"

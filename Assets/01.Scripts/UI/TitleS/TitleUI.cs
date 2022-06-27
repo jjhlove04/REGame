@@ -351,30 +351,31 @@ public class TitleUI : MonoBehaviour
 
     public void ShowHpUpgradeText()
     {
-        curHpText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
+        /*curHpText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
         trainInfo.trainMaxHp,
         (trainInfo.trainMaxHp + trainInfo.hpUpgrade));
-        //upHpText.text = (TestTurretDataBase.Instance.trainHp + 50).ToString();
+        //upHpText.text = (TestTurretDataBase.Instance.trainHp + 50).ToString();*/
     }
     public void ShowCountUPGradeText()
     {
-        //curCellText.text = TestTurretDataBase.Instance.trainCount.ToString();
+        /*//curCellText.text = TestTurretDataBase.Instance.trainCount.ToString();
         curCellText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
         trainInfo.trainCount,
         (trainInfo.trainCount + 1));
         if(trainInfo.trainCount == 3)
         {
             curCellText.text = string.Format("<color=red>Max</color>");
-        }
+        }*/
     }
     public void ShowShieldUpGradeText()
     {
-        curShieldText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
+        /*  curShieldText.text = string.Format("{0} -> <color=#34A11F>{1}</color>",
         trainInfo.trainMaxShield,
         (trainInfo.trainMaxShield + trainInfo.shieldUpgrade));
-        //upShieldText.text = (TestTurretDataBase.Instance.trainShield+50).ToString();
+        //upShieldText.text = (TestTurretDataBase.Instance.trainShield+50).ToString();*/
 
     }
+
     public void ShowTPText()
     {
         upPanelTP.text = string.Format("Retain T.P : {0}", TestTurretDataBase.Instance.curTp);

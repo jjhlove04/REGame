@@ -175,16 +175,16 @@ public class Bait : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        //inGameUII.DrawArea(new Vector3(aggroArea*1.5f, aggroArea*1.5f, 1), transform.position + new Vector3(0,5,0));
+        inGameUII.DrawArea(new Vector3(aggroArea*1.5f, aggroArea*1.5f, 1), transform.position + new Vector3(0,5,0));
     }
 
     private void OnMouseOver()
     {
-        //inGameUII.Drawing(transform.position + new Vector3(0, 5, 0));
+        inGameUII.Drawing(transform.position + new Vector3(0, 5, 0));
     }
 
     private void OnMouseExit()
     {
-        //inGameUII.ClearArea();
+        inGameUII.ClearArea();
     }
 }
