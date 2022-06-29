@@ -35,6 +35,30 @@ public class GameManager : MonoBehaviour
 
     public int gameLevel = 1;
     public int trainLevel = 1;
+    public int TrainLevel
+    {
+        get { return trainLevel; }
+        set 
+        {
+            if (onNewsOfVictory)
+            {
+                NewsOfVictory();
+            }
+
+            trainLevel = value; 
+        }
+    }
+
+
+    private bool annuity = false;
+    private int annuityCoolTime = 8;
+    private float annuityCurTime = 0;
+    private int annuityGoldAmount = 1;
+
+    private bool onNewsOfVictory = false;
+    private GameObject turrets;
+    private int turretAmount = 2;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -70,5 +94,77 @@ public class GameManager : MonoBehaviour
         {
             goldAmount += 100;
         }
+
+        if (annuity)
+        {
+            Annuity();
+        }
+
+        if (onNewsOfVictory)
+        {
+            NewsOfVictory();
+        }
+    }
+
+    public void OnAnnuity()
+    {
+        annuity = true;
+    }
+
+    private void Annuity()
+    {
+        annuityCurTime += Time.deltaTime;
+
+        if(annuityCoolTime >= annuityCurTime)
+        {
+            goldAmount += annuityGoldAmount;
+        }
+    }
+
+    public void OnNewsOfVictory()
+    {
+        onNewsOfVictory = true;
+
+        turrets = TurretManager.Instance.turrets;
+    }
+
+    private void NewsOfVictory()
+    {
+        Turret[] turretArr = new Turret[turretAmount];
+
+        for (int i = 0; i < turretAmount; i++)
+        {
+            turretArr[i] = RandomTurret(turretArr);
+        }
+
+        for (int j = 0; j < turretArr.Length; j++)
+        {
+            turretArr[j].OnNewsOfVictory();
+        }
+    }
+
+    private Turret RandomTurret(Turret[] turretArr)
+    {
+        Turret turret = new Turret();
+
+        turret = turrets.transform.GetChild(Random.Range(0, turrets.transform.childCount)).GetComponent<Turret>();
+
+        for (int j = 0; j < turretArr.Length; j++)
+        {
+            if (turretArr[j] != null)
+            {
+                if (turretArr[j] != turret)
+                {
+                    return turret;
+                }
+
+                else
+                {
+                    turret=RandomTurret(turretArr);
+                }
+            }
+        }
+
+        return turret;
     }
 }

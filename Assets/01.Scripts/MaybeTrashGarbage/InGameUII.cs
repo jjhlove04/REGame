@@ -188,7 +188,7 @@ public class InGameUII : MonoBehaviour
         ExpBar();
         goldAmounTxt.text = gameManager.goldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
-        gameLevel.text = "LV : " + gameManager.trainLevel;
+        gameLevel.text = "LV : " + gameManager.TrainLevel;
         cursor.transform.position = Input.mousePosition;
 
         if(Input.GetMouseButtonDown(1))
@@ -500,11 +500,11 @@ public class InGameUII : MonoBehaviour
 
         if(expBar.fillAmount >= 1f)
         {
-            gameManager.trainLevel++;
+            gameManager.TrainLevel++;
             gameManager.gameSpeed = 0f;
             gameManager.expAmount -= gameManager.maxExp;
             ShowSelectPanel();
-            gameManager.maxExp = (gameManager.maxExp + (gameManager.trainLevel + (gameManager.trainLevel - 1))) * (gameManager.trainLevel / gameManager.trainLevel - 1) + gameManager.maxExp; 
+            gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp; 
             expBar.fillAmount = 0;
         }
     }

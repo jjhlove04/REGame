@@ -286,7 +286,7 @@ MonoBehaviour:
   turretPrice: 220
   reloadPrice: 30
   bulletBar: {fileID: 8040002747092008692}
-  shootTimerMax: 0.3
+  shootTimeMax: 0.41
   damage: 1
   detection: 0
   turCount: 0
@@ -300,6 +300,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   warning: {fileID: 0}
+  redNutHealHp: 3
 --- !u!82 &1791279337220547585
 AudioSource:
   m_ObjectHideFlags: 0

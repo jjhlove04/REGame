@@ -44,6 +44,12 @@ public class TrainScript : MonoBehaviour
 
     private TrainManager trainManager;
 
+    private float lastHitTime;
+
+    private bool explosiveShield = false;
+
+    private float lastTotalDamage;
+
     private void Awake()
     {
         instance = this;
@@ -78,6 +84,11 @@ public class TrainScript : MonoBehaviour
         //    trainManager.KeepOffTrain();
         //}
         FixShield();
+
+        if (explosiveShield)
+        {
+            lastHitTime += Time.deltaTime;
+        }
     }
 
     private void EnemyDataInit()
@@ -167,6 +178,25 @@ public class TrainScript : MonoBehaviour
             }*/
             SmokeTrain();
         }
+
+        if (lastHitTime <= 0.7f)
+        {
+            lastTotalDamage += damage;
+
+            if (lastTotalDamage > (curTrainHp / 100) * 15)
+            {
+                ExplosiveShield();
+            }
+        }
+
+        else
+        {
+            lastHitTime = 0;
+
+            lastTotalDamage = damage;
+        }
+
+
     }
 
     
@@ -228,5 +258,18 @@ public class TrainScript : MonoBehaviour
             GameManager.Instance.state = GameManager.State.End;
             destroy = false;
         }
+    }
+
+    public void OnExplosiveShield()
+    {
+        explosiveShield = true;
+    }
+
+    private void ExplosiveShield()
+    {
+        lastTotalDamage = 0;
+        lastHitTime = 0;
+
+        print("폭발");
     }
 }

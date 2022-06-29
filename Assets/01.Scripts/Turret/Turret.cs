@@ -36,10 +36,13 @@ public class Turret : MonoBehaviour
     private BulletBar bulletBar;
 
     [SerializeField]
+    private float shootTimeMax;
+
     private float shootTimerMax;
 
     [SerializeField]
     private int damage = 10;
+    private int additionalDamage = 0;
 
 
     [HideInInspector]
@@ -73,10 +76,14 @@ public class Turret : MonoBehaviour
     private Vector3 targetPos;
 
     private bool redNut = false;
+
     [SerializeField]
     private int redNutHealHp = 3;
 
     private TrainScript trainScript;
+
+    private bool onNewsOfVictory = false;
+    private int onNewsOfVictoryTime = 4;
 
 
     private void OnEnable()
@@ -94,6 +101,7 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
+        shootTimerMax = shootTimeMax;
         trainScript = TrainScript.instance;
         inGameUII = InGameUII._instance;
         bulAmount = maxBulletAmount;
@@ -105,6 +113,11 @@ public class Turret : MonoBehaviour
     {
         HandleTargeting();
         HandleShooting();
+
+        if (onNewsOfVictory)
+        {
+            NewsOfVictory();
+        }
     }
 
     private void OnDisable()
@@ -150,8 +163,8 @@ public class Turret : MonoBehaviour
 
                     GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
                     gameObject.transform.position = weapons[shootCount-1].transform.Find("BulletPoint").position;
-                    gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, damage);
-                    TestTurretDataBase.Instance.resultDamage += damage;
+                    gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage+ additionalDamage));
+                    TestTurretDataBase.Instance.resultDamage += (damage+ additionalDamage);
                     bulAmount--;
 
                     bulletBar.UpdateBar(bulAmount, maxBulletAmount);
@@ -343,7 +356,31 @@ public class Turret : MonoBehaviour
         if(Random.Range(0,100) < 8)
         {
             trainScript.curTrainHp += redNutHealHp;
+            trainScript.curTrainHp += redNutHealHp;
         }
+    }
+
+    public void OnNewsOfVictory()
+    {
+        onNewsOfVictory = true;
+
+        Invoke("OffNewsOfVictory", onNewsOfVictoryTime);
+    }
+
+    private void NewsOfVictory()
+    {
+        shootTimerMax = (shootTimerMax / 100)*80;
+
+        additionalDamage = (damage / 100) * 20;
+    }
+
+    private void OffNewsOfVictory()
+    {
+        shootTimerMax = shootTimeMax;
+
+        additionalDamage = 0;
+
+        onNewsOfVictory = false;
     }
 
     private void OnMouseEnter()
