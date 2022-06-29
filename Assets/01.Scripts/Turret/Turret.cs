@@ -355,8 +355,8 @@ public class Turret : MonoBehaviour
     {
         if(Random.Range(0,100) < 8)
         {
-            trainScript.curTrainHp += redNutHealHp;
-            trainScript.curTrainHp += redNutHealHp;
+            trainScript.CurTrainHp += redNutHealHp;
+            trainScript.CurTrainHp += redNutHealHp;
         }
     }
 

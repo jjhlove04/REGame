@@ -30,7 +30,20 @@ public class GameManager : MonoBehaviour
     public int turretPtice = 10;
 
     public int goldAmount = 0;
-    public float expAmount = 0;
+    private float expAmount = 0;
+    public float ExpAmount
+    {
+        get { return expAmount; }
+        set 
+        {
+            if (vamPireTeeth)
+            {
+                VamPireTeeth();
+            }
+
+            expAmount = value; 
+        }
+    }
     public float maxExp = 0;
 
     public int gameLevel = 1;
@@ -59,6 +72,9 @@ public class GameManager : MonoBehaviour
     private GameObject turrets;
     private int turretAmount = 2;
 
+    private TrainScript trainScript;
+    private bool vamPireTeeth = false;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -69,6 +85,11 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
+    }
+
+    private void Start()
+    {
+        trainScript = TrainScript.instance;
     }
 
     private void OnDestroy()
@@ -166,5 +187,15 @@ public class GameManager : MonoBehaviour
         }
 
         return turret;
+    }
+
+    public void OnVamPireTeeth()
+    {
+        vamPireTeeth = true;
+    }
+
+    private void VamPireTeeth()
+    {
+        trainScript.CurTrainHp += 3;
     }
 }

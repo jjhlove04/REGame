@@ -989,50 +989,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5601681510908809259, guid: 11aea87437ab51d429adcb873617733d, type: 3}
   m_PrefabInstance: {fileID: 1749197380}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &67277106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 67277107}
-  - component: {fileID: 67277108}
-  m_Layer: 0
-  m_Name: RedNut
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &67277107
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67277106}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 29
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &67277108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67277106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d3b9e2d21829034081ef3c23720fa22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemEffect: 
 --- !u!1 &78560906
 GameObject:
   m_ObjectHideFlags: 0
@@ -24429,11 +24385,9 @@ MonoBehaviour:
   - {fileID: 573425994}
   - {fileID: 2022128089}
   selectButton: {fileID: 0}
-  trainItems:
-  - {fileID: 67277108}
-  - {fileID: 1760594429}
-  maxReCount: 10
-  reCount: 10
+  trainItems: []
+  maxReCount: 0
+  reCount: 0
 --- !u!4 &1735865799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601681510908809259, guid: 11aea87437ab51d429adcb873617733d, type: 3}
@@ -24763,50 +24717,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1760594428
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1760594430}
-  - component: {fileID: 1760594429}
-  m_Layer: 0
-  m_Name: Annuity
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1760594429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760594428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71278d89064e064889d62590b41e7ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemEffect: 
---- !u!4 &1760594430
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760594428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 30
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1760599888
 GameObject:
   m_ObjectHideFlags: 0

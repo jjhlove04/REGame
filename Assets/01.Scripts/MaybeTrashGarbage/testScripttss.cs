@@ -84,7 +84,7 @@ public class testScripttss : MonoBehaviour
         reloadBtn.onClick.AddListener(Reload);
 
         //hp바 세
-        hpBar.value = (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp;
+        hpBar.value = (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp;
 
         gameManager.goldAmount += 120;
         
@@ -322,7 +322,7 @@ public class testScripttss : MonoBehaviour
     public void TakeDamageHpBar()
     {
         //Time.deltaTime 옆에 * (TakeDamage) 만큼 곱해줘야함. 생략되어 있음.
-        hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.curTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp, Time.deltaTime);
+        hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp, Time.deltaTime);
     }
 
     public void BulletCheck()

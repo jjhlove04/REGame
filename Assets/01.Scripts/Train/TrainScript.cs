@@ -8,12 +8,29 @@ public class TrainScript : MonoBehaviour
 
     public TrainInfo traininfo;
 
-    public float curTrainHp = 50000; //0���Ϸ� ����߸��� ����!
+    public float curTrainHpMax = 50000;
+
+
+    public float curTrainHp; //0���Ϸ� ����߸��� ����!
+
+    [HideInInspector]
+    public float CurTrainHp
+    {
+        get { return curTrainHp; }
+        set
+        {
+            curTrainHp = value;
+            if (curTrainHp > curTrainHpMax)
+            {
+                curTrainHp = curTrainHpMax;
+            }
+        }
+    }
 
     public float curTrainShield = 10000;
     public int dieEnemy = 0;
 
-    private float hpCheck =70;
+    private float hpCheck = 70;
 
     private float initRoomHp;
     private float roomHp;
@@ -50,8 +67,12 @@ public class TrainScript : MonoBehaviour
 
     private float lastTotalDamage;
 
+    private bool maskOfCriminal = false;
+
     private void Awake()
     {
+        CurTrainHp = curTrainHpMax;
+
         instance = this;
 
         EnemyDataInit();
@@ -63,7 +84,7 @@ public class TrainScript : MonoBehaviour
 
         trainManager.CreateTrainPrefab(traininfo.trainCount);
 
-        curTrainHp = traininfo.trainMaxHp;
+        CurTrainHp = traininfo.trainMaxHp;
         curTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
@@ -107,7 +128,7 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (hpCheck * traininfo.trainMaxHp / 100 >= curTrainHp)
+        if (hpCheck * traininfo.trainMaxHp / 100 >= CurTrainHp)
         {
             switch (hpCheck)
             {
@@ -138,7 +159,7 @@ public class TrainScript : MonoBehaviour
                 case 0:
                     hpCheck = 0;
 
-                    if (curTrainHp <= 0)
+                    if (CurTrainHp <= 0)
                     {
                         DestroyTrain();
                     }
@@ -149,7 +170,7 @@ public class TrainScript : MonoBehaviour
 
     public void FixHP()
     {
-        curTrainHp = traininfo.trainMaxHp;
+        CurTrainHp = traininfo.trainMaxHp;
     }
     public void FixShield()
     {
@@ -166,40 +187,45 @@ public class TrainScript : MonoBehaviour
 
     public void Damage(float damage)
     {
-        curTrainShield -= damage;
-        if (curTrainShield <= 0)
+        if (MaskOfCriminal())
         {
-            curTrainHp -= damage;
-            testScripttss.Instance.TakeDamageHpBar();
-
-            /*for (int i = 0; i < trainhit.Length; i++)
+            if (curTrainShield <= 0)
             {
-                trainhit[i].Hit();
-            }*/
-            SmokeTrain();
-        }
+                CurTrainHp -= damage;
+                testScripttss.Instance.TakeDamageHpBar();
 
-        if (lastHitTime <= 0.7f)
-        {
-            lastTotalDamage += damage;
+                /*for (int i = 0; i < trainhit.Length; i++)
+                {
+                    trainhit[i].Hit();
+                }*/
+                SmokeTrain();
+            }
 
-            if (lastTotalDamage > (curTrainHp / 100) * 15)
+            else
             {
-                ExplosiveShield();
+                curTrainShield -= damage;
+            }
+
+            if (lastHitTime <= 0.7f)
+            {
+                lastTotalDamage += damage;
+
+                if (lastTotalDamage > (CurTrainHp / 100) * 15)
+                {
+                    ExplosiveShield();
+                }
+            }
+
+            else
+            {
+                lastHitTime = 0;
+
+                lastTotalDamage = damage;
             }
         }
-
-        else
-        {
-            lastHitTime = 0;
-
-            lastTotalDamage = damage;
-        }
-
-
     }
 
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("RoketBullet"))
@@ -250,7 +276,6 @@ public class TrainScript : MonoBehaviour
         roomHp += initRoomHp;
         if (trainManager.curTrainCount > 0)
         {
-            transform.Find("Turrets").gameObject.SetActive(false);
             trainManager.curTrainCount--;
             destroy = true;
             yield return new WaitForSeconds(0.5f);
@@ -272,5 +297,32 @@ public class TrainScript : MonoBehaviour
         lastHitTime = 0;
 
         print("폭발");
+    }
+
+    public void AlloySteel(float rateOfRise)
+    {
+        float addHp = curTrainHpMax * rateOfRise;
+
+        curTrainHpMax += addHp;
+        CurTrainHp += addHp;
+    }
+
+    public void OnMaskOfCriminal()
+    {
+        maskOfCriminal = true;
+    }
+
+    private bool MaskOfCriminal()
+    {
+        if (!maskOfCriminal)
+        {
+            return true;
+        }
+
+        else
+        {
+            int ran = Random.Range(0, 99);
+            return ran <= 9;
+        }
     }
 }

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VamPireTeeth : TrainItem
+public class AlloySteel : TrainItem
 {
+    public float rateOfRise = 0.08f;
+
     public override void ItemEffect()
     {
-        GameManager.Instance.OnVamPireTeeth();
+        TrainScript.instance.AlloySteel(rateOfRise);
     }
 }

@@ -228,7 +228,7 @@ public class InGameUII : MonoBehaviour
         if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
-            TestTurretDataBase.Instance.resultEXP += (int)GameManager.Instance.expAmount;
+            TestTurretDataBase.Instance.resultEXP += (int)GameManager.Instance.ExpAmount;
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.goldAmount;
 
             LoadingSceneUI.LoadScene("TitleScene");
@@ -497,13 +497,13 @@ public class InGameUII : MonoBehaviour
 
     public void ExpBar()
     {
-        expBar.fillAmount = Mathf.Lerp(expBar.fillAmount, gameManager.expAmount / gameManager.maxExp, Time.deltaTime * (2 + (gameManager.expAmount / 500)));
+        expBar.fillAmount = Mathf.Lerp(expBar.fillAmount, gameManager.ExpAmount / gameManager.maxExp, Time.deltaTime * (2 + (gameManager.ExpAmount / 500)));
 
         if(expBar.fillAmount >= 1f)
         {
             gameManager.TrainLevel++;
             gameManager.gameSpeed = 0f;
-            gameManager.expAmount -= gameManager.maxExp;
+            gameManager.ExpAmount -= gameManager.maxExp;
             ShowSelectPanel();
             gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp; 
             expBar.fillAmount = 0;
