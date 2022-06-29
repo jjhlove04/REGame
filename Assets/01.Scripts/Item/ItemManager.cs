@@ -134,9 +134,9 @@ public class ItemManager : MonoBehaviour
 
     public void OnSceneLoeded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if(scene.name == "Main")
+        if (scene.name == "Main")
         {
-            for (int i = 0;i < items.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
                 GameObject gameItem = Instantiate(items[i]);
                 gameItem.transform.parent = transform;
@@ -155,7 +155,7 @@ public class ItemManager : MonoBehaviour
             }
         }
 
-        else if(scene.name == "TitleScene")
+        else if (scene.name == "TitleScene")
         {
             for (int i = 0; i < items.Count; i++)
             {

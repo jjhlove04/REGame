@@ -23,6 +23,8 @@ public class TrainItemManager : MonoBehaviour
     [SerializeField]
     private List<TrainItem> trainItems = new List<TrainItem>();
 
+    public int maxReCount = 0;
+    public int reCount = 0;
 
     private void Awake()
     {
@@ -45,18 +47,26 @@ public class TrainItemManager : MonoBehaviour
         selectButton.onClick.AddListener(SelectItem);
     }
 
-    private void GetRandomItem()
+    public void GetRandomItem()
     {
         randomItem.Clear();
 
         for (int i = 0; i < 3; i++)
         {
-            randomItem[i]=trainItems[Random.Range(0, trainItems.Count)];
+            randomItem[i] = trainItems[Random.Range(0, trainItems.Count)];
         }
     }
 
     private void SelectItem()
     {
         randomItem[selectNum].ItemEffect();
+    }
+
+    public void ReRoll()
+    {
+        if(reCount <= maxReCount)
+        {
+            GetRandomItem();
+        }
     }
 }

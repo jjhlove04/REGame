@@ -274,6 +274,7 @@ public class InGameUII : MonoBehaviour
     }
     public void ShowSelectPanel()
     {
+        TrainItemManager.Instance.GetRandomItem();
         selectPanel.transform.DOScale(new Vector3(1,1,1),0.5f).SetEase(Ease.InExpo).OnComplete(()=>{
             selectPanelBtns[0].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo).OnComplete(()=>{
                 selectPanelBtns[1].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo).OnComplete(()=>{
