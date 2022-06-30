@@ -14,8 +14,6 @@ public class TrainItemManager : MonoBehaviour
 
     public Button[] button;
 
-    public Button selectButton;
-
     private int selectNum;
 
     private List<TrainItem> randomItem = new List<TrainItem>();
@@ -39,12 +37,27 @@ public class TrainItemManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < button.Length; i++)
+        button[0].onClick.AddListener(() =>
         {
-            button[i].onClick.AddListener(()=> { selectNum = i; });
-        }
+            selectNum = 0;
+            Debug.Log(0 + " : " + selectNum);
+            SelectItem();
+        });
+        button[1].onClick.AddListener(() =>
+        {
+            selectNum = 1;
+            Debug.Log(1 + " : " + selectNum);
+            SelectItem();
+        });
+        button[2].onClick.AddListener(() =>
+        {
+            selectNum = 2;
+            Debug.Log(2 + " : " + selectNum);
+            SelectItem();
+        });
 
-        selectButton.onClick.AddListener(SelectItem);
+        reCount = maxReCount;
+
     }
 
     public void GetRandomItem()
@@ -64,9 +77,10 @@ public class TrainItemManager : MonoBehaviour
 
     public void ReRoll()
     {
-        if(reCount <= maxReCount)
+        if (reCount > 0)
         {
             GetRandomItem();
+            reCount--;
         }
     }
 }
