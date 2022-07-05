@@ -128,7 +128,7 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (hpCheck * traininfo.trainMaxHp / 100 >= CurTrainHp)
+        if (hpCheck * curTrainHpMax / 100 >= CurTrainHp)
         {
             switch (hpCheck)
             {

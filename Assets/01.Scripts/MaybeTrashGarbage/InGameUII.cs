@@ -135,7 +135,7 @@ public class InGameUII : MonoBehaviour
             num *= -1;
         });
 
-        goldAmounTxt.text = GameManager.Instance.goldAmount.ToString();
+        goldAmounTxt.text = GameManager.Instance.GoldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
         ShowTurPrice();
 
@@ -186,7 +186,7 @@ public class InGameUII : MonoBehaviour
     void Update()
     {
         ExpBar();
-        goldAmounTxt.text = gameManager.goldAmount.ToString();
+        goldAmounTxt.text = gameManager.GoldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
         gameLevel.text = "LV : " + gameManager.TrainLevel;
         cursor.transform.position = Input.mousePosition;
@@ -229,7 +229,7 @@ public class InGameUII : MonoBehaviour
         {
             Time.timeScale = 1f;
             TestTurretDataBase.Instance.resultEXP += (int)GameManager.Instance.ExpAmount;
-            TestTurretDataBase.Instance.resultGold += GameManager.Instance.goldAmount;
+            TestTurretDataBase.Instance.resultGold += GameManager.Instance.GoldAmount;
             Debug.Log("SceneMove");
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;

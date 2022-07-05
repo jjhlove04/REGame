@@ -266,11 +266,11 @@ public class Turret : MonoBehaviour
 
     public void Reload()
     {
-        if (GameManager.Instance.goldAmount >= reloadPrice && bulAmount != maxBulletAmount)
+        if (GameManager.Instance.GoldAmount >= reloadPrice && bulAmount != maxBulletAmount)
         {
             ReloadSound();
 
-            GameManager.Instance.goldAmount -= reloadPrice;
+            GameManager.Instance.GoldAmount -= reloadPrice;
             InGameUII._instance.CreateOutMoney(reloadPrice);
             bulAmount = maxBulletAmount;
         }
@@ -381,6 +381,11 @@ public class Turret : MonoBehaviour
         additionalDamage = 0;
 
         onNewsOfVictory = false;
+    }
+
+    public void Overclokcing(float increase)
+    {
+        shootTimeMax -= shootTimeMax * increase;
     }
 
     private void OnMouseEnter()

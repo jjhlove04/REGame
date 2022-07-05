@@ -86,7 +86,7 @@ public class testScripttss : MonoBehaviour
         //hp¹Ù ¼¼
         hpBar.value = (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp;
 
-        gameManager.goldAmount += 120;
+        gameManager.GoldAmount += 120;
         
     }
 
@@ -168,7 +168,7 @@ public class testScripttss : MonoBehaviour
         else
         {
             spawnMananger.curTime = spawnMananger.Info.roundCurTime;
-            gameManager.goldAmount += (int)(spawnMananger.Info.roundCurTime * 0.7f);
+            gameManager.GoldAmount += (int)(spawnMananger.Info.roundCurTime * 0.7f);
             inGameUI.CreateMonjeyTxt((int)(spawnMananger.Info.roundCurTime * 0.7f));
         }
     }
@@ -204,7 +204,7 @@ public class testScripttss : MonoBehaviour
                 gameInst.transform.SetParent(TrainScript.instance.transform.Find("Turrets"));
                 tT.onTurret = true;
                 turretData[turPos] = gameInst;
-                gameManager.goldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
+                gameManager.GoldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
                 testTurretDataBase.createPrice += turretData[turPos].GetComponent<Turret>().turretPrice;
                 inGameUI.ShowTurPrice();
             }
@@ -237,7 +237,7 @@ public class testScripttss : MonoBehaviour
         gameInst.transform.SetParent(TrainScript.instance.transform.Find("Turrets"));
         turretData[turPos].SetActive(false);
         turretData[turPos] = gameInst;
-        gameManager.goldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
+        gameManager.GoldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
         inGameUI.CreateOutMoney(turretData[turPos].GetComponent<Turret>().turretPrice);
     }
 

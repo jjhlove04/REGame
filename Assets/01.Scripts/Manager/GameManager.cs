@@ -29,19 +29,26 @@ public class GameManager : MonoBehaviour
 
     public int turretPtice = 10;
 
-    public int goldAmount = 0;
+    private int goldAmount = 0;
+    public int GoldAmount
+    {
+        get { return goldAmount; }
+
+        set { goldAmount = (int)(value * goldIncrease); }
+    }
+
     private float expAmount = 0;
     public float ExpAmount
     {
         get { return expAmount; }
-        set 
+        set
         {
             if (vamPireTeeth)
             {
                 VamPireTeeth();
             }
 
-            expAmount = value; 
+            expAmount = value * expIncrease;
         }
     }
     public float maxExp = 0;
@@ -51,14 +58,14 @@ public class GameManager : MonoBehaviour
     public int TrainLevel
     {
         get { return trainLevel; }
-        set 
+        set
         {
             if (onNewsOfVictory)
             {
                 NewsOfVictory();
             }
 
-            trainLevel = value; 
+            trainLevel = value;
         }
     }
 
@@ -74,6 +81,10 @@ public class GameManager : MonoBehaviour
 
     private TrainScript trainScript;
     private bool vamPireTeeth = false;
+
+    private float expIncrease = 1;
+    private float goldIncrease = 1;
+
 
     private void Awake()
     {
@@ -106,14 +117,19 @@ public class GameManager : MonoBehaviour
             Time.timeScale = gameSpeed;
         }
 
+        else if (state == State.End)
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
+
         if (Input.GetKeyDown(KeyCode.X))
-        { 
+        {
             state = State.End;
         }
 
-        if(Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            goldAmount += 100;
+            GoldAmount += 100;
             expAmount += 4;
         }
 
@@ -137,9 +153,9 @@ public class GameManager : MonoBehaviour
     {
         annuityCurTime += Time.deltaTime;
 
-        if(annuityCoolTime >= annuityCurTime)
+        if (annuityCoolTime >= annuityCurTime)
         {
-            goldAmount += annuityGoldAmount;
+            GoldAmount += annuityGoldAmount;
         }
     }
 
@@ -182,7 +198,7 @@ public class GameManager : MonoBehaviour
 
                 else
                 {
-                    turret=RandomTurret(turretArr);
+                    turret = RandomTurret(turretArr);
                 }
             }
         }
@@ -198,5 +214,15 @@ public class GameManager : MonoBehaviour
     private void VamPireTeeth()
     {
         trainScript.CurTrainHp += 3;
+    }
+
+    public void MoreBigWallet(float expIncrease)
+    {
+        this.expIncrease += expIncrease;
+    }
+
+    public void LearningMagnifyingGlass(float goldIncrease)
+    {
+        this.goldIncrease += goldIncrease;
     }
 }
