@@ -205,7 +205,7 @@ public class Enemy : MonoBehaviour
         //GameObject scrap = ObjectPool.instacne.GetObject(Resources.Load<GameObject>("Scrap"));
         //scrap.transform.position = transform.position;
         gameManager.ExpAmount += enemyStat.dropExp;
-        gameManager.goldAmount += enemyStat.dropGold;
+        gameManager.GoldAmount += enemyStat.dropGold;
         InGameUII._instance.CreateMonjeyTxt(enemyStat.dropGold);
 
         trainScript.dieEnemy++;

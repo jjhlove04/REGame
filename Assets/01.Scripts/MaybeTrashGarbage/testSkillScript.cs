@@ -81,7 +81,7 @@ public class testSkillScript : MonoBehaviour
             if (!onTurret)
             {
                 //포탑 설치
-                if (gameManager.goldAmount >= gameManager.turretPtice)
+                if (gameManager.GoldAmount >= gameManager.turretPtice)
                 {
                     circleTree.transform.GetChild(0).gameObject.SetActive(true);
                     circleTree.transform.GetChild(1).gameObject.SetActive(true);

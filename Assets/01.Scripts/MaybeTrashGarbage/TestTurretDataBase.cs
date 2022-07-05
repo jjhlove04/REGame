@@ -64,7 +64,7 @@ public class TestTurretDataBase : MonoBehaviour
         gameManager = GameManager.Instance;
         ingameUII = InGameUII._instance;
 
-        if (gameManager.goldAmount >= gameManager.turretPtice)
+        if (gameManager.GoldAmount >= gameManager.turretPtice)
         {
             ingameUII.CreateOutMoney(gameManager.turretPtice);
             testScripttss.Instance.Create(curTurretType["0-0"]);

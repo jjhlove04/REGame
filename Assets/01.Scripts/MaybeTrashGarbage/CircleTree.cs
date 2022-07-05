@@ -44,7 +44,7 @@ public class CircleTree : MonoBehaviour
             }
             else
             {
-                if (gameManager.goldAmount >= testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].GetComponent<Turret>().turretPrice)
+                if (gameManager.GoldAmount >= testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].GetComponent<Turret>().turretPrice)
                 {
                     return;
                 }
@@ -160,7 +160,7 @@ public class CircleTree : MonoBehaviour
             {
                 if (testturretdatabase.curTurretType.ContainsKey("1-" + installBtn.GetComponent<testSkillScript>().floor))
                 {
-                    if (gameManager.goldAmount >= testturretdatabase.curTurretType["1-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
+                    if (gameManager.GoldAmount >= testturretdatabase.curTurretType["1-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
                     {
                         gameObject.transform.GetChild(1).gameObject.SetActive(false);
                         gameObject.transform.GetChild(2).gameObject.SetActive(true);
@@ -187,7 +187,7 @@ public class CircleTree : MonoBehaviour
             {
                 if (testturretdatabase.curTurretType.ContainsKey("1-" + installBtn.GetComponent<testSkillScript>().floor))
                 {
-                    if (gameManager.goldAmount >= testturretdatabase.curTurretType["1-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
+                    if (gameManager.GoldAmount >= testturretdatabase.curTurretType["1-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
                     {
                         gameObject.transform.GetChild(1).gameObject.SetActive(false);
                         gameObject.transform.GetChild(2).gameObject.SetActive(true);
@@ -245,7 +245,7 @@ public class CircleTree : MonoBehaviour
                 testturretdatabase.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
                 installBtn.GetComponent<testSkillScript>().floor++;
             }
-            else if (gameManager.goldAmount >= testturretdatabase.curTurretType[num + "-" + installBtn.GetComponent<testSkillScript>().floor].GetComponent<Turret>().turretPrice)
+            else if (gameManager.GoldAmount >= testturretdatabase.curTurretType[num + "-" + installBtn.GetComponent<testSkillScript>().floor].GetComponent<Turret>().turretPrice)
             {
                 testturretdatabase.Upgrade(num, installBtn.GetComponent<testSkillScript>().floor);
                 installBtn.GetComponent<testSkillScript>().floor++;
@@ -274,7 +274,7 @@ public class CircleTree : MonoBehaviour
         installBtn.GetComponent<Image>().color = new Color(1,1,0,1);
         installBtn.GetComponent<Image>().transform.GetChild(0).gameObject.SetActive(true);
 
-        gameManager.goldAmount += (int)(testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].GetComponent<Turret>().turretPrice / 0.7f);
+        gameManager.GoldAmount += (int)(testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].GetComponent<Turret>().turretPrice / 0.7f);
         inGameUII.ShowTurPrice();
     }
 
@@ -287,7 +287,7 @@ public class CircleTree : MonoBehaviour
                 gameObject.transform.GetChild(2).gameObject.SetActive(false);
                 gameObject.transform.GetChild(1).gameObject.SetActive(true);
             }
-            else if (gameManager.goldAmount >= testturretdatabase.curTurretType[num + "-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
+            else if (gameManager.GoldAmount >= testturretdatabase.curTurretType[num + "-" + (installBtn.GetComponent<testSkillScript>().floor)].GetComponent<Turret>().turretPrice)
             {
                 gameObject.transform.GetChild(2).gameObject.SetActive(false);
                 gameObject.transform.GetChild(1).gameObject.SetActive(true);

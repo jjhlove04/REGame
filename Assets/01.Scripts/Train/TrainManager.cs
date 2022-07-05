@@ -140,7 +140,7 @@ public class TrainManager : MonoBehaviour
             transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(true);
         }
 
-        transform.Find("Turrets").gameObject.SetActive(false);
+        transform.Find("Turrets")?.gameObject.SetActive(false);
 
     }
 
