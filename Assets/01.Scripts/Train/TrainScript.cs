@@ -8,7 +8,7 @@ public class TrainScript : MonoBehaviour
 
     public TrainInfo traininfo;
 
-    public float curTrainHpMax = 50000;
+    private float curTrainHpMax;
 
 
     public float curTrainHp; //0���Ϸ� ����߸��� ����!
@@ -64,15 +64,27 @@ public class TrainScript : MonoBehaviour
     private float lastHitTime;
 
     private bool explosiveShield = false;
+    private int explosiveShieldDamage;
 
     private float lastTotalDamage;
 
     private bool maskOfCriminal = false;
 
+    public LayerMask layerMask;
+
+    private bool onCoolDown = false;
+    private int coolDownHealHp = 20;
+
+    private float curTime = 0;
+    private float onCoolDownMaxTime = 3;
+
+    private GameObject turrets;
+
+
+
+
     private void Awake()
     {
-        CurTrainHp = curTrainHpMax;
-
         instance = this;
 
         EnemyDataInit();
@@ -84,18 +96,20 @@ public class TrainScript : MonoBehaviour
 
         trainManager.CreateTrainPrefab(traininfo.trainCount);
 
-        CurTrainHp = traininfo.trainMaxHp;
+        CurTrainHp = curTrainHpMax = traininfo.trainMaxHp;
         curTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
 
-
+        explosiveShieldDamage = 50;
     }
 
     private void Start()
     {
         trainhit = GetComponentInChildren<TrainHit>();
+
+        turrets = TurretManager.Instance.turrets;
     }
 
     private void Update()
@@ -110,6 +124,8 @@ public class TrainScript : MonoBehaviour
         {
             lastHitTime += Time.deltaTime;
         }
+
+        CoolDown();
     }
 
     private void EnemyDataInit()
@@ -206,21 +222,24 @@ public class TrainScript : MonoBehaviour
                 curTrainShield -= damage;
             }
 
-            if (lastHitTime <= 0.7f)
+            if (explosiveShield)
             {
-                lastTotalDamage += damage;
-
-                if (lastTotalDamage > (CurTrainHp / 100) * 15)
+                if (lastHitTime <= 0.7f)
                 {
-                    ExplosiveShield();
+                    lastTotalDamage += damage;
+
+                    if (lastTotalDamage > curTrainHpMax * 0.15f)
+                    {
+                        ExplosiveShield();
+                    }
                 }
-            }
 
-            else
-            {
-                lastHitTime = 0;
+                else
+                {
+                    lastHitTime = 0;
 
-                lastTotalDamage = damage;
+                    lastTotalDamage = damage;
+                }
             }
         }
     }
@@ -273,13 +292,15 @@ public class TrainScript : MonoBehaviour
 
     IEnumerator Destroy()
     {
+        transform.Find("Turrets")?.gameObject.SetActive(false);
+
         roomHp += initRoomHp;
         if (trainManager.curTrainCount > 0)
         {
             trainManager.curTrainCount--;
             destroy = true;
             yield return new WaitForSeconds(0.5f);
-            trainManager.Explotion();
+            trainManager.OnExplotion();
             yield return new WaitForSeconds(4);
             GameManager.Instance.state = GameManager.State.End;
             destroy = false;
@@ -288,6 +309,11 @@ public class TrainScript : MonoBehaviour
 
     public void OnExplosiveShield()
     {
+        if (explosiveShield)
+        {
+            explosiveShieldDamage += (int)(explosiveShieldDamage * 0.2f);
+        }
+
         explosiveShield = true;
     }
 
@@ -296,7 +322,16 @@ public class TrainScript : MonoBehaviour
         lastTotalDamage = 0;
         lastHitTime = 0;
 
-        print("폭발");
+        trainManager.OnExplotion();
+
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(25, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        {
+            item.gameObject.GetComponent<HealthSystem>().Damage(explosiveShieldDamage);
+        }
+
+        
+
+        trainManager.Invoke("OffExplotion",1);
     }
 
     public void AlloySteel(float rateOfRise)
@@ -310,6 +345,44 @@ public class TrainScript : MonoBehaviour
     public void OnMaskOfCriminal()
     {
         maskOfCriminal = true;
+    }
+
+    public void OnCoolDown()
+    {
+        if (onCoolDown)
+        {
+            coolDownHealHp += 5;
+        }
+
+        onCoolDown = true;
+    }
+
+    private void CoolDown()
+    {
+        curTime += Time.deltaTime;
+
+        if (onCoolDownMaxTime >= curTime)
+        {
+            curTime = 0;
+
+            int count = 0;
+
+            if (onCoolDown)
+            {
+                for (int i = 0; i < turrets.transform.childCount; i++)
+                {
+                    if (turrets.transform.GetChild(i).GetComponent<Turret>().IsNeedReload())
+                    {
+                        count++;
+                    }
+                }
+
+                if (count >= 2)
+                {
+                    CurTrainHp += coolDownHealHp;
+                }
+            }
+        }
     }
 
     private bool MaskOfCriminal()

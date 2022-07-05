@@ -23,6 +23,9 @@ public class TrainManager : MonoBehaviour
 
     private int fireCount = 0;
 
+    public Vector3 center;
+    public Vector3 size;
+
     private void Awake()
     {
         Instance = this;
@@ -133,21 +136,27 @@ public class TrainManager : MonoBehaviour
         fireCount--;
     }
 
-    public void Explotion()
+    public void OnExplotion()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(true);
         }
+    }
 
-        transform.Find("Turrets")?.gameObject.SetActive(false);
-
+    public void OffExplotion()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(false);
+        }
     }
 
     public void MakeCollider()
     {
-        collider.center = new Vector3(0, 5, (curTrainCount * distance) * -0.5f + 27);
-        collider.size = new Vector3(6, 10, curTrainCount * distance + 27);
+        
+        collider.center = center = new Vector3(0, 5, (curTrainCount * distance) * -0.5f + 27);
+        collider.size= size = new Vector3(6, 10, curTrainCount * distance + 27);
     }
 
     /*public void KeepOffTrain()

@@ -85,6 +85,10 @@ public class Turret : MonoBehaviour
     private bool onNewsOfVictory = false;
     private int onNewsOfVictoryTime = 4;
 
+    private bool onWeakLens = false;
+
+    private int criticalHitProbability = 10;
+
 
     private void OnEnable()
     {
@@ -163,7 +167,17 @@ public class Turret : MonoBehaviour
 
                     GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
                     gameObject.transform.position = weapons[shootCount-1].transform.Find("BulletPoint").position;
-                    gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage+ additionalDamage));
+                    if (WeakLens())
+                    {
+                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage)*2);
+                    }
+
+                    else
+                    {
+                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage));
+                    }
+
+                    
                     TestTurretDataBase.Instance.resultDamage += (damage+ additionalDamage);
                     bulAmount--;
 
@@ -386,6 +400,21 @@ public class Turret : MonoBehaviour
     public void Overclokcing(float increase)
     {
         shootTimeMax -= shootTimeMax * increase;
+    }
+
+    public void OnWeakLens()
+    {
+        if (onWeakLens)
+        {
+            criticalHitProbability += 7;
+        }
+
+        onWeakLens = true;
+    }
+
+    private bool WeakLens()
+    {
+        return onWeakLens && Random.Range(0, 100) <= criticalHitProbability;
     }
 
     private void OnMouseEnter()
