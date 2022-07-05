@@ -230,7 +230,7 @@ public class InGameUII : MonoBehaviour
             Time.timeScale = 1f;
             TestTurretDataBase.Instance.resultEXP += (int)GameManager.Instance.ExpAmount;
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.goldAmount;
-
+            Debug.Log("SceneMove");
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
             GameManager.Instance.state = GameManager.State.Ready;

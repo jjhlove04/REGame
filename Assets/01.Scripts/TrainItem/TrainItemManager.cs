@@ -14,8 +14,11 @@ public class TrainItemManager : MonoBehaviour
 
     public Button[] button;
 
+    public Image itemPanel;
+
     private int selectNum;
 
+    [SerializeField]
     private List<TrainItem> randomItem = new List<TrainItem>();
 
     [SerializeField]
@@ -66,7 +69,8 @@ public class TrainItemManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            randomItem[i] = trainItems[Random.Range(0, trainItems.Count)];
+            randomItem.Add(trainItems[Random.Range(0, trainItems.Count)]);
+            button[i].transform.GetChild(0).GetComponent<Text>().text = randomItem[i].ToString();
         }
     }
 
