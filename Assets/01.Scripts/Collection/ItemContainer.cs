@@ -30,9 +30,9 @@ public class ItemContainer : MonoBehaviour
     }
     public void CommonCollection(int index){
         detailPanel.transform.DOScale(new Vector3(1,1,1),0.5f);
-        itemNameText.text = string.Format("-Order : <color=#A4A4A4>{0}</color>",ItemDictionary._instance.itemContainerCom[index].Item1);
-        effectiveText.text = string.Format("-Effective : {0}", ItemDictionary._instance.itemContainerCom[index].Item2);
-        rankText.text = string.Format("-Rank : <color=blue>{0}</color>",ItemDictionary._instance.itemContainerCom[index].Item3);
+        itemNameText.text = string.Format("-아이템 이름 : <color=#A4A4A4>{0}</color>",ItemDictionary._instance.itemContainerCom[index].Item1);
+        effectiveText.text = string.Format("-효과 : {0}", ItemDictionary._instance.itemContainerCom[index].Item2);
+        rankText.text = string.Format("-등급 : <color=#6E85B7>{0}</color>",ItemDictionary._instance.itemContainerCom[index].Item3);
 
     //     if(index == 0)
     //     {
