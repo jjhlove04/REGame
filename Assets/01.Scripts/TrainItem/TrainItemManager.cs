@@ -16,6 +16,8 @@ public class TrainItemManager : MonoBehaviour
 
     public Image itemPanel;
 
+    public Text reRollCount;
+
     private int selectNum;
 
     [SerializeField]
@@ -71,6 +73,7 @@ public class TrainItemManager : MonoBehaviour
         {
             randomItem.Add(trainItems[Random.Range(0, trainItems.Count)]);
             button[i].transform.GetChild(0).GetComponent<Text>().text = randomItem[i].ToString();
+            button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = trainItems[i].itemImage;
         }
     }
 
@@ -85,6 +88,7 @@ public class TrainItemManager : MonoBehaviour
         {
             GetRandomItem();
             reCount--;
+            reRollCount.text = reCount.ToString();
         }
     }
 }

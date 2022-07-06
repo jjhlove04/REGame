@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class TrainItem : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public abstract class TrainItem : MonoBehaviour
     }
 
     public string itemEffect;
+    public Sprite itemImage;
 
     public abstract void ItemEffect();
 }

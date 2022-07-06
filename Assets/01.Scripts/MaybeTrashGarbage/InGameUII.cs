@@ -104,6 +104,10 @@ public class InGameUII : MonoBehaviour
 
     public Image expBar;
     public Text gameLevel;
+
+    [Header("기차아이템관련")]
+    public Image itemPanel;
+    public Image itemExPanel;
     private void Awake()
     {
         _instance = this;
@@ -269,6 +273,15 @@ public class InGameUII : MonoBehaviour
         if (TrainScript.instance.destroy)
         {
             worldCanvas.SetActive(false);
+        }
+
+        if(Input.GetKey(KeyCode.I))
+        {
+            itemPanel.gameObject.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            itemPanel.gameObject.SetActive(false);
         }
 
     }
@@ -504,7 +517,10 @@ public class InGameUII : MonoBehaviour
             gameManager.TrainLevel++;
             gameManager.gameSpeed = 0f;
             gameManager.ExpAmount -= gameManager.maxExp;
-            ShowSelectPanel();
+            if (gameManager.state == GameManager.State.Play)
+            {
+                ShowSelectPanel();
+            }
             gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp; 
             expBar.fillAmount = 0;
         }
