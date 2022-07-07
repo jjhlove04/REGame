@@ -16,5 +16,7 @@ public class Overclokcing : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().Overclokcing(increase);
         }
+
+        curCarry++;
     }
 }

@@ -7,5 +7,6 @@ public class CoolDown : TrainItem
     public override void ItemEffect()
     {
         TrainScript.instance.OnCoolDown();
+        curCarry++;
     }
 }

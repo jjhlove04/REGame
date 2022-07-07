@@ -14,5 +14,6 @@ public class WeakLens : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().OnWeakLens();
         }
+        curCarry++;
     }
 }

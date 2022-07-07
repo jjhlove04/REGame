@@ -13,6 +13,7 @@ public abstract class TrainItem : MonoBehaviour
 
     public string itemEffect;
     public Sprite itemImage;
+    public int curCarry;
 
     public abstract void ItemEffect();
 }

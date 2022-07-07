@@ -7,5 +7,6 @@ public class Annuity : TrainItem
     public override void ItemEffect()
     {
         GameManager.Instance.OnAnnuity();
+        curCarry++;
     }
 }

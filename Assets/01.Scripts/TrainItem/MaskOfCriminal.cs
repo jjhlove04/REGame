@@ -7,5 +7,7 @@ public class MaskOfCriminal : TrainItem
     public override void ItemEffect()
     {
         TrainScript.instance.OnMaskOfCriminal();
+
+        curCarry++;
     }
 }

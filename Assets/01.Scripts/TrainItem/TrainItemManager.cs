@@ -19,17 +19,20 @@ public class TrainItemManager : MonoBehaviour
     public Text reRollCount;
 
     private int selectNum;
+    [SerializeField]
+    private List<TrainItem> trainItemLists = new List<TrainItem>();
 
     [SerializeField]
     private List<TrainItem> randomItem = new List<TrainItem>();
-
     [SerializeField]
-    private List<TrainItem> trainItems = new List<TrainItem>();
+    private List<TrainItem> curTrainItems = new List<TrainItem>();
 
     public int maxReCount = 0;
     public int reCount = 0;
 
     public GameObject item;
+
+    InGameUII inGameUII;
 
     private void Awake()
     {
@@ -44,22 +47,24 @@ public class TrainItemManager : MonoBehaviour
 
     private void Start()
     {
+        inGameUII = InGameUII._instance;
+        for (int i = 0; i < trainItemLists.Count; i++)
+        {
+            trainItemLists[i].GetComponent<TrainItem>().curCarry = 0;
+        }
         button[0].onClick.AddListener(() =>
         {
             selectNum = 0;
-            Debug.Log(0 + " : " + selectNum);
             SelectItem();
         });
         button[1].onClick.AddListener(() =>
         {
             selectNum = 1;
-            Debug.Log(1 + " : " + selectNum);
             SelectItem();
         });
         button[2].onClick.AddListener(() =>
         {
             selectNum = 2;
-            Debug.Log(2 + " : " + selectNum);
             SelectItem();
         });
 
@@ -70,21 +75,46 @@ public class TrainItemManager : MonoBehaviour
     public void GetRandomItem()
     {
         randomItem.Clear();
+        curTrainItems.Clear();
 
         for (int i = 0; i < 3; i++)
         {
-            randomItem.Add(trainItems[Random.Range(0, trainItems.Count)]);
-            button[i].transform.GetChild(0).GetComponent<Text>().text = randomItem[i].itemEffect;
-            button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = randomItem[i].itemImage;
+            randomItem.Add(trainItemLists[Random.Range(0, trainItemLists.Count)]);
+        }
 
+        for (int i = 0; i < 3; i++)
+        {
+            if (curTrainItems.Contains(randomItem[i]))
+            {
+                Debug.Log("re");
+                randomItem[i] = trainItemLists[Random.Range(0, trainItemLists.Count)];
+                i = 0;
+            }
+            else
+            {
+                if (curTrainItems.Count < i + 1)
+                {
+                    curTrainItems.Add(randomItem[i]);
+                    button[i].transform.GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemEffect;
+                    button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = curTrainItems[i].itemImage;
+                }
+            }
         }
     }
 
     private void SelectItem()
     {
-        randomItem[selectNum].ItemEffect();
-        GameObject obj = Instantiate(item, InGameUII._instance.itemPanel.transform);
-        obj.GetComponent<Image>().sprite = randomItem[selectNum].itemImage;
+        curTrainItems[selectNum].ItemEffect();
+        GameObject obj = Instantiate(item, inGameUII.itemPanel.transform);
+        obj.GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
+        for (int i = 0; i < inGameUII.itemPanel.transform.childCount; i++)
+        {
+            if(inGameUII.itemPanel.transform.GetChild(i).GetComponent<Image>().sprite == obj.GetComponent<Image>().sprite)
+            {
+
+            }
+        }
+        
 
     }
 

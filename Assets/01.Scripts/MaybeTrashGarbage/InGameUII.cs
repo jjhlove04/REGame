@@ -295,8 +295,6 @@ public class InGameUII : MonoBehaviour
             });
             });
             });
-
-
     }
     public void CloseSelectPanel(){
         selectPanel.transform.DOScale(new Vector3(0,0,0),0.4f).OnComplete(()=>

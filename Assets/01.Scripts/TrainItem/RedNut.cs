@@ -14,5 +14,7 @@ public class RedNut : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().OnRedNut();
         }
+
+        curCarry++;
     }
 }
