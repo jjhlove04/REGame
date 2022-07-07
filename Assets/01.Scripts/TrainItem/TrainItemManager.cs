@@ -29,6 +29,8 @@ public class TrainItemManager : MonoBehaviour
     public int maxReCount = 0;
     public int reCount = 0;
 
+    public GameObject item;
+
     private void Awake()
     {
         if (instance != null)
@@ -72,14 +74,18 @@ public class TrainItemManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             randomItem.Add(trainItems[Random.Range(0, trainItems.Count)]);
-            button[i].transform.GetChild(0).GetComponent<Text>().text = randomItem[i].ToString();
-            button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = trainItems[i].itemImage;
+            button[i].transform.GetChild(0).GetComponent<Text>().text = randomItem[i].itemEffect;
+            button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = randomItem[i].itemImage;
+
         }
     }
 
     private void SelectItem()
     {
         randomItem[selectNum].ItemEffect();
+        GameObject obj = Instantiate(item, InGameUII._instance.itemPanel.transform);
+        obj.GetComponent<Image>().sprite = randomItem[selectNum].itemImage;
+
     }
 
     public void ReRoll()
