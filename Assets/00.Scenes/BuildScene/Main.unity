@@ -24407,7 +24407,6 @@ GameObject:
   - component: {fileID: 1722079220}
   - component: {fileID: 1722079219}
   - component: {fileID: 1722079217}
-  - component: {fileID: 1722079221}
   - component: {fileID: 1722079223}
   - component: {fileID: 1722079224}
   - component: {fileID: 1722079225}
@@ -24532,19 +24531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e3b48b26c4e481ebab63e53e891d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1722079221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722079216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988c85cf50b4b7843a829ca8aa9617eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turrets: {fileID: 0}
 --- !u!114 &1722079222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24810,7 +24796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988c85cf50b4b7843a829ca8aa9617eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turrets: {fileID: 0}
+  turrets: {fileID: 1738792972}
 --- !u!1001 &1749197380
 PrefabInstance:
   m_ObjectHideFlags: 0

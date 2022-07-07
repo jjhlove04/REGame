@@ -63,6 +63,8 @@ public class testScripttss : MonoBehaviour
     [SerializeField]
     private Image[] images;
 
+    private TrainScript trainScript;
+
     private void Awake()
     {
         _instance = this;
@@ -73,6 +75,7 @@ public class testScripttss : MonoBehaviour
     {
         turType = -1;
 
+        trainScript = TrainScript.instance;
         gameManager = GameManager.Instance;
         spawnMananger = SpawnMananger.Instance;
         inGameUI = InGameUII._instance;
@@ -201,7 +204,7 @@ public class testScripttss : MonoBehaviour
                 //gameInst.GetComponent<Turret>().turCount = turPos;
                 //gameInst.GetComponent<Turret>().turType = turType;
                 gameInst.transform.position = turretPoses[turPos].position;
-                gameInst.transform.SetParent(TrainScript.instance.transform.Find("Turrets"));
+                gameInst.transform.SetParent(trainScript.transform.Find("Turrets"));
                 tT.onTurret = true;
                 turretData[turPos] = gameInst;
                 gameManager.GoldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
@@ -234,7 +237,7 @@ public class testScripttss : MonoBehaviour
         GameObject gameInst = objectPool.GetObject(turret);
         //gameInst.GetComponent<Turret>().turCount = turPos;
         gameInst.transform.position = turretPoses[turPos].position;
-        gameInst.transform.SetParent(TrainScript.instance.transform.Find("Turrets"));
+        gameInst.transform.SetParent(trainScript.transform.Find("Turrets"));
         turretData[turPos].SetActive(false);
         turretData[turPos] = gameInst;
         gameManager.GoldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
@@ -322,14 +325,14 @@ public class testScripttss : MonoBehaviour
     public void TakeDamageHpBar()
     {
         //Time.deltaTime ¿·¿¡ * (TakeDamage) ¸¸Å­ °öÇØÁà¾ßÇÔ. »ý·«µÇ¾î ÀÖÀ½.
-        hpBar.value = Mathf.Lerp(hpBar.value, (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp, Time.deltaTime);
+        hpBar.value = Mathf.Lerp(hpBar.value, (float)trainScript.CurTrainHp / (float)trainScript.traininfo.trainMaxHp, Time.deltaTime);
     }
 
     public void BulletCheck()
     {
-        if (turPos != -1 && turretData[turPos].GetComponent<TurretShooting>())
+        if (turPos != -1 && turretData[turPos].GetComponent<Turret>())
         {
-            bulletAmmo.value = (float)turretData[turPos].GetComponent<TurretShooting>().bulAmount / (float)turretData[turPos].GetComponent<TurretShooting>().maxBulletAmount;
+            bulletAmmo.value = (float)turretData[turPos].GetComponent<Turret>().bulAmount / (float)turretData[turPos].GetComponent<Turret>().maxBulletAmount;
         }
     }
 

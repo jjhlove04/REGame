@@ -21,6 +21,8 @@ public class TurretManager : MonoBehaviour
             return;
         }
 
+        turrets = gameObject;   
+
         instance = this;
     }
 

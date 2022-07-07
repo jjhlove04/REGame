@@ -168,11 +168,16 @@ public class GameManager : MonoBehaviour
 
     private void NewsOfVictory()
     {
-        Turret[] turretArr = new Turret[turretAmount];
+        Turret[] turretArr = new Turret[0];
 
         for (int i = 0; i < turretAmount; i++)
         {
-            turretArr[i] = RandomTurret(turretArr);
+            Turret turret = RandomTurret(turretArr);
+
+            if (turret != null)
+            {
+                turretArr[i] = turret;
+            }
         }
 
         for (int j = 0; j < turretArr.Length; j++)
@@ -185,25 +190,30 @@ public class GameManager : MonoBehaviour
     {
         Turret turret = new Turret();
 
-        turret = turrets.transform.GetChild(Random.Range(0, turrets.transform.childCount)).GetComponent<Turret>();
-
-        for (int j = 0; j < turretArr.Length; j++)
+        if (turrets.transform.childCount >0)
         {
-            if (turretArr[j] != null)
-            {
-                if (turretArr[j] != turret)
-                {
-                    return turret;
-                }
+            turret = turrets.transform.GetChild(Random.Range(0, turrets.transform.childCount))?.GetComponent<Turret>();
 
-                else
+            for (int j = 0; j < turretArr.Length; j++)
+            {
+                if (turretArr[j] != null)
                 {
-                    turret = RandomTurret(turretArr);
+                    if (turretArr[j] != turret)
+                    {
+                        return turret;
+                    }
+
+                    else
+                    {
+                        turret = RandomTurret(turretArr);
+                    }
                 }
             }
+
+            return turret;
         }
 
-        return turret;
+        return null;
     }
 
     public void OnVamPireTeeth()
