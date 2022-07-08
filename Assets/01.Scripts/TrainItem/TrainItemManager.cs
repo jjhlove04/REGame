@@ -14,8 +14,6 @@ public class TrainItemManager : MonoBehaviour
 
     public Button[] button;
 
-    public Image itemPanel;
-
     public Text reRollCount;
 
     private int selectNum;
@@ -33,6 +31,7 @@ public class TrainItemManager : MonoBehaviour
     public GameObject item;
 
     InGameUII inGameUII;
+    private ObjectPool objectPool;
 
     private void Awake()
     {
@@ -48,6 +47,7 @@ public class TrainItemManager : MonoBehaviour
     private void Start()
     {
         inGameUII = InGameUII._instance;
+        objectPool = FindObjectOfType<ObjectPool>();
         for (int i = 0; i < trainItemLists.Count; i++)
         {
             trainItemLists[i].GetComponent<TrainItem>().curCarry = 0;
@@ -105,17 +105,16 @@ public class TrainItemManager : MonoBehaviour
     private void SelectItem()
     {
         curTrainItems[selectNum].ItemEffect();
-        GameObject obj = Instantiate(item, inGameUII.itemPanel.transform);
+
+        GameObject obj = objectPool.GetObject(item);
         obj.GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
-        for (int i = 0; i < inGameUII.itemPanel.transform.childCount; i++)
+        obj.GetComponent<ItemBase>().itemPrefab = curTrainItems[selectNum];
+        obj.transform.parent = inGameUII.itemPanel.transform;
+
+        if (curTrainItems[selectNum].curCarry > 1)
         {
-            if(inGameUII.itemPanel.transform.GetChild(i).GetComponent<Image>().sprite == obj.GetComponent<Image>().sprite)
-            {
-
-            }
+            obj.SetActive(false);
         }
-        
-
     }
 
     public void ReRoll()

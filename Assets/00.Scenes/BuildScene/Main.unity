@@ -12402,13 +12402,14 @@ GameObject:
   - component: {fileID: 887034581}
   - component: {fileID: 887034580}
   - component: {fileID: 887034582}
+  - component: {fileID: 887034583}
   m_Layer: 5
   m_Name: TrainItemPanelBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &887034579
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12490,6 +12491,18 @@ MonoBehaviour:
   m_Spacing: {x: 30, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!225 &887034583
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887034578}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &887236869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24694,7 +24707,7 @@ MonoBehaviour:
   - {fileID: 2022128087}
   expBar: {fileID: 1466600511}
   gameLevel: {fileID: 622081080}
-  itemPanel: {fileID: 887034580}
+  itemPanel: {fileID: 887034583}
   itemExPanel: {fileID: 851897044}
 --- !u!114 &1722079223
 MonoBehaviour:
@@ -24739,7 +24752,6 @@ MonoBehaviour:
   - {fileID: 614713289}
   - {fileID: 573425994}
   - {fileID: 2022128089}
-  itemPanel: {fileID: 887034580}
   reRollCount: {fileID: 578300407}
   trainItemLists:
   - {fileID: 4949127767894661050, guid: 15b2b8dc7d527ae4ba0d7fb2af2f3f23, type: 3}

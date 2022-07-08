@@ -106,7 +106,7 @@ public class InGameUII : MonoBehaviour
     public Text gameLevel;
 
     [Header("기차아이템관련")]
-    public Image itemPanel;
+    public CanvasGroup itemPanel;
     public Image itemExPanel;
     private void Awake()
     {
@@ -277,11 +277,11 @@ public class InGameUII : MonoBehaviour
 
         if(Input.GetKey(KeyCode.I))
         {
-            itemPanel.gameObject.SetActive(true);
+            itemPanel.alpha = 1;
         }
         if (Input.GetKeyUp(KeyCode.I))
         {
-            itemPanel.gameObject.SetActive(false);
+            itemPanel.alpha = 0;
         }
 
     }
