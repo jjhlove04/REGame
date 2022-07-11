@@ -11,7 +11,7 @@ public static class ProbabilityCalculate
         {
             percent = 0.1f;
         }
-
+        
         percent = percent / 100;
         bool result = false;
         int arrCount = 100;
