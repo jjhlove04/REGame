@@ -26,6 +26,8 @@ public class TrainManager : MonoBehaviour
     public Vector3 center;
     public Vector3 size;
 
+    public GameObject train;
+
     private void Awake()
     {
         Instance = this;
@@ -39,7 +41,6 @@ public class TrainManager : MonoBehaviour
         for (int i = 0; i < curTrainCount; i++)
         {
             var newCube = Instantiate(trainPrefab,transform.Find("Train"));
-            newCube.transform.SetParent(gameObject.transform);
             newCube.transform.localPosition = new Vector3(0f, 0f, -(i * distance));
             newCube.transform.localRotation = Quaternion.identity;
 
@@ -107,9 +108,9 @@ public class TrainManager : MonoBehaviour
 
     public void OnFire()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < train.transform.childCount; i++)
         {
-            transform.GetChild(i).Find("Fire" + fireCount)?.gameObject.SetActive(true);
+            train.transform.GetChild(i).Find("Fire" + fireCount)?.gameObject.SetActive(true);
         }
 
         fireCount++;
@@ -119,18 +120,18 @@ public class TrainManager : MonoBehaviour
     {
         for (int i = 0; i < fireCount; i++)
         {
-            for (int j = 0; j < transform.childCount; j++)
+            for (int j = 0; j < train.transform.childCount; j++)
             {
-                transform.GetChild(j).Find("Fire" + i)?.gameObject.SetActive(false);
+                train.transform.GetChild(j).Find("Fire" + i)?.gameObject.SetActive(false);
             }
         }
     }
 
     public void OffFire()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < train.transform.childCount; i++)
         {
-            transform.GetChild(i).Find("Fire" + (fireCount - 1))?.gameObject.SetActive(false);
+            train.transform.GetChild(i).Find("Fire" + (fireCount - 1))?.gameObject.SetActive(false);
         }
 
         fireCount--;
@@ -138,17 +139,17 @@ public class TrainManager : MonoBehaviour
 
     public void OnExplotion()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < train.transform.childCount; i++)
         {
-            transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(true);
+            train.transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(true);
         }
     }
 
     public void OffExplotion()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < train.transform.childCount; i++)
         {
-            transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(false);
+            train.transform.GetChild(i).Find("ExplotionParticle")?.gameObject.SetActive(false);
         }
     }
 
