@@ -33,6 +33,11 @@ public class TrainItemManager : MonoBehaviour
     InGameUII inGameUII;
     private ObjectPool objectPool;
 
+    public GameObject train;
+
+    public GameObject trainShield;
+    public GameObject trainHeadShield;
+
     private void Awake()
     {
         if (instance != null)
@@ -124,6 +129,16 @@ public class TrainItemManager : MonoBehaviour
             GetRandomItem();
             reCount--;
             reRollCount.text = reCount.ToString();
+        }
+    }
+
+        public void ExplosiveShield()
+    {
+        trainHeadShield.SetActive(true);
+
+        for (int i = 0; i < train.transform.childCount; i++)
+        {
+            trainShield.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
 }

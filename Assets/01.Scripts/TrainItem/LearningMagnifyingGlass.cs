@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class LearningMagnifyingGlass : TrainItem
 {
-    public float goldIncrease = 0.08f;
+    public float expIncrease = 0.1f;
 
     public override void ItemEffect()
     {
-        GameManager.Instance.LearningMagnifyingGlass(goldIncrease);
-
-        curCarry++;
+        GameManager.Instance.LearningMagnifyingGlass(expIncrease);
     }
 }

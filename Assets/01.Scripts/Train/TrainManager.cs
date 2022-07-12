@@ -38,7 +38,7 @@ public class TrainManager : MonoBehaviour
 
         for (int i = 0; i < curTrainCount; i++)
         {
-            var newCube = Instantiate(trainPrefab);
+            var newCube = Instantiate(trainPrefab,transform.Find("Train"));
             newCube.transform.SetParent(gameObject.transform);
             newCube.transform.localPosition = new Vector3(0f, 0f, -(i * distance));
             newCube.transform.localRotation = Quaternion.identity;

@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class MoreBigWallet : TrainItem
 {
-    public float expIncrease = 0.1f;
+    public float goldIncrease = 0.08f;
 
     public override void ItemEffect()
     {
-        GameManager.Instance.MoreBigWallet(expIncrease);
-
-        curCarry++;
+        GameManager.Instance.MoreBigWallet(goldIncrease);
     }
 }

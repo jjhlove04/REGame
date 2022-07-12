@@ -226,12 +226,12 @@ public class GameManager : MonoBehaviour
         trainScript.CurTrainHp += 3;
     }
 
-    public void MoreBigWallet(float expIncrease)
+    public void LearningMagnifyingGlass(float expIncrease)
     {
         this.expIncrease += expIncrease;
     }
 
-    public void LearningMagnifyingGlass(float goldIncrease)
+    public void MoreBigWallet(float goldIncrease)
     {
         this.goldIncrease += goldIncrease;
     }

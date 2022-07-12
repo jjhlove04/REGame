@@ -7,6 +7,7 @@ public class ExplosiveShield : TrainItem
     public override void ItemEffect()
     {
         TrainScript.instance.OnExplosiveShield();
-        curCarry++;
+
+        TrainItemManager.Instance.ExplosiveShield();
     }
 }
