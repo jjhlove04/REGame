@@ -105,9 +105,13 @@ public class InGameUII : MonoBehaviour
     public Image expBar;
     public Text gameLevel;
 
-    [Header("±âÂ÷¾ÆÀÌÅÛ°ü·Ã")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û°ï¿½ï¿½ï¿½")]
     public CanvasGroup itemPanel;
     public Image itemExPanel;
+
+    public ParticleSystem noTabParticleObj;
+    public ParticleSystem TabParticleObj;
+    int particleSpeed = 4;
     private void Awake()
     {
         _instance = this;
@@ -305,6 +309,8 @@ public class InGameUII : MonoBehaviour
             selectPanelBtns[i].transform.localScale = Vector3.zero;
         }
         });
+        noTabParticleObj.Stop();
+        TabParticleObj.Stop();
     }
 
     public void ClearSelect()
@@ -517,6 +523,14 @@ public class InGameUII : MonoBehaviour
             gameManager.ExpAmount -= gameManager.maxExp;
             if (gameManager.state == GameManager.State.Play)
             {
+                if(CameraManager.Instance.canChangeCamera == true)
+                {
+                    noTabParticleObj.Play();
+                }
+                else
+                {
+                    TabParticleObj.Play();
+                }
                 ShowSelectPanel();
             }
             gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp; 

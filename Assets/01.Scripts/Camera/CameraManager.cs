@@ -15,7 +15,7 @@ public class CameraManager : MonoBehaviour
     private float cameraChangeTime = 1;
     private float cameraChangeCurTime;
 
-    private bool canChangeCamera = true;
+    public bool canChangeCamera = true;
 
     private GameObject curCamera;
 
