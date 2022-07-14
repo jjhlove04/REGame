@@ -101,7 +101,7 @@ public class testScripttss : MonoBehaviour
         string result = string.Format("{0:0.0}", gameTime);
         BulletCheck();
         NextWaveCoolBtn();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && spawnMananger.round == 1)
         {
             if (speedBtnCount != 0)
             {

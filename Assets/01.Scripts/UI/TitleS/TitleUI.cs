@@ -178,7 +178,6 @@ public class TitleUI : MonoBehaviour
 
         levelTxt.text = TestTurretDataBase.Instance.level.ToString();
 
-        Cursor.visible = false;
         repairCost.text = ((TestTurretDataBase.Instance.round - 1) * 1.5f)/*TestTurretDataBase.Instance.trainCount)*/.ToString();
         towingCost.text = 0 + "";//((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1)).ToString();
         killEnemy.text = TestTurretDataBase.Instance.killEnemy.ToString();
@@ -194,6 +193,8 @@ public class TitleUI : MonoBehaviour
     }
     private void Update()
     {
+        Cursor.visible = false;
+
         Update_MousePosition();
         InitPlayerInfo();
         ExpBar();

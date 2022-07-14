@@ -20,8 +20,9 @@ public class ItemBase : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        objPool.ReturnGameObject(this.gameObject);
-    }
+    //private void OnDisable()
+    //{
+    //    Debug.Log(this.gameObject);
+    //    objPool.ReturnGameObject(this.gameObject);
+    //}
 }

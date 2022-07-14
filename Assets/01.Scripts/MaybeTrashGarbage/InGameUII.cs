@@ -101,6 +101,8 @@ public class InGameUII : MonoBehaviour
 
     public GameObject selectPanel;
     public GameObject[] selectPanelBtns;
+    private float selectTime = 0;
+    private bool onSelect;
 
     public Image expBar;
     public Text gameLevel;
@@ -193,6 +195,8 @@ public class InGameUII : MonoBehaviour
 
     void Update()
     {
+        Cursor.visible = false;
+
         ExpBar();
         goldAmounTxt.text = gameManager.GoldAmount.ToString();
         waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
@@ -288,6 +292,18 @@ public class InGameUII : MonoBehaviour
             itemPanel.alpha = 0;
         }
 
+        if (onSelect)
+        {
+            selectTime += Time.deltaTime;
+            Debug.Log(selectTime);
+
+            if (selectTime >= 1.6f)
+            {
+                Time.timeScale = 0;
+                GameManager.Instance.state = GameManager.State.Stop;
+            }
+        }
+
     }
     public void ShowSelectPanel()
     {
@@ -311,6 +327,11 @@ public class InGameUII : MonoBehaviour
         });
         noTabParticleObj.Stop();
         TabParticleObj.Stop();
+
+        Time.timeScale = 1;
+        GameManager.Instance.state = GameManager.State.Play;
+        selectTime = 0;
+        onSelect = false;
     }
 
     public void ClearSelect()
@@ -531,6 +552,7 @@ public class InGameUII : MonoBehaviour
                 {
                     TabParticleObj.Play();
                 }
+                onSelect = true;
                 ShowSelectPanel();
             }
             gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp; 

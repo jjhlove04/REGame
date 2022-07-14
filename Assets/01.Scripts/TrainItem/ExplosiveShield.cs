@@ -9,5 +9,7 @@ public class ExplosiveShield : TrainItem
         TrainScript.instance.OnExplosiveShield();
 
         TrainItemManager.Instance.ExplosiveShield();
+
+        curCarry++;
     }
 }
