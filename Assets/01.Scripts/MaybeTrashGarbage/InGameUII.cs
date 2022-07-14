@@ -295,7 +295,6 @@ public class InGameUII : MonoBehaviour
         if (onSelect)
         {
             selectTime += Time.deltaTime;
-            Debug.Log(selectTime);
 
             if (selectTime >= 1.6f)
             {

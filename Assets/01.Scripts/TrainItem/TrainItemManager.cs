@@ -91,7 +91,6 @@ public class TrainItemManager : MonoBehaviour
         {
             if (curTrainItems.Contains(randomItem[i]))
             {
-                Debug.Log("re");
                 randomItem[i] = trainItemLists[Random.Range(0, trainItemLists.Count)];
                 i = 0;
             }
