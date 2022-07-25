@@ -13,6 +13,8 @@ public class BaseBullet : ProjectileMover
         {
             base.OnTriggerEnter(other);
 
+            other.GetComponent<HealthSystem>().FurryBracelet(time);
+
             other.GetComponent<HealthSystem>().Damage(damage);
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }

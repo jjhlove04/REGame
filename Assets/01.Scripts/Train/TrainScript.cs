@@ -27,10 +27,6 @@ public class TrainScript : MonoBehaviour
         }
     }
 
-    private float curTrainHpTime = 0;
-    private float maxHpTime = 5;
-    public float recoverAmount = 0.5f;
-
     public float curTrainShield = 10000;
     public int dieEnemy = 0;
 
@@ -65,6 +61,8 @@ public class TrainScript : MonoBehaviour
 
     private TrainManager trainManager;
 
+    private float recoveryAmount = 1;
+
     private float lastHitTime;
 
     private bool explosiveShield = false;
@@ -84,6 +82,9 @@ public class TrainScript : MonoBehaviour
 
     private GameObject turrets;
 
+    private float wireEntanglementDamage = 1;
+
+    private float additionalRecoveryAmount;
 
     private void Awake()
     {
@@ -112,6 +113,8 @@ public class TrainScript : MonoBehaviour
         trainhit = GetComponentInChildren<TrainHit>();
 
         turrets = TurretManager.Instance.turrets;
+
+        StartCoroutine(FixTimeHp());
     }
 
     private void Update()
@@ -128,7 +131,6 @@ public class TrainScript : MonoBehaviour
         }
 
         CoolDown();
-        FixTimeHP();
     }
 
     private void EnemyDataInit()
@@ -191,21 +193,6 @@ public class TrainScript : MonoBehaviour
     {
         CurTrainHp = traininfo.trainMaxHp;
     }
-
-    public void FixTimeHP()
-    {
-        if (CurTrainHp < curTrainHpMax)
-        {
-            curTrainHpTime += Time.deltaTime;
-
-            if (curTrainHpTime >= maxHpTime)
-            {
-                CurTrainHp += recoverAmount;
-                curTrainHpTime = 0;
-            }
-        }
-    }
-
     public void FixShield()
     {
         if (curTrainShield < traininfo.trainMaxShield)
@@ -214,8 +201,24 @@ public class TrainScript : MonoBehaviour
             {
                 curTrainShield++;
                 dieEnemy = 0;
+
             }
         }
+    }
+
+    private IEnumerator FixTimeHp()
+    {
+        if (!IsFullHp())
+        {
+            curTrainHp += recoveryAmount + recoveryAmount * additionalRecoveryAmount;
+        }
+
+        yield return new WaitForSeconds(1);
+    }
+
+    private bool IsFullHp()
+    {
+        return curTrainHp == curTrainHpMax;
     }
 
     public void Damage(float damage)
@@ -346,9 +349,23 @@ public class TrainScript : MonoBehaviour
             item.gameObject.GetComponent<HealthSystem>().Damage(explosiveShieldDamage);
         }
 
-        
 
-        trainManager.Invoke("OffExplotion",1);
+        trainManager.Invoke("OffExplotion", 1);
+    }
+
+    public void OnWireEntanglement()
+    {
+        StartCoroutine(WireEntanglement());
+    }
+
+    private IEnumerator WireEntanglement()
+    {
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(25, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        {
+            item.gameObject.GetComponent<HealthSystem>().Damage(wireEntanglementDamage);
+        }
+
+        yield return new WaitForSeconds(1);
     }
 
     public void AlloySteel(float rateOfRise)
@@ -414,5 +431,10 @@ public class TrainScript : MonoBehaviour
             int ran = Random.Range(0, 99);
             return ran <= 9;
         }
+    }
+
+    public void OnSpanner()
+    {
+        additionalRecoveryAmount += 0.012f;
     }
 }

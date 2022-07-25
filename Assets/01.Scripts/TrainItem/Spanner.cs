@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WireEntanglement : TrainItem
+public class Spanner : TrainItem
 {
     public override void ItemEffect()
     {
-        TrainScript.instance.OnWireEntanglement();
+        TrainScript.instance.OnSpanner();
     }
 }

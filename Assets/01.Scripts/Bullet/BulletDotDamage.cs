@@ -34,6 +34,11 @@ public class BulletDotDamage : ProjectileMover
 
             HealthSystem healthSystem = other.GetComponent<HealthSystem>();
 
+            if (onFurryBracelet)
+            {
+                healthSystem.FurryBracelet(time);
+            }
+
             healthSystem.DotDamageCoroutine(particle, dotcount, dotDelay, dotDamage);
 
             healthSystem.Damage(damage);

@@ -17,6 +17,9 @@ public class ProjectileMover : MonoBehaviour
     private Vector3 lastMoveDir;
     protected int damage;
 
+    protected bool onFurryBracelet = false;
+    protected float time;
+
     void Start()
     {
         if (flash != null)
@@ -58,8 +61,10 @@ public class ProjectileMover : MonoBehaviour
         transform.LookAt(targetEnemy);
     }
 
-    public void Create(Transform enemy, int damage)
+    public void Create(Transform enemy, int damage, bool onFurryBracelet, float time)
     {
+        this.onFurryBracelet = onFurryBracelet;
+        this.time = time
         SetTarget(enemy);
         Damage(damage);
     }

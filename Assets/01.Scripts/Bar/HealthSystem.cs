@@ -71,7 +71,11 @@ public class HealthSystem : MonoBehaviour
     {
         if(enemy.onlyDamage != OnlyDamage.wideArea && !enemy.isDying)
         {
-            curHealthAmount -= damageAmount;
+            if (enemy.onFurryBracelet)
+            {
+               curHealthAmount -= damageAmount*1.5f;
+            }
+           
             curHealthAmount = Mathf.Clamp(curHealthAmount, 0, enemy.enemyStat.healthAmountMax);
             transform.GetChild(0).GetComponentInChildren<EnemyColorChange>()?.Hit();
             OnDamaged?.Invoke();
@@ -110,5 +114,10 @@ public class HealthSystem : MonoBehaviour
         particleObj.transform.parent = null;
         particle.transform.position = Vector3.zero;
         particleObj.SetActive(false);
+    }
+
+    public void FurryBracelet(float time)
+    {
+        enemy.OnFurryBracelet(time);
     }
 }

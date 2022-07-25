@@ -89,6 +89,13 @@ public class Turret : MonoBehaviour
 
     private int criticalHitProbability = 10;
 
+    private bool onTaillessPlanaria = false;
+    private float heal = 0.5f;
+
+    private float theSoleCandyDamage;
+
+    private bool onFurryBracelet = false;
+    private float onFurryBraceletTime = 1.5f;
 
     private void OnEnable()
     {
@@ -169,12 +176,16 @@ public class Turret : MonoBehaviour
                     gameObject.transform.position = weapons[shootCount-1].transform.Find("BulletPoint").position;
                     if (WeakLens())
                     {
-                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage)*2);
+                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage * 2 + (int)(damage * theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime);
+
+                        TaillessPlanaria();
                     }
 
                     else
                     {
-                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage));
+                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage+(int)(damage* theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime);
+
+                        TaillessPlanaria();
                     }
 
                     
@@ -415,6 +426,52 @@ public class Turret : MonoBehaviour
     private bool WeakLens()
     {
         return onWeakLens && Random.Range(0, 100) <= criticalHitProbability;
+    }
+
+    public void OnTaillessPlanaria()
+    {
+        if (onTaillessPlanaria)
+        {
+            heal += 0.1f;
+        }
+
+        onTaillessPlanaria = true;
+    }
+
+    private void TaillessPlanaria()
+    {
+        if (onTaillessPlanaria)
+        {
+            trainScript.curTrainHp += heal;
+        }
+    }
+
+    public void OnTheSoleCandy()
+    {
+        theSoleCandyDamage += 0.4f;
+    }
+
+    public void OnFurryBracelet()
+    {
+        if (onFurryBracelet)
+        {
+            onFurryBraceletTime += 0.5f;
+        }
+
+        onFurryBracelet = true;
+    }
+
+    private bool FurryBaracelet()
+    {
+        if (onFurryBracelet)
+        {
+            if (Random.Range(0, 100) <= 7)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnMouseEnter()

@@ -37,6 +37,11 @@ public class BulletWideArea : ProjectileMover
             {
                 healthSystem = collider[i].GetComponent<HealthSystem>();
 
+                if (onFurryBracelet)
+                {
+                    healthSystem.FurryBracelet(time);
+                }
+
                 healthSystem.WideAreaDamge(damage);
             }
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum OnlyDamage
@@ -45,6 +46,8 @@ public class Enemy : MonoBehaviour
     private float balckholeDamage;
     private float balckgoleDuration;
 
+    public bool onFurryBracelet= false;
+
 
     protected virtual void OnEnable()
     {
@@ -80,7 +83,7 @@ public class Enemy : MonoBehaviour
                 GetComponent<HealthSystem>().Damage(balckholeDamage/ balckgoleDuration*Time.deltaTime);
             }
 
-            if (!emp)
+            if (!emp&&!onFurryBracelet)
             {
                 EnemyIsDistanceX();
                 anim.speed = animSpeed;
@@ -311,5 +314,19 @@ public class Enemy : MonoBehaviour
         blackhole = isBlackhole;
         balckholeDamage = damage;
         balckgoleDuration = duration;
+    }
+
+    public void OnFurryBracelet(float time)
+    {
+        StartCoroutine(FurryBracelet(time));
+    }
+
+    private IEnumerator FurryBracelet(float time)
+    {
+        onFurryBracelet = true;
+
+        yield return new WaitForSeconds(time);
+
+        onFurryBracelet = false;
     }
 }
