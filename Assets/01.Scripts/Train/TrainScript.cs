@@ -27,6 +27,10 @@ public class TrainScript : MonoBehaviour
         }
     }
 
+    private float curTrainHpTime = 0;
+    private float maxHpTime = 5;
+    public float recoverAmount = 0.5f;
+
     public float curTrainShield = 10000;
     public int dieEnemy = 0;
 
@@ -81,8 +85,6 @@ public class TrainScript : MonoBehaviour
     private GameObject turrets;
 
 
-
-
     private void Awake()
     {
         instance = this;
@@ -126,6 +128,7 @@ public class TrainScript : MonoBehaviour
         }
 
         CoolDown();
+        FixTimeHP();
     }
 
     private void EnemyDataInit()
@@ -188,6 +191,21 @@ public class TrainScript : MonoBehaviour
     {
         CurTrainHp = traininfo.trainMaxHp;
     }
+
+    public void FixTimeHP()
+    {
+        if (CurTrainHp < curTrainHpMax)
+        {
+            curTrainHpTime += Time.deltaTime;
+
+            if (curTrainHpTime >= maxHpTime)
+            {
+                CurTrainHp += recoverAmount;
+                curTrainHpTime = 0;
+            }
+        }
+    }
+
     public void FixShield()
     {
         if (curTrainShield < traininfo.trainMaxShield)
@@ -196,7 +214,6 @@ public class TrainScript : MonoBehaviour
             {
                 curTrainShield++;
                 dieEnemy = 0;
-
             }
         }
     }

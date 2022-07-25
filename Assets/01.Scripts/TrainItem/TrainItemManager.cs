@@ -38,6 +38,8 @@ public class TrainItemManager : MonoBehaviour
     public GameObject trainShield;
     public GameObject trainHeadShield;
 
+    public GameObject trainBuff;
+
     private void Awake()
     {
         if (instance != null)

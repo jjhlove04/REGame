@@ -7,7 +7,7 @@ public class BaitBar : MonoBehaviour
 
     private Transform barTrm;
 
-    private CameraManager camera;
+    private new CameraManager camera;
 
     private void Awake()
     {

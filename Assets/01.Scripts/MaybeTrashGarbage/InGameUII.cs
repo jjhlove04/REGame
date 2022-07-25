@@ -121,7 +121,7 @@ public class InGameUII : MonoBehaviour
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = ObjectPool.instacne;
         selectPanel.transform.localScale = Vector3.zero;
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             selectPanelBtns[i].transform.localScale = Vector3.zero;
         }
@@ -203,7 +203,7 @@ public class InGameUII : MonoBehaviour
         gameLevel.text = "LV : " + gameManager.TrainLevel;
         cursor.transform.position = Input.mousePosition;
 
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             CancleAll();
         }
@@ -242,7 +242,6 @@ public class InGameUII : MonoBehaviour
             Time.timeScale = 1f;
             TestTurretDataBase.Instance.resultEXP += (int)GameManager.Instance.ExpAmount;
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.GoldAmount;
-            Debug.Log("SceneMove");
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
             GameManager.Instance.state = GameManager.State.Ready;
@@ -283,7 +282,7 @@ public class InGameUII : MonoBehaviour
             worldCanvas.SetActive(false);
         }
 
-        if(Input.GetKey(KeyCode.I))
+        if (Input.GetKey(KeyCode.I))
         {
             itemPanel.alpha = 1;
         }
@@ -307,22 +306,26 @@ public class InGameUII : MonoBehaviour
     public void ShowSelectPanel()
     {
         TrainItemManager.Instance.GetRandomItem();
-        selectPanel.transform.DOScale(new Vector3(1,1,1),0.5f).SetEase(Ease.InExpo).OnComplete(()=>{
-            selectPanelBtns[0].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo).OnComplete(()=>{
-                selectPanelBtns[1].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo).OnComplete(()=>{
-                selectPanelBtns[2].transform.DOScale(new Vector3(1,1,1),0.3f).SetEase(Ease.InExpo);
+        selectPanel.transform.DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.InExpo).OnComplete(() =>
+        {
+            selectPanelBtns[0].transform.DOScale(new Vector3(1, 1, 1), 0.3f).SetEase(Ease.InExpo).OnComplete(() =>
+            {
+                selectPanelBtns[1].transform.DOScale(new Vector3(1, 1, 1), 0.3f).SetEase(Ease.InExpo).OnComplete(() =>
+                {
+                    selectPanelBtns[2].transform.DOScale(new Vector3(1, 1, 1), 0.3f).SetEase(Ease.InExpo);
+                });
             });
-            });
-            });
+        });
     }
-    public void CloseSelectPanel(){
-        selectPanel.transform.DOScale(new Vector3(0,0,0),0.4f).OnComplete(()=>
+    public void CloseSelectPanel()
+    {
+        selectPanel.transform.DOScale(new Vector3(0, 0, 0), 0.4f).OnComplete(() =>
         {
             selectPanel.transform.localScale = Vector3.zero;
-        for(int i = 0; i < 3; i++)
-        {
-            selectPanelBtns[i].transform.localScale = Vector3.zero;
-        }
+            for (int i = 0; i < 3; i++)
+            {
+                selectPanelBtns[i].transform.localScale = Vector3.zero;
+            }
         });
         noTabParticleObj.Stop();
         TabParticleObj.Stop();
@@ -534,28 +537,31 @@ public class InGameUII : MonoBehaviour
 
     public void ExpBar()
     {
-        expBar.fillAmount = Mathf.Lerp(expBar.fillAmount, gameManager.ExpAmount / gameManager.maxExp, Time.deltaTime * (2 + (gameManager.ExpAmount / 500)));
-
-        if(expBar.fillAmount >= 1f)
+        if (gameManager.TrainLevel > 50)
         {
-            gameManager.TrainLevel++;
-            gameManager.gameSpeed = 0f;
-            gameManager.ExpAmount -= gameManager.maxExp;
-            if (gameManager.state == GameManager.State.Play)
+            expBar.fillAmount = Mathf.Lerp(expBar.fillAmount, gameManager.ExpAmount / gameManager.maxExp, Time.deltaTime * (2 + (gameManager.ExpAmount / 500)));
+
+            if (expBar.fillAmount >= 1f)
             {
-                if(CameraManager.Instance.canChangeCamera == true)
+                gameManager.TrainLevel++;
+                gameManager.gameSpeed = 0f;
+                gameManager.ExpAmount -= gameManager.maxExp;
+                if (gameManager.state == GameManager.State.Play)
                 {
-                    noTabParticleObj.Play();
+                    if (CameraManager.Instance.canChangeCamera == true)
+                    {
+                        noTabParticleObj.Play();
+                    }
+                    else
+                    {
+                        TabParticleObj.Play();
+                    }
+                    onSelect = true;
+                    ShowSelectPanel();
                 }
-                else
-                {
-                    TabParticleObj.Play();
-                }
-                onSelect = true;
-                ShowSelectPanel();
+                gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp;
+                expBar.fillAmount = 0;
             }
-            gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp; 
-            expBar.fillAmount = 0;
         }
     }
 }
