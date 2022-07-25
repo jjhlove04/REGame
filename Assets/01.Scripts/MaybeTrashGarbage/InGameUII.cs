@@ -109,6 +109,7 @@ public class InGameUII : MonoBehaviour
 
     [Header("���������۰���")]
     public CanvasGroup itemPanel;
+    public Image itemBuffPanel;
     public Image itemExPanel;
 
     public ParticleSystem noTabParticleObj;
@@ -537,7 +538,7 @@ public class InGameUII : MonoBehaviour
 
     public void ExpBar()
     {
-        if (gameManager.TrainLevel > 50)
+        if (gameManager.TrainLevel < 50)
         {
             expBar.fillAmount = Mathf.Lerp(expBar.fillAmount, gameManager.ExpAmount / gameManager.maxExp, Time.deltaTime * (2 + (gameManager.ExpAmount / 500)));
 

@@ -29,6 +29,7 @@ public class TrainItemManager : MonoBehaviour
     public int reCount = 0;
 
     public GameObject item;
+    public GameObject itemBuff;
 
     InGameUII inGameUII;
     private ObjectPool objectPool;
@@ -37,8 +38,6 @@ public class TrainItemManager : MonoBehaviour
 
     public GameObject trainShield;
     public GameObject trainHeadShield;
-
-    public GameObject trainBuff;
 
     private void Awake()
     {
@@ -116,6 +115,10 @@ public class TrainItemManager : MonoBehaviour
         obj.GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
         obj.GetComponent<ItemBase>().itemPrefab = curTrainItems[selectNum];
         obj.transform.parent = inGameUII.itemPanel.transform;
+
+        GameObject bufobj = objectPool.GetObject(itemBuff);
+        bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
+        bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
 
         if (curTrainItems[selectNum].curCarry > 1)
         {
