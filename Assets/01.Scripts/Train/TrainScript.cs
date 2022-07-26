@@ -26,6 +26,11 @@ public class TrainScript : MonoBehaviour
             }
         }
     }
+    private float curTrainHpTime = 0;
+    private float maxHpTime = 5;
+    public float recoverAmount = 0.5f;
+
+    public int trainDef;
 
     public float curTrainShield = 10000;
     public int dieEnemy = 0;
@@ -130,6 +135,7 @@ public class TrainScript : MonoBehaviour
             lastHitTime += Time.deltaTime;
         }
 
+        FinxTimeHp();
         CoolDown();
     }
 
@@ -193,6 +199,20 @@ public class TrainScript : MonoBehaviour
     {
         CurTrainHp = traininfo.trainMaxHp;
     }
+
+    public void FinxTimeHp()
+    {
+        if(CurTrainHp  < curTrainHpMax)
+        {
+            curTrainHpTime += Time.deltaTime;
+
+            if(curTrainHpTime >= maxHpTime)
+            {
+                CurTrainHp += recoverAmount;
+                curTrainHpTime = 0;
+            }
+        }
+    }
     public void FixShield()
     {
         if (curTrainShield < traininfo.trainMaxShield)
@@ -201,7 +221,6 @@ public class TrainScript : MonoBehaviour
             {
                 curTrainShield++;
                 dieEnemy = 0;
-
             }
         }
     }
@@ -262,6 +281,11 @@ public class TrainScript : MonoBehaviour
                 }
             }
         }
+    }
+    public void LevelUp()
+    {
+        curTrainHpMax += 10;
+        recoverAmount += 0.2f;
     }
 
 

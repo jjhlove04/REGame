@@ -545,6 +545,7 @@ public class InGameUII : MonoBehaviour
             if (expBar.fillAmount >= 1f)
             {
                 gameManager.TrainLevel++;
+                TrainScript.instance.LevelUp();
                 gameManager.gameSpeed = 0f;
                 gameManager.ExpAmount -= gameManager.maxExp;
                 if (gameManager.state == GameManager.State.Play)
