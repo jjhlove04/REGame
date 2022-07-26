@@ -20,6 +20,10 @@ public class ProjectileMover : MonoBehaviour
     protected bool onFurryBracelet = false;
     protected float time;
 
+    protected float additionalDamage = 0;
+
+    protected bool onPunchGun = false;
+
     void Start()
     {
         if (flash != null)
@@ -61,17 +65,44 @@ public class ProjectileMover : MonoBehaviour
         transform.LookAt(targetEnemy);
     }
 
-    public void Create(Transform enemy, int damage, bool onFurryBracelet, float time)
+    public ProjectileMover Create(Transform enemy, int damage, bool onFurryBracelet, float time)
     {
         this.onFurryBracelet = onFurryBracelet;
-        this.time = time
+        this.time = time;
         SetTarget(enemy);
         Damage(damage);
+
+        return this;
     }
 
     void SetTarget(Transform enemy)
     {
         this.targetEnemy = enemy;
+    }
+
+    public ProjectileMover SetFMJAdditionalDamage(float damage)
+    {
+        additionalDamage = damage;
+
+        return this;
+    }
+
+    public ProjectileMover SetOnPunchGun(bool onPunchGun)
+    {
+        this.onPunchGun = onPunchGun;
+
+        return this;
+    }
+
+    private void PunchGun(Collider other)
+    {
+        if (onPunchGun)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponent<Rigidbody>().AddForce(new Vector3(15, 0, 0));
+            }
+        }
     }
 
     public void Damage(int damage)
@@ -106,5 +137,7 @@ public class ProjectileMover : MonoBehaviour
         }
         gameObject.SetActive(false);
         //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));ㄴ
+
+        PunchGun(other);
     }
 }

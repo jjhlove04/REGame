@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBullet : ProjectileMover
+public class FMJBullet : ProjectileMover
 {
     protected override void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Ground") && targetEnemy.GetComponent<Enemy>().isDying)
+        if (other.CompareTag("Ground") && targetEnemy.GetComponent<Enemy>().isDying)
         {
             base.OnTriggerEnter(other);
         }
@@ -18,7 +20,7 @@ public class BaseBullet : ProjectileMover
                 other.GetComponent<HealthSystem>().FurryBracelet(time);
             }
 
-            other.GetComponent<HealthSystem>().Damage(damage);
+            other.GetComponent<HealthSystem>().FMJ(damage, additionalDamage);
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }
     }

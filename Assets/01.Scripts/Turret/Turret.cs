@@ -12,6 +12,9 @@ public class Turret : MonoBehaviour
     private GameObject bullet = null;
 
     [SerializeField]
+    private GameObject FMJbullet = null;
+
+    [SerializeField]
     private GameObject[] weapons;
 
     [SerializeField]
@@ -97,6 +100,12 @@ public class Turret : MonoBehaviour
     private bool onFurryBracelet = false;
     private float onFurryBraceletTime = 1.5f;
 
+    private bool onFMJ = false;
+    private float additionalFMJDamage=0;
+
+    private bool onPunchGun = false;
+    private float punchGunPercentage;
+
     private void OnEnable()
     {
         OffDetection();
@@ -172,23 +181,24 @@ public class Turret : MonoBehaviour
                 {
                     ShootSound();
 
-                    GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
-                    gameObject.transform.position = weapons[shootCount-1].transform.Find("BulletPoint").position;
-                    if (WeakLens())
-                    {
-                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage * 2 + (int)(damage * theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime);
+                    GameObject gameObject = new GameObject();
+                    
 
-                        TaillessPlanaria();
+                    if (onFMJ)
+                    {
+                        gameObject = ObjectPool.instacne.GetObject(FMJbullet);
                     }
 
                     else
                     {
-                        gameObject.GetComponent<ProjectileMover>().Create(targetEnemy, (damage + additionalDamage+(int)(damage* theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime);
-
-                        TaillessPlanaria();
+                        gameObject = ObjectPool.instacne.GetObject(bullet);
                     }
 
-                    
+                    gameObject.transform.position = weapons[shootCount - 1].transform.Find("BulletPoint").position;
+
+                    SelectBullet(gameObject);
+
+
                     TestTurretDataBase.Instance.resultDamage += (damage+ additionalDamage);
                     bulAmount--;
 
@@ -266,6 +276,30 @@ public class Turret : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void SelectBullet(GameObject gameObject)
+    {
+        ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();
+
+        if (IsPuchGun())
+        {
+            projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens() + (int)(damage * theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime).SetOnPunchGun(true);
+
+            TaillessPlanaria();
+        }
+
+        else
+        {
+            projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens() + (int)(damage * theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime);
+
+            TaillessPlanaria();
+        }
+
+        if (onFMJ)
+        {
+            projectileMover.SetFMJAdditionalDamage(additionalFMJDamage);
         }
     }
 
@@ -423,9 +457,17 @@ public class Turret : MonoBehaviour
         onWeakLens = true;
     }
 
-    private bool WeakLens()
+    private int WeakLens()
     {
-        return onWeakLens && Random.Range(0, 100) <= criticalHitProbability;
+        if(onWeakLens && Random.Range(0, 100) <= criticalHitProbability)
+        {
+            return 2;
+        }
+
+        else
+        {
+            return 1;
+        }
     }
 
     public void OnTaillessPlanaria()
@@ -472,6 +514,32 @@ public class Turret : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void OnFMJ()
+    {
+        onFMJ = true;
+
+        additionalFMJDamage += 0.25f;
+    }
+
+    private GameObject FMJ()
+    {
+        GameObject FMJbullet = ObjectPool.instacne.GetObject(this.FMJbullet);
+
+        return FMJbullet;
+    }
+
+    public void OnPunchGun()
+    {
+        onPunchGun = true;
+
+        punchGunPercentage += 6;
+    }
+
+    private bool IsPuchGun()
+    {
+        return Random.Range(0, 100) <= punchGunPercentage;
     }
 
     private void OnMouseEnter()

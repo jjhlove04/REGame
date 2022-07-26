@@ -116,6 +116,16 @@ public class HealthSystem : MonoBehaviour
         particleObj.SetActive(false);
     }
 
+    public void FMJ(float damageAmount, float additionalDamage)
+    {
+        if (curHealthAmount > enemy.enemyStat.healthAmountMax * 0.8f)
+        {
+            damageAmount *= 1.25f;
+        }
+
+        Damage(damageAmount);
+    }
+
     public void FurryBracelet(float time)
     {
         enemy.OnFurryBracelet(time);
