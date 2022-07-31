@@ -41,6 +41,9 @@ public class InGameUII : MonoBehaviour
 
     public Text goldAmounTxt;
     public Text waveTxt;
+    float milliSec;
+    int second;
+    int miniute;
 
     [SerializeField]
     private Button upGradeBtn;
@@ -105,12 +108,14 @@ public class InGameUII : MonoBehaviour
     private bool onSelect;
 
     public Image expBar;
+    public Image hpBar;
     public Text gameLevel;
 
     [Header("���������۰���")]
     public CanvasGroup itemPanel;
     public Image itemBuffPanel;
     public Image itemExPanel;
+    public Image buffStrPanel;
 
     public ParticleSystem noTabParticleObj;
     public ParticleSystem TabParticleObj;
@@ -147,7 +152,8 @@ public class InGameUII : MonoBehaviour
         });
 
         goldAmounTxt.text = GameManager.Instance.GoldAmount.ToString();
-        waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
+
+
         ShowTurPrice();
 
         if (towerManager != null && towerManager.tower != null)
@@ -200,7 +206,9 @@ public class InGameUII : MonoBehaviour
 
         ExpBar();
         goldAmounTxt.text = gameManager.GoldAmount.ToString();
-        waveTxt.text = "WAVE : " + (SpawnMananger.Instance.round - 1).ToString();
+        //waveTxt.text = "경과시간 : " + (SpawnMananger.Instance.round - 1).ToString();
+
+        Timer();
         gameLevel.text = "LV : " + gameManager.TrainLevel;
         cursor.transform.position = Input.mousePosition;
 
@@ -304,6 +312,24 @@ public class InGameUII : MonoBehaviour
         }
 
     }
+
+    void Timer()
+    {
+        milliSec += Time.deltaTime;
+        waveTxt.text = string.Format("{0:D2}:{1:D2}:{2:D2}", miniute, second, (int)milliSec);
+
+        if((int)milliSec > 59)
+        {
+            milliSec = 0;
+            second++;
+        }
+
+        if(second > 59)
+        {
+            miniute++;
+        }
+    }
+
     public void ShowSelectPanel()
     {
         TrainItemManager.Instance.GetRandomItem();
@@ -318,6 +344,8 @@ public class InGameUII : MonoBehaviour
             });
         });
     }
+
+    //SelectPanel에 이벤트로 추가되어 있음
     public void CloseSelectPanel()
     {
         selectPanel.transform.DOScale(new Vector3(0, 0, 0), 0.4f).OnComplete(() =>

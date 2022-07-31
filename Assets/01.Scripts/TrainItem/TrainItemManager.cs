@@ -116,14 +116,18 @@ public class TrainItemManager : MonoBehaviour
         obj.GetComponent<ItemBase>().itemPrefab = curTrainItems[selectNum];
         obj.transform.parent = inGameUII.itemPanel.transform;
 
+
         GameObject bufobj = objectPool.GetObject(itemBuff);
+        bufobj.transform.GetChild(0).GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
         bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
         bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
 
         if (curTrainItems[selectNum].curCarry > 1)
         {
+            bufobj.SetActive(false);
             obj.SetActive(false);
         }
+
     }
 
     public void ReRoll()
@@ -136,7 +140,12 @@ public class TrainItemManager : MonoBehaviour
         }
     }
 
-        public void ExplosiveShield()
+    public void SelectSkip()
+    {
+        inGameUII.CloseSelectPanel();
+    }
+
+    public void ExplosiveShield()
     {
         trainHeadShield.SetActive(true);
 

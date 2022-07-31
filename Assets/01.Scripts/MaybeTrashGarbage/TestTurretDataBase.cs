@@ -19,8 +19,6 @@ public class TestTurretDataBase : MonoBehaviour
 
     public GameObjectBool postdic = new GameObjectBool();
 
-    public GameObject towerObj;
-
     [Header("°á°ú°ª")]
     public int resultDamage = 0;
     public int resultEXP = 0;

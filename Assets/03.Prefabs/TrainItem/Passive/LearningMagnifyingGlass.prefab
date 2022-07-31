@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8433806916677947640}
-  - component: {fileID: 9151701855726469244}
+  - component: {fileID: 7371340969463096967}
   m_Layer: 0
-  m_Name: VamPireTeeth
+  m_Name: LearningMagnifyingGlass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9151701855726469244
+--- !u!114 &7371340969463096967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,8 +40,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8433806916677947638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6456c2636f09fb54cba116af298d97bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1870b772f26b2184db848cabffa42062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemEffect: "\uBC40\uD30C\uC774\uC5B4\uC758 \uC774\uBE68"
-  itemImage: {fileID: 21300000, guid: db112ff1bd9564840a00f7a855980100, type: 3}
+  itemEffect: "\uBC30\uC6C0\uC758 \uB3CB\uBCF4\uAE30"
+  itemImage: {fileID: 21300000, guid: 3e019fddc953a46f0a0153bfeb79a7d2, type: 3}
+  curCarry: 0
+  bufColor: {r: 0.3647059, g: 0.6117647, b: 0.8352941, a: 1}
+  expIncrease: 0.1
