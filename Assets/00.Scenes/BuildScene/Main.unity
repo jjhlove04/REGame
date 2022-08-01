@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2688,7 +2688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &197219818
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2706,8 +2706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -834.9, y: 52.6}
-  m_SizeDelta: {x: 250, y: 70}
+  m_AnchoredPosition: {x: -859.58, y: 33.607}
+  m_SizeDelta: {x: 200.816, y: 46.5572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197219819
 MonoBehaviour:
@@ -2722,7 +2722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6117647}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.53333336}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4860,8 +4860,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00024414, y: -0.00022888}
-  m_SizeDelta: {x: 833.34, y: 233.34}
+  m_AnchoredPosition: {x: 0, y: -0.00000095367}
+  m_SizeDelta: {x: 710.763, y: 175.1159}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387914613
 MonoBehaviour:
@@ -4885,7 +4885,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 65086ab56a42c4ea79ad14f74e5edf33, type: 3}
-    m_FontSize: 59
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -4896,7 +4896,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1000 + (577) / 1000
+  m_Text: 1000 + (577) / <color=yellow>1000</color>
 --- !u!222 &387914614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6560,6 +6560,7 @@ GameObject:
   - component: {fileID: 484874878}
   - component: {fileID: 484874880}
   - component: {fileID: 484874879}
+  - component: {fileID: 484874881}
   m_Layer: 5
   m_Name: Hpbar
   m_TagString: Untagged
@@ -6583,8 +6584,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.1355, y: 0.3568}
-  m_SizeDelta: {x: 1917.7, y: 35.6565}
+  m_AnchoredPosition: {x: -1.1355, y: -0.0000422}
+  m_SizeDelta: {x: 1917.7, y: 20.657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &484874879
 MonoBehaviour:
@@ -6624,6 +6625,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484874877}
   m_CullTransparentMesh: 1
+--- !u!114 &484874881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484874877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0ee13f272524c5ab2700cc56fbaf16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpTip: {fileID: 197219817}
 --- !u!1 &493059875
 GameObject:
   m_ObjectHideFlags: 0
@@ -9611,8 +9625,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -522.41724}
-  m_SizeDelta: {x: 1920, y: 34.9425}
+  m_AnchoredPosition: {x: 0, y: -529.5598}
+  m_SizeDelta: {x: 1920, y: 20.6574}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694747467
 MonoBehaviour:
@@ -20545,7 +20559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1096132576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30185,6 +30199,7 @@ MonoBehaviour:
   - {fileID: 791170001}
   - {fileID: 736638420}
   expBar: {fileID: 1466600511}
+  hpBar: {fileID: 0}
   gameLevel: {fileID: 622081080}
   itemPanel: {fileID: 887034583}
   itemBuffPanel: {fileID: 1880346661}

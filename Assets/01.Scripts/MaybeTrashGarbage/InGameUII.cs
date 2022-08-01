@@ -202,7 +202,7 @@ public class InGameUII : MonoBehaviour
 
     void Update()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         ExpBar();
         goldAmounTxt.text = gameManager.GoldAmount.ToString();
