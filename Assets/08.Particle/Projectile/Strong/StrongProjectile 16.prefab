@@ -9733,7 +9733,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462855424927428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -20.8}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4101521856699400}
@@ -14686,10 +14686,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 30
   hitOffset: 0.1
   UseFirePointRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
   hit: {fileID: 1923500111986380, guid: f95ef7e849953e2428a605bb742e8b9e, type: 3}
   flash: {fileID: 419321678800334177, guid: a1275a24ea3b5bc408a3cb819de6ddcb, type: 3}
   Detached: []
-  moveSpeed: 75
+  moveSpeed: 50

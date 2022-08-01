@@ -4983,6 +4983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 25
   hitOffset: 0.1
   UseFirePointRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
@@ -4990,7 +4991,7 @@ MonoBehaviour:
   flash: {fileID: 2544745605807136676, guid: b0834ec26ec835742aad4de12286fb98, type: 3}
   Detached:
   - {fileID: 1984230739644340}
-  moveSpeed: 75
+  moveSpeed: 50
 --- !u!1 &1984230739644340
 GameObject:
   m_ObjectHideFlags: 0
