@@ -8,7 +8,7 @@ public class TrainScript : MonoBehaviour
 
     public TrainInfo traininfo;
 
-    private float curTrainHpMax;
+    public float curTrainHpMax;
 
 
     public float curTrainHp; //0���Ϸ� ����߸��� ����!
