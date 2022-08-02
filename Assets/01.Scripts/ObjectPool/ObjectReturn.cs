@@ -4,7 +4,7 @@ public class ObjectReturn : MonoBehaviour
 {
     private ObjectPool objPool;
 
-    void Start()
+    void Awake()
     {
         objPool = ObjectPool.instacne;
     }

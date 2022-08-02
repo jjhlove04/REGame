@@ -9,5 +9,6 @@ public class MoreBigWallet : TrainItem
     public override void ItemEffect()
     {
         GameManager.Instance.MoreBigWallet(goldIncrease);
+        curCarry++;
     }
 }

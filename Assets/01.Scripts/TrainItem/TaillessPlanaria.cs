@@ -14,5 +14,7 @@ public class TaillessPlanaria : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().OnTaillessPlanaria();
         }
+
+        curCarry++;
     }
 }

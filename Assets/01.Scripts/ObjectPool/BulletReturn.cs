@@ -12,6 +12,7 @@ public class BulletReturn : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log(objPool.gameObject);
         objPool.ReturnGameObject(this.gameObject);
     }
 }

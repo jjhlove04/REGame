@@ -14,5 +14,6 @@ public class FurryBracelet : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().OnFurryBracelet();
         }
+        curCarry++;
     }
 }

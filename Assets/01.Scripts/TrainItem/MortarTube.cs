@@ -6,6 +6,6 @@ public class MortarTube : TrainItem
 {
     public override void ItemEffect()
     {
-
+        curCarry++;
     }
 }

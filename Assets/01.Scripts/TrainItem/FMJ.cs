@@ -14,5 +14,7 @@ public class FMJ : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().OnFMJ();
         }
+
+        curCarry++;
     }
 }

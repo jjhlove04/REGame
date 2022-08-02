@@ -87,6 +87,8 @@ GameObject:
   - component: {fileID: 8046137488934695813}
   - component: {fileID: 8046137488934695812}
   - component: {fileID: -2721324225827667070}
+  - component: {fileID: 8344021181653120566}
+  - component: {fileID: -2464048169494030807}
   m_Layer: 5
   m_Name: Buff
   m_TagString: Untagged
@@ -162,5 +164,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c12cc261b372ca74484516de50058853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onMouse: 0
+  bufColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!225 &8344021181653120566
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046137488934695814}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &-2464048169494030807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046137488934695814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4220eb16f44bb1844a465a745d6ca627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

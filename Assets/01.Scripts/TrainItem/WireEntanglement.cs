@@ -7,5 +7,6 @@ public class WireEntanglement : TrainItem
     public override void ItemEffect()
     {
         TrainScript.instance.OnWireEntanglement();
+        curCarry++;
     }
 }

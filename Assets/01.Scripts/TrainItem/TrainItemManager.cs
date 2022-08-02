@@ -20,10 +20,9 @@ public class TrainItemManager : MonoBehaviour
     [SerializeField]
     private List<TrainItem> trainItemLists = new List<TrainItem>();
 
-    [SerializeField]
     private List<TrainItem> randomItem = new List<TrainItem>();
-    [SerializeField]
-    private List<TrainItem> curTrainItems = new List<TrainItem>();
+
+    public List<TrainItem> curTrainItems = new List<TrainItem>();
 
     public int maxReCount = 0;
     public int reCount = 0;
@@ -102,7 +101,7 @@ public class TrainItemManager : MonoBehaviour
                     curTrainItems.Add(randomItem[i]);
                     button[i].transform.GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemEffect;
                     button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = curTrainItems[i].itemImage;
-                    button[i].transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemStr;
+                    button[i].transform.GetChild(2).GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemStr;
                 }
             }
         }

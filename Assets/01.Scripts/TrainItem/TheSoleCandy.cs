@@ -14,5 +14,6 @@ public class TheSoleCandy : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().OnTheSoleCandy();
         }
+        curCarry++;
     }
 }

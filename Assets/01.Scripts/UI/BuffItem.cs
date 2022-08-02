@@ -6,32 +6,33 @@ using UnityEngine.EventSystems;
 
 public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float buffTime;
+    InGameUII inGameUII;
 
     public bool onMouse = false;
 
-    InGameUII inGameUII;
+    public Color bufColor;
+
+    private bool onHold = false;
+    private float buffTime;
+    private float maxBuffTime = 5f;
+
     private void Start()
     {
         inGameUII = InGameUII._instance;
-        Color bufColor = this.gameObject.GetComponent<Image>().color;
-        
+        bufColor = this.gameObject.GetComponent<Image>().color;
+
+        ColorUtility.TryParseHtmlString("#92D050", out Color active);
+        ColorUtility.TryParseHtmlString("#C9350D", out Color hold);
         //active
-        if (bufColor == new Color(0.57f, 0.81f, 0.31f))
+        if (bufColor == active)
         {
-
-        }
-
-        //pasive
-        if (bufColor == new Color(0.36f, 0.61f, 0.83f))
-        {
-
+            gameObject.SetActive(false);
         }
 
         //hold
-        if (bufColor == new Color(0.78f, 0.2f, 0.05f))
+        if (bufColor == hold)
         {
-
+            onHold = true;
         }
     }
 
@@ -42,6 +43,19 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             Vector3 mousePos = Input.mousePosition;
 
             inGameUII.buffStrPanel.transform.position = mousePos;
+        }
+
+        if(onHold)
+        {
+            buffTime += Time.deltaTime;
+
+            gameObject.GetComponent<CanvasGroup>().alpha = (buffTime / maxBuffTime);
+
+            if(buffTime > maxBuffTime)
+            {
+                onHold = false;
+                gameObject.SetActive(false);
+            }
         }
     }
 

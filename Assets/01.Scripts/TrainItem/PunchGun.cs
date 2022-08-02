@@ -14,5 +14,7 @@ public class PunchGun : TrainItem
         {
             turrets.transform.GetChild(i).GetComponent<Turret>().OnPunchGun();
         }
+
+        curCarry++;
     }
 }

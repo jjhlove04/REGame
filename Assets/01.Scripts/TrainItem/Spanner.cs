@@ -7,5 +7,6 @@ public class Spanner : TrainItem
     public override void ItemEffect()
     {
         TrainScript.instance.OnSpanner();
+        curCarry++;
     }
 }
