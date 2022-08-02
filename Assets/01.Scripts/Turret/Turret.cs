@@ -12,9 +12,6 @@ public class Turret : MonoBehaviour
     private GameObject bullet = null;
 
     [SerializeField]
-    private GameObject FMJbullet = null;
-
-    [SerializeField]
     private GameObject[] weapons;
 
     [SerializeField]
@@ -181,18 +178,7 @@ public class Turret : MonoBehaviour
                 {
                     ShootSound();
 
-                    GameObject gameObject = new GameObject();
-                    
-
-                    if (onFMJ)
-                    {
-                        gameObject = ObjectPool.instacne.GetObject(FMJbullet);
-                    }
-
-                    else
-                    {
-                        gameObject = ObjectPool.instacne.GetObject(bullet);
-                    }
+                    GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
 
                     gameObject.transform.position = weapons[shootCount - 1].transform.Find("BulletPoint").position;
 
@@ -283,24 +269,15 @@ public class Turret : MonoBehaviour
     {
         ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();
 
-        if (IsPuchGun())
-        {
-            projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens() + (int)(damage * theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime).SetOnPunchGun(true);
+        projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens() + (int)(damage * theSoleCandyDamage)))
+            .SetRedNut(redNut)
+            .SetTaillessPlanaria(onTaillessPlanaria)
+            .SetWeakLens(onWeakLens)
+            .SetFurryBracelet(onFurryBracelet,onFurryBraceletTime)
+            .SetFMJAdditionalDamage(onFMJ, additionalFMJDamage)
+            .SetOnPunchGun(onPunchGun);
 
-            TaillessPlanaria();
-        }
-
-        else
-        {
-            projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens() + (int)(damage * theSoleCandyDamage)), FurryBaracelet(), onFurryBraceletTime);
-
-            TaillessPlanaria();
-        }
-
-        if (onFMJ)
-        {
-            projectileMover.SetFMJAdditionalDamage(additionalFMJDamage);
-        }
+        TaillessPlanaria();
     }
 
     public void OnDetection()
@@ -521,13 +498,6 @@ public class Turret : MonoBehaviour
         onFMJ = true;
 
         additionalFMJDamage += 0.25f;
-    }
-
-    private GameObject FMJ()
-    {
-        GameObject FMJbullet = ObjectPool.instacne.GetObject(this.FMJbullet);
-
-        return FMJbullet;
     }
 
     public void OnPunchGun()

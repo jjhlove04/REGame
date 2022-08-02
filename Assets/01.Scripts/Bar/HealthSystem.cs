@@ -73,9 +73,10 @@ public class HealthSystem : MonoBehaviour
         {
             if (enemy.onFurryBracelet)
             {
-               curHealthAmount -= damageAmount*1.5f;
+               curHealthAmount -= damageAmount*0.5f;
             }
-           
+
+            curHealthAmount -= damageAmount;
             curHealthAmount = Mathf.Clamp(curHealthAmount, 0, enemy.enemyStat.healthAmountMax);
             transform.GetChild(0).GetComponentInChildren<EnemyColorChange>()?.Hit();
             OnDamaged?.Invoke();

@@ -17,12 +17,28 @@ public class ProjectileMover : MonoBehaviour
     private Vector3 lastMoveDir;
     protected int damage;
 
-    protected bool onFurryBracelet = false;
     protected float time;
 
     protected float additionalDamage = 0;
 
+    protected bool onFurryBracelet = false;
+
     protected bool onPunchGun = false;
+
+    protected bool onFMJ = false;
+
+    protected bool onWeakLens = false;
+
+    protected bool onTaillessPlanaria = false;
+
+    protected bool onRedNut = false;
+
+    protected GameObject weakLens;
+    protected GameObject fMJ;
+    protected GameObject furryBaracelet;
+    protected GameObject punchGun;
+    protected GameObject redNut;
+    protected GameObject taillessPlannaria;
 
     void Start()
     {
@@ -42,7 +58,9 @@ public class ProjectileMover : MonoBehaviour
             }
         }
         Destroy(gameObject,5);
-	}
+
+        FindBulletEffect();
+    }
 
     void FixedUpdate ()
     {
@@ -65,10 +83,30 @@ public class ProjectileMover : MonoBehaviour
         transform.LookAt(targetEnemy);
     }
 
-    public ProjectileMover Create(Transform enemy, int damage, bool onFurryBracelet, float time)
+    private void FindBulletEffect()
     {
-        this.onFurryBracelet = onFurryBracelet;
-        this.time = time;
+        weakLens = transform.Find("WeakLens").gameObject;
+        fMJ = transform.Find("FMJ").gameObject;
+        furryBaracelet = transform.Find("FurryBaracelet").gameObject;
+        punchGun = transform.Find("PunchGun").gameObject;
+        redNut = transform.Find("RedNut").gameObject;
+        taillessPlannaria = transform.Find("TaillessPlannaria").gameObject;
+
+        OnBulletEffect();
+    }
+
+    private void OnBulletEffect()
+    {
+        weakLens.SetActive(onWeakLens);
+        fMJ.SetActive(onFMJ);
+        furryBaracelet.SetActive(onFurryBracelet);
+        punchGun.SetActive(onPunchGun);
+        redNut.SetActive(onRedNut);
+        taillessPlannaria.SetActive(onTaillessPlanaria);
+    }
+
+    public ProjectileMover Create(Transform enemy, int damage)
+    {
         SetTarget(enemy);
         Damage(damage);
 
@@ -80,21 +118,63 @@ public class ProjectileMover : MonoBehaviour
         this.targetEnemy = enemy;
     }
 
-    public ProjectileMover SetFMJAdditionalDamage(float damage)
+    public ProjectileMover SetRedNut(bool onRedNut)
     {
+        print(onRedNut);
+
+        this.onRedNut = onRedNut;
+
+        return this;
+    }
+
+    public ProjectileMover SetTaillessPlanaria(bool onTaillessPlanaria)
+    {
+        print(onTaillessPlanaria);
+
+        this.onTaillessPlanaria = onTaillessPlanaria;
+
+        return this;
+    }
+
+    public ProjectileMover SetWeakLens(bool onWeakLens)
+    {
+        print(onWeakLens);
+
+        this.onWeakLens = onWeakLens;
+
+        return this;
+    }
+
+    public ProjectileMover SetFurryBracelet(bool onFurryBracelet, float time)
+    {
+        print(onFurryBracelet);
+
+        this.onFurryBracelet = onFurryBracelet;
+        this.time = time;
+
+        return this;
+    }
+
+    public ProjectileMover SetFMJAdditionalDamage(bool FMJ,float damage)
+    {
+        print(FMJ);
+
         additionalDamage = damage;
+        this.onFMJ = FMJ;
 
         return this;
     }
 
     public ProjectileMover SetOnPunchGun(bool onPunchGun)
     {
+        print(onPunchGun);
+
         this.onPunchGun = onPunchGun;
 
         return this;
     }
 
-    private void PunchGun(Collider other)
+    private void OnPunchGun(Collider other)
     {
         if (onPunchGun)
         {
@@ -138,6 +218,6 @@ public class ProjectileMover : MonoBehaviour
         gameObject.SetActive(false);
         //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));ㄴ
 
-        PunchGun(other);
+        OnPunchGun(other);
     }
 }
