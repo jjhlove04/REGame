@@ -8,6 +8,8 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public float buffTime;
 
+    public bool onMouse = false;
+
     InGameUII inGameUII;
     private void Start()
     {
@@ -45,11 +47,13 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        inGameUII.buffStrPanel.gameObject.SetActive(true);     
+        inGameUII.buffStrPanel.gameObject.SetActive(true);
+        onMouse = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         inGameUII.buffStrPanel.gameObject.SetActive(false);
+        onMouse = false;
     }
 }

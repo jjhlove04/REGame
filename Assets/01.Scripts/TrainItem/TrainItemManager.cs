@@ -102,6 +102,7 @@ public class TrainItemManager : MonoBehaviour
                     curTrainItems.Add(randomItem[i]);
                     button[i].transform.GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemEffect;
                     button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = curTrainItems[i].itemImage;
+                    button[i].transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemStr;
                 }
             }
         }
