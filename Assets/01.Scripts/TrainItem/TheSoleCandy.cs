@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class TheSoleCandy : TrainItem
 {
-    private GameObject turrets;
-
     public override void ItemEffect()
     {
-        turrets = TurretManager.Instance.turrets;
+        TurretManager.Instance.OnTheSoleCandy();
 
-        for (int i = 0; i < turrets.transform.childCount; i++)
-        {
-            turrets.transform.GetChild(i).GetComponent<Turret>().OnTheSoleCandy();
-        }
         curCarry++;
     }
 }

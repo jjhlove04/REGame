@@ -13,6 +13,32 @@ public class TurretManager : MonoBehaviour
 
     public GameObject turrets;
 
+    private bool onFMJ=false;
+    private int countFMJ = 0;
+
+    private bool onFurryBracelet = false;
+    private int countFurryBracelet = 0;
+
+    private bool onOverclokcing = false;
+    private int countOverclokcing = 0;
+
+    private bool onPunchGun = false;
+    private int countPunchGun = 0;
+
+    private bool onRedNut = false;
+    private int countRedNut = 0;
+
+    private bool onTaillessPlanariaMJ = false;
+    private int countTaillessPlanariaMJ = 0;
+
+    private bool onTheSoleCandy = false;
+    private int countTheSoleCandy = 0;
+
+    private bool onWeakLens = false;
+    private int countWeakLens = 0;
+
+    private float overclokcingIncrease;
+
     private void Awake()
     {
         if (instance != null)
@@ -51,6 +77,125 @@ public class TurretManager : MonoBehaviour
             {
                 turret.DesignateTarget(hit.point);
             }
+        }
+    }
+
+    public void SpawnTurret(Turret turret)
+    {
+        turret
+            .OnFMJ(onFMJ,countFMJ)
+            .OnFurryBracelet(onFurryBracelet,countFurryBracelet)
+            .Overclokcing(onOverclokcing, overclokcingIncrease,countOverclokcing)
+            .OnPunchGun(onPunchGun, countPunchGun)
+            .OnRedNut(onRedNut, countRedNut)
+            .OnTaillessPlanaria(onTaillessPlanariaMJ, countTaillessPlanariaMJ)
+            .OnTheSoleCandy(onTheSoleCandy, countTheSoleCandy)
+            .OnWeakLens(onWeakLens, countWeakLens);
+    }
+
+    public void OnFMJ()
+    {
+        onFMJ = true;
+
+        countFMJ++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnFMJ(onFMJ, countFMJ);
+        }
+    }
+
+    public void OnFurryBracelet()
+    {
+        onFurryBracelet = true;
+
+        countFurryBracelet++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnFurryBracelet(onFurryBracelet, countFurryBracelet);
+        }
+    }
+
+    public void Overclokcing(float increase)
+    {
+        onOverclokcing = true;
+
+        countOverclokcing++;
+
+        overclokcingIncrease = increase;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .Overclokcing(onOverclokcing, overclokcingIncrease, countOverclokcing);
+        }
+    }
+
+    public void OnPunchGun()
+    {
+        onPunchGun = true;
+
+        countPunchGun++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnPunchGun(onPunchGun,countPunchGun);
+        }
+    }
+
+    public void OnRedNut()
+    {
+        onRedNut = true;
+
+        countRedNut++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnRedNut(onRedNut,countRedNut);
+        }
+    }
+
+    public void OnTaillessPlanaria()
+    {
+        onTaillessPlanariaMJ = true;
+
+        countTaillessPlanariaMJ++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnTaillessPlanaria(onTaillessPlanariaMJ,countTaillessPlanariaMJ);
+        }
+    }
+
+    public void OnTheSoleCandy()
+    {
+        onTheSoleCandy = true;
+
+        countTheSoleCandy++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnTheSoleCandy(onTheSoleCandy,countTheSoleCandy);
+        }
+    }
+
+    public void OnWeakLens()
+    {
+        onWeakLens = true;
+
+        countWeakLens++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnWeakLens(onWeakLens,countWeakLens);
         }
     }
 }

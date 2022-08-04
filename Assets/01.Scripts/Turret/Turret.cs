@@ -103,6 +103,8 @@ public class Turret : MonoBehaviour
     private bool onPunchGun = false;
     private float punchGunPercentage;
 
+    private GameManager gameManager;
+
     private void OnEnable()
     {
         OffDetection();
@@ -119,11 +121,14 @@ public class Turret : MonoBehaviour
     private void Start()
     {
         shootTimerMax = shootTimeMax;
+        gameManager = GameManager.Instance;
         trainScript = TrainScript.instance;
         inGameUII = InGameUII._instance;
         bulAmount = maxBulletAmount;
 
         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+
+        TurretManager.Instance.SpawnTurret(this);
     }
 
     private void Update()
@@ -198,7 +203,7 @@ public class Turret : MonoBehaviour
                         shootCount = 1;
                     }
 
-                    if (redNut)
+                    if (IsRedNut())
                     {
                         RedNut();
                     }
@@ -270,12 +275,12 @@ public class Turret : MonoBehaviour
         ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();
 
         projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens() + (int)(damage * theSoleCandyDamage)))
-            .SetRedNut(redNut)
+            .SetRedNut(IsRedNut())
             .SetTaillessPlanaria(onTaillessPlanaria)
-            .SetWeakLens(onWeakLens)
-            .SetFurryBracelet(onFurryBracelet,onFurryBraceletTime)
+            .SetWeakLens(IsWeakLens())
+            .SetFurryBracelet(FurryBaracelet(),onFurryBraceletTime)
             .SetFMJAdditionalDamage(onFMJ, additionalFMJDamage)
-            .SetOnPunchGun(onPunchGun);
+            .SetOnPunchGun(IsPuchGun());
 
         TaillessPlanaria();
     }
@@ -302,11 +307,11 @@ public class Turret : MonoBehaviour
 
     public void Reload()
     {
-        if (GameManager.Instance.GoldAmount >= reloadPrice && bulAmount != maxBulletAmount)
+        if (gameManager.GoldAmount >= reloadPrice && bulAmount != maxBulletAmount)
         {
             ReloadSound();
 
-            GameManager.Instance.GoldAmount -= reloadPrice;
+            gameManager.GoldAmount -= reloadPrice;
             InGameUII._instance.CreateOutMoney(reloadPrice);
             bulAmount = maxBulletAmount;
         }
@@ -382,18 +387,22 @@ public class Turret : MonoBehaviour
         LookForTargets();
     }
 
-    public void OnRedNut()
+    public Turret OnRedNut(bool on, int count)
     {
-        redNut = true;
+        redNut = on;
+
+        return this;
+    }
+
+    private bool IsRedNut()
+    {
+        return Random.Range(0, 100) < gameManager.ActivationCoefficient(8) && redNut;
     }
 
     private void RedNut()
     {
-        if(Random.Range(0,100) < 8)
-        {
-            trainScript.CurTrainHp += redNutHealHp;
-            trainScript.CurTrainHp += redNutHealHp;
-        }
+        trainScript.CurTrainHp += redNutHealHp;
+        trainScript.CurTrainHp += redNutHealHp;
     }
 
     public void OnNewsOfVictory()
@@ -419,24 +428,36 @@ public class Turret : MonoBehaviour
         onNewsOfVictory = false;
     }
 
-    public void Overclokcing(float increase)
+    public Turret Overclokcing(bool on, float increase, int count)
     {
-        shootTimeMax -= shootTimeMax * increase;
+        if (on)
+        {
+            shootTimeMax -= shootTimeMax * increase;
+        }
+
+        return this;
     }
 
-    public void OnWeakLens()
+    public Turret OnWeakLens(bool on, int count)
     {
         if (onWeakLens)
         {
             criticalHitProbability += 7;
         }
 
-        onWeakLens = true;
+        onWeakLens = on;
+
+        return this;
+    }
+
+    private bool IsWeakLens()
+    {
+        return onWeakLens && Random.Range(0, 100) <= gameManager.ActivationCoefficient(criticalHitProbability);
     }
 
     private int WeakLens()
     {
-        if(onWeakLens && Random.Range(0, 100) <= criticalHitProbability)
+        if(IsWeakLens())
         {
             return 2;
         }
@@ -447,14 +468,16 @@ public class Turret : MonoBehaviour
         }
     }
 
-    public void OnTaillessPlanaria()
+    public Turret OnTaillessPlanaria(bool on, int count)
     {
         if (onTaillessPlanaria)
         {
             heal += 0.1f;
         }
 
-        onTaillessPlanaria = true;
+        onTaillessPlanaria = on;
+
+        return this;
     }
 
     private void TaillessPlanaria()
@@ -465,51 +488,54 @@ public class Turret : MonoBehaviour
         }
     }
 
-    public void OnTheSoleCandy()
+    public Turret OnTheSoleCandy(bool on, int count)
     {
-        theSoleCandyDamage += 0.4f;
+        if (on)
+        {
+            theSoleCandyDamage += 0.4f;
+        }
+
+        return this;
     }
 
-    public void OnFurryBracelet()
+    public Turret OnFurryBracelet(bool on, int count)
     {
         if (onFurryBracelet)
         {
             onFurryBraceletTime += 0.5f;
         }
 
-        onFurryBracelet = true;
+        onFurryBracelet = on;
+
+        return this;
     }
 
     private bool FurryBaracelet()
     {
-        if (onFurryBracelet)
-        {
-            if (Random.Range(0, 100) <= 7)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(7) && onFurryBracelet;
     }
 
-    public void OnFMJ()
+    public Turret OnFMJ(bool on, int count)
     {
-        onFMJ = true;
+        onFMJ = on;
 
         additionalFMJDamage += 0.25f;
+
+        return this;
     }
 
-    public void OnPunchGun()
+    public Turret OnPunchGun(bool on, int count)
     {
-        onPunchGun = true;
+        onPunchGun = on;
 
         punchGunPercentage += 6;
+
+        return this;
     }
 
     private bool IsPuchGun()
     {
-        return Random.Range(0, 100) <= punchGunPercentage;
+        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(punchGunPercentage) && onPunchGun;
     }
 
     private void OnMouseEnter()

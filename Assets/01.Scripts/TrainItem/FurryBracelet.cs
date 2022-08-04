@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class FurryBracelet : TrainItem
 {
-    private GameObject turrets;
-
     public override void ItemEffect()
     {
-        turrets = TurretManager.Instance.turrets;
+        TurretManager.Instance.OnFurryBracelet();
 
-        for (int i = 0; i < turrets.transform.childCount; i++)
-        {
-            turrets.transform.GetChild(i).GetComponent<Turret>().OnFurryBracelet();
-        }
         curCarry++;
     }
 }

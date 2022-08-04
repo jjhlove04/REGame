@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
             if (onNewsOfVictory)
             {
                 NewsOfVictory();
+
+                activationCoefficient -= 0.01f;
             }
 
             trainLevel = value;
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour
     private int annuityGoldAmount = 1;
 
     private bool onNewsOfVictory = false;
-    private GameObject turrets;
+    private GameObject turrets; 
     private int turretAmount = 2;
 
     private TrainScript trainScript;
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
 
     private float expIncrease = 1;
     private float goldIncrease = 1;
+
+    private float activationCoefficient = 0.5f;
 
 
     private void Awake()
@@ -234,5 +238,10 @@ public class GameManager : MonoBehaviour
     public void MoreBigWallet(float goldIncrease)
     {
         this.goldIncrease += goldIncrease;
+    }
+
+    public float ActivationCoefficient(float percent)
+    {
+        return percent * activationCoefficient;
     }
 }

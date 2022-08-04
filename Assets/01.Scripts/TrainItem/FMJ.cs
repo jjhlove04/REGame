@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class FMJ : TrainItem
 {
-    private GameObject turrets;
-
     public override void ItemEffect()
     {
-        turrets = TurretManager.Instance.turrets;
-
-        for (int i = 0; i < turrets.transform.childCount; i++)
-        {
-            turrets.transform.GetChild(i).GetComponent<Turret>().OnFMJ();
-        }
+        TurretManager.Instance.OnFMJ();
 
         curCarry++;
     }
