@@ -36,6 +36,8 @@ public class Turret : MonoBehaviour
     private BulletBar bulletBar;
 
     [SerializeField]
+    private float curShootTimeMax;
+
     private float shootTimeMax;
 
     private float shootTimerMax;
@@ -120,7 +122,8 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        shootTimerMax = shootTimeMax;
+        shootTimerMax = curShootTimeMax;
+        shootTimeMax = curShootTimeMax;
         gameManager = GameManager.Instance;
         trainScript = TrainScript.instance;
         inGameUII = InGameUII._instance;
@@ -181,6 +184,8 @@ public class Turret : MonoBehaviour
             {
                 if (shootTimer >= (shootTimerMax / weapons.Length) * shootCount)
                 {
+                    LookForTargets();
+
                     ShootSound();
 
                     GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
@@ -391,6 +396,8 @@ public class Turret : MonoBehaviour
     {
         redNut = on;
 
+        redNutHealHp = 5 * count;
+
         return this;
     }
 
@@ -421,7 +428,7 @@ public class Turret : MonoBehaviour
 
     private void OffNewsOfVictory()
     {
-        shootTimerMax = shootTimeMax;
+        shootTimerMax = curShootTimeMax;
 
         additionalDamage = 0;
 
@@ -432,7 +439,7 @@ public class Turret : MonoBehaviour
     {
         if (on)
         {
-            shootTimeMax -= shootTimeMax * increase;
+            curShootTimeMax = shootTimeMax - curShootTimeMax * increase * count;
         }
 
         return this;
@@ -440,9 +447,9 @@ public class Turret : MonoBehaviour
 
     public Turret OnWeakLens(bool on, int count)
     {
-        if (onWeakLens)
+        if (count > 1)
         {
-            criticalHitProbability += 7;
+            criticalHitProbability += 7 * (count-1);
         }
 
         onWeakLens = on;
@@ -470,12 +477,14 @@ public class Turret : MonoBehaviour
 
     public Turret OnTaillessPlanaria(bool on, int count)
     {
-        if (onTaillessPlanaria)
+        if (count > 1)
         {
-            heal += 0.1f;
+            heal += 0.1f * (count - 1);
         }
 
         onTaillessPlanaria = on;
+
+        
 
         return this;
     }
@@ -492,7 +501,7 @@ public class Turret : MonoBehaviour
     {
         if (on)
         {
-            theSoleCandyDamage += 0.4f;
+            theSoleCandyDamage = 0.4f * count;
         }
 
         return this;
@@ -500,9 +509,9 @@ public class Turret : MonoBehaviour
 
     public Turret OnFurryBracelet(bool on, int count)
     {
-        if (onFurryBracelet)
+        if (count > 1)
         {
-            onFurryBraceletTime += 0.5f;
+            onFurryBraceletTime += 0.5f * (count-1);
         }
 
         onFurryBracelet = on;
@@ -519,7 +528,7 @@ public class Turret : MonoBehaviour
     {
         onFMJ = on;
 
-        additionalFMJDamage += 0.25f;
+        additionalFMJDamage = 0.25f * count;
 
         return this;
     }
@@ -528,7 +537,7 @@ public class Turret : MonoBehaviour
     {
         onPunchGun = on;
 
-        punchGunPercentage += 6;
+        punchGunPercentage = 6 * count;
 
         return this;
     }
