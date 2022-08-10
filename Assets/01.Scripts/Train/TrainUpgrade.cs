@@ -82,10 +82,18 @@ public class TrainUpgrade : MonoBehaviour
     }
     public void TrainShieldDowngrade()
     {
-        trainInfo.shieldPrice -= trainInfo.shieldPriceUp;
-        testTurretDataBase.resultGold += trainInfo.shieldPrice;
-        TitleUI.UI.ShowShieldUpGradeText();
-        trainInfo.trainMaxShield -= trainInfo.shieldUpgrade;
+        if (trainInfo.trainMaxShield > 50)
+        {
+            trainInfo.shieldPrice -= trainInfo.shieldPriceUp;
+            testTurretDataBase.resultGold += trainInfo.shieldPrice;
+            TitleUI.UI.ShowShieldUpGradeText();
+            trainInfo.trainMaxShield -= trainInfo.shieldUpgrade;
+        }
+        else
+        {
+            warning.transform.GetChild(0).GetComponent<Text>().text = "최소다 너의 방어막";
+            warning.alpha = 1;
+        }
     }
 
     public void TrainHpUpgrade()
@@ -105,9 +113,17 @@ public class TrainUpgrade : MonoBehaviour
     }
     public void TrainHpDowngrade()
     {
-        trainInfo.hpPrice -= trainInfo.hpPriceUp;
-        testTurretDataBase.resultGold += trainInfo.hpPrice;
-        trainInfo.trainMaxHp -= trainInfo.hpUpgrade;
-        TitleUI.UI.ShowHpUpgradeText();
+        if (trainInfo.trainMaxHp > 50)
+        {
+            trainInfo.hpPrice -= trainInfo.hpPriceUp;
+            testTurretDataBase.resultGold += trainInfo.hpPrice;
+            trainInfo.trainMaxHp -= trainInfo.hpUpgrade;
+            TitleUI.UI.ShowHpUpgradeText();
+        }
+        else
+        {
+            warning.transform.GetChild(0).GetComponent<Text>().text = "최소다 너의 체력";
+            warning.alpha = 1;
+        }
     }
 }
