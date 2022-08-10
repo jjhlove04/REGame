@@ -9,6 +9,8 @@ public class TrainUpgrade : MonoBehaviour
 
     private TestTurretDataBase testTurretDataBase;
 
+    public CanvasGroup warning;
+
     private void Start()
     {
         testTurretDataBase = TestTurretDataBase.Instance;
@@ -19,6 +21,14 @@ public class TrainUpgrade : MonoBehaviour
         upGradeBtns[3].GetComponent<Button>().onClick.AddListener( TrainShieldUpgrade);
         upGradeBtns[4].GetComponent<Button>().onClick.AddListener(TrainCountDowngrade);
         upGradeBtns[5].GetComponent<Button>().onClick.AddListener( TrainCountUpgrade);
+    }
+
+    private void Update()
+    {
+        if(warning.alpha >= 0)
+        {
+            warning.alpha = Mathf.Lerp(warning.alpha, 0, Time.deltaTime * 2);
+        }
     }
 
     public void TrainCountUpgrade()
@@ -33,6 +43,11 @@ public class TrainUpgrade : MonoBehaviour
                 trainInfo.trainCountPrice += trainInfo.trainCountPriceUp;
             }
         }
+        else
+        {
+            warning.transform.GetChild(0).GetComponent<Text>().text = "너는 적다 가지고 있는 돈";
+            warning.alpha = 1;
+        }
     }
     public void TrainCountDowngrade()
     {
@@ -42,6 +57,11 @@ public class TrainUpgrade : MonoBehaviour
             testTurretDataBase.resultGold += trainInfo.trainCountPrice;
             --trainInfo.trainCount;
             TitleUI.UI.ShowCountUPGradeText();
+        }
+        else
+        {
+            warning.transform.GetChild(0).GetComponent<Text>().text = "최소다 너의 기차 칸 수";
+            warning.alpha = 1;
         }
     }
 
@@ -53,6 +73,11 @@ public class TrainUpgrade : MonoBehaviour
             trainInfo.shieldPrice += trainInfo.shieldPriceUp;
             TitleUI.UI.ShowShieldUpGradeText();
             trainInfo.trainMaxShield += trainInfo.shieldUpgrade;
+        }
+        else
+        {
+            warning.transform.GetChild(0).GetComponent<Text>().text = "너는 적다 가지고 있는 돈";
+            warning.alpha = 1;
         }
     }
     public void TrainShieldDowngrade()
@@ -71,6 +96,11 @@ public class TrainUpgrade : MonoBehaviour
             trainInfo.hpPrice += trainInfo.hpPriceUp;
             trainInfo.trainMaxHp += trainInfo.hpUpgrade;
             TitleUI.UI.ShowHpUpgradeText();
+        }
+        else
+        {
+            warning.transform.GetChild(0).GetComponent<Text>().text = "너는 적다 가지고 있는 돈";
+            warning.alpha = 1;
         }
     }
     public void TrainHpDowngrade()

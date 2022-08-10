@@ -5,7 +5,7 @@ public class TurretInformation : MonoBehaviour, IPointerEnterHandler, IPointerEx
 {
     TitleUI titleUI;
     public string information;
-    // Start is called before the first frame update
+
     void Start()
     {
         titleUI = TitleUI.UI;

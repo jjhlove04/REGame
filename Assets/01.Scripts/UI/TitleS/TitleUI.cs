@@ -9,6 +9,8 @@ public class TitleUI : MonoBehaviour
 {
     private static TitleUI _ui = new TitleUI();
     public static TitleUI UI { get { return _ui; } }
+    
+    TitleMoveScript titleMoveScript;
 
     public TrainInfo trainInfo;
 
@@ -71,15 +73,18 @@ public class TitleUI : MonoBehaviour
     [Space(20)]
     public Text curShieldText;
     public Text upPanelTP;
+    public Text upPanelMoney;
+
+    public CanvasGroup tpWarning;
 
     public Image cursor;
     [Header("튜토리얼 관련")]
     
     public GameObject[] tutorialPanels;
 
-
     private void Awake()
     {
+        titleMoveScript = GetComponent<TitleMoveScript>();
 
         RegisterPanelOpen();
         //ShowShieldUpGradeText();
@@ -130,6 +135,7 @@ public class TitleUI : MonoBehaviour
             upGradePanels[0].SetActive(true);
             TitleUI.UI.titleBack = true;
             TitleMoveScript.indexNum = 4;
+            titleMoveScript.isback = false; 
         });
         upGradeBtns[1].onClick.AddListener(() =>
         {
@@ -137,7 +143,9 @@ public class TitleUI : MonoBehaviour
             upGradePanels[1].SetActive(true);
             TitleMoveScript.indexNum = 4;
             TitleUI.UI.titleBack = true;
-            
+
+            titleMoveScript.isback = false;
+
         });
         upGradeBtns[2].onClick.AddListener(() =>
         {
@@ -145,6 +153,8 @@ public class TitleUI : MonoBehaviour
             upGradePanels[2].SetActive(true);
             TitleMoveScript.indexNum = 4;
             TitleUI.UI.titleBack = true;
+
+            titleMoveScript.isback = false;
         });
 
         if(TestTurretDataBase.Instance.level == 1)
@@ -190,6 +200,8 @@ public class TitleUI : MonoBehaviour
         // {
         //     RegisterDataConnect();
         // }
+
+
     }
     private void Update()
     {
@@ -203,6 +215,11 @@ public class TitleUI : MonoBehaviour
         levelTxt.text = TestTurretDataBase.Instance.level.ToString();
 
         cursor.transform.position = Input.mousePosition;
+
+        if (tpWarning.alpha >= 0)
+        {
+            tpWarning.alpha = Mathf.Lerp(tpWarning.alpha, 0, Time.deltaTime * 2);
+        }
     }
 
 
@@ -380,6 +397,7 @@ public class TitleUI : MonoBehaviour
     public void ShowTPText()
     {
         upPanelTP.text = string.Format("Retain T.P : {0}", TestTurretDataBase.Instance.curTp);
+        upPanelMoney.text = "보유 돈 : " + TestTurretDataBase.Instance.resultGold;
     }
 
     

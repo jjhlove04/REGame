@@ -164,7 +164,12 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
                 }
             }
         }
-
-
+        else
+        {
+            if (this.gameObject.GetComponent<Button>().interactable == true)
+            {
+                TitleUI.UI.tpWarning.alpha = 1;
+            }
+        }
     }
 }

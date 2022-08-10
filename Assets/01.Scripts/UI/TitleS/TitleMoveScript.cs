@@ -30,16 +30,17 @@ public class TitleMoveScript : MonoBehaviour
     public GameObject turretC;
     public GameObject turretP;
     public GameObject towerP;
-    bool isback = false;
+    public bool isback = false;
+    float backTime = 0;
 
 
     private void Awake() 
     {
-        
-        
         repairBtn = repairBtn.GetComponent<Button>();
         btnGroupRect = btnGroup.GetComponent<RectTransform>();
         resultPanelRect = resultPanel.GetComponent<RectTransform>();
+
+        isback = true;
 
         //시작버튼
         titleActionBtn[0].onClick.AddListener(() => {
@@ -54,6 +55,8 @@ public class TitleMoveScript : MonoBehaviour
                     TutorialManager._instance.ProcessTutorial(TutorialManager._instance.processIndex);
                 TutorialManager._instance.processIndex++;
             }
+
+            isback = false;
         });
 
         if (TestTurretDataBase.Instance.isfirst)
@@ -66,6 +69,8 @@ public class TitleMoveScript : MonoBehaviour
             indexNum = 2;
             TitleUI.UI.titleBack = true;
             BtnSlide(1);
+
+            isback = false;
         });
          //통계 버튼
         titleActionBtn[2].onClick.AddListener(()=> {
@@ -74,6 +79,8 @@ public class TitleMoveScript : MonoBehaviour
             indexNum = 3;
             BtnSlide(1);
             backBtn.SetActive(true);
+
+            isback = false;
         });
          //컬렉션 버튼
         titleActionBtn[3].onClick.AddListener(()=> {
@@ -81,6 +88,9 @@ public class TitleMoveScript : MonoBehaviour
             timelines[4].Play();
             indexNum = 3;
             BtnSlide(1);
+            backBtn.SetActive(true);
+
+            isback = false;
         });
          //설정 버튼
         titleActionBtn[4].onClick.AddListener(()=> {
@@ -89,6 +99,8 @@ public class TitleMoveScript : MonoBehaviour
             indexNum = 3;
             BtnSlide(1);
             TitleUI.UI.titleBack = true;
+            
+            isback = false;
         }); 
           //종료 버튼
         titleActionBtn[5].onClick.AddListener(()=> {
@@ -138,11 +150,34 @@ public class TitleMoveScript : MonoBehaviour
         }
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape))
+    private void Update()
+    {
+        if (!isback)
+        {
+            titleActionBtn[0].interactable = false;
+            titleActionBtn[1].interactable = false;
+            titleActionBtn[3].interactable = false;
+            titleActionBtn[5].interactable = false;
+            backTime += Time.deltaTime;
+            if (backTime >= 1.1f)
+            {
+                if(!TestTurretDataBase.Instance.isfirst)
+                {
+                    titleActionBtn[1].interactable = true;
+                }
+                titleActionBtn[0].interactable = true;
+                titleActionBtn[3].interactable = true;
+                titleActionBtn[5].interactable = true;
+                isback = true;
+                backTime = 0f;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isback)
         {
             EscapeFunc();
         }
+
         if(Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log(indexNum);
@@ -152,41 +187,53 @@ public class TitleMoveScript : MonoBehaviour
     void EscapeFunc()
     {
         if (indexNum == 1)
-                {
-                    //timelines[1].Play();
-                    TitleUI.UI.ReadySetUpPanel(2);
-                    BtnSlide(2);
-                    backBtn.SetActive(false);
-                    TitleUI.UI.titleBack = false;
-                }
-                if (indexNum == 2)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
-                    }
+        {
+            //timelines[1].Play();
+            TitleUI.UI.ReadySetUpPanel(2);
+            BtnSlide(2);
+            backBtn.SetActive(false);
+            TitleUI.UI.titleBack = false;
+            indexNum = 0;
 
-                    //timelines[3].Play();
-                    BtnSlide(2);
-                    TitleUI.UI.titleBack = false;
+            isback = false;
+        }
+        if (indexNum == 2)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
+            }
 
-                }
-                if (indexNum == 3)
-                {
-                    timelines[5].Play();
-                    BtnSlide(3);
-                    collectionPanel.SetActive(false);
-                }
-                //업그레이드 화면에서 나가기
-                if (indexNum == 4)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        TitleUI.UI.upGradePanels[i].SetActive(false);
-                        TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
-                    }
-                    indexNum = 2;
-                }
+            //timelines[3].Play();
+            BtnSlide(2);
+            TitleUI.UI.titleBack = false;
+            indexNum = 0;
+
+            isback = false;
+
+        }
+        if (indexNum == 3)
+        {
+            timelines[5].Play();
+            BtnSlide(3);
+            collectionPanel.SetActive(false);
+            indexNum = 0;
+
+            isback = false;
+        }
+
+        //업그레이드 화면에서 나가기
+        if (indexNum == 4)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                TitleUI.UI.upGradePanels[i].SetActive(false);
+                TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
+            }
+            indexNum = 2;
+
+            isback = false;
+        }
     }
 
     public void InputBackBtn()

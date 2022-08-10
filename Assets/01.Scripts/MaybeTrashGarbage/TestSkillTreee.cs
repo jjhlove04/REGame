@@ -7,7 +7,6 @@ public class TestSkillTreee : MonoBehaviour
 
     public GameObjectBool btnDic;
 
-    private GameObject gameObj;
 
     private void OnEnable()
     {
