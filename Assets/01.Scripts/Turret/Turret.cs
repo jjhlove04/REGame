@@ -182,7 +182,7 @@ public class Turret : MonoBehaviour
             shootTimer += Time.deltaTime;
             if (bulAmount > 0)
             {
-                if (shootTimer >= (shootTimerMax / weapons.Length) * shootCount)
+                if (shootTimer >= ((shootTimerMax / weapons.Length) * shootCount)*Random.Range(0.9f,1.1f))
                 {
                     LookForTargets();
 

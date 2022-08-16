@@ -183,7 +183,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (Mathf.Abs(transform.position.x) <= target.position.x+distanceX)
+        if (Mathf.Abs(transform.position.x) <= target.position.x+distanceX+1)
         {
             run = Vector3.Distance(transform.position, target.position + new Vector3(0, 0, randomZ)) > distance;
             //EnemyLimitMoveX();
