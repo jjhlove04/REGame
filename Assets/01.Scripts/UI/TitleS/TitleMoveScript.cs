@@ -9,6 +9,8 @@ using UnityEngine.Timeline;
 
 public class TitleMoveScript : MonoBehaviour
 {
+    public ItemContainer itemContainer;
+
     // 0: 스타트 버튼 . 1: 업그레이드 버튼, 2: 통계 버튼 , 3: 도감 버튼, 4: 설정 버튼, 5: 종료 버튼, 6: 이전화면
     public Button[] titleActionBtn;
     //0: start버튼 눌렀을 때 실행되는 타임라인, 1: 뒤로가기 눌렀을떄 실행되는 타임라인, 2: 업그레이드 눌렀을때 실행되는 타임라인 , 3:업그레이드에서 뒤로가기, 4: 블러 타임라인, 5:블러종료
@@ -175,7 +177,14 @@ public class TitleMoveScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) && isback)
         {
-            EscapeFunc();
+            if (!itemContainer.isOnPop)
+            {
+                EscapeFunc();
+            }
+            else if(itemContainer.isOnPop)
+            {
+                itemContainer.CloseFunc();
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.M))
