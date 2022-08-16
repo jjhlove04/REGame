@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     public State state;
 
+    public delegate void getGoldEvent();
+
+    public getGoldEvent getGold;
+
     [SerializeField]
     private float gameTime = 0f;
     public float gameSpeed = 1f;
@@ -34,7 +38,15 @@ public class GameManager : MonoBehaviour
     {
         get { return goldAmount; }
 
-        set { goldAmount = (int)(value * goldIncrease); }
+        set 
+        {
+            if (value > 0)
+            {
+                goldAmount = (int)(value * goldIncrease);
+            }
+            
+            getGold();
+        }
     }
 
     private float expAmount = 0;

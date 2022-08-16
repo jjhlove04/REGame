@@ -20,6 +20,8 @@ public class testSkillScript : MonoBehaviour
     public int clickCount;
     float clickTime;
 
+    private GameObject click;
+
 
     void Start()
     {
@@ -27,12 +29,16 @@ public class testSkillScript : MonoBehaviour
         testScripts = testScripttss.Instance;
         inGameUII = InGameUII._instance;
 
+        click = transform.Find("Click").gameObject;
+
+        gameManager.getGold += EnoughGold;
+
         gameObject.TryGetComponent(out Button btnm);
         gameObject.TryGetComponent(out Image img);
 
         CameraManager cameraManager = CameraManager.Instance;
 
-        gameObject.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.turretPtice + "G";
+        gameObject.transform.GetChild(0).GetComponent<Text>().text = gameManager.turretPtice + "G";
 
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;
@@ -130,7 +136,7 @@ public class testSkillScript : MonoBehaviour
             {
                 if (onTurret)
                 {
-                    testScripttss.Instance.Reload();
+                    testScripts.Reload();
                 }
                 else
                 {
@@ -170,4 +176,8 @@ public class testSkillScript : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(new Vector3(-30, -50, 0));//Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(-30, -50, 0)), Time.unscaledDeltaTime);
     }
 
+    private void EnoughGold()
+    {
+        click.SetActive(gameManager.GoldAmount > gameManager.turretPtice);
+    }
 }
