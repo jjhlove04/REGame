@@ -104,6 +104,7 @@ public class InGameUII : MonoBehaviour
 
     public GameObject selectPanel;
     public GameObject[] selectPanelBtns;
+    public GameObject gariImg;
     private float selectTime = 0;
     private bool onSelect;
 
@@ -300,16 +301,18 @@ public class InGameUII : MonoBehaviour
             itemPanel.alpha = 0;
         }
 
-        //if (onSelect)
-        //{
-        //    selectTime += Time.deltaTime;
+        if (onSelect)
+        {
+            selectTime += Time.deltaTime;
 
-        //    if (selectTime >= 1.6f)
-        //    {
-        //        Time.timeScale = 0;
-        //        GameManager.Instance.state = GameManager.State.Stop;
-        //    }
-        //}
+            if (selectTime >= 1.6f)
+            {
+                //Time.timeScale = 0;
+                //GameManager.Instance.state = GameManager.State.Stop;
+                gariImg.SetActive(false);
+
+            }
+        }
 
     }
 
@@ -364,7 +367,8 @@ public class InGameUII : MonoBehaviour
 
         GameManager.Instance.state = GameManager.State.Play;
         selectTime = 0;
-        //onSelect = false;
+        onSelect = false;
+        gariImg.SetActive(true);
         SpawnMananger.Instance.stopSpawn = false;
         BackGround back = FindObjectOfType<BackGround>();
         back.speed = 0.3f;
@@ -584,6 +588,7 @@ public class InGameUII : MonoBehaviour
                 BackGround back = FindObjectOfType<BackGround>();
                 back.speed = 0;
 
+
                 gameManager.ExpAmount -= gameManager.maxExp;
                 if (gameManager.state == GameManager.State.Play)
                 {
@@ -595,7 +600,7 @@ public class InGameUII : MonoBehaviour
                     {
                         TabParticleObj.Play();
                     }
-                    //onSelect = true;
+                    onSelect = true;
                     ShowSelectPanel();
                 }
                 gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp;

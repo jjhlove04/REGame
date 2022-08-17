@@ -7,7 +7,8 @@ public class EnamyManager : MonoBehaviour
     private float damage = 1;
     private float healthAmountMax = 1;
 
-    private bool isUp = false;
+    private bool isHUp = false;
+    private bool isDUp = false;
 
     public List<EnemyData> enemies = new List<EnemyData>();
 
@@ -18,21 +19,24 @@ public class EnamyManager : MonoBehaviour
     }
     private void Update()
     {
-        if (spawnManager.round % 9 == 0 || spawnManager.round % 14 == 0)
+        if (spawnManager.round % 9 == 0)
         {
-            isUp = true;
-
+            isHUp = true;
+        }
+        else if(spawnManager.round % 14 == 0)
+        {
+            isDUp = true;
         }
 
-        if (spawnManager.round % 10 == 0 && isUp)
+        if (spawnManager.round % 10 == 0 && isHUp)
         {
             enemies[0].healthAmountMax += 1;
-            isUp = false;
+            isHUp = false;
         }
-        else if (spawnManager.round % 15 == 0 && isUp)
+        else if (spawnManager.round % 15 == 0 && isDUp)
         {
             enemies[0].damage += 1;
-            isUp = false;
+            isDUp = false;
         }
     }
 
