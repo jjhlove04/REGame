@@ -48,6 +48,8 @@ public class Enemy : MonoBehaviour
 
     public bool onFurryBracelet= false;
 
+    private float changeSpeed;
+
 
     protected virtual void OnEnable()
     {
@@ -66,6 +68,7 @@ public class Enemy : MonoBehaviour
         run = true;
         AttackingTime();
         RandomAnimSpeed();
+        changeSpeed = speed;
     }
     
     private void Start()
@@ -129,6 +132,15 @@ public class Enemy : MonoBehaviour
         if (transform.position.y < 0)
         {
             transform.position += new Vector3(0, 1, 0);
+        }
+
+        if(SpawnMananger.Instance.stopSpawn)
+        {
+            speed = 0;
+        }
+        else
+        {
+            speed = changeSpeed;
         }
     }
 

@@ -101,7 +101,7 @@ public class testScripttss : MonoBehaviour
         string result = string.Format("{0:0.0}", gameTime);
         BulletCheck();
         NextWaveCoolBtn();
-        if (Input.GetKeyDown(KeyCode.Space) && spawnMananger.round == 1)
+        if (spawnMananger.round == 1)
         {
             if (speedBtnCount != 0)
             {
@@ -114,9 +114,7 @@ public class testScripttss : MonoBehaviour
 
         if (spawnMananger.round > spawnMananger.maxRound)
         {
-            inGameUI.warningtxt.color = new Color(1, 0f, 0, 1);
-            inGameUI.warningIcon.color = new Color(1, 0f, 0, 1);
-            inGameUI.warningtxt.GetComponent<Text>().text = "Press \"x\"";
+
         }
 
         if (Input.GetKeyDown(KeyCode.Period))

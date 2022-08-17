@@ -300,22 +300,25 @@ public class InGameUII : MonoBehaviour
             itemPanel.alpha = 0;
         }
 
-        if (onSelect)
-        {
-            selectTime += Time.deltaTime;
+        //if (onSelect)
+        //{
+        //    selectTime += Time.deltaTime;
 
-            if (selectTime >= 1.6f)
-            {
-                Time.timeScale = 0;
-                GameManager.Instance.state = GameManager.State.Stop;
-            }
-        }
+        //    if (selectTime >= 1.6f)
+        //    {
+        //        Time.timeScale = 0;
+        //        GameManager.Instance.state = GameManager.State.Stop;
+        //    }
+        //}
 
     }
 
     void Timer()
     {
-        milliSec += Time.deltaTime;
+        if (!SpawnMananger.Instance.stopSpawn)
+        {
+            milliSec += Time.deltaTime;
+        }
         waveTxt.text = string.Format("{0:D2}:{1:D2}:{2:D2}", miniute, second, (int)milliSec);
 
         if((int)milliSec > 59)
@@ -359,10 +362,12 @@ public class InGameUII : MonoBehaviour
         noTabParticleObj.Stop();
         TabParticleObj.Stop();
 
-        Time.timeScale = 1;
         GameManager.Instance.state = GameManager.State.Play;
         selectTime = 0;
-        onSelect = false;
+        //onSelect = false;
+        SpawnMananger.Instance.stopSpawn = false;
+        BackGround back = FindObjectOfType<BackGround>();
+        back.speed = 0.3f;
     }
 
     public void ClearSelect()
@@ -574,7 +579,11 @@ public class InGameUII : MonoBehaviour
             {
                 gameManager.TrainLevel++;
                 TrainScript.instance.LevelUp();
-                gameManager.gameSpeed = 0f;
+                //gameManager.gameSpeed = 0f; //시간 정지
+                SpawnMananger.Instance.stopSpawn = true;
+                BackGround back = FindObjectOfType<BackGround>();
+                back.speed = 0;
+
                 gameManager.ExpAmount -= gameManager.maxExp;
                 if (gameManager.state == GameManager.State.Play)
                 {
@@ -586,7 +595,7 @@ public class InGameUII : MonoBehaviour
                     {
                         TabParticleObj.Play();
                     }
-                    onSelect = true;
+                    //onSelect = true;
                     ShowSelectPanel();
                 }
                 gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp;

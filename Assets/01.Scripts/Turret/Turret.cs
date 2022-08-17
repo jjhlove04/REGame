@@ -179,7 +179,10 @@ public class Turret : MonoBehaviour
     {
         if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying && Vector3.Distance(transform.position, targetEnemy.position) < 80)
         {
-            shootTimer += Time.deltaTime;
+            if (!SpawnMananger.Instance.stopSpawn)
+            {
+                shootTimer += Time.deltaTime;
+            }
             if (bulAmount > 0)
             {
                 if (shootTimer >= ((shootTimerMax / weapons.Length) * shootCount)*Random.Range(0.9f,1.1f))

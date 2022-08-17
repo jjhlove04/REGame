@@ -244,21 +244,24 @@ public class TrainScript : MonoBehaviour
     {
         if (MaskOfCriminal())
         {
-            if (curTrainShield <= 0)
+            if (!SpawnMananger.Instance.stopSpawn)
             {
-                CurTrainHp -= damage;
-                testScripttss.Instance.TakeDamageHpBar();
-
-                /*for (int i = 0; i < trainhit.Length; i++)
+                if (curTrainShield <= 0)
                 {
-                    trainhit[i].Hit();
-                }*/
-                SmokeTrain();
-            }
+                    CurTrainHp -= damage;
+                    testScripttss.Instance.TakeDamageHpBar();
 
-            else
-            {
-                curTrainShield -= damage;
+                    /*for (int i = 0; i < trainhit.Length; i++)
+                    {
+                        trainhit[i].Hit();
+                    }*/
+                    SmokeTrain();
+                }
+
+                else
+                {
+                    curTrainShield -= damage;
+                }
             }
 
             if (explosiveShield)

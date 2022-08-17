@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
 
     public getGoldEvent getGold;
 
-    [SerializeField]
-    private float gameTime = 0f;
     public float gameSpeed = 1f;
 
     public int turretPtice = 10;
@@ -126,8 +124,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        gameTime = Time.unscaledTime;
-        gameTime++;
         if (state == State.Play)
         {
             Time.timeScale = gameSpeed;

@@ -20,8 +20,10 @@ public class EnemyGuardian : Enemy
 
         AnimationState(false);
 
-        atime += Time.deltaTime;
-
+        if (!SpawnMananger.Instance.stopSpawn)
+        {
+            atime += Time.deltaTime;
+        }
         if (atime >= enemyStat.animTime + enemyStat.sAttackTime)
         {
             AnimationState(true);

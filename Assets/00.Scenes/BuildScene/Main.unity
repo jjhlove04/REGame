@@ -8447,6 +8447,7 @@ GameObject:
   - component: {fileID: 614713291}
   - component: {fileID: 614713290}
   - component: {fileID: 614713289}
+  - component: {fileID: 614713292}
   m_Layer: 5
   m_Name: Select 1 Panel
   m_TagString: Untagged
@@ -8570,6 +8571,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614713287}
   m_CullTransparentMesh: 1
+--- !u!114 &614713292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614713287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b118089f97163e4f9bd087a5eaa014a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &620974272
 GameObject:
   m_ObjectHideFlags: 0
@@ -10315,6 +10328,7 @@ GameObject:
   - component: {fileID: 736638424}
   - component: {fileID: 736638423}
   - component: {fileID: 736638422}
+  - component: {fileID: 736638425}
   m_Layer: 5
   m_Name: Select 3 Panel
   m_TagString: Untagged
@@ -10438,6 +10452,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736638420}
   m_CullTransparentMesh: 1
+--- !u!114 &736638425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736638420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b118089f97163e4f9bd087a5eaa014a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &738128476
 GameObject:
   m_ObjectHideFlags: 0
@@ -11463,6 +11489,7 @@ GameObject:
   - component: {fileID: 791170005}
   - component: {fileID: 791170004}
   - component: {fileID: 791170003}
+  - component: {fileID: 791170006}
   m_Layer: 5
   m_Name: Select 2 Panel
   m_TagString: Untagged
@@ -11586,6 +11613,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791170001}
   m_CullTransparentMesh: 1
+--- !u!114 &791170006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791170001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b118089f97163e4f9bd087a5eaa014a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &792173534 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7518850190609525136, guid: 832cec988421d414b8672b0b2d40f727, type: 3}
@@ -22905,7 +22944,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1236204339
 RectTransform:
@@ -24831,7 +24870,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &1321207655
 RectTransform:
@@ -25383,7 +25422,7 @@ MonoBehaviour:
     FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 74.86755
+    FarClipPlane: 74.78629
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -30786,7 +30825,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
-  gameTime: 0
   gameSpeed: 1
   turretPtice: 100
   maxExp: 30
