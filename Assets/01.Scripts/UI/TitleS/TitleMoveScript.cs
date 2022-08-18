@@ -113,7 +113,6 @@ public class TitleMoveScript : MonoBehaviour
         //이전화면 버튼
         titleActionBtn[6].onClick.AddListener(() =>{
             InputBackBtn();
-            Debug.Log("Back");
         });
 
         //수리버튼 눌렀을때

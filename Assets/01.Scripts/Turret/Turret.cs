@@ -293,6 +293,16 @@ public class Turret : MonoBehaviour
         TaillessPlanaria();
     }
 
+    public void LevelUpDamage(int curDamage, float distance, float shootTime, int bullet, int rPrice)
+    {
+        damage = curDamage;
+        maxDistance = distance;
+        curShootTimeMax = shootTime;
+        maxBulletAmount = bullet;
+        reloadPrice = rPrice;
+
+    }
+
     public void OnDetection()
     {
         detection = true;

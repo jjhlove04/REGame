@@ -38,9 +38,9 @@ public class TrainUpgrade : MonoBehaviour
             if (trainInfo.trainCount < 3)
             {
                 ++trainInfo.trainCount;
-                TitleUI.UI.ShowCountUPGradeText();
                 testTurretDataBase.resultGold -= trainInfo.trainCountPrice;
                 trainInfo.trainCountPrice += trainInfo.trainCountPriceUp;
+                TitleUI.UI.ShowCountUPGradeText();
             }
         }
         else
@@ -71,8 +71,8 @@ public class TrainUpgrade : MonoBehaviour
         {
             testTurretDataBase.resultGold -= trainInfo.shieldPrice;
             trainInfo.shieldPrice += trainInfo.shieldPriceUp;
-            TitleUI.UI.ShowShieldUpGradeText();
             trainInfo.trainMaxShield += trainInfo.shieldUpgrade;
+            TitleUI.UI.ShowShieldUpGradeText();
         }
         else
         {
@@ -86,8 +86,8 @@ public class TrainUpgrade : MonoBehaviour
         {
             trainInfo.shieldPrice -= trainInfo.shieldPriceUp;
             testTurretDataBase.resultGold += trainInfo.shieldPrice;
-            TitleUI.UI.ShowShieldUpGradeText();
             trainInfo.trainMaxShield -= trainInfo.shieldUpgrade;
+            TitleUI.UI.ShowShieldUpGradeText();
         }
         else
         {

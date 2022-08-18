@@ -112,6 +112,13 @@ public class InGameUII : MonoBehaviour
     public Image hpBar;
     public Text gameLevel;
 
+    //포탑 스텟 업그레이드 부분
+    private int turretDamage = 1;
+    private float distance = 30f;
+    private float shootTime = 1f;
+    private int bulletAmount = 20;
+    private int rPrice = 20;
+
     [Header("���������۰���")]
     public CanvasGroup itemPanel;
     public Image itemBuffPanel;
@@ -589,6 +596,7 @@ public class InGameUII : MonoBehaviour
                 back.speed = 0;
 
 
+
                 gameManager.ExpAmount -= gameManager.maxExp;
                 if (gameManager.state == GameManager.State.Play)
                 {
@@ -603,7 +611,26 @@ public class InGameUII : MonoBehaviour
                     onSelect = true;
                     ShowSelectPanel();
                 }
-                gameManager.maxExp = (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1))) * (gameManager.TrainLevel / gameManager.TrainLevel - 1) + gameManager.maxExp;
+
+                turretDamage += 3;
+                distance += 0.8f;
+                shootTime -= (shootTime * 0.05f);
+                bulletAmount += 1;
+                rPrice = 1;
+
+                for (int i = 0; i < testScriptts.turretData.Count; i++)
+                {
+                    if(testScriptts.turretData[i].TryGetComponent<Turret>(out Turret tur))
+                    {
+                        tur.LevelUpDamage(turretDamage, distance, shootTime, bulletAmount, rPrice);
+                    }
+                }              
+
+                gameManager.maxExp = 
+                    (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1)))
+                    * (gameManager.TrainLevel / (gameManager.TrainLevel - 1)) + gameManager.maxExp;
+
+
                 expBar.fillAmount = 0;
             }
         }
