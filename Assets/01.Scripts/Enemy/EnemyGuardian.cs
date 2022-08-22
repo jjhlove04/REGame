@@ -18,7 +18,7 @@ public class EnemyGuardian : Enemy
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * 5);
 
-        print(run);
+        print(run); 
 
         AnimationState(!run);
 
