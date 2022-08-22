@@ -25,7 +25,6 @@ public class TestTurretDataBase : MonoBehaviour
     public int resultGold = 0;
     public int killEnemy = 0;
     public int round;
-    public int createPrice;
 
     public int level;
     public int curTp;
@@ -62,22 +61,11 @@ public class TestTurretDataBase : MonoBehaviour
         gameManager = GameManager.Instance;
         ingameUII = InGameUII._instance;
 
-        if (gameManager.GoldAmount >= gameManager.turretPtice)
-        {
-            ingameUII.CreateOutMoney(gameManager.turretPtice);
-            testScripttss.Instance.Create(curTurretType["0-0"]);
+        testScripttss.Instance.Create(curTurretType["0-0"]);
 
-            img.color = new Color(1, 1, 1, 0);
-            img.transform.GetChild(0).gameObject.SetActive(false);
-        }
-        else
-        {
-            ingameUII.warningtxt.color = new Color(1, 0.8f, 0, 1);
-            ingameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
-            ingameUII.GoldWarning.alpha = 1;
-            ingameUII.warningtxt.GetComponent<Text>().text = "Not Enough Gold";
+        img.color = new Color(1, 1, 1, 0);
+        img.transform.GetChild(0).gameObject.SetActive(false);
 
-        }
         testScripttss.Instance.turPos = count;
     }
 

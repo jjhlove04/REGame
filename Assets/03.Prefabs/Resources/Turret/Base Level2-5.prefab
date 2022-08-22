@@ -1252,13 +1252,13 @@ MonoBehaviour:
   enemy:
     serializedVersion: 2
     m_Bits: 128
-  maxBulletAmount: 20
-  bulAmount: 20
-  turretPrice: 0
-  reloadPrice: 2
+  maxBulletAmount: 60
+  bulAmount: 60
+  turretPrice: 250
+  reloadPrice: 60
   bulletBar: {fileID: 6938872213492700821}
-  shootTimeMax: 0.41
-  damage: 1
+  curShootTimeMax: 1
+  damage: 3
   detection: 0
   turCount: 0
   turType: 0

@@ -107,7 +107,10 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
     }
     private void clickBtn()
     {
-        TryGetComponent(out Button btn);
+        if(TryGetComponent(out Button btn))
+        {
+            btn.interactable = false;
+        }
 
         if (floor != null)
         {
@@ -125,7 +128,6 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
             }
         }
 
-        btn.interactable = false;
         isUpgrade = true;
 
         if (testsk.btnDic[this.transform.parent.gameObject.ToString()] == true)
@@ -152,7 +154,18 @@ public class SkillTreeBtnn : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        TitleUI.UI.explainTurretImage.sprite = this.gameObject.GetComponent<Image>().sprite;
+        gameObj = Resources.Load<GameObject>("Turret/" + turretGameObj);
+        if(gameObj.TryGetComponent(out Turret tur))
+        {
+            titleUI.explainTxt[0].text = tur.turretPrice.ToString();
+            titleUI.explainTxt[1].text = tur.ReturnDamage().ToString();
+            titleUI.explainTxt[2].text = tur.ReturnShootTimer().ToString();
+            titleUI.explainTxt[3].text = tur.ReturnDistance().ToString();
+            titleUI.explainTxt[4].text = tur.maxBulletAmount.ToString();
+        }
+        titleUI.explainTurretImage.sprite = this.gameObject.GetComponent<Image>().sprite;
+
+
         if (TestTurretDataBase.Instance.curTp >= 1)
         {
             if (gameObject.TryGetComponent(out Button btn))

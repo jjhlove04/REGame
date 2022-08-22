@@ -571,6 +571,20 @@ public class Turret : MonoBehaviour
         return Random.Range(0, 100) <= gameManager.ActivationCoefficient(punchGunPercentage) && onPunchGun;
     }
 
+    public int ReturnDamage()
+    {
+        return damage;
+    }
+    public float ReturnDistance()
+    {
+        return maxDistance;
+    }
+
+    public float ReturnShootTimer()
+    {
+        return curShootTimeMax;
+    }
+
     private void OnMouseEnter()
     {
         //gameObject.transform.GetChild(2).gameObject.SetActive(true);

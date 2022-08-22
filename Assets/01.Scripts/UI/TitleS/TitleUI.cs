@@ -23,6 +23,7 @@ public class TitleUI : MonoBehaviour
     public Button[] upGradeBtns; //0번 터렛, 1번 기차, 2번 타워
     public GameObject[] upGradePanels; //0번 터렛, 1번 기차, 2번 타워
     public Image explainTurretImage;
+    public Text[] explainTxt;
     public Text[] TurretInfo;
     public Image informationPanel;
 

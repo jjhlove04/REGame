@@ -204,9 +204,11 @@ public class testScripttss : MonoBehaviour
                 gameInst.transform.position = turretPoses[turPos].position;
                 gameInst.transform.SetParent(trainScript.transform.Find("Turrets"));
                 tT.onTurret = true;
+
                 turretData[turPos] = gameInst;
                 gameManager.GoldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
-                testTurretDataBase.createPrice += turretData[turPos].GetComponent<Turret>().turretPrice;
+
+                inGameUI.CreateOutMoney(turretData[turPos].GetComponent<Turret>().turretPrice);
                 inGameUI.ShowTurPrice();
             }
             else

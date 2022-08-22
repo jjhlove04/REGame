@@ -178,6 +178,6 @@ public class testSkillScript : MonoBehaviour
 
     private void EnoughGold()
     {
-        click.SetActive(gameManager.GoldAmount > gameManager.turretPtice && !onTurret);
+        click.SetActive(gameManager.GoldAmount >= gameManager.turretPtice && !onTurret);
     }
 }

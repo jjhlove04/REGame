@@ -299,11 +299,11 @@ public class InGameUII : MonoBehaviour
             worldCanvas.SetActive(false);
         }
 
-        if (Input.GetKey(KeyCode.I))
+        if (Input.GetKey(KeyCode.Space))
         {
             itemPanel.alpha = 1;
         }
-        if (Input.GetKeyUp(KeyCode.I))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             itemPanel.alpha = 0;
         }
