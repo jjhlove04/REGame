@@ -177,7 +177,7 @@ public class Turret : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (targetEnemy != null && !targetEnemy.gameObject.GetComponent<Enemy>().isDying && Vector3.Distance(transform.position, targetEnemy.position) < 80)
+        if (targetEnemy != null && !targetEnemy.GetComponent<Enemy>().isDying && Vector3.Distance(transform.position, targetEnemy.position) < 80)
         {
             if (!SpawnMananger.Instance.stopSpawn)
             {
@@ -197,7 +197,6 @@ public class Turret : MonoBehaviour
 
                     SelectBullet(gameObject);
 
-
                     TestTurretDataBase.Instance.resultDamage += (damage+ additionalDamage);
                     bulAmount--;
 
@@ -205,11 +204,15 @@ public class Turret : MonoBehaviour
 
                     shootCount++;
 
+                    print(shootTimer);
+
                     if (shootCount == weapons.Length+1)
                     {
                         shootTimer = 0;
                         shootCount = 1;
                     }
+
+                    print(shootTimer);
 
                     if (IsRedNut())
                     {
@@ -286,11 +289,19 @@ public class Turret : MonoBehaviour
             .SetRedNut(IsRedNut())
             .SetTaillessPlanaria(onTaillessPlanaria)
             .SetWeakLens(IsWeakLens())
-            .SetFurryBracelet(FurryBaracelet(),onFurryBraceletTime)
+            .SetFurryBracelet(FurryBaracelet(), onFurryBraceletTime)
             .SetFMJAdditionalDamage(onFMJ, additionalFMJDamage)
-            .SetOnPunchGun(IsPuchGun());
+            .SetOnPunchGun(IsPuchGun())
+            .ThisTurret(this);
 
         TaillessPlanaria();
+    }
+
+    public void EnemyMissing()
+    {
+        shootTimer = 2;
+
+        bulAmount++;
     }
 
     public void LevelUpDamage(int curDamage, float distance, float shootTime, int bullet, int rPrice)

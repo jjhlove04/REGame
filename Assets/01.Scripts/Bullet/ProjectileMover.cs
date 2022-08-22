@@ -40,6 +40,10 @@ public class ProjectileMover : MonoBehaviour
     protected GameObject redNut;
     protected GameObject taillessPlannaria;
 
+    protected Turret turret;
+
+    private bool check = false;
+
     void Start()
     {
         if (flash != null)
@@ -74,6 +78,14 @@ public class ProjectileMover : MonoBehaviour
         else
         {
             moveDir = lastMoveDir;
+
+            if (!check)
+            {
+                check = true;
+
+                turret.EnemyMissing();
+            }
+            
         }
 
         // 이동
@@ -120,8 +132,6 @@ public class ProjectileMover : MonoBehaviour
 
     public ProjectileMover SetRedNut(bool onRedNut)
     {
-        print(onRedNut);
-
         this.onRedNut = onRedNut;
 
         return this;
@@ -129,8 +139,6 @@ public class ProjectileMover : MonoBehaviour
 
     public ProjectileMover SetTaillessPlanaria(bool onTaillessPlanaria)
     {
-        print(onTaillessPlanaria);
-
         this.onTaillessPlanaria = onTaillessPlanaria;
 
         return this;
@@ -138,8 +146,6 @@ public class ProjectileMover : MonoBehaviour
 
     public ProjectileMover SetWeakLens(bool onWeakLens)
     {
-        print(onWeakLens);
-
         this.onWeakLens = onWeakLens;
 
         return this;
@@ -147,8 +153,6 @@ public class ProjectileMover : MonoBehaviour
 
     public ProjectileMover SetFurryBracelet(bool onFurryBracelet, float time)
     {
-        print(onFurryBracelet);
-
         this.onFurryBracelet = onFurryBracelet;
         this.time = time;
 
@@ -157,8 +161,6 @@ public class ProjectileMover : MonoBehaviour
 
     public ProjectileMover SetFMJAdditionalDamage(bool FMJ,float damage)
     {
-        print(FMJ);
-
         additionalDamage = damage;
         this.onFMJ = FMJ;
 
@@ -167,9 +169,14 @@ public class ProjectileMover : MonoBehaviour
 
     public ProjectileMover SetOnPunchGun(bool onPunchGun)
     {
-        print(onPunchGun);
-
         this.onPunchGun = onPunchGun;
+
+        return this;
+    }
+
+    public ProjectileMover ThisTurret(Turret turret)
+    {
+        this.turret = turret;
 
         return this;
     }
@@ -180,7 +187,7 @@ public class ProjectileMover : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<Rigidbody>().AddForce(new Vector3(15, 0, 0));
+                other.GetComponent<Rigidbody>().velocity= new Vector3(30,0,0);
             }
         }
     }
