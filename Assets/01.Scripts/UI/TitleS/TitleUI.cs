@@ -136,7 +136,7 @@ public class TitleUI : MonoBehaviour
         {
             RemoveBtn();
             upGradePanels[0].SetActive(true);
-            TitleUI.UI.titleBack = true;
+            titleBack = true;
             TitleMoveScript.indexNum = 4;
             titleMoveScript.isback = false; 
         });
@@ -145,7 +145,7 @@ public class TitleUI : MonoBehaviour
             RemoveBtn();
             upGradePanels[1].SetActive(true);
             TitleMoveScript.indexNum = 4;
-            TitleUI.UI.titleBack = true;
+            titleBack = true;
 
             titleMoveScript.isback = false;
 
@@ -155,7 +155,7 @@ public class TitleUI : MonoBehaviour
             RemoveBtn();
             upGradePanels[2].SetActive(true);
             TitleMoveScript.indexNum = 4;
-            TitleUI.UI.titleBack = true;
+            titleBack = true;
 
             titleMoveScript.isback = false;
         });
