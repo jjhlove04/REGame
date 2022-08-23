@@ -15,8 +15,8 @@ public class ItemContainer : MonoBehaviour
     public bool isOnPop = false;
 
     private void Awake() {
-        detailPanel.transform.localScale = Vector3.zero;
-        closeBtn.onClick.AddListener(CloseFunc);
+        //detailPanel.transform.localScale = Vector3.zero;
+        //closeBtn.onClick.AddListener(CloseFunc);
     }
 
     private void Start() {
