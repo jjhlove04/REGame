@@ -7,10 +7,16 @@ using UnityEngine.EventSystems;
 public class HpShieldBar : MonoBehaviour, IPointerExitHandler,IPointerEnterHandler
 {
     public GameObject hpTip;
+    public Text hpText;
+    float curHp;
+    float maxHp;
     public Slider hpBar;
 
     private void Update() {
+        curHp = TrainScript.instance.curTrainHp;
+        maxHp = TrainScript.instance.curTrainHpMax;
         hpBar.value = TrainScript.instance.curTrainHp / TrainScript.instance.curTrainHpMax;
+        hpText.text = $"{curHp} / <color=yellow>{maxHp}</color>";
     }
     
     public void OnPointerEnter(PointerEventData eventData)
