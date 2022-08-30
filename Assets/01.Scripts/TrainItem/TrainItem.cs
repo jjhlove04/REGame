@@ -16,6 +16,7 @@ public abstract class TrainItem : MonoBehaviour
     public Sprite itemImage;
     public int curCarry;
     public Color bufColor;
+    public int needGold;
 
     public abstract void ItemEffect();
 }

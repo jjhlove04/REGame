@@ -19,11 +19,31 @@ public class ItemContainer : MonoBehaviour
         //closeBtn.onClick.AddListener(CloseFunc);
     }
 
-    private void Start() {
-        for(int i = 0; i < this.commonItem.Length; i++)
+    private void Start()
+    {
+        for (int i = 0; i < this.commonItem.Length; i++)
         {
             int itemIndex = i;
+
+            commonItem[i].interactable = TestTurretDataBase.Instance.postItemDic[commonItem[i].ToString()];
+
             commonItem[i].onClick.AddListener(()=> this.CommonCollection(itemIndex));
+
+        }
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < commonItem.Length; i++)
+        {
+            if (commonItem[i].interactable == false)
+            {
+                commonItem[i].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+            }
+            else
+            {
+                commonItem[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            }
         }
     }
     public void CommonCollection(int index){
@@ -39,5 +59,14 @@ public class ItemContainer : MonoBehaviour
     {
         detailPanel.transform.DOScale(Vector3.zero, 0.5f);
         isOnPop = false;
+    }
+
+    public void Gatcha()
+    {
+        int i = Random.Range(0, 20);
+
+        commonItem[i].interactable = true;
+
+        TestTurretDataBase.Instance.postItemDic[commonItem[i].ToString()] = commonItem[i].interactable;
     }
 }

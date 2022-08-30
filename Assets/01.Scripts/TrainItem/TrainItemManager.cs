@@ -102,6 +102,14 @@ public class TrainItemManager : MonoBehaviour
                     button[i].transform.GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemEffect;
                     button[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = curTrainItems[i].itemImage;
                     button[i].transform.GetChild(2).GetChild(0).GetComponent<Text>().text = curTrainItems[i].itemStr;
+                    button[i].transform.GetChild(3).GetComponent<Text>().text = curTrainItems[i].needGold.ToString();
+                    button[i].transform.GetChild(3).GetComponent<Text>().color = Color.white;
+
+                    if (GameManager.Instance.GoldAmount < curTrainItems[i].needGold)
+                    {
+                        button[i].interactable = false;
+                        button[i].transform.GetChild(3).GetComponent<Text>().color = Color.red;
+                    }
                 }
             }
         }

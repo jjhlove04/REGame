@@ -11,6 +11,7 @@ public class TitleUI : MonoBehaviour
     public static TitleUI UI { get { return _ui; } }
     
     TitleMoveScript titleMoveScript;
+    public ItemContainer itemContainer;
 
     public TrainInfo trainInfo;
 
@@ -121,6 +122,14 @@ public class TitleUI : MonoBehaviour
         if(TestTurretDataBase.Instance.curTurretType.Count == 1)
         {
             TestTurretDataBase.Instance.curTurretType.Clear();
+        }
+
+        for (int i = 0; i < itemContainer.commonItem.Length; i++)
+        {
+            if (!TestTurretDataBase.Instance.postItemDic.ContainsKey(itemContainer.commonItem[i].ToString()))
+            {
+                TestTurretDataBase.Instance.postItemDic.Add(itemContainer.commonItem[i].ToString(), itemContainer.commonItem[i].interactable);
+            }
         }
 
         startBtn.onClick.AddListener(() =>

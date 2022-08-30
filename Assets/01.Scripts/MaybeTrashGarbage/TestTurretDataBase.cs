@@ -18,6 +18,7 @@ public class TestTurretDataBase : MonoBehaviour
     public GameObjectString curTurretType = new GameObjectString();
 
     public GameObjectBool postdic = new GameObjectBool();
+    public GameObjectBool postItemDic = new GameObjectBool();
 
     [Header("°á°ú°ª")]
     public int resultDamage = 0;
@@ -29,10 +30,6 @@ public class TestTurretDataBase : MonoBehaviour
     public int level;
     public int curTp;
     public string _nickName;
-
-
-    GameManager gameManager;
-    InGameUII ingameUII;
 
     public bool isfirst;
 
@@ -58,8 +55,6 @@ public class TestTurretDataBase : MonoBehaviour
 
     public void Create(Image img, int count)
     {
-        gameManager = GameManager.Instance;
-        ingameUII = InGameUII._instance;
 
         testScripttss.Instance.Create(curTurretType["0-0"]);
 
