@@ -70,14 +70,9 @@ public class GameManager : MonoBehaviour
         get { return trainLevel; }
         set
         {
-            if (onNewsOfVictory)
-            {
-                NewsOfVictory();
-
-                activationCoefficient -= 0.01f;
-            }
-
             trainLevel = value;
+
+            activationCoefficient -= 0.01f;   
         }
     }
 
@@ -87,9 +82,10 @@ public class GameManager : MonoBehaviour
     private float annuityCurTime = 0;
     private int annuityGoldAmount = 1;
 
-    private bool onNewsOfVictory = false;
+    public bool onNewsOfVictory = false;
     private GameObject turrets; 
     private int turretAmount = 2;
+    private int onNewsOfVictoryTime = 4;
 
     private TrainScript trainScript;
     private bool vamPireTeeth = false;
@@ -149,11 +145,6 @@ public class GameManager : MonoBehaviour
         {
             Annuity();
         }
-
-        if (onNewsOfVictory)
-        {
-            NewsOfVictory();
-        }
     }
 
     public void OnAnnuity()
@@ -165,46 +156,78 @@ public class GameManager : MonoBehaviour
     {
         annuityCurTime += Time.deltaTime;
 
-        if (annuityCoolTime >= annuityCurTime)
+        if (annuityCoolTime <= annuityCurTime)
         {
+            annuityCurTime = 0;
+
             GoldAmount += annuityGoldAmount;
         }
     }
 
     public void OnNewsOfVictory()
     {
-        onNewsOfVictory = true;
+        if (onNewsOfVictory)
+        {
+            turretAmount++;
+            onNewsOfVictoryTime++;
+        }
 
-        turrets = TurretManager.Instance.turrets;
+        onNewsOfVictory = true;
     }
 
-    private void NewsOfVictory()
+    public void NewsOfVictory()
     {
+        turrets = TurretManager.Instance.turrets;
+
+        int turCount = 0;
+
         Turret[] turretArr = new Turret[0];
 
-        for (int i = 0; i < turretAmount; i++)
+        if (turretAmount <= turrets.transform.childCount)
         {
-            Turret turret = RandomTurret(turretArr);
+            turretArr = new Turret[turretAmount];
 
-            if (turret != null)
+            for (int i = 0; i < turretAmount; i++)
             {
-                turretArr[i] = turret;
+                Turret turret = RandomTurret(turretArr);
+
+                if (turret != null)
+                {
+                    turretArr[turCount] = turret;
+
+                    turCount++;
+                }
+            }
+        }
+
+        else 
+        {
+            turretArr = new Turret[turrets.transform.childCount];
+
+            for (int i = 0; i < turrets.transform.childCount; i++)
+            {
+                Turret turret = RandomTurret(turretArr);
+
+                if (turret != null)
+                {
+                    turretArr[turCount] = turret;
+
+                    turCount++;
+                }
             }
         }
 
         for (int j = 0; j < turretArr.Length; j++)
         {
-            turretArr[j].OnNewsOfVictory();
+            turretArr[j].OnNewsOfVictory(onNewsOfVictoryTime);
         }
     }
 
     private Turret RandomTurret(Turret[] turretArr)
-    {
-        Turret turret = new Turret();
-
+    {                                    
         if (turrets.transform.childCount >0)
         {
-            turret = turrets.transform.GetChild(Random.Range(0, turrets.transform.childCount))?.GetComponent<Turret>();
+            Turret turret = turrets.transform.GetChild(Random.Range(0, turrets.transform.childCount))?.GetComponent<Turret>();
 
             for (int j = 0; j < turretArr.Length; j++)
             {

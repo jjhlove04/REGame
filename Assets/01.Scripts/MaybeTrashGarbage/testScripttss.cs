@@ -90,7 +90,6 @@ public class testScripttss : MonoBehaviour
         hpBar.value = (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp;
 
         gameManager.GoldAmount += 120;
-        
     }
 
     // Update is called once per frame

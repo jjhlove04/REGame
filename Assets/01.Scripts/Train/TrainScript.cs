@@ -19,11 +19,7 @@ public class TrainScript : MonoBehaviour
         get { return curTrainHp; }
         set
         {
-            curTrainHp = value;
-            if (curTrainHp > curTrainHpMax)
-            {
-                curTrainHp = curTrainHpMax;
-            }
+            curTrainHp = Mathf.Clamp(value, 0, curTrainHpMax);
         }
     }
     private float curTrainHpTime = 0;
@@ -229,7 +225,7 @@ public class TrainScript : MonoBehaviour
     {
         if (!IsFullHp())
         {
-            curTrainHp += recoveryAmount + recoveryAmount * additionalRecoveryAmount;
+            curTrainHp += recoveryAmount + additionalRecoveryAmount;
         }
 
         yield return new WaitForSeconds(1);
@@ -264,7 +260,7 @@ public class TrainScript : MonoBehaviour
                 }
             }
 
-            if (explosiveShield)
+            if (explosiveShield && curTrainHp >0)
             {
                 if (lastHitTime <= 0.7f)
                 {
@@ -272,6 +268,9 @@ public class TrainScript : MonoBehaviour
 
                     if (lastTotalDamage > curTrainHpMax * 0.15f)
                     {
+                        lastTotalDamage = 0;
+
+
                         ExplosiveShield();
                     }
                 }
@@ -371,7 +370,7 @@ public class TrainScript : MonoBehaviour
 
         trainManager.OnExplotion();
 
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(25, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(50, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
             item.gameObject.GetComponent<HealthSystem>().Damage(explosiveShieldDamage);
         }
@@ -462,6 +461,6 @@ public class TrainScript : MonoBehaviour
 
     public void OnSpanner()
     {
-        additionalRecoveryAmount += 0.012f;
+        additionalRecoveryAmount += 1.2f;
     }
 }

@@ -106,7 +106,21 @@ public class InGameUII : MonoBehaviour
     public GameObject[] selectPanelBtns;
     public GameObject gariImg;
     private float selectTime = 0;
+
     private bool onSelect;
+    private bool OnSelect
+    {
+        get { return onSelect; }
+        set
+        {
+            onSelect = value;
+
+            if (gameManager.onNewsOfVictory&& !value)
+            {
+                gameManager.NewsOfVictory();
+            }
+        }
+    }
 
     public Image expBar;
     public Image hpBar;
@@ -308,7 +322,7 @@ public class InGameUII : MonoBehaviour
             itemPanel.alpha = 0;
         }
 
-        if (onSelect)
+        if (OnSelect)
         {
             selectTime += Time.deltaTime;
 
@@ -374,7 +388,7 @@ public class InGameUII : MonoBehaviour
 
         GameManager.Instance.state = GameManager.State.Play;
         selectTime = 0;
-        onSelect = false;
+        OnSelect = false;
         gariImg.SetActive(true);
         SpawnMananger.Instance.stopSpawn = false;
         BackGround back = FindObjectOfType<BackGround>();
@@ -608,7 +622,7 @@ public class InGameUII : MonoBehaviour
                     {
                         TabParticleObj.Play();
                     }
-                    onSelect = true;
+                    OnSelect = true;
                     ShowSelectPanel();
                 }
 

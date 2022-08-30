@@ -31,8 +31,6 @@ public class testSkillScript : MonoBehaviour
 
         click = transform.Find("Click").gameObject;
 
-        gameManager.getGold += EnoughGold;
-
         gameObject.TryGetComponent(out Button btnm);
         gameObject.TryGetComponent(out Image img);
 
@@ -42,6 +40,8 @@ public class testSkillScript : MonoBehaviour
 
         cameraManager.TopView += LookCameraTopView;
         cameraManager.QuarterView += LookCameraQuarterView;
+
+        gameManager.getGold += EnoughGold;
 
         floor = -1;
 

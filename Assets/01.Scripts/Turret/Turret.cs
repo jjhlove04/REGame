@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
@@ -138,11 +139,6 @@ public class Turret : MonoBehaviour
     {
         HandleTargeting();
         HandleShooting();
-
-        if (onNewsOfVictory)
-        {
-            NewsOfVictory();
-        }
     }
 
     private void OnDisable()
@@ -204,15 +200,11 @@ public class Turret : MonoBehaviour
 
                     shootCount++;
 
-                    print(shootTimer);
-
                     if (shootCount == weapons.Length+1)
                     {
                         shootTimer = 0;
                         shootCount = 1;
                     }
-
-                    print(shootTimer);
 
                     if (IsRedNut())
                     {
@@ -302,6 +294,8 @@ public class Turret : MonoBehaviour
         shootTimer = 2;
 
         bulAmount++;
+
+        bulletBar.UpdateBar(bulAmount, maxBulletAmount);
     }
 
     public void LevelUpDamage(int curDamage, float distance, float shootTime, int bullet, int rPrice)
@@ -436,27 +430,33 @@ public class Turret : MonoBehaviour
         trainScript.CurTrainHp += redNutHealHp;
     }
 
-    public void OnNewsOfVictory()
+    public void OnNewsOfVictory(int time)
     {
         onNewsOfVictory = true;
 
-        Invoke("OffNewsOfVictory", onNewsOfVictoryTime);
+        onNewsOfVictoryTime = time;
+
+        NewsOfVictory();
+
+        StartCoroutine(OffNewsOfVictory());
     }
 
-    private void NewsOfVictory()
+    IEnumerator OffNewsOfVictory()
     {
-        shootTimerMax = (shootTimerMax / 100)*80;
+        yield return new WaitForSeconds(onNewsOfVictoryTime);
 
-        additionalDamage = (damage / 100) * 20;
-    }
-
-    private void OffNewsOfVictory()
-    {
         shootTimerMax = curShootTimeMax;
 
         additionalDamage = 0;
 
         onNewsOfVictory = false;
+    }
+
+    private void NewsOfVictory()
+    {
+        shootTimerMax = (shootTimerMax / 100)*70;
+
+        additionalDamage += (int)(damage * 0.3f);
     }
 
     public Turret Overclokcing(bool on, float increase, int count)
