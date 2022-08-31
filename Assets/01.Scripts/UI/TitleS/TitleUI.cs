@@ -221,7 +221,7 @@ public class TitleUI : MonoBehaviour
     }
     private void Update()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         Update_MousePosition();
         InitPlayerInfo();

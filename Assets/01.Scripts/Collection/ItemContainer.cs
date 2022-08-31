@@ -72,14 +72,13 @@ public class ItemContainer : MonoBehaviour
             Randand(i);
 
             reCount++;
+
         }
         else
         {
 
         }
 
-        TestTurretDataBase.Instance.postItemDic[commonItem[i].ToString()] = commonItem[i].interactable;
-        TestTurretDataBase.Instance.postItemObj.Add(commonItem[i].GetComponent<TitleItemBase>().obj.GetComponent<TrainItem>());
     }
 
     public int Randand(int i)
@@ -87,11 +86,15 @@ public class ItemContainer : MonoBehaviour
         if (commonItem[i].interactable == false)
         {
             commonItem[i].interactable = true;
+
+            TestTurretDataBase.Instance.postItemDic[commonItem[i].ToString()] = commonItem[i].interactable;
+            TestTurretDataBase.Instance.postItemObj.Add(commonItem[i].GetComponent<TitleItemBase>().obj.GetComponent<TrainItem>());
             return 0;
         }
         else
         {
             int j = Random.Range(0, commonItem.Length);
+
             Randand(j);
         }
 
