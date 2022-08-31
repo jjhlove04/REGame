@@ -14,6 +14,8 @@ public class ItemContainer : MonoBehaviour
     public Text effectiveText;
     public bool isOnPop = false;
 
+    private int reCount = 0;
+
     private void Awake() {
         //detailPanel.transform.localScale = Vector3.zero;
         //closeBtn.onClick.AddListener(CloseFunc);
@@ -63,10 +65,36 @@ public class ItemContainer : MonoBehaviour
 
     public void Gatcha()
     {
-        int i = Random.Range(0, 20);
+        int i = Random.Range(0, commonItem.Length);
 
-        commonItem[i].interactable = true;
+        if (reCount < 21)
+        {
+            Randand(i);
+
+            reCount++;
+        }
+        else
+        {
+
+        }
 
         TestTurretDataBase.Instance.postItemDic[commonItem[i].ToString()] = commonItem[i].interactable;
+        TestTurretDataBase.Instance.postItemObj.Add(commonItem[i].GetComponent<TitleItemBase>().obj.GetComponent<TrainItem>());
+    }
+
+    public int Randand(int i)
+    {
+        if (commonItem[i].interactable == false)
+        {
+            commonItem[i].interactable = true;
+            return 0;
+        }
+        else
+        {
+            int j = Random.Range(0, commonItem.Length);
+            Randand(j);
+        }
+
+        return 0;
     }
 }

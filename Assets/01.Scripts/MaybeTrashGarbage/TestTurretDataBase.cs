@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class TestTurretDataBase : MonoBehaviour
 
     public GameObjectBool postdic = new GameObjectBool();
     public GameObjectBool postItemDic = new GameObjectBool();
+    public List<TrainItem> postItemObj = new List<TrainItem>();
 
     [Header("°á°ú°ª")]
     public int resultDamage = 0;

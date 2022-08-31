@@ -53,6 +53,9 @@ public class TrainItemManager : MonoBehaviour
     {
         inGameUII = InGameUII._instance;
         objectPool = FindObjectOfType<ObjectPool>();
+
+        trainItemLists = TestTurretDataBase.Instance.postItemObj;
+
         for (int i = 0; i < trainItemLists.Count; i++)
         {
             trainItemLists[i].GetComponent<TrainItem>().curCarry = 0;
