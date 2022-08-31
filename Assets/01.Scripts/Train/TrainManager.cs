@@ -74,7 +74,10 @@ public class TrainManager : MonoBehaviour
             train.transform.GetChild(i).Find("Smoke" + smokeCount)?.gameObject.SetActive(true);
         }
 
-        smokeCount++;
+        if(smokeCount < 2)
+        {
+            smokeCount++;
+        }
     }
 
     public void AllOffSmoke()
@@ -88,6 +91,8 @@ public class TrainManager : MonoBehaviour
                 train.transform.GetChild(j).Find("Smoke" + i)?.gameObject.SetActive(false);
             }
         }
+
+        smokeCount = 0;
     }
 
     public void OffSmoke()
@@ -99,7 +104,10 @@ public class TrainManager : MonoBehaviour
             train.transform.GetChild(i).Find("Smoke" + (smokeCount-1))?.gameObject.SetActive(false);
         }
 
-        smokeCount--;
+        if(smokeCount > 0)
+        {
+            smokeCount--;
+        }
     }
 
     public void OnBlackSmoke()
@@ -114,6 +122,16 @@ public class TrainManager : MonoBehaviour
         Invoke("AllOffSmoke", 1);
     }
 
+    public void OffBlackSmoke()
+    {
+        transform.GetChild(0).Find("BlackSmoke")?.gameObject.SetActive(false);
+
+        for (int i = 0; i < train.transform.childCount; i++)
+        {
+            train.transform.GetChild(i).Find("BlackSmoke")?.gameObject.SetActive(false);
+        }
+    }
+
     public void OnFire()
     {
         transform.GetChild(0).Find("Fire" + fireCount)?.gameObject.SetActive(true);
@@ -123,7 +141,10 @@ public class TrainManager : MonoBehaviour
             train.transform.GetChild(i).Find("Fire" + fireCount)?.gameObject.SetActive(true);
         }
 
-        fireCount++;
+        if(fireCount < 2)
+        {
+            fireCount++;
+        }
     }
 
     public void AllOffFire()

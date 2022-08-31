@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoreBigWallet : TrainItem
 {
-    public float goldIncrease = 0.08f;
+    public float goldIncrease = 0.04f;
 
     public override void ItemEffect()
     {

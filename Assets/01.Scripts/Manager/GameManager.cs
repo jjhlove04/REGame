@@ -38,11 +38,16 @@ public class GameManager : MonoBehaviour
 
         set 
         {
-            if (value > 0)
+            if (value > goldAmount)
             {
                 goldAmount = (int)(value * goldIncrease);
             }
-            
+
+            else
+            {
+                goldAmount = value;
+            }
+
             getGold();
         }
     }

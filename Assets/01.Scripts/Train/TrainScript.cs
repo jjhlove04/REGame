@@ -20,6 +20,8 @@ public class TrainScript : MonoBehaviour
         set
         {
             curTrainHp = Mathf.Clamp(value, 0, curTrainHpMax);
+
+            SmokeTrain();
         }
     }
     private float curTrainHpTime = 0;
@@ -83,7 +85,10 @@ public class TrainScript : MonoBehaviour
 
     private GameObject turrets;
 
-    private float wireEntanglementDamage = 1;
+    private float wireEntanglementDamage = 2;
+    private bool onWireEntanglement = false;
+    private float curWireEntanglementTime;
+    private float wireEntanglementTimeMax=1;
 
     private float additionalRecoveryAmount;
 
@@ -133,6 +138,17 @@ public class TrainScript : MonoBehaviour
 
         FinxTimeHp();
         CoolDown();
+
+
+        curWireEntanglementTime += Time.deltaTime;
+
+        if (onWireEntanglement && curWireEntanglementTime > wireEntanglementTimeMax)
+        {
+            curWireEntanglementTime = 0;
+
+            WireEntanglement();
+
+        }
     }
 
     private void EnemyDataInit()
@@ -151,44 +167,62 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (hpCheck * curTrainHpMax / 100 >= CurTrainHp)
+        if ((CurTrainHp / curTrainHpMax) *100 <= 70)
         {
-            switch (hpCheck)
+            if ((CurTrainHp / curTrainHpMax) * 100 >= 50)
             {
-                case 70:
-                    trainManager.OnSmoke();
-                    hpCheck = 50;
-                    break;
-                case 50:
-                    trainManager.OnSmoke();
-                    hpCheck = 35;
-                    break;
-                case 35:
-                    trainManager.OnSmoke();
-                    hpCheck = 20;
-                    break;
-                case 20:
-                    trainManager.OnBlackSmoke();
-                    hpCheck = 15;
-                    break;
-                case 15:
-                    trainManager.OnFire();
-                    hpCheck = 5;
-                    break;
-                case 5:
-                    trainManager.OnFire();
-                    hpCheck = 0;
-                    break;
-                case 0:
-                    hpCheck = 0;
+                trainManager.AllOffSmoke();
 
-                    if (CurTrainHp <= 0)
-                    {
-                        DestroyTrain();
-                    }
-                    break;
+                trainManager.OnSmoke();
+            }
+
+            else if ((CurTrainHp / curTrainHpMax) * 100 >= 35)
+            {
+                trainManager.AllOffSmoke();
+
+                trainManager.OnSmoke();
+                trainManager.OnSmoke();
+            }
+
+            else if ((CurTrainHp / curTrainHpMax) * 100 >= 20)
+            {
+                trainManager.AllOffSmoke();
+                trainManager.OffBlackSmoke();
+
+                trainManager.OnSmoke();
+                trainManager.OnSmoke();
+                trainManager.OnSmoke();
+            }
+
+            else if ((CurTrainHp / curTrainHpMax) * 100 >= 15)
+            {
+                trainManager.OnBlackSmoke();
+            }
+
+            else if ((CurTrainHp / curTrainHpMax) * 100 >= 5)
+            {
+                trainManager.AllOffFire();
+
+                trainManager.OnFire();
+            }
+
+            else if ((CurTrainHp / curTrainHpMax) * 100 > 0)
+            {
+                trainManager.AllOffFire();
+
+                trainManager.OnFire();
+                trainManager.OnFire();
+            }
+
+            else if ((CurTrainHp / curTrainHpMax) * 100 <= 0)
+            {
+                if (CurTrainHp <= 0)
+                {
+                    DestroyTrain();
+                }
             }
         }
+
     }
 
     public void FixHP()
@@ -251,7 +285,6 @@ public class TrainScript : MonoBehaviour
                     {
                         trainhit[i].Hit();
                     }*/
-                    SmokeTrain();
                 }
 
                 else
@@ -381,17 +414,20 @@ public class TrainScript : MonoBehaviour
 
     public void OnWireEntanglement()
     {
-        StartCoroutine(WireEntanglement());
-    }
-
-    private IEnumerator WireEntanglement()
-    {
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(25, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        if (onWireEntanglement)
         {
-            item.gameObject.GetComponent<HealthSystem>().Damage(wireEntanglementDamage);
+            wireEntanglementDamage += wireEntanglementDamage * 0.2f;
         }
 
-        yield return new WaitForSeconds(1);
+        onWireEntanglement = true;
+    }
+
+    private void WireEntanglement()
+    {
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(30, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        {
+            item.gameObject.GetComponent<HealthSystem>()?.Damage(wireEntanglementDamage);
+        }
     }
 
     public void AlloySteel(float rateOfRise)
