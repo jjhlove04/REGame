@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LearningMagnifyingGlass : TrainItem
 {
-    public float expIncrease = 0.1f;
+    public float expIncrease = 0.03f;
 
     public override void ItemEffect()
     {
