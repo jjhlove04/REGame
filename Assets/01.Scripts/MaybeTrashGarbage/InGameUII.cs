@@ -630,7 +630,7 @@ public class InGameUII : MonoBehaviour
                 distance += 0.8f;
                 shootTime -= (shootTime * 0.05f);
                 bulletAmount += 1;
-                rPrice = 1;
+                rPrice += 1;
 
                 for (int i = 0; i < testScriptts.turretData.Count; i++)
                 {
