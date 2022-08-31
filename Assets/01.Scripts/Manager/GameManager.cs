@@ -137,8 +137,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GoldAmount += 100;
-            expAmount += 4;
+            GoldAmount += 50;
+            expAmount += 6;
         }
 
         if (annuity)

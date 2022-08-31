@@ -44,7 +44,8 @@ public class testScripttss : MonoBehaviour
     GameManager gameManager;
     SpawnMananger spawnMananger;
     InGameUII inGameUI;
-    TestTurretDataBase testTurretDataBase;
+    TrainInfo trainInfo;
+
 
     public int turPos = 0;
     public int turType;
@@ -63,6 +64,8 @@ public class testScripttss : MonoBehaviour
     [SerializeField]
     private Image[] images;
 
+    public int startGold;
+
     private TrainScript trainScript;
 
     private void Awake()
@@ -79,7 +82,6 @@ public class testScripttss : MonoBehaviour
         gameManager = GameManager.Instance;
         spawnMananger = SpawnMananger.Instance;
         inGameUI = InGameUII._instance;
-        testTurretDataBase = TestTurretDataBase.Instance;
 
         objectPool = FindObjectOfType<ObjectPool>();
         NextWaveBtn.onClick.AddListener(NextWave);
@@ -89,7 +91,20 @@ public class testScripttss : MonoBehaviour
         //hp¹Ù ¼¼
         hpBar.value = (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp;
 
-        gameManager.GoldAmount += 120;
+        if (trainScript.traininfo.trainCount == 1)
+        {
+            startGold = 120;
+        }
+        else if (trainScript.traininfo.trainCount == 2)
+        {
+            startGold = 240;
+        }
+        else
+        {
+            startGold = 360;
+        }
+
+        gameManager.GoldAmount += startGold;
     }
 
     // Update is called once per frame

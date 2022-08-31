@@ -132,6 +132,11 @@ public class TitleUI : MonoBehaviour
             }
         }
 
+        for (int item = 0; item < 7; item++)
+        {
+            itemContainer.Gatcha();
+        }
+
         startBtn.onClick.AddListener(() =>
         {
             if(TestTurretDataBase.Instance.curTurretType.Count == 0)
