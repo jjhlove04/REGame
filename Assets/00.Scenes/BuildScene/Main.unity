@@ -31849,6 +31849,7 @@ MonoBehaviour:
   expBar: {fileID: 1466600511}
   hpBar: {fileID: 0}
   gameLevel: {fileID: 622081080}
+  turretDamage: 1
   itemPanel: {fileID: 887034583}
   itemBuffPanel: {fileID: 1880346661}
   itemExPanel: {fileID: 851897044}
@@ -43983,7 +43984,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6366573836357240953}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -33.5}
+  m_LocalPosition: {x: 0, y: 0, z: -33}
   m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
   m_Children:
   - {fileID: 6366573836412439598}
@@ -44484,7 +44485,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6366573836946347573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -67}
+  m_LocalPosition: {x: 0, y: 0, z: -66}
   m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
   m_Children:
   - {fileID: 6366573835619418188}
@@ -44789,7 +44790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainPrefab: {fileID: 4021124208104438383, guid: 2157b182ad6db1c4b9f0279fd2eb5063, type: 3}
-  distance: 27
+  distance: 33
   trainContainer: []
   curTrainCount: 0
   collider: {fileID: 6366573837459559930}
