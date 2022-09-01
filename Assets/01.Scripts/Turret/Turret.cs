@@ -280,6 +280,80 @@ public class Turret : MonoBehaviour
         }
     }
 
+    private void BossRoundTarget()
+    {
+        if (targetEnemy == null)
+        {
+            Vector3 mos = Input.mousePosition;
+            mos.z = Camera.main.farClipPlane;
+            Vector3 ray = Camera.main.ScreenToWorldPoint(mos);
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.transform.position, ray, out hit, mos.z))
+            {
+                Vector3 target = hit.point - transform.position;
+                Quaternion rot = Quaternion.LookRotation(target);
+
+                for (int i = 0; i < weapons.Length; i++)
+                {
+                    Transform trm = weapons[i].transform;
+
+                    trm.rotation = Quaternion.Lerp(trm.rotation, rot, Time.deltaTime * 5);
+                    trm.localRotation = Quaternion.Euler(new Vector3(trm.rotation.eulerAngles.x, 0, 0));
+                }
+
+                Transform neckTrm = neck.transform;
+
+                neckTrm.rotation = Quaternion.Lerp(neckTrm.rotation, rot, Time.deltaTime * 5);
+                neckTrm.rotation = Quaternion.Euler(new Vector3(0, neckTrm.rotation.eulerAngles.y, 0));
+            }
+        }
+
+        if (targetEnemy == null)
+        {
+            shootTimer += Time.deltaTime;
+
+            if (bulAmount > 0)
+            {
+                if (shootTimer >= ((shootTimerMax / weapons.Length) * shootCount) * Random.Range(0.9f, 1.1f))
+                {
+                    LookForTargets();
+
+                    ShootSound();
+
+                    GameObject gameObject = ObjectPool.instacne.GetObject(bullet);
+
+                    gameObject.transform.position = weapons[shootCount - 1].transform.Find("BulletPoint").position;
+
+                    SelectBullet(gameObject);
+
+                    TestTurretDataBase.Instance.resultDamage += (damage + additionalDamage);
+                    bulAmount--;
+
+                    bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+
+                    shootCount++;
+
+                    if (shootCount == weapons.Length + 1)
+                    {
+                        shootTimer = 0;
+                        shootCount = 1;
+                    }
+
+                    if (IsRedNut())
+                    {
+                        RedNut();
+                    }
+                }
+
+                else
+                {
+                    WaitingTimeSound();
+                }
+            }
+        }
+    }
+
     private void SelectBullet(GameObject gameObject)
     {
         ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();

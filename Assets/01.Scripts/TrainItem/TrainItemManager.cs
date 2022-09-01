@@ -135,6 +135,9 @@ public class TrainItemManager : MonoBehaviour
         bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
         bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
 
+        GameManager.Instance.GoldAmount -= curTrainItems[selectNum].needGold;
+        InGameUII._instance.CreateOutMoney(curTrainItems[selectNum].needGold);
+
         if (curTrainItems[selectNum].curCarry > 1)
         {
             bufobj.SetActive(false);
@@ -145,11 +148,12 @@ public class TrainItemManager : MonoBehaviour
 
     public void ReRoll()
     {
-        if (reCount > 0)
+        if (reCount > 0 && GameManager.Instance.GoldAmount >= 30)
         {
             GetRandomItem();
             reCount--;
             reRollCount.text = reCount.ToString();
+            GameManager.Instance.GoldAmount -= 30;
         }
     }
 

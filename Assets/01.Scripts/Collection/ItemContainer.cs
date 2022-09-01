@@ -66,19 +66,21 @@ public class ItemContainer : MonoBehaviour
     public void Gatcha()
     {
         int i = Random.Range(0, commonItem.Length);
-
-        if (reCount < 21)
+        if (TestTurretDataBase.Instance.resultGold >= 300)
         {
-            Randand(i);
+            if (reCount < 21)
+            {
+                Randand(i);
 
-            reCount++;
+                reCount++;
+                TestTurretDataBase.Instance.resultGold -= 300;
+                TitleUI.UI.ShowCountUPGradeText();
+            }
+            else
+            {
 
+            }
         }
-        else
-        {
-
-        }
-
     }
 
     public int Randand(int i)

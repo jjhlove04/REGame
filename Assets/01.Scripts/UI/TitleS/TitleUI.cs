@@ -132,6 +132,10 @@ public class TitleUI : MonoBehaviour
             }
         }
 
+        if (TestTurretDataBase.Instance.postItemObj.Count < 1)
+        {
+            TestTurretDataBase.Instance.resultGold += 2100;
+        }
         for (int item = 0; item < 7; item++)
         {
             itemContainer.Gatcha();
@@ -143,7 +147,7 @@ public class TitleUI : MonoBehaviour
             {
                 TestTurretDataBase.Instance.curTurretType.Add("0-0", Resources.Load<GameObject>("Turret/baseTurret0-0"));
             }
-            TitleUI.UI.titleBack = true;
+            titleBack = true;
             LoadingSceneUI.LoadScene("Main");
         });
         upGradeBtns[0].onClick.AddListener(() =>

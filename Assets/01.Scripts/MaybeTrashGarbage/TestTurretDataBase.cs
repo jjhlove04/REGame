@@ -47,6 +47,14 @@ public class TestTurretDataBase : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void Start()
+    {
+        if (curTurretType.Count == 0)
+        {
+            curTurretType.Add("0-0", Resources.Load<GameObject>("Turret/baseTurret0-0"));
+        }
+    }
+
     public void Upgrade(int strdat, int floor)
     {
         if (floor <= curTurretType.Count)
