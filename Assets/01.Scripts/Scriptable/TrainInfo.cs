@@ -4,8 +4,8 @@ using UnityEngine;
 public class TrainInfo : ScriptableObject
 {
     public int trainCount;
-    public float trainMaxShield;
-    public float trainMaxHp;
+    public int trainMaxShield;
+    public int trainMaxHp;
 
     [Header("포탑 업그레이드 값")]
 

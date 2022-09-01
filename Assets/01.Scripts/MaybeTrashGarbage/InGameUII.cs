@@ -127,7 +127,7 @@ public class InGameUII : MonoBehaviour
     public Text gameLevel;
 
     //포탑 스텟 업그레이드 부분
-    private int turretDamage = 1;
+    public int turretDamage = 1;
     private float distance = 30f;
     private float shootTime = 1f;
     private int bulletAmount = 20;

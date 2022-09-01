@@ -44,7 +44,7 @@ public class Turret : MonoBehaviour
     private float shootTimerMax;
 
     [SerializeField]
-    private int damage = 10;
+    private int damage;
     private int additionalDamage = 0;
 
 
@@ -95,6 +95,7 @@ public class Turret : MonoBehaviour
     private bool onTaillessPlanaria = false;
     private float heal = 0.5f;
 
+    private bool onTheSoleCandy;
     private float theSoleCandyDamage;
 
     private bool onFurryBracelet = false;
@@ -119,6 +120,10 @@ public class Turret : MonoBehaviour
 
         targetPos = transform.position;
 
+        if (inGameUII != null)
+        {
+            damage = inGameUII.turretDamage;
+        }
     }
 
     private void Start()
@@ -131,6 +136,8 @@ public class Turret : MonoBehaviour
         bulAmount = maxBulletAmount;
 
         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
+
+        damage = inGameUII.turretDamage;
 
         TurretManager.Instance.SpawnTurret(this);
     }
@@ -277,14 +284,16 @@ public class Turret : MonoBehaviour
     {
         ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();
 
-        projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens() + (int)(damage * theSoleCandyDamage)))
+        projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens()))
+            .ThisTurret(this)
             .SetRedNut(IsRedNut())
             .SetTaillessPlanaria(onTaillessPlanaria)
             .SetWeakLens(IsWeakLens())
             .SetFurryBracelet(FurryBaracelet(), onFurryBraceletTime)
             .SetFMJAdditionalDamage(onFMJ, additionalFMJDamage)
             .SetOnPunchGun(IsPuchGun())
-            .ThisTurret(this);
+            .SetOnTheSoleCandy(IsTheSoleCandy(), theSoleCandyDamage);
+            
 
         TaillessPlanaria();
     }
@@ -517,18 +526,25 @@ public class Turret : MonoBehaviour
     {
         if (onTaillessPlanaria)
         {
-            trainScript.curTrainHp += heal;
+            trainScript.CurTrainHp += heal;
         }
     }
 
     public Turret OnTheSoleCandy(bool on, int count)
     {
-        if (on)
-        {
+        onTheSoleCandy = on;
+
+        if (onTheSoleCandy)
+        {  
             theSoleCandyDamage = 0.4f * count;
         }
 
         return this;
+    }
+
+    private bool IsTheSoleCandy()
+    {
+        return Random.Range(0, 100) < gameManager.ActivationCoefficient(8) && onTheSoleCandy;
     }
 
     public Turret OnFurryBracelet(bool on, int count)

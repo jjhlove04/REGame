@@ -8,14 +8,14 @@ public class HpShieldBar : MonoBehaviour, IPointerExitHandler,IPointerEnterHandl
 {
     public GameObject hpTip;
     public Text hpText;
-    float curHp;
-    float maxHp;
+    int curHp;
+    int maxHp;
     public Slider hpBar;
 
     private void Update() {
-        curHp = TrainScript.instance.curTrainHp;
-        maxHp = TrainScript.instance.curTrainHpMax;
-        hpBar.value = TrainScript.instance.curTrainHp / TrainScript.instance.curTrainHpMax;
+        curHp = (int)(TrainScript.instance.CurTrainHp);
+        maxHp = (int)(TrainScript.instance.curTrainHpMax);
+        hpBar.value = TrainScript.instance.CurTrainHp / TrainScript.instance.curTrainHpMax;
         hpText.text = $"{curHp} / <color=yellow>{maxHp}</color>";
     }
     

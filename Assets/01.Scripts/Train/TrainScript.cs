@@ -8,7 +8,7 @@ public class TrainScript : MonoBehaviour
 
     public TrainInfo traininfo;
 
-    public float curTrainHpMax;
+    public int curTrainHpMax;
 
 
     public float curTrainHp; //0���Ϸ� ����߸��� ����!
@@ -69,7 +69,7 @@ public class TrainScript : MonoBehaviour
     private float lastHitTime;
 
     private bool explosiveShield = false;
-    private int explosiveShieldDamage;
+    private float explosiveShieldDamage =2;
 
     private float lastTotalDamage;
 
@@ -85,12 +85,15 @@ public class TrainScript : MonoBehaviour
 
     private GameObject turrets;
 
-    private float wireEntanglementDamage = 2;
+    private float wireEntanglementRange = 20;
+    private float wireEntanglementDamage =0.5f;
     private bool onWireEntanglement = false;
     private float curWireEntanglementTime;
     private float wireEntanglementTimeMax=1;
 
     private float additionalRecoveryAmount;
+
+    private InGameUII inGameUII;
 
     private void Awake()
     {
@@ -109,9 +112,7 @@ public class TrainScript : MonoBehaviour
         curTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
-        initRoomHp = roomHp;
-
-        explosiveShieldDamage = 50;
+        initRoomHp = roomHp;     
     }
 
     private void Start()
@@ -121,6 +122,8 @@ public class TrainScript : MonoBehaviour
         turrets = TurretManager.Instance.turrets;
 
         StartCoroutine(FixTimeHp());
+
+        inGameUII = InGameUII._instance;
     }
 
     private void Update()
@@ -223,6 +226,10 @@ public class TrainScript : MonoBehaviour
             }
         }
 
+        else
+        {
+            trainManager.AllOffSmoke();
+        }
     }
 
     public void FixHP()
@@ -259,7 +266,7 @@ public class TrainScript : MonoBehaviour
     {
         if (!IsFullHp())
         {
-            curTrainHp += recoveryAmount + additionalRecoveryAmount;
+            CurTrainHp += recoveryAmount + additionalRecoveryAmount;
         }
 
         yield return new WaitForSeconds(1);
@@ -267,7 +274,7 @@ public class TrainScript : MonoBehaviour
 
     private bool IsFullHp()
     {
-        return curTrainHp == curTrainHpMax;
+        return CurTrainHp == curTrainHpMax;
     }
 
     public void Damage(float damage)
@@ -293,7 +300,7 @@ public class TrainScript : MonoBehaviour
                 }
             }
 
-            if (explosiveShield && curTrainHp >0)
+            if (explosiveShield && CurTrainHp >0)
             {
                 if (lastHitTime <= 0.7f)
                 {
@@ -390,7 +397,7 @@ public class TrainScript : MonoBehaviour
     {
         if (explosiveShield)
         {
-            explosiveShieldDamage += (int)(explosiveShieldDamage * 0.2f);
+            explosiveShieldDamage += 0.2f;
         }
 
         explosiveShield = true;
@@ -405,7 +412,7 @@ public class TrainScript : MonoBehaviour
 
         foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(50, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
-            item.gameObject.GetComponent<HealthSystem>().Damage(explosiveShieldDamage);
+            item.gameObject.GetComponent<HealthSystem>().Damage(inGameUII.turretDamage*explosiveShieldDamage);
         }
 
 
@@ -416,7 +423,8 @@ public class TrainScript : MonoBehaviour
     {
         if (onWireEntanglement)
         {
-            wireEntanglementDamage += wireEntanglementDamage * 0.2f;
+            wireEntanglementDamage += 0.1f;
+            wireEntanglementRange += wireEntanglementRange * 0.2f;
         }
 
         onWireEntanglement = true;
@@ -424,9 +432,9 @@ public class TrainScript : MonoBehaviour
 
     private void WireEntanglement()
     {
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(30, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
-            item.gameObject.GetComponent<HealthSystem>()?.Damage(wireEntanglementDamage);
+            item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.turretDamage * wireEntanglementDamage);
         }
     }
 
@@ -434,7 +442,7 @@ public class TrainScript : MonoBehaviour
     {
         float addHp = curTrainHpMax * rateOfRise;
 
-        curTrainHpMax += addHp;
+        curTrainHpMax += (int)addHp;
         CurTrainHp += addHp;
     }
 

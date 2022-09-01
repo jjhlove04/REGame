@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
 
         set 
         {
-            if (value > goldAmount)
+            if (value > goldAmount&&goldIncrease>0)
             {
-                goldAmount = (int)(value * goldIncrease);
+                goldAmount += (int)((value-goldAmount) * goldIncrease);
             }
 
             else
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
                 VamPireTeeth();
             }
 
-            expAmount = value * expIncrease;
+            expAmount += (value-expAmount) * expIncrease;
         }
     }
     public float maxExp = 0;
@@ -268,12 +268,18 @@ public class GameManager : MonoBehaviour
 
     public void LearningMagnifyingGlass(float expIncrease)
     {
-        this.expIncrease += expIncrease;
+        if (expIncrease < 1.5f)
+        {
+            this.expIncrease += expIncrease;
+        }
     }
 
     public void MoreBigWallet(float goldIncrease)
     {
-        this.goldIncrease += goldIncrease;
+        if (goldIncrease < 1.5f)
+        {
+            this.goldIncrease += goldIncrease;
+        }
     }
 
     public float ActivationCoefficient(float percent)

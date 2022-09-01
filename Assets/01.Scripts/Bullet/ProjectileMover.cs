@@ -12,10 +12,24 @@ public class ProjectileMover : MonoBehaviour
     // 이동
     public float moveSpeed = 50;
 
+    private float theSoleCandydamage;
+
 
     protected Transform targetEnemy;
     private Vector3 lastMoveDir;
-    protected int damage;
+    private int damage;
+    protected int Damage
+    {
+        get 
+        {
+            if (onTheSoleCandyDamage)
+            {
+                return damage+ (int)Mathf.Round(OnTheSoleCandy());
+            }
+            return damage; 
+        }
+        set { damage = value; } 
+    }
 
     protected float time;
 
@@ -33,16 +47,24 @@ public class ProjectileMover : MonoBehaviour
 
     protected bool onRedNut = false;
 
+    protected bool onTheSoleCandyDamage = false;
+
     protected GameObject weakLens;
     protected GameObject fMJ;
     protected GameObject furryBaracelet;
     protected GameObject punchGun;
     protected GameObject redNut;
     protected GameObject taillessPlannaria;
+    protected GameObject theSoleCandyDamage;
 
     protected Turret turret;
 
     private bool check = false;
+
+    private void OnEnable()
+    {
+        check = false;
+    }
 
     void Start()
     {
@@ -62,8 +84,6 @@ public class ProjectileMover : MonoBehaviour
             }
         }
         Destroy(gameObject,5);
-
-        FindBulletEffect();
     }
 
     void FixedUpdate ()
@@ -79,13 +99,12 @@ public class ProjectileMover : MonoBehaviour
         {
             moveDir = lastMoveDir;
 
-            if (!check)
+            if (!check && turret!=null)
             {
                 check = true;
 
                 turret.EnemyMissing();
             }
-            
         }
 
         // 이동
@@ -103,6 +122,7 @@ public class ProjectileMover : MonoBehaviour
         punchGun = transform.Find("PunchGun").gameObject;
         redNut = transform.Find("RedNut").gameObject;
         taillessPlannaria = transform.Find("TaillessPlannaria").gameObject;
+        theSoleCandyDamage = transform.Find("TheSoleCandy").gameObject;
 
         OnBulletEffect();
     }
@@ -115,12 +135,13 @@ public class ProjectileMover : MonoBehaviour
         punchGun.SetActive(onPunchGun);
         redNut.SetActive(onRedNut);
         taillessPlannaria.SetActive(onTaillessPlanaria);
+        theSoleCandyDamage.SetActive(onTheSoleCandyDamage);
     }
 
     public ProjectileMover Create(Transform enemy, int damage)
     {
         SetTarget(enemy);
-        Damage(damage);
+        SetDamage(damage);
 
         return this;
     }
@@ -174,12 +195,29 @@ public class ProjectileMover : MonoBehaviour
         return this;
     }
 
+    public ProjectileMover SetOnTheSoleCandy(bool onTheSoleCandyDamage, float damage)
+    {
+        this.onTheSoleCandyDamage = onTheSoleCandyDamage;
+
+        theSoleCandydamage = damage;
+
+        return this;
+    }
+
     public ProjectileMover ThisTurret(Turret turret)
     {
         this.turret = turret;
 
+        FindBulletEffect();
+
         return this;
     }
+
+    private float OnTheSoleCandy()
+    {
+        return (Damage * theSoleCandydamage);
+    }
+
 
     private void OnPunchGun(Collider other)
     {
@@ -192,9 +230,9 @@ public class ProjectileMover : MonoBehaviour
         }
     }
 
-    public void Damage(int damage)
+    public void SetDamage(int damage)
     {
-        this.damage = damage;
+        this.Damage = damage;
     }
 
     protected virtual void OnTriggerEnter(Collider other)

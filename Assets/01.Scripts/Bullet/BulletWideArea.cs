@@ -42,7 +42,7 @@ public class BulletWideArea : ProjectileMover
                     healthSystem.FurryBracelet(time);
                 }
 
-                healthSystem.WideAreaDamge(damage);
+                healthSystem.WideAreaDamge(Damage);
             }
         }
     }

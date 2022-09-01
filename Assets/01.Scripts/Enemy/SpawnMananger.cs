@@ -27,6 +27,8 @@ public class SpawnMananger : MonoBehaviour
 
     public bool stopSpawn = false;
 
+    private GameObject playerSpanwer;
+
 
     private float levelTime = 60;
     private void Awake()
@@ -48,6 +50,8 @@ public class SpawnMananger : MonoBehaviour
         _objPool = FindObjectOfType<ObjectPool>();
         curTime = Info.roundCurTime;
         stopSpawn = true;
+
+        playerSpanwer = transform.Find("PlayerSpawn").gameObject;
     }
 
     private void Update()
@@ -72,6 +76,11 @@ public class SpawnMananger : MonoBehaviour
 
                 TestTurretDataBase.Instance.round = round;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerSpanwer.SetActive(!playerSpanwer.activeSelf);
         }
 
         if (round > levelTime)

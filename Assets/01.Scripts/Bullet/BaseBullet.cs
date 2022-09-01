@@ -18,7 +18,7 @@ public class BaseBullet : ProjectileMover
                 other.GetComponent<HealthSystem>().FurryBracelet(time);
             }
 
-            other.GetComponent<HealthSystem>().Damage(damage);
+            other.GetComponent<HealthSystem>().Damage(Damage);
 
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }

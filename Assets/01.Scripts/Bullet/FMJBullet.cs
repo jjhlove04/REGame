@@ -20,7 +20,7 @@ public class FMJBullet : ProjectileMover
                 other.GetComponent<HealthSystem>().FurryBracelet(time);
             }
 
-            other.GetComponent<HealthSystem>().FMJ(damage, additionalDamage);
+            other.GetComponent<HealthSystem>().FMJ(Damage, additionalDamage);
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }
     }
