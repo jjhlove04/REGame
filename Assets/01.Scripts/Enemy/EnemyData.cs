@@ -19,6 +19,8 @@ public class EnemyData : ScriptableObject
 
     public float healthAmountMax;
 
+    public float def;
+
     public int dropExp;
     public int dropGold;
 

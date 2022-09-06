@@ -40,6 +40,7 @@ public class InGameUII : MonoBehaviour
     RectTransform bpBot;
 
     public Text goldAmounTxt;
+    public Text killEnemyTxt;
     public Text waveTxt;
     float milliSec;
     int second;
@@ -174,7 +175,7 @@ public class InGameUII : MonoBehaviour
         });
 
         goldAmounTxt.text = GameManager.Instance.GoldAmount.ToString();
-
+        killEnemyTxt.text = TestTurretDataBase.Instance.killEnemy.ToString();
 
         ShowTurPrice();
 
@@ -228,6 +229,8 @@ public class InGameUII : MonoBehaviour
 
         ExpBar();
         goldAmounTxt.text = gameManager.GoldAmount.ToString();
+
+        killEnemyTxt.text = TestTurretDataBase.Instance.killEnemy.ToString();
         //waveTxt.text = "경과시간 : " + (SpawnMananger.Instance.round - 1).ToString();
 
         Timer();
@@ -638,11 +641,20 @@ public class InGameUII : MonoBehaviour
                     {
                         tur.LevelUpDamage(turretDamage, distance, shootTime, bulletAmount, rPrice);
                     }
-                }              
+                }
 
-                gameManager.maxExp = 
-                    (gameManager.maxExp + (gameManager.TrainLevel + (gameManager.TrainLevel - 1)))
-                    * (gameManager.TrainLevel / (gameManager.TrainLevel - 1)) + gameManager.maxExp;
+                if(gameManager.TrainLevel < 21)
+                {
+                    gameManager.maxExp += 10;
+                }
+                else if(gameManager.TrainLevel < 41)
+                {
+                    gameManager.maxExp += 13;
+                }
+                else if(gameManager.TrainLevel < 100)
+                {
+                    gameManager.maxExp += 16;
+                }
 
 
                 expBar.fillAmount = 0;
