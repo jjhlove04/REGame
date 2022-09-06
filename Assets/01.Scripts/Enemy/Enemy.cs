@@ -224,9 +224,6 @@ public class Enemy : MonoBehaviour
         //gameManager.GoldAmount += enemyStat.dropGold;
         //InGameUII._instance.CreateMonjeyTxt(enemyStat.dropGold);
 
-        trainScript.dieEnemy++;
-        TestTurretDataBase.Instance.killEnemy++;
-
         gameObject.SetActive(false);
     }
 
@@ -245,6 +242,8 @@ public class Enemy : MonoBehaviour
         anim.SetBool("IsDie", true);
         gameManager.ExpAmount += enemyStat.dropExp;
         gameManager.GoldAmount += enemyStat.dropGold;
+        trainScript.dieEnemy++;
+        TestTurretDataBase.Instance.killEnemy++;
         InGameUII._instance.CreateMonjeyTxt(enemyStat.dropGold);
         IsDying();
     }
