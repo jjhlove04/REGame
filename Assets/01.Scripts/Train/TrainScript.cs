@@ -20,8 +20,6 @@ public class TrainScript : MonoBehaviour
         set
         {
             curTrainHp = Mathf.Clamp(value, 0, curTrainHpMax);
-
-            SmokeTrain();
         }
     }
     private float curTrainHpTime = 0;
@@ -33,7 +31,8 @@ public class TrainScript : MonoBehaviour
     public float curTrainShield = 10000;
     public int dieEnemy = 0;
 
-    private float hpCheck = 70;
+    private float decreaseHpCheck = 70;
+    private float addHpCheck = 70;
 
     private float initRoomHp;
     private float roomHp;
@@ -152,6 +151,8 @@ public class TrainScript : MonoBehaviour
             WireEntanglement();
 
         }
+
+        SmokeTrain();
     }
 
     private void EnemyDataInit()
@@ -170,36 +171,80 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (hpCheck * curTrainHpMax / 100 >= CurTrainHp)
+        if (addHpCheck * curTrainHpMax / 100 < CurTrainHp)
         {
-            switch (hpCheck)
+            switch (addHpCheck)
+            {
+                case 70:
+                    trainManager.OffSmoke();
+                    decreaseHpCheck = 70;
+                    break;
+                case 50:
+                    trainManager.OffSmoke();
+                    decreaseHpCheck = 50;
+                    addHpCheck = 70;
+                    break;
+                case 35:
+                    trainManager.OffSmoke();
+                    decreaseHpCheck = 35;
+                    addHpCheck = 50;
+                    break;
+                case 20:
+                    trainManager.OffBlackSmoke();
+                    decreaseHpCheck = 20;
+                    addHpCheck = 35;
+                    break;
+                case 15:
+                    trainManager.OffFire();
+                    decreaseHpCheck = 15;
+                    addHpCheck = 20;
+                    break;
+                case 5:
+                    trainManager.OffFire();
+                    decreaseHpCheck = 5;
+                    addHpCheck = 15;
+                    break;
+            }
+        }
+
+        else if (decreaseHpCheck * curTrainHpMax / 100 >= CurTrainHp)
+        {
+
+
+            switch (decreaseHpCheck)
             {
                 case 70:
                     trainManager.OnSmoke();
-                    hpCheck = 50;
+                    decreaseHpCheck = 50;
+                    addHpCheck = 70;
                     break;
                 case 50:
                     trainManager.OnSmoke();
-                    hpCheck = 35;
+                    decreaseHpCheck = 35;
+                    addHpCheck = 50;
                     break;
                 case 35:
                     trainManager.OnSmoke();
-                    hpCheck = 20;
+                    decreaseHpCheck = 20;
+                    addHpCheck = 35;
                     break;
                 case 20:
                     trainManager.OnBlackSmoke();
-                    hpCheck = 15;
+                    decreaseHpCheck = 15;
+                    addHpCheck=20;
                     break;
                 case 15:
                     trainManager.OnFire();
-                    hpCheck = 5;
+                    decreaseHpCheck = 5;
+                    addHpCheck = 15;
                     break;
                 case 5:
                     trainManager.OnFire();
-                    hpCheck = 0;
+                    decreaseHpCheck = 0;
+                    addHpCheck = 5;
                     break;
                 case 0:
-                    hpCheck = 0;
+                    decreaseHpCheck = 0;
 
                     if (CurTrainHp <= 0)
                     {
@@ -209,35 +254,7 @@ public class TrainScript : MonoBehaviour
             }
         }
 
-        else if (hpCheck * curTrainHpMax / 100 < CurTrainHp)
-        {
-            switch (hpCheck)
-            {
-                case 70:
-                    trainManager.AllOffSmoke();
-                    break;
-                case 50:
-                    trainManager.OffSmoke();
-                    hpCheck = 70;
-                    break;
-                case 35:
-                    trainManager.OffSmoke();
-                    hpCheck = 50;
-                    break;
-                case 20:
-                    trainManager.OffBlackSmoke();
-                    hpCheck = 35;
-                    break;
-                case 15:
-                    trainManager.OffFire();
-                    hpCheck = 20;
-                    break;
-                case 5:
-                    trainManager.OffFire();
-                    hpCheck = 15;
-                    break;
-            }
-        }
+
     }
 
     public void FixHP()

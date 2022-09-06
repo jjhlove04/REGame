@@ -107,6 +107,10 @@ public class Turret : MonoBehaviour
     private bool onPunchGun = false;
     private float punchGunPercentage;
 
+    private bool onMortarTube = false;
+    private float mortarTubeCount;
+    private float mortarTubeDamage;
+
     private GameManager gameManager;
 
     private void OnEnable()
@@ -370,6 +374,13 @@ public class Turret : MonoBehaviour
             
 
         TaillessPlanaria();
+
+        if (IsMortarTube())
+        {
+            mortarTubeDamage = damage * mortarTubeCount;
+
+            TrainManager.instance.MortarTube(mortarTubeDamage);
+        }
     }
 
     public void EnemyMissing()
@@ -673,6 +684,20 @@ public class Turret : MonoBehaviour
     public float ReturnShootTimer()
     {
         return curShootTimeMax;
+    }
+
+    public Turret OnMortarTube(bool on, int count)
+    {
+        onMortarTube = on;
+
+        mortarTubeCount = count;
+
+        return this;
+    }
+
+    private bool IsMortarTube()
+    {
+        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(9) && onMortarTube;
     }
 
     private void OnMouseEnter()

@@ -28,6 +28,8 @@ public class TrainManager : MonoBehaviour
 
     public GameObject train;
 
+    public GameObject mortarTube;
+
     private void Awake()
     {
         Instance = this;
@@ -67,6 +69,8 @@ public class TrainManager : MonoBehaviour
 
     public void OnSmoke()
     {
+        print(11);
+
         transform.GetChild(0).Find("Smoke" + smokeCount)?.gameObject.SetActive(true);
 
         for (int i = 0; i < train.transform.childCount; i++)
@@ -134,6 +138,8 @@ public class TrainManager : MonoBehaviour
 
     public void OnFire()
     {
+        print(5);
+
         transform.GetChild(0).Find("Fire" + fireCount)?.gameObject.SetActive(true);
 
         for (int i = 0; i < train.transform.childCount; i++)
@@ -197,6 +203,18 @@ public class TrainManager : MonoBehaviour
         
         collider.center = center = new Vector3(0, 5, (curTrainCount * distance) * -0.5f + 27);
         collider.size= size = new Vector3(6, 10, curTrainCount * distance + 27);
+    }
+
+    public void MortarTube(float damage)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject bullet = ObjectPool.instacne.GetObject(mortarTube);
+
+            bullet.GetComponent<MortarTubeProjectileMover>().Create(damage);
+
+            bullet.transform.position = new Vector3(transform.position.x,5, (-(trainContainer.Count) * 20)+27);
+        }    
     }
 
     /*public void KeepOffTrain()

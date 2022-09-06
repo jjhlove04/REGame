@@ -39,6 +39,9 @@ public class TurretManager : MonoBehaviour
 
     private float overclokcingIncrease;
 
+    private bool onMortarTube = false;
+    private int countMortarTube = 0;
+
     private void Awake()
     {
         if (instance != null)
@@ -196,6 +199,19 @@ public class TurretManager : MonoBehaviour
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
                 .OnWeakLens(onWeakLens,countWeakLens);
+        }
+    }
+
+    public void MortarTube()
+    {
+        onMortarTube = true;
+
+        countMortarTube++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnMortarTube(onMortarTube, countMortarTube);
         }
     }
 }

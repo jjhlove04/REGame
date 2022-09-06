@@ -6,6 +6,7 @@ public class MortarTube : TrainItem
 {
     public override void ItemEffect()
     {
+        TurretManager.Instance.MortarTube();
         curCarry++;
     }
 }
