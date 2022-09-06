@@ -177,6 +177,15 @@ public class TitleUI : MonoBehaviour
 
             titleMoveScript.isback = false;
         });
+        upGradeBtns[3].onClick.AddListener(() =>
+        {
+            RemoveBtn();
+            upGradePanels[3].SetActive(true);
+            TitleMoveScript.indexNum = 4;
+            titleBack = true;
+
+            titleMoveScript.isback = false;
+        });
 
         if(TestTurretDataBase.Instance.level == 1)
         {
@@ -320,6 +329,10 @@ public class TitleUI : MonoBehaviour
             .DOFade(1,0.6f)
             .SetDelay(0.7f)
             .SetEase(Ease.OutQuint));
+            upGradeSequence.Append(upGradeTexts[3].GetComponent<Text>()
+            .DOFade(1,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
             upGradeSequence.SetAutoKill(false);
             
         }
@@ -338,6 +351,10 @@ public class TitleUI : MonoBehaviour
             .SetDelay(0.7f)
             .SetEase(Ease.OutQuint));
             outUpGradeSequence.Append(upGradeTexts[2].GetComponent<Text>()
+            .DOFade(0,0.6f)
+            .SetDelay(0.7f)
+            .SetEase(Ease.OutQuint));
+            outUpGradeSequence.Append(upGradeTexts[3].GetComponent<Text>()
             .DOFade(0,0.6f)
             .SetDelay(0.7f)
             .SetEase(Ease.OutQuint));

@@ -207,7 +207,7 @@ public class TitleMoveScript : MonoBehaviour
         }
         if (indexNum == 2)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
             }
@@ -258,7 +258,7 @@ public class TitleMoveScript : MonoBehaviour
                 }
                 if (indexNum == 2)
                 {
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
                     }
@@ -355,7 +355,7 @@ public class TitleMoveScript : MonoBehaviour
         if (indexNum == 2)
         {
             TitleUI.UI.UpGradePanelOpen(2);
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 TitleUI.UI.upGradeBtns[i].gameObject.SetActive(false);
             }

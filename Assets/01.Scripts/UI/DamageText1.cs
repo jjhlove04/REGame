@@ -13,6 +13,6 @@ public class DamageText1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Translate(new Vector3(0,0.5f,0));
+        this.transform.Translate(new Vector3(0,0.1f,0));
     }
 }
