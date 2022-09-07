@@ -15,7 +15,6 @@ public class TitleMoveScript : MonoBehaviour
     public Button[] titleActionBtn;
     //0: start버튼 눌렀을 때 실행되는 타임라인, 1: 뒤로가기 눌렀을떄 실행되는 타임라인, 2: 업그레이드 눌렀을때 실행되는 타임라인 , 3:업그레이드에서 뒤로가기, 4: 블러 타임라인, 5:블러종료
     public PlayableDirector[] timelines;
-    public GameObject blurPanel;
     
     [Header("버튼 그룹")]
     [SerializeField] private GameObject btnGroup;
@@ -76,7 +75,7 @@ public class TitleMoveScript : MonoBehaviour
         });
          //통계 버튼
         titleActionBtn[2].onClick.AddListener(()=> {
-            blurPanel.SetActive(true);
+            
             timelines[4].Play();
             indexNum = 3;
             BtnSlide(1);
@@ -86,7 +85,7 @@ public class TitleMoveScript : MonoBehaviour
         });
          //컬렉션 버튼
         titleActionBtn[3].onClick.AddListener(()=> {
-            blurPanel.SetActive(true);
+           
             timelines[4].Play();
             indexNum = 3;
             BtnSlide(1);
@@ -96,7 +95,7 @@ public class TitleMoveScript : MonoBehaviour
         });
          //설정 버튼
         titleActionBtn[4].onClick.AddListener(()=> {
-            blurPanel.SetActive(true);
+            
             timelines[4].Play();
             indexNum = 3;
             BtnSlide(1);

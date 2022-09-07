@@ -136,10 +136,7 @@ public class TitleUI : MonoBehaviour
         {
             TestTurretDataBase.Instance.resultGold += 2100;
         }
-        for (int item = 0; item < 7; item++)
-        {
-            itemContainer.Gatcha();
-        }
+        
 
         startBtn.onClick.AddListener(() =>
         {
@@ -214,6 +211,11 @@ public class TitleUI : MonoBehaviour
 
     private void Start()
     {
+        //아이템 초기 주어지는 랜덤 순서
+        for (int item = 0; item < 5; item++)
+        {
+            itemContainer.Gatcha();
+        }
         curExp += TestTurretDataBase.Instance.resultEXP;
 
         levelTxt.text = TestTurretDataBase.Instance.level.ToString();

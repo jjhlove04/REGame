@@ -9,7 +9,7 @@ public class ItemContainer : MonoBehaviour
 
     public Button[] commonItem;
     public GameObject detailPanel;
-    public Button closeBtn;
+    //public Button closeBtn;
     public Text itemNameText;
     public Text rankText;
     public Text effectiveText;
@@ -18,7 +18,7 @@ public class ItemContainer : MonoBehaviour
     public GameObject itemCard;
     public Image itemImg;
     public Text itmeName;
-    public Button drawBtn;
+    public Button enterBtn;
 
     private int reCount = 0;
 
@@ -30,7 +30,7 @@ public class ItemContainer : MonoBehaviour
     private void Start()
     {
         
-        drawBtn.interactable = true;
+        enterBtn.interactable = false;
         itemCard.transform.localScale = Vector3.zero;
         for (int i = 0; i < this.commonItem.Length; i++)
         {
@@ -79,7 +79,6 @@ public class ItemContainer : MonoBehaviour
         if (reCount < 21)
         {
             Randand(i);
-
             reCount++;
 
         }
@@ -93,16 +92,20 @@ public class ItemContainer : MonoBehaviour
     //새로만든 뽑기 시스템
     public void CardSpin()
     {
-        Debug.Log("카드회전");
-        itemCard.transform.DORotate(new Vector3(0,3600,0), 2, RotateMode.FastBeyond360).SetEase(Ease.OutCubic);
+        if(TestTurretDataBase.Instance.curTp < 0)
+        {
+
+        }
+        itemCard.transform.DORotate(new Vector3(0,3600,0), 2, RotateMode.FastBeyond360).SetEase(Ease.OutCubic).OnComplete(() => enterBtn.interactable = true);
         itemCard.transform.DOScale(new Vector3(1,1,1),2);
         itemImg.DOFade(1,2);
         Gatcha();
+
     }
     public void CardOff()
     {
         itemCard.transform.DOScale(new Vector3(0,0,0), 0.2f);
-        drawBtn.interactable = true;
+        
     }
 
     public int Randand(int i)
@@ -113,6 +116,7 @@ public class ItemContainer : MonoBehaviour
             commonItem[i].interactable = true;
             itemImg.sprite = ItemDictionary._instance.itemContainerCom[i].Item4; //이미지
             itmeName.text = ItemDictionary._instance.itemContainerCom[i].Item1; //텍스트 이름
+            FeedMessageManager.MyInstance.ShowMessage(string.Format("소환에서 {0} <{1}> 획득",ItemDictionary._instance.itemContainerCom[i].Item1, ItemDictionary._instance.itemContainerCom[i].Item3));
             TestTurretDataBase.Instance.postItemDic[commonItem[i].ToString()] = commonItem[i].interactable;
             TestTurretDataBase.Instance.postItemObj.Add(commonItem[i].GetComponent<TitleItemBase>().obj.GetComponent<TrainItem>());
             return 0;
