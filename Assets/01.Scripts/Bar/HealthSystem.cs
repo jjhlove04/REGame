@@ -104,6 +104,8 @@ public class HealthSystem : MonoBehaviour
 
         particleObj.transform.parent = transform;
 
+        particle.transform.position = Vector3.zero;
+
         for (int i = 0; i < dotcount; i++)
         {
             if(curHealthAmount > 0)
@@ -114,9 +116,9 @@ public class HealthSystem : MonoBehaviour
             }
         }
 
-        particleObj.transform.parent = null;
-        particle.transform.position = Vector3.zero;
+
         particleObj.SetActive(false);
+        particleObj.transform.parent = null;
     }
 
     public void FMJ(float damageAmount, float additionalDamage)

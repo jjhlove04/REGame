@@ -4,7 +4,9 @@ public class BaseBullet : ProjectileMover
 {
     protected override void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Ground") && targetEnemy.GetComponent<Enemy>().isDying)
+        HealthSystem healthSystem = other.GetComponent<HealthSystem>();
+
+        if (other.CompareTag("Ground") && targetEnemy.GetComponent<Enemy>().isDying)
         {
             base.OnTriggerEnter(other);
         }
@@ -15,10 +17,15 @@ public class BaseBullet : ProjectileMover
 
             if (onFurryBracelet)
             {
-                other.GetComponent<HealthSystem>().FurryBracelet(time);
+                healthSystem.FurryBracelet(time);
             }
 
-            other.GetComponent<HealthSystem>().Damage(Damage);
+            if (onHemostatic)
+            {
+                healthSystem.DotDamageCoroutine(hemostaticParticle, 4,0.5f,hemostaticDamage);
+            }
+
+            healthSystem.Damage(Damage);
 
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }

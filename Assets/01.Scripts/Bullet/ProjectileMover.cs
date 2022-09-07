@@ -14,6 +14,10 @@ public class ProjectileMover : MonoBehaviour
 
     private float theSoleCandydamage;
 
+    protected float hemostaticDamage;
+
+    public GameObject hemostaticParticle;
+
 
     protected Transform targetEnemy;
     private Vector3 lastMoveDir;
@@ -49,6 +53,8 @@ public class ProjectileMover : MonoBehaviour
 
     protected bool onTheSoleCandyDamage = false;
 
+    protected bool onHemostatic = false;
+
     protected GameObject weakLens;
     protected GameObject fMJ;
     protected GameObject furryBaracelet;
@@ -56,6 +62,7 @@ public class ProjectileMover : MonoBehaviour
     protected GameObject redNut;
     protected GameObject taillessPlannaria;
     protected GameObject theSoleCandyDamage;
+    protected GameObject hemostatic;
 
     protected Turret turret;
 
@@ -123,6 +130,7 @@ public class ProjectileMover : MonoBehaviour
         redNut = transform.Find("RedNut").gameObject;
         taillessPlannaria = transform.Find("TaillessPlannaria").gameObject;
         theSoleCandyDamage = transform.Find("TheSoleCandy").gameObject;
+        hemostatic = transform.Find("Hemostatic").gameObject;
 
         OnBulletEffect();
     }
@@ -136,6 +144,7 @@ public class ProjectileMover : MonoBehaviour
         redNut.SetActive(onRedNut);
         taillessPlannaria.SetActive(onTaillessPlanaria);
         theSoleCandyDamage.SetActive(onTheSoleCandyDamage);
+        hemostatic.SetActive(onHemostatic);
     }
 
     public ProjectileMover Create(Transform enemy, int damage)
@@ -200,6 +209,15 @@ public class ProjectileMover : MonoBehaviour
         this.onTheSoleCandyDamage = onTheSoleCandyDamage;
 
         theSoleCandydamage = damage;
+
+        return this;
+    }
+
+    public ProjectileMover SetOnHemostatic(bool OnHemostatic, float hemostaticDamage)
+    {
+        this.onHemostatic = OnHemostatic;
+
+        this.hemostaticDamage = hemostaticDamage;
 
         return this;
     }

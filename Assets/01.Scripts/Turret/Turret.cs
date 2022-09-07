@@ -111,6 +111,10 @@ public class Turret : MonoBehaviour
     private float mortarTubeCount;
     private float mortarTubeDamage;
 
+    private bool onHemostatic = false;
+    private float hemostaticCount;
+    private float hemostaticDamage=0.35f;
+
     private GameManager gameManager;
 
     private void OnEnable()
@@ -370,7 +374,8 @@ public class Turret : MonoBehaviour
             .SetFurryBracelet(FurryBaracelet(), onFurryBraceletTime)
             .SetFMJAdditionalDamage(onFMJ, additionalFMJDamage)
             .SetOnPunchGun(IsPuchGun())
-            .SetOnTheSoleCandy(IsTheSoleCandy(), theSoleCandyDamage);
+            .SetOnTheSoleCandy(IsTheSoleCandy(), theSoleCandyDamage)
+            .SetOnHemostatic(IsHemostatic(), hemostaticDamage * damage);
             
 
         TaillessPlanaria();
@@ -698,6 +703,20 @@ public class Turret : MonoBehaviour
     private bool IsMortarTube()
     {
         return Random.Range(0, 100) <= gameManager.ActivationCoefficient(9) && onMortarTube;
+    }
+
+    public Turret OnHemostatic(bool on, int count)
+    {
+        onHemostatic = on;
+
+        hemostaticCount = count * 15;
+
+        return this;
+    }
+
+    private bool IsHemostatic()
+    {
+        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(hemostaticCount) && onMortarTube;
     }
 
     private void OnMouseEnter()

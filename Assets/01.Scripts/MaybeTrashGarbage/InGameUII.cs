@@ -119,6 +119,7 @@ public class InGameUII : MonoBehaviour
             if (gameManager.onNewsOfVictory&& !value)
             {
                 gameManager.NewsOfVictory();
+                TrainManager.instance.BurningCoal(turretDamage);
             }
         }
     }

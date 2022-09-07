@@ -30,6 +30,12 @@ public class TrainManager : MonoBehaviour
 
     public GameObject mortarTube;
 
+    private bool onBurningCoal = false;
+    private int burningCoalAmount = 8;
+    private GameObject burningCoalProjectile;
+
+    public LayerMask enemy;
+
     private void Awake()
     {
         Instance = this;
@@ -199,8 +205,7 @@ public class TrainManager : MonoBehaviour
     }
 
     public void MakeCollider()
-    {
-        
+    {       
         collider.center = center = new Vector3(0, 5, (curTrainCount * distance) * -0.5f + 27);
         collider.size= size = new Vector3(6, 10, curTrainCount * distance + 27);
     }
@@ -215,6 +220,60 @@ public class TrainManager : MonoBehaviour
 
             bullet.transform.position = new Vector3(transform.position.x,5, (-(trainContainer.Count) * 20)+27);
         }    
+    }
+
+    public void OnBurningCoal()
+    {
+        if (onBurningCoal)
+        {
+            burningCoalAmount += 2;
+        }
+
+        onBurningCoal = true;
+    }
+
+    public void BurningCoal(int damage)
+    {
+        for (int i = 0; i < burningCoalAmount; i++)
+        {
+            GameObject bullet = ObjectPool.instacne.GetObject(burningCoalProjectile);
+
+            bullet.GetComponent<BurningCoalProjectileMover>().Create(damage, LookForTargets(new Vector3(50, 0, 0)));
+
+            bullet.transform.position = new Vector3(transform.position.x, 5, (-(trainContainer.Count) * 20) + 27);
+        }
+    }
+
+    Transform LookForTargets(Vector3 targetPos)
+    {
+        Collider[] hit = Physics.OverlapSphere(targetPos, 50, enemy);
+
+        Transform targetEnemy = null;
+
+        foreach (Collider hitEnemy in hit)
+        {
+            Enemy enemy = hitEnemy.GetComponent<Enemy>();
+            if (hitEnemy.CompareTag("Enemy"))
+            {
+                if (!enemy.isDying)
+                {
+                    if (targetEnemy != null)
+                    {
+                        if (Vector3.Distance(targetPos, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
+                        {
+                            targetEnemy = hitEnemy.transform;
+                        }
+                    }
+
+                    else
+                    {
+                        targetEnemy = hitEnemy.transform;
+                    }
+                }
+            }
+        }
+
+        return targetEnemy;
     }
 
     /*public void KeepOffTrain()

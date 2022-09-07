@@ -40,7 +40,10 @@ public class TurretManager : MonoBehaviour
     private float overclokcingIncrease;
 
     private bool onMortarTube = false;
-    private int countMortarTube = 0;
+    private int countMortarTube = 0;   
+    
+    private bool onHemostatic = false;
+    private int countHemostatic = 0;
 
     private void Awake()
     {
@@ -212,6 +215,19 @@ public class TurretManager : MonoBehaviour
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
                 .OnMortarTube(onMortarTube, countMortarTube);
+        }
+    }
+
+    public void Hemostatic()
+    {
+        onHemostatic = true;
+
+        countHemostatic++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnHemostatic(onMortarTube, countMortarTube);
         }
     }
 }

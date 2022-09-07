@@ -4833,7 +4833,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9f786ae76c9c9754d927483cb4a005c9, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4982,7 +4981,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bd48c91c5966c468d5bea2d60ac226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
   hitOffset: 0.1
   UseFirePointRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
@@ -4990,3 +4988,4 @@ MonoBehaviour:
   flash: {fileID: 8026020905762251422, guid: 46856d814f2d9314fa68787b34963609, type: 3}
   Detached: []
   moveSpeed: 50
+  hemostaticParticle: {fileID: 0}
