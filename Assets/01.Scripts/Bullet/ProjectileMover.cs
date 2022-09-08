@@ -68,6 +68,8 @@ public class ProjectileMover : MonoBehaviour
 
     private bool check = false;
 
+    Camera cam;
+
     private void OnEnable()
     {
         check = false;
@@ -75,6 +77,8 @@ public class ProjectileMover : MonoBehaviour
 
     void Start()
     {
+        cam = Camera.main;
+
         if (flash != null)
         {
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
@@ -111,6 +115,19 @@ public class ProjectileMover : MonoBehaviour
                 check = true;
 
                 turret.EnemyMissing();
+            }
+        }
+
+        if (targetEnemy == null)
+        {
+            Vector3 mos = Input.mousePosition;
+            mos.z = cam.farClipPlane;
+            Vector3 ray = cam.ScreenToWorldPoint(mos);
+            RaycastHit hit;
+
+            if (Physics.Raycast(cam.transform.position, ray, out hit, mos.z))
+            {
+                moveDir = hit.point - transform.position;
             }
         }
 

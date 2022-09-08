@@ -131,11 +131,6 @@ public class TitleUI : MonoBehaviour
                 TestTurretDataBase.Instance.postItemDic.Add(itemContainer.commonItem[i].ToString(), itemContainer.commonItem[i].interactable);
             }
         }
-
-        if (TestTurretDataBase.Instance.postItemObj.Count < 1)
-        {
-            TestTurretDataBase.Instance.resultGold += 2100;
-        }
         
 
         startBtn.onClick.AddListener(() =>
@@ -211,11 +206,18 @@ public class TitleUI : MonoBehaviour
 
     private void Start()
     {
-        //아이템 초기 주어지는 랜덤 순서
-        for (int item = 0; item < 5; item++)
+
+        if (TestTurretDataBase.Instance.postItemObj.Count < 1)
         {
-            itemContainer.Gatcha();
+            TestTurretDataBase.Instance.resultGold += 2100;
+
+            for (int item = 0; item < 5; item++)
+            {
+                itemContainer.Gatcha();
+            }
         }
+        //아이템 초기 주어지는 랜덤 순서
+
         curExp += TestTurretDataBase.Instance.resultEXP;
 
         levelTxt.text = TestTurretDataBase.Instance.level.ToString();

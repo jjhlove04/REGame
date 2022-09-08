@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            GoldAmount += 50;
+            GoldAmount += 400;
             expAmount += 6;
         }
 

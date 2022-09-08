@@ -117,6 +117,7 @@ public class Turret : MonoBehaviour
 
     private GameManager gameManager;
 
+    Camera cam;
     private void OnEnable()
     {
         OffDetection();
@@ -141,6 +142,9 @@ public class Turret : MonoBehaviour
         gameManager = GameManager.Instance;
         trainScript = TrainScript.instance;
         inGameUII = InGameUII._instance;
+
+        cam = Camera.main;
+
         bulAmount = maxBulletAmount;
 
         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
@@ -154,6 +158,8 @@ public class Turret : MonoBehaviour
     {
         HandleTargeting();
         HandleShooting();
+
+        //BossRoundTarget();
     }
 
     private void OnDisable()
@@ -293,11 +299,11 @@ public class Turret : MonoBehaviour
         if (targetEnemy == null)
         {
             Vector3 mos = Input.mousePosition;
-            mos.z = Camera.main.farClipPlane;
-            Vector3 ray = Camera.main.ScreenToWorldPoint(mos);
+            mos.z = cam.farClipPlane;
+            Vector3 ray = cam.ScreenToWorldPoint(mos);
             RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.transform.position, ray, out hit, mos.z))
+            if (Physics.Raycast(cam.transform.position, ray, out hit, mos.z))
             {
                 Vector3 target = hit.point - transform.position;
                 Quaternion rot = Quaternion.LookRotation(target);

@@ -110,7 +110,7 @@ public class TrainItemManager : MonoBehaviour
                     button[i].transform.GetChild(3).GetComponent<Text>().text = curTrainItems[i].needGold.ToString();
                     button[i].transform.GetChild(3).GetComponent<Text>().color = Color.white;
 
-                    if (GameManager.Instance.GoldAmount < curTrainItems[i].needGold)
+                    if (GameManager.Instance.GoldAmount < curTrainItems[i].needGold && GameManager.Instance.TrainLevel != 2)
                     {
                         button[i].interactable = false;
                         button[i].transform.GetChild(3).GetComponent<Text>().color = Color.red;
@@ -135,8 +135,12 @@ public class TrainItemManager : MonoBehaviour
         bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
         bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
 
-        GameManager.Instance.GoldAmount -= curTrainItems[selectNum].needGold;
-        InGameUII._instance.CreateOutMoney(curTrainItems[selectNum].needGold);
+
+        if (GameManager.Instance.TrainLevel != 2)
+        {
+            GameManager.Instance.GoldAmount -= curTrainItems[selectNum].needGold;
+            InGameUII._instance.CreateOutMoney(curTrainItems[selectNum].needGold);
+        }
 
         if (curTrainItems[selectNum].curCarry > 1)
         {
