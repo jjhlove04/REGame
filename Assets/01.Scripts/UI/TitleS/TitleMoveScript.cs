@@ -232,7 +232,7 @@ public class TitleMoveScript : MonoBehaviour
         //업그레이드 화면에서 나가기
         if (indexNum == 4)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 TitleUI.UI.upGradePanels[i].SetActive(false);
                 TitleUI.UI.upGradeBtns[i].gameObject.SetActive(true);
