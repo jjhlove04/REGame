@@ -13,6 +13,15 @@ public class HealthSystem : MonoBehaviour
 
     private float curHealthAmount;
 
+    private bool onEngineOil = false;
+
+    private float curEngineOilTime;
+    private float maxEngineOilTime;
+
+    private float damage;
+
+    private float maxTime = 0;
+
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
@@ -23,6 +32,11 @@ public class HealthSystem : MonoBehaviour
     private void Start()
     {
         SetHealthAmountMax(enemy.enemyStat.healthAmountMax, true);
+    }
+
+    private void Update()
+    {
+        EngineOilLinoleumDamage();
     }
 
     public bool IsDead()
@@ -134,5 +148,29 @@ public class HealthSystem : MonoBehaviour
     public void FurryBracelet(float time)
     {
         enemy.OnFurryBracelet(time);
+    }
+
+    public void OnEngineOil(float dotMaxTime, float dotDelay, float dotDamage)
+    {
+        maxTime = dotMaxTime;
+
+        maxEngineOilTime = dotDelay;
+
+        damage = dotDamage;
+    }
+
+    private void EngineOilLinoleumDamage()
+    {
+        if (maxTime > 0)
+        {
+            if (maxEngineOilTime >= curEngineOilTime)
+            {
+                maxTime -= maxEngineOilTime;
+
+                curEngineOilTime = 0;
+
+                Damage(damage * (maxEngineOilTime / maxTime));
+            }
+        }
     }
 }

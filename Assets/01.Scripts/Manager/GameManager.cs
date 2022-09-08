@@ -36,11 +36,11 @@ public class GameManager : MonoBehaviour
     {
         get { return goldAmount; }
 
-        set 
+        set
         {
-            if (value > goldAmount&&goldIncrease>0)
+            if (value > goldAmount && goldIncrease > 0)
             {
-                goldAmount += (int)((value-goldAmount) * goldIncrease);
+                goldAmount += (int)((value - goldAmount) * goldIncrease);
             }
 
             else
@@ -63,7 +63,12 @@ public class GameManager : MonoBehaviour
                 VamPireTeeth();
             }
 
-            expAmount += (value-expAmount) * expIncrease;
+            if (engineOil)
+            {
+                EngineOil();
+            }
+
+            expAmount += (value - expAmount) * expIncrease;
         }
     }
     public float maxExp = 0;
@@ -77,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             trainLevel = value;
 
-            activationCoefficient -= 0.01f;   
+            activationCoefficient -= 0.01f;
         }
     }
 
@@ -88,17 +93,25 @@ public class GameManager : MonoBehaviour
     private int annuityGoldAmount = 1;
 
     public bool onNewsOfVictory = false;
-    private GameObject turrets; 
+    private GameObject turrets;
     private int turretAmount = 2;
     private int onNewsOfVictoryTime = 4;
 
     private TrainScript trainScript;
     private bool vamPireTeeth = false;
 
+    private bool engineOil = false;
+    [SerializeField]
+    private GameObject engineOilObj;
+    private float engineOilDamage = 0.6f;
+    private float engineOilLifeTime = 1;
+
     private float expIncrease = 1;
     private float goldIncrease = 1;
 
     private float activationCoefficient = 0.5f;
+
+    ObjectPool objectPool;
 
 
     private void Awake()
@@ -116,11 +129,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         trainScript = TrainScript.instance;
+        objectPool = ObjectPool.instacne;
     }
 
     private void OnDestroy()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     private void Update()
@@ -205,7 +219,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        else 
+        else
         {
             turretArr = new Turret[turrets.transform.childCount];
 
@@ -229,8 +243,8 @@ public class GameManager : MonoBehaviour
     }
 
     private Turret RandomTurret(Turret[] turretArr)
-    {                                    
-        if (turrets.transform.childCount >0)
+    {
+        if (turrets.transform.childCount > 0)
         {
             Turret turret = turrets.transform.GetChild(Random.Range(0, turrets.transform.childCount))?.GetComponent<Turret>();
 
@@ -264,6 +278,25 @@ public class GameManager : MonoBehaviour
     private void VamPireTeeth()
     {
         trainScript.CurTrainHp += 3;
+    }
+
+    public void OnEngineOil()
+    {
+        if (engineOil)
+        {
+            engineOilDamage += 0.4f;
+        }
+
+        engineOil = true;
+    }
+
+    private void EngineOil()
+    {
+        GameObject obj = objectPool.GetObject(engineOilObj);
+
+        obj.transform.position = new Vector3(Random.Range(5, 60), 0.25f, Random.Range(40, 13 - (30 * TrainManager.instance.trainContainer.Count)));
+
+        obj.GetComponent<EngineOilLinoleum>().Create(InGameUII._instance.turretDamage * engineOilDamage);
     }
 
     public void LearningMagnifyingGlass(float expIncrease)
