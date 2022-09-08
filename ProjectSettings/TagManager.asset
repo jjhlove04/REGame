@@ -4,24 +4,35 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Shootable
+  - Train
+  - Enemy
+  - Bullet
+  - Turret
+  - EnemyDead
+  - DrillBullet
+  - FireBullet
+  - GuardianBullet
+  - HumanoidRigBullet
+  - RoketBullet
+  - Ground
+  - Target
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - Lighting
+  - Train
+  - Enemy
   - Ground
-  - Postprocessing
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Turret
+  - Bullet
+  - Rader
+  - OverUI
+  - DieEnemy
+  - Bait
+  - BlackHole
   - 
   - 
   - 
@@ -39,9 +50,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Fire
-    uniqueID: 3804908061
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
