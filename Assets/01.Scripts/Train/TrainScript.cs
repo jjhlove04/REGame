@@ -310,7 +310,7 @@ public class TrainScript : MonoBehaviour
             {
                 if (curTrainShield <= 0)
                 {
-                    CurTrainHp -= damage;
+                    CurTrainHp -= damage * (100 / 100 + trainDef);
                     testScripttss.Instance.TakeDamageHpBar();
 
                     /*for (int i = 0; i < trainhit.Length; i++)
@@ -321,7 +321,7 @@ public class TrainScript : MonoBehaviour
 
                 else
                 {
-                    curTrainShield -= damage;
+                    curTrainShield -= damage * (100 / 100 + trainDef);
                 }
             }
 
@@ -351,8 +351,9 @@ public class TrainScript : MonoBehaviour
     }
     public void LevelUp()
     {
-        curTrainHpMax += 10;
+        curTrainHpMax += 22;
         recoverAmount += 0.2f;
+        trainDef += 2;
     }
 
 

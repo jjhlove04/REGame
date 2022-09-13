@@ -30,12 +30,12 @@ public class EnamyManager : MonoBehaviour
 
         if (spawnManager.round % 10 == 0 && isHUp)
         {
-            enemies[0].healthAmountMax += 1;
+            enemies[0].healthAmountMax += 1.5f;
             isHUp = false;
         }
         else if (spawnManager.round % 15 == 0 && isDUp)
         {
-            enemies[0].damage += 1;
+            enemies[0].damage += 1.6f;
             isDUp = false;
         }
     }

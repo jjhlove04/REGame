@@ -16,6 +16,7 @@ public class ParsingJson : MonoBehaviour
     }
 
     public List<float> maxExp = new List<float>();
+    public List<int> changeExp = new List<int>();
 
     [Serializable]
     public class Sheet
@@ -46,6 +47,7 @@ public class ParsingJson : MonoBehaviour
         foreach (Sheet see in s.sheet)
         {
             maxExp.Add(see.NeedEXP);
+            changeExp.Add(see.Change);
         }
     }
 

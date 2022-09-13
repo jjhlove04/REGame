@@ -275,7 +275,7 @@ public class InGameUII : MonoBehaviour
         if (GameManager.Instance.state == GameManager.State.End)
         {
             Time.timeScale = 1f;
-            TestTurretDataBase.Instance.resultEXP += (int)GameManager.Instance.ExpAmount;
+            TestTurretDataBase.Instance.resultEXP += ParsingJson.Instnace.changeExp[gameManager.TrainLevel];
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.GoldAmount;
             LoadingSceneUI.LoadScene("TitleScene");
             sceneIndex = 1;
@@ -317,11 +317,11 @@ public class InGameUII : MonoBehaviour
             worldCanvas.SetActive(false);
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.E))
         {
             itemPanel.alpha = 1;
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.E))
         {
             itemPanel.alpha = 0;
         }
@@ -345,7 +345,7 @@ public class InGameUII : MonoBehaviour
     {
         if (!SpawnMananger.Instance.stopSpawn)
         {
-            milliSec += Time.deltaTime;
+            milliSec += Time.unscaledDeltaTime;
         }
         waveTxt.text = string.Format("{0:D2}:{1:D2}:{2:D2}", miniute, second, (int)milliSec);
 
@@ -631,10 +631,10 @@ public class InGameUII : MonoBehaviour
                 }
 
                 turretDamage += 3;
-                distance += 0.8f;
+                distance += 0.2f;
                 shootTime -= (shootTime * 0.05f);
                 bulletAmount += 1;
-                rPrice += 1;
+                rPrice += 3;
 
                 for (int i = 0; i < testScriptts.turretData.Count; i++)
                 {

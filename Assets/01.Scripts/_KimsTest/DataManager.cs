@@ -35,9 +35,11 @@ public class DataManager : MonoBehaviour
     public void InitDataManager()
     {
         _database = new DataSet("Database");
+
+        MakeSheetDatset(_database);
 #if UNITY_EDITOR
         //에디터에서 실행시 스프레드시트 API 호출
-        MakeSheetDatset(_database);
+
 #else
 	//Android, Ios 환경에서 실행 시 로컬 json 파일에서 데이터 받아옴
         LoadJsonData(_database);

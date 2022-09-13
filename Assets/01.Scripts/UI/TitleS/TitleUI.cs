@@ -209,7 +209,6 @@ public class TitleUI : MonoBehaviour
 
         if (TestTurretDataBase.Instance.postItemObj.Count < 1)
         {
-            TestTurretDataBase.Instance.resultGold += 2100;
 
             for (int item = 0; item < 5; item++)
             {
