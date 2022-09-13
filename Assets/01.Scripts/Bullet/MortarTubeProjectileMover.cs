@@ -17,6 +17,8 @@ public class MortarTubeProjectileMover : MonoBehaviour
     [SerializeField]
     private GameObject explosionEffect;
 
+    private CameraManager cameraManager;
+
 
     private void OnEnable()
     {
@@ -35,6 +37,8 @@ public class MortarTubeProjectileMover : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(Random.Range(-80, -10), Random.Range(50, 130), 0));
 
         rigidbody.velocity = transform.forward * Random.Range(10, 50);
+
+        cameraManager = CameraManager.Instance;
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -49,6 +53,8 @@ public class MortarTubeProjectileMover : MonoBehaviour
     private void WideAreaAttack()
     {
         Collider[] collider = Physics.OverlapSphere(transform.position, m_MaxDistance, m_Mask);
+
+        cameraManager.Shake(0.25f, 1);
 
         HealthSystem healthSystem = new HealthSystem();
 

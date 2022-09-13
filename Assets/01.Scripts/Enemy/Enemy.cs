@@ -50,6 +50,10 @@ public class Enemy : MonoBehaviour
 
     private float changeSpeed;
 
+    private float bumperGrapplerSpeed = 0.2f;
+    private float bumperMaxTime = 0.2f;
+    private float bumperCurTime = 0.2f;
+
 
     protected virtual void OnEnable()
     {
@@ -113,6 +117,16 @@ public class Enemy : MonoBehaviour
 
                             Attack(rot);
                         }
+                    }
+                }
+
+                if (bumperCurTime < bumperMaxTime)
+                {
+                    bumperCurTime += Time.deltaTime;
+
+                    if(bumperCurTime >= bumperMaxTime)
+                    {
+                        RandomMoveSpeed();
                     }
                 }
             }
@@ -212,7 +226,7 @@ public class Enemy : MonoBehaviour
     void EnemyTargettingMove()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position + new Vector3(distanceX, 0, randomZ),
-        speed * Time.deltaTime);
+        speed - bumperGrapplerSpeed * Time.deltaTime);
     }
 
     public void EnemyDied()
@@ -235,6 +249,13 @@ public class Enemy : MonoBehaviour
         }
 
         transform.position += new Vector3(0, -9.8f, 0) * Time.deltaTime;
+    }
+
+    public void OnBumperGrappler()
+    {
+        speed -= bumperGrapplerSpeed * bumperGrapplerSpeed;
+
+        bumperCurTime = 0;
     }
 
     public virtual void PlayDieAnimationTrue()

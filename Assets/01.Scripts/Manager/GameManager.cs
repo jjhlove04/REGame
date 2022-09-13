@@ -58,14 +58,17 @@ public class GameManager : MonoBehaviour
         get { return expAmount; }
         set
         {
-            if (vamPireTeeth)
+            if(expAmount < value)
             {
-                VamPireTeeth();
-            }
+                if (vamPireTeeth)
+                {
+                    VamPireTeeth();
+                }
 
-            if (engineOil)
-            {
-                EngineOil();
+                if (engineOil)
+                {
+                    EngineOil();
+                }
             }
 
             expAmount += (value - expAmount) * expIncrease;
@@ -101,6 +104,19 @@ public class GameManager : MonoBehaviour
     private bool vamPireTeeth = false;
 
     private bool engineOil = false;
+
+    [SerializeField]
+    private GameObject bumperGrapplerObj;
+
+    private bool bumperGrappler = false;
+    private bool onBumperGrappler = false;
+
+    private float bumperGrapplercurTime = 0;
+    private int bumperGrapplerCoolTime = 1;
+
+    private float bumperGrapplerActivationProbability = 30;
+    private int bumperGrapplerLifeTime = 2;
+
     [SerializeField]
     private GameObject engineOilObj;
     private float engineOilDamage = 0.6f;
@@ -130,8 +146,6 @@ public class GameManager : MonoBehaviour
     {
         trainScript = TrainScript.instance;
         objectPool = ObjectPool.instacne;
-
-        maxExp = 5;
     }
 
     private void OnDestroy()
@@ -165,6 +179,19 @@ public class GameManager : MonoBehaviour
         if (annuity)
         {
             Annuity();
+        }
+
+        if (!onBumperGrappler)
+        {
+            bumperGrapplercurTime += Time.deltaTime;
+
+            if (bumperGrapplercurTime >= bumperGrapplerCoolTime)
+            {
+                onBumperGrappler = true;
+
+                bumperGrapplercurTime = 0;
+            }
+
         }
     }
 
@@ -299,6 +326,31 @@ public class GameManager : MonoBehaviour
         obj.transform.position = new Vector3(Random.Range(5, 60), 0.25f, Random.Range(40, 13 - (30 * TrainManager.instance.trainContainer.Count)));
 
         obj.GetComponent<EngineOilLinoleum>().Create(InGameUII._instance.turretDamage * engineOilDamage);
+    }
+
+    public void OnBumperGrappler()
+    {
+        if (bumperGrappler)
+        {
+            bumperGrapplerActivationProbability += 10;
+            bumperGrapplerLifeTime += 1;
+        }
+
+        bumperGrappler = true;
+    }
+
+    public void BumperGrappler()
+    {
+        if (onBumperGrappler && bumperGrappler && Random.Range(0, 100)<=ActivationCoefficient(bumperGrapplerActivationProbability))
+        {
+            GameObject obj = objectPool.GetObject(bumperGrapplerObj);
+
+            obj.transform.position = new Vector3(Random.Range(5, 60), 0.25f, Random.Range(40, 13 - (30 * TrainManager.instance.trainContainer.Count)));
+
+            obj.GetComponent<BumperGrapplerLinoleum>().Create(bumperGrapplerLifeTime);
+
+            onBumperGrappler = false;
+        }
     }
 
     public void LearningMagnifyingGlass(float expIncrease)

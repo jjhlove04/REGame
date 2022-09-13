@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EngineOilLinoleum : MonoBehaviour
+public class BumperGrapplerLinoleum : MonoBehaviour
 {
     [SerializeField]
     private float m_MaxDistance;
 
     public LayerMask m_Mask;
 
-    private float damage;
+    private float lifeTime;
 
     private ObjectPool objectPool;
 
@@ -17,7 +17,7 @@ public class EngineOilLinoleum : MonoBehaviour
     {
         objectPool = ObjectPool.instacne;
 
-        Invoke("ObjReturn", 1);
+        Invoke("ObjReturn", lifeTime);
     }
 
     private void Start()
@@ -27,31 +27,31 @@ public class EngineOilLinoleum : MonoBehaviour
 
     private void Update()
     {
-        EngineOilLinoleumAttack();
+        BumperGrapplerleumAttack();
     }
     private void ObjReturn()
     {
         objectPool.ReturnGameObject(this.gameObject);
     }
 
-    public void Create(float damage)
+    public void Create(float lifeTime)
     {
-        this.damage = damage;
+        this.lifeTime = lifeTime;
     }
 
-    private void EngineOilLinoleumAttack()
+    private void BumperGrapplerleumAttack()
     {
         Collider[] collider = Physics.OverlapSphere(transform.position, m_MaxDistance, m_Mask);
 
-        HealthSystem healthSystem = new HealthSystem();
+        Enemy enemy = new Enemy();
 
         for (int i = 0; i < collider.Length; i++)
         {
             if (collider[i].gameObject.activeSelf)
             {
-                healthSystem = collider[i].GetComponent<HealthSystem>();
+                enemy = collider[i].GetComponent<Enemy>();
 
-                healthSystem.OnEngineOil(2,0.5f,damage);
+                enemy.OnBumperGrappler();
             }
         }
     }
