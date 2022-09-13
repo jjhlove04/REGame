@@ -61,7 +61,6 @@ public class TitleUII : MonoBehaviour
             TitleMoveScript.indexNum = 4;
         });
 
-        curExp += TestTurretDataBase.Instance.resultEXP;
 
     }
     private void Update()

@@ -61,8 +61,8 @@ public class TitleUI : MonoBehaviour
     public Text acquiredExp;
     public Text damageTxt;
 
-    public int curExp = 0;
-    public int maxExp = 30;
+    public float curExp = 0;
+    public float maxExp = 30;
     public Slider expBar;
     public Text levelTxt;
 
@@ -229,6 +229,8 @@ public class TitleUI : MonoBehaviour
         acquiredExp.text = TestTurretDataBase.Instance.resultEXP.ToString();
         damageTxt.text = TestTurretDataBase.Instance.resultDamage.ToString();
 
+        maxExp = ParsingJson.Instnace.maxExp[TestTurretDataBase.Instance.level];
+
         //등록관련
         // if (TestDatabase.Instance.isRegister)
         // {
@@ -257,6 +259,12 @@ public class TitleUI : MonoBehaviour
         if (tpWarning.alpha >= 0)
         {
             tpWarning.alpha = Mathf.Lerp(tpWarning.alpha, 0, Time.deltaTime * 2);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            maxExp = ParsingJson.Instnace.maxExp[TestTurretDataBase.Instance.level];
+            TestTurretDataBase.Instance.level++;
         }
     }
 
@@ -390,7 +398,7 @@ public class TitleUI : MonoBehaviour
 
     private void ExpBar()
     {
-        expBar.value = Mathf.Lerp(expBar.value, (float)curExp / (float)maxExp, Time.deltaTime * (2 + (curExp / 500)));
+        expBar.value = Mathf.Lerp(expBar.value, curExp / maxExp, Time.deltaTime * (2 + (curExp / 500)));
 
         if (expBar.value >= 0.99f)
         {
@@ -399,14 +407,9 @@ public class TitleUI : MonoBehaviour
                 TestTurretDataBase.Instance.curTp++;
                 TestTurretDataBase.Instance.level++;
                 curExp = curExp - maxExp;
-                if (TestDatabase.Instance.Level % 20 == 0)
-                {
-                    maxExp = (int)(((maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestTurretDataBase.Instance.level / (TestTurretDataBase.Instance.level - 1)) + maxExp) * 1.2f);
-                }
-                else
-                {
-                    maxExp = (maxExp + (TestTurretDataBase.Instance.level + (TestTurretDataBase.Instance.level - 1))) * (TestDatabase.Instance.Level / (TestTurretDataBase.Instance.level - 1)) + maxExp;
-                }
+
+                maxExp = ParsingJson.Instnace.maxExp[TestTurretDataBase.Instance.level];
+
                 expBar.value = 0;
                 levelTxt.text = TestTurretDataBase.Instance.level.ToString();
             }

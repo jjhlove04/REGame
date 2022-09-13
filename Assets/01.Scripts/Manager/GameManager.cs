@@ -130,6 +130,8 @@ public class GameManager : MonoBehaviour
     {
         trainScript = TrainScript.instance;
         objectPool = ObjectPool.instacne;
+
+        maxExp = 5;
     }
 
     private void OnDestroy()
