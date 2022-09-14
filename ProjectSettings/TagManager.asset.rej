@@ -1,8 +1,9 @@
 diff a/ProjectSettings/TagManager.asset b/ProjectSettings/TagManager.asset	(rejected hunks)
-@@ -4,35 +4,24 @@
+@@ -3,36 +3,24 @@
+ --- !u!78 &1
  TagManager:
    serializedVersion: 2
-   tags:
+-  tags:
 -  - Train
 -  - Enemy
 -  - Bullet
@@ -15,7 +16,7 @@ diff a/ProjectSettings/TagManager.asset b/ProjectSettings/TagManager.asset	(reje
 -  - RoketBullet
 -  - Ground
 -  - Target
-+  - Shootable
++  tags: []
    layers:
    - Default
    - TransparentFX
@@ -26,10 +27,7 @@ diff a/ProjectSettings/TagManager.asset b/ProjectSettings/TagManager.asset	(reje
    - UI
 -  - Train
 -  - Enemy
-+  - 
-+  - 
-+  - Lighting
-   - Ground
+-  - Ground
 -  - Turret
 -  - Bullet
 -  - Rader
@@ -37,7 +35,11 @@ diff a/ProjectSettings/TagManager.asset b/ProjectSettings/TagManager.asset	(reje
 -  - DieEnemy
 -  - Bait
 -  - BlackHole
-+  - Postprocessing
++  - 
++  - 
++  - 
++  - 
++  - 
 +  - 
 +  - 
 +  - 
