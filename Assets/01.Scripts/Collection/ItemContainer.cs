@@ -106,7 +106,7 @@ public class ItemContainer : MonoBehaviour
     //새로만든 뽑기 시스템
     public void CardSpin()
     {
-        if(TestTurretDataBase.Instance.curTp < 0)
+        if(TestTurretDataBase.Instance.curTp > 0)
         {
             itemCard.transform.DORotate(new Vector3(0,3600,0), 2, RotateMode.FastBeyond360).SetEase(Ease.OutCubic).OnComplete(() => enterBtn.interactable = true);
             itemCard.transform.DOScale(new Vector3(1,1,1),2);
