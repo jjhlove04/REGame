@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &660625450399078700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5856423788501695144}
+  - component: {fileID: 9091234700254330074}
+  m_Layer: 0
+  m_Name: MortarTube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5856423788501695144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660625450399078700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9091234700254330074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660625450399078700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f06b9eaa6494824db765c7455fc0811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemEffect: "\uBC15\uACA9\uD3EC"
+  itemStr: "\uB370\uBBF8\uC9C0\uB97C \uC8FC\uB294 \uBC15\uACA9\uD3EC\uB97C \uACF5\uACA9\uC2DC
+    \uC77C\uC815 \uD655\uB960\uB85C \uBC1C\uC0AC\uD569\uB2C8\uB2E4. "
+  itemImage: {fileID: 21300000, guid: cc359b15f9b424211b9b51661f77c793, type: 3}
+  curCarry: 1
+  bufColor: {r: 0.57254905, g: 0.8156863, b: 0.3137255, a: 1}
+  needGold: 100

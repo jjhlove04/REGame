@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2699939415460188398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799017635364241225}
+  - component: {fileID: 1870498987936557275}
+  m_Layer: 0
+  m_Name: Annuity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799017635364241225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699939415460188398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1870498987936557275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699939415460188398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71278d89064e064889d62590b41e7ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemEffect: "\uC5F0\uAE08"
+  itemStr: "\uC77C\uC815 \uC2DC\uAC04\uB9C8\uB2E4 \uACE8\uB4DC\uB97C \uC0DD\uC131\uD569\uB2C8\uB2E4."
+  itemImage: {fileID: 21300000, guid: 92c071f8ba8f0754e98b56c377b213d6, type: 3}
+  curCarry: 0
+  bufColor: {r: 0.7882353, g: 0.20784314, b: 0.050980393, a: 1}
+  needGold: 100
