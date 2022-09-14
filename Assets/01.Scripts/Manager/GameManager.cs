@@ -68,6 +68,12 @@ public class GameManager : MonoBehaviour
                 if (engineOil)
                 {
                     EngineOil();
+                }                
+                
+                if (engineOil)
+                {
+                    LaveLamp();
+
                 }
             }
 
@@ -104,6 +110,11 @@ public class GameManager : MonoBehaviour
     private bool vamPireTeeth = false;
 
     private bool engineOil = false;
+
+    private bool laveLamp = false;
+
+    private float laveLampDamage = 5;
+    public GameObject laveLampObj;
 
     [SerializeField]
     private GameObject bumperGrapplerObj;
@@ -326,6 +337,29 @@ public class GameManager : MonoBehaviour
         obj.transform.position = new Vector3(Random.Range(5, 60), 0.25f, Random.Range(40, 13 - (30 * TrainManager.instance.trainContainer.Count)));
 
         obj.GetComponent<EngineOilLinoleum>().Create(InGameUII._instance.turretDamage * engineOilDamage);
+    }
+
+    public void OnLaveLamp()
+    {
+        if (laveLamp)
+        {
+            laveLampDamage += 0.5f;
+        }
+
+        laveLamp = true;
+    }
+
+    private void LaveLamp()
+    {
+        if(Random.Range(0, 100) <= ActivationCoefficient(20))
+        {
+            GameObject obj = objectPool.GetObject(laveLampObj);
+
+            obj.transform.position = new Vector3(Random.Range(5, 60), 0.25f, Random.Range(40, 13 - (30 * TrainManager.instance.trainContainer.Count)));
+
+            obj.GetComponent<LaveLampProjectile>().Create(InGameUII._instance.turretDamage * laveLampDamage);
+        }
+
     }
 
     public void OnBumperGrappler()

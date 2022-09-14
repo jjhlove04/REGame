@@ -159,6 +159,11 @@ public class HealthSystem : MonoBehaviour
         damage = dotDamage;
     }
 
+    public void LaveLamp(float damage)
+    {
+        Damage(damage);
+    }
+
     private void EngineOilLinoleumDamage()
     {
         if (maxTime > 0)
