@@ -31,8 +31,6 @@ public class TitleUI : MonoBehaviour
     [Header("출발준비 패널 관련")]
     Sequence openSequence;
     Sequence closeSequence;
-    [SerializeField] private RectTransform mapPanel;
-    [SerializeField] private RectTransform itemPanel;
     public Button startBtn;
     private Text startText;
     public bool titleBack = false;
@@ -105,20 +103,7 @@ public class TitleUI : MonoBehaviour
         _ui = this;
         checkPanel.transform.localScale = Vector3.zero;
         startText = startBtn.GetComponent<Text>();
-        {//등록관련
-        //registerApplyBtn.onClick.AddListener(() => RegisterDataConnect());
-
-        //닉네임 확인
-        //checkPanel.transform.DOScale(new Vector3(1,1,1),0.8f)
-        //nickCheckBtn.onClick.AddListener(()=> RegisterDataConnect());
-
-
-        //for (int i = 0; i < 7; i++)
-        //{
-        //    buyBtns[i].gameObject.AddComponent<TooltipScript>();
-        //}
-        }
-
+        
         if(TestTurretDataBase.Instance.curTurretType.Count == 1)
         {
             TestTurretDataBase.Instance.curTurretType.Clear();
@@ -300,8 +285,6 @@ public class TitleUI : MonoBehaviour
             startBtn.enabled = true;
             startBtn.interactable = true;
             openSequence.Append(startText.DOFade(1.0f, 1.2f)).SetEase(Ease.InOutExpo); 
-            openSequence.Append(mapPanel.DOAnchorPosX(49, 1.2f).SetEase(Ease.InOutExpo));
-            openSequence.Append(itemPanel.DOAnchorPosX(353, 1.2f).SetEase(Ease.InOutExpo));
         }
         if(num == 2)
         {
@@ -310,9 +293,7 @@ public class TitleUI : MonoBehaviour
             openSequence.Append(startText.DOFade(0.0f, 1.2f).SetEase(Ease.InOutExpo).OnComplete(()=>{
                 startBtn.enabled = false;
             startBtn.interactable = false;
-            }));
-            closeSequence.Append(mapPanel.DOAnchorPosX(-727, 0.6f).SetEase(Ease.InOutExpo));
-            closeSequence.Append(itemPanel.DOAnchorPosX(1601, 0.6f).SetEase(Ease.InOutExpo));
+            })); 
 
         }
     }
