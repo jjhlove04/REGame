@@ -93,6 +93,7 @@ public class ItemContainer : MonoBehaviour
         if (reCount < 21)
         {
             Randand(i);
+
             reCount++;
 
         }
@@ -112,6 +113,7 @@ public class ItemContainer : MonoBehaviour
             itemCard.transform.DOScale(new Vector3(1,1,1),2);
             itemImg.DOFade(1,2);
             Gatcha();
+            TestTurretDataBase.Instance.curTp--;
         }
         else
         {

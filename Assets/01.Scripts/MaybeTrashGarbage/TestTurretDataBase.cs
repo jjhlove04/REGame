@@ -33,6 +33,8 @@ public class TestTurretDataBase : MonoBehaviour
     public int curTp;
     public string _nickName;
 
+    public float tCurExp;
+
     public bool isfirst;
 
     private void Awake()

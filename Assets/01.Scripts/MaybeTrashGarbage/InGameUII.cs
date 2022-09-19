@@ -144,6 +144,8 @@ public class InGameUII : MonoBehaviour
     public ParticleSystem noTabParticleObj;
     public ParticleSystem TabParticleObj;
     int particleSpeed = 4;
+
+    public CanvasGroup ItemExplainPanel;
     private void Awake()
     {
         _instance = this;

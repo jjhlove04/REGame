@@ -181,10 +181,10 @@ public class GameManager : MonoBehaviour
             state = State.End;
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKey(KeyCode.M))
         {
             GoldAmount += 400;
-            expAmount += 6;
+            expAmount += 100;
         }
 
         if (annuity)

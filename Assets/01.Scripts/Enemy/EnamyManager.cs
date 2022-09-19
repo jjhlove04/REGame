@@ -39,23 +39,6 @@ public class EnamyManager : MonoBehaviour
             isDUp = false;
         }
 
-        if (GameManager.Instance.TrainLevel < 3)
-        {
-            enemies[0].enemy.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
-        }
-        else if(GameManager.Instance.TrainLevel < 10)
-        {
-            enemies[0].enemy.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
-        }
-        else if (GameManager.Instance.TrainLevel < 12)
-        {
-            enemies[0].enemy.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color(0, 1, 0);
-        }
-        else if (GameManager.Instance.TrainLevel < 16)
-        {
-            enemies[0].enemy.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color(0, 0, 1);
-        }
-
     }
 
     private void OnDisable()

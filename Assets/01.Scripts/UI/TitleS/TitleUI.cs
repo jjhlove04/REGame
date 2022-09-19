@@ -202,7 +202,7 @@ public class TitleUI : MonoBehaviour
         }
         //아이템 초기 주어지는 랜덤 순서
 
-        curExp += TestTurretDataBase.Instance.resultEXP;
+        curExp += TestTurretDataBase.Instance.tCurExp;
 
         levelTxt.text = TestTurretDataBase.Instance.level.ToString();
 
@@ -394,6 +394,7 @@ public class TitleUI : MonoBehaviour
                 levelTxt.text = TestTurretDataBase.Instance.level.ToString();
             }
         }
+        TestTurretDataBase.Instance.tCurExp = curExp;
     }
 
     public void ShowHpUpgradeText()

@@ -123,6 +123,7 @@ public class TitleMoveScript : MonoBehaviour
             TitleUI.UI.playerCard.DOAnchorPosX(-18, 0.5f);
 
             TestTurretDataBase.Instance.resultEXP = 0;
+            TestTurretDataBase.Instance.killEnemy = 0;
             TestTurretDataBase.Instance.resultDamage = 0;
             TestTurretDataBase.Instance.resultGold -= (int)((TestTurretDataBase.Instance.round - 1) * 1.5f);
             /*
