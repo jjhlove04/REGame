@@ -145,7 +145,7 @@ public class InGameUII : MonoBehaviour
     public ParticleSystem TabParticleObj;
     int particleSpeed = 4;
 
-    public CanvasGroup ItemExplainPanel;
+    public CanvasGroup itemExplainPanel;
     private void Awake()
     {
         _instance = this;
@@ -322,10 +322,13 @@ public class InGameUII : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             itemPanel.alpha = 1;
+            itemExplainPanel.alpha = 1;
+            ItemExplain();
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
             itemPanel.alpha = 0;
+            itemExplainPanel.alpha = 1;
         }
 
         if (OnSelect)
@@ -598,6 +601,16 @@ public class InGameUII : MonoBehaviour
     public void ClearArea()
     {
         Obj.SetActive(false);
+    }
+
+    public void ItemExplain()
+    {
+        for (int i = 0; i < itemExplainPanel.transform.GetChild(2).childCount; i++)
+        {
+            itemExplainPanel.transform.GetChild(2).GetChild(i).GetComponent<Text>().text = 123.ToString();
+            itemExplainPanel.transform.GetChild(3).GetChild(i).GetComponent<Text>().text = 123.ToString();
+        }
+
     }
 
     public void ExpBar()
