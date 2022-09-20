@@ -20,6 +20,10 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Start()
     {
         inGameUII = InGameUII._instance;
+    }
+
+    void Update()
+    {
         bufColor = this.gameObject.GetComponent<Image>().color;
 
         ColorUtility.TryParseHtmlString("#92D050", out Color active);
@@ -35,11 +39,8 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             onHold = true;
         }
-    }
 
-    void Update()
-    {
-        if(inGameUII.buffStrPanel.gameObject.activeSelf == true)
+        if (inGameUII.buffStrPanel.gameObject.activeSelf == true)
         {
             Vector3 mousePos = Input.mousePosition;
 

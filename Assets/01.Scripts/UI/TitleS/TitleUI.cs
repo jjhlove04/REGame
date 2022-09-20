@@ -202,7 +202,7 @@ public class TitleUI : MonoBehaviour
         }
         //아이템 초기 주어지는 랜덤 순서
 
-        curExp += TestTurretDataBase.Instance.tCurExp;
+        curExp += TestTurretDataBase.Instance.tCurExp + TestTurretDataBase.Instance.resultEXP;
 
         levelTxt.text = TestTurretDataBase.Instance.level.ToString();
 

@@ -131,6 +131,12 @@ public class TitleMoveScript : MonoBehaviour
             ((TestTurretDataBase.Instance.round - 1) * (TestTurretDataBase.Instance.round - 1));
             */
 
+            for (int i = 0; i < TestTurretDataBase.Instance.postItemObj.Count; i++)
+            {
+                TestTurretDataBase.Instance.postItemObj[i].curCarry = 0;
+
+            }
+
             TestTurretDataBase.Instance.isfirst = false;
             if (!TestTurretDataBase.Instance.isfirst)
             {
