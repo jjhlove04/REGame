@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 5046567023980520040}
   - component: {fileID: 3061658977307994892}
   - component: {fileID: 5137130871268036167}
+  - component: {fileID: 7233978613897857107}
   m_Layer: 14
   m_Name: Rocket Projectile
   m_TagString: Untagged
@@ -258,8 +259,19 @@ MonoBehaviour:
   m_Mask:
     serializedVersion: 2
     m_Bits: 128
-  explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
-    type: 3}
+  explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+--- !u!114 &7233978613897857107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189046341151563329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4220eb16f44bb1844a465a745d6ca627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8754360937295426575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -347,38 +359,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198057225787543630, guid: 6637f6efebd5b0d4eb939586be277cd9,
-        type: 3}
+    - target: {fileID: 198057225787543630, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
       propertyPath: useRigidbodyForVelocity
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198385969350522728, guid: 6637f6efebd5b0d4eb939586be277cd9,
-        type: 3}
+    - target: {fileID: 198385969350522728, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
       propertyPath: useRigidbodyForVelocity
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198878074453378804, guid: 6637f6efebd5b0d4eb939586be277cd9,
-        type: 3}
+    - target: {fileID: 198878074453378804, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
       propertyPath: ColorModule.enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198878074453378804, guid: 6637f6efebd5b0d4eb939586be277cd9,
-        type: 3}
+    - target: {fileID: 198878074453378804, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
       propertyPath: useRigidbodyForVelocity
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 199092481745641970, guid: 6637f6efebd5b0d4eb939586be277cd9,
-        type: 3}
+    - target: {fileID: 199092481745641970, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 199272095555634792, guid: 6637f6efebd5b0d4eb939586be277cd9,
-        type: 3}
+    - target: {fileID: 199272095555634792, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 199898199436874326, guid: 6637f6efebd5b0d4eb939586be277cd9,
-        type: 3}
+    - target: {fileID: 199898199436874326, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -386,7 +391,6 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
 --- !u!4 &8751225412699376837 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4263658433411274, guid: 6637f6efebd5b0d4eb939586be277cd9,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4263658433411274, guid: 6637f6efebd5b0d4eb939586be277cd9, type: 3}
   m_PrefabInstance: {fileID: 8754360937295426575}
   m_PrefabAsset: {fileID: 0}

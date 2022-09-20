@@ -11,18 +11,16 @@ public class ParticleReturn : MonoBehaviour
 
     void Start()
     {
-        objPool = FindObjectOfType<ObjectPool>();
+        objPool = ObjectPool.instacne;
     }
 
     private void OnEnable()
     {
-        StopCoroutine(EndParticle());
-        Timing.RunCoroutine(EndParticle());
+        Invoke("EndParticle", dieTime);
     }
 
-    IEnumerator<float> EndParticle()
+    private void EndParticle()
     {
-        yield return Timing.WaitForSeconds(dieTime);
         objPool.ReturnGameObject(this.gameObject);
     }
 }
