@@ -18,6 +18,9 @@ public class TitleInterfaceManager : MonoBehaviour
 
     // 0 : 시작 - 출발, 1 : 업그레이드 - 기차, 2 : 업그레이드 - 타워, 3 : 업그레이드 - 아이템
     public Button[] inTitleBtn;
+
+
+    public Button backBtn;
     [Header("타이틀 - 시퀀스")]
     Sequence titleStart;
     Sequence titleEnd;  
@@ -28,6 +31,12 @@ public class TitleInterfaceManager : MonoBehaviour
     [Header("타이틀 - 캔버스")]
     //0 : 출발 캔버스, 1 : 업그레이드 캔버스, 2 : 도감 캔버스
     public GameObject[] canvasGroup;
+
+    [Header("업그레이드 - 오브젝트")]
+    public GameObject fadeImg;
+    public GameObject[] upPanel;
+    
+
     private void Awake() {
         //최초 한번만 실행
         btnGroupAction(0);
@@ -37,18 +46,32 @@ public class TitleInterfaceManager : MonoBehaviour
             canvasGroup[0].SetActive(true);
             btnGroupAction(1);
             inTitleBtn[0].GetComponent<Text>().DOFade(1,0.5f);
-            sceneIndex = 1;            
+            sceneIndex = 1;   
+            backBtn.gameObject.SetActive(true);         
 
         });
         titleBtn[1].onClick.AddListener(()=> {
-            //출발 캔버스 액티브 온
-            //출발 버튼 액티브 온
+            canvasGroup[1].SetActive(true);
+            btnGroupAction(1);
+            sceneIndex = 2;
+            IntitleAction(0);
+            backBtn.gameObject.SetActive(true);         
 
         });
         titleBtn[2].onClick.AddListener(()=> {
             //
             //출발 버튼 액티브 온
 
+        });
+
+        inTitleBtn[1].onClick.AddListener(()=>
+        {
+
+        });
+
+        backBtn.onClick.AddListener(()=>
+        {
+            EscapeBtn();
         });
         
         //버튼 애드리스너 끝
@@ -65,20 +88,11 @@ public class TitleInterfaceManager : MonoBehaviour
         {
             EscapeBtn();
         }
-        if(Input.GetKeyDown(KeyCode.A))
-
-        {
-            btnGroupAction(0);
-        }
-        if(Input.GetKeyDown(KeyCode.B))
-
-        {
-            btnGroupAction(1);
-        }
     }
 
     public void btnGroupAction(int index)
     {
+        
         //타이틀 들어오기
         if(index == 0) 
         {
@@ -98,7 +112,41 @@ public class TitleInterfaceManager : MonoBehaviour
             }));
             titleEnd.SetAutoKill(false);
         }
+
+        
     }
+
+    public void IntitleAction(int index)
+    {
+        Sequence upBtnShow = DOTween.Sequence();
+        Sequence upBtnClose = DOTween.Sequence();
+        Sequence upPanelShow = DOTween.Sequence();
+        if(index == 0)
+        {
+            upBtnShow.Append(inTitleBtn[1].GetComponent<Text>().DOFade(1,0.4f));
+            upBtnShow.Append(inTitleBtn[2].GetComponent<Text>().DOFade(1,0.4f));
+            upBtnShow.Append(inTitleBtn[3].GetComponent<Text>().DOFade(1,0.4f).OnComplete(()=>{
+                canEscape = true;
+            }));
+            upBtnShow.SetAutoKill(false);
+        }
+        if(index == 1)
+        {
+            upBtnClose.Append(inTitleBtn[1].GetComponent<Text>().DOFade(0,0.2f));
+            upBtnClose.Join(inTitleBtn[2].GetComponent<Text>().DOFade(0,0.2f));
+            upBtnClose.Join(inTitleBtn[3].GetComponent<Text>().DOFade(0,0.2f));
+            upBtnClose.SetAutoKill(false);
+        }
+        if(index ==3)
+        {
+            upPanelShow.Append(fadeImg.GetComponent<Image>().DOFade(1,0.4f).OnComplete(()=>{
+                upPanel[0].SetActive(true);
+                upPanelShow.Append(fadeImg.GetComponent<Image>().DOFade(0,0.4f));
+            }));
+            upPanelShow.SetAutoKill(false);
+        }
+    }
+
     public void EscapeBtn()
     {
         if(sceneIndex == 1 && canEscape)
@@ -106,6 +154,14 @@ public class TitleInterfaceManager : MonoBehaviour
             btnGroupAction(0);
             canvasGroup[0].SetActive(false);
             canEscape = false;
+            backBtn.gameObject.SetActive(false);         
+        }
+        if(sceneIndex == 2 && canEscape)
+        {
+            btnGroupAction(0);
+            canvasGroup[1].SetActive(false);
+            canEscape = false;
+            backBtn.gameObject.SetActive(false);         
         }
     }
 }
