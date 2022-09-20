@@ -15,6 +15,7 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private bool onHold = false;
     private float buffTime;
     private float maxBuffTime = 5f;
+    public string bufString;
 
     private void Start()
     {
@@ -62,6 +63,7 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         inGameUII.buffStrPanel.gameObject.SetActive(true);
+        inGameUII.buffStrPanel.transform.GetChild(0).GetComponent<Text>().text = bufString;
         onMouse = true;
     }
 

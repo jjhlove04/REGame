@@ -134,6 +134,7 @@ public class TrainItemManager : MonoBehaviour
         bufobj.transform.GetChild(0).GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
         bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
         bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
+        bufobj.GetComponent<BuffItem>().bufString = ParsingJson.Instnace.effectDetail[curTrainItems[selectNum].itemNum];
 
 
         if (GameManager.Instance.TrainLevel != 2)

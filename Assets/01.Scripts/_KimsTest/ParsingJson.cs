@@ -17,6 +17,7 @@ public class ParsingJson : MonoBehaviour
 
     public List<float> maxExp = new List<float>();
     public List<int> changeExp = new List<int>();
+    public List<string> effectDetail = new List<string>();
 
     [Serializable]
     public class Sheet
@@ -29,9 +30,21 @@ public class ParsingJson : MonoBehaviour
 
     }
 
+    [Serializable]
+    public class SheetTwo
+    {
+        public string variableName;
+        public string effectDetails;
+    }
+
     public class SheetNumberts
     {
         public Sheet[] sheet;
+    }
+
+    public class SheetTwoNumbers
+    {
+        public SheetTwo[] sheetTwo;
     }
 
     void Awake()
@@ -39,20 +52,25 @@ public class ParsingJson : MonoBehaviour
         instance = this;
 
         TextAsset textAsset = Resources.Load<TextAsset>("JsonData/Sheet1");
+        TextAsset textAssetT = Resources.Load<TextAsset>("JsonData/Sheet2");
 
         string sheet = "{\"sheet\":" + textAsset + "}";
+        string sheetTwo = "{\"sheetTwo\":" + textAssetT + "}";
 
         SheetNumberts s = JsonUtility.FromJson<SheetNumberts>(sheet);
+        SheetTwoNumbers st = JsonUtility.FromJson<SheetTwoNumbers>(sheetTwo);
 
         foreach (Sheet see in s.sheet)
         {
             maxExp.Add(see.NeedEXP);
             changeExp.Add(see.Change);
         }
-    }
 
-    private void Update()
-    { 
+        foreach (SheetTwo see in st.sheetTwo)
+        {
+            effectDetail.Add(see.effectDetails);
+        }
 
+        Debug.Log("ÆÄ½Ì ¿Ï·á");
     }
 }

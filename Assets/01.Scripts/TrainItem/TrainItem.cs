@@ -11,6 +11,7 @@ public abstract class TrainItem : MonoBehaviour
         Rare
     }
 
+    public int itemNum;
     public string itemEffect;
     public string itemStr;
     public Sprite itemImage;
