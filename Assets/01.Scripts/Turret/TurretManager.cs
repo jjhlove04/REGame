@@ -217,6 +217,23 @@ public class TurretManager : MonoBehaviour
                 .OnWeakLens(onWeakLens,countWeakLens);
         }
     }
+    public int OnCritical()
+    {
+        if (countWeakLens > 1)
+        {
+            return 10 + 7 * (countWeakLens - 1);
+        }
+
+        return 10;
+    }
+    public int CriAmount()
+    {
+        if (countWeakLens > 1)
+        {
+            return 7 * (countWeakLens - 1);
+        }
+        return 0;
+    }
 
     public void MortarTube()
     {

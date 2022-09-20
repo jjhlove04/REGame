@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.M))
         {
             GoldAmount += 400;
-            expAmount += 100;
+            expAmount += 1;
         }
 
         if (annuity)
@@ -405,5 +405,9 @@ public class GameManager : MonoBehaviour
     public float ActivationCoefficient(float percent)
     {
         return percent * activationCoefficient;
+    }
+    public float ReturnActivation()
+    {
+        return activationCoefficient;
     }
 }

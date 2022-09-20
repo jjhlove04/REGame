@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 1.028866, g: 1.1234652, b: 1.4982609, a: 1}
+  m_IndirectSpecularColor: {r: 1.0646074, g: 1.2919068, b: 2.433842, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6200,6 +6200,8 @@ GameObject:
   - component: {fileID: 314761274}
   - component: {fileID: 314761276}
   - component: {fileID: 314761275}
+  - component: {fileID: 314761278}
+  - component: {fileID: 314761277}
   m_Layer: 0
   m_Name: SkillPost
   m_TagString: Untagged
@@ -6251,6 +6253,7 @@ MonoBehaviour:
   level: 0
   curTp: 0
   _nickName: 
+  tCurExp: 0
   isfirst: 1
 --- !u!114 &314761276
 MonoBehaviour:
@@ -6267,6 +6270,32 @@ MonoBehaviour:
   resultDamage: 0
   isRegister: 0
   _nickName: 
+--- !u!114 &314761277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314761273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cb13361e97c3a46806c2fa78f2865b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxExp: []
+  changeExp: 
+--- !u!114 &314761278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314761273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cd03be93b9c06498741edd78c475ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &318471938
 GameObject:
   m_ObjectHideFlags: 0
@@ -9098,8 +9127,6 @@ MonoBehaviour:
   - {fileID: 304578722}
   - {fileID: 1691536710}
   informationPanel: {fileID: 1371515922}
-  mapPanel: {fileID: 0}
-  itemPanel: {fileID: 0}
   startBtn: {fileID: 1663154823}
   titleBack: 0
   nickName: {fileID: 274909337}

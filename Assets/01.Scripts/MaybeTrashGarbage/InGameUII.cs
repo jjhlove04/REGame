@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using System;
 
 public class InGameUII : MonoBehaviour
 {
@@ -324,11 +325,12 @@ public class InGameUII : MonoBehaviour
             itemPanel.alpha = 1;
             itemExplainPanel.alpha = 1;
             ItemExplain();
+            BeforeValue();
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
             itemPanel.alpha = 0;
-            itemExplainPanel.alpha = 1;
+            itemExplainPanel.alpha = 0;
         }
 
         if (OnSelect)
@@ -395,7 +397,7 @@ public class InGameUII : MonoBehaviour
         noTabParticleObj.Stop();
         TabParticleObj.Stop();
 
-        GameManager.Instance.state = GameManager.State.Play;
+        gameManager.state = GameManager.State.Play;
         selectTime = 0;
         OnSelect = false;
         gariImg.SetActive(true);
@@ -465,13 +467,13 @@ public class InGameUII : MonoBehaviour
         if (backIndex == -1)
         {
             Time.timeScale = 0;
-            GameManager.Instance.state = GameManager.State.Stop;
+            gameManager.state = GameManager.State.Stop;
             stopPanelRect.DOScale(new Vector3(1, 1, 1), 0.3f).SetUpdate(true);
         }
         if (backIndex == 1)
         {
             Time.timeScale = 1;
-            GameManager.Instance.state = GameManager.State.Play;
+            gameManager.state = GameManager.State.Play;
             stopPanelRect.DOScale(new Vector3(0, 0, 0), 0.3f).SetUpdate(true);
         }
 
@@ -605,14 +607,37 @@ public class InGameUII : MonoBehaviour
 
     public void ItemExplain()
     {
-        for (int i = 0; i < itemExplainPanel.transform.GetChild(2).childCount; i++)
-        {
-            itemExplainPanel.transform.GetChild(2).GetChild(i).GetComponent<Text>().text = 123.ToString();
-            itemExplainPanel.transform.GetChild(3).GetChild(i).GetComponent<Text>().text = 123.ToString();
-        }
+        ItemValueExp(turretDamage,
+            TrainScript.instance.recoverAmount,
+            TrainScript.instance.trainDef,
+            shootTime,
+            distance,
+            TurretManager.Instance.OnCritical(),
+            gameManager.ReturnActivation());
 
     }
 
+    public void ItemValueExp(int damage, float recover, int def, float shootTime, float distance, float critical,float activate)
+    {
+        itemExplainPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = damage.ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = recover.ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(2).GetComponent<Text>().text = def.ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = Math.Round(shootTime, 3).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(4).GetComponent<Text>().text = distance.ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(5).GetComponent<Text>().text = critical.ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(6).GetComponent<Text>().text = activate.ToString();
+    }
+
+    public void BeforeValue()
+    {
+        itemExplainPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "+3";
+        itemExplainPanel.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = "+0.2";
+        itemExplainPanel.transform.GetChild(3).GetChild(2).GetComponent<Text>().text = "+2";
+        itemExplainPanel.transform.GetChild(3).GetChild(3).GetComponent<Text>().text = "-" + Math.Round((shootTime * 0.05f), 3);
+        itemExplainPanel.transform.GetChild(3).GetChild(4).GetComponent<Text>().text = "+0.2";
+        itemExplainPanel.transform.GetChild(3).GetChild(5).GetComponent<Text>().text = "+" + TurretManager.Instance.CriAmount();
+        itemExplainPanel.transform.GetChild(3).GetChild(6).GetComponent<Text>().text = "-0";
+    }
     public void ExpBar()
     {
         if (gameManager.TrainLevel < 50)
@@ -622,6 +647,7 @@ public class InGameUII : MonoBehaviour
             if (expBar.fillAmount >= 1f)
             {
                 gameManager.TrainLevel++;
+
                 TrainScript.instance.LevelUp();
                 //gameManager.gameSpeed = 0f; //시간 정지
                 SpawnMananger.Instance.stopSpawn = true;
