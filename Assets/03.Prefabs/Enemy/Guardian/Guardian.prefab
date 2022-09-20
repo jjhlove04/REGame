@@ -64,7 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044c5f08adb341b40ae44472145416ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flaotingText: {fileID: 879296427129871557, guid: 6a9893a2f9f4d4e9eb89994859c1124c, type: 3}
   OnDied:
     m_PersistentCalls:
       m_Calls:
@@ -99,7 +98,6 @@ MonoBehaviour:
   isDying: 0
   stealth: 0
   onlyDamage: 2
-  onFurryBracelet: 0
 --- !u!114 &6669018693288074851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,13 +754,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8038344524183138612, guid: 0277167a12290af47801444830a2be97, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 53fb7d5d423b87147a87e285fab4b804, type: 2}
     - target: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}
       propertyPath: m_Name
       value: Impact03
       objectReference: {fileID: 0}
     - target: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8038344524183138614, guid: 0277167a12290af47801444830a2be97, type: 3}
       propertyPath: m_RootOrder
