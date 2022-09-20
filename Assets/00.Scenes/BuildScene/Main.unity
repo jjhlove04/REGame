@@ -52476,8 +52476,8 @@ MonoBehaviour:
   trainLevel: 1
   onNewsOfVictory: 0
   laveLampObj: {fileID: 0}
-  bumperGrapplerObj: {fileID: 5288318758881410429, guid: c78eaea1dc970704992f5bd6e2b4771b, type: 3}
-  engineOilObj: {fileID: 5288318758881410429, guid: 08df90d8141dfa343b23915c8d81f736, type: 3}
+  bumperGrapplerObj: {fileID: 0}
+  engineOilObj: {fileID: 0}
 --- !u!4 &1722079218
 Transform:
   m_ObjectHideFlags: 0
@@ -52561,7 +52561,7 @@ MonoBehaviour:
   - {fileID: 2957103898448255472}
   - {fileID: 8634976866488616931}
   - {fileID: 6309263800692696802}
-  startGold: 120
+  startGold: 0
 --- !u!114 &1722079220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52613,7 +52613,7 @@ MonoBehaviour:
   - {fileID: 2053669138}
   - {fileID: 1947155733}
   goldAmounTxt: {fileID: 2063052290}
-  killEnemyTxt: {fileID: 1395091857}
+  killEnemyTxt: {fileID: 0}
   waveTxt: {fileID: 1409203719}
   upGradeBtn: {fileID: 1612825819}
   GoldWarning: {fileID: 530183109}
@@ -52667,7 +52667,7 @@ MonoBehaviour:
   buffStrPanel: {fileID: 948097928}
   noTabParticleObj: {fileID: 7107170581911794675}
   TabParticleObj: {fileID: 969482576}
-  itemExplainPanel: {fileID: 851897046}
+  itemExplainPanel: {fileID: 0}
 --- !u!114 &1722079223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70433,7 +70433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turrets: {fileID: 6366573837311629677}
-  lowaMK23Obj: {fileID: 0}
+  lowaMK23Obj: {fileID: 472577760066295089, guid: 38af7e1342759ff4e9a2684c4f995f98, type: 3}
 --- !u!1 &6366573837447760842
 GameObject:
   m_ObjectHideFlags: 0
@@ -70582,7 +70582,7 @@ MonoBehaviour:
   center: {x: 0, y: 0, z: 0}
   size: {x: 0, y: 0, z: 0}
   train: {fileID: 6366573837487879711}
-  mortarTube: {fileID: 9189046341151563329, guid: 3635c0a3ecc18374480a066c5130978c, type: 3}
+  mortarTube: {fileID: 0}
   enemy:
     serializedVersion: 2
     m_Bits: 0
