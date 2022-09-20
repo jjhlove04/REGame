@@ -359,7 +359,6 @@ public class GameManager : MonoBehaviour
 
             obj.GetComponent<LaveLampProjectile>().Create(InGameUII._instance.turretDamage * laveLampDamage);
         }
-
     }
 
     public void OnBumperGrappler()

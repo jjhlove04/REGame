@@ -75,8 +75,6 @@ public class TrainManager : MonoBehaviour
 
     public void OnSmoke()
     {
-        print(11);
-
         transform.GetChild(0).Find("Smoke" + smokeCount)?.gameObject.SetActive(true);
 
         for (int i = 0; i < train.transform.childCount; i++)

@@ -50,7 +50,8 @@ public class Enemy : MonoBehaviour
 
     private float changeSpeed;
 
-    private float bumperGrapplerSpeed = 0.2f;
+    private float bumperGrapplerSpeed = 0;
+    private float bumperGrappler = 0.2f;
     private float bumperMaxTime = 0.2f;
     private float bumperCurTime = 0.2f;
 
@@ -126,7 +127,7 @@ public class Enemy : MonoBehaviour
 
                     if(bumperCurTime >= bumperMaxTime)
                     {
-                        RandomMoveSpeed();
+                        bumperGrapplerSpeed = 0;
                     }
                 }
             }
@@ -226,7 +227,7 @@ public class Enemy : MonoBehaviour
     void EnemyTargettingMove()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position + new Vector3(distanceX, 0, randomZ),
-        speed - bumperGrapplerSpeed * Time.deltaTime);
+        (speed - bumperGrapplerSpeed) * Time.deltaTime);
     }
 
     public void EnemyDied()
@@ -253,7 +254,7 @@ public class Enemy : MonoBehaviour
 
     public void OnBumperGrappler()
     {
-        speed -= bumperGrapplerSpeed * bumperGrapplerSpeed;
+        bumperGrapplerSpeed = speed * bumperGrappler;
 
         bumperCurTime = 0;
     }

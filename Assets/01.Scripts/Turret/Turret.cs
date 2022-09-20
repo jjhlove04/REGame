@@ -115,7 +115,13 @@ public class Turret : MonoBehaviour
     private float hemostaticCount;
     private float hemostaticDamage=0.35f;
 
+    private bool onLowaMk2 = false;
+    private float LowaMk2Count;
+    private int LowaMk2Percentage = 10;
+
     private GameManager gameManager;
+
+    private TurretManager turretManager;
 
     Camera cam;
     private void OnEnable()
@@ -142,6 +148,7 @@ public class Turret : MonoBehaviour
         gameManager = GameManager.Instance;
         trainScript = TrainScript.instance;
         inGameUII = InGameUII._instance;
+        turretManager = TurretManager.Instance;
 
         cam = Camera.main;
 
@@ -391,6 +398,11 @@ public class Turret : MonoBehaviour
             mortarTubeDamage = damage * mortarTubeCount;
 
             TrainManager.instance.MortarTube(mortarTubeDamage);
+        }
+
+        if (IsLowaMk23())
+        {
+            LowaMk23();
         }
     }
 
@@ -720,9 +732,28 @@ public class Turret : MonoBehaviour
         return this;
     }
 
+
     private bool IsHemostatic()
     {
         return Random.Range(0, 100) <= gameManager.ActivationCoefficient(hemostaticCount) && onMortarTube;
+    }
+
+    public Turret OnLowaMk23(bool on, int count)
+    {
+        onLowaMk2 = on;
+
+        LowaMk2Percentage += count * 4;
+
+        return this;
+    }
+    private bool IsLowaMk23()
+    {
+        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(LowaMk2Percentage) && onLowaMk2;
+    }
+
+    private void LowaMk23()
+    {
+        turretManager.LowaMk23(damage,targetEnemy,transform.position);
     }
 
     private void OnMouseEnter()

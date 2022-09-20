@@ -13,6 +13,8 @@ public class TurretManager : MonoBehaviour
 
     public GameObject turrets;
 
+    ObjectPool objectPool;
+
     private bool onFMJ=false;
     private int countFMJ = 0;
 
@@ -45,6 +47,11 @@ public class TurretManager : MonoBehaviour
     private bool onHemostatic = false;
     private int countHemostatic = 0;
 
+    private bool onLowaMk2 = false;
+    private int countLowaMk2 = 0;
+    [SerializeField]
+    private GameObject lowaMK23Obj;
+
     private void Awake()
     {
         if (instance != null)
@@ -56,6 +63,11 @@ public class TurretManager : MonoBehaviour
         turrets = gameObject;   
 
         instance = this;
+    }
+
+    private void Start()
+    {
+        objectPool = ObjectPool.instacne;
     }
 
     private void Update()
@@ -89,14 +101,15 @@ public class TurretManager : MonoBehaviour
     public void SpawnTurret(Turret turret)
     {
         turret
-            .OnFMJ(onFMJ,countFMJ)
-            .OnFurryBracelet(onFurryBracelet,countFurryBracelet)
-            .Overclokcing(onOverclokcing, overclokcingIncrease,countOverclokcing)
+            .OnFMJ(onFMJ, countFMJ)
+            .OnFurryBracelet(onFurryBracelet, countFurryBracelet)
+            .Overclokcing(onOverclokcing, overclokcingIncrease, countOverclokcing)
             .OnPunchGun(onPunchGun, countPunchGun)
             .OnRedNut(onRedNut, countRedNut)
             .OnTaillessPlanaria(onTaillessPlanariaMJ, countTaillessPlanariaMJ)
             .OnTheSoleCandy(onTheSoleCandy, countTheSoleCandy)
-            .OnWeakLens(onWeakLens, countWeakLens);
+            .OnWeakLens(onWeakLens, countWeakLens)
+            .OnLowaMk23(onLowaMk2, countLowaMk2);
     }
 
     public void OnFMJ()
@@ -227,7 +240,29 @@ public class TurretManager : MonoBehaviour
         for (int i = 0; i < turrets.transform.childCount; i++)
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
-                .OnHemostatic(onMortarTube, countMortarTube);
+                .OnHemostatic(onHemostatic, countHemostatic);
         }
+    }
+
+    public void OnLowaMk23()
+    {
+        onLowaMk2 = true;
+
+        countLowaMk2++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnLowaMk23(onHemostatic, countHemostatic);
+        }
+    }
+
+    public void LowaMk23(int damage,Transform targetEnemy, Vector3 Pos)
+    {
+        GameObject obj = objectPool.GetObject(lowaMK23Obj);
+
+        obj.transform.position = Pos;
+
+        obj.GetComponent<LowaMk23Projectile>().Create(damage*2, targetEnemy);
     }
 }

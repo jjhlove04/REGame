@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurningCoalProjectileMover : MonoBehaviour
+public class LowaMk23Projectile : MonoBehaviour
 {
-    private Transform targetEnemy;
-    private Vector3 lastMoveDir;
-    private float damage;
+    float damage;
+    Transform targetEnemy;
 
     private float moveSpeed = 100;
 
@@ -16,6 +15,11 @@ public class BurningCoalProjectileMover : MonoBehaviour
     [SerializeField]
     private GameObject explosionEffect;
 
+    public void Create(int damage,Transform targetEnemy)
+    {
+        this.damage = damage;
+        this.targetEnemy = targetEnemy;
+    }
 
     void FixedUpdate()
     {
@@ -24,7 +28,6 @@ public class BurningCoalProjectileMover : MonoBehaviour
         if (targetEnemy != null && !targetEnemy.GetComponent<Enemy>().isDying)
         {
             moveDir = (targetEnemy.transform.position - transform.position).normalized;
-            lastMoveDir = moveDir;
 
             // ¿Ãµø
             transform.position += moveDir * moveSpeed * Time.deltaTime;
@@ -55,12 +58,4 @@ public class BurningCoalProjectileMover : MonoBehaviour
         }
     }
 
-    public BurningCoalProjectileMover Create(float damage, Transform targetEnemy)
-    {
-        this.damage = damage;
-
-        this.targetEnemy = targetEnemy;
-
-        return this;
-    }
 }
