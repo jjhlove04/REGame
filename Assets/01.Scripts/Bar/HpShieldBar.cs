@@ -14,8 +14,8 @@ public class HpShieldBar : MonoBehaviour, IPointerExitHandler,IPointerEnterHandl
 
     private void Update() {
         curHp = (int)(TrainScript.instance.CurTrainHp);
-        maxHp = (int)(TrainScript.instance.curTrainHpMax);
-        hpBar.value = TrainScript.instance.CurTrainHp / TrainScript.instance.curTrainHpMax;
+        maxHp = (int)(TrainScript.instance.CurTrainHpMax);
+        hpBar.value = TrainScript.instance.CurTrainHp / TrainScript.instance.CurTrainHpMax;
         hpText.text = $"{curHp} / <color=yellow>{maxHp}</color>";
     }
     

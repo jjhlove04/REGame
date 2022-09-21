@@ -8,7 +8,23 @@ public class TrainScript : MonoBehaviour
 
     public TrainInfo traininfo;
 
-    public int curTrainHpMax;
+    private int curTrainMax;
+
+    public int CurTrainHpMax
+    {
+        get { return curTrainMax; }
+        set
+        {
+            if(value > curTrainMax)
+            {
+                curTrainHp += value - curTrainMax;
+
+                curTrainMax = value;
+            }
+        }  
+    }
+
+
 
 
     public float curTrainHp; //0���Ϸ� ����߸��� ����!
@@ -19,7 +35,7 @@ public class TrainScript : MonoBehaviour
         get { return curTrainHp; }
         set
         {
-            curTrainHp = Mathf.Clamp(value, 0, curTrainHpMax);
+            curTrainHp = Mathf.Clamp(value, 0, CurTrainHpMax);
         }
     }
     public float shapeMemoryAlloyHp;
@@ -110,7 +126,7 @@ public class TrainScript : MonoBehaviour
 
         trainManager.CreateTrainPrefab(traininfo.trainCount);
 
-        CurTrainHp = curTrainHpMax = traininfo.trainMaxHp;
+        CurTrainHp = CurTrainHpMax = traininfo.trainMaxHp;
         curTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
@@ -176,7 +192,7 @@ public class TrainScript : MonoBehaviour
 
     public void SmokeTrain()
     {
-        if (addHpCheck * curTrainHpMax / 100 < CurTrainHp)
+        if (addHpCheck * CurTrainHpMax / 100 < CurTrainHp)
         {
             switch (addHpCheck)
             {
@@ -212,7 +228,7 @@ public class TrainScript : MonoBehaviour
             }
         }
 
-        else if (decreaseHpCheck * curTrainHpMax / 100 >= CurTrainHp)
+        else if (decreaseHpCheck * CurTrainHpMax / 100 >= CurTrainHp)
         {
 
 
@@ -269,7 +285,7 @@ public class TrainScript : MonoBehaviour
 
     public void FinxTimeHp()
     {
-        if(CurTrainHp  < curTrainHpMax)
+        if(CurTrainHp  < CurTrainHpMax)
         {
             curTrainHpTime += Time.deltaTime;
 
@@ -304,7 +320,7 @@ public class TrainScript : MonoBehaviour
 
     private bool IsFullHp()
     {
-        return CurTrainHp == curTrainHpMax;
+        return CurTrainHp == CurTrainHpMax;
     }
 
     public void Damage(float damage)
@@ -336,7 +352,7 @@ public class TrainScript : MonoBehaviour
                 {
                     lastTotalDamage += damage;
 
-                    if (lastTotalDamage > curTrainHpMax * 0.15f)
+                    if (lastTotalDamage > CurTrainHpMax * 0.15f)
                     {
                         lastTotalDamage = 0;
 
@@ -356,7 +372,7 @@ public class TrainScript : MonoBehaviour
     }
     public void LevelUp()
     {
-        curTrainHpMax += 22;
+        CurTrainHpMax += 22;
         recoverAmount += 0.2f;
         trainDef += 2;
     }
@@ -477,9 +493,9 @@ public class TrainScript : MonoBehaviour
 
     public void AlloySteel(float rateOfRise)
     {
-        float addHp = curTrainHpMax * rateOfRise;
+        float addHp = CurTrainHpMax * rateOfRise;
 
-        curTrainHpMax += (int)addHp;
+        CurTrainHpMax += (int)addHp;
         CurTrainHp += addHp;
     }
 
