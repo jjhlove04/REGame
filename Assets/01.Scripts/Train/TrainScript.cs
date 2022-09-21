@@ -36,6 +36,11 @@ public class TrainScript : MonoBehaviour
         set
         {
             curTrainHp = Mathf.Clamp(value, 0, CurTrainHpMax);
+
+            if (curTrainHp > value)
+            {
+                GameManager.Instance.BumperGrappler();
+            }
         }
     }
     public float shapeMemoryAlloyHp;

@@ -32,6 +32,7 @@ public class TrainManager : MonoBehaviour
 
     public bool onBurningCoal = false;
     private int burningCoalAmount = 8;
+    [SerializeField]
     private GameObject burningCoalProjectile;
 
     public LayerMask enemy;
