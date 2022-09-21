@@ -104,6 +104,9 @@ public class testScripttss : MonoBehaviour
             startGold = 360;
         }
 
+        Debug.Log(gameManager.GoldAmount);
+        Debug.Log(startGold);
+
         gameManager.GoldAmount += startGold;
     }
 

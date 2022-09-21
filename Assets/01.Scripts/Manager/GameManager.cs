@@ -179,11 +179,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = gameSpeed;
         }
 
-        else if (state == State.End)
-        {
-            SceneManager.LoadScene("TitleScene");
-        }
-
         if (Input.GetKeyDown(KeyCode.X))
         {
             state = State.End;

@@ -405,16 +405,19 @@ public class InGameUII : MonoBehaviour
                 selectPanelBtns[i].transform.localScale = Vector3.zero;
             }
         });
-        noTabParticleObj.Stop();
-        TabParticleObj.Stop();
 
-        gameManager.state = GameManager.State.Play;
+
         selectTime = 0;
         OnSelect = false;
         gariImg.SetActive(true);
         SpawnMananger.Instance.stopSpawn = false;
         BackGround back = FindObjectOfType<BackGround>();
         back.speed = 0.3f;
+
+        gameManager.state = GameManager.State.Play;
+
+        noTabParticleObj.Stop();
+        TabParticleObj.Stop();
     }
 
     public void ClearSelect()

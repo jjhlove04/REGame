@@ -65,7 +65,6 @@ public class ItemContainer : MonoBehaviour
 
     public void ShowMessage(string message)
     {
-        Debug.Log(message);
         GameObject ms = Instantiate(messagePrefabs, transform);
         ms.GetComponent<Text>().text = message;
         ms.GetComponent<Text>().DOFade(0,4).OnComplete(()=> Destroy(ms));
