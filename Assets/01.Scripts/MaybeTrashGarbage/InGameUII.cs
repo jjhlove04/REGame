@@ -120,10 +120,18 @@ public class InGameUII : MonoBehaviour
             if (gameManager.onNewsOfVictory&& !value)
             {
                 gameManager.NewsOfVictory();
-                TrainManager.instance.BurningCoal(turretDamage);
             }
+
+            if(trainManager.onBurningCoal && !value)
+            {
+                trainManager.BurningCoal(turretDamage);
+            }
+
+
         }
     }
+
+    TrainManager trainManager;
 
     public Image expBar;
     public Image hpBar;
@@ -163,6 +171,8 @@ public class InGameUII : MonoBehaviour
 
     void Start()
     {
+        trainManager = TrainManager.instance;
+
         towerManager = TowerManager.Instance;
 
         itemManager = ItemManager.Instance;

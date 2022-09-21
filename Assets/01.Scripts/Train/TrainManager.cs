@@ -30,7 +30,7 @@ public class TrainManager : MonoBehaviour
 
     public GameObject mortarTube;
 
-    private bool onBurningCoal = false;
+    public bool onBurningCoal = false;
     private int burningCoalAmount = 8;
     private GameObject burningCoalProjectile;
 
