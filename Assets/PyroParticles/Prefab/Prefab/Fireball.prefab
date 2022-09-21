@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8274270}
   - component: {fileID: 8228610}
   - component: {fileID: 11462752}
-  - component: {fileID: 11450262}
   m_Layer: 8
   m_Name: Fireball
   m_TagString: Untagged
@@ -301,41 +300,6 @@ MonoBehaviour:
   IntensityMaxRange:
     Minimum: 0
     Maximum: 8
---- !u!114 &11450262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 245887334a601354cb1853676e37a7e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioSource: {fileID: 0}
-  StartTime: 0.25
-  StopTime: 1
-  Duration: 3
-  ForceAmount: 0
-  ForceRadius: 0
-  IsProjectile: 1
-  ManualParticleSystems:
-  - {fileID: 19899590}
-  ProjectileColliderObject: {fileID: 130866}
-  ProjectileCollisionSound: {fileID: 8274270}
-  ProjectileExplosionParticleSystem: {fileID: 19899590}
-  ProjectileExplosionRadius: 10
-  ProjectileExplosionForce: 2000
-  ProjectileColliderDelay: 0
-  ProjectileColliderSpeed: 25
-  ProjectileDirection: {x: 0, y: 0, z: 1}
-  ProjectileCollisionLayers:
-    serializedVersion: 2
-    m_Bits: 4294967039
-  ProjectileDestroyParticleSystemsOnCollision:
-  - {fileID: 19810394}
-  - {fileID: 19886674}
 --- !u!1 &130866
 GameObject:
   m_ObjectHideFlags: 0
