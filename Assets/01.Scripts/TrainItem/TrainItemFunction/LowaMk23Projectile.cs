@@ -7,7 +7,8 @@ public class LowaMk23Projectile : MonoBehaviour
     float damage;
     Transform targetEnemy;
 
-    private float moveSpeed = 100;
+    [SerializeField]
+    private float moveSpeed = 10;
 
     [SerializeField]
     private LayerMask m_Mask;

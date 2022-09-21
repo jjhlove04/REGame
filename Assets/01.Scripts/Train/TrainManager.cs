@@ -231,46 +231,45 @@ public class TrainManager : MonoBehaviour
 
     public void BurningCoal(int damage)
     {
-        for (int i = 0; i < burningCoalAmount; i++)
-        {
-            GameObject bullet = ObjectPool.instacne.GetObject(burningCoalProjectile);
+        List<Transform> enemys = LookForTargets(new Vector3(100, 0, 0));
 
-            bullet.GetComponent<BurningCoalProjectileMover>().Create(damage, LookForTargets(new Vector3(50, 0, 0)));
+        int count = enemys.Count < burningCoalAmount ? enemys.Count : burningCoalAmount;
+
+        for (int i = 0; i < count; i++)
+        {
+            GameObject bullet = ObjectPool.instacne.GetObject(burningCoalProjectile);   
+
+            bullet.GetComponent<BurningCoalProjectileMover>().Create(damage, enemys[i]);
 
             bullet.transform.position = new Vector3(transform.position.x, 5, (-(trainContainer.Count) * 20) + 27);
         }
     }
 
-    Transform LookForTargets(Vector3 targetPos)
+    List<Transform> LookForTargets(Vector3 targetPos)
     {
+        List<Transform> enemys = new List<Transform>();
+
         Collider[] hit = Physics.OverlapSphere(targetPos, 50, enemy);
 
         Transform targetEnemy = null;
 
-        foreach (Collider hitEnemy in hit)
+        int count = hit.Length > burningCoalAmount ? burningCoalAmount : hit.Length;
+
+        for (int i = 0; i < count; i++)
         {
-            Enemy enemy = hitEnemy.GetComponent<Enemy>();
-            if (hitEnemy.CompareTag("Enemy"))
+            Enemy enemy = hit[i].GetComponent<Enemy>();
+            if (hit[i].CompareTag("Enemy"))
             {
                 if (!enemy.isDying)
                 {
-                    if (targetEnemy != null)
-                    {
-                        if (Vector3.Distance(targetPos, hitEnemy.transform.position) < Vector3.Distance(transform.position, targetEnemy.transform.position))
-                        {
-                            targetEnemy = hitEnemy.transform;
-                        }
-                    }
-
-                    else
-                    {
-                        targetEnemy = hitEnemy.transform;
-                    }
+                    targetEnemy = hit[i].transform;
                 }
             }
         }
 
-        return targetEnemy;
+        enemys.Add(targetEnemy);
+
+        return enemys;
     }
 
     /*public void KeepOffTrain()

@@ -24,7 +24,7 @@ public class MortarTubeProjectileMover : MonoBehaviour
     {
         if (rigidbody != null)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(Random.Range(-80, -10), Random.Range(50, 130), 0));
+            transform.rotation = Quaternion.Euler(new Vector3(Random.Range(-80, -10), Random.Range(60, 120), 0));
 
             rigidbody.velocity = transform.forward * Random.Range(10, 50);
         }

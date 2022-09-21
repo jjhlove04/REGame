@@ -7,7 +7,8 @@ public class BurningCoalProjectileMover : MonoBehaviour
     private Transform targetEnemy;
     private float damage;
 
-    private float moveSpeed = 100;
+    [SerializeField]
+    private float moveSpeed = 10;
 
     [SerializeField]
     private LayerMask m_Mask;
