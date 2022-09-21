@@ -89,6 +89,7 @@ public class Turret : MonoBehaviour
     private int onNewsOfVictoryTime = 4;
 
     private bool onWeakLens = false;
+    private int weakLens;
 
     private int criticalHitProbability = 10;
 
@@ -379,7 +380,7 @@ public class Turret : MonoBehaviour
     {
         ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();
 
-        projectileMover.Create(targetEnemy, (damage + additionalDamage * WeakLens()))
+        projectileMover.Create(targetEnemy, (damage * weakLens) + additionalDamage )
             .ThisTurret(this)
             .SetRedNut(IsRedNut())
             .SetTaillessPlanaria(onTaillessPlanaria)
@@ -600,19 +601,29 @@ public class Turret : MonoBehaviour
 
     private bool IsWeakLens()
     {
-        return onWeakLens && Random.Range(0, 100) <= gameManager.ActivationCoefficient(criticalHitProbability);
-    }
-
-    private int WeakLens()
-    {
-        if(IsWeakLens())
+        if(onWeakLens && Random.Range(0, 100) <= gameManager.ActivationCoefficient(criticalHitProbability))
         {
-            return 2;
+            WeakLens(true);
+            return true;         
         }
 
         else
         {
-            return 1;
+            WeakLens(false);
+            return false;
+        }
+    }
+
+    private void WeakLens(bool onWeakLens)
+    {
+        if(onWeakLens)
+        {
+            weakLens =2;
+        }
+
+        else
+        {
+            weakLens =1;
         }
     }
 
