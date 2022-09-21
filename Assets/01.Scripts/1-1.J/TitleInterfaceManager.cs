@@ -51,23 +51,33 @@ public class TitleInterfaceManager : MonoBehaviour
         //버튼 애드리스너 시작
         titleBtn[0].onClick.AddListener(()=> {
             canvasGroup[0].SetActive(true);
-            btnGroupAction(1);
             inTitleBtn[0].GetComponent<Text>().DOFade(1,0.5f);
             sceneIndex = 1;   
+            btnGroupAction(1);
             backBtn.gameObject.SetActive(true);         
 
         });
         titleBtn[1].onClick.AddListener(()=> {
             canvasGroup[1].SetActive(true);
-            btnGroupAction(1);
             sceneIndex = 2;
+            btnGroupAction(1);
             IntitleAction(0);
             backBtn.gameObject.SetActive(true);
 
         });
         titleBtn[2].onClick.AddListener(()=> {
-            //
-            //출발 버튼 액티브 온
+            //상태창
+            
+
+        });
+        titleBtn[3].onClick.AddListener(()=> {
+
+            btnGroupAction(2);
+            backBtn.gameObject.SetActive(true);
+        });
+        titleBtn[5].onClick.AddListener(()=> {
+            Application.Quit();
+            
 
         });
 
@@ -109,30 +119,70 @@ public class TitleInterfaceManager : MonoBehaviour
 
     public void btnGroupAction(int index)
     {
+        Sequence collection1 = DOTween.Sequence();
+        Sequence collection2 = DOTween.Sequence();
         
         //타이틀 들어오기
         if(index == 0) 
         {
             titleStart.Kill();
-            titleStart.Append(btnGroup.DOAnchorPosX(70,0.4f));
-            titleStart.Append(playerCard.GetComponent<RectTransform>().DOAnchorPosX(-70,0.6f));
+            titleStart.Append(btnGroup.DOAnchorPosX(70,0.3f));
+            titleStart.Join(playerCard.GetComponent<RectTransform>().DOAnchorPosX(-70,0.3f));
             titleStart.SetAutoKill(false);
         }
         //타이틀 뒤로가기
         if(index == 1) 
         {
             titleEnd.Kill();
-            titleEnd.Append(btnGroup.DOAnchorPosX(-340,0.4f));
-            titleEnd.Append(playerCard.GetComponent<RectTransform>().DOAnchorPosX(570,0.6f).OnComplete(()=>
+            titleEnd.Append(btnGroup.DOAnchorPosX(-340,0.3f));
+            titleEnd.Join(playerCard.GetComponent<RectTransform>().DOAnchorPosX(570,0.3f).OnComplete(()=>
             {
+                if(sceneIndex == 1 || sceneIndex == 2)
+                {
                 canEscape = true;
+                }
             }));
             titleEnd.SetAutoKill(false);
+        }
+        //도감버튼
+        if(index == 2)
+        {
+            sceneIndex = 6;   
+            collection1.Append(fadeImg.transform.DOScale(1,0.1f));
+            collection1.Append(fadeImg.GetComponent<Image>().DOFade(1,0.4f).OnComplete(()=>{
+                canvasGroup[2].SetActive(true);
+                btnGroupAction(1);
+                collection1.Append(fadeImg.GetComponent<Image>().DOFade(0,0.4f).OnComplete(()=>{
+                    collection1.Append(fadeImg.transform.DOScale(0,0.1f).OnComplete(()=>
+                    {
+                        canEscape = true;
+                    }));
+                }));
+            }));
+            collection1.SetAutoKill(false);
+        }
+        //도감 나오기
+        if(index == 3)
+        {
+            canEscape = false;
+            collection2.Append(fadeImg.transform.DOScale(1,0.1f));
+            collection2.Append(fadeImg.GetComponent<Image>().DOFade(1,0.4f).OnComplete(()=>{
+                canvasGroup[2].SetActive(false);
+                collection2.Append(fadeImg.GetComponent<Image>().DOFade(0,0.4f).OnComplete(()=>{
+                    collection2.Append(fadeImg.transform.DOScale(0,0.1f).OnComplete(()=>
+                    {
+                        btnGroupAction(0);
+                    }));
+                }));
+            }));
+            sceneIndex = 0;
+            collection2.SetAutoKill(false);
         }
 
         
     }
 
+    //up 버튼 누르면 이벤트
     public void IntitleAction(int index)
     {
         Sequence upBtnShow = DOTween.Sequence();
@@ -328,6 +378,12 @@ public class TitleInterfaceManager : MonoBehaviour
             canSubEscape = false;
             IntitleAction(7);
 
+        }
+        if(sceneIndex == 6 && canEscape)
+        {   
+            btnGroupAction(3);
+            canEscape = false;
+            backBtn.gameObject.SetActive(false);
         }
     }
 }
