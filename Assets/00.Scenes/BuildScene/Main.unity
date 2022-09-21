@@ -72011,6 +72011,7 @@ MonoBehaviour:
   size: {x: 0, y: 0, z: 0}
   train: {fileID: 6366573837487879711}
   mortarTube: {fileID: 9189046341151563329, guid: 3635c0a3ecc18374480a066c5130978c, type: 3}
+  onBurningCoal: 0
   enemy:
     serializedVersion: 2
     m_Bits: 128
@@ -72048,8 +72049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traininfo: {fileID: 11400000, guid: 25fb0e97759409841a6044cefeab7a77, type: 2}
-  curTrainHpMax: 0
   curTrainHp: 50
+  shapeMemoryAlloyHp: 0
   recoverAmount: 0.5
   trainDef: 0
   curTrainShield: 10000
