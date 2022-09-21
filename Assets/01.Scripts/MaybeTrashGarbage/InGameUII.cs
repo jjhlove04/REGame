@@ -43,7 +43,7 @@ public class InGameUII : MonoBehaviour
     public Text goldAmounTxt;
     public Text killEnemyTxt;
     public Text waveTxt;
-    float milliSec;
+    public float milliSec;
     int second;
     int miniute;
 
@@ -374,6 +374,7 @@ public class InGameUII : MonoBehaviour
 
         if(second > 59)
         {
+            second = 0;
             miniute++;
         }
     }

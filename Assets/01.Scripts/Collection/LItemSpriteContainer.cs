@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemSpriteContainer : MonoBehaviour
+public class LItemSpriteContainer : MonoBehaviour
 {
     public Sprite[] itemSprites;
-    private static ItemSpriteContainer _instance = null;
-    public static ItemSpriteContainer Instance
+    private static LItemSpriteContainer _instance = null;
+    public static LItemSpriteContainer Instance
     {
         get
         {
             if(_instance == null)
             {
-                _instance = GameObject.FindObjectOfType<ItemSpriteContainer>();
+                _instance = GameObject.FindObjectOfType<LItemSpriteContainer>();
             }
             return _instance;
         }

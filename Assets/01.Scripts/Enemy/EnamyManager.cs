@@ -8,35 +8,31 @@ public class EnamyManager : MonoBehaviour
     private float healthAmountMax = 1;
 
     private bool isHUp = false;
-    private bool isDUp = false;
 
     public List<EnemyData> enemies = new List<EnemyData>();
 
     SpawnMananger spawnManager;
+    InGameUII ui;
     private void Start()
     {
         spawnManager = SpawnMananger.Instance;
+        ui = InGameUII._instance;
     }
     private void Update()
     {
-        if (spawnManager.round % 9 == 0)
+        if ((int)ui.milliSec != 0)
         {
-            isHUp = true;
-        }
-        else if (spawnManager.round % 14 == 0)
-        {
-            isDUp = true;
-        }
+            if ((int)ui.milliSec % 19 == 0)
+            {
+                isHUp = true;
+            }
 
-        if (spawnManager.round % 10 == 0 && isHUp)
-        {
-            enemies[0].healthAmountMax += 1.5f;
-            isHUp = false;
-        }
-        else if (spawnManager.round % 15 == 0 && isDUp)
-        {
-            enemies[0].damage += 1.6f;
-            isDUp = false;
+            if ((int)ui.milliSec % 20 == 0 && isHUp)
+            {
+                enemies[0].healthAmountMax += 1.5f;
+                enemies[0].damage += 1.6f;
+                isHUp = false;
+            }
         }
 
     }
