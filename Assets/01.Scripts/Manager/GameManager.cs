@@ -441,5 +441,7 @@ public class GameManager : MonoBehaviour
     private void TrainShapeMemoryAlloy()
     {
         trainScript.shapeMemoryAlloyHp = shapeMemoryAlloyCount * shapeMemoryAlloy;
+
+        trainScript.CurTrainHpMax = trainScript.CurTrainHpMax + (int)trainScript.shapeMemoryAlloyHp;
     }
 }
