@@ -7,5 +7,6 @@ public class EngineOil : TrainItem
     public override void ItemEffect()
     {
         GameManager.Instance.OnEngineOil();
+        curCarry++;
     }
 }

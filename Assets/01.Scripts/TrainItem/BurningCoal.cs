@@ -7,5 +7,6 @@ public class BurningCoal : TrainItem
     public override void ItemEffect()
     {
         TrainManager.instance.OnBurningCoal();
+        curCarry++;
     }
 }

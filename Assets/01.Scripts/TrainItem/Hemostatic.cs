@@ -7,5 +7,6 @@ public class Hemostatic : TrainItem
     public override void ItemEffect()
     {
         TurretManager.Instance.Hemostatic();
+        curCarry++;
     }
 }

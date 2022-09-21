@@ -7,5 +7,6 @@ public class BumperGrappler : TrainItem
     public override void ItemEffect()
     {
         GameManager.Instance.OnBumperGrappler();
+        curCarry++;
     }
 }

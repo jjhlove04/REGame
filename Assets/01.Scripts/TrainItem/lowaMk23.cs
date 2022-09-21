@@ -7,5 +7,6 @@ public class LowaMk23 : TrainItem
     public override void ItemEffect()
     {
         TurretManager.Instance.OnLowaMk23();
+        curCarry++;
     }
 }

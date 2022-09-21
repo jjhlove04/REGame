@@ -250,6 +250,11 @@ public class TitleUI : MonoBehaviour
             maxExp = ParsingJson.Instnace.maxExp[TestTurretDataBase.Instance.level];
             TestTurretDataBase.Instance.level++;
         }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            TestTurretDataBase.Instance.curTp++;
+        }
     }
 
 

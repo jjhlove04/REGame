@@ -7,5 +7,6 @@ public class ShapeMemoryAlloy : TrainItem
     public override void ItemEffect()
     {
         GameManager.Instance.OnShapeMemoryAlloy();
+        curCarry++;
     }
 }
