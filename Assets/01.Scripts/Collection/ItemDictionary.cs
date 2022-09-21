@@ -30,10 +30,16 @@ public class ItemDictionary : MonoBehaviour
             {14,("강화합금", "최대 체력이 8%증가한다 ( 중첩당 최대 체력 +8% )","보통",ItemSpriteContainer.Instance.itemSprites[14])},
             {15,("발바닥 사탕", "공격시 8%의 확률로 적에게 폭탄을 붙여 140%의 피해를 입힌다. ( 중첩당 피해 +40% )","보통",ItemSpriteContainer.Instance.itemSprites[15])},
             {16,("오버클럭", "공격 속도가 15% 증가한다 ( 중첩당 공격속도 +15% )","보통",ItemSpriteContainer.Instance.itemSprites[16])},
-            {17,("도박꾼의 컵", "등장하는 아이템의 등급이 3개가 동일할때 치명타 확률이 5%증가 ( 중첩당 치명타 확률 +2% )","보통",ItemSpriteContainer.Instance.itemSprites[17])},
+            {17,("배움의 돋보기", "적 처치시 얻는 경험치가 10% 증가 합니다 ( 중첩당 획득 경험치 +10% )","희귀한",ItemSpriteContainer.Instance.itemSprites[17])},
             {18,("범죄 복면", "10%의 확률로 받는 피해 무효 ( 중첩당 회피율+5% )","보통",ItemSpriteContainer.Instance.itemSprites[18])},
             {19,("엔진오일", "적을 처치하면 불을 장판을 펼쳐 밟은 적은 2초간 60%피해를 받는다 ( 중첩당 피해 +40% )","보통",ItemSpriteContainer.Instance.itemSprites[19])},
-            {20,("밧줄 속박 ","피해를 받으면 30%확률로 2초동안 가시 장판을 펼처 적의 이동 속도를 20% 감소시킨다. ( 중첩당 발동확률 +10% , 지속시간 +1초 )","보통",ItemSpriteContainer.Instance.itemSprites[20])}
+            {20,("밧줄 속박 ","피해를 받으면 30%확률로 2초동안 가시 장판을 펼처 적의 이동 속도를 20% 감소시킨다. ( 중첩당 발동확률 +10% , 지속시간 +1초 )","보통",ItemSpriteContainer.Instance.itemSprites[20])},
+            {21,("더 큰 지갑","적을 처치해 얻는 골드가 10%증가합니다.  ( 중첩당 획득 골드 +10% )","희귀한",ItemSpriteContainer.Instance.itemSprites[21])},
+            {22,("형상기억 합금","적을 처치할때 마다 체력이 영구적으로 0.5 증가한다 ( 중첩당 체력 증가량 +0.5 )","희귀한",ItemSpriteContainer.Instance.itemSprites[22])},
+            {23,("라바 램프","적을 처치하면 20% 확률로 용암 기둥이 생성되어 근처의 적에게 500% 데미지를 입힌다. 맞은 적은 잠깐 공중에 뜬게 된다 ( 중첩당 용암 기둥 데미지 +50% )","희귀한",ItemSpriteContainer.Instance.itemSprites[23])},
+            {24,("Iowa Mk.23","공격시 10% 확률로 미사일을 발사하여 발동시킨 공격의 최종 피해량의 200%피해를 입힌다(치명타는 발생하지 않음) ( 중첩당 발동 확률 +4% )","희귀한",ItemSpriteContainer.Instance.itemSprites[24])},
+            {25,("꼬리 없는 플라나리아","피해를 입히면 0.5의 체력이 치유된다 ( 중첩당 치유량 0.1증가 )","희귀한",ItemSpriteContainer.Instance.itemSprites[25])},
+            {26,("펀치건","6%확률로 적을 거리 45 정도 밀어 냅니다 ( 6%확률로 적을 거리 45 정도 밀어 냅니다  )","희귀한",ItemSpriteContainer.Instance.itemSprites[26])}
         };
     }
     private void Awake() {
