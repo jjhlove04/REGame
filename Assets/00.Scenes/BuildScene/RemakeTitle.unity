@@ -6391,6 +6391,7 @@ MonoBehaviour:
   level: 0
   curTp: 0
   _nickName: 
+  tCurExp: 0
   isfirst: 1
 --- !u!114 &314761276
 MonoBehaviour:
@@ -9049,6 +9050,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 0
+  canEscape: 0
+  canSubEscape: 0
   btnGroup: {fileID: 1522632271}
   titleBtn:
   - {fileID: 149219932}
@@ -9062,11 +9065,17 @@ MonoBehaviour:
   - {fileID: 859209025}
   - {fileID: 573434991}
   - {fileID: 1494357387}
+  backBtn: {fileID: 1185811566}
   playerCard: {fileID: 993361196}
   canvasGroup:
   - {fileID: 1632365855}
   - {fileID: 616335609}
   - {fileID: 1297369506}
+  fadeImg: {fileID: 1248757088}
+  upPanel:
+  - {fileID: 538036176}
+  - {fileID: 790786644}
+  - {fileID: 1562332569}
 --- !u!4 &453546633
 Transform:
   m_ObjectHideFlags: 0
@@ -14666,7 +14675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &762580702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22588,7 +22597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1185811564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23862,7 +23871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1248757089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23872,7 +23881,7 @@ RectTransform:
   m_GameObject: {fileID: 1248757088}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 762580702}
   m_RootOrder: 1
@@ -23914,7 +23923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
