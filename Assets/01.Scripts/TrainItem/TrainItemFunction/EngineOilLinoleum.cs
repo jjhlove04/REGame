@@ -16,8 +16,6 @@ public class EngineOilLinoleum : MonoBehaviour
     private void OnEnable()
     {
         objectPool = ObjectPool.instacne;
-
-        Invoke("ObjReturn", 1);
     }
 
     private void Start()
@@ -28,10 +26,6 @@ public class EngineOilLinoleum : MonoBehaviour
     private void Update()
     {
         EngineOilLinoleumAttack();
-    }
-    private void ObjReturn()
-    {
-        objectPool.ReturnGameObject(this.gameObject);
     }
 
     public void Create(float damage)

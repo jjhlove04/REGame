@@ -111,8 +111,8 @@ public class TrainScript : MonoBehaviour
     private bool onWireEntanglement = false;
     private float curWireEntanglementTime;
     private float wireEntanglementTimeMax=1;
-    private int wireEntanglementObjecctCount = 6;
-    private GameObject wireEntanglementObjecct;
+    private int wireEntanglementObjecctCount = 5;
+    public List<GameObject> wireEntanglementObjecct = new List<GameObject>();
 
     private float additionalRecoveryAmount;
 
@@ -147,8 +147,6 @@ public class TrainScript : MonoBehaviour
         StartCoroutine(FixTimeHp());
 
         inGameUII = InGameUII._instance;
-
-        wireEntanglementObjecct = transform.Find("SpikeSS").gameObject;
     }
 
     private void Update()
@@ -478,14 +476,21 @@ public class TrainScript : MonoBehaviour
             wireEntanglementDamage += 0.1f;
             wireEntanglementRange += wireEntanglementRange * 0.2f;
 
-            wireEntanglementObjecct.transform.GetChild(wireEntanglementObjecctCount).gameObject.SetActive(true);
+            for (int i = 0; i < wireEntanglementObjecct.Count; i++)
+            {
+                wireEntanglementObjecct[i].transform.GetChild(wireEntanglementObjecctCount).gameObject.SetActive(true);
+            }
 
             wireEntanglementObjecctCount++;
         }
 
         onWireEntanglement = true;
 
-        wireEntanglementObjecct.SetActive(true);
+
+        for (int i = 0; i < wireEntanglementObjecct.Count; i++)
+        {
+            wireEntanglementObjecct[i].SetActive(true);
+        }
     }
 
     private void WireEntanglement()

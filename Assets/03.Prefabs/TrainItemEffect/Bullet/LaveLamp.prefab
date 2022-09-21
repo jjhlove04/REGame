@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4969,6 +4969,7 @@ GameObject:
   - component: {fileID: 8359164434017599473}
   - component: {fileID: 8359164434017581005}
   - component: {fileID: 9198312632756720659}
+  - component: {fileID: 7573445103250811051}
   m_Layer: 0
   m_Name: LaveLamp
   m_TagString: Untagged
@@ -5250,10 +5251,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f195c53bb0ce094d93999656510e284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxDistance: 5
+  m_MaxDistance: 10
   m_Mask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &7573445103250811051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359164434019398807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3f3ba2de011a3448a877987d4b7511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieTime: 3
 --- !u!1 &8359164434019406335
 GameObject:
   m_ObjectHideFlags: 0
@@ -5302,7 +5316,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

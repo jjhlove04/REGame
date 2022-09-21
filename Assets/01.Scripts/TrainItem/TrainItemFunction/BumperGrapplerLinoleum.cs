@@ -16,8 +16,6 @@ public class BumperGrapplerLinoleum : MonoBehaviour
     private void OnEnable()
     {
         objectPool = ObjectPool.instacne;
-
-        Invoke("ObjReturn", lifeTime);
     }
 
     private void Start()
@@ -28,10 +26,6 @@ public class BumperGrapplerLinoleum : MonoBehaviour
     private void Update()
     {
         BumperGrapplerleumAttack();
-    }
-    private void ObjReturn()
-    {
-        objectPool.ReturnGameObject(this.gameObject);
     }
 
     public void Create(float lifeTime)

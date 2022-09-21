@@ -143,8 +143,6 @@ public class TrainManager : MonoBehaviour
 
     public void OnFire()
     {
-        print(5);
-
         transform.GetChild(0).Find("Fire" + fireCount)?.gameObject.SetActive(true);
 
         for (int i = 0; i < train.transform.childCount; i++)

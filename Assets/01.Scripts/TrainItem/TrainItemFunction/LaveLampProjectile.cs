@@ -11,24 +11,14 @@ public class LaveLampProjectile : MonoBehaviour
 
     private float damage;
 
-    private ObjectPool objectPool;
-
-    private void OnEnable()
-    {
-        objectPool = ObjectPool.instacne;
-
-        Invoke("ObjReturn", 0.25F);
-
-        LaveLampProjectileAttack();
-    }
-
     private void Awake()
     {
         transform.localScale = new Vector3(m_MaxDistance, 0.001f, m_MaxDistance);
     }
-    private void ObjReturn()
+
+    private void Update()
     {
-        objectPool.ReturnGameObject(this.gameObject);
+        LaveLampProjectileAttack();
     }
 
     public void Create(float damage)
@@ -52,7 +42,7 @@ public class LaveLampProjectile : MonoBehaviour
 
                 rigidbody = collider[i].GetComponent<Rigidbody>();
 
-                rigidbody.velocity = Vector3.up * 5;
+                rigidbody.velocity = Vector3.up * 10 * Time.deltaTime;
 
                 healthSystem.LaveLamp(damage);
             }

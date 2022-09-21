@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         get { return expAmount; }
         set
         {
-            if(expAmount < value)
+            if (expAmount < value)
             {
                 if (vamPireTeeth)
                 {
@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
                 if (laveLamp)
                 {
                     LaveLamp();
-
                 }
 
                 if (onShapeMemoryAlloy)

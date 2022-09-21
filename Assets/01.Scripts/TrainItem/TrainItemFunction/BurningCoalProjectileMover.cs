@@ -15,6 +15,13 @@ public class BurningCoalProjectileMover : MonoBehaviour
     [SerializeField]
     private GameObject explosionEffect;
 
+    private ObjectPool objectPool;
+
+    private void Start()
+    {
+        objectPool = ObjectPool.instacne;
+    }
+
 
     void FixedUpdate()
     {
@@ -39,9 +46,9 @@ public class BurningCoalProjectileMover : MonoBehaviour
 
     protected void OnTriggerEnter(Collider other)
     {
-        ObjectPool.instacne.GetObject(explosionEffect).transform.position = transform.position;
+        objectPool.GetObject(explosionEffect).transform.position = transform.position;
 
-        gameObject.SetActive(false);
+        objectPool.ReturnGameObject(gameObject);
 
         HealthSystem healthSystem = other.GetComponent<HealthSystem>();
 
