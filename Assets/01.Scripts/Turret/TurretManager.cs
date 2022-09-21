@@ -48,7 +48,10 @@ public class TurretManager : MonoBehaviour
     private int countHemostatic = 0;
 
     private bool onLowaMk2 = false;
-    private int countLowaMk2 = 0;
+    private int countLowaMk2 = 0;    
+    
+    private bool onSixthGuitarString = false;
+    private int countSixthGuitarString = 0;
     [SerializeField]
     private GameObject lowaMK23Obj;
 
@@ -270,7 +273,7 @@ public class TurretManager : MonoBehaviour
         for (int i = 0; i < turrets.transform.childCount; i++)
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
-                .OnLowaMk23(onHemostatic, countHemostatic);
+                .OnLowaMk23(onLowaMk2, countLowaMk2);
         }
     }
 
@@ -281,5 +284,18 @@ public class TurretManager : MonoBehaviour
         obj.transform.position = Pos;
 
         obj.GetComponent<LowaMk23Projectile>().Create(damage*2, targetEnemy);
+    }
+
+    public void OnSixthGuitarString()
+    {
+        onSixthGuitarString = true;
+
+        countSixthGuitarString++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnLowaMk23(onSixthGuitarString, countSixthGuitarString);
+        }
     }
 }

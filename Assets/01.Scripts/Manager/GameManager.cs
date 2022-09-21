@@ -70,10 +70,15 @@ public class GameManager : MonoBehaviour
                     EngineOil();
                 }                
                 
-                if (engineOil)
+                if (laveLamp)
                 {
                     LaveLamp();
 
+                }
+
+                if (onShapeMemoryAlloy)
+                {
+                    ShapeMemoryAlloy();
                 }
             }
 
@@ -137,6 +142,10 @@ public class GameManager : MonoBehaviour
     private float goldIncrease = 1;
 
     private float activationCoefficient = 0.5f;
+
+    private bool onShapeMemoryAlloy = false;
+    private float shapeMemoryAlloy = 0.5f;
+    private float shapeMemoryAlloyCount = 0;
 
     ObjectPool objectPool;
 
@@ -409,5 +418,28 @@ public class GameManager : MonoBehaviour
     public float ReturnActivation()
     {
         return activationCoefficient;
+    }
+
+    public void OnShapeMemoryAlloy()
+    {
+        if (onShapeMemoryAlloy)
+        {
+            shapeMemoryAlloy += 0.5f;
+
+            TrainShapeMemoryAlloy();
+        }
+        onShapeMemoryAlloy = true;
+    }
+
+    private void ShapeMemoryAlloy()
+    {
+        shapeMemoryAlloyCount++;
+
+        TrainShapeMemoryAlloy();
+    }
+
+    private void TrainShapeMemoryAlloy()
+    {
+        trainScript.shapeMemoryAlloyHp = shapeMemoryAlloyCount * shapeMemoryAlloy;
     }
 }

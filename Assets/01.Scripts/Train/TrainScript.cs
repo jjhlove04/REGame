@@ -22,6 +22,7 @@ public class TrainScript : MonoBehaviour
             curTrainHp = Mathf.Clamp(value, 0, curTrainHpMax);
         }
     }
+    public float shapeMemoryAlloyHp;
     private float curTrainHpTime = 0;
     private float maxHpTime = 5;
     public float recoverAmount = 0.5f;
