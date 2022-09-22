@@ -158,7 +158,7 @@ public class InGameUII : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        bpBot = bluePrintBot.GetComponent<RectTransform>();
+//        bpBot = bluePrintBot.GetComponent<RectTransform>();
         upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = ObjectPool.instacne;
         selectPanel.transform.localScale = Vector3.zero;

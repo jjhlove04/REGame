@@ -16,7 +16,7 @@ public class testScripttss : MonoBehaviour
 
     private int speedBtnCount = 1;
 
-    public Slider hpBar;
+    //public Slider hpBar;
 
     [Header("NEXTBTN")]
     public Button NextWaveBtn;
@@ -86,10 +86,10 @@ public class testScripttss : MonoBehaviour
         objectPool = FindObjectOfType<ObjectPool>();
         NextWaveBtn.onClick.AddListener(NextWave);
 
-        reloadBtn.onClick.AddListener(Reload);
+        //reloadBtn.onClick.AddListener(Reload);
 
-        //hp¹Ù ¼¼
-        hpBar.value = (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp;
+        //hpï¿½ï¿½ ï¿½ï¿½
+        //hpBar.value = (float)TrainScript.instance.CurTrainHp / (float)TrainScript.instance.traininfo.trainMaxHp;
 
         if (trainScript.traininfo.trainCount == 1)
         {
@@ -339,11 +339,7 @@ public class testScripttss : MonoBehaviour
         }
     }
 
-    public void TakeDamageHpBar()
-    {
-        //Time.deltaTime ¿·¿¡ * (TakeDamage) ¸¸Å­ °öÇØÁà¾ßÇÔ. »ý·«µÇ¾î ÀÖÀ½.
-        hpBar.value = Mathf.Lerp(hpBar.value, (float)trainScript.CurTrainHp / (float)trainScript.traininfo.trainMaxHp, Time.deltaTime);
-    }
+
 
     public void BulletCheck()
     {

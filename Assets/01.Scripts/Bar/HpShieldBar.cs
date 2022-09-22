@@ -4,29 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class HpShieldBar : MonoBehaviour, IPointerExitHandler,IPointerEnterHandler
-{
+public class HpShieldBar : MonoBehaviour{
     public GameObject hpTip;
     public Text hpText;
     int curHp;
     int maxHp;
     public Slider hpBar;
+    public Slider shieldBar;
+    float hpGauge;
+    float shieldGauge;
+    public TrainInfo trainInfo;
 
+    private void Start() {
+    }
     private void Update() {
+        hpGauge =  (TrainScript.instance.CurTrainHp/TrainScript.instance.CurTrainHpMax);
+        shieldGauge = 1 - TrainScript.instance.curTrainShield/ trainInfo.trainMaxShield;
         curHp = (int)(TrainScript.instance.CurTrainHp);
         maxHp = (int)(TrainScript.instance.CurTrainHpMax);
-        hpBar.value = TrainScript.instance.CurTrainHp / TrainScript.instance.CurTrainHpMax;
         hpText.text = $"{curHp} / <color=yellow>{maxHp}</color>";
-    }
-    
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        hpTip.SetActive(true);
+        hpLogic();
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void hpLogic()
     {
-        hpTip.SetActive(false);
+        if(TrainScript.instance.curTrainShield > 0)
+        {
+            hpBar.value = Mathf.Lerp( hpBar.value, shieldGauge , 1 * Time.deltaTime);
+            shieldBar.gameObject.SetActive(true);
+            
+        }
+        if(TrainScript.instance.curTrainShield < 0)
+        {
+            hpBar.value = Mathf.Lerp( hpBar.value, hpGauge , 1 * Time.deltaTime);
+            shieldBar.gameObject.SetActive(false);
+        }
+        
+
     }
     
 }

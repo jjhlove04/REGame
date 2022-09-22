@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
                 goldAmount = value;
             }
 
-            getGold();
+          getGold();
         }
     }
 

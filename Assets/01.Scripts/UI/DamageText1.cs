@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class DamageText1 : MonoBehaviour
 {
     
@@ -13,6 +13,6 @@ public class DamageText1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Translate(new Vector3(0,0.1f,0));
+        this.transform.DOJump(new Vector3(0,-2,0), 4,1,3);
     }
 }
