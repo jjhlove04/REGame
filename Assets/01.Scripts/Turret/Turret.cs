@@ -118,11 +118,19 @@ public class Turret : MonoBehaviour
 
     private bool onLowaMk2 = false;
     private float LowaMk2Count;
-    private int LowaMk2Percentage = 10;
+    private int LowaMk2Percentage = 10;    
+    
+    private bool onSixthGuitarString = false;
+    private float sixthGuitarStringCount;
+    private float sixthGuitarStringDamage;
+    [SerializeField]
+    private GameObject sixthGuitarStringObj;
 
     private GameManager gameManager;
 
     private TurretManager turretManager;
+
+    
 
     Camera cam;
     private void OnEnable()
@@ -380,7 +388,7 @@ public class Turret : MonoBehaviour
     {
         ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();
 
-        projectileMover.Create(targetEnemy, (damage * weakLens) + additionalDamage )
+        projectileMover.Create(targetEnemy, (damage * weakLens) + additionalDamage)
             .ThisTurret(this)
             .SetRedNut(IsRedNut())
             .SetTaillessPlanaria(onTaillessPlanaria)
@@ -389,7 +397,8 @@ public class Turret : MonoBehaviour
             .SetFMJAdditionalDamage(onFMJ, additionalFMJDamage)
             .SetOnPunchGun(IsPuchGun())
             .SetOnTheSoleCandy(IsTheSoleCandy(), theSoleCandyDamage)
-            .SetOnHemostatic(IsHemostatic(), hemostaticDamage * damage);
+            .SetOnHemostatic(IsHemostatic(), hemostaticDamage * damage)
+            .SetOnSixthGuitarString(IsSixthGuitarString(),damage * sixthGuitarStringDamage);
             
 
         TaillessPlanaria();
@@ -746,7 +755,7 @@ public class Turret : MonoBehaviour
 
     private bool IsHemostatic()
     {
-        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(hemostaticCount) && onMortarTube;
+        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(hemostaticCount) && onHemostatic;
     }
 
     public Turret OnLowaMk23(bool on, int count)
@@ -765,6 +774,21 @@ public class Turret : MonoBehaviour
     private void LowaMk23()
     {
         turretManager.LowaMk23(damage,targetEnemy,transform.position);
+    }
+
+    public Turret OnSixthGuitarString(bool on, int count)
+    {
+        onSixthGuitarString = on;
+
+        sixthGuitarStringCount = count;
+
+        sixthGuitarStringDamage = sixthGuitarStringCount * 0.33f;
+
+        return this;
+    }
+    private bool IsSixthGuitarString()
+    {
+        return Random.Range(0, 100) <= gameManager.ActivationCoefficient(20) && onSixthGuitarString;
     }
 
     private void OnMouseEnter()

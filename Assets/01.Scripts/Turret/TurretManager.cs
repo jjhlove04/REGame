@@ -295,7 +295,7 @@ public class TurretManager : MonoBehaviour
         for (int i = 0; i < turrets.transform.childCount; i++)
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
-                .OnLowaMk23(onSixthGuitarString, countSixthGuitarString);
+                .OnSixthGuitarString(onSixthGuitarString, countSixthGuitarString);
         }
     }
 }

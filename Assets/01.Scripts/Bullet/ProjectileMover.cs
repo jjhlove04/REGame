@@ -55,6 +55,12 @@ public class ProjectileMover : MonoBehaviour
 
     protected bool onHemostatic = false;
 
+    protected bool onSixthGuitarString = false;
+    private float sixthGuitarStringDamage = 0;
+
+    [SerializeField]
+    private GameObject sixthGuitarStringObj;
+
     protected GameObject weakLens;
     protected GameObject fMJ;
     protected GameObject furryBaracelet;
@@ -265,6 +271,27 @@ public class ProjectileMover : MonoBehaviour
         }
     }
 
+    public ProjectileMover SetOnSixthGuitarString(bool on, float damage)
+    {
+        onSixthGuitarString = on;
+
+        sixthGuitarStringDamage = damage;
+
+        return this;
+    }
+
+    private void SixthGuitarString()
+    {
+        if (onSixthGuitarString)
+        {
+            GameObject obj = ObjectPool.instacne.GetObject(sixthGuitarStringObj);
+
+            obj.transform.position = targetEnemy.transform.position;
+
+            obj.GetComponent<SixthGuitarStringProjectileMover>().Create(targetEnemy,damage, sixthGuitarStringDamage);
+        }
+    }
+
     public void SetDamage(int damage)
     {
         this.Damage = damage;
@@ -299,5 +326,7 @@ public class ProjectileMover : MonoBehaviour
         //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));ㄴ
 
         OnPunchGun(other);
+
+        SixthGuitarString();
     }
 }
