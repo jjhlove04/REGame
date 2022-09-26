@@ -130,11 +130,7 @@ public class TrainItemManager : MonoBehaviour
         obj.transform.parent = inGameUII.itemPanel.transform;
 
 
-        GameObject bufobj = objectPool.GetObject(itemBuff);
-        bufobj.transform.GetChild(0).GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
-        bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
-        bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
-        bufobj.GetComponent<BuffItem>().bufString = ParsingJson.Instnace.effectDetail[curTrainItems[selectNum].itemNum];
+        StartBuff();
 
 
         if (GameManager.Instance.TrainLevel != 2)
@@ -145,10 +141,23 @@ public class TrainItemManager : MonoBehaviour
 
         if (curTrainItems[selectNum].curCarry > 1)
         {
-            bufobj.SetActive(false);
             obj.SetActive(false);
         }
 
+    }
+
+    public void StartBuff()
+    {
+        GameObject bufobj = objectPool.GetObject(itemBuff);
+        bufobj.transform.GetChild(0).GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
+        bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
+        bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
+        bufobj.GetComponent<BuffItem>().bufString = ParsingJson.Instnace.effectDetail[curTrainItems[selectNum].itemNum];
+
+        if (curTrainItems[selectNum].curCarry > 1)
+        {
+            bufobj.SetActive(false);
+        }
     }
 
     public void ReRoll()

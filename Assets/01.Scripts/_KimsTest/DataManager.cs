@@ -32,6 +32,11 @@ public class DataManager : MonoBehaviour
 
     // 테이블 묶음을 관리할 DataSet 변수
     private DataSet _database;
+
+    private void Start()
+    {
+        //InitDataManager();
+    }
     public void InitDataManager()
     {
         _database = new DataSet("Database");
@@ -39,6 +44,7 @@ public class DataManager : MonoBehaviour
         MakeSheetDatset(_database);
 #if UNITY_EDITOR
         //에디터에서 실행시 스프레드시트 API 호출
+
 
 #else
 	//Android, Ios 환경에서 실행 시 로컬 json 파일에서 데이터 받아옴

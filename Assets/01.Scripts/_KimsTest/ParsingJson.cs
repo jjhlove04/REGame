@@ -17,7 +17,12 @@ public class ParsingJson : MonoBehaviour
 
     public List<float> maxExp = new List<float>();
     public List<int> changeExp = new List<int>();
+
     public List<string> effectDetail = new List<string>();
+
+    public List<string> upgradeName = new List<string>();
+    public List<int> upgradeCose = new List<int>();
+    public List<float> price = new List<float>();
 
     [Serializable]
     public class Sheet
@@ -37,6 +42,14 @@ public class ParsingJson : MonoBehaviour
         public string effectDetails;
     }
 
+    [Serializable]
+    public class SheetThree
+    {
+        public string name;
+        public int upgradeBox;
+        public float price;
+    }
+
     public class SheetNumberts
     {
         public Sheet[] sheet;
@@ -46,6 +59,11 @@ public class ParsingJson : MonoBehaviour
     {
         public SheetTwo[] sheetTwo;
     }
+    
+    public class SheetThreeNumbers
+    {
+        public SheetThree[] sheetThree;
+    }
 
     void Awake()
     {
@@ -53,12 +71,15 @@ public class ParsingJson : MonoBehaviour
 
         TextAsset textAsset = Resources.Load<TextAsset>("JsonData/Sheet1");
         TextAsset textAssetT = Resources.Load<TextAsset>("JsonData/Sheet2");
+        TextAsset textAssetThree = Resources.Load<TextAsset>("JsonData/Sheet3");
 
         string sheet = "{\"sheet\":" + textAsset + "}";
         string sheetTwo = "{\"sheetTwo\":" + textAssetT + "}";
+        string sheetThree = "{\"sheetThree\":" + textAssetThree + "}";
 
         SheetNumberts s = JsonUtility.FromJson<SheetNumberts>(sheet);
         SheetTwoNumbers st = JsonUtility.FromJson<SheetTwoNumbers>(sheetTwo);
+        SheetThreeNumbers sth = JsonUtility.FromJson<SheetThreeNumbers>(sheetThree);
 
         foreach (Sheet see in s.sheet)
         {
@@ -69,6 +90,13 @@ public class ParsingJson : MonoBehaviour
         foreach (SheetTwo see in st.sheetTwo)
         {
             effectDetail.Add(see.effectDetails);
+        }
+
+        foreach (SheetThree see in sth.sheetThree)
+        {
+            upgradeName.Add(see.name);
+            upgradeCose.Add(see.upgradeBox);
+            price.Add(see.price);
         }
 
         Debug.Log("ÆÄ½Ì ¿Ï·á");

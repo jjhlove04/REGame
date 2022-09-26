@@ -288,7 +288,7 @@ public class ProjectileMover : MonoBehaviour
 
             obj.transform.position = targetEnemy.transform.position;
 
-            obj.GetComponent<SixthGuitarStringProjectileMover>().Create(targetEnemy,damage, sixthGuitarStringDamage);
+            obj.GetComponent<SixthGuitarStringProjectileMover>().Create(targetEnemy, sixthGuitarStringDamage);
         }
     }
 

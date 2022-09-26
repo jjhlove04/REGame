@@ -38,6 +38,8 @@ public class TitleInterfaceManager : MonoBehaviour
     bool isNowTitel = false;
     public GameObject fadeImg;
     public GameObject[] upPanel;
+    public GameObject trainUpgradeContent;
+    public GameObject levelBox;
     
 
     private void Awake() {
@@ -105,6 +107,7 @@ public class TitleInterfaceManager : MonoBehaviour
     }
     void Start()
     {
+
         
     }
 
@@ -229,6 +232,9 @@ public class TitleInterfaceManager : MonoBehaviour
                     }));
                 }));
             }));
+
+            TrainUpgradePanel();
+
             sceneIndex = 3;
             upPanel1Show.SetAutoKill(false);
         }
@@ -334,6 +340,18 @@ public class TitleInterfaceManager : MonoBehaviour
             {
             }));
             upBtnClose.SetAutoKill(false);
+        }
+    }
+
+    public void TrainUpgradePanel()
+    {
+        for (int i = 0; i < trainUpgradeContent.transform.childCount; i++)
+        {
+            trainUpgradeContent.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = ParsingJson.Instnace.upgradeName[i];
+            for(int j = 0; j < ParsingJson.Instnace.upgradeCose[i]; j++)
+            {
+                Instantiate(levelBox, trainUpgradeContent.transform.GetChild(i).GetChild(2));
+            }
         }
     }
 

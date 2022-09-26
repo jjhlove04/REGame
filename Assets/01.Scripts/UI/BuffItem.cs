@@ -13,8 +13,11 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Color bufColor;
 
     private bool onHold = false;
+    private bool onActive = false;
     private float buffTime;
+    private float activeTime;
     private float maxBuffTime = 5f;
+    private float maxActiveTime = 5f;
     public string bufString;
 
     private void Start()
@@ -31,7 +34,7 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //active
         if (bufColor == active)
         {
-            gameObject.SetActive(false);
+            onActive = true;
         }
 
         //hold
@@ -56,6 +59,19 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if(buffTime > maxBuffTime)
             {
                 onHold = false;
+                gameObject.SetActive(false);
+            }
+        }
+
+        if (onActive)
+        {
+            activeTime += Time.deltaTime;
+
+            gameObject.GetComponent<CanvasGroup>().alpha = (activeTime / maxActiveTime);
+
+            if (activeTime > maxActiveTime)
+            {
+                onActive = false;
                 gameObject.SetActive(false);
             }
         }
