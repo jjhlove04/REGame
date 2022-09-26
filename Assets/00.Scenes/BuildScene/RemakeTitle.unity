@@ -5797,6 +5797,7 @@ MonoBehaviour:
     m_keys: []
     m_values: 
   postItemObj: []
+  plusDamage: 0
   resultDamage: 0
   resultEXP: 0
   resultGold: 0
@@ -9052,8 +9053,13 @@ MonoBehaviour:
   - {fileID: 859209025}
   - {fileID: 573434991}
   - {fileID: 1494357387}
+  - {fileID: 204051170}
   backBtn: {fileID: 1185811566}
   playerCard: {fileID: 993361196}
+  haveGold: {fileID: 1020499617}
+  haveLevel: {fileID: 720918280}
+  haveTp: {fileID: 667421776}
+  curCardExp: {fileID: 2144308319}
   canvasGroup:
   - {fileID: 1632365855}
   - {fileID: 616335609}
@@ -9063,8 +9069,13 @@ MonoBehaviour:
   - {fileID: 538036176}
   - {fileID: 790786644}
   - {fileID: 1562332569}
+  upgradeBtn: []
   trainUpgradeContent: {fileID: 1026151153}
   levelBox: {fileID: 2259201467240117165, guid: d6c42c5cecae29940a56f4ddcdfc855f, type: 3}
+  curExp: 0
+  maxExp: 30
+  expBar: {fileID: 751725725}
+  levelTxt: {fileID: 217591053}
 --- !u!4 &453546633
 Transform:
   m_ObjectHideFlags: 0
@@ -16998,7 +17009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.9254902, g: 0.7019608, b: 0.39607844, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

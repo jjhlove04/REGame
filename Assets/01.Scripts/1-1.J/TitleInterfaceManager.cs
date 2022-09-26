@@ -18,7 +18,7 @@ public class TitleInterfaceManager : MonoBehaviour
     // 0 : 시작, 1 : 업그레이드, 2 : 상태, 3 : 도감, 4 : 설정, 5 : 종료
     public Button[] titleBtn;
 
-    // 0 : 시작 - 출발, 1 : 업그레이드 - 기차, 2 : 업그레이드 - 타워, 3 : 업그레이드 - 아이템
+    // 0 : 시작 - 출발, 1 : 업그레이드 - 기차, 2 : 업그레이드 - 타워, 3 : 업그레이드 - 아이템, 4 : 수리
     public Button[] inTitleBtn;
 
 
@@ -29,6 +29,10 @@ public class TitleInterfaceManager : MonoBehaviour
 
     [Header("타이틀 - 플레이어")]
     public GameObject playerCard;
+    [SerializeField] private Text haveGold;
+    [SerializeField] private Text haveLevel;
+    [SerializeField] private Text haveTp;
+    public Slider curCardExp;
 
     [Header("타이틀 - 캔버스")]
     //0 : 출발 캔버스, 1 : 업그레이드 캔버스, 2 : 도감 캔버스
@@ -38,9 +42,15 @@ public class TitleInterfaceManager : MonoBehaviour
     bool isNowTitel = false;
     public GameObject fadeImg;
     public GameObject[] upPanel;
+    public Button[] upgradeBtn;
     public GameObject trainUpgradeContent;
     public GameObject levelBox;
-    
+
+    [Header("결과패널 - 경험치")]
+    public float curExp = 0;
+    public float maxExp = 30;
+    public Slider expBar;
+    public Text levelTxt;
 
     private void Awake() {
         Sequence first = DOTween.Sequence();
@@ -98,17 +108,43 @@ public class TitleInterfaceManager : MonoBehaviour
             isNowTitel = true;
             sceneIndex = 5; 
         });
+        //수리
+        inTitleBtn[4].onClick.AddListener(() => {
+
+            TestTurretDataBase.Instance.resultEXP = 0;
+            TestTurretDataBase.Instance.killEnemy = 0;
+            TestTurretDataBase.Instance.resultDamage = 0;
+            TestTurretDataBase.Instance.resultGold -= (int)((TestTurretDataBase.Instance.round - 1) * 1.5f);
+
+            for (int i = 0; i < TestTurretDataBase.Instance.postItemObj.Count; i++)
+            {
+                TestTurretDataBase.Instance.postItemObj[i].curCarry = 0;
+
+            }
+
+            TestTurretDataBase.Instance.isfirst = false;
+        });
+
         backBtn.onClick.AddListener(()=>
         {
             EscapeBtn();
         });
-        
+
         //버튼 애드리스너 끝
+
     }
     void Start()
     {
+        for (int i = 0; i < upgradeBtn.Length; i++)
+        {
+            upgradeBtn[i].onClick.AddListener(() =>
+            {
 
-        
+            });
+        }
+
+        maxExp = ParsingJson.Instnace.maxExp[TestTurretDataBase.Instance.level];
+
     }
 
     
@@ -118,6 +154,9 @@ public class TitleInterfaceManager : MonoBehaviour
         {
             EscapeBtn();
         }
+
+        InitPlayerInfo();
+        ExpBar();
     }
 
     public void btnGroupAction(int index)
@@ -402,6 +441,47 @@ public class TitleInterfaceManager : MonoBehaviour
             btnGroupAction(3);
             canEscape = false;
             backBtn.gameObject.SetActive(false);
+        }
+    }
+
+    public void InitPlayerInfo()
+    {
+        haveGold.text = TestTurretDataBase.Instance.resultGold.ToString();
+        haveLevel.text = TestTurretDataBase.Instance.level.ToString();
+        haveTp.text = TestTurretDataBase.Instance.curTp.ToString();
+        curCardExp.value = expBar.value;
+    }
+
+    private void ExpBar()
+    {
+        expBar.value = Mathf.Lerp(expBar.value, curExp / maxExp, Time.deltaTime * (2 + (curExp / 500)));
+
+        if (expBar.value >= 0.99f)
+        {
+            if (curExp >= maxExp)
+            {
+                TestTurretDataBase.Instance.curTp++;
+                TestTurretDataBase.Instance.level++;
+                curExp = curExp - maxExp;
+
+                maxExp = ParsingJson.Instnace.maxExp[TestTurretDataBase.Instance.level];
+
+                expBar.value = 0;
+                levelTxt.text = TestTurretDataBase.Instance.level.ToString();
+            }
+        }
+        TestTurretDataBase.Instance.tCurExp = curExp;
+    }
+
+    public void TrainUpgrade(int i)
+    {
+        switch (i)
+        {
+            case 0:
+
+                break;
+            default:
+                break;
         }
     }
 }

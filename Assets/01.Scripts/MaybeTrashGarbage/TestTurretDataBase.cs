@@ -22,6 +22,9 @@ public class TestTurretDataBase : MonoBehaviour
     public GameObjectBool postItemDic = new GameObjectBool();
     public List<TrainItem> postItemObj = new List<TrainItem>();
 
+    [Header("인게임 스탯")]
+    public int plusDamage = 0;
+
     [Header("결과값")]
     public int resultDamage = 0;
     public int resultEXP = 0;

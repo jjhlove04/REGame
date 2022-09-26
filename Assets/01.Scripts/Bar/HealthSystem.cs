@@ -88,7 +88,7 @@ public class HealthSystem : MonoBehaviour
         {
             if (enemy.onFurryBracelet)
             {
-            curHealthAmount -= ((damageAmount) * (100 / (100 + enemy.enemyStat.def)))*0.5f;
+            curHealthAmount -= ((damageAmount) * 100 / (100 + enemy.enemyStat.def) + (damageAmount/100)) * (damageAmount + damageAmount * (TestTurretDataBase.Instance.plusDamage / 100));
             }  
             var damageTxt = Instantiate(flaotingText, transform.position,Quaternion.Euler(50,-90,0));
             damageTxt.GetComponent<TextMesh>().text = damageAmount.ToString();
