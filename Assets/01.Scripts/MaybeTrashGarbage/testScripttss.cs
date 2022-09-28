@@ -226,11 +226,10 @@ public class testScripttss : MonoBehaviour
             }
             else
             {
-                inGameUI.upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
                 SelectTurret();
             }
         }
-        inGameUI.upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
+
         SelectTurret();
     }
     public void Despawn()

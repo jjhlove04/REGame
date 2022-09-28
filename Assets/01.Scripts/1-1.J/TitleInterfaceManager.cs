@@ -169,11 +169,18 @@ public class TitleInterfaceManager : MonoBehaviour
             EscapeBtn();
         });
 
+        
+
         //버튼 애드리스너 끝
 
     }
     void Start()
     {
+        if (TestTurretDataBase.Instance.sceneIndex == 1)
+        {
+            IntitleAction(8);
+        }
+        
         if (testTurretDatabase.postItemObj.Count < 1)
         {
 
@@ -190,10 +197,7 @@ public class TitleInterfaceManager : MonoBehaviour
                 TrainUpgrade(i);
             });
         }
-        if (testTurretDatabase.sceneIndex == 1)
-        {
-            IntitleAction(8);
-        }
+        
 
         repairCost.text = ((testTurretDatabase.round - 1) * 1.5f).ToString();
         towingCost.text = 0 + "";
@@ -213,7 +217,11 @@ public class TitleInterfaceManager : MonoBehaviour
         {
             EscapeBtn();
         }
-
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log(TestTurretDataBase.Instance.sceneIndex);
+        }
+        
         InitPlayerInfo();
         ExpBar();
     }

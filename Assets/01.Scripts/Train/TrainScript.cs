@@ -463,6 +463,7 @@ public class TrainScript : MonoBehaviour
         roomHp += initRoomHp;
         if (trainManager.curTrainCount > 0)
         {
+            TestTurretDataBase.Instance.sceneIndex = 1;
             trainManager.curTrainCount--;
             destroy = true;
             yield return new WaitForSeconds(0.5f);
