@@ -122,7 +122,24 @@ public class Turret : MonoBehaviour
     
     private bool onSixthGuitarString = false;
     private float sixthGuitarStringCount;
-    private float sixthGuitarStringDamage;
+    private float sixthGuitarStringDamage = 0;
+
+    private bool onDryOil = false;
+    private float dryOilSlow = 0.1f;
+    private float DryOilSlow
+    {
+        get { return this.dryOilSlow; }
+        set 
+        {
+            if (value >= 0.6f)
+            {
+                dryOilSlow = 0.6f;
+            }   
+        }
+    }
+
+    private float dryOilTime = 0.5f;
+
     [SerializeField]
     private GameObject sixthGuitarStringObj;
 
@@ -398,7 +415,8 @@ public class Turret : MonoBehaviour
             .SetOnPunchGun(IsPuchGun())
             .SetOnTheSoleCandy(IsTheSoleCandy(), theSoleCandyDamage)
             .SetOnHemostatic(IsHemostatic(), hemostaticDamage * damage)
-            .SetOnSixthGuitarString(IsSixthGuitarString(),damage * sixthGuitarStringDamage);
+            .SetOnSixthGuitarString(IsSixthGuitarString(), damage * sixthGuitarStringDamage)
+            .SetOnDryOil(IsDryOil(), DryOilSlow, dryOilTime);
             
 
         TaillessPlanaria();
@@ -583,7 +601,7 @@ public class Turret : MonoBehaviour
     {
         shootTimerMax = (shootTimerMax / 100)*70;
 
-        additionalDamage += (int)(damage * 0.3f);
+        additionalDamage = (int)(damage * 0.3f);
     }
 
     public Turret Overclokcing(bool on, float increase, int count)
@@ -600,7 +618,7 @@ public class Turret : MonoBehaviour
     {
         if (count > 1)
         {
-            criticalHitProbability += 7 * (count-1);
+            criticalHitProbability = 7 * (count-1);
         }
 
         onWeakLens = on;
@@ -640,7 +658,7 @@ public class Turret : MonoBehaviour
     {
         if (count > 1)
         {
-            heal += 0.1f * (count - 1);
+            heal = 0.1f * (count - 1);
         }
 
         onTaillessPlanaria = on;
@@ -679,7 +697,7 @@ public class Turret : MonoBehaviour
     {
         if (count > 1)
         {
-            onFurryBraceletTime += 0.5f * (count-1);
+            onFurryBraceletTime = 0.5f * (count-1);
         }
 
         onFurryBracelet = on;
@@ -762,7 +780,7 @@ public class Turret : MonoBehaviour
     {
         onLowaMk2 = on;
 
-        LowaMk2Percentage += count * 4;
+        LowaMk2Percentage = count * 4;
 
         return this;
     }
@@ -789,6 +807,21 @@ public class Turret : MonoBehaviour
     private bool IsSixthGuitarString()
     {
         return Random.Range(0, 100) <= gameManager.ActivationCoefficient(20) && onSixthGuitarString;
+    }
+
+    public Turret OnDryOil(bool on, int count)
+    {
+        onDryOil = on;
+
+        DryOilSlow = 0.1f+0.1f* count;
+
+        dryOilTime =  0.5f+0.5f* count;
+
+        return this;
+    }
+    private bool IsDryOil()
+    {
+        return onDryOil;
     }
 
     private void OnMouseEnter()

@@ -76,7 +76,7 @@ public class HealthSystem : MonoBehaviour
 
     public void WideAreaDamge(float damage)
     {
-        if(enemy.onlyDamage != OnlyDamage.singular && !enemy.isDying)
+        if (enemy.onlyDamage != OnlyDamage.singular && !enemy.isDying)
         {
             Damage(damage);
         }
@@ -84,13 +84,13 @@ public class HealthSystem : MonoBehaviour
 
     public void Damage(float damageAmount)
     {
-        if(enemy.onlyDamage != OnlyDamage.wideArea && !enemy.isDying)
+        if (enemy.onlyDamage != OnlyDamage.wideArea && !enemy.isDying)
         {
             if (enemy.onFurryBracelet)
             {
-            curHealthAmount -= ((damageAmount) * 100 / (100 + enemy.enemyStat.def) + (damageAmount/100)) * (damageAmount + damageAmount * (TestTurretDataBase.Instance.plusDamage / 100));
-            }  
-            var damageTxt = Instantiate(flaotingText, transform.position,Quaternion.Euler(50,-90,0));
+                curHealthAmount -= ((damageAmount) * 100 / (100 + enemy.enemyStat.def) + (damageAmount / 100)) * (damageAmount + damageAmount * (TestTurretDataBase.Instance.plusDamage / 100));
+            }
+            var damageTxt = Instantiate(flaotingText, transform.position, Quaternion.Euler(50, -90, 0));
             damageTxt.GetComponent<TextMesh>().text = damageAmount.ToString();
             curHealthAmount -= (damageAmount) * (100 / (100 + enemy.enemyStat.def));
             curHealthAmount = Mathf.Clamp(curHealthAmount, 0, enemy.enemyStat.healthAmountMax);
@@ -122,7 +122,7 @@ public class HealthSystem : MonoBehaviour
 
         for (int i = 0; i < dotcount; i++)
         {
-            if(curHealthAmount > 0)
+            if (curHealthAmount > 0)
             {
                 Damage(dotDamage);
 
@@ -177,5 +177,10 @@ public class HealthSystem : MonoBehaviour
                 Damage(damage * (maxEngineOilTime / maxTime));
             }
         }
+    }
+
+    public void DryOil(float time, float slow)
+    {
+        enemy.OnDryOil(time, slow);
     }
 }

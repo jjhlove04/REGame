@@ -25,6 +25,8 @@ public class BaseBullet : ProjectileMover
                 healthSystem.DotDamageCoroutine(hemostaticParticle, 4,0.5f,hemostaticDamage);
             }
 
+            DryOil(healthSystem);
+
             healthSystem.Damage(Damage);
 
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));

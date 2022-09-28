@@ -51,7 +51,10 @@ public class TurretManager : MonoBehaviour
     private int countLowaMk2 = 0;    
     
     private bool onSixthGuitarString = false;
-    private int countSixthGuitarString = 0;
+    private int countSixthGuitarString = 0;    
+    
+    private bool onDryOil = false;
+    private int countDryOil = 0;
     [SerializeField]
     private GameObject lowaMK23Obj;
 
@@ -296,6 +299,19 @@ public class TurretManager : MonoBehaviour
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
                 .OnSixthGuitarString(onSixthGuitarString, countSixthGuitarString);
+        }
+    }
+
+    public void OnDryOil()
+    {
+        onDryOil = true;
+
+        countDryOil++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnDryOil(onDryOil, countDryOil);
         }
     }
 }

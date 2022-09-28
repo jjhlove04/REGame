@@ -55,6 +55,10 @@ public class Enemy : MonoBehaviour
     private float bumperMaxTime = 0.2f;
     private float bumperCurTime = 0.2f;
 
+    private float dryOilSpeed = 0;
+    private float dryOilMaxTime = 0;
+    private float dryOilCurTime = 0;
+
 
     protected virtual void OnEnable()
     {
@@ -126,6 +130,16 @@ public class Enemy : MonoBehaviour
                     bumperCurTime += Time.deltaTime;
 
                     if(bumperCurTime >= bumperMaxTime)
+                    {
+                        bumperGrapplerSpeed = 0;
+                    }
+                }
+
+                if (dryOilCurTime > dryOilMaxTime)
+                {
+                    bumperCurTime -= Time.deltaTime;
+
+                    if (dryOilCurTime <= dryOilMaxTime)
                     {
                         bumperGrapplerSpeed = 0;
                     }
@@ -227,7 +241,7 @@ public class Enemy : MonoBehaviour
     void EnemyTargettingMove()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position + new Vector3(distanceX, 0, randomZ),
-        (speed - bumperGrapplerSpeed) * Time.deltaTime);
+        (speed - bumperGrapplerSpeed-dryOilSpeed) * Time.deltaTime);
     }
 
     public void EnemyDied()
@@ -257,6 +271,13 @@ public class Enemy : MonoBehaviour
         bumperGrapplerSpeed = speed * bumperGrappler;
 
         bumperCurTime = 0;
+    }
+
+    public void OnDryOil(float time, float slow)
+    {
+        dryOilSpeed = speed * slow;
+
+        dryOilCurTime = time;
     }
 
     public virtual void PlayDieAnimationTrue()

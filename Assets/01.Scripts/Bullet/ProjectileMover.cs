@@ -24,15 +24,15 @@ public class ProjectileMover : MonoBehaviour
     private int damage;
     protected int Damage
     {
-        get 
+        get
         {
             if (onTheSoleCandyDamage)
             {
-                return damage+ (int)Mathf.Round(OnTheSoleCandy());
+                return damage + (int)Mathf.Round(OnTheSoleCandy());
             }
-            return damage; 
+            return damage;
         }
-        set { damage = value; } 
+        set { damage = value; }
     }
 
     protected float time;
@@ -57,6 +57,10 @@ public class ProjectileMover : MonoBehaviour
 
     protected bool onSixthGuitarString = false;
     private float sixthGuitarStringDamage = 0;
+
+    protected bool onDryOil = false;
+    protected float dryOilSlow = 0;
+    protected float dryOilTime = 0;
 
     [SerializeField]
     private GameObject sixthGuitarStringObj;
@@ -100,10 +104,10 @@ public class ProjectileMover : MonoBehaviour
                 Destroy(flashInstance, flashPsParts.main.duration);
             }
         }
-        Destroy(gameObject,5);
+        Destroy(gameObject, 5);
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
         Vector3 moveDir;
         if (targetEnemy != null && !targetEnemy.GetComponent<Enemy>().isDying)
@@ -116,7 +120,7 @@ public class ProjectileMover : MonoBehaviour
         {
             moveDir = lastMoveDir;
 
-            if (!check && turret!=null)
+            if (!check && turret != null)
             {
                 check = true;
 
@@ -212,7 +216,7 @@ public class ProjectileMover : MonoBehaviour
         return this;
     }
 
-    public ProjectileMover SetFMJAdditionalDamage(bool FMJ,float damage)
+    public ProjectileMover SetFMJAdditionalDamage(bool FMJ, float damage)
     {
         additionalDamage = damage;
         this.onFMJ = FMJ;
@@ -266,7 +270,7 @@ public class ProjectileMover : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<Rigidbody>().velocity= new Vector3(30,0,0);
+                other.GetComponent<Rigidbody>().velocity = new Vector3(30, 0, 0);
             }
         }
     }
@@ -289,6 +293,23 @@ public class ProjectileMover : MonoBehaviour
             obj.transform.position = targetEnemy.transform.position;
 
             obj.GetComponent<SixthGuitarStringProjectileMover>().Create(targetEnemy, sixthGuitarStringDamage);
+        }
+    }
+
+    public ProjectileMover SetOnDryOil(bool on, float slow, float time)
+    {
+        onDryOil = on;
+        dryOilSlow = slow;
+        dryOilTime = time;
+
+        return this;
+    }
+
+    protected void DryOil(HealthSystem healthSystem)
+    {
+        if (onDryOil)
+        {
+            healthSystem.DryOil(dryOilTime, dryOilSlow);
         }
     }
 
