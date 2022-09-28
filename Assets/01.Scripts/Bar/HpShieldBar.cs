@@ -28,15 +28,9 @@ public class HpShieldBar : MonoBehaviour{
 
     public void hpLogic()
     {
-        if(TrainScript.instance.curTrainShield > 0)
-        {
-            hpBar.value = Mathf.Lerp(  shieldGauge , hpBar.value, 1 *Time.deltaTime);
-            shieldBar.gameObject.SetActive(true);
-            
-        }
         if(TrainScript.instance.curTrainShield < 0)
         {
-            hpBar.value = Mathf.Lerp(  hpGauge , hpBar.value, 1 * Time.deltaTime);
+            hpBar.value = Mathf.Lerp(  hpBar.value,hpGauge , 1 * Time.deltaTime);
             shieldBar.gameObject.SetActive(false);
         }
         
