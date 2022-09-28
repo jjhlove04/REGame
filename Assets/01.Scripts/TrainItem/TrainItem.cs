@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+public enum Grade
+{
+    Normal,
+    Rare
+}
 
 public abstract class TrainItem : MonoBehaviour
 {
-    public enum Grade
-    {
-        Normal,
-        Rare
-    }
 
+    public Grade grade;
     public int itemNum;
     public string itemEffect;
     public string itemStr;

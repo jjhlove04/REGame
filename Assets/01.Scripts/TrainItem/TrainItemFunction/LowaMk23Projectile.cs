@@ -16,7 +16,7 @@ public class LowaMk23Projectile : MonoBehaviour
     [SerializeField]
     private GameObject explosionEffect;
 
-    public void Create(int damage,Transform targetEnemy)
+    public void Create(float damage,Transform targetEnemy)
     {
         this.damage = damage;
         this.targetEnemy = targetEnemy;

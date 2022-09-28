@@ -6,6 +6,7 @@ public class Scrap : TrainItem
 {
     public override void ItemEffect()
     {
-
+        GameManager.Instance.OnScrap();
+        curCarry++;
     }
 }

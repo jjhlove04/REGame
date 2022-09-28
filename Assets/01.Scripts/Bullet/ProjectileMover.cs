@@ -21,8 +21,8 @@ public class ProjectileMover : MonoBehaviour
 
     protected Transform targetEnemy;
     private Vector3 lastMoveDir;
-    private int damage;
-    protected int Damage
+    private float damage;
+    protected float Damage
     {
         get
         {
@@ -62,6 +62,8 @@ public class ProjectileMover : MonoBehaviour
     protected float dryOilSlow = 0;
     protected float dryOilTime = 0;
 
+    protected bool onShockwaveGenerator = false;
+
     [SerializeField]
     private GameObject sixthGuitarStringObj;
 
@@ -89,8 +91,8 @@ public class ProjectileMover : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;
         testDatabase = TestTurretDataBase.Instance;
+        cam = Camera.main;
 
         if (flash != null)
         {
@@ -145,7 +147,7 @@ public class ProjectileMover : MonoBehaviour
         }
 
         // 이동
-        transform.position += moveDir * (moveSpeed + (testDatabase.plusProjector/100))  * Time.deltaTime;
+        transform.position += moveDir * (moveSpeed + (testDatabase.plusProjector / 100)) * Time.deltaTime;
 
         //회전값 적용
         transform.LookAt(targetEnemy);
@@ -177,7 +179,7 @@ public class ProjectileMover : MonoBehaviour
         hemostatic.SetActive(onHemostatic);
     }
 
-    public ProjectileMover Create(Transform enemy, int damage)
+    public ProjectileMover Create(Transform enemy, float damage)
     {
         SetTarget(enemy);
         SetDamage(damage);
@@ -316,7 +318,22 @@ public class ProjectileMover : MonoBehaviour
         }
     }
 
-    public void SetDamage(int damage)
+    public ProjectileMover SetOnShockwaveGenerator(bool on)
+    {
+        onShockwaveGenerator = on;
+
+        return this;
+    }
+
+    protected void ShockwaveGenerator(HealthSystem healthSystem)
+    {
+        if (onShockwaveGenerator && healthSystem.IsDead())
+        {
+            turret.ShockwaveGenerator(targetEnemy.position);
+        }
+    }
+
+    public void SetDamage(float damage)
     {
         this.Damage = damage;
     }

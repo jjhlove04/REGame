@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
                 {
                     ShapeMemoryAlloy();
                 }
+
+                if (onScrap)
+                {
+                    Scrap();
+                }
             }
 
             expAmount += (value - expAmount) * expIncrease;
@@ -111,6 +116,7 @@ public class GameManager : MonoBehaviour
     private int onNewsOfVictoryTime = 4;
 
     private TrainScript trainScript;
+    private TrainManager trainManager;
     private bool vamPireTeeth = false;
 
     private bool engineOil = false;
@@ -146,7 +152,13 @@ public class GameManager : MonoBehaviour
     private float shapeMemoryAlloy = 0.5f;
     private float shapeMemoryAlloyCount = 0;
 
+    private bool onScrap = false;
+    private int countScrap = 0;
+
     ObjectPool objectPool;
+
+    [SerializeField]
+    private GameObject scrapObj;
 
 
     private void Awake()
@@ -165,6 +177,7 @@ public class GameManager : MonoBehaviour
     {
         trainScript = TrainScript.instance;
         objectPool = ObjectPool.instacne;
+        trainManager = TrainManager.instance;
     }
 
     private void OnDestroy()
@@ -340,7 +353,7 @@ public class GameManager : MonoBehaviour
 
         obj.transform.position = new Vector3(Random.Range(5, 60), 0.25f, Random.Range(40, 13 - (30 * TrainManager.instance.trainContainer.Count)));
 
-        obj.GetComponent<EngineOilLinoleum>().Create(InGameUII._instance.turretDamage * engineOilDamage);
+        obj.GetComponent<EngineOilLinoleum>().Create(InGameUII._instance.TurretDamage * engineOilDamage);
     }
 
     public void OnLaveLamp()
@@ -361,7 +374,7 @@ public class GameManager : MonoBehaviour
 
             obj.transform.position = new Vector3(Random.Range(5, 60), 0.25f, Random.Range(40, 13 - (30 * TrainManager.instance.trainContainer.Count)));
 
-            obj.GetComponent<LaveLampProjectile>().Create(InGameUII._instance.turretDamage * laveLampDamage);
+            obj.GetComponent<LaveLampProjectile>().Create(InGameUII._instance.TurretDamage * laveLampDamage);
         }
     }
 
@@ -438,5 +451,18 @@ public class GameManager : MonoBehaviour
         trainScript.shapeMemoryAlloyHp = shapeMemoryAlloyCount * shapeMemoryAlloy;
 
         trainScript.CurTrainHpMax = trainScript.CurTrainHpMax + (int)trainScript.shapeMemoryAlloyHp;
+    }
+
+    public void OnScrap()
+    {
+        onScrap = true;
+        countScrap++;
+    }
+
+    private void Scrap()
+    {
+        GameObject obj = objectPool.GetObject(scrapObj);
+        obj.transform.position = new Vector3(transform.position.x, 5, (-(trainManager.trainContainer.Count) * 20) + 27);
+        obj.GetComponent<ScrapProjectileMover>().Create(InGameUII._instance.TurretDamage * 0.35f, countScrap);
     }
 }

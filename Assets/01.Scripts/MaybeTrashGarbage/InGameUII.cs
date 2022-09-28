@@ -9,12 +9,17 @@ using System;
 public class InGameUII : MonoBehaviour
 {
     public static InGameUII _instance = new InGameUII();
+    [SerializeField] private GameObject bluePrintTop;
+    [SerializeField] private GameObject bluePrintBot;
     public static int sceneIndex = 0;
 
     int index = 1;
     int num = 1;
     int backIndex = 1;
     private List<RectTransform> menuBtnList = new List<RectTransform>();
+    [SerializeField] private Button mainMenuBtn;
+    [SerializeField] private GameObject btnGroup;
+    [SerializeField] private GameObject upGradePanel;
     [SerializeField] private GameObject stopPanel;
     [SerializeField] private RectTransform stopPanelRect;
     [HideInInspector] public RectTransform upGradePanelRect;
@@ -119,7 +124,7 @@ public class InGameUII : MonoBehaviour
 
             if (trainManager.onBurningCoal && !value)
             {
-                trainManager.BurningCoal(turretDamage);
+                trainManager.BurningCoal(TurretDamage);
             }
 
 
@@ -133,7 +138,23 @@ public class InGameUII : MonoBehaviour
     public Text gameLevel;
 
     //포탑 스텟 업그레이드 부분
-    public int turretDamage = 1;
+    private float turretDamage = 1;
+    public float TurretDamage
+    {
+        get
+        {
+            if (IsSpeedSeriesLaunches())
+            {
+                return turretDamage + turretDamage * additionalDamage;
+            }
+
+            else
+            {
+                return turretDamage;
+            }
+        }
+        set { turretDamage = value; }
+    }
     private float distance = 30f;
     private float shootTime = 1f;
     private int bulletAmount = 20;
@@ -150,10 +171,17 @@ public class InGameUII : MonoBehaviour
     int particleSpeed = 4;
 
     public CanvasGroup itemExplainPanel;
+
+    private bool onSpeedSeriesLaunches = false;
+    private bool speedSeriesLaunches = false;
+    private float additionalDamage = 0;
+    private float reloadMaxTime = 0;
+    private float reloadCurTime = 0;
     private void Awake()
     {
         _instance = this;
         //        bpBot = bluePrintBot.GetComponent<RectTransform>();
+        upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = ObjectPool.instacne;
         selectPanel.transform.localScale = Vector3.zero;
         for (int i = 0; i < 3; i++)
@@ -176,6 +204,11 @@ public class InGameUII : MonoBehaviour
 
         warningtxt = GoldWarning.transform.GetChild(1).GetComponent<Text>();
         warningIcon = GoldWarning.transform.GetChild(0).GetComponent<Image>();
+
+        mainMenuBtn.onClick.AddListener(() =>
+        {
+            num *= -1;
+        });
 
         goldAmounTxt.text = GameManager.Instance.GoldAmount.ToString();
         killEnemyTxt.text = TestTurretDataBase.Instance.killEnemy.ToString();
@@ -230,6 +263,8 @@ public class InGameUII : MonoBehaviour
     {
         //Cursor.visible = false;
 
+        SpeedSeriesLaunches();
+
         ExpBar();
         goldAmounTxt.text = gameManager.GoldAmount.ToString();
 
@@ -280,7 +315,8 @@ public class InGameUII : MonoBehaviour
             Time.timeScale = 1f;
             TestTurretDataBase.Instance.resultEXP += ParsingJson.Instnace.changeExp[gameManager.TrainLevel];
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.GoldAmount;
-            LoadingSceneUI.LoadScene("RemakeTitle");
+            LoadingSceneUI.LoadScene("TitleScene");
+            sceneIndex = 1;
             GameManager.Instance.state = GameManager.State.Ready;
         }
 
@@ -610,7 +646,7 @@ public class InGameUII : MonoBehaviour
 
     public void ItemExplain()
     {
-        ItemValueExp(turretDamage,
+        ItemValueExp(TurretDamage,
             TrainScript.instance.recoverAmount,
             TrainScript.instance.trainDef,
             shootTime,
@@ -620,7 +656,7 @@ public class InGameUII : MonoBehaviour
 
     }
 
-    public void ItemValueExp(int damage, float recover, int def, float shootTime, float distance, float critical, float activate)
+    public void ItemValueExp(float damage, float recover, int def, float shootTime, float distance, float critical, float activate)
     {
         itemExplainPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = damage.ToString();
         itemExplainPanel.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = recover.ToString();
@@ -674,7 +710,7 @@ public class InGameUII : MonoBehaviour
                     ShowSelectPanel();
                 }
 
-                turretDamage += 3;
+                TurretDamage += 3;
                 distance += 0.2f;
                 shootTime -= (shootTime * 0.05f);
                 bulletAmount += 1;
@@ -684,7 +720,7 @@ public class InGameUII : MonoBehaviour
                 {
                     if (testScriptts.turretData[i].TryGetComponent<Turret>(out Turret tur))
                     {
-                        tur.LevelUpDamage(turretDamage, distance, shootTime, bulletAmount, rPrice);
+                        tur.LevelUpDamage(TurretDamage, distance, shootTime, bulletAmount, rPrice);
                     }
                 }
 
@@ -705,5 +741,38 @@ public class InGameUII : MonoBehaviour
                 expBar.fillAmount = 0;
             }
         }
+    }
+
+    public void OnSpeedSeriesLaunches(bool on, int count)
+    {
+        onSpeedSeriesLaunches = on;
+
+        additionalDamage = 0.04f + 0.08f * count;
+        reloadMaxTime = 2.6f - 0.4f * count;
+    }
+
+    private void SpeedSeriesLaunches()
+    {
+        if (onSpeedSeriesLaunches)
+        {
+            speedSeriesLaunches = reloadCurTime >= reloadMaxTime;
+
+            if (!speedSeriesLaunches)
+            {
+                reloadCurTime += Time.deltaTime;
+            }
+        }
+    }
+
+    private bool IsSpeedSeriesLaunches()
+    {
+        return speedSeriesLaunches;
+    }
+
+    public void ReloadSpeedSeriesLaunches()
+    {
+        reloadCurTime = 0;
+
+        speedSeriesLaunches = false;
     }
 }

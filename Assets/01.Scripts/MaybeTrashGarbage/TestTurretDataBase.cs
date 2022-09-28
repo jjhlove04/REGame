@@ -31,7 +31,7 @@ public class TestTurretDataBase : MonoBehaviour
     public float plusProjector = 0;
 
     [Header("결과값")]
-    public int resultDamage = 0;
+    public float resultDamage = 0;
     public int resultEXP = 0;
     public int resultGold = 0;
     public int killEnemy = 0;

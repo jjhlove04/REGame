@@ -15,7 +15,7 @@ public class TrainScript : MonoBehaviour
         get { return curTrainMax; }
         set
         {
-            if(value > curTrainMax)
+            if (value > curTrainMax)
             {
                 curTrainHp += value - curTrainMax;
 
@@ -26,11 +26,8 @@ public class TrainScript : MonoBehaviour
                     machineHeartMaxShield = CurTrainHpMax * 0.08f + 0.04f * countMachineHeart;
                 }
             }
-        }  
+        }
     }
-
-
-
 
     public float curTrainHp; //0���Ϸ� ����߸��� ����!
 
@@ -56,8 +53,8 @@ public class TrainScript : MonoBehaviour
     public float MachineHeartCurShield
     {
         get { return machineHeartCurShield; }
-        
-        set { machineHeartCurShield = Mathf.Clamp(value, 0,machineHeartMaxShield); }
+
+        set { machineHeartCurShield = Mathf.Clamp(value, 0, machineHeartMaxShield); }
     }
     private float machineHeartMaxShield = 0;
     private float machineHeartReloadCurTime = 0;
@@ -112,7 +109,7 @@ public class TrainScript : MonoBehaviour
     private float lastHitTime;
 
     private bool explosiveShield = false;
-    private float explosiveShieldDamage =2;
+    private float explosiveShieldDamage = 2;
 
     private float lastTotalDamage;
 
@@ -129,10 +126,10 @@ public class TrainScript : MonoBehaviour
     private GameObject turrets;
 
     private float wireEntanglementRange = 20;
-    private float wireEntanglementDamage =0.5f;
+    private float wireEntanglementDamage = 0.5f;
     private bool onWireEntanglement = false;
     private float curWireEntanglementTime;
-    private float wireEntanglementTimeMax=1;
+    private float wireEntanglementTimeMax = 1;
     private int wireEntanglementObjecctCount = 5;
     public List<GameObject> wireEntanglementObjecct = new List<GameObject>();
 
@@ -140,15 +137,9 @@ public class TrainScript : MonoBehaviour
 
     private InGameUII inGameUII;
 
-    private TestTurretDataBase testDatabase;
-
-    public bool isCritical;
-
     private void Awake()
     {
         instance = this;
-
-        testDatabase = TestTurretDataBase.Instance;
 
         EnemyDataInit();
     }
@@ -159,11 +150,11 @@ public class TrainScript : MonoBehaviour
 
         trainManager.CreateTrainPrefab(traininfo.trainCount);
 
-        CurTrainHp = CurTrainHpMax = traininfo.trainMaxHp + (traininfo.trainMaxHp * (testDatabase.plusMaxHp/100));
+        CurTrainHp = CurTrainHpMax = traininfo.trainMaxHp;
         curTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
-        initRoomHp = roomHp;     
+        initRoomHp = roomHp;
     }
 
     private void Start()
@@ -285,7 +276,7 @@ public class TrainScript : MonoBehaviour
                 case 20:
                     trainManager.OnBlackSmoke();
                     decreaseHpCheck = 15;
-                    addHpCheck=20;
+                    addHpCheck = 20;
                     break;
                 case 15:
                     trainManager.OnFire();
@@ -318,11 +309,11 @@ public class TrainScript : MonoBehaviour
 
     public void FinxTimeHp()
     {
-        if(CurTrainHp  < CurTrainHpMax)
+        if (CurTrainHp < CurTrainHpMax)
         {
             curTrainHpTime += Time.deltaTime;
 
-            if(curTrainHpTime >= maxHpTime)
+            if (curTrainHpTime >= maxHpTime)
             {
                 CurTrainHp += recoverAmount;
                 curTrainHpTime = 0;
@@ -364,7 +355,7 @@ public class TrainScript : MonoBehaviour
             {
                 if (curTrainShield <= 0)
                 {
-                    CurTrainHp -= (damage * 100 / (100 + trainDef)) - testDatabase.plusRedDamage;
+                    CurTrainHp -= damage * 100 / (100 + trainDef);
                     //testScripttss.Instance.TakeDamageHpBar();
 
                     /*for (int i = 0; i < trainhit.Length; i++)
@@ -375,11 +366,11 @@ public class TrainScript : MonoBehaviour
 
                 else
                 {
-                    curTrainShield -= (damage * 100 / (100 + trainDef)) - testDatabase.plusRedDamage;
+                    curTrainShield -= damage * 100 / (100 + trainDef);
                 }
             }
 
-            if (explosiveShield && CurTrainHp >0)
+            if (explosiveShield && CurTrainHp > 0)
             {
                 if (lastHitTime <= 0.7f)
                 {
@@ -406,8 +397,8 @@ public class TrainScript : MonoBehaviour
     public void LevelUp()
     {
         CurTrainHpMax += 22;
-        recoverAmount += testDatabase.plusRecoverAmount;
-        trainDef += testDatabase.plusDef;
+        recoverAmount += 0.2f;
+        trainDef += 2;
     }
 
 
@@ -490,9 +481,10 @@ public class TrainScript : MonoBehaviour
         lastHitTime = 0;
 
         trainManager.OnExplotion();
+
         foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(50, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
-            item.gameObject.GetComponent<HealthSystem>().Damage(inGameUII.turretDamage*explosiveShieldDamage);
+            item.gameObject.GetComponent<HealthSystem>().Damage(inGameUII.TurretDamage * explosiveShieldDamage);
         }
 
 
@@ -527,7 +519,7 @@ public class TrainScript : MonoBehaviour
     {
         foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
-            item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.turretDamage * wireEntanglementDamage);
+            item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.TurretDamage * wireEntanglementDamage);
         }
     }
 
@@ -601,7 +593,7 @@ public class TrainScript : MonoBehaviour
         additionalRecoveryAmount += 1.2f;
     }
 
-    public void OnMachineHeart(bool on,int count)
+    public void OnMachineHeart(bool on, int count)
     {
         countMachineHeart = count;
         machineHeartMaxShield = CurTrainHpMax * 0.08f + 0.04f * countMachineHeart;

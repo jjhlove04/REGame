@@ -57,10 +57,22 @@ public class TurretManager : MonoBehaviour
     private int countDryOil = 0;
 
     private bool onMachineHeart = false;
-    private int countMachineHeartl = 0;
+    private int countMachineHeartl = 0;    
+    
+    private bool onSpeedSeriesLaunches = false;
+    private int countSpeedSeriesLaunches = 0;    
+    
+    private bool onShockwaveGenerator = false;
+    private int countShockwaveGenerator = 0;
+
+    private float criticalPercent=0;
 
     [SerializeField]
     private GameObject lowaMK23Obj;
+
+    private GameObject shockwaveGeneratorObj;
+
+    InGameUII inGameUII;
 
     private void Awake()
     {
@@ -78,6 +90,7 @@ public class TurretManager : MonoBehaviour
     private void Start()
     {
         objectPool = ObjectPool.instacne;
+        inGameUII = InGameUII._instance;
     }
 
     private void Update()
@@ -119,7 +132,13 @@ public class TurretManager : MonoBehaviour
             .OnTaillessPlanaria(onTaillessPlanariaMJ, countTaillessPlanariaMJ)
             .OnTheSoleCandy(onTheSoleCandy, countTheSoleCandy)
             .OnWeakLens(onWeakLens, countWeakLens)
-            .OnLowaMk23(onLowaMk2, countLowaMk2);
+            .OnLowaMk23(onLowaMk2, countLowaMk2)
+            .OnSixthGuitarString(onSixthGuitarString, countSixthGuitarString)
+            .OnDryOil(onDryOil, countDryOil)
+            .OnMachineHeart(onMachineHeart)
+            .OnSpeedSeriesLaunches(onSpeedSeriesLaunches)
+            .OnShockwaveGenerator(onShockwaveGenerator)
+            .CupsAndBool(criticalPercent);
     }
 
     public void OnFMJ()
@@ -284,7 +303,7 @@ public class TurretManager : MonoBehaviour
         }
     }
 
-    public void LowaMk23(int damage,Transform targetEnemy, Vector3 Pos)
+    public void LowaMk23(float damage,Transform targetEnemy, Vector3 Pos)
     {
         GameObject obj = objectPool.GetObject(lowaMK23Obj);
 
@@ -332,5 +351,53 @@ public class TurretManager : MonoBehaviour
         }
 
         TrainScript.instance.OnMachineHeart(onMachineHeart,countMachineHeartl);
+    }
+
+    public void OnSpeedSeriesLaunches()
+    {
+        onSpeedSeriesLaunches = true;
+
+        countSpeedSeriesLaunches++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnSpeedSeriesLaunches(onSpeedSeriesLaunches);
+        }
+
+        inGameUII.OnSpeedSeriesLaunches(onSpeedSeriesLaunches, countSpeedSeriesLaunches);
+    }
+
+    public void OnShockwaveGenerator(GameObject shockwaveGeneratorObj)
+    {
+        this.shockwaveGeneratorObj = shockwaveGeneratorObj;
+
+        onShockwaveGenerator = true;
+
+        countShockwaveGenerator++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnShockwaveGenerator(onSpeedSeriesLaunches);
+        }
+    }
+
+    public void ShockwaveGenerator(Vector3 pos)
+    {
+        GameObject Obj = objectPool.GetObject(shockwaveGeneratorObj);
+        Obj.transform.position = pos;
+        Obj.GetComponent<Shockwave>().Create(inGameUII.TurretDamage*(0.9f+countShockwaveGenerator*0.1f),2*countShockwaveGenerator);
+    }
+
+    public void OnShockwaveGenerator(float criticalPercent)
+    {
+        this.criticalPercent = criticalPercent;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .CupsAndBool(criticalPercent);
+        }
     }
 }

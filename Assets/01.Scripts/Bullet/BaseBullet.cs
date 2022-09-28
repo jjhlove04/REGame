@@ -29,6 +29,9 @@ public class BaseBullet : ProjectileMover
 
             healthSystem.Damage(Damage);
 
+
+            ShockwaveGenerator(healthSystem);
+
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }
     }

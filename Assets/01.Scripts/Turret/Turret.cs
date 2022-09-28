@@ -44,7 +44,7 @@ public class Turret : MonoBehaviour
     private float shootTimerMax;
 
     [SerializeField]
-    private int damage;
+    private float damage;
     private int additionalDamage = 0;
 
 
@@ -89,9 +89,9 @@ public class Turret : MonoBehaviour
     private int onNewsOfVictoryTime = 4;
 
     private bool onWeakLens = false;
-    private int weakLens;
+    private int critical;
 
-    private int criticalHitProbability = 10;
+    private int criticalHitProbabilityWeakLens = 10;
 
     private bool onTaillessPlanaria = false;
     private float heal = 0.5f;
@@ -126,6 +126,8 @@ public class Turret : MonoBehaviour
 
     private bool onDryOil = false;
     private float dryOilSlow = 0.1f;
+
+    private float criticalPercentCupsAndBool;
     private float DryOilSlow
     {
         get { return this.dryOilSlow; }
@@ -140,7 +142,11 @@ public class Turret : MonoBehaviour
 
     private bool onMachineHeart = false;
 
+    private bool onSpeedSeriesLaunches = false;
+
     private float dryOilTime = 0.5f;
+
+    private bool onShockwaveGenerator = false;
 
     [SerializeField]
     private GameObject sixthGuitarStringObj;
@@ -165,7 +171,7 @@ public class Turret : MonoBehaviour
 
         if (inGameUII != null)
         {
-            damage = inGameUII.turretDamage;
+            damage = inGameUII.TurretDamage;
         }
     }
 
@@ -184,9 +190,9 @@ public class Turret : MonoBehaviour
 
         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
 
-        damage = inGameUII.turretDamage;
+        damage = inGameUII.TurretDamage;
 
-        TurretManager.Instance.SpawnTurret(this);
+        turretManager.SpawnTurret(this);
     }
 
     private void Update()
@@ -405,20 +411,23 @@ public class Turret : MonoBehaviour
 
     private void SelectBullet(GameObject gameObject)
     {
+        IsCritical();
+
         ProjectileMover projectileMover = gameObject.GetComponent<ProjectileMover>();
 
-        projectileMover.Create(targetEnemy, (damage * weakLens) + additionalDamage)
+        projectileMover.Create(targetEnemy, (damage * critical) + additionalDamage)
             .ThisTurret(this)
             .SetRedNut(IsRedNut())
             .SetTaillessPlanaria(onTaillessPlanaria)
-            .SetWeakLens(IsWeakLens())
+            .SetWeakLens(IsCritical())
             .SetFurryBracelet(FurryBaracelet(), onFurryBraceletTime)
             .SetFMJAdditionalDamage(onFMJ, additionalFMJDamage)
             .SetOnPunchGun(IsPuchGun())
             .SetOnTheSoleCandy(IsTheSoleCandy(), theSoleCandyDamage)
             .SetOnHemostatic(IsHemostatic(), hemostaticDamage * damage)
             .SetOnSixthGuitarString(IsSixthGuitarString(), damage * sixthGuitarStringDamage)
-            .SetOnDryOil(IsDryOil(), DryOilSlow, dryOilTime);
+            .SetOnDryOil(IsDryOil(), DryOilSlow, dryOilTime)
+            .SetOnShockwaveGenerator(IsShockwaveGenerator());
             
 
         TaillessPlanaria();
@@ -445,7 +454,7 @@ public class Turret : MonoBehaviour
         bulletBar.UpdateBar(bulAmount, maxBulletAmount);
     }
 
-    public void LevelUpDamage(int curDamage, float distance, float shootTime, int bullet, int rPrice)
+    public void LevelUpDamage(float curDamage, float distance, float shootTime, int bullet, int rPrice)
     {
         damage = curDamage;
         maxDistance = distance;
@@ -488,6 +497,11 @@ public class Turret : MonoBehaviour
             if (IsMachineHeart())
             {
                 trainScript.ReloadMachineHeart();
+            }
+
+            if (IsSpeedSeriesLaunches())
+            {
+                inGameUII.ReloadSpeedSeriesLaunches();
             }
         }
         else if(bulAmount == maxBulletAmount)
@@ -623,41 +637,38 @@ public class Turret : MonoBehaviour
 
     public Turret OnWeakLens(bool on, int count)
     {
-        if (count > 1)
-        {
-            criticalHitProbability = 7 * (count-1);
-        }
+        criticalHitProbabilityWeakLens = 3+7 * count;
 
         onWeakLens = on;
 
         return this;
     }
 
-    private bool IsWeakLens()
+    private bool IsCritical()
     {
-        if(onWeakLens && Random.Range(0, 100) <= gameManager.ActivationCoefficient(criticalHitProbability))
+        if (Random.Range(0, 100) <= gameManager.ActivationCoefficient(criticalHitProbabilityWeakLens+criticalPercentCupsAndBool))
         {
-            WeakLens(true);
-            return true;         
+            Critical(true);
+            return true;
         }
 
         else
         {
-            WeakLens(false);
+            Critical(false);
             return false;
         }
     }
 
-    private void WeakLens(bool onWeakLens)
+    private void Critical(bool onWeakLens)
     {
         if(onWeakLens)
         {
-            weakLens =2;
+            critical =2;
         }
 
         else
         {
-            weakLens =1;
+            critical =1;
         }
     }
 
@@ -740,7 +751,7 @@ public class Turret : MonoBehaviour
         return Random.Range(0, 100) <= gameManager.ActivationCoefficient(punchGunPercentage) && onPunchGun;
     }
 
-    public int ReturnDamage()
+    public float ReturnDamage()
     {
         return damage;
     }
@@ -843,6 +854,45 @@ public class Turret : MonoBehaviour
         return onMachineHeart;
     }
 
+    public Turret OnSpeedSeriesLaunches(bool on)
+    {
+        onSpeedSeriesLaunches = on;
+
+        return this;
+    }
+
+    private bool IsSpeedSeriesLaunches()
+    {
+        return onSpeedSeriesLaunches;
+    }
+
+    public Turret OnShockwaveGenerator(bool on)
+    {
+        onShockwaveGenerator = on;
+
+        return this;
+    }
+
+    private bool IsShockwaveGenerator()
+    {
+        return onShockwaveGenerator;
+    }
+
+    public void ShockwaveGenerator(Vector3 pos)
+    {
+        if(Random.Range(0, 100) <= GameManager.Instance.ActivationCoefficient(80))
+        {
+            turretManager.ShockwaveGenerator(pos);
+        }
+    }
+
+    public Turret CupsAndBool(float criticalPercent)
+    {
+        this.criticalPercentCupsAndBool = criticalPercent * 100;
+
+        return this;
+    }
+
     private void OnMouseEnter()
     {
         //gameObject.transform.GetChild(2).gameObject.SetActive(true);
@@ -877,6 +927,6 @@ public class Turret : MonoBehaviour
 
     private void OnMouseDown()
     {
-        TurretManager.Instance.SelectTurret(this);
+        turretManager.SelectTurret(this);
     }
 }

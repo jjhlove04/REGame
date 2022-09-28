@@ -229,7 +229,7 @@ public class TrainManager : MonoBehaviour
         onBurningCoal = true;
     }
 
-    public void BurningCoal(int damage)
+    public void BurningCoal(float damage)
     {
         List<Transform> enemys = LookForTargets(new Vector3(100, 0, 0));
 

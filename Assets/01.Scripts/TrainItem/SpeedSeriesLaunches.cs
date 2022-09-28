@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CupsAndBool : TrainItem
+public class SpeedSeriesLaunches : TrainItem
 {
     public override void ItemEffect()
     {
-        TrainItemManager.Instance.OnCupsAndBool();
+        TurretManager.Instance.OnSpeedSeriesLaunches();
 
         curCarry++;
     }
