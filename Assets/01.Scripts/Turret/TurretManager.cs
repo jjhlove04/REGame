@@ -55,6 +55,10 @@ public class TurretManager : MonoBehaviour
     
     private bool onDryOil = false;
     private int countDryOil = 0;
+
+    private bool onMachineHeart = false;
+    private int countMachineHeartl = 0;
+
     [SerializeField]
     private GameObject lowaMK23Obj;
 
@@ -313,5 +317,20 @@ public class TurretManager : MonoBehaviour
             turrets.transform.GetChild(i).GetComponent<Turret>()
                 .OnDryOil(onDryOil, countDryOil);
         }
+    }
+
+    public void OnMachineHeart()
+    {
+        onMachineHeart = true;
+
+        countMachineHeartl++;
+
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .OnMachineHeart(onMachineHeart);
+        }
+
+        TrainScript.instance.OnMachineHeart(onMachineHeart,countMachineHeartl);
     }
 }

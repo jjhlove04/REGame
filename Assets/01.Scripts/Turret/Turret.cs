@@ -138,6 +138,8 @@ public class Turret : MonoBehaviour
         }
     }
 
+    private bool onMachineHeart = false;
+
     private float dryOilTime = 0.5f;
 
     [SerializeField]
@@ -482,6 +484,11 @@ public class Turret : MonoBehaviour
             gameManager.GoldAmount -= reloadPrice;
             InGameUII._instance.CreateOutMoney(reloadPrice);
             bulAmount = maxBulletAmount;
+
+            if (IsMachineHeart())
+            {
+                trainScript.ReloadMachineHeart();
+            }
         }
         else if(bulAmount == maxBulletAmount)
         {
@@ -822,6 +829,18 @@ public class Turret : MonoBehaviour
     private bool IsDryOil()
     {
         return onDryOil;
+    }
+
+    public Turret OnMachineHeart(bool on)
+    {
+        onMachineHeart = on;
+
+        return this;
+    }
+
+    private bool IsMachineHeart()
+    {
+        return onMachineHeart;
     }
 
     private void OnMouseEnter()

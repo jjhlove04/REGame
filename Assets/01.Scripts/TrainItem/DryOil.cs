@@ -7,5 +7,6 @@ public class DryOil : TrainItem
     public override void ItemEffect()
     {
         TurretManager.Instance.OnDryOil();
+        curCarry++;
     }
 }

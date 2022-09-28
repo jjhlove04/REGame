@@ -20,6 +20,11 @@ public class TrainScript : MonoBehaviour
                 curTrainHp += value - curTrainMax;
 
                 curTrainMax = value;
+
+                if (onMachineHeart)
+                {
+                    machineHeartMaxShield = CurTrainHpMax * 0.08f + 0.04f * countMachineHeart;
+                }
             }
         }  
     }
@@ -43,14 +48,31 @@ public class TrainScript : MonoBehaviour
             }
         }
     }
+    public float curTrainShield = 10000;
+    public float maxTrainShield = 10000;
+
+
+    private float machineHeartCurShield = 0;
+    public float MachineHeartCurShield
+    {
+        get { return machineHeartCurShield; }
+        
+        set { machineHeartCurShield = Mathf.Clamp(value, 0,machineHeartMaxShield); }
+    }
+    private float machineHeartMaxShield = 0;
+    private float machineHeartReloadCurTime = 0;
+    private float machineHeartReloadMaxTime = 4;
+    private float machineHeartCurTime = 1;
+    private float machineHeartMaxTime = 1;
+    private bool onMachineHeart = false;
+    private int countMachineHeart = 0;
+
     public float shapeMemoryAlloyHp;
     private float curTrainHpTime = 0;
     private float maxHpTime = 5;
     public float recoverAmount = 0.5f;
 
     public int trainDef;
-
-    public float curTrainShield = 10000;
     public int dieEnemy = 0;
 
     private float decreaseHpCheck = 70;
@@ -177,6 +199,8 @@ public class TrainScript : MonoBehaviour
         }
 
         SmokeTrain();
+
+        ReChargeMachineHeart();
     }
 
     private void EnemyDataInit()
@@ -569,5 +593,42 @@ public class TrainScript : MonoBehaviour
     public void OnSpanner()
     {
         additionalRecoveryAmount += 1.2f;
+    }
+
+    public void OnMachineHeart(bool on,int count)
+    {
+        countMachineHeart = count;
+        machineHeartMaxShield = CurTrainHpMax * 0.08f + 0.04f * countMachineHeart;
+
+        if (onMachineHeart)
+        {
+            MachineHeartCurShield = machineHeartMaxShield;
+        }
+
+        onMachineHeart = on;
+    }
+
+    public void ReChargeMachineHeart()
+    {
+        if (onMachineHeart)
+        {
+            machineHeartReloadCurTime += Time.deltaTime;
+
+            if (machineHeartReloadCurTime >= machineHeartReloadMaxTime)
+            {
+                if (machineHeartCurTime > machineHeartMaxTime)
+                {
+                    machineHeartCurTime = 0;
+
+                    MachineHeartCurShield += machineHeartMaxShield * 0.1f;
+                }
+            }
+        }
+    }
+
+    public void ReloadMachineHeart()
+    {
+        machineHeartReloadCurTime = 0;
+        machineHeartCurTime = 1;
     }
 }
