@@ -183,7 +183,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            InGameUII.sceneIndex = 5;
+                        TestTurretDataBase.Instance.sceneIndex = 1;
+
             state = State.End;
         }
 

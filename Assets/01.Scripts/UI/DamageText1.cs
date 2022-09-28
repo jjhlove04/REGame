@@ -14,10 +14,10 @@ public class DamageText1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(TrainScript.instance.isCritical)
-        {
-            this.gameObject.GetComponent<TextMesh>().color = Color.red;
-        }
+        // if(TrainScript.instance.isCritical)
+        // {
+        //     this.gameObject.GetComponent<TextMesh>().color = Color.red;
+        // }
     }
     
 }

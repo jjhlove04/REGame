@@ -157,7 +157,7 @@ public class TitleInterfaceManager : MonoBehaviour
 
             });
         }
-        if(InGameUII.sceneIndex == 5)
+        if(TestTurretDataBase.Instance.sceneIndex ==  1)
         {
             IntitleAction(8);
         }

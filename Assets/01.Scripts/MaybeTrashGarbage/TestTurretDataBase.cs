@@ -39,6 +39,7 @@ public class TestTurretDataBase : MonoBehaviour
     public float tCurExp;
 
     public bool isfirst;
+    public int sceneIndex = 0;
 
     private void Awake()
     {
