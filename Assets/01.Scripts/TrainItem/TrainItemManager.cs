@@ -130,7 +130,10 @@ public class TrainItemManager : MonoBehaviour
         obj.transform.parent = inGameUII.itemPanel.transform;
 
 
-        StartBuff();
+        StartBuff(curTrainItems[selectNum].itemImage ,
+            curTrainItems[selectNum].bufColor,
+            ParsingJson.Instnace.effectDetail[curTrainItems[selectNum].itemNum],
+            curTrainItems[selectNum]);
 
 
         if (GameManager.Instance.TrainLevel != 2)
@@ -146,15 +149,15 @@ public class TrainItemManager : MonoBehaviour
 
     }
 
-    public void StartBuff()
+    public void StartBuff(Sprite image, Color bufCol, string str, TrainItem curCar)
     {
         GameObject bufobj = objectPool.GetObject(itemBuff);
-        bufobj.transform.GetChild(0).GetComponent<Image>().sprite = curTrainItems[selectNum].itemImage;
-        bufobj.GetComponent<Image>().color = curTrainItems[selectNum].bufColor;
+        bufobj.transform.GetChild(0).GetComponent<Image>().sprite = image;
+        bufobj.GetComponent<Image>().color = bufCol;
         bufobj.transform.parent = inGameUII.itemBuffPanel.transform;
-        bufobj.GetComponent<BuffItem>().bufString = ParsingJson.Instnace.effectDetail[curTrainItems[selectNum].itemNum];
+        bufobj.GetComponent<BuffItem>().bufString = str;
 
-        if (curTrainItems[selectNum].curCarry > 1)
+        if (curCar.curCarry > 1)
         {
             bufobj.SetActive(false);
         }

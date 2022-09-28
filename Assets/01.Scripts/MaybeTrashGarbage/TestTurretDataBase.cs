@@ -22,10 +22,15 @@ public class TestTurretDataBase : MonoBehaviour
     public GameObjectBool postItemDic = new GameObjectBool();
     public List<TrainItem> postItemObj = new List<TrainItem>();
 
-    [Header("�ΰ��� ����")]
+    [Header("인게임 스탯")]
     public int plusDamage = 0;
+    public int plusDef = 0;
+    public int plusRedDamage = 0;
+    public int plusMaxHp = 0;
+    public float plusRecoverAmount = 0;
+    public float plusProjector = 0;
 
-    [Header("�����")]
+    [Header("결과값")]
     public int resultDamage = 0;
     public int resultEXP = 0;
     public int resultGold = 0;
@@ -51,7 +56,6 @@ public class TestTurretDataBase : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-        isfirst = true;
     }
 
     private void Start()
@@ -66,7 +70,7 @@ public class TestTurretDataBase : MonoBehaviour
     {
         if (floor <= curTurretType.Count)
         {
-           testScripttss.Instance.ChageMakeTur(curTurretType[strdat + "-" + floor]);
+            testScripttss.Instance.ChageMakeTur(curTurretType[strdat + "-" + floor]);
         }
     }
 

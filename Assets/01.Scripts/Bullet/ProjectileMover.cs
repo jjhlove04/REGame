@@ -78,6 +78,8 @@ public class ProjectileMover : MonoBehaviour
 
     private bool check = false;
 
+    TestTurretDataBase testDatabase;
+
     Camera cam;
 
     private void OnEnable()
@@ -88,6 +90,7 @@ public class ProjectileMover : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        testDatabase = TestTurretDataBase.Instance;
 
         if (flash != null)
         {
@@ -142,7 +145,7 @@ public class ProjectileMover : MonoBehaviour
         }
 
         // 이동
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        transform.position += moveDir * (moveSpeed + (testDatabase.plusProjector/100))  * Time.deltaTime;
 
         //회전값 적용
         transform.LookAt(targetEnemy);

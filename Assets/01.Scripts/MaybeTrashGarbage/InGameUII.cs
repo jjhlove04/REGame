@@ -9,17 +9,12 @@ using System;
 public class InGameUII : MonoBehaviour
 {
     public static InGameUII _instance = new InGameUII();
-    [SerializeField] private GameObject bluePrintTop;
-    [SerializeField] private GameObject bluePrintBot;
     public static int sceneIndex = 0;
 
     int index = 1;
     int num = 1;
     int backIndex = 1;
     private List<RectTransform> menuBtnList = new List<RectTransform>();
-    [SerializeField] private Button mainMenuBtn;
-    [SerializeField] private GameObject btnGroup;
-    [SerializeField] private GameObject upGradePanel;
     [SerializeField] private GameObject stopPanel;
     [SerializeField] private RectTransform stopPanelRect;
     [HideInInspector] public RectTransform upGradePanelRect;
@@ -117,12 +112,12 @@ public class InGameUII : MonoBehaviour
         {
             onSelect = value;
 
-            if (gameManager.onNewsOfVictory&& !value)
+            if (gameManager.onNewsOfVictory && !value)
             {
                 gameManager.NewsOfVictory();
             }
 
-            if(trainManager.onBurningCoal && !value)
+            if (trainManager.onBurningCoal && !value)
             {
                 trainManager.BurningCoal(turretDamage);
             }
@@ -158,7 +153,7 @@ public class InGameUII : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-//        bpBot = bluePrintBot.GetComponent<RectTransform>();
+        //        bpBot = bluePrintBot.GetComponent<RectTransform>();
         objectPool = ObjectPool.instacne;
         selectPanel.transform.localScale = Vector3.zero;
         for (int i = 0; i < 3; i++)
@@ -181,11 +176,6 @@ public class InGameUII : MonoBehaviour
 
         warningtxt = GoldWarning.transform.GetChild(1).GetComponent<Text>();
         warningIcon = GoldWarning.transform.GetChild(0).GetComponent<Image>();
-
-        mainMenuBtn.onClick.AddListener(() =>
-        {
-            num *= -1;
-        });
 
         goldAmounTxt.text = GameManager.Instance.GoldAmount.ToString();
         killEnemyTxt.text = TestTurretDataBase.Instance.killEnemy.ToString();
@@ -290,8 +280,7 @@ public class InGameUII : MonoBehaviour
             Time.timeScale = 1f;
             TestTurretDataBase.Instance.resultEXP += ParsingJson.Instnace.changeExp[gameManager.TrainLevel];
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.GoldAmount;
-            LoadingSceneUI.LoadScene("RemakeTitle"); 
-            
+            LoadingSceneUI.LoadScene("RemakeTitle");
             GameManager.Instance.state = GameManager.State.Ready;
         }
 
@@ -366,13 +355,13 @@ public class InGameUII : MonoBehaviour
         }
         waveTxt.text = string.Format("{0:D2}:{1:D2}:{2:D2}", miniute, second, (int)milliSec);
 
-        if((int)milliSec > 59)
+        if ((int)milliSec > 59)
         {
             milliSec = 0;
             second++;
         }
 
-        if(second > 59)
+        if (second > 59)
         {
             second = 0;
             miniute++;
@@ -631,7 +620,7 @@ public class InGameUII : MonoBehaviour
 
     }
 
-    public void ItemValueExp(int damage, float recover, int def, float shootTime, float distance, float critical,float activate)
+    public void ItemValueExp(int damage, float recover, int def, float shootTime, float distance, float critical, float activate)
     {
         itemExplainPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = damage.ToString();
         itemExplainPanel.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = recover.ToString();
@@ -693,21 +682,21 @@ public class InGameUII : MonoBehaviour
 
                 for (int i = 0; i < testScriptts.turretData.Count; i++)
                 {
-                    if(testScriptts.turretData[i].TryGetComponent<Turret>(out Turret tur))
+                    if (testScriptts.turretData[i].TryGetComponent<Turret>(out Turret tur))
                     {
                         tur.LevelUpDamage(turretDamage, distance, shootTime, bulletAmount, rPrice);
                     }
                 }
 
-                if(gameManager.TrainLevel < 21)
+                if (gameManager.TrainLevel < 21)
                 {
                     gameManager.maxExp += 10;
                 }
-                else if(gameManager.TrainLevel < 41)
+                else if (gameManager.TrainLevel < 41)
                 {
                     gameManager.maxExp += 13;
                 }
-                else if(gameManager.TrainLevel < 100)
+                else if (gameManager.TrainLevel < 100)
                 {
                     gameManager.maxExp += 16;
                 }

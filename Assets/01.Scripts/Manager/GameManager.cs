@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
 
     public enum State
     {
-        first,
         Ready,
         Play,
         Stop,
@@ -49,7 +48,7 @@ public class GameManager : MonoBehaviour
                 goldAmount = value;
             }
 
-          getGold();
+            getGold();
         }
     }
 
@@ -69,8 +68,8 @@ public class GameManager : MonoBehaviour
                 if (engineOil)
                 {
                     EngineOil();
-                }                
-                
+                }
+
                 if (laveLamp)
                 {
                     LaveLamp();
@@ -152,7 +151,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        state = State.first;
         Application.targetFrameRate = 60;
 
         if (instance != null)
@@ -183,8 +181,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-                        TestTurretDataBase.Instance.sceneIndex = 1;
-
+            TestTurretDataBase.Instance.sceneIndex = 1;
             state = State.End;
         }
 
@@ -358,7 +355,7 @@ public class GameManager : MonoBehaviour
 
     private void LaveLamp()
     {
-        if(Random.Range(0, 100) <= ActivationCoefficient(20))
+        if (Random.Range(0, 100) <= ActivationCoefficient(20))
         {
             GameObject obj = objectPool.GetObject(laveLampObj);
 
@@ -381,7 +378,7 @@ public class GameManager : MonoBehaviour
 
     public void BumperGrappler()
     {
-        if (onBumperGrappler && bumperGrappler && Random.Range(0, 100)<=ActivationCoefficient(bumperGrapplerActivationProbability))
+        if (onBumperGrappler && bumperGrappler && Random.Range(0, 100) <= ActivationCoefficient(bumperGrapplerActivationProbability))
         {
             GameObject obj = objectPool.GetObject(bumperGrapplerObj);
 

@@ -104,9 +104,6 @@ public class testScripttss : MonoBehaviour
             startGold = 360;
         }
 
-        Debug.Log(gameManager.GoldAmount);
-        Debug.Log(startGold);
-
         gameManager.GoldAmount += startGold;
     }
 
@@ -116,7 +113,6 @@ public class testScripttss : MonoBehaviour
         ChangeSpeed();
         gameTime = Time.time;
         string result = string.Format("{0:0.0}", gameTime);
-        BulletCheck();
         NextWaveCoolBtn();
         if (spawnMananger.round == 1)
         {
@@ -336,16 +332,6 @@ public class testScripttss : MonoBehaviour
         else
         {
             speedBtnCount = 4;
-        }
-    }
-
-
-
-    public void BulletCheck()
-    {
-        if (turPos != -1 && turretData[turPos].GetComponent<Turret>())
-        {
-            bulletAmmo.value = (float)turretData[turPos].GetComponent<Turret>().bulAmount / (float)turretData[turPos].GetComponent<Turret>().maxBulletAmount;
         }
     }
 

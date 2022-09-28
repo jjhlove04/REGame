@@ -140,9 +140,15 @@ public class TrainScript : MonoBehaviour
 
     private InGameUII inGameUII;
 
+    private TestTurretDataBase testDatabase;
+
+    public bool isCritical;
+
     private void Awake()
     {
         instance = this;
+
+        testDatabase = TestTurretDataBase.Instance;
 
         EnemyDataInit();
     }
@@ -153,7 +159,7 @@ public class TrainScript : MonoBehaviour
 
         trainManager.CreateTrainPrefab(traininfo.trainCount);
 
-        CurTrainHp = CurTrainHpMax = traininfo.trainMaxHp;
+        CurTrainHp = CurTrainHpMax = traininfo.trainMaxHp + (traininfo.trainMaxHp * (testDatabase.plusMaxHp/100));
         curTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
@@ -358,7 +364,7 @@ public class TrainScript : MonoBehaviour
             {
                 if (curTrainShield <= 0)
                 {
-                    CurTrainHp -= damage * 100 / (100 + trainDef);
+                    CurTrainHp -= (damage * 100 / (100 + trainDef)) - testDatabase.plusRedDamage;
                     //testScripttss.Instance.TakeDamageHpBar();
 
                     /*for (int i = 0; i < trainhit.Length; i++)
@@ -369,7 +375,7 @@ public class TrainScript : MonoBehaviour
 
                 else
                 {
-                    curTrainShield -= damage * 100 / (100 + trainDef);
+                    curTrainShield -= (damage * 100 / (100 + trainDef)) - testDatabase.plusRedDamage;
                 }
             }
 
@@ -400,8 +406,8 @@ public class TrainScript : MonoBehaviour
     public void LevelUp()
     {
         CurTrainHpMax += 22;
-        recoverAmount += 0.2f;
-        trainDef += 2;
+        recoverAmount += testDatabase.plusRecoverAmount;
+        trainDef += testDatabase.plusDef;
     }
 
 
@@ -483,7 +489,6 @@ public class TrainScript : MonoBehaviour
         lastHitTime = 0;
 
         trainManager.OnExplotion();
-
         foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(50, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
             item.gameObject.GetComponent<HealthSystem>().Damage(inGameUII.turretDamage*explosiveShieldDamage);
