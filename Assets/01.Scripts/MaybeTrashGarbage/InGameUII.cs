@@ -290,7 +290,7 @@ public class InGameUII : MonoBehaviour
             TestTurretDataBase.Instance.resultEXP += ParsingJson.Instnace.changeExp[gameManager.TrainLevel];
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.GoldAmount;
             LoadingSceneUI.LoadScene("RemakeTitle"); 
-            TitleInterfaceManager.Instance.sceneIndex = 10;
+                        InGameUII.sceneIndex = 5;
             GameManager.Instance.state = GameManager.State.Ready;
         }
 
