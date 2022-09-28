@@ -7,12 +7,17 @@ public class DamageText1 : MonoBehaviour
     
     void Start()
     {
+        this.transform.DOJump(new Vector3(0,-2,0), 4,1,1);
         Destroy(gameObject, 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.DOJump(new Vector3(0,-2,0), 4,1,3);
+        if(TrainScript.instance.isCritical)
+        {
+            this.gameObject.GetComponent<TextMesh>().color = Color.red;
+        }
     }
+    
 }

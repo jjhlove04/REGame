@@ -22,10 +22,10 @@ public class TestTurretDataBase : MonoBehaviour
     public GameObjectBool postItemDic = new GameObjectBool();
     public List<TrainItem> postItemObj = new List<TrainItem>();
 
-    [Header("ÀÎ°ÔÀÓ ½ºÅÈ")]
+    [Header("ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public int plusDamage = 0;
 
-    [Header("°á°ú°ª")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public int resultDamage = 0;
     public int resultEXP = 0;
     public int resultGold = 0;
@@ -50,6 +50,7 @@ public class TestTurretDataBase : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+        isfirst = true;
     }
 
     private void Start()

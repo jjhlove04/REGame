@@ -19,7 +19,7 @@ public class HpShieldBar : MonoBehaviour{
     }
     private void Update() {
         hpGauge =  (TrainScript.instance.CurTrainHp/TrainScript.instance.CurTrainHpMax);
-        shieldGauge = 1 - TrainScript.instance.curTrainShield/ trainInfo.trainMaxShield;
+        //shieldGauge = 1 - TrainScript.instance.curTrainShield/ trainInfo.trainMaxShield;
         curHp = (int)(TrainScript.instance.CurTrainHp);
         maxHp = (int)(TrainScript.instance.CurTrainHpMax);
         hpText.text = $"{curHp} / <color=yellow>{maxHp}</color>";
@@ -30,13 +30,13 @@ public class HpShieldBar : MonoBehaviour{
     {
         if(TrainScript.instance.curTrainShield > 0)
         {
-            hpBar.value = Mathf.Lerp( hpBar.value, shieldGauge , 1 * Time.deltaTime);
+            hpBar.value = Mathf.Lerp(  shieldGauge , hpBar.value, 1 *Time.deltaTime);
             shieldBar.gameObject.SetActive(true);
             
         }
         if(TrainScript.instance.curTrainShield < 0)
         {
-            hpBar.value = Mathf.Lerp( hpBar.value, hpGauge , 1 * Time.deltaTime);
+            hpBar.value = Mathf.Lerp(  hpGauge , hpBar.value, 1 * Time.deltaTime);
             shieldBar.gameObject.SetActive(false);
         }
         

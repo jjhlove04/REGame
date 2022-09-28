@@ -9072,6 +9072,7 @@ MonoBehaviour:
   upgradeBtn: []
   trainUpgradeContent: {fileID: 1026151153}
   levelBox: {fileID: 2259201467240117165, guid: d6c42c5cecae29940a56f4ddcdfc855f, type: 3}
+  resultPanel: {fileID: 0}
   curExp: 0
   maxExp: 30
   expBar: {fileID: 751725725}
@@ -9885,7 +9886,7 @@ RectTransform:
   m_GameObject: {fileID: 487025953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 751725726}
   - {fileID: 1120478559}
@@ -13338,7 +13339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &663842775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29748,7 +29749,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
@@ -31689,7 +31690,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1663154824}
   m_OnClick:
     m_PersistentCalls:

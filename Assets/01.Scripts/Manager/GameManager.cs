@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public enum State
     {
+        first,
         Ready,
         Play,
         Stop,
@@ -151,6 +152,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        state = State.first;
         Application.targetFrameRate = 60;
 
         if (instance != null)
@@ -181,6 +183,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
+            InGameUII.sceneIndex = 5;
             state = State.End;
         }
 

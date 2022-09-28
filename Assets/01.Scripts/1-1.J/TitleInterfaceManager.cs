@@ -8,10 +8,11 @@ public class TitleInterfaceManager : MonoBehaviour
 {
     public static TitleInterfaceManager Instance = new TitleInterfaceManager();
     
-    public int sceneIndex = 0;
+    public int sceneIndex;
     public bool canEscape = false;
     //세부타이틀 들어갔다 나올때.
     public bool canSubEscape = false;
+    GameManager gameManager;
     
     [Header("타이틀 - 버튼")]
     public RectTransform btnGroup;
@@ -35,7 +36,7 @@ public class TitleInterfaceManager : MonoBehaviour
     public Slider curCardExp;
 
     [Header("타이틀 - 캔버스")]
-    //0 : 출발 캔버스, 1 : 업그레이드 캔버스, 2 : 도감 캔버스
+    //0 : 출발 캔버스, 1 : 업그레이드 캔버스, 2 : 도감 캔버스, 3 : 결과 캔버스
     public GameObject[] canvasGroup;
 
     [Header("업그레이드 - 오브젝트")]
@@ -46,20 +47,27 @@ public class TitleInterfaceManager : MonoBehaviour
     public GameObject trainUpgradeContent;
     public GameObject levelBox;
 
-    [Header("결과패널 - 경험치")]
+    [Header("탸이틀 - 결과패널")]
+    public GameObject resultPanel;
     public float curExp = 0;
     public float maxExp = 30;
     public Slider expBar;
     public Text levelTxt;
 
     private void Awake() {
+        gameManager = GameManager.Instance;
         Sequence first = DOTween.Sequence();
         first.Append(fadeImg.transform.DOScale(1,0.1f));
         first.Append(fadeImg.transform.DOScale(0,0.1f));
 
+        
+        
         //최초 한번만 실행
-        btnGroupAction(0);
-
+        if(TestTurretDataBase.Instance.isfirst)
+        {
+            btnGroupAction(0);
+            TestTurretDataBase.Instance.isfirst = false;
+        }
         //버튼 애드리스너 시작
         titleBtn[0].onClick.AddListener(()=> {
             canvasGroup[0].SetActive(true);
@@ -92,6 +100,10 @@ public class TitleInterfaceManager : MonoBehaviour
             
 
         });
+        inTitleBtn[0].onClick.AddListener(()=> {
+            LoadingSceneUI.LoadScene("Main");
+        });
+            
 
         inTitleBtn[1].onClick.AddListener(()=> {
             IntitleAction(2);
@@ -123,6 +135,8 @@ public class TitleInterfaceManager : MonoBehaviour
             }
 
             TestTurretDataBase.Instance.isfirst = false;
+            IntitleAction(10);
+            sceneIndex = 0;
         });
 
         backBtn.onClick.AddListener(()=>
@@ -135,12 +149,17 @@ public class TitleInterfaceManager : MonoBehaviour
     }
     void Start()
     {
+        Debug.Log(sceneIndex);
         for (int i = 0; i < upgradeBtn.Length; i++)
         {
             upgradeBtn[i].onClick.AddListener(() =>
             {
 
             });
+        }
+        if(InGameUII.sceneIndex == 5)
+        {
+            IntitleAction(8);
         }
 
         maxExp = ParsingJson.Instnace.maxExp[TestTurretDataBase.Instance.level];
@@ -224,7 +243,7 @@ public class TitleInterfaceManager : MonoBehaviour
         
     }
 
-    //up 버튼 누르면 이벤트
+    //세부 버튼 누르면 이벤트
     public void IntitleAction(int index)
     {
         Sequence upBtnShow = DOTween.Sequence();
@@ -235,6 +254,7 @@ public class TitleInterfaceManager : MonoBehaviour
         Sequence upPanel1Close = DOTween.Sequence();
         Sequence upPanel2Close = DOTween.Sequence();
         Sequence upPanel3Close = DOTween.Sequence();
+        Sequence resultShow = DOTween.Sequence();
         if(index == 0)
         {
             upBtnShow.Append(inTitleBtn[1].GetComponent<Text>().DOFade(1,0.3f));
@@ -369,6 +389,22 @@ public class TitleInterfaceManager : MonoBehaviour
 
         }
 
+        //리페어 버튼 전
+        if(index == 8)
+        {
+            resultShow.Append(resultPanel.transform.DOScale(1,0.4f));
+        }
+
+        //리페어 버튼 누르기
+        if(index == 10)
+        {
+            resultShow.Append(resultPanel.transform.DOScale(1.2f,0.2f));
+            resultShow.Append(resultPanel.transform.DOScale(0,0.4f).OnComplete(()=>
+            {
+                btnGroupAction(0);
+            })); 
+        }
+
 
         //캔버스 살아있는 업버튼 트위닝 => 세부 패널 들어갔다가 나올때만 호출
         if(index == 9)
@@ -393,6 +429,7 @@ public class TitleInterfaceManager : MonoBehaviour
             }
         }
     }
+
 
     public void EscapeBtn()
     {

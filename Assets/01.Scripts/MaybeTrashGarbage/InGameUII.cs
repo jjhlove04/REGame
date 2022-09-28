@@ -159,7 +159,6 @@ public class InGameUII : MonoBehaviour
     {
         _instance = this;
 //        bpBot = bluePrintBot.GetComponent<RectTransform>();
-        upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = ObjectPool.instacne;
         selectPanel.transform.localScale = Vector3.zero;
         for (int i = 0; i < 3; i++)
@@ -290,8 +289,8 @@ public class InGameUII : MonoBehaviour
             Time.timeScale = 1f;
             TestTurretDataBase.Instance.resultEXP += ParsingJson.Instnace.changeExp[gameManager.TrainLevel];
             TestTurretDataBase.Instance.resultGold += GameManager.Instance.GoldAmount;
-            LoadingSceneUI.LoadScene("TitleScene");
-            sceneIndex = 1;
+            LoadingSceneUI.LoadScene("RemakeTitle"); 
+            TitleInterfaceManager.Instance.sceneIndex = 10;
             GameManager.Instance.state = GameManager.State.Ready;
         }
 

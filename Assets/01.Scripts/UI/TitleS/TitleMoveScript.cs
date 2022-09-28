@@ -85,7 +85,7 @@ public class TitleMoveScript : MonoBehaviour
         });
          //컬렉션 버튼
         titleActionBtn[3].onClick.AddListener(()=> {
-           
+        
             timelines[4].Play();
             indexNum = 3;
             BtnSlide(1);
