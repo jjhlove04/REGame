@@ -103,7 +103,7 @@ public class Turret : MonoBehaviour
     private float onFurryBraceletTime = 1.5f;
 
     private bool onFMJ = false;
-    private float additionalFMJDamage=0;
+    private float additionalFMJDamage = 0;
 
     private bool onPunchGun = false;
     private float punchGunPercentage;
@@ -114,12 +114,12 @@ public class Turret : MonoBehaviour
 
     private bool onHemostatic = false;
     private float hemostaticCount;
-    private float hemostaticDamage=0.35f;
+    private float hemostaticDamage = 0.35f;
 
     private bool onLowaMk2 = false;
     private float LowaMk2Count;
-    private int LowaMk2Percentage = 10;    
-    
+    private int LowaMk2Percentage = 10;
+
     private bool onSixthGuitarString = false;
     private float sixthGuitarStringCount;
     private float sixthGuitarStringDamage = 0;
@@ -128,15 +128,17 @@ public class Turret : MonoBehaviour
     private float dryOilSlow = 0.1f;
 
     private float criticalPercentCupsAndBool;
+
+    private GameObject speedSeriesLaunchesObj;
     private float DryOilSlow
     {
         get { return this.dryOilSlow; }
-        set 
+        set
         {
             if (value >= 0.6f)
             {
                 dryOilSlow = 0.6f;
-            }   
+            }
         }
     }
 
@@ -155,14 +157,14 @@ public class Turret : MonoBehaviour
 
     private TurretManager turretManager;
 
-    
+
 
     Camera cam;
     private void OnEnable()
     {
         OffDetection();
 
-        if(Physics.OverlapSphere(transform.position, 4, rader).Length > 0)
+        if (Physics.OverlapSphere(transform.position, 4, rader).Length > 0)
         {
             OnDetection();
         }
@@ -174,7 +176,7 @@ public class Turret : MonoBehaviour
             damage = inGameUII.TurretDamage;
         }
 
-        maxDistance += maxDistance * (TestTurretDataBase.Instance.plustTurretDistance/ 100);
+        maxDistance += maxDistance * (TestTurretDataBase.Instance.plustTurretDistance / 100);
         reloadPrice -= reloadPrice * (TestTurretDataBase.Instance.plusReload / 100);
     }
 
@@ -246,7 +248,7 @@ public class Turret : MonoBehaviour
             }
             if (bulAmount > 0)
             {
-                if (shootTimer >= ((shootTimerMax / weapons.Length) * shootCount)*Random.Range(0.9f,1.1f))
+                if (shootTimer >= ((shootTimerMax / weapons.Length) * shootCount) * Random.Range(0.9f, 1.1f))
                 {
                     LookForTargets();
 
@@ -258,14 +260,14 @@ public class Turret : MonoBehaviour
 
                     SelectBullet(gameObject);
 
-                    TestTurretDataBase.Instance.resultDamage += (damage+ additionalDamage);
+                    TestTurretDataBase.Instance.resultDamage += (damage + additionalDamage);
                     bulAmount--;
 
                     bulletBar.UpdateBar(bulAmount, maxBulletAmount);
 
                     shootCount++;
 
-                    if (shootCount == weapons.Length+1)
+                    if (shootCount == weapons.Length + 1)
                     {
                         shootTimer = 0;
                         shootCount = 1;
@@ -281,12 +283,12 @@ public class Turret : MonoBehaviour
                 {
                     WaitingTimeSound();
                 }
-            } 
+            }
         }
 
         else
         {
-            targetEnemy = null; 
+            targetEnemy = null;
             LookForTargets();
         }
     }
@@ -318,7 +320,7 @@ public class Turret : MonoBehaviour
                         }
                     }
 
-                    else if(detection)
+                    else if (detection)
                     {
                         if (targetEnemy != null)
                         {
@@ -431,7 +433,7 @@ public class Turret : MonoBehaviour
             .SetOnSixthGuitarString(IsSixthGuitarString(), damage * sixthGuitarStringDamage)
             .SetOnDryOil(IsDryOil(), DryOilSlow, dryOilTime)
             .SetOnShockwaveGenerator(IsShockwaveGenerator());
-            
+
 
         TaillessPlanaria();
 
@@ -479,7 +481,7 @@ public class Turret : MonoBehaviour
 
     public bool IsNeedReload()
     {
-        if(bulAmount < 1)
+        if (bulAmount < 1)
         {
             return true;
         }
@@ -507,7 +509,7 @@ public class Turret : MonoBehaviour
                 inGameUII.ReloadSpeedSeriesLaunches();
             }
         }
-        else if(bulAmount == maxBulletAmount)
+        else if (bulAmount == maxBulletAmount)
         {
             inGameUII.GoldWarning.GetComponent<CanvasGroup>().alpha = 1;
             inGameUII.warningIcon.color = new Color(1, 0.8f, 0, 1);
@@ -525,7 +527,7 @@ public class Turret : MonoBehaviour
 
     private void ShootSound()
     {
-        if(shootAudioSource.clip != null)
+        if (shootAudioSource.clip != null)
         {
             shootAudioSource.Play();
 
@@ -537,7 +539,7 @@ public class Turret : MonoBehaviour
 
     private void WaitingTimeSound()
     {
-        if(waitingAudioSource.clip != null)
+        if (waitingAudioSource.clip != null)
         {
             waitingAudioSource.pitch = waitingAudioSource.clip.length / shootTimerMax * Time.timeScale;
 
@@ -552,7 +554,7 @@ public class Turret : MonoBehaviour
 
     private void ReloadSound()
     {
-        if(reloadAudioSource.clip != null)
+        if (reloadAudioSource.clip != null)
         {
             reloadAudioSource.pitch = reloadAudioSource.clip.length / shootTimerMax;
 
@@ -623,7 +625,7 @@ public class Turret : MonoBehaviour
 
     private void NewsOfVictory()
     {
-        shootTimerMax = (shootTimerMax / 100)*70;
+        shootTimerMax = (shootTimerMax / 100) * 70;
 
         additionalDamage = (int)(damage * 0.3f);
     }
@@ -640,7 +642,7 @@ public class Turret : MonoBehaviour
 
     public Turret OnWeakLens(bool on, int count)
     {
-        criticalHitProbabilityWeakLens = 3+7 * count;
+        criticalHitProbabilityWeakLens = 3 + 7 * count;
 
         onWeakLens = on;
 
@@ -649,7 +651,7 @@ public class Turret : MonoBehaviour
 
     private bool IsCritical()
     {
-        if (Random.Range(0, 100) <= gameManager.ActivationCoefficient(criticalHitProbabilityWeakLens+criticalPercentCupsAndBool))
+        if (Random.Range(0, 100) <= gameManager.ActivationCoefficient(criticalHitProbabilityWeakLens + criticalPercentCupsAndBool))
         {
             Critical(true);
             return true;
@@ -664,14 +666,14 @@ public class Turret : MonoBehaviour
 
     private void Critical(bool onWeakLens)
     {
-        if(onWeakLens)
+        if (onWeakLens)
         {
-            critical =2;
+            critical = 2;
         }
 
         else
         {
-            critical =1;
+            critical = 1;
         }
     }
 
@@ -684,7 +686,7 @@ public class Turret : MonoBehaviour
 
         onTaillessPlanaria = on;
 
-        
+
 
         return this;
     }
@@ -702,7 +704,7 @@ public class Turret : MonoBehaviour
         onTheSoleCandy = on;
 
         if (onTheSoleCandy)
-        {  
+        {
             theSoleCandyDamage = 0.4f * count;
         }
 
@@ -718,7 +720,7 @@ public class Turret : MonoBehaviour
     {
         if (count > 1)
         {
-            onFurryBraceletTime = 0.5f * (count-1);
+            onFurryBraceletTime = 0.5f * (count - 1);
         }
 
         onFurryBracelet = on;
@@ -812,7 +814,7 @@ public class Turret : MonoBehaviour
 
     private void LowaMk23()
     {
-        turretManager.LowaMk23(damage,targetEnemy,transform.position);
+        turretManager.LowaMk23(damage, targetEnemy, transform.position);
     }
 
     public Turret OnSixthGuitarString(bool on, int count)
@@ -834,9 +836,9 @@ public class Turret : MonoBehaviour
     {
         onDryOil = on;
 
-        DryOilSlow = 0.1f+0.1f* count;
+        DryOilSlow = 0.1f + 0.1f * count;
 
-        dryOilTime =  0.5f+0.5f* count;
+        dryOilTime = 0.5f + 0.5f * count;
 
         return this;
     }
@@ -857,9 +859,13 @@ public class Turret : MonoBehaviour
         return onMachineHeart;
     }
 
-    public Turret OnSpeedSeriesLaunches(bool on)
+    public Turret OnSpeedSeriesLaunches(bool on, GameObject speedSeriesLaunchesObj)
     {
         onSpeedSeriesLaunches = on;
+
+        this.speedSeriesLaunchesObj = speedSeriesLaunchesObj;
+
+        ObjectPool.instacne.GetObject(speedSeriesLaunchesObj).transform.position = transform.position;
 
         return this;
     }
@@ -867,6 +873,11 @@ public class Turret : MonoBehaviour
     private bool IsSpeedSeriesLaunches()
     {
         return onSpeedSeriesLaunches;
+    }
+
+    public void SpeedSeriesLaunches(bool on)
+    {
+        speedSeriesLaunchesObj.SetActive(on);
     }
 
     public Turret OnShockwaveGenerator(bool on)
@@ -883,7 +894,7 @@ public class Turret : MonoBehaviour
 
     public void ShockwaveGenerator(Vector3 pos)
     {
-        if(Random.Range(0, 100) <= GameManager.Instance.ActivationCoefficient(80))
+        if (Random.Range(0, 100) <= GameManager.Instance.ActivationCoefficient(80))
         {
             turretManager.ShockwaveGenerator(pos);
         }

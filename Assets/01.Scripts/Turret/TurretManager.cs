@@ -60,8 +60,10 @@ public class TurretManager : MonoBehaviour
     private int countMachineHeartl = 0;    
     
     private bool onSpeedSeriesLaunches = false;
-    private int countSpeedSeriesLaunches = 0;    
-    
+    private int countSpeedSeriesLaunches = 0;
+    private GameObject speedSeriesLaunchesObj;
+
+
     private bool onShockwaveGenerator = false;
     private int countShockwaveGenerator = 0;
 
@@ -136,7 +138,7 @@ public class TurretManager : MonoBehaviour
             .OnSixthGuitarString(onSixthGuitarString, countSixthGuitarString)
             .OnDryOil(onDryOil, countDryOil)
             .OnMachineHeart(onMachineHeart)
-            .OnSpeedSeriesLaunches(onSpeedSeriesLaunches)
+            .OnSpeedSeriesLaunches(onSpeedSeriesLaunches, speedSeriesLaunchesObj)
             .OnShockwaveGenerator(onShockwaveGenerator)
             .CupsAndBool(criticalPercent);
     }
@@ -353,20 +355,32 @@ public class TurretManager : MonoBehaviour
         TrainScript.instance.OnMachineHeart(onMachineHeart,countMachineHeartl);
     }
 
-    public void OnSpeedSeriesLaunches()
+    public void OnSpeedSeriesLaunches(GameObject speedSeriesLaunchesObj)
     {
         onSpeedSeriesLaunches = true;
+
+        this.speedSeriesLaunchesObj = speedSeriesLaunchesObj;
 
         countSpeedSeriesLaunches++;
 
         for (int i = 0; i < turrets.transform.childCount; i++)
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
-                .OnSpeedSeriesLaunches(onSpeedSeriesLaunches);
+                .OnSpeedSeriesLaunches(onSpeedSeriesLaunches, speedSeriesLaunchesObj);
         }
 
         inGameUII.OnSpeedSeriesLaunches(onSpeedSeriesLaunches, countSpeedSeriesLaunches);
     }
+
+    public void SpeedSeriesLaunches(bool on)
+    {
+        for (int i = 0; i < turrets.transform.childCount; i++)
+        {
+            turrets.transform.GetChild(i).GetComponent<Turret>()
+                .SpeedSeriesLaunches(on);
+        }
+    }
+
 
     public void OnShockwaveGenerator(GameObject shockwaveGeneratorObj)
     {

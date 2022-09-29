@@ -136,13 +136,14 @@ public class TrainScript : MonoBehaviour
     private float additionalRecoveryAmount;
 
     private InGameUII inGameUII;
+
+    [SerializeField]
+    private GameObject plasmaShiled;
     private TestTurretDataBase testDatabase;
 
     private void Awake()
     {
         instance = this;
-
-        traininfo.trainCount += TestTurretDataBase.Instance.plusTrainCount;
 
         EnemyDataInit();
     }
@@ -297,14 +298,7 @@ public class TrainScript : MonoBehaviour
 
                     if (CurTrainHp <= 0)
                     {
-                        if (TestTurretDataBase.Instance.plusJesus == 1)
-                        {
-                            CurTrainHp += CurTrainHpMax * 0.5f;
-                        }
-                        else
-                        {
-                            DestroyTrain();
-                        }
+                        DestroyTrain();
                     }
                     break;
             }
@@ -520,15 +514,15 @@ public class TrainScript : MonoBehaviour
         onWireEntanglement = true;
 
 
-        for (int i = 0; i < wireEntanglementObjecct.Count; i++)
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange + (wireEntanglementRange * (testDatabase.plusDistance / 100)), trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
-            wireEntanglementObjecct[i].SetActive(true);
+            item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.TurretDamage * wireEntanglementDamage);
         }
     }
 
     private void WireEntanglement()
     {
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange + (wireEntanglementRange * (testDatabase.plusDistance / 100)), trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
             item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.TurretDamage * wireEntanglementDamage);
         }
@@ -606,6 +600,13 @@ public class TrainScript : MonoBehaviour
 
     public void OnMachineHeart(bool on, int count)
     {
+        plasmaShiled.SetActive(true);
+
+        for (int i = 0; i < trainManager.curTrainCount + 1; i++)
+        {
+            plasmaShiled.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
         countMachineHeart = count;
         machineHeartMaxShield = CurTrainHpMax * 0.08f + 0.04f * countMachineHeart;
 
@@ -627,12 +628,18 @@ public class TrainScript : MonoBehaviour
             {
                 if (machineHeartCurTime > machineHeartMaxTime)
                 {
+                    plasmaShiled.SetActive(true);
+
                     machineHeartCurTime = 0;
 
                     MachineHeartCurShield += machineHeartMaxShield * 0.1f;
+
+                    return;
                 }
             }
         }
+
+        plasmaShiled.SetActive(false);
     }
 
     public void ReloadMachineHeart()

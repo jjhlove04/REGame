@@ -169,6 +169,17 @@ public class InGameUII : MonoBehaviour
 
     private bool onSpeedSeriesLaunches = false;
     private bool speedSeriesLaunches = false;
+    public bool SPeedSeriesLaunches
+    {
+        get { return onSpeedSeriesLaunches; }
+        set
+        {
+            onSpeedSeriesLaunches = value;
+
+            TurretManager.Instance.SpeedSeriesLaunches(value);
+        }
+    }
+
     private float additionalDamage = 0;
     private float reloadMaxTime = 0;
     private float reloadCurTime = 0;
@@ -737,9 +748,9 @@ public class InGameUII : MonoBehaviour
     {
         if (onSpeedSeriesLaunches)
         {
-            speedSeriesLaunches = reloadCurTime >= reloadMaxTime;
+            SPeedSeriesLaunches = reloadCurTime >= reloadMaxTime;
 
-            if (!speedSeriesLaunches)
+            if (!SPeedSeriesLaunches)
             {
                 reloadCurTime += Time.deltaTime;
             }
@@ -748,13 +759,13 @@ public class InGameUII : MonoBehaviour
 
     private bool IsSpeedSeriesLaunches()
     {
-        return speedSeriesLaunches;
+        return SPeedSeriesLaunches;
     }
 
     public void ReloadSpeedSeriesLaunches()
     {
         reloadCurTime = 0;
 
-        speedSeriesLaunches = false;
+        SPeedSeriesLaunches = false;
     }
 }
