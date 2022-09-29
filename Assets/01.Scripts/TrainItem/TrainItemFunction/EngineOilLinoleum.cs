@@ -13,6 +13,13 @@ public class EngineOilLinoleum : MonoBehaviour
 
     private ObjectPool objectPool;
 
+    private TestTurretDataBase testDatabase;
+
+    private void Awake()
+    {
+        testDatabase = TestTurretDataBase.Instance;
+    }
+
     private void OnEnable()
     {
         objectPool = ObjectPool.instacne;
@@ -20,6 +27,8 @@ public class EngineOilLinoleum : MonoBehaviour
 
     private void Start()
     {
+        m_MaxDistance += m_MaxDistance * (testDatabase.plusDistance / 100);
+
         transform.localScale = new Vector3(m_MaxDistance, 0.001f, m_MaxDistance);
     }
 

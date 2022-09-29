@@ -10,9 +10,13 @@ public class LaveLampProjectile : MonoBehaviour
     public LayerMask m_Mask;
 
     private float damage;
+    TestTurretDataBase m_TurretData;
 
     private void Awake()
     {
+        m_TurretData = TestTurretDataBase.Instance;
+
+        m_MaxDistance += m_MaxDistance * (m_TurretData.plusDistance / 100);
         transform.localScale = new Vector3(m_MaxDistance, 0.001f, m_MaxDistance);
     }
 

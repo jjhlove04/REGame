@@ -136,6 +136,7 @@ public class TrainScript : MonoBehaviour
     private float additionalRecoveryAmount;
 
     private InGameUII inGameUII;
+    private TestTurretDataBase testDatabase;
 
     private void Awake()
     {
@@ -166,6 +167,7 @@ public class TrainScript : MonoBehaviour
         StartCoroutine(FixTimeHp());
 
         inGameUII = InGameUII._instance;
+        testDatabase = TestTurretDataBase.Instance;
     }
 
     private void Update()
@@ -482,7 +484,7 @@ public class TrainScript : MonoBehaviour
 
         trainManager.OnExplotion();
 
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(50, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(50 + (50 * (testDatabase.plusDistance / 100)), trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
             item.gameObject.GetComponent<HealthSystem>().Damage(inGameUII.TurretDamage * explosiveShieldDamage);
         }
@@ -517,7 +519,7 @@ public class TrainScript : MonoBehaviour
 
     private void WireEntanglement()
     {
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange + (wireEntanglementRange * (testDatabase.plusDistance / 100)), trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
             item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.TurretDamage * wireEntanglementDamage);
         }

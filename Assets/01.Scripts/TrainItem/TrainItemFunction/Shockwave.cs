@@ -15,8 +15,11 @@ public class Shockwave : MonoBehaviour
 
     private ObjectPool objectPool;
 
+    TestTurretDataBase testTurretDataBase;
     private void Awake()
     {
+        testTurretDataBase = TestTurretDataBase.Instance;
+        m_MaxDistance += m_MaxDistance * (testTurretDataBase.plusDistance / 100);
         transform.localScale = new Vector3(m_MaxDistance, 0.001f, m_MaxDistance);
     }
 

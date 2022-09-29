@@ -20,9 +20,15 @@ public class BuffItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private float maxActiveTime = 5f;
     public string bufString;
 
+    TestTurretDataBase testTurretData;
+
     private void Start()
     {
         inGameUII = InGameUII._instance;
+        testTurretData = TestTurretDataBase.Instance;
+
+        maxBuffTime += maxBuffTime * (testTurretData.plusBuffTime/ 100);
+        maxActiveTime += maxActiveTime * (testTurretData.plusBuffTime / 100);
     }
 
     void Update()
