@@ -68,6 +68,8 @@ public class TitleInterfaceManager : MonoBehaviour
     public Text acquiredExp;
     public Text damageTxt;
 
+    public CanvasGroup warningTxt;
+
     private void Awake()
     {
         gameManager = GameManager.Instance;
@@ -248,6 +250,11 @@ public class TitleInterfaceManager : MonoBehaviour
         InitPlayerInfo();
         ExpBar();
         moneyTxt.text = "소지골드 : " + testTurretDatabase.resultGold.ToString();
+
+        if(warningTxt.alpha >= 0)
+        {
+            warningTxt.alpha = Mathf.Lerp(warningTxt.alpha, 0, Time.deltaTime * 2);
+        }
     }
 
     public void btnGroupAction(int index)
@@ -623,6 +630,16 @@ public class TitleInterfaceManager : MonoBehaviour
 
                     needGoldTxt.text = "가격 : " + parsingJson.price[i].ToString();
                 }
+                else
+                {
+                    warningTxt.transform.GetChild(0).GetComponent<Text>().text = "더 이상 강화가 불가능합니다";
+                    warningTxt.alpha = 1;
+                }
+            }
+            else
+            {
+                warningTxt.transform.GetChild(0).GetComponent<Text>().text = "소지한 골드가 부족합니다"; 
+                warningTxt.alpha = 1;
             }
 
         });
