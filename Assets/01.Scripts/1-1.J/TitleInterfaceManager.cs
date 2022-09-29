@@ -53,6 +53,7 @@ public class TitleInterfaceManager : MonoBehaviour
     public Text[] upgradeNames;
     public Text moneyTxt;
     public Text needGoldTxt;
+    public Text explainTxt;
 
     [Header("탸이틀 - 결과패널")]
     public GameObject resultPanel;
@@ -586,6 +587,7 @@ public class TitleInterfaceManager : MonoBehaviour
         statList[j].onClick.AddListener(() =>
         {
             needGoldTxt.text = "가격 : " + parsingJson.price[j].ToString();
+            explainTxt.text = parsingJson.explation[j];
         });
     }
 
