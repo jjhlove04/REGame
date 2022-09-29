@@ -32,6 +32,13 @@ public class TestTurretDataBase : MonoBehaviour
     public float plusDistance = 0;
     public float plusBuffTime = 0;
     public float plustTurretDistance = 0;
+    public int plusReload = 0;
+    public float plusLuck = 0;
+    public float plusSpeed = 0;
+    public float plusRepair = 0;
+    public int plusTrainCount = 0;
+    public int plusCurse = 0;
+    public int plusJesus = 0;
 
     [Header("결과값")]
     public float resultDamage = 0;

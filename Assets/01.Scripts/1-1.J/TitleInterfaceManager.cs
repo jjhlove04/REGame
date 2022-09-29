@@ -14,6 +14,7 @@ public class TitleInterfaceManager : MonoBehaviour
     public bool canSubEscape = false;
     GameManager gameManager;
     TestTurretDataBase testTurretDatabase;
+    ParsingJson parsingJson;
     public ItemContainer itemContainer;
 
     [Header("타이틀 - 버튼")]
@@ -45,9 +46,13 @@ public class TitleInterfaceManager : MonoBehaviour
     bool isNowTitel = false;
     public GameObject fadeImg;
     public GameObject[] upPanel;
-    public Button[] upgradeBtn;
+    public List<Button> upgradeBtn = new List<Button>();
+    public List<Button> statList = new List<Button>();
     public GameObject trainUpgradeContent;
     public GameObject levelBox;
+    public Text[] upgradeNames;
+    public Text moneyTxt;
+    public Text needGoldTxt;
 
     [Header("탸이틀 - 결과패널")]
     public GameObject resultPanel;
@@ -65,29 +70,30 @@ public class TitleInterfaceManager : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        parsingJson = ParsingJson.Instnace;
         testTurretDatabase = TestTurretDataBase.Instance;
 
         Sequence first = DOTween.Sequence();
         first.Append(fadeImg.transform.DOScale(1, 0.1f));
         first.Append(fadeImg.transform.DOScale(0, 0.1f));
 
-        if (TestTurretDataBase.Instance.curTurretType.Count == 1)
+        if (testTurretDatabase.curTurretType.Count == 1)
         {
-            TestTurretDataBase.Instance.curTurretType.Clear();
+            testTurretDatabase.curTurretType.Clear();
         }
         for (int i = 0; i < itemContainer.commonItem.Length; i++)
         {
-            if (!TestTurretDataBase.Instance.postItemDic.ContainsKey(itemContainer.commonItem[i].ToString()))
+            if (!testTurretDatabase.postItemDic.ContainsKey(itemContainer.commonItem[i].ToString()))
             {
-                TestTurretDataBase.Instance.postItemDic.Add(itemContainer.commonItem[i].ToString(), itemContainer.commonItem[i].interactable);
+                testTurretDatabase.postItemDic.Add(itemContainer.commonItem[i].ToString(), itemContainer.commonItem[i].interactable);
             }
         }
 
         //최초 한번만 실행
-        if (TestTurretDataBase.Instance.isfirst)
+        if (testTurretDatabase.isfirst)
         {
             btnGroupAction(0);
-            TestTurretDataBase.Instance.isfirst = false;
+            testTurretDatabase.isfirst = false;
         }
         //버튼 애드리스너 시작
         titleBtn[0].onClick.AddListener(() => {
@@ -122,9 +128,9 @@ public class TitleInterfaceManager : MonoBehaviour
 
         });
         inTitleBtn[0].onClick.AddListener(() => {
-            if (TestTurretDataBase.Instance.curTurretType.Count == 0)
+            if (testTurretDatabase.curTurretType.Count == 0)
             {
-                TestTurretDataBase.Instance.curTurretType.Add("0-0", Resources.Load<GameObject>("Turret/baseTurret0-0"));
+                testTurretDatabase.curTurretType.Add("0-0", Resources.Load<GameObject>("Turret/baseTurret0-0"));
             }
             LoadingSceneUI.LoadScene("Main");
         });
@@ -151,7 +157,7 @@ public class TitleInterfaceManager : MonoBehaviour
             testTurretDatabase.resultEXP = 0;
             testTurretDatabase.killEnemy = 0;
             testTurretDatabase.resultDamage = 0;
-            testTurretDatabase.resultGold -= (int)((testTurretDatabase.round - 1) * 1.5f);
+            testTurretDatabase.resultGold -= (int)(((testTurretDatabase.round - 1) * 1.5f) + ((testTurretDatabase.round - 1) * 1.5f) * (testTurretDatabase.plusRepair / 100));
 
             for (int i = 0; i < testTurretDatabase.postItemObj.Count; i++)
             {
@@ -169,14 +175,37 @@ public class TitleInterfaceManager : MonoBehaviour
             EscapeBtn();
         });
 
-        
+
 
         //버튼 애드리스너 끝
+
+        for (int i = 0; i < upgradeBtn.Count; i++)
+        {
+            if (parsingJson.count[i] == parsingJson.upgradeCose[i])
+            {
+                upgradeNames[i].text = "MAX";
+            }
+            else
+            {
+                upgradeNames[i].text = parsingJson.count[i].ToString();
+            }
+        }
+
+        for (int i = 0; i < upgradeBtn.Count; i++)
+        {
+            TrainUpgradeBtn(i);
+        }
+
+        for (int j = 0; j < statList.Count; j++)
+        {
+            TrainStatPrice(j);
+        }
+
 
     }
     void Start()
     {
-        if (TestTurretDataBase.Instance.sceneIndex == 1)
+        if (testTurretDatabase.sceneIndex == 1)
         {
             IntitleAction(8);
         }
@@ -190,23 +219,16 @@ public class TitleInterfaceManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < upgradeBtn.Length; i++)
-        {
-            upgradeBtn[i].onClick.AddListener(() =>
-            {
-                TrainUpgrade(i);
-            });
-        }
-        
 
-        repairCost.text = ((testTurretDatabase.round - 1) * 1.5f).ToString();
+
+        repairCost.text = (((testTurretDatabase.round - 1) * 1.5f) + ((testTurretDatabase.round - 1) * 1.5f) * (testTurretDatabase.plusRepair/100)).ToString();
         towingCost.text = 0 + "";
         killEnemy.text = testTurretDatabase.killEnemy.ToString();
         acquiredGold.text = testTurretDatabase.resultGold.ToString();
         acquiredExp.text = testTurretDatabase.resultEXP.ToString();
         damageTxt.text = testTurretDatabase.resultDamage.ToString();
 
-        maxExp = ParsingJson.Instnace.maxExp[testTurretDatabase.level];
+        maxExp = parsingJson.maxExp[testTurretDatabase.level];
 
     }
 
@@ -219,11 +241,12 @@ public class TitleInterfaceManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log(TestTurretDataBase.Instance.sceneIndex);
+            Debug.Log((int)(parsingJson.price[0] * 0.53f));
         }
         
         InitPlayerInfo();
         ExpBar();
+        moneyTxt.text = "소지골드 : " + testTurretDatabase.resultGold.ToString();
     }
 
     public void btnGroupAction(int index)
@@ -549,7 +572,7 @@ public class TitleInterfaceManager : MonoBehaviour
                 testTurretDatabase.level++;
                 curExp = curExp - maxExp;
 
-                maxExp = ParsingJson.Instnace.maxExp[testTurretDatabase.level];
+                maxExp = parsingJson.maxExp[testTurretDatabase.level];
 
                 expBar.value = 0;
                 levelTxt.text = testTurretDatabase.level.ToString();
@@ -558,55 +581,113 @@ public class TitleInterfaceManager : MonoBehaviour
         testTurretDatabase.tCurExp = curExp;
     }
 
+    public void TrainStatPrice(int j)
+    {
+        statList[j].onClick.AddListener(() =>
+        {
+            needGoldTxt.text = "가격 : " + parsingJson.price[j].ToString();
+        });
+    }
+
+    public void TrainUpgradeBtn(int i)
+    {
+        upgradeBtn[i].onClick.AddListener(() =>
+        {
+            if (parsingJson.price[i] <= testTurretDatabase.resultGold)
+            {
+                if (parsingJson.count[i] < parsingJson.upgradeCose[i])
+                {
+                    TrainUpgrade(i);
+                    testTurretDatabase.resultGold -= parsingJson.price[i];
+                    parsingJson.price[i] += (int)(parsingJson.price[i] * 0.53f);
+
+                    for (int j = 0; j < upgradeBtn.Count; j++)
+                    {
+                        if (j != i)
+                        {
+                            parsingJson.price[j] += (int)(parsingJson.price[j] * 0.09f);
+                        }
+                    }
+                    parsingJson.count[i]++;
+
+                    if (parsingJson.count[i] == parsingJson.upgradeCose[i])
+                    {
+                        upgradeNames[i].text = "MAX";
+                    }
+                    else
+                    {
+                        upgradeNames[i].text = parsingJson.count[i].ToString();
+                    }
+
+                    needGoldTxt.text = "가격 : " + parsingJson.price[i].ToString();
+                }
+            }
+
+        });
+    }
+
     public void TrainUpgrade(int i)
     {
         switch (i)
         {
             case 0:
-                UpgradeStat(testTurretDatabase.plusDamage, 4);
+                testTurretDatabase.plusDamage += 4;
                 break;
             case 1:
-                UpgradeStat(testTurretDatabase.plusDef, 1);
+                testTurretDatabase.plusDef += 1;
                 break;
             case 2:
-                UpgradeStat(testTurretDatabase.plusRedDamage, 1);
+                testTurretDatabase.plusRedDamage += 1;
                 break;
             case 3:
-                UpgradeStat(testTurretDatabase.plusMaxHp, 10);
+                testTurretDatabase.plusMaxHp += 10;
                 break;
             case 4:
-                UpgradeStat(testTurretDatabase.plusRecoverAmount, 0.1f);
+                if (testTurretDatabase.plusRecoverAmount == 0)
+                {
+                    testTurretDatabase.plusRecoverAmount += 0.1f;
+                }
+                else if (testTurretDatabase.plusRecoverAmount == 0.1f)
+                {
+                    testTurretDatabase.plusRecoverAmount += 0.1f;
+                }
+                else if (testTurretDatabase.plusRecoverAmount == 0.2f)
+                {
+                    testTurretDatabase.plusRecoverAmount += 0.3f;
+                }
                 break;
             case 5:
+                testTurretDatabase.plusDistance += 5f;
                 break;
             case 6:
+                testTurretDatabase.plusBuffTime += 3f;
                 break;
             case 7:
+                testTurretDatabase.plustTurretDistance += 10f;
                 break;
             case 8:
+                testTurretDatabase.plusReload += 8;
                 break;
             case 9:
+                testTurretDatabase.plusLuck += 10f;
                 break;
             case 10:
+                testTurretDatabase.plusSpeed += 10f;
                 break;
             case 11:
+                testTurretDatabase.plusRepair += 2f;
                 break;
             case 12:
+                testTurretDatabase.plusTrainCount += 1;
                 break;
             case 13:
+                testTurretDatabase.plusCurse += 10;
                 break;
-
+            case 14:
+                testTurretDatabase.plusJesus += 1;
                 break;
             default:
                 break;
         }
-    }
-    public void UpgradeStat(float name, float value)
-    {
-        name += value;
-    }
-    public void DowngradeStat(float name, float value)
-    {
-        name -= value;
     }
 }

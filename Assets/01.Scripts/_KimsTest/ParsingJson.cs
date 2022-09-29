@@ -22,8 +22,9 @@ public class ParsingJson : MonoBehaviour
 
     public List<string> upgradeName = new List<string>();
     public List<int> upgradeCose = new List<int>();
-    public List<float> price = new List<float>();
+    public List<int> price = new List<int>();
     public List<string> explation = new List<string>();
+    public List<int> count = new List<int>();
 
     [Serializable]
     public class Sheet
@@ -48,8 +49,9 @@ public class ParsingJson : MonoBehaviour
     {
         public string name;
         public int upgradeBox;
-        public float price;
+        public int price;
         public string explanation;
+        public int count;
     }
 
     public class SheetNumberts
@@ -100,6 +102,7 @@ public class ParsingJson : MonoBehaviour
             upgradeCose.Add(see.upgradeBox);
             price.Add(see.price);
             explation.Add(see.explanation);
+            count.Add(see.count);
         }
 
         Debug.Log("ÆÄ½Ì ¿Ï·á");

@@ -109,6 +109,9 @@ public class ProjectileMover : MonoBehaviour
                 Destroy(flashInstance, flashPsParts.main.duration);
             }
         }
+
+        moveSpeed += moveSpeed * (testDatabase.plusSpeed / 100);
+
         Destroy(gameObject, 5);
     }
 

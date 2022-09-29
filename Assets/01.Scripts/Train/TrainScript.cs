@@ -142,6 +142,8 @@ public class TrainScript : MonoBehaviour
     {
         instance = this;
 
+        traininfo.trainCount += TestTurretDataBase.Instance.plusTrainCount;
+
         EnemyDataInit();
     }
 
@@ -295,7 +297,14 @@ public class TrainScript : MonoBehaviour
 
                     if (CurTrainHp <= 0)
                     {
-                        DestroyTrain();
+                        if (TestTurretDataBase.Instance.plusJesus == 1)
+                        {
+                            CurTrainHp += CurTrainHpMax * 0.5f;
+                        }
+                        else
+                        {
+                            DestroyTrain();
+                        }
                     }
                     break;
             }

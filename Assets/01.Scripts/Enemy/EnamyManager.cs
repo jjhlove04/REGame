@@ -13,10 +13,17 @@ public class EnamyManager : MonoBehaviour
 
     SpawnMananger spawnManager;
     InGameUII ui;
+
+    TestTurretDataBase testTurretData;
     private void Start()
     {
         spawnManager = SpawnMananger.Instance;
         ui = InGameUII._instance;
+        testTurretData = TestTurretDataBase.Instance;
+
+        enemies[0].healthAmountMax += enemies[0].healthAmountMax * (testTurretData.plusCurse / 100);
+        enemies[0].enemySpeed += enemies[0].enemySpeed * (testTurretData.plusCurse / 100);
+
     }
     private void Update()
     {

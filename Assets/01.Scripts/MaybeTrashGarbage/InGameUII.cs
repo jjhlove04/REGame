@@ -9,17 +9,12 @@ using System;
 public class InGameUII : MonoBehaviour
 {
     public static InGameUII _instance = new InGameUII();
-    [SerializeField] private GameObject bluePrintTop;
-    [SerializeField] private GameObject bluePrintBot;
     public static int sceneIndex = 0;
 
     int index = 1;
     int num = 1;
     int backIndex = 1;
     private List<RectTransform> menuBtnList = new List<RectTransform>();
-    [SerializeField] private Button mainMenuBtn;
-    [SerializeField] private GameObject btnGroup;
-    [SerializeField] private GameObject upGradePanel;
     [SerializeField] private GameObject stopPanel;
     [SerializeField] private RectTransform stopPanelRect;
     [HideInInspector] public RectTransform upGradePanelRect;
@@ -181,7 +176,6 @@ public class InGameUII : MonoBehaviour
     {
         _instance = this;
         //        bpBot = bluePrintBot.GetComponent<RectTransform>();
-        upGradePanelRect = upGradePanel.GetComponent<RectTransform>();
         objectPool = ObjectPool.instacne;
         selectPanel.transform.localScale = Vector3.zero;
         for (int i = 0; i < 3; i++)
@@ -204,11 +198,6 @@ public class InGameUII : MonoBehaviour
 
         warningtxt = GoldWarning.transform.GetChild(1).GetComponent<Text>();
         warningIcon = GoldWarning.transform.GetChild(0).GetComponent<Image>();
-
-        mainMenuBtn.onClick.AddListener(() =>
-        {
-            num *= -1;
-        });
 
         goldAmounTxt.text = GameManager.Instance.GoldAmount.ToString();
         killEnemyTxt.text = TestTurretDataBase.Instance.killEnemy.ToString();
@@ -464,13 +453,6 @@ public class InGameUII : MonoBehaviour
     {
         bpBot.DOAnchorPosY(-350, 1f).SetEase(Ease.OutQuart).SetUpdate(true);
     }*/
-
-    public void CloseBluePrint()
-    {
-        bpBot.DOAnchorPosY(-730, 1.5f).SetEase(Ease.OutQuart).SetUpdate(true);
-
-        upGradePanelRect.DOAnchorPosX(-200, 1.5f).SetUpdate(true);
-    }
 
     public void CancelTurret()
     {

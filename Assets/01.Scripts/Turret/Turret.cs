@@ -173,6 +173,9 @@ public class Turret : MonoBehaviour
         {
             damage = inGameUII.TurretDamage;
         }
+
+        maxDistance += maxDistance * (TestTurretDataBase.Instance.plustTurretDistance/ 100);
+        reloadPrice -= reloadPrice * (TestTurretDataBase.Instance.plusReload / 100);
     }
 
     private void Start()

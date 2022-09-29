@@ -178,6 +178,8 @@ public class GameManager : MonoBehaviour
         trainScript = TrainScript.instance;
         objectPool = ObjectPool.instacne;
         trainManager = TrainManager.instance;
+
+        activationCoefficient += activationCoefficient * (TestTurretDataBase.Instance.plusLuck / 100);
     }
 
     private void OnDestroy()
