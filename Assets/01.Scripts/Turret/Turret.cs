@@ -863,9 +863,12 @@ public class Turret : MonoBehaviour
     {
         onSpeedSeriesLaunches = on;
 
-        this.speedSeriesLaunchesObj = speedSeriesLaunchesObj;
+        if (on)
+        {
+            this.speedSeriesLaunchesObj = speedSeriesLaunchesObj;
 
-        ObjectPool.instacne.GetObject(speedSeriesLaunchesObj).transform.position = transform.position;
+            ObjectPool.instacne.GetObject(speedSeriesLaunchesObj).transform.position = transform.position;
+        }
 
         return this;
     }
