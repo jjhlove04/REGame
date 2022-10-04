@@ -54,6 +54,7 @@ public class TitleInterfaceManager : MonoBehaviour
     public Text moneyTxt;
     public Text needGoldTxt;
     public Text explainTxt;
+    public Text expName;
 
     [Header("탸이틀 - 결과패널")]
     public GameObject resultPanel;
@@ -595,6 +596,7 @@ public class TitleInterfaceManager : MonoBehaviour
         {
             needGoldTxt.text = "가격 : " + parsingJson.price[j].ToString();
             explainTxt.text = parsingJson.explation[j];
+            expName.text = parsingJson.upgradeName[j];
         });
     }
 
@@ -627,8 +629,6 @@ public class TitleInterfaceManager : MonoBehaviour
                     {
                         upgradeNames[i].text = parsingJson.count[i].ToString();
                     }
-
-                    needGoldTxt.text = "가격 : " + parsingJson.price[i].ToString();
                 }
                 else
                 {
@@ -642,6 +642,10 @@ public class TitleInterfaceManager : MonoBehaviour
                 warningTxt.alpha = 1;
             }
 
+
+            needGoldTxt.text = "가격 : " + parsingJson.price[i].ToString();
+            explainTxt.text = parsingJson.explation[i];
+            expName.text = parsingJson.upgradeName[i];
         });
     }
 
