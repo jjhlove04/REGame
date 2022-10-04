@@ -298,7 +298,14 @@ public class TrainScript : MonoBehaviour
 
                     if (CurTrainHp <= 0)
                     {
-                        DestroyTrain();
+                        if (testDatabase.plusJesus != 1)
+                        {
+                            DestroyTrain();
+                        }
+                        else
+                        {
+                            curTrainHp = CurTrainHpMax * 0.5f;
+                        }
                     }
                     break;
             }

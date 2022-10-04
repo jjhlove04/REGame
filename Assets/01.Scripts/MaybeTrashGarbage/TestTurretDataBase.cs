@@ -23,6 +23,7 @@ public class TestTurretDataBase : MonoBehaviour
     public List<TrainItem> postItemObj = new List<TrainItem>();
 
     [Header("인게임 스탯")]
+    public TrainInfo trainInfo;
     public int plusDamage = 0;
     public int plusDef = 0;
     public int plusRedDamage = 0;
@@ -36,7 +37,6 @@ public class TestTurretDataBase : MonoBehaviour
     public float plusLuck = 0;
     public float plusSpeed = 0;
     public float plusRepair = 0;
-    public int plusTrainCount = 0;
     public int plusCurse = 0;
     public int plusJesus = 0;
 

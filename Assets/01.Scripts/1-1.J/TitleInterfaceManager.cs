@@ -702,7 +702,7 @@ public class TitleInterfaceManager : MonoBehaviour
                 testTurretDatabase.plusRepair += 2f;
                 break;
             case 12:
-                testTurretDatabase.plusTrainCount += 1;
+                testTurretDatabase.trainInfo.trainCount += 1;
                 break;
             case 13:
                 testTurretDatabase.plusCurse += 10;
