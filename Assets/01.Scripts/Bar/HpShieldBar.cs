@@ -9,6 +9,8 @@ public class HpShieldBar : MonoBehaviour{
     public Text hpText;
     int curHp;
     int maxHp;
+    int curSd;
+    int maxSd;
     public Slider hpBar;
     public Slider shieldBar;
     float hpGauge;
@@ -16,23 +18,27 @@ public class HpShieldBar : MonoBehaviour{
     public TrainInfo trainInfo;
 
     private void Start() {
+        
     }
     private void Update() {
         hpGauge =  (TrainScript.instance.CurTrainHp/TrainScript.instance.CurTrainHpMax);
-        //shieldGauge = 1 - TrainScript.instance.curTrainShield/ trainInfo.trainMaxShield;
+        shieldGauge = TrainScript.instance.curTrainShield/ trainInfo.trainMaxShield;
         curHp = (int)(TrainScript.instance.CurTrainHp);
         maxHp = (int)(TrainScript.instance.CurTrainHpMax);
-        hpText.text = $"{curHp} / <color=yellow>{maxHp}</color>";
+        curSd = (int)(TrainScript.instance.curTrainShield);
+        maxSd = (int)(trainInfo.trainMaxShield);
+        hpText.text = $"{curHp} / <color=red>{maxHp}</color>     <color=#008AD6>{curSd}/{maxSd}</color>";
         hpLogic();
+        
     }
 
     public void hpLogic()
     {
-        if(TrainScript.instance.curTrainShield < 0)
-        {
-            hpBar.value = Mathf.Lerp(  hpBar.value,hpGauge , 1 * Time.deltaTime);
-            shieldBar.gameObject.SetActive(false);
-        }
+        
+            hpBar.value = Mathf.Lerp(hpBar.value,hpGauge , 5 * Time.deltaTime);
+            shieldBar.value = Mathf.Lerp(shieldBar.value, shieldGauge , 5 * Time.deltaTime);
+            
+        
         
 
     }

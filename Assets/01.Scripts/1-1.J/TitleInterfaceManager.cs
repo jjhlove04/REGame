@@ -479,9 +479,10 @@ public class TitleInterfaceManager : MonoBehaviour
         if (index == 10)
         {
             resultShow.Append(resultPanel.transform.DOScale(1.2f, 0.2f));
-            resultShow.Append(resultPanel.transform.DOScale(0, 0.4f).OnComplete(() =>
+            resultShow.Append(resultPanel.transform.DOScale(0, 0.2f).OnComplete(() =>
             {
                 btnGroupAction(0);
+                canvasGroup[0].SetActive(true);
             }));
         }
 
