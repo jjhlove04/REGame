@@ -72,8 +72,11 @@ public class ScrapProjectileMover : MonoBehaviour
     {
         HealthSystem healthSystem = other.GetComponent<HealthSystem>();
 
+        print(1);
+
         if (other.tag == "Enemy")
         {
+            print(2);
             healthSystem.Damage(damage);
         }
     }

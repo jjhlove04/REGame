@@ -92,9 +92,9 @@ public class TrainItemManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             randomItem.Add(trainItemLists[Random.Range(0, trainItemLists.Count)]);
-
-            CupsAndBool(randomItem);
         }
+
+        CupsAndBool(randomItem);
 
         for (int i = 0; i < 3; i++)
         {
@@ -206,7 +206,6 @@ public class TrainItemManager : MonoBehaviour
     {
         if (onCupsAndBool)
         {
-            print(trainItems.Count);
             if (trainItems[0].grade == trainItems[1].grade && trainItems[1].grade == trainItems[2].grade)
             {
                 criticalPercent += Mathf.Clamp(0.03f + 0.02f * countCupsAndBool, 0.05f, 0.17f);

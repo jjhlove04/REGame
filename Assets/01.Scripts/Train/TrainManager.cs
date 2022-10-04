@@ -231,7 +231,7 @@ public class TrainManager : MonoBehaviour
 
     public void BurningCoal(float damage)
     {
-        List<Transform> enemys = LookForTargets(new Vector3(100, 0, 0));
+        List<Transform> enemys = LookForTargets(new Vector3(200, 0, 0));
 
         int count = enemys.Count < burningCoalAmount ? enemys.Count : burningCoalAmount;
 

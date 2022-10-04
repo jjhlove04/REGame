@@ -743,6 +743,7 @@ public class InGameUII : MonoBehaviour
 
         additionalDamage = 0.04f + 0.08f * count;
         reloadMaxTime = 2.6f - 0.4f * count;
+        reloadCurTime = reloadMaxTime;
     }
 
     private void SpeedSeriesLaunches()

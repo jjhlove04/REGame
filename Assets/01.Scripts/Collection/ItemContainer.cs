@@ -89,7 +89,7 @@ public class ItemContainer : MonoBehaviour
     {
         int i = Random.Range(0, commonItem.Length);
 
-        if (reCount < 21)
+        if (reCount < 34)
         {
             Randand(i);
 

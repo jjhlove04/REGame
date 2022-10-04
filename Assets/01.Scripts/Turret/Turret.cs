@@ -432,7 +432,8 @@ public class Turret : MonoBehaviour
             .SetOnHemostatic(IsHemostatic(), hemostaticDamage * damage)
             .SetOnSixthGuitarString(IsSixthGuitarString(), damage * sixthGuitarStringDamage)
             .SetOnDryOil(IsDryOil(), DryOilSlow, dryOilTime)
-            .SetOnShockwaveGenerator(IsShockwaveGenerator());
+            .SetOnShockwaveGenerator(IsShockwaveGenerator())
+            .ThisTurret(this);
 
 
         TaillessPlanaria();
@@ -865,9 +866,8 @@ public class Turret : MonoBehaviour
 
         if (on)
         {
-            this.speedSeriesLaunchesObj = speedSeriesLaunchesObj;
-
-            ObjectPool.instacne.GetObject(speedSeriesLaunchesObj).transform.position = transform.position;
+            this.speedSeriesLaunchesObj = ObjectPool.instacne.GetObject(speedSeriesLaunchesObj);
+            this.speedSeriesLaunchesObj.transform.position = transform.position;
         }
 
         return this;

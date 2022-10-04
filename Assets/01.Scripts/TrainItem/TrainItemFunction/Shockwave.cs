@@ -28,11 +28,6 @@ public class Shockwave : MonoBehaviour
         objectPool = ObjectPool.instacne;
     }
 
-    private void Update()
-    {
-        ShockwaveAttack();
-    }
-
     public void Create(float damage,int count)
     {
         this.damage = damage;

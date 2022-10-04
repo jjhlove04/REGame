@@ -19,11 +19,6 @@ public class SixthGuitarStringProjectileMover : MonoBehaviour
 
     private ObjectPool objectPool;
 
-    private void OnEnable()
-    {
-        StartCoroutine(AttackElectric());
-    }
-
     private void Start()
     {
         objectPool = ObjectPool.instacne;
@@ -41,9 +36,14 @@ public class SixthGuitarStringProjectileMover : MonoBehaviour
             if (targetEnemy != null)
             {
                 end.transform.position = targetEnemy.position;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
                 start.transform.position = targetEnemy.position;
                 NewTarget(targetEnemy.position);
+            }
+
+            else
+            {
+                NewTarget(transform.position);
             }
         }
 
@@ -52,7 +52,7 @@ public class SixthGuitarStringProjectileMover : MonoBehaviour
 
     private void AttackDamage()
     {
-        targetEnemy.GetComponent<HealthSystem>().Damage(damage);
+        targetEnemy?.GetComponent<HealthSystem>().Damage(damage);
     }
 
     public void Create(Transform targetEnemy, float damage)
@@ -62,6 +62,8 @@ public class SixthGuitarStringProjectileMover : MonoBehaviour
 
         start.transform.position = targetEnemy.position;
         end.transform.position = targetEnemy.position;
+
+        StartCoroutine(AttackElectric());
     }
 
     private void NewTarget(Vector3 targetPos)
@@ -69,6 +71,8 @@ public class SixthGuitarStringProjectileMover : MonoBehaviour
         Collider[] hit = Physics.OverlapSphere(targetPos, 50, enemy);
 
         Transform targetEnemy = null;
+
+        int count = this.count<hit.Length?this.count:hit.Length;
 
         for (int i = 0; i < count; i++)
         {

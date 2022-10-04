@@ -22,10 +22,10 @@ public class HpShieldBar : MonoBehaviour{
     }
     private void Update() {
         hpGauge =  (TrainScript.instance.CurTrainHp/TrainScript.instance.CurTrainHpMax);
-        shieldGauge = TrainScript.instance.curTrainShield/ trainInfo.trainMaxShield;
+        shieldGauge = TrainScript.instance.CurTrainShield/ trainInfo.trainMaxShield;
         curHp = (int)(TrainScript.instance.CurTrainHp);
         maxHp = (int)(TrainScript.instance.CurTrainHpMax);
-        curSd = (int)(TrainScript.instance.curTrainShield);
+        curSd = (int)(TrainScript.instance.CurTrainShield);
         maxSd = (int)(trainInfo.trainMaxShield);
         hpText.text = $"{curHp} / <color=red>{maxHp}</color>     <color=#008AD6>{curSd}/{maxSd}</color>";
         hpLogic();

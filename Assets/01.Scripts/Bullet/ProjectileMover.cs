@@ -328,9 +328,9 @@ public class ProjectileMover : MonoBehaviour
         return this;
     }
 
-    protected void ShockwaveGenerator(HealthSystem healthSystem)
+    protected void ShockwaveGenerator(HealthSystem healthSystem,float damage)
     {
-        if (onShockwaveGenerator && healthSystem.IsDead())
+        if (onShockwaveGenerator && healthSystem.IsWillDie(damage))
         {
             turret.ShockwaveGenerator(targetEnemy.position);
         }
