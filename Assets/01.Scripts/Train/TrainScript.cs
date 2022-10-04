@@ -610,10 +610,7 @@ public class TrainScript : MonoBehaviour
         countMachineHeart = count;
         machineHeartMaxShield = CurTrainHpMax * 0.08f + 0.04f * countMachineHeart;
 
-        if (onMachineHeart)
-        {
-            MachineHeartCurShield = machineHeartMaxShield;
-        }
+        MachineHeartCurShield = machineHeartMaxShield;
 
         onMachineHeart = on;
     }
@@ -633,13 +630,14 @@ public class TrainScript : MonoBehaviour
                     machineHeartCurTime = 0;
 
                     MachineHeartCurShield += machineHeartMaxShield * 0.1f;
-
-                    return;
                 }
             }
         }
 
-        plasmaShiled.SetActive(false);
+        if (MachineHeartCurShield <= 0)
+        {
+            plasmaShiled.SetActive(false);
+        }
     }
 
     public void ReloadMachineHeart()

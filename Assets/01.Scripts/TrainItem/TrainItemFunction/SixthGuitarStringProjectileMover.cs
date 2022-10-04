@@ -38,10 +38,13 @@ public class SixthGuitarStringProjectileMover : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            end.transform.position = targetEnemy.position;
-            yield return new WaitForSeconds(0.1f);
-            start.transform.position = targetEnemy.position;
-            NewTarget(targetEnemy.position);
+            if (targetEnemy != null)
+            {
+                end.transform.position = targetEnemy.position;
+                yield return new WaitForSeconds(0.1f);
+                start.transform.position = targetEnemy.position;
+                NewTarget(targetEnemy.position);
+            }
         }
 
         ObjReturn();

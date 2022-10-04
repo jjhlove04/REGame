@@ -206,6 +206,7 @@ public class TrainItemManager : MonoBehaviour
     {
         if (onCupsAndBool)
         {
+            print(trainItems.Count);
             if (trainItems[0].grade == trainItems[1].grade && trainItems[1].grade == trainItems[2].grade)
             {
                 criticalPercent += Mathf.Clamp(0.03f + 0.02f * countCupsAndBool, 0.05f, 0.17f);
@@ -217,6 +218,6 @@ public class TrainItemManager : MonoBehaviour
             }
         }
 
-        TurretManager.Instance.OnShockwaveGenerator(criticalPercent);
+        TurretManager.Instance.OnCupsAndBool(criticalPercent);
     }
 }

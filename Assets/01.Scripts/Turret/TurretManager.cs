@@ -404,7 +404,7 @@ public class TurretManager : MonoBehaviour
         Obj.GetComponent<Shockwave>().Create(inGameUII.TurretDamage*(0.9f+countShockwaveGenerator*0.1f),2*countShockwaveGenerator);
     }
 
-    public void OnShockwaveGenerator(float criticalPercent)
+    public void OnCupsAndBool(float criticalPercent)
     {
         this.criticalPercent = criticalPercent;
 

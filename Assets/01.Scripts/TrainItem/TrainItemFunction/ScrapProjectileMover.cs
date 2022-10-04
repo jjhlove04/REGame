@@ -6,9 +6,6 @@ public class ScrapProjectileMover : MonoBehaviour
 {
     private float damage;
 
-    [SerializeField]
-    private LayerMask m_Mask;
-
     ObjectPool objectPool;
 
     private void Start()
