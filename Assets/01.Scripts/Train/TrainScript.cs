@@ -45,28 +45,54 @@ public class TrainScript : MonoBehaviour
             }
         }
     }
-    public float curTrainShield = 10000;
+    private float maxTrainShield = 10000;
+    public float MaxTrainShield
+    {
+        get { return MaxTrainShield+machineHeartMaxShield; }
+        set
+        {
+            maxTrainShield = value;
+        }
+    }
+
+    private float curTrainShield = 10000;
     public float CurTrainShield
     {
-        get { return curTrainShield+machineHeartCurShield; }
+        get { return curTrainShield+ MachineHeartCurShield; }
         set 
         {
-            if (machineHeartCurShield > 0)
+            if (MachineHeartCurShield > 0)
             {
                 float a = value;
                 if (a < CurTrainShield)
                 {
-                    if (a> machineHeartCurShield)
+                    if (a> MachineHeartCurShield)
                     {
                         curTrainShield-=a - machineHeartCurShield;
-                        machineHeartCurShield = 0;
+                        MachineHeartCurShield = 0;
                     }
                 }
             }
-            curTrainShield = value; 
+
+            else if (MaxTrainShield >= value)
+            {
+                curTrainShield = MaxTrainShield;
+                MachineHeartCurShield = machineHeartMaxShield;
+            }
+
+            else if(maxTrainShield >= value)
+            {
+                curTrainShield = MaxTrainShield;
+                MachineHeartCurShield += value - curTrainShield;
+            }
+
+            else
+            {
+                curTrainShield = value;
+            }
         }
     }
-    public float maxTrainShield = 10000;
+
 
 
     private float machineHeartCurShield = 0;
@@ -145,9 +171,11 @@ public class TrainScript : MonoBehaviour
 
     private GameObject turrets;
 
-    private float wireEntanglementRange = 20;
+    private float wireEntanglementCurRange = 0;
+    private float wireEntanglementRange=20;
     private float wireEntanglementDamage = 0.5f;
     private bool onWireEntanglement = false;
+    private int wireEntanglementCount = 0;
     private float curWireEntanglementTime;
     private float wireEntanglementTimeMax = 1;
     private int wireEntanglementObjecctCount = 5;
@@ -525,10 +553,13 @@ public class TrainScript : MonoBehaviour
 
     public void OnWireEntanglement()
     {
+        wireEntanglementCurRange = wireEntanglementCount;
+
         if (onWireEntanglement)
         {
             wireEntanglementDamage += 0.1f;
-            wireEntanglementRange += wireEntanglementRange * 0.2f;
+
+            wireEntanglementCurRange += wireEntanglementCount * 0.2f;
 
             for (int i = 0; i < wireEntanglementObjecct.Count; i++)
             {
@@ -548,7 +579,7 @@ public class TrainScript : MonoBehaviour
         onWireEntanglement = true;
 
 
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange + (wireEntanglementRange * (testDatabase.plusDistance / 100)), trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementCurRange + (wireEntanglementCurRange * (testDatabase.plusDistance / 100)), trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
             item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.TurretDamage * wireEntanglementDamage);
         }
@@ -556,7 +587,7 @@ public class TrainScript : MonoBehaviour
 
     private void WireEntanglement()
     {
-        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementRange, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
+        foreach (var item in Physics.OverlapBox(trainManager.center, new Vector3(wireEntanglementCurRange, trainManager.size.y, trainManager.size.z), Quaternion.identity, layerMask))
         {
             item.gameObject.GetComponent<HealthSystem>()?.Damage(inGameUII.TurretDamage * wireEntanglementDamage);
         }

@@ -52,9 +52,9 @@ public class EngineOilLinoleum : MonoBehaviour
         {
             if (collider[i].gameObject.activeSelf)
             {
-                healthSystem = collider[i].GetComponent<HealthSystem>();
+                healthSystem = collider[i]?.GetComponent<HealthSystem>();
 
-                healthSystem.OnEngineOil(2,0.5f,damage);
+                healthSystem?.OnEngineOil(2,0.5f,damage);
             }
         }
     }

@@ -16,15 +16,24 @@ public class ScrapProjectileMover : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Rotate(new Vector3(0, 360*Time.deltaTime, 0));
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).localPosition -= new Vector3(0, transform.GetChild(i).localPosition.y, 0);
+
+            transform.GetChild(i).localRotation = Quaternion.Euler(new Vector3(0,0,0));
+        }
     }
 
-    public void Create(float damage, int count) 
+    public void Create(float damage, int count,Vector3 pos) 
     { 
         this.damage = damage;
 
         CreateScrap(count);
 
         StartCoroutine(Return());
+
+        transform.position = pos;
     }
 
     private void CreateScrap(int count) 
@@ -34,7 +43,7 @@ public class ScrapProjectileMover : MonoBehaviour
             count = 10;
         }
 
-        int pos = Random.Range(20, 70);
+        int pos = Random.Range(20, 50);
 
         float X;
         float Z;
@@ -49,13 +58,10 @@ public class ScrapProjectileMover : MonoBehaviour
             X = Mathf.Sin(Mathf.Deg2Rad * angle) * pos;
             Z = Mathf.Cos(Mathf.Deg2Rad * angle) * pos;
 
-            scrapTrm.localRotation = Quaternion.Euler(new Vector3(0,0,0));
-
-            scrapTrm.localPosition = new Vector3(X, 0,Z);
+            scrapTrm.position = new Vector3(X, 0, Z);
 
             angle += (360 / count);
         }
-
         
     }
 
@@ -74,13 +80,10 @@ public class ScrapProjectileMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        HealthSystem healthSystem = other.GetComponent<HealthSystem>();
-
-        print(1);
-
         if (other.tag == "Enemy")
         {
-            print(2);
+            HealthSystem healthSystem = other?.GetComponent<HealthSystem>();
+
             healthSystem.Damage(damage);
         }
     }
