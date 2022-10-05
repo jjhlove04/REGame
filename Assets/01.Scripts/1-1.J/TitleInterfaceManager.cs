@@ -232,6 +232,10 @@ public class TitleInterfaceManager : MonoBehaviour
         acquiredExp.text = testTurretDatabase.resultEXP.ToString();
         damageTxt.text = testTurretDatabase.resultDamage.ToString();
 
+
+        levelTxt.text = testTurretDatabase.level.ToString();
+        curExp += testTurretDatabase.tCurExp + testTurretDatabase.resultEXP;
+
         maxExp = parsingJson.maxExp[testTurretDatabase.level];
 
     }
