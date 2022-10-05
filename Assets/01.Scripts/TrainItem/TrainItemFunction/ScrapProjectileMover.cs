@@ -15,7 +15,7 @@ public class ScrapProjectileMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Rotate(new Vector3(0, 360*Time.deltaTime, 0));
+        transform.Rotate(new Vector3(0, 240*Time.deltaTime, 0));
 
         for (int i = 0; i < transform.childCount; i++)
         {

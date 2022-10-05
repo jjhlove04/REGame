@@ -41,24 +41,24 @@ public class BurningCoalProjectileMover : MonoBehaviour
 
         else
         {
-            gameObject.SetActive(false);
+            objectPool.ReturnGameObject(gameObject);
         }
     }
 
-    protected void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        objectPool.GetObject(explosionEffect).transform.position = transform.position;
+        HealthSystem healthSystem = other?.GetComponent<HealthSystem>();
 
-        objectPool.ReturnGameObject(gameObject);
-
-        HealthSystem healthSystem = other.GetComponent<HealthSystem>();
-
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && healthSystem !=null)
         {
             healthSystem.Damage(damage);
 
             //DamageText.Create(targetEnemy.position, damage,new Color(1,42/255,42/255));
         }
+
+        objectPool.GetObject(explosionEffect).transform.position = transform.position;
+
+        objectPool.ReturnGameObject(gameObject);
     }
 
     public BurningCoalProjectileMover Create(float damage, Transform targetEnemy)

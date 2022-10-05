@@ -235,8 +235,6 @@ public class TrainManager : MonoBehaviour
 
         int count = enemys.Count < burningCoalAmount ? enemys.Count : burningCoalAmount;
 
-        print(count);
-
         for (int i = 0; i < count; i++)
         {
             GameObject bullet = ObjectPool.instacne.GetObject(burningCoalProjectile);   
@@ -265,10 +263,10 @@ public class TrainManager : MonoBehaviour
                 if (!enemy.isDying)
                 {
                     targetEnemy = hit[i].transform;
+
+                    enemys.Add(targetEnemy);
                 }
             }
-
-            enemys.Add(targetEnemy);
         }
 
         return enemys;

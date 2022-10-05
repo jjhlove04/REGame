@@ -48,7 +48,7 @@ public class TrainScript : MonoBehaviour
     private float maxTrainShield = 10000;
     public float MaxTrainShield
     {
-        get { return MaxTrainShield+machineHeartMaxShield; }
+        get { return (int)(maxTrainShield + machineHeartMaxShield); }
         set
         {
             maxTrainShield = value;
