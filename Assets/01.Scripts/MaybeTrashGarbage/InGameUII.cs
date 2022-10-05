@@ -668,7 +668,7 @@ public class InGameUII : MonoBehaviour
         itemExplainPanel.transform.GetChild(3).GetChild(3).GetComponent<Text>().text = "-" + Math.Round((shootTime * 0.05f), 3);
         itemExplainPanel.transform.GetChild(3).GetChild(4).GetComponent<Text>().text = "+0.2";
         itemExplainPanel.transform.GetChild(3).GetChild(5).GetComponent<Text>().text = "+" + TurretManager.Instance.CriAmount();
-        itemExplainPanel.transform.GetChild(3).GetChild(6).GetComponent<Text>().text = "-0";
+        itemExplainPanel.transform.GetChild(3).GetChild(6).GetComponent<Text>().text = "-5";
     }
     public void ExpBar()
     {
