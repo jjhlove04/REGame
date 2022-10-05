@@ -7,5 +7,6 @@ public class SixthGuitarString : TrainItem
     public override void ItemEffect()
     {
         TurretManager.Instance.OnSixthGuitarString();
+        curCarry++;
     }
 }
