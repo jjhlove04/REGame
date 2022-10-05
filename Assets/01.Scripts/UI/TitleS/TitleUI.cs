@@ -254,6 +254,7 @@ public class TitleUI : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             TestTurretDataBase.Instance.curTp++;
+            TestTurretDataBase.Instance.resultGold += 1000;
         }
     }
 

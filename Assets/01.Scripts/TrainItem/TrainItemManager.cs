@@ -83,6 +83,24 @@ public class TrainItemManager : MonoBehaviour
         reCount = maxReCount;
 
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            for (int i = 0; i < trainItemLists.Count; i++)
+            {
+                trainItemLists[i].ItemEffect();
+
+                GameObject obj = objectPool.GetObject(item);
+                obj.GetComponent<Image>().sprite = trainItemLists[i].itemImage;
+                obj.GetComponent<ItemBase>().itemPrefab = trainItemLists[i];
+                obj.transform.parent = inGameUII.itemPanel.transform;
+            }
+        }
+
+
+
+    }
 
     public void GetRandomItem()
     {

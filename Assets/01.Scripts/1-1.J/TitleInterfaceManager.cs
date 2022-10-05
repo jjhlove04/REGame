@@ -251,7 +251,13 @@ public class TitleInterfaceManager : MonoBehaviour
         {
             Debug.Log((int)(parsingJson.price[0] * 0.53f));
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TestTurretDataBase.Instance.curTp++;
+            TestTurretDataBase.Instance.resultGold += 1000;
+        }
+
         InitPlayerInfo();
         ExpBar();
         moneyTxt.text = "소지골드 : " + testTurretDatabase.resultGold.ToString();
