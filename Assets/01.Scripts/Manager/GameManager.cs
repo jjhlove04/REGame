@@ -452,7 +452,7 @@ public class GameManager : MonoBehaviour
     {
         trainScript.shapeMemoryAlloyHp = shapeMemoryAlloyCount * shapeMemoryAlloy;
 
-        trainScript.CurTrainHpMax = trainScript.CurTrainHpMax + (int)trainScript.shapeMemoryAlloyHp;
+        shapeMemoryAlloy=(int)trainScript.shapeMemoryAlloyHp;
     }
 
     public void OnScrap()

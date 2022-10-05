@@ -8,11 +8,13 @@ public class TrainScript : MonoBehaviour
 
     public TrainInfo traininfo;
 
+    public int shapeMemoryAlloy;
+
     private int curTrainMax;
 
     public int CurTrainHpMax
     {
-        get { return curTrainMax; }
+        get { return curTrainMax+ shapeMemoryAlloy; }
         set
         {
             if (value > curTrainMax)
@@ -204,6 +206,7 @@ public class TrainScript : MonoBehaviour
 
         CurTrainHp = CurTrainHpMax = traininfo.trainMaxHp;
         CurTrainShield = traininfo.trainMaxShield;
+        MaxTrainShield = traininfo.trainMaxShield;
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
