@@ -158,7 +158,6 @@ public class InGameUII : MonoBehaviour
     [Header("���������۰���")]
     public CanvasGroup itemPanel;
     public Image itemBuffPanel;
-    public Image itemExPanel;
     public Image buffStrPanel;
 
     public ParticleSystem noTabParticleObj;
@@ -652,13 +651,13 @@ public class InGameUII : MonoBehaviour
 
     public void ItemValueExp(float damage, float recover, int def, float shootTime, float distance, float critical, float activate)
     {
-        itemExplainPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = damage.ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = recover.ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = Math.Round(damage, 2).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = Math.Round(recover,2).ToString();
         itemExplainPanel.transform.GetChild(2).GetChild(2).GetComponent<Text>().text = def.ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = Math.Round(shootTime, 3).ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(4).GetComponent<Text>().text = distance.ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(5).GetComponent<Text>().text = critical.ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(6).GetComponent<Text>().text = activate.ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = Math.Round(shootTime, 2).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(4).GetComponent<Text>().text = Math.Round(distance,2).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(5).GetComponent<Text>().text = Math.Round(critical,2).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(6).GetComponent<Text>().text = Math.Round(activate,2).ToString();
     }
 
     public void BeforeValue()

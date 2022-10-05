@@ -56,6 +56,8 @@ public class TitleInterfaceManager : MonoBehaviour
     public Text explainTxt;
     public Text expName;
 
+    private float maxMoney = 0;
+
     [Header("탸이틀 - 결과패널")]
     public GameObject resultPanel;
     public float curExp = 0;
@@ -252,7 +254,7 @@ public class TitleInterfaceManager : MonoBehaviour
             Debug.Log((int)(parsingJson.price[0] * 0.53f));
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKey(KeyCode.P))
         {
             TestTurretDataBase.Instance.curTp++;
             TestTurretDataBase.Instance.resultGold += 1000;
@@ -621,7 +623,13 @@ public class TitleInterfaceManager : MonoBehaviour
                 {
                     TrainUpgrade(i);
                     testTurretDatabase.resultGold -= parsingJson.price[i];
+
+                    maxMoney += parsingJson.price[i];
+                    Debug.Log(maxMoney);
+
                     parsingJson.price[i] += (int)(parsingJson.price[i] * 0.53f);
+
+
 
                     for (int j = 0; j < upgradeBtn.Count; j++)
                     {
