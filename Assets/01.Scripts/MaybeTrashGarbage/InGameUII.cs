@@ -544,7 +544,7 @@ public class InGameUII : MonoBehaviour
     public void OpenTitleScene()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("RemakeTitle");
 
     }
 

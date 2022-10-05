@@ -95,11 +95,13 @@ public class TrainItemManager : MonoBehaviour
                 obj.GetComponent<Image>().sprite = trainItemLists[i].itemImage;
                 obj.GetComponent<ItemBase>().itemPrefab = trainItemLists[i];
                 obj.transform.parent = inGameUII.itemPanel.transform;
+
+                if (trainItemLists[i].curCarry > 1)
+                {
+                    obj.SetActive(false);
+                }
             }
         }
-
-
-
     }
 
     public void GetRandomItem()

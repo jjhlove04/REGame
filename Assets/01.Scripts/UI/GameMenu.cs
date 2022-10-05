@@ -106,7 +106,7 @@ public class GameMenu : MonoBehaviour
     public void Exit()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("RemakeTitle");
     }
 
     //세팅 나가기 및 볼륨 저장
