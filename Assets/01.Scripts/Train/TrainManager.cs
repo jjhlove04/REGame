@@ -235,13 +235,15 @@ public class TrainManager : MonoBehaviour
 
         int count = enemys.Count < burningCoalAmount ? enemys.Count : burningCoalAmount;
 
+        print(count);
+
         for (int i = 0; i < count; i++)
         {
             GameObject bullet = ObjectPool.instacne.GetObject(burningCoalProjectile);   
 
             bullet.GetComponent<BurningCoalProjectileMover>().Create(damage, enemys[i]);
 
-            bullet.transform.position = new Vector3(transform.position.x, 5, (-(trainContainer.Count) * 20) + 27);
+            bullet.transform.position = new Vector3(transform.position.x, 30, (-(trainContainer.Count) * 20) + 27);
         }
     }
 
@@ -257,17 +259,17 @@ public class TrainManager : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            Enemy enemy = hit[i].GetComponent<Enemy>();
             if (hit[i].CompareTag("Enemy"))
             {
+                Enemy enemy = hit[i].GetComponent<Enemy>();
                 if (!enemy.isDying)
                 {
                     targetEnemy = hit[i].transform;
                 }
             }
-        }
 
-        enemys.Add(targetEnemy);
+            enemys.Add(targetEnemy);
+        }
 
         return enemys;
     }

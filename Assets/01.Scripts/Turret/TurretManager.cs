@@ -393,7 +393,7 @@ public class TurretManager : MonoBehaviour
         for (int i = 0; i < turrets.transform.childCount; i++)
         {
             turrets.transform.GetChild(i).GetComponent<Turret>()
-                .OnShockwaveGenerator(onSpeedSeriesLaunches);
+                .OnShockwaveGenerator(onShockwaveGenerator);
         }
     }
 

@@ -46,7 +46,7 @@ public class HealthSystem : MonoBehaviour
 
     public bool IsWillDie(float damage)
     {
-        return curHealthAmount- damage <= 0;
+        return (curHealthAmount- damage) <= 0;
     }
 
 

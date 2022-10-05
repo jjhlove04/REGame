@@ -52,10 +52,11 @@ public class Shockwave : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            if (collider[i].gameObject.activeSelf)
-            {
-                healthSystem = collider[i].GetComponent<HealthSystem>();
+            healthSystem = collider[i].GetComponent<HealthSystem>();
 
+            if (healthSystem!=null)
+            {
+                print(1);
                 healthSystem.LaveLamp(damage);
             }
         }

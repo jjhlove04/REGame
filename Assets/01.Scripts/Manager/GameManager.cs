@@ -464,7 +464,7 @@ public class GameManager : MonoBehaviour
     private void Scrap()
     {
         GameObject obj = objectPool.GetObject(scrapObj);
-        obj.transform.position = new Vector3(transform.position.x, 5, (-(trainManager.trainContainer.Count) * 20) + 27);
+        obj.transform.position = new Vector3(transform.position.x, 3, (-(trainManager.trainContainer.Count) * 20) + 27);
         obj.GetComponent<ScrapProjectileMover>().Create(InGameUII._instance.TurretDamage * 0.35f, countScrap);
     }
 }

@@ -49,10 +49,14 @@ public class ScrapProjectileMover : MonoBehaviour
             X = Mathf.Sin(Mathf.Deg2Rad * angle) * pos;
             Z = Mathf.Cos(Mathf.Deg2Rad * angle) * pos;
 
+            scrapTrm.localRotation = Quaternion.Euler(new Vector3(0,0,0));
+
             scrapTrm.localPosition = new Vector3(X, 0,Z);
 
             angle += (360 / count);
         }
+
+        
     }
 
 
@@ -68,7 +72,7 @@ public class ScrapProjectileMover : MonoBehaviour
         objectPool.ReturnGameObject(gameObject);
     }
 
-    protected void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         HealthSystem healthSystem = other.GetComponent<HealthSystem>();
 
