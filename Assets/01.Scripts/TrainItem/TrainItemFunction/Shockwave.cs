@@ -56,7 +56,6 @@ public class Shockwave : MonoBehaviour
 
             if (healthSystem!=null)
             {
-                print(1);
                 healthSystem.LaveLamp(damage);
             }
         }

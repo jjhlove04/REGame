@@ -699,9 +699,6 @@ public class TrainScript : MonoBehaviour
         int shield = (int)(CurTrainHpMax * 0.08f + CurTrainHpMax * (0.04f * countMachineHeart))-(int)machineHeartMaxShield;
         machineHeartCurShield += shield;
         machineHeartMaxShield+= shield;
-
-        print(CurTrainShield);
-        print(MaxTrainShield);
     }
 
     public void ReChargeMachineHeart()
