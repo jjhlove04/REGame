@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# 컴파일러",
+        "version": "3.11.0.0",
+        "fileVersion": "3.11.0-4.22108.8 (d9bef045)",
+        "semanticVersion": "3.11.0",
+        "language": "ko-KR"
+      },
+      "results": [
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'Unmask_Demo' to match pascal case naming rules, consider using 'UnmaskDemo'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/REGame/Assets/Samples/UI%20Unmask/1.4.0/Demo/Unmask_Demo.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 18,
+                  "endLine": 6,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1117",
+          "level": "warning",
+          "message": "Rename 'unmask' which hides the field with the same name.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/REGame/Assets/Samples/UI%20Unmask/1.4.0/Demo/Unmask_Demo.cs",
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 26,
+                  "endLine": 35,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3904",
+          "level": "warning",
+          "message": "Provide an 'AssemblyVersion' attribute for assembly 'Unmask_Demo'.",
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "S101": {
+          "id": "S101",
+          "shortDescription": "Types should be named in PascalCase",
+          "fullDescription": "Shared naming conventions allow teams to collaborate efficiently. This rule checks whether or not type names are using PascalCase. To reduce noise, two consecutive upper case characters are allowed unless they form the whole type name. So, MyXClass is compliant, but XC on its own is not.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-101",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S1117": {
+          "id": "S1117",
+          "shortDescription": "Local variables should not shadow class fields",
+          "fullDescription": "Overriding or shadowing a variable declared in an outer scope can strongly impact the readability, and therefore the maintainability, of a piece of code. Further, it could lead maintainers to introduce bugs because they think they’re using one variable but are really using another.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1117",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3904": {
+          "id": "S3904",
+          "shortDescription": "Assemblies should have version information",
+          "fullDescription": "If no AssemblyVersionAttribute is provided, the same default version will be used for every build. Since the version number is used by The .NET Framework to uniquely identify an assembly this can lead to broken dependencies.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3904",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

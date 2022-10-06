@@ -26,7 +26,7 @@ public class HpShieldBar : MonoBehaviour{
         curHp = (int)(TrainScript.instance.CurTrainHp);
         maxHp = (int)(TrainScript.instance.CurTrainHpMax);
         curSd = (int)(TrainScript.instance.CurTrainShield);
-        maxSd = (int)(trainInfo.trainMaxShield);
+        maxSd = (int)(TrainScript.instance.MaxTrainShield);
         hpText.text = $"{curHp} / <color=red>{maxHp}</color>     <color=#008AD6>{curSd}/{maxSd}</color>";
         hpLogic();
         

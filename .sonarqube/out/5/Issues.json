@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# 컴파일러",
+        "version": "3.11.0.0",
+        "fileVersion": "3.11.0-4.22108.8 (d9bef045)",
+        "semanticVersion": "3.11.0",
+        "language": "ko-KR"
+      },
+      "results": [
+        {
+          "ruleId": "CS0414",
+          "level": "warning",
+          "message": "'ECNaming._bEditOn' 필드가 할당되었지만 사용되지 않았습니다.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/REGame/Assets/01.Scripts/UI/Editor/ECNaming.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 18,
+                  "endLine": 7,
+                  "endColumn": 26
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "UNT0013",
+          "level": "note",
+          "message": "SerializeField attribute is invalid or redundant for property or field: 'ins_GameObjects'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/REGame/Assets/01.Scripts/UI/Editor/ECNaming.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 5,
+                  "endLine": 10,
+                  "endColumn": 70
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "UNT0017",
+          "level": "note",
+          "message": "'SetPixels' is slower than SetPixels32.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///D:/REGame/Assets/Shared/Ramps/Editor/RampAssetEditor.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 15,
+                  "endLine": 24,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CS0414": {
+          "id": "CS0414",
+          "shortDescription": "필드가 할당되었지만 사용되지 않았습니다.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS0414)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "UNT0013": {
+          "id": "UNT0013",
+          "shortDescription": "Remove invalid SerializeField attribute",
+          "fullDescription": "SerializeField attribute does not work on properties, and are unnecessary for public fields.",
+          "defaultLevel": "note",
+          "properties": {
+            "category": "Correctness",
+            "isEnabledByDefault": true
+          }
+        },
+        "UNT0017": {
+          "id": "UNT0017",
+          "shortDescription": "SetPixels invocation is slow",
+          "fullDescription": "Compared to SetPixels, SetPixels32 is much faster and uses less memory.",
+          "defaultLevel": "note",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true
+          }
+        }
+      }
+    }
+  ]
+}

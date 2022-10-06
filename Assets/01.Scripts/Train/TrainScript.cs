@@ -17,6 +17,8 @@ public class TrainScript : MonoBehaviour
         get { return curTrainMax+ shapeMemoryAlloy; }
         set
         {
+            CheckMachineHeart();
+
             if (value > curTrainMax)
             {
                 curTrainHp += value - curTrainMax;
@@ -681,6 +683,13 @@ public class TrainScript : MonoBehaviour
         MachineHeartCurShield = machineHeartMaxShield;
 
         onMachineHeart = on;
+    }
+
+    public void CheckMachineHeart()
+    {
+        int shield = (int)(CurTrainHpMax * 0.08f + CurTrainHpMax * (0.04f * countMachineHeart))-(int)machineHeartMaxShield;
+        curTrainShield += shield;
+        MaxTrainShield += shield;
     }
 
     public void ReChargeMachineHeart()
