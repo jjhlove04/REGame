@@ -41,6 +41,12 @@ public class EnamyManager : MonoBehaviour
                 isHUp = false;
             }
         }
+        
+        if(GameManager.Instance.TrainLevel == 1)
+        {
+            //enemies[0].enemy.transform.GetChild(0).GetComponent<MeshRenderer>().material = ;
+            //enemies[0].healthAmountMax = (GameManager.Instance.TrainLevel * )
+        }
 
     }
 

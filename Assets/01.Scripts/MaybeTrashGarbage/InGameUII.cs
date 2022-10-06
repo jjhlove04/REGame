@@ -651,13 +651,13 @@ public class InGameUII : MonoBehaviour
 
     public void ItemValueExp(float damage, float recover, int def, float shootTime, float distance, float critical, float activate)
     {
-        itemExplainPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = Math.Round(damage, 2).ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = Math.Round(recover,2).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = Math.Round(damage, 1).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = Math.Round(recover,1).ToString();
         itemExplainPanel.transform.GetChild(2).GetChild(2).GetComponent<Text>().text = def.ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = Math.Round(shootTime, 2).ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(4).GetComponent<Text>().text = Math.Round(distance,2).ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(5).GetComponent<Text>().text = Math.Round(critical,2).ToString();
-        itemExplainPanel.transform.GetChild(2).GetChild(6).GetComponent<Text>().text = Math.Round(activate,2).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = Math.Round(shootTime, 1).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(4).GetComponent<Text>().text = Math.Round(distance,1).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(5).GetComponent<Text>().text = Math.Round(critical,1).ToString();
+        itemExplainPanel.transform.GetChild(2).GetChild(6).GetComponent<Text>().text = Math.Round(activate,1).ToString();
     }
 
     public void BeforeValue()
@@ -665,7 +665,7 @@ public class InGameUII : MonoBehaviour
         itemExplainPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "+3";
         itemExplainPanel.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = "+0.2";
         itemExplainPanel.transform.GetChild(3).GetChild(2).GetComponent<Text>().text = "+2";
-        itemExplainPanel.transform.GetChild(3).GetChild(3).GetComponent<Text>().text = "-" + Math.Round((shootTime * 0.05f), 3);
+        itemExplainPanel.transform.GetChild(3).GetChild(3).GetComponent<Text>().text = "-" + Math.Round((shootTime * 0.05f), 1);
         itemExplainPanel.transform.GetChild(3).GetChild(4).GetComponent<Text>().text = "+0.2";
         itemExplainPanel.transform.GetChild(3).GetChild(5).GetComponent<Text>().text = "+" + TurretManager.Instance.CriAmount();
         itemExplainPanel.transform.GetChild(3).GetChild(6).GetComponent<Text>().text = "-5";

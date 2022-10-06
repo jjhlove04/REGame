@@ -674,62 +674,84 @@ public class TitleInterfaceManager : MonoBehaviour
         {
             case 0:
                 testTurretDatabase.plusDamage += 4;
+                ChangeCol(i);
                 break;
             case 1:
                 testTurretDatabase.plusDef += 1;
+                ChangeCol(i);
                 break;
             case 2:
                 testTurretDatabase.plusRedDamage += 1;
+                ChangeCol(i);
                 break;
             case 3:
                 testTurretDatabase.plusMaxHp += 10;
+                ChangeCol(i);
                 break;
             case 4:
                 if (testTurretDatabase.plusRecoverAmount == 0)
                 {
                     testTurretDatabase.plusRecoverAmount += 0.1f;
+                    ChangeCol(i);
                 }
                 else if (testTurretDatabase.plusRecoverAmount == 0.1f)
                 {
                     testTurretDatabase.plusRecoverAmount += 0.1f;
+                    ChangeCol(i);
                 }
                 else if (testTurretDatabase.plusRecoverAmount == 0.2f)
                 {
                     testTurretDatabase.plusRecoverAmount += 0.3f;
+                    ChangeCol(i);
                 }
                 break;
             case 5:
                 testTurretDatabase.plusDistance += 5f;
+                ChangeCol(i);
                 break;
             case 6:
                 testTurretDatabase.plusBuffTime += 3f;
+                ChangeCol(i);
                 break;
             case 7:
                 testTurretDatabase.plustTurretDistance += 10f;
+                ChangeCol(i);
                 break;
             case 8:
                 testTurretDatabase.plusReload += 8;
+                ChangeCol(i);
                 break;
             case 9:
                 testTurretDatabase.plusLuck += 10f;
+                ChangeCol(i);
                 break;
             case 10:
                 testTurretDatabase.plusSpeed += 10f;
+                ChangeCol(i);
                 break;
             case 11:
                 testTurretDatabase.plusRepair += 2f;
+                ChangeCol(i);
                 break;
             case 12:
                 testTurretDatabase.trainInfo.trainCount += 1;
+                ChangeCol(i);
                 break;
             case 13:
                 testTurretDatabase.plusCurse += 10;
+                ChangeCol(i);
                 break;
             case 14:
                 testTurretDatabase.plusJesus += 1;
+                ChangeCol(i);
                 break;
             default:
                 break;
         }
+    }
+
+    public void ChangeCol(int i)
+    {
+        statList[i].transform.GetChild(2).GetChild(parsingJson.count[i]).GetComponent<Image>().color = new Color(1, 1, 0);
     }
 }
