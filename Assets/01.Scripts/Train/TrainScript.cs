@@ -17,7 +17,7 @@ public class TrainScript : MonoBehaviour
         get { return curTrainMax+ shapeMemoryAlloy; }
         set
         {
-            CheckMachineHeart();
+
 
             if (value > curTrainMax)
             {
@@ -27,7 +27,7 @@ public class TrainScript : MonoBehaviour
 
                 if (onMachineHeart)
                 {
-                    machineHeartMaxShield = CurTrainHpMax * 0.08f + 0.04f * countMachineHeart;
+                    CheckMachineHeart();
                 }
             }
         }
@@ -68,31 +68,39 @@ public class TrainScript : MonoBehaviour
             if (MachineHeartCurShield > 0)
             {
                 float a = value;
-                if (a < CurTrainShield)
+                if (a< curTrainShield + MachineHeartCurShield)
                 {
-                    if (a> MachineHeartCurShield)
+                    if (a > MachineHeartCurShield)
                     {
-                        curTrainShield-=a - machineHeartCurShield;
+                        curTrainShield -= curTrainShield + MachineHeartCurShield + MachineHeartCurShield - a;
                         MachineHeartCurShield = 0;
                     }
+
+                    else
+                    {
+                        MachineHeartCurShield -= curTrainShield + MachineHeartCurShield - a;
+                    }
                 }
-            }
 
-            else if (MaxTrainShield >= value)
-            {
-                curTrainShield = MaxTrainShield;
-                MachineHeartCurShield = machineHeartMaxShield;
-            }
+                else
+                {
+                    if (a - machineHeartCurShield > maxTrainShield)
+                    {
+                        MachineHeartCurShield +=a - curTrainMax;
+                        curTrainShield = curTrainMax;
+                    }
 
-            else if(maxTrainShield >= value)
-            {
-                curTrainShield = MaxTrainShield;
-                MachineHeartCurShield += value - curTrainShield;
+                    else
+                    {
+                        curTrainShield = a;
+                    }
+                }
+
             }
 
             else
             {
-                curTrainShield = value;
+                curTrainShield=Mathf.Clamp(value, 0, maxTrainShield);
             }
         }
     }
@@ -209,6 +217,7 @@ public class TrainScript : MonoBehaviour
         CurTrainHp = CurTrainHpMax = traininfo.trainMaxHp;
         CurTrainShield = traininfo.trainMaxShield;
         MaxTrainShield = traininfo.trainMaxShield;
+
         roomHp = traininfo.trainMaxHp / trainManager.curTrainCount;
         smokeHp = roomHp / 10;
         initRoomHp = roomHp;
@@ -688,8 +697,11 @@ public class TrainScript : MonoBehaviour
     public void CheckMachineHeart()
     {
         int shield = (int)(CurTrainHpMax * 0.08f + CurTrainHpMax * (0.04f * countMachineHeart))-(int)machineHeartMaxShield;
-        curTrainShield += shield;
-        MaxTrainShield += shield;
+        machineHeartCurShield += shield;
+        machineHeartMaxShield+= shield;
+
+        print(CurTrainShield);
+        print(MaxTrainShield);
     }
 
     public void ReChargeMachineHeart()
