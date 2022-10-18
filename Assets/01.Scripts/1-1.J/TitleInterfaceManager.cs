@@ -47,6 +47,7 @@ public class TitleInterfaceManager : MonoBehaviour
     public GameObject fadeImg;
     public GameObject[] upPanel;
     public List<Button> upgradeBtn = new List<Button>();
+    public List<Button> downgradeBtn = new List<Button>(); 
     public List<Button> statList = new List<Button>();
     public GameObject trainUpgradeContent;
     public GameObject levelBox;
@@ -187,19 +188,15 @@ public class TitleInterfaceManager : MonoBehaviour
 
         for (int i = 0; i < upgradeBtn.Count; i++)
         {
-            if (parsingJson.count[i] == parsingJson.upgradeCose[i])
-            {
-                upgradeNames[i].text = "MAX";
-            }
-            else
-            {
-                upgradeNames[i].text = parsingJson.count[i].ToString();
-            }
-        }
+            upgradeNames[i].text = parsingJson.count[i].ToString();
+            needGoldTxt.text = "가격 : " + parsingJson.price[i].ToString();
+            explainTxt.text = parsingJson.explation[i];
+            expName.text = parsingJson.upgradeName[i];
 
-        for (int i = 0; i < upgradeBtn.Count; i++)
-        {
             TrainUpgradeBtn(i);
+
+            TrainDownBtn(i);
+
         }
 
         for (int j = 0; j < statList.Count; j++)
@@ -240,6 +237,17 @@ public class TitleInterfaceManager : MonoBehaviour
 
         maxExp = parsingJson.maxExp[testTurretDatabase.level];
 
+        for (int i = 0; i < upgradeBtn.Count; i++)
+        {
+            if (parsingJson.count[i] == parsingJson.upgradeCose[i])
+            {
+                upgradeNames[i].text = "MAX";
+            }
+            else
+            {
+                upgradeNames[i].text = parsingJson.count[i].ToString();
+            }
+        }
     }
 
 
@@ -385,6 +393,7 @@ public class TitleInterfaceManager : MonoBehaviour
             }));
 
             TrainUpgradePanel();
+            FirstCol();
 
             sceneIndex = 3;
             upPanel1Show.SetAutoKill(false);
@@ -515,10 +524,13 @@ public class TitleInterfaceManager : MonoBehaviour
     {
         for (int i = 0; i < trainUpgradeContent.transform.childCount; i++)
         {
-            trainUpgradeContent.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = ParsingJson.Instnace.upgradeName[i];
-            for (int j = 0; j < ParsingJson.Instnace.upgradeCose[i]; j++)
+            trainUpgradeContent.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = parsingJson.upgradeName[i];
+            if (trainUpgradeContent.transform.GetChild(i).GetChild(2).childCount < 1)
             {
-                Instantiate(levelBox, trainUpgradeContent.transform.GetChild(i).GetChild(2));
+                for (int j = 0; j < parsingJson.upgradeCose[i]; j++)
+                {
+                    Instantiate(levelBox, trainUpgradeContent.transform.GetChild(i).GetChild(2));
+                }
             }
         }
     }
@@ -625,7 +637,6 @@ public class TitleInterfaceManager : MonoBehaviour
                     testTurretDatabase.resultGold -= parsingJson.price[i];
 
                     maxMoney += parsingJson.price[i];
-                    Debug.Log(maxMoney);
 
                     parsingJson.price[i] += (int)(parsingJson.price[i] * 0.53f);
 
@@ -668,90 +679,223 @@ public class TitleInterfaceManager : MonoBehaviour
         });
     }
 
+    public void TrainDownBtn(int i)
+    {
+        downgradeBtn[i].onClick.AddListener(() =>
+        {
+            if (parsingJson.count[i] > 0)
+            {
+                testTurretDatabase.resultGold += parsingJson.price[i];
+
+                maxMoney -= parsingJson.price[i];
+
+                parsingJson.price[i] -= (int)(parsingJson.price[i] * 0.53f);
+
+
+
+                for (int j = 0; j < upgradeBtn.Count; j++)
+                {
+                    if (j != i)
+                    {
+                        parsingJson.price[j] -= (int)(parsingJson.price[j] * 0.09f);
+                    }
+                }
+
+                parsingJson.count[i]--;
+
+                TrainDowngrade(i);
+
+                upgradeNames[i].text = parsingJson.count[i].ToString();
+
+            }
+            needGoldTxt.text = "가격 : " + parsingJson.price[i].ToString();
+            explainTxt.text = parsingJson.explation[i];
+            expName.text = parsingJson.upgradeName[i];
+        });
+    }
+
     public void TrainUpgrade(int i)
     {
         switch (i)
         {
             case 0:
                 testTurretDatabase.plusDamage += 4;
-                ChangeCol(i);
+                ChangeCol(i,0);
                 break;
             case 1:
                 testTurretDatabase.plusDef += 1;
-                ChangeCol(i);
+                ChangeCol(i,0);
                 break;
             case 2:
                 testTurretDatabase.plusRedDamage += 1;
-                ChangeCol(i);
+                ChangeCol(i, 0);
                 break;
             case 3:
                 testTurretDatabase.plusMaxHp += 10;
-                ChangeCol(i);
+                ChangeCol(i, 0);
                 break;
             case 4:
                 if (testTurretDatabase.plusRecoverAmount == 0)
                 {
                     testTurretDatabase.plusRecoverAmount += 0.1f;
-                    ChangeCol(i);
+                    ChangeCol(i, 0);
                 }
                 else if (testTurretDatabase.plusRecoverAmount == 0.1f)
                 {
                     testTurretDatabase.plusRecoverAmount += 0.1f;
-                    ChangeCol(i);
+                    ChangeCol(i, 0);
                 }
                 else if (testTurretDatabase.plusRecoverAmount == 0.2f)
                 {
                     testTurretDatabase.plusRecoverAmount += 0.3f;
-                    ChangeCol(i);
+                    ChangeCol(i, 0);
                 }
                 break;
             case 5:
                 testTurretDatabase.plusDistance += 5f;
-                ChangeCol(i);
+                ChangeCol(i, 0); 
                 break;
             case 6:
                 testTurretDatabase.plusBuffTime += 3f;
-                ChangeCol(i);
+                ChangeCol(i, 0);
                 break;
             case 7:
                 testTurretDatabase.plustTurretDistance += 10f;
-                ChangeCol(i);
+                ChangeCol(i, 0);
                 break;
             case 8:
                 testTurretDatabase.plusReload += 8;
-                ChangeCol(i);
+                ChangeCol(i, 0);
                 break;
             case 9:
                 testTurretDatabase.plusLuck += 10f;
-                ChangeCol(i);
+                ChangeCol(i, 0);
                 break;
             case 10:
                 testTurretDatabase.plusSpeed += 10f;
-                ChangeCol(i);
+                ChangeCol(i, 0);
                 break;
             case 11:
                 testTurretDatabase.plusRepair += 2f;
-                ChangeCol(i);
+                ChangeCol(i, 0); 
                 break;
             case 12:
                 testTurretDatabase.trainInfo.trainCount += 1;
-                ChangeCol(i);
+                ChangeCol(i, 0); 
                 break;
             case 13:
                 testTurretDatabase.plusCurse += 10;
-                ChangeCol(i);
+                ChangeCol(i, 0); 
                 break;
             case 14:
                 testTurretDatabase.plusJesus += 1;
-                ChangeCol(i);
+                ChangeCol(i, 0); ;
                 break;
             default:
                 break;
         }
     }
 
-    public void ChangeCol(int i)
+    public void TrainDowngrade(int i)
     {
-        statList[i].transform.GetChild(2).GetChild(parsingJson.count[i]).GetComponent<Image>().color = new Color(1, 1, 0);
+        switch (i)
+        {
+            case 0:
+                testTurretDatabase.plusDamage -= 4;
+                ChangeCol(i, 1);
+                break;
+            case 1:
+                testTurretDatabase.plusDef -= 1;
+                ChangeCol(i, 1);
+                break;
+            case 2:
+                testTurretDatabase.plusRedDamage -= 1;
+                ChangeCol(i, 1);
+                break;
+            case 3:
+                testTurretDatabase.plusMaxHp -= 10;
+                ChangeCol(i, 1);
+                break;
+            case 4:
+                if (testTurretDatabase.plusRecoverAmount == 0.2f)
+                {
+                    testTurretDatabase.plusRecoverAmount -= 0.1f;
+                    ChangeCol(i, 1);
+                }
+                else if (testTurretDatabase.plusRecoverAmount == 0.1f)
+                {
+                    testTurretDatabase.plusRecoverAmount -= 0.1f;
+                    ChangeCol(i, 1);
+                }
+                else if (testTurretDatabase.plusRecoverAmount == 0)
+                {
+                    testTurretDatabase.plusRecoverAmount -= 0.3f;
+                    ChangeCol(i, 1);
+                }
+                break;
+            case 5:
+                testTurretDatabase.plusDistance -= 5f;
+                ChangeCol(i, 1);
+                break;
+            case 6:
+                testTurretDatabase.plusBuffTime -= 3f;
+                ChangeCol(i, 1);
+                break;
+            case 7:
+                testTurretDatabase.plustTurretDistance -= 10f;
+                ChangeCol(i, 1);
+                break;
+            case 8:
+                testTurretDatabase.plusReload -= 8;
+                ChangeCol(i, 1);
+                break;
+            case 9:
+                testTurretDatabase.plusLuck -= 10f;
+                ChangeCol(i, 1);
+                break;
+            case 10:
+                testTurretDatabase.plusSpeed -= 10f;
+                ChangeCol(i, 1);
+                break;
+            case 11:
+                testTurretDatabase.plusRepair -= 2f;
+                ChangeCol(i, 1);
+                break;
+            case 12:
+                testTurretDatabase.trainInfo.trainCount -= 1;
+                ChangeCol(i, 1);
+                break;
+            case 13:
+                testTurretDatabase.plusCurse -= 10;
+                ChangeCol(i, 1);
+                break;
+            case 14:
+                testTurretDatabase.plusJesus -= 1;
+                ChangeCol(i, 1);
+                break;
+            default:
+                break;
+        }
     }
+
+    public void ChangeCol(int i, float col)
+    {
+        statList[i].transform.GetChild(2).GetChild(parsingJson.count[i]).GetComponent<Image>().color = new Color(1, 1, col);
+    }
+
+    public void FirstCol()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            if (parsingJson.count[i] > 0)
+            {
+                for (int j = 0; j < parsingJson.count[i]; j++)
+                {
+                    statList[i].transform.GetChild(2).GetChild(j).GetComponent<Image>().color = new Color(1, 1, 0);
+                }
+            }
+        }
+    }
+
+    
 }

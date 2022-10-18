@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
     private float dryOilMaxTime = 0;
     private float dryOilCurTime = 0;
 
+    public bool onBun;
 
     protected virtual void OnEnable()
     {

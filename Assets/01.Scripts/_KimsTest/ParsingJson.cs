@@ -71,6 +71,11 @@ public class ParsingJson : MonoBehaviour
 
     void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         instance = this;
 
         TextAsset textAsset = Resources.Load<TextAsset>("JsonData/Sheet1");

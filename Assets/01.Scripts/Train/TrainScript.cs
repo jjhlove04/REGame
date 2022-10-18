@@ -362,6 +362,7 @@ public class TrainScript : MonoBehaviour
                     {
                         if (testDatabase.plusJesus != 1)
                         {
+                            CurTrainHp -= 9999;
                             DestroyTrain();
                         }
                         else

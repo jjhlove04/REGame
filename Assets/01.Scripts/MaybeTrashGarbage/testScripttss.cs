@@ -221,6 +221,9 @@ public class testScripttss : MonoBehaviour
                 turretData[turPos] = gameInst;
                 gameManager.GoldAmount -= turretData[turPos].GetComponent<Turret>().turretPrice;
 
+                gameManager.pticelistNum++;
+                gameManager.turretPtice = gameManager.pticeList[gameManager.pticelistNum];
+
                 inGameUI.CreateOutMoney(turretData[turPos].GetComponent<Turret>().turretPrice);
                 inGameUI.ShowTurPrice();
             }

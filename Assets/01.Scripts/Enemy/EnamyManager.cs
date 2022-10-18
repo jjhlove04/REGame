@@ -21,8 +21,11 @@ public class EnamyManager : MonoBehaviour
         ui = InGameUII._instance;
         testTurretData = TestTurretDataBase.Instance;
 
-        enemies[0].healthAmountMax += enemies[0].healthAmountMax * (testTurretData.plusCurse / 100);
-        enemies[0].enemySpeed += enemies[0].enemySpeed * (testTurretData.plusCurse / 100);
+        for (int i = 0; i < 5; i++)
+        {
+            enemies[i].healthAmountMax += enemies[i].healthAmountMax * (testTurretData.plusCurse / 100);
+            enemies[i].enemySpeed += enemies[i].enemySpeed * (testTurretData.plusCurse / 100);
+        }
 
     }
     private void Update()
@@ -36,23 +39,34 @@ public class EnamyManager : MonoBehaviour
 
             if ((int)ui.milliSec % 20 == 0 && isHUp)
             {
-                enemies[0].healthAmountMax += 1.5f;
+                enemies[0].healthAmountMax += 5f;
                 enemies[0].damage += 1.6f;
+
+                enemies[1].healthAmountMax += 5f;
+                enemies[1].damage += 3f;
+
+                enemies[2].healthAmountMax += 5f;
+                enemies[2].damage += 1.6f;
+
+                enemies[3].healthAmountMax += 7f;
+                enemies[3].damage += 1.6f;
+
+                enemies[4].healthAmountMax += 11f;
+                enemies[4].damage += 1.6f;
+
+
                 isHUp = false;
             }
-        }
-        
-        if(GameManager.Instance.TrainLevel == 1)
-        {
-            //enemies[0].enemy.transform.GetChild(0).GetComponent<MeshRenderer>().material = ;
-            //enemies[0].healthAmountMax = (GameManager.Instance.TrainLevel * )
         }
 
     }
 
     private void OnDisable()
     {
-        enemies[0].damage = damage;
-        enemies[0].healthAmountMax = healthAmountMax;
+        for (int i = 0; i < 5; i++)
+        {
+            enemies[i].damage = damage;
+            enemies[i].healthAmountMax = healthAmountMax;
+        }
     }
 }

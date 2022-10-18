@@ -166,6 +166,19 @@ public class TrainItemManager : MonoBehaviour
         {
             GameManager.Instance.GoldAmount -= curTrainItems[selectNum].needGold;
             InGameUII._instance.CreateOutMoney(curTrainItems[selectNum].needGold);
+
+            if (curTrainItems[selectNum].grade == Grade.Rare)
+            {
+                curTrainItems[selectNum].needGold = 100 + (curTrainItems[selectNum].curCarry * 25);
+            }
+            else if(curTrainItems[selectNum].grade == Grade.Epic)
+            {
+                curTrainItems[selectNum].needGold = (int)(150 + ((curTrainItems[selectNum].curCarry * 50) + (100 * GameManager.Instance.TrainLevel * 1.05f)));
+            }
+            else if (curTrainItems[selectNum].grade == Grade.Unique)
+            {
+                curTrainItems[selectNum].needGold = (int)(200 + (curTrainItems[selectNum].curCarry * 100) + 100 * (GameManager.Instance.TrainLevel * 1.25f));
+            }
         }
 
         if (curTrainItems[selectNum].curCarry > 1)

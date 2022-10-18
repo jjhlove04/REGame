@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6544285b9c369204abf63354905cdf0b, type: 3}
+  m_Name: Guardian 3
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1262010245510058, guid: e75799e4677a7cd468fa725efd5d49d3, type: 3}
+  enemySpeed: 12
+  distanceX: 10
+  minDistance: 13
+  maxDistance: 17
+  damage: 1
+  sAttackTime: 0.25
+  animTime: 0.25
+  healthAmountMax: 1
+  def: 0
+  dropExp: 1
+  dropGold: 10

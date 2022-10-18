@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public enum Grade
 {
-    Normal,
-    Rare
+    Rare,
+    Epic,
+    Unique
 }
 
 public abstract class TrainItem : MonoBehaviour

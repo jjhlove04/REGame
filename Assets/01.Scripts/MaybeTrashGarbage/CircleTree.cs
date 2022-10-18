@@ -274,8 +274,13 @@ public class CircleTree : MonoBehaviour
         installBtn.GetComponent<Image>().color = new Color(1,1,0,1);
         installBtn.GetComponent<Image>().transform.GetChild(0).gameObject.SetActive(true);
 
-        gameManager.GoldAmount += (int)(testscriptts.turretData[installBtn.GetComponent<testSkillScript>().count].GetComponent<Turret>().turretPrice / 0.7f);
+        gameManager.pticelistNum--;
+        gameManager.turretPtice = gameManager.pticeList[gameManager.pticelistNum];
+
+        gameManager.GoldAmount += (int)(gameManager.pticeList[gameManager.pticelistNum] * 0.7f);
         inGameUII.ShowTurPrice();
+
+
     }
 
     private void ChoseTree(int num)

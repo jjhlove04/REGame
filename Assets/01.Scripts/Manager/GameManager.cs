@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
 
     public int turretPtice = 10;
 
+    public int[] pticeList;
+    public int pticelistNum;
+
     private int goldAmount = 0;
     public int GoldAmount
     {
@@ -464,6 +467,6 @@ public class GameManager : MonoBehaviour
     private void Scrap()
     {
         GameObject obj = objectPool.GetObject(scrapObj);
-        obj.GetComponent<ScrapProjectileMover>().Create(InGameUII._instance.TurretDamage * 0.35f, countScrap, new Vector3(transform.position.x, 4, (-(trainManager.trainContainer.Count) * 20) + 27));
+        obj.GetComponent<ScrapProjectileMover>().Create(InGameUII._instance.TurretDamage * 0.2f, countScrap, new Vector3(transform.position.x, 4, (-(trainManager.trainContainer.Count) * 20) + 27));
     }
 }

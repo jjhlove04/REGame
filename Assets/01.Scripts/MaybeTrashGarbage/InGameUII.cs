@@ -542,9 +542,8 @@ public class InGameUII : MonoBehaviour
 
     public void OpenTitleScene()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("RemakeTitle");
-
+        TestTurretDataBase.Instance.sceneIndex = 1;
+        gameManager.state = GameManager.State.End;
     }
 
     public void OpenGiveUPPanel()
